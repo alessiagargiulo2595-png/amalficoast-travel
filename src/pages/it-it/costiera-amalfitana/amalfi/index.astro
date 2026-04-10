@@ -1,0 +1,562 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Costiera Amalfitana', url: '/it-it/costiera-amalfitana/' },
+  { name: 'Amalfi', url: '/it-it/costiera-amalfitana/amalfi/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Amalfi",
+  "description": "Amalfi è la capitale storica della Costiera Amalfitana, già potente Repubblica Marinara medievale. Famosa per il Duomo di Sant'Andrea, il Museo della Carta e il caratteristico centro storico.",
+  "url": "https://amalficoast-travel.com/it-it/costiera-amalfitana/amalfi/",
+  "image": "https://amalficoast-travel.com/images/amalfi-hero.jpg",
+  "touristType": ["Cultura", "Storia", "Mare", "Gastronomia"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Amalfi",
+    "addressRegion": "Salerno",
+    "addressCountry": "IT",
+    "postalCode": "84011"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6339,
+    "longitude": 14.6027
+  }
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Amalfi, Costiera Amalfitana",
+  "description": "Città costiera della Costiera Amalfitana in provincia di Salerno, Campania. Ex Repubblica Marinara.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6339,
+    "longitude": 14.6027
+  },
+  "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Costiera Amalfitana"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si arriva ad Amalfi da Napoli?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Da Napoli si può arrivare ad Amalfi in traghetto da Molo Beverello (circa 90–105 min, stagionale) oppure in bus SITA da Sorrento via SS163 (circa 90 min). In auto la SS163 è spettacolare ma tortuosa: in estate si consiglia di evitarla."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual è il periodo migliore per visitare Amalfi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aprile–giugno e settembre–ottobre sono i mesi ideali: clima mite, folla contenuta, prezzi ragionevoli. Luglio e agosto sono il picco del turismo. Novembre–marzo è tranquillo ma con rischio di piogge e servizi ridotti."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costa il traghetto da Salerno ad Amalfi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il traghetto Travelmar da Salerno ad Amalfi costa circa €8–10 a tratta. Il biglietto è acquistabile online o in biglietteria al porto. Il servizio è attivo indicativamente da aprile a ottobre."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa vedere ad Amalfi in un giorno?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In un giorno si possono visitare il Duomo di Sant'Andrea e il Chiostro del Paradiso, il Museo della Carta, il centro storico con Piazza del Duomo, e fare una passeggiata alla Valle delle Ferriere. La sera, cena in uno dei ristoranti sul lungomare."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "C'è parcheggio ad Amalfi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I parcheggi sono scarsi e costosi (parcheggio Luna Rossa e parcheggio Flavio Gioia: circa €4–5/ora). In estate vige la ZTL nel centro storico. Si raccomanda di arrivare con traghetto o bus SITA per evitare il problema del traffico sulla SS163."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Amalfi 2025: Guida Completa | Costiera Amalfitana"
+  description="Tutto su Amalfi: Duomo di Sant'Andrea, Museo della Carta, come arrivare, orari traghetti e bus, cosa vedere, quando andare. La guida definitiva alla capitale della Costiera Amalfitana."
+  lang={lang}
+  pageKey="amalfi"
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, placeSchema, faqSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative min-h-[70vh] flex items-end bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-capri-900 via-capri-800 to-capri-600 opacity-70"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-lemon-400 text-sm font-medium uppercase tracking-widest mb-3">Repubblica Marinara · Patrimonio UNESCO</p>
+        <h1 class="font-serif text-display text-white mb-4">Amalfi</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La città che ha dato il nome all'intera costiera. Capitale di una delle quattro Repubbliche Marinare medievali, oggi è un labirinto di vicoli, scalinate e profumo di limoni — con il Duomo di Sant'Andrea che domina tutto dall'alto.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-lemon-400 text-charcoal text-sm font-semibold rounded-full hover:bg-lemon-300 transition-colors">
+            Fast Facts
+          </a>
+          <a href="#come-arrivare" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            Come arrivare
+          </a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            FAQ
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Grid -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <!-- Main Content -->
+      <div class="space-y-16">
+
+        <!-- Intro -->
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Amalfi non è solo una città: è un pezzo di storia italiana incastonato nella roccia. Tra il IX e il XII secolo fu una delle potenze marittime più influenti del Mediterraneo — rivale di Venezia, Genova e Pisa. Oggi quella grandezza sopravvive nel Duomo, nell'Arsenale medievale e in una cultura locale che ha resistito ai secoli.
+          </p>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            Con circa 5.000 abitanti, è anche il centro logistico della Costiera: i traghetti fermano qui, i bus si incrociano qui, e da qui partono le escursioni verso Ravello, la Valle delle Ferriere e le calette più remote. È la base ideale per esplorare l'intera area senza dipendere dall'auto.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-capri-50 border-l-4 border-capri-500 rounded-r-2xl p-8">
+          <p class="text-[10px] uppercase tracking-widest text-capri-500 font-medium mb-4">Lo sapevi?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-capri-600">IX sec.</p>
+              <p class="text-sm text-gray-600 mt-1">fondazione della Repubblica Marinara</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-capri-600">1343</p>
+              <p class="text-sm text-gray-600 mt-1">anno del maremoto che distrusse il porto</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-capri-600">62</p>
+              <p class="text-sm text-gray-600 mt-1">gradini della scalinata del Duomo</p>
+            </div>
+          </div>
+          <p class="text-sm text-gray-500 mt-6 italic">
+            La <em>Tavola Amalfitana</em>, il primo codice marittimo del Mediterraneo occidentale (XI sec.), fu usata come riferimento legale per la navigazione fino al 1570.
+          </p>
+        </div>
+
+        <!-- Cosa Vedere -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-8">Cosa vedere ad Amalfi</h2>
+          <div class="space-y-8">
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">1</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Duomo di Sant'Andrea</h3>
+                <p class="text-gray-600 leading-relaxed">Il simbolo assoluto di Amalfi. La facciata arabo-normanna con mosaici dorati domina Piazza del Duomo dalla cima di 62 scalini. All'interno le reliquie di Sant'Andrea Apostolo. Il Chiostro del Paradiso (ingresso a pagamento) è un capolavoro di architettura medievale. Aperto tutti i giorni.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">2</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Museo della Carta</h3>
+                <p class="text-gray-600 leading-relaxed">Ospitato in una cartiera del XIII secolo ancora funzionante, racconta l'invenzione della carta bambagina — portata dagli arabi e perfezionata dagli amalfitani. Una delle industrie che rese Amalfi ricca. Visita guidata inclusa nel biglietto (~€5). Aperto da marzo a novembre.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">3</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Arsenale della Repubblica</h3>
+                <p class="text-gray-600 leading-relaxed">Le grotte medievali dove venivano costruite le galee amalfitane. Oggi ospita il Museo Civico con la Tavola Amalfitana originale. L'edificio è uno dei pochi resti dell'architettura civile medievale della costiera. Ingresso libero nelle ore di apertura.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">4</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Valle delle Ferriere</h3>
+                <p class="text-gray-600 leading-relaxed">Una riserva naturale a 10 minuti a piedi dal centro. Il sentiero risale il torrente Canneto tra cascate, felci giganti e antiche cartiere abbandonate. Circa 5 km andata e ritorno, livello facile. Ideale nelle ore fresche della mattina.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">5</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Piazza del Duomo e il centro storico</h3>
+                <p class="text-gray-600 leading-relaxed">Il cuore pulsante di Amalfi: bar, gelaterie, botteghe di ceramiche e limoncello. Da Piazza del Duomo si diramano vicoli che salgono verso i quartieri alti, dove la vita locale scorre lontano dai turisti. Da esplorare a piedi senza meta.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Come Arrivare -->
+        <div id="come-arrivare">
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-6">Come arrivare ad Amalfi</h2>
+          <p class="text-gray-600 mb-8 leading-relaxed">Amalfi non ha stazione ferroviaria. Le opzioni migliori sono il traghetto (da aprile a ottobre) e il bus SITA. In estate l'auto è sconsigliata: la SS163 è spesso congestionata e i parcheggi quasi inesistenti.</p>
+
+          <!-- Ferry Schedules -->
+          <div class="mb-10">
+            <h3 class="font-semibold text-charcoal text-xl mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5 text-capri-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18M3 17l-1.5 3h21L21 17M8 11V7a4 4 0 018 0v4"/></svg>
+              Orari Traghetti — Estate 2025
+            </h3>
+            <p class="text-sm text-gray-500 mb-4">Servizi attivi indicativamente da aprile a ottobre. Verificare sempre gli orari aggiornati sui siti ufficiali delle compagnie.</p>
+
+            <div class="overflow-x-auto rounded-2xl border border-gray-200">
+              <table class="w-full text-sm">
+                <caption class="text-left text-xs text-gray-500 px-4 py-2 bg-gray-50 rounded-t-2xl border-b border-gray-200 font-medium">
+                  Travelmar — Tratta Salerno ↔ Amalfi
+                </caption>
+                <thead>
+                  <tr class="bg-capri-50 text-capri-800">
+                    <th class="text-left px-4 py-3 font-semibold">Partenza Salerno</th>
+                    <th class="text-left px-4 py-3 font-semibold">Arrivo Amalfi</th>
+                    <th class="text-left px-4 py-3 font-semibold">Durata</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">07:15</td>
+                    <td class="px-4 py-3 font-mono">08:30</td>
+                    <td class="px-4 py-3 text-gray-500">~75 min (via Cetara, Maiori)</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">09:00</td>
+                    <td class="px-4 py-3 font-mono">10:15</td>
+                    <td class="px-4 py-3 text-gray-500">~75 min</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">11:00</td>
+                    <td class="px-4 py-3 font-mono">12:15</td>
+                    <td class="px-4 py-3 text-gray-500">~75 min</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">14:15</td>
+                    <td class="px-4 py-3 font-mono">15:30</td>
+                    <td class="px-4 py-3 text-gray-500">~75 min</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">17:00</td>
+                    <td class="px-4 py-3 font-mono">18:15</td>
+                    <td class="px-4 py-3 text-gray-500">~75 min</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="overflow-x-auto rounded-2xl border border-gray-200 mt-6">
+              <table class="w-full text-sm">
+                <caption class="text-left text-xs text-gray-500 px-4 py-2 bg-gray-50 rounded-t-2xl border-b border-gray-200 font-medium">
+                  NLG / Alilauro — Tratta Napoli (Beverello) ↔ Amalfi
+                </caption>
+                <thead>
+                  <tr class="bg-capri-50 text-capri-800">
+                    <th class="text-left px-4 py-3 font-semibold">Partenza Napoli</th>
+                    <th class="text-left px-4 py-3 font-semibold">Arrivo Amalfi</th>
+                    <th class="text-left px-4 py-3 font-semibold">Durata</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">09:00</td>
+                    <td class="px-4 py-3 font-mono">10:45</td>
+                    <td class="px-4 py-3 text-gray-500">~105 min</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">11:15</td>
+                    <td class="px-4 py-3 font-mono">13:00</td>
+                    <td class="px-4 py-3 text-gray-500">~105 min</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">14:30</td>
+                    <td class="px-4 py-3 font-mono">16:15</td>
+                    <td class="px-4 py-3 text-gray-500">~105 min</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-xs text-gray-400 mt-2">* Gli orari sono indicativi per la stagione 2025. Consulta travelmar.it e nlg.it per confermare.</p>
+          </div>
+
+          <!-- Bus Schedules -->
+          <div>
+            <h3 class="font-semibold text-charcoal text-xl mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5 text-capri-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="M3 10h18M8 19v2M16 19v2"/></svg>
+              Bus SITA — Tratta Sorrento ↔ Amalfi (SS163)
+            </h3>
+            <p class="text-sm text-gray-500 mb-4">Il bus SITA collega Sorrento ad Amalfi lungo la SS163 passando per Positano e Praiano (~90 min, ~€2,50). Corse frequenti tutto l'anno.</p>
+
+            <div class="overflow-x-auto rounded-2xl border border-gray-200">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-capri-50 text-capri-800">
+                    <th class="text-left px-4 py-3 font-semibold">Partenza Sorrento</th>
+                    <th class="text-left px-4 py-3 font-semibold">Arrivo Amalfi</th>
+                    <th class="text-left px-4 py-3 font-semibold">Frequenza</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">07:00</td>
+                    <td class="px-4 py-3 font-mono">08:30</td>
+                    <td class="px-4 py-3 text-gray-500">Solo feriali</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">08:30</td>
+                    <td class="px-4 py-3 font-mono">10:00</td>
+                    <td class="px-4 py-3 text-gray-500">Ogni giorno</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">10:00</td>
+                    <td class="px-4 py-3 font-mono">11:30</td>
+                    <td class="px-4 py-3 text-gray-500">Ogni giorno</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">12:00</td>
+                    <td class="px-4 py-3 font-mono">13:30</td>
+                    <td class="px-4 py-3 text-gray-500">Ogni giorno</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">14:30</td>
+                    <td class="px-4 py-3 font-mono">16:00</td>
+                    <td class="px-4 py-3 text-gray-500">Ogni giorno</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">16:30</td>
+                    <td class="px-4 py-3 font-mono">18:00</td>
+                    <td class="px-4 py-3 text-gray-500">Ogni giorno</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-xs text-gray-400 mt-2">* Orari indicativi. In estate aggiungono corse extra. Consulta sitasudtrasporti.it per l'orario aggiornato.</p>
+          </div>
+        </div>
+
+        <!-- Hidden Gems -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-6">Luoghi nascosti di Amalfi</h2>
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+              <h3 class="font-semibold text-charcoal mb-2">Pontone e Scala</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">I due borghi medievali sopra Amalfi, raggiungibili a piedi in 40–60 minuti lungo antichi sentieri lastricati. Quasi nessun turista. Scala è uno dei comuni più piccoli d'Italia con vedute straordinarie sulla valle.</p>
+            </div>
+            <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+              <h3 class="font-semibold text-charcoal mb-2">Spiaggia di Santa Croce</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Una caletta nascosta a est del centro, raggiungibile a piedi in 20 minuti o in barca dal porto. Meno frequentata della spiaggia principale, con acque particolarmente limpide e una piccola grotta.</p>
+            </div>
+            <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+              <h3 class="font-semibold text-charcoal mb-2">Rione Vagliendola</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Il quartiere alto di Amalfi, arroccato sulla collina dietro il Duomo. Vicoli silenziosi, archi medievali e scorci sul mare lontano dal traffico turistico del lungomare. Da esplorare nelle ore calde del pomeriggio.</p>
+            </div>
+            <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+              <h3 class="font-semibold text-charcoal mb-2">Pasticceria Pansa (dal 1830)</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">La pasticceria più antica della costiera, in Piazza del Duomo. Famosa per i dolci al limone, le delizie e i cioccolatini alla mandorla. Un'istituzione locale che merita una sosta anche solo per un caffè.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-8">Domande frequenti su Amalfi</h2>
+          <div class="space-y-4">
+
+            <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+                Come si arriva ad Amalfi da Napoli?
+                <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+                Da Napoli si può arrivare in traghetto da Molo Beverello (circa 90–105 min, stagionale da aprile a ottobre) oppure in bus SITA da Sorrento via SS163 (circa 90 min). La tratta in bus richiede prima di prendere il Circumvesuviana da Napoli a Sorrento (~65 min).
+              </div>
+            </details>
+
+            <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+                Qual è il periodo migliore per visitare Amalfi?
+                <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+                Aprile–giugno e settembre–ottobre sono i mesi ideali: clima mite, folla contenuta e prezzi più accessibili. Luglio e agosto sono bellissimi ma sovraffollati. Novembre–marzo la città è tranquilla, molti ristoranti chiudono ma il Duomo è sempre aperto.
+              </div>
+            </details>
+
+            <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+                Quanto costa il traghetto da Salerno ad Amalfi?
+                <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+                Il traghetto Travelmar da Salerno ad Amalfi costa circa €8–10 a tratta per adulto. Il servizio è stagionale (aprile–ottobre). I biglietti si acquistano online su travelmar.it o direttamente in biglietteria al porto di Salerno.
+              </div>
+            </details>
+
+            <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+                Cosa vedere ad Amalfi in un giorno?
+                <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+                In un giorno: mattina al Duomo e Chiostro del Paradiso (1h), poi Museo della Carta (1h) e passeggiata in Valle delle Ferriere (2–3h). Nel pomeriggio, centro storico, Arsenale e spiaggia. Cena con pasta alle vongole in uno dei ristoranti del lungomare.
+              </div>
+            </details>
+
+            <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+                C'è parcheggio ad Amalfi?
+                <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+                I parcheggi sono scarsi e costosi: il parcheggio Luna Rossa e il parcheggio Flavio Gioia praticano circa €4–5/ora. In estate vige la ZTL nel centro. La scelta migliore è lasciare l'auto a Vietri sul Mare o Salerno e prendere il traghetto, oppure arrivare con il bus SITA.
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6">
+
+        <!-- Fast Facts -->
+        <div id="fast-facts" class="bg-charcoal text-white rounded-2xl p-6 sticky top-24">
+          <p class="text-[10px] uppercase tracking-widest text-lemon-400 font-medium mb-4">Fast Facts — Amalfi</p>
+          <dl class="space-y-3">
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Posizione</dt>
+              <dd class="text-sm text-right">Costiera Amalfitana, SA</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Altitudine</dt>
+              <dd class="text-sm text-right">0–350 m slm</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Popolazione</dt>
+              <dd class="text-sm text-right">~5.000 abitanti</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">ZTL</dt>
+              <dd class="text-sm text-right">Sì, in estate</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Mezzi</dt>
+              <dd class="text-sm text-right">Bus SITA, Traghetto</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Spiaggia</dt>
+              <dd class="text-sm text-right">Ciottoli grigi</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Miglior periodo</dt>
+              <dd class="text-sm text-right">Apr–Giu / Set–Ott</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Lingua</dt>
+              <dd class="text-sm text-right">Italiano / Inglese</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Valuta</dt>
+              <dd class="text-sm text-right">Euro (€)</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Insider Tips -->
+        <div class="bg-lemon-50 border border-lemon-300 rounded-2xl p-6">
+          <p class="text-[10px] uppercase tracking-widest text-lemon-700 font-medium mb-3">Consigli degli insider</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
+              <span>Visita il Duomo la mattina presto (prima delle 9:00): la luce è perfetta e i turisti quasi assenti.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
+              <span>Il Museo della Carta è spesso ignorato dai turisti di passaggio: è uno dei posti più unici della costiera, non perderlo.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
+              <span>Usa Amalfi come base: da qui i traghetti raggiungono Positano, Ravello (bus), Salerno e Napoli con facilità.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
+              <span>Per il limoncello, evita i negozi sul lungomare e compra direttamente dai produttori locali nelle vie interne.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="bg-white border border-gray-200 rounded-2xl p-6">
+          <p class="text-[10px] uppercase tracking-widest text-gray-400 font-medium mb-3">Esplora la Costiera</p>
+          <nav class="space-y-1">
+            <a href="/it-it/costiera-amalfitana/positano/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-capri-50 hover:text-capri-600 transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-capri-300"></span> Positano
+            </a>
+            <a href="/it-it/costiera-amalfitana/ravello/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-capri-50 hover:text-capri-600 transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-capri-300"></span> Ravello
+            </a>
+            <a href="/it-it/costiera-amalfitana/praiano/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-capri-50 hover:text-capri-600 transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-capri-300"></span> Praiano
+            </a>
+            <a href="/it-it/costiera-amalfitana/maiori/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-capri-50 hover:text-capri-600 transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-capri-300"></span> Maiori
+            </a>
+            <a href="/it-it/costiera-amalfitana/minori/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-capri-50 hover:text-capri-600 transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-capri-300"></span> Minori
+            </a>
+          </nav>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+</BaseLayout>
