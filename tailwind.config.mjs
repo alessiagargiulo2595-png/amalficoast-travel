@@ -4,23 +4,49 @@ export default {
   theme: {
     extend: {
       colors: {
-        sea: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          900: '#0c4a6e',
+        capri: {
+          50:  '#e6f3ff',
+          100: '#cce7ff',
+          200: '#99ceff',
+          300: '#66b5ff',
+          400: '#339cff',
+          500: '#007FFF',
+          600: '#0066cc',
+          700: '#004d99',
+          800: '#003366',
+          900: '#001a33',
         },
-        amalfi: {
-          yellow: '#f59e0b',
-          terracotta: '#c2410c',
-          lemon: '#fde68a',
-        }
+        lemon: {
+          50:  '#fffef0',
+          100: '#fffce0',
+          200: '#fff9c0',
+          300: '#fff599',
+          400: '#fff166',
+          500: '#FFF44F',
+          600: '#e6d900',
+          700: '#b3a800',
+          800: '#807800',
+          900: '#4d4800',
+        },
+        charcoal: '#333333',
+        offwhite: '#FAFAF8',
       },
       fontFamily: {
-        serif: ['Georgia', 'Cambria', 'serif'],
-      }
+        serif:  ['"Playfair Display"', 'Georgia', 'serif'],
+        sans:   ['Inter', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        'display': ['clamp(2.5rem, 6vw, 5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'hero':    ['clamp(1.8rem, 4vw, 3.5rem)', { lineHeight: '1.15' }],
+      },
+      spacing: {
+        '18': '4.5rem',
+        '22': '5.5rem',
+      },
+      maxWidth: {
+        'editorial': '72rem',
+        'text':      '65ch',
+      },
     },
   },
   plugins: [],

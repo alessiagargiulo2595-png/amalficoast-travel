@@ -1,0 +1,568 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Costiera Amalfitana', url: '/it-it/costiera-amalfitana/' },
+  { name: 'Positano', url: '/it-it/costiera-amalfitana/positano/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Positano",
+  "description": "Positano è il borgo più iconico della Costiera Amalfitana, noto per le sue case colorate a strapiombo sul mare, le spiagge di ciottoli e l'atmosfera da dolce vita.",
+  "url": "https://amalficoast-travel.com/it-it/costiera-amalfitana/positano/",
+  "image": "https://amalficoast-travel.com/images/positano-hero.jpg",
+  "touristType": ["Cultura", "Natura", "Mare", "Gastronomia"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Positano",
+    "addressRegion": "Salerno",
+    "addressCountry": "IT",
+    "postalCode": "84017"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6281,
+    "longitude": 14.4849
+  }
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Positano, Costiera Amalfitana",
+  "description": "Borgo marinaro della Costiera Amalfitana in provincia di Salerno, Campania.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6281,
+    "longitude": 14.4849
+  },
+  "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Costiera Amalfitana"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si arriva a Positano dalla stazione di Napoli?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Da Napoli Centrale si prende il Circumvesuviana fino a Sorrento (circa 65 min), poi il bus SITA SS163 fino a Positano (circa 50 min). In alternativa, traghetto da Napoli Molo Beverello (circa 75 min in estate)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual è il periodo migliore per visitare Positano?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Maggio–giugno e settembre–ottobre offrono il miglior equilibrio tra clima, folla e prezzi. Luglio e agosto sono caldissimi e sovraffollati. L'inverno è tranquillo ma molti locali chiudono."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "C'è parcheggio a Positano?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I parcheggi a pagamento sono limitati e costosi (fino a €5/ora). In estate vige la ZTL: solo i residenti e gli ospiti di hotel con pass possono entrare in auto. Meglio arrivare con i mezzi pubblici."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quali spiagge ci sono a Positano?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La spiaggia principale è la Spiaggia Grande (ciottoli, stabilimenti e libera). La Spiaggia del Fornillo è più tranquilla, raggiungibile a piedi in 10 minuti. Entrambe hanno acque cristalline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costa un soggiorno a Positano?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Positano è tra le destinazioni più esclusive della costiera. In alta stagione i B&B partono da €120/notte, gli hotel 4–5 stelle superano i €400. Prenotare con 3–6 mesi di anticipo è essenziale."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Positano 2025: Guida Completa | Costiera Amalfitana"
+  description="Tutto su Positano: come arrivare, spiagge, orari traghetti e bus, cosa vedere, quando andare. La guida definitiva al borgo più bello della Costiera Amalfitana."
+  lang={lang}
+  pageKey="positano"
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, placeSchema, faqSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative min-h-[70vh] flex items-end bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div>
+    <!-- Decorative gradient background in lieu of image -->
+    <div class="absolute inset-0 bg-gradient-to-br from-capri-900 via-capri-700 to-capri-500 opacity-70"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-lemon-400 text-sm font-medium uppercase tracking-widest mb-3">Costiera Amalfitana</p>
+        <h1 class="font-serif text-display text-white mb-4">Positano</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Case color pastello a strapiombo sul Tirreno, scale di maiolica, profumo di limoni e la più celebre spiaggia della costiera. Benvenuto nel borgo che ha ispirato artisti e viaggiatori da Steinbeck a Picasso.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-lemon-400 text-charcoal text-sm font-semibold rounded-full hover:bg-lemon-300 transition-colors">
+            Fast Facts
+          </a>
+          <a href="#come-arrivare" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            Come arrivare
+          </a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            FAQ
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Grid -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <!-- Main Content -->
+      <div class="space-y-16">
+
+        <!-- Intro -->
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Positano è il simbolo della Costiera Amalfitana: un anfiteatro di case colorate — bianche, ocra, rosa — che scendono a picco verso il mare. Con meno di 4.000 abitanti, il borgo concentra una densità di bellezza che pochi posti al mondo possono vantare.
+          </p>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            Lo scrittore John Steinbeck la definì nel 1953 "un posto difficile da raggiungere e impossibile da dimenticare". Settant'anni dopo, quella descrizione resta perfetta. Positano non è una destinazione turistica: è un'esperienza sensoriale, dove ogni curva rivela un nuovo scorcio, ogni trattoria un sapore autentico.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-capri-50 border-l-4 border-capri-500 rounded-r-2xl p-8">
+          <p class="text-[10px] uppercase tracking-widest text-capri-500 font-medium mb-4">Lo sapevi?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-capri-600">1.000+</p>
+              <p class="text-sm text-gray-600 mt-1">gradini di scale nel centro storico</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-capri-600">14°C</p>
+              <p class="text-sm text-gray-600 mt-1">temperatura media a gennaio</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-capri-600">4 mln</p>
+              <p class="text-sm text-gray-600 mt-1">visitatori stimati ogni anno</p>
+            </div>
+          </div>
+          <p class="text-sm text-gray-500 mt-6 italic">
+            Il nome "Positano" deriva probabilmente dal latino <em>Positanum</em>, da una famiglia romana chiamata Posidio che vi possedeva una villa nel I sec. d.C.
+          </p>
+        </div>
+
+        <!-- Cosa Vedere -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-8">Cosa vedere a Positano</h2>
+          <div class="space-y-8">
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">1</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Chiesa di Santa Maria Assunta</h3>
+                <p class="text-gray-600 leading-relaxed">La cupola maiolicata in verde e giallo è il simbolo del borgo. All'interno custodisce il <em>Nero di Positano</em>, un'icona bizantina del XII secolo. Ingresso libero, aperta tutti i giorni.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">2</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Spiaggia Grande</h3>
+                <p class="text-gray-600 leading-relaxed">La spiaggia principale, un arco di ciottoli scuri con vista sulle barche colorate. La parte libera è gratuita; gli stabilimenti offrono lettini e ombrelloni. D'estate si riempie presto: arrivare entro le 9:00.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">3</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Spiaggia del Fornillo</h3>
+                <p class="text-gray-600 leading-relaxed">Raggiungibile a piedi dalla Spiaggia Grande attraverso un sentiero panoramico di 10 minuti. Meno affollata, con due scogli spettacolari (I Galli) all'orizzonte.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">4</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Via dei Mulini e il centro</h3>
+                <p class="text-gray-600 leading-relaxed">La via principale del borgo, costellata di boutique di moda (Positano è la capitale della moda mare italiana), ceramiche e ristoranti. Da esplorare nelle ore serali per evitare la folla.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">5</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Sentiero degli Dei</h3>
+                <p class="text-gray-600 leading-relaxed">Il trekking più spettacolare della costiera parte da Nocelle, sopra Positano, e arriva ad Agerola. Circa 7,5 km con viste mozzafiato sul Golfo di Salerno. Livello: medio.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Come Arrivare -->
+        <div id="come-arrivare">
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-6">Come arrivare a Positano</h2>
+          <p class="text-gray-600 mb-8 leading-relaxed">Non esiste una stazione ferroviaria a Positano. Le opzioni principali sono il traghetto (stagionale) e il bus. In estate si raccomanda vivamente di evitare l'auto.</p>
+
+          <!-- Ferry Schedules -->
+          <div class="mb-10">
+            <h3 class="font-semibold text-charcoal text-xl mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5 text-capri-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18M3 17l-1.5 3h21L21 17M8 11V7a4 4 0 018 0v4"/></svg>
+              Orari Traghetti — Estate 2025
+            </h3>
+            <p class="text-sm text-gray-500 mb-4">Servizi attivi indicativamente da aprile a ottobre. Verificare sempre gli orari aggiornati sui siti ufficiali delle compagnie.</p>
+
+            <div class="overflow-x-auto rounded-2xl border border-gray-200">
+              <table class="w-full text-sm">
+                <caption class="text-left text-xs text-gray-500 px-4 py-2 bg-gray-50 rounded-t-2xl border-b border-gray-200 font-medium">
+                  Travelmar — Tratta Salerno ↔ Positano (via Amalfi)
+                </caption>
+                <thead>
+                  <tr class="bg-capri-50 text-capri-800">
+                    <th class="text-left px-4 py-3 font-semibold">Partenza Salerno</th>
+                    <th class="text-left px-4 py-3 font-semibold">Arrivo Positano</th>
+                    <th class="text-left px-4 py-3 font-semibold">Note</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">07:15</td>
+                    <td class="px-4 py-3 font-mono">08:55</td>
+                    <td class="px-4 py-3 text-gray-500">Via Cetara, Maiori, Amalfi</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">09:00</td>
+                    <td class="px-4 py-3 font-mono">10:40</td>
+                    <td class="px-4 py-3 text-gray-500">—</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">11:00</td>
+                    <td class="px-4 py-3 font-mono">12:40</td>
+                    <td class="px-4 py-3 text-gray-500">—</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">14:15</td>
+                    <td class="px-4 py-3 font-mono">15:55</td>
+                    <td class="px-4 py-3 text-gray-500">—</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">16:30</td>
+                    <td class="px-4 py-3 font-mono">18:10</td>
+                    <td class="px-4 py-3 text-gray-500">—</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="overflow-x-auto rounded-2xl border border-gray-200 mt-6">
+              <table class="w-full text-sm">
+                <caption class="text-left text-xs text-gray-500 px-4 py-2 bg-gray-50 rounded-t-2xl border-b border-gray-200 font-medium">
+                  Alilauro — Tratta Napoli (Beverello) ↔ Positano
+                </caption>
+                <thead>
+                  <tr class="bg-capri-50 text-capri-800">
+                    <th class="text-left px-4 py-3 font-semibold">Partenza Napoli</th>
+                    <th class="text-left px-4 py-3 font-semibold">Arrivo Positano</th>
+                    <th class="text-left px-4 py-3 font-semibold">Durata</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">09:00</td>
+                    <td class="px-4 py-3 font-mono">10:30</td>
+                    <td class="px-4 py-3 text-gray-500">~90 min</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">11:00</td>
+                    <td class="px-4 py-3 font-mono">12:30</td>
+                    <td class="px-4 py-3 text-gray-500">~90 min</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">14:00</td>
+                    <td class="px-4 py-3 font-mono">15:30</td>
+                    <td class="px-4 py-3 text-gray-500">~90 min</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-xs text-gray-400 mt-2">* Gli orari sono indicativi per la stagione 2025. Consulta travelmar.it e alilauro.it per confermare.</p>
+          </div>
+
+          <!-- Bus Schedules -->
+          <div>
+            <h3 class="font-semibold text-charcoal text-xl mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5 text-capri-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="M3 10h18M8 19v2M16 19v2"/></svg>
+              Bus SITA — Tratta Sorrento ↔ Positano (SS163)
+            </h3>
+            <p class="text-sm text-gray-500 mb-4">Il bus SITA è l'opzione più economica (~€2,50). Partenza da Sorrento Piazza Tasso. Corse frequenti tutto l'anno.</p>
+
+            <div class="overflow-x-auto rounded-2xl border border-gray-200">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-capri-50 text-capri-800">
+                    <th class="text-left px-4 py-3 font-semibold">Partenza Sorrento</th>
+                    <th class="text-left px-4 py-3 font-semibold">Arrivo Positano</th>
+                    <th class="text-left px-4 py-3 font-semibold">Frequenza</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">06:30</td>
+                    <td class="px-4 py-3 font-mono">07:20</td>
+                    <td class="px-4 py-3 text-gray-500">Solo feriali</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">08:00</td>
+                    <td class="px-4 py-3 font-mono">08:50</td>
+                    <td class="px-4 py-3 text-gray-500">Ogni giorno</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">09:30</td>
+                    <td class="px-4 py-3 font-mono">10:20</td>
+                    <td class="px-4 py-3 text-gray-500">Ogni giorno</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">11:00</td>
+                    <td class="px-4 py-3 font-mono">11:50</td>
+                    <td class="px-4 py-3 text-gray-500">Ogni giorno</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">13:00</td>
+                    <td class="px-4 py-3 font-mono">13:50</td>
+                    <td class="px-4 py-3 text-gray-500">Ogni giorno</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">15:30</td>
+                    <td class="px-4 py-3 font-mono">16:20</td>
+                    <td class="px-4 py-3 text-gray-500">Ogni giorno</td>
+                  </tr>
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">17:30</td>
+                    <td class="px-4 py-3 font-mono">18:20</td>
+                    <td class="px-4 py-3 text-gray-500">Ogni giorno</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-xs text-gray-400 mt-2">* Orari indicativi. In estate aggiungono corse extra. Consulta sitasudtrasporti.it per l'orario aggiornato.</p>
+          </div>
+        </div>
+
+        <!-- Hidden Gems -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-6">Luoghi nascosti di Positano</h2>
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+              <h3 class="font-semibold text-charcoal mb-2">Arienzo Beach</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Spiaggia raggiungibile solo via mare o con 300 gradini. In alta stagione è molto meno affollata della Spiaggia Grande. Noleggio barche disponibile dal porto.</p>
+            </div>
+            <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+              <h3 class="font-semibold text-charcoal mb-2">Nocelle e il Sentiero degli Dei</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Il villaggio di Nocelle (418 m slm) sopra Positano è raggiungibile con un bus navetta. Viste panoramiche sul borgo e sul mare senza folla.</p>
+            </div>
+            <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+              <h3 class="font-semibold text-charcoal mb-2">Torre Trasita</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Una delle torri saracene medievali del borgo, oggi affittata come casa vacanze privata. All'esterno è visibile e fotografabile dalla via principale.</p>
+            </div>
+            <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+              <h3 class="font-semibold text-charcoal mb-2">Sfizi di Positano (colazione locale)</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Evita i bar sul lungomare (prezzi da turista) e cerca i bar frequentati dai residenti nelle vie alte del borgo per una colazione autentica a prezzo normale.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-8">Domande frequenti su Positano</h2>
+          <div class="space-y-4">
+
+            <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+                Come si arriva a Positano dalla stazione di Napoli?
+                <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+                Da Napoli Centrale si prende il Circumvesuviana fino a Sorrento (circa 65 min), poi il bus SITA SS163 fino a Positano (circa 50 min). In alternativa, traghetto da Napoli Molo Beverello (circa 90 min in estate, stagionale).
+              </div>
+            </details>
+
+            <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+                Qual è il periodo migliore per visitare Positano?
+                <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+                Maggio–giugno e settembre–ottobre offrono il miglior equilibrio tra clima mite, folla gestibile e prezzi accessibili. Luglio e agosto sono caldissimi e sovraffollati. L'inverno è tranquillo ma molti locali chiudono.
+              </div>
+            </details>
+
+            <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+                C'è parcheggio a Positano?
+                <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+                I parcheggi a pagamento sono limitati e costosi (fino a €5/ora). In estate vige la ZTL: solo i residenti e gli ospiti di hotel con pass possono entrare in auto nelle ore centrali. La scelta migliore è arrivare con bus o traghetto.
+              </div>
+            </details>
+
+            <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+                Quali spiagge ci sono a Positano?
+                <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+                La spiaggia principale è la Spiaggia Grande (ciottoli, con stabilimenti e zona libera gratuita). La Spiaggia del Fornillo è più tranquilla, raggiungibile a piedi in 10 minuti. Arienzo Beach, più remota, è raggiungibile solo in barca.
+              </div>
+            </details>
+
+            <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+                Quanto costa un soggiorno a Positano?
+                <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+                Positano è tra le destinazioni più esclusive d'Italia. In alta stagione i B&B partono da €120–150/notte, i boutique hotel 4 stelle da €250, i 5 stelle da €400+. Prenotare con almeno 3–6 mesi di anticipo è essenziale.
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6">
+
+        <!-- Fast Facts -->
+        <div id="fast-facts" class="bg-charcoal text-white rounded-2xl p-6 sticky top-24">
+          <p class="text-[10px] uppercase tracking-widest text-lemon-400 font-medium mb-4">Fast Facts — Positano</p>
+          <dl class="space-y-3">
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Posizione</dt>
+              <dd class="text-sm text-right">Costiera Amalfitana, SA</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Altitudine</dt>
+              <dd class="text-sm text-right">0–350 m slm</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Popolazione</dt>
+              <dd class="text-sm text-right">~3.800 abitanti</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">ZTL</dt>
+              <dd class="text-sm text-right">Sì, in estate</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Mezzi</dt>
+              <dd class="text-sm text-right">Bus SITA, Traghetto</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Spiaggia</dt>
+              <dd class="text-sm text-right">Ciottoli scuri</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Miglior periodo</dt>
+              <dd class="text-sm text-right">Mag–Giu / Set–Ott</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Lingua</dt>
+              <dd class="text-sm text-right">Italiano / Inglese</dd>
+            </div>
+            <div class="border-t border-white/10"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/60 text-sm flex-shrink-0">Valuta</dt>
+              <dd class="text-sm text-right">Euro (€)</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Insider Tips -->
+        <div class="bg-lemon-50 border border-lemon-300 rounded-2xl p-6">
+          <p class="text-[10px] uppercase tracking-widest text-lemon-700 font-medium mb-3">Consigli degli insider</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
+              <span>Arriva in traghetto: la vista del borgo dall'acqua è la migliore foto che porterai a casa.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
+              <span>Porta scarpe comode: il centro è fatto di scale ripide, non adatte a tacchi o infradito.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
+              <span>Pranza nelle vie alte, non sul lungomare: i prezzi calano e la qualità spesso migliora.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
+              <span>Visita di sera: dopo le 19:00 i bus turistici sono andati, e il borgo recupera la sua anima.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="bg-white border border-gray-200 rounded-2xl p-6">
+          <p class="text-[10px] uppercase tracking-widest text-gray-400 font-medium mb-3">Esplora la Costiera</p>
+          <nav class="space-y-1">
+            <a href="/it-it/costiera-amalfitana/amalfi/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-capri-50 hover:text-capri-600 transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-capri-300"></span> Amalfi
+            </a>
+            <a href="/it-it/costiera-amalfitana/ravello/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-capri-50 hover:text-capri-600 transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-capri-300"></span> Ravello
+            </a>
+            <a href="/it-it/costiera-amalfitana/praiano/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-capri-50 hover:text-capri-600 transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-capri-300"></span> Praiano
+            </a>
+            <a href="/it-it/costiera-amalfitana/maiori/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-capri-50 hover:text-capri-600 transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-capri-300"></span> Maiori
+            </a>
+            <a href="/it-it/costiera-amalfitana/minori/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-capri-50 hover:text-capri-600 transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-capri-300"></span> Minori
+            </a>
+          </nav>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+</BaseLayout>

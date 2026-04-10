@@ -1,119 +1,259 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getTranslations, getLocalePath } from '../../i18n/translations';
-import { homeContent } from '../../i18n/content';
 
 const lang = 'it-it';
-const t = getTranslations(lang);
-const content = homeContent[lang];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    "name": "Costiera Amalfitana",
+    "alternateName": "Amalfi Coast",
+    "description": "Patrimonio UNESCO, 50 km di scogliere sul Tirreno in Campania, Italia.",
+    "url": "https://amalficoast-travel.com/it-it/",
+    "geo": { "@type": "GeoCoordinates", "latitude": "40.634", "longitude": "14.602" },
+    "containedInPlace": { "@type": "Country", "name": "Italy" }
+  }
+];
+
+const silos = [
+  {
+    title: 'Costiera Amalfitana',
+    subtitle: '50 km di scogliere UNESCO',
+    href: '/it-it/costiera-amalfitana/',
+    borghi: ['Positano', 'Amalfi', 'Ravello', 'Praiano', 'Maiori', 'Minori'],
+    color: 'capri',
+  },
+  {
+    title: 'Penisola Sorrentina',
+    subtitle: 'La porta del Sud Italia',
+    href: '/it-it/penisola-sorrentina/',
+    borghi: ['Sorrento', 'Vico Equense', 'Massa Lubrense', "Sant'Agnello"],
+    color: 'emerald',
+  },
+  {
+    title: 'Isole del Golfo',
+    subtitle: 'Capri, Ischia, Procida',
+    href: '/it-it/isole/',
+    borghi: ['Capri', 'Ischia', 'Procida'],
+    color: 'violet',
+  },
+];
+
+const editorial = [
+  { label: 'Guida', title: 'Quando visitare la Costiera Amalfitana', subtitle: 'Mese per mese: clima, folla e prezzi', href: '/it-it/quando-visitare/' },
+  { label: 'Itinerari', title: 'Da 1 giorno a 1 settimana', subtitle: 'I migliori percorsi pronti da seguire', href: '/it-it/itinerari/' },
+  { label: 'Spiagge', title: 'Le 8 spiagge più belle', subtitle: 'Da Positano a Cetara', href: '/it-it/spiagge/' },
+  { label: 'Trasporti', title: 'Come arrivare e spostarsi', subtitle: 'Traghetti, bus SITA, auto', href: '/it-it/come-arrivare/' },
+];
 ---
 
 <BaseLayout
-  title={t.meta.home_title}
-  description={t.meta.home_description}
+  title="Guida alla Costiera Amalfitana 2025 — Positano, Amalfi, Ravello"
+  description="Guida turistica completa alla Costiera Amalfitana. Borghi, spiagge, traghetti, itinerari e consigli pratici aggiornati. Patrimonio UNESCO in Campania, Italia."
   lang={lang}
-  pageKey="home"
+  schema={schema}
 >
-  <section class="relative bg-gradient-to-br from-sea-700 via-sea-600 to-teal-500 text-white overflow-hidden">
-    <div class="absolute inset-0 bg-black/20"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36 text-center">
-      <p class="text-sea-100 text-sm font-medium uppercase tracking-widest mb-4">Patrimonio dell'Umanità UNESCO</p>
-      <h1 class="text-4xl md:text-6xl font-bold font-serif leading-tight mb-6">{t.hero.title}</h1>
-      <p class="text-lg md:text-xl text-sea-100 max-w-3xl mx-auto leading-relaxed mb-10">{t.hero.subtitle}</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href={getLocalePath(lang, 'destinations')} class="inline-block bg-white text-sea-700 font-semibold px-8 py-3 rounded-full hover:bg-sea-50 transition-colors shadow-lg">{t.hero.cta}</a>
-        <a href={getLocalePath(lang, 'itineraries')} class="inline-block border-2 border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white/10 transition-colors">{t.hero.cta_secondary}</a>
+
+  <!-- HERO -->
+  <section class="relative min-h-[90vh] flex items-center justify-center bg-charcoal overflow-hidden">
+    <!-- Background gradient (sostituire con immagine WebP reale) -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#001a33] via-[#003366] to-[#007FFF] opacity-90"></div>
+    <!-- Texture overlay -->
+    <div class="absolute inset-0 opacity-10" style="background-image: url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"></div>
+
+    <div class="relative text-center px-4 sm:px-6 max-w-4xl mx-auto">
+      <p class="text-lemon-500 text-xs font-medium uppercase tracking-[0.3em] mb-6">Patrimonio dell'Umanità UNESCO · Campania, Italia</p>
+      <h1 class="font-serif text-white leading-tight mb-6" style="font-size: clamp(2.8rem, 7vw, 5.5rem); letter-spacing: -0.02em;">
+        La Costiera<br/>
+        <em class="not-italic text-lemon-400">Amalfitana</em>
+      </h1>
+      <p class="text-blue-100 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10 font-light">
+        Cinquanta chilometri di scogliere a picco sul Tirreno. Borghi arroccati, limoni giganti,
+        traghetti colorati e un'Italia che non smette di sorprendere.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/it-it/costiera-amalfitana/positano/"
+           class="inline-block bg-white text-capri-700 font-semibold px-8 py-3.5 rounded-full hover:bg-lemon-500 hover:text-charcoal transition-all shadow-lg text-sm">
+          Inizia da Positano
+        </a>
+        <a href="/it-it/itinerari/"
+           class="inline-block border border-white/40 text-white font-medium px-8 py-3.5 rounded-full hover:bg-white/10 transition-all text-sm">
+          Scegli il tuo itinerario
+        </a>
       </div>
     </div>
-    <div class="absolute bottom-0 left-0 right-0">
-      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="white"/></svg>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40">
+      <span class="text-[10px] uppercase tracking-widest">Scopri</span>
+      <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+      </svg>
     </div>
   </section>
 
-  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-    <p class="text-lg text-gray-600 leading-relaxed">{content.intro}</p>
+  <!-- INTRO EDITORIALE -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-text mx-auto text-center">
+        <p class="text-capri-500 text-xs uppercase tracking-widest font-medium mb-4">Perché questo posto è diverso</p>
+        <h2 class="font-serif text-3xl md:text-4xl text-charcoal leading-tight mb-6">
+          Non è solo una destinazione.<br/>È un'esperienza che cambia il modo di guardare il mare.
+        </h2>
+        <p class="text-gray-500 text-lg leading-relaxed">
+          La Costiera Amalfitana è una delle coste più fotografate del mondo, eppure continua a sorprendere chi la visita dal vivo. Il profumo dei limoni, il suono dei traghetti al mattino, i vicoli troppo stretti per le automobili, i pranzi che durano fino al tramonto. Questa guida non ti dirà solo dove andare — ti aiuterà a capire come viverla.
+        </p>
+      </div>
+    </div>
   </section>
 
-  <section class="bg-gray-50 py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold font-serif text-gray-900 text-center mb-3">{t.sections.featured_towns}</h2>
-      <p class="text-center text-gray-500 mb-12">Dai villaggi di pescatori ai rifugi collinari — scopri ogni volto della costiera</p>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {content.towns.map(town => (
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-md transition-shadow">
-            <div class="w-10 h-10 bg-sea-100 rounded-xl flex items-center justify-center mb-4">
-              <svg class="w-5 h-5 text-sea-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+  <!-- 3 SILOS -->
+  <section class="bg-offwhite py-20">
+    <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <p class="text-capri-500 text-xs uppercase tracking-widest font-medium mb-3">Esplora per area</p>
+        <h2 class="font-serif text-3xl md:text-4xl text-charcoal">Tre territori, infinite storie</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {silos.map(silo => (
+          <a href={silo.href} class="group block bg-white rounded-3xl p-8 border border-gray-100 hover:border-capri-200 hover:shadow-lg transition-all duration-300">
+            <div class="mb-6">
+              <div class="w-10 h-0.5 bg-capri-500 mb-5 group-hover:w-16 transition-all duration-300"></div>
+              <h3 class="font-serif text-2xl text-charcoal mb-2 group-hover:text-capri-600 transition-colors">{silo.title}</h3>
+              <p class="text-gray-400 text-sm">{silo.subtitle}</p>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-1">{town.name}</h3>
-            <p class="text-sea-600 text-sm font-medium mb-3">{town.tagline}</p>
-            <p class="text-gray-600 text-sm leading-relaxed">{town.description}</p>
-          </div>
-        ))}
-      </div>
-      <div class="text-center mt-10">
-        <a href={getLocalePath(lang, 'destinations')} class="inline-block bg-sea-600 text-white font-semibold px-8 py-3 rounded-full hover:bg-sea-700 transition-colors">{t.sections.explore_more}</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold font-serif text-gray-900 text-center mb-12">{t.sections.why_visit}</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {content.why_visit.map((item, i) => (
-          <div class="flex gap-4">
-            <div class="flex-shrink-0 w-12 h-12 bg-amalfi-lemon rounded-xl flex items-center justify-center text-amalfi-terracotta font-bold text-lg">{i + 1}</div>
-            <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-              <p class="text-gray-600 leading-relaxed">{item.text}</p>
-            </div>
-          </div>
+            <ul class="space-y-2 mb-8">
+              {silo.borghi.map(b => (
+                <li class="flex items-center gap-2 text-sm text-gray-500">
+                  <span class="w-1 h-1 rounded-full bg-capri-400 flex-shrink-0"></span>
+                  {b}
+                </li>
+              ))}
+            </ul>
+            <span class="text-sm font-medium text-capri-500 group-hover:text-capri-700 flex items-center gap-1">
+              Scopri
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </a>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="bg-sea-50 py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold font-serif text-gray-900 text-center mb-12">{t.sections.top_beaches}</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {content.beaches.map(beach => (
-          <div class="bg-white rounded-2xl p-5 shadow-sm border border-sea-100">
-            <div class="text-2xl mb-3">🏖️</div>
-            <h3 class="font-bold text-gray-900 mb-1">{beach.name}</h3>
-            <p class="text-sea-600 text-xs font-medium mb-2">{beach.location} · {beach.type}</p>
-            <p class="text-gray-600 text-sm">{beach.description}</p>
-            <p class="mt-2 text-xs text-gray-400">Ideale per: {beach.bestFor}</p>
-          </div>
-        ))}
+  <!-- GRID EDITORIALE -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between mb-12">
+        <div>
+          <p class="text-capri-500 text-xs uppercase tracking-widest font-medium mb-3">Guide pratiche</p>
+          <h2 class="font-serif text-3xl md:text-4xl text-charcoal">Tutto quello che ti serve</h2>
+        </div>
       </div>
-      <div class="text-center mt-10">
-        <a href={getLocalePath(lang, 'beaches')} class="inline-block bg-sea-600 text-white font-semibold px-8 py-3 rounded-full hover:bg-sea-700 transition-colors">{t.sections.read_more}</a>
+
+      <!-- Grid asimmetrica -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Card grande -->
+        <a href={editorial[0].href} class="group lg:col-span-2 lg:row-span-2 bg-offwhite rounded-3xl p-10 border border-gray-100 hover:border-capri-200 hover:shadow-lg transition-all duration-300 flex flex-col justify-between min-h-64">
+          <div>
+            <span class="text-[10px] uppercase tracking-widest text-capri-500 font-semibold">{editorial[0].label}</span>
+            <h3 class="font-serif text-3xl md:text-4xl text-charcoal mt-3 mb-3 group-hover:text-capri-600 transition-colors leading-tight">{editorial[0].title}</h3>
+            <p class="text-gray-400">{editorial[0].subtitle}</p>
+          </div>
+          <span class="text-sm font-medium text-capri-500 group-hover:text-capri-700 flex items-center gap-1 mt-8">
+            Leggi la guida
+            <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </a>
+
+        <!-- Cards piccole -->
+        {editorial.slice(1).map(item => (
+          <a href={item.href} class="group bg-white rounded-3xl p-7 border border-gray-100 hover:border-capri-200 hover:shadow-lg transition-all duration-300">
+            <span class="text-[10px] uppercase tracking-widest text-capri-500 font-semibold">{item.label}</span>
+            <h3 class="font-serif text-xl text-charcoal mt-2 mb-2 group-hover:text-capri-600 transition-colors">{item.title}</h3>
+            <p class="text-gray-400 text-sm mb-6">{item.subtitle}</p>
+            <span class="text-sm font-medium text-capri-500 group-hover:text-capri-700 flex items-center gap-1">
+              Leggi
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 
-  <section class="py-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold font-serif text-gray-900 mb-4">{t.sections.plan_your_trip}</h2>
-      <p class="text-gray-600 mb-8">Tutto quello che ti serve per pianificare il viaggio perfetto sulla Costiera Amalfitana.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <a href={getLocalePath(lang, 'getting-here')} class="block p-6 bg-white border-2 border-sea-100 rounded-2xl hover:border-sea-400 transition-colors text-left">
-          <div class="text-2xl mb-2">✈️</div>
-          <h3 class="font-bold text-gray-900">{t.nav.getting_here}</h3>
-          <p class="text-sm text-gray-500 mt-1">Treni, traghetti e transfer</p>
-        </a>
-        <a href={getLocalePath(lang, 'itineraries')} class="block p-6 bg-white border-2 border-sea-100 rounded-2xl hover:border-sea-400 transition-colors text-left">
-          <div class="text-2xl mb-2">🗺️</div>
-          <h3 class="font-bold text-gray-900">{t.nav.itineraries}</h3>
-          <p class="text-sm text-gray-500 mt-1">1 giorno, 3 giorni, 1 settimana</p>
-        </a>
-        <a href={getLocalePath(lang, 'when-to-visit')} class="block p-6 bg-white border-2 border-sea-100 rounded-2xl hover:border-sea-400 transition-colors text-left">
-          <div class="text-2xl mb-2">📅</div>
-          <h3 class="font-bold text-gray-900">{t.nav.when_to_visit}</h3>
-          <p class="text-sm text-gray-500 mt-1">Guida mese per mese</p>
-        </a>
+  <!-- DID YOU KNOW -->
+  <section class="bg-charcoal py-20">
+    <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-lemon-500 text-xs uppercase tracking-widest font-medium text-center mb-12">Curiosità</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="text-lemon-400 font-serif text-6xl font-bold mb-4">50</div>
+          <p class="text-white font-medium mb-2">chilometri di costa</p>
+          <p class="text-gray-400 text-sm leading-relaxed">Da Positano a Vietri sul Mare, 50 km di SS163 sono stati dichiarati Patrimonio UNESCO nel 1997.</p>
+        </div>
+        <div class="text-center">
+          <div class="text-lemon-400 font-serif text-6xl font-bold mb-4">IX</div>
+          <p class="text-white font-medium mb-2">secolo: nascita di Amalfi</p>
+          <p class="text-gray-400 text-sm leading-relaxed">La Repubblica di Amalfi fu una delle prime potenze marinare d'Europa, con rotte commerciali fino a Costantinopoli.</p>
+        </div>
+        <div class="text-center">
+          <div class="text-lemon-400 font-serif text-6xl font-bold mb-4">350m</div>
+          <p class="text-white font-medium mb-2">l'altitudine di Ravello</p>
+          <p class="text-gray-400 text-sm leading-relaxed">Wagner compose parte del Parsifal ispirandosi ai giardini di Villa Rufolo. Gore Vidal visse qui per trent'anni.</p>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- POSITANO SPOTLIGHT (Hidden Gem) -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="text-capri-500 text-xs uppercase tracking-widest font-medium mb-4">Inizia da qui</p>
+          <h2 class="font-serif text-4xl md:text-5xl text-charcoal leading-tight mb-6">
+            Positano.<br/><em class="not-italic text-gray-400">La cartolina vivente.</em>
+          </h2>
+          <p class="text-gray-500 leading-relaxed mb-6">
+            Nessun posto sulla costiera è più fotografato di Positano, eppure nessuno riesce davvero a catturarne l'essenza in uno scatto. Le case color pastello, la Spiaggia Grande, i negozi di sandali fatti a mano, il profumo di limone ovunque. La guida completa ti dice come arrivarci, dove parcheggiare (se insisti), quando i traghetti partono e dove mangiare senza svuotare il portafoglio.
+          </p>
+          <div class="flex flex-wrap gap-3 mb-8">
+            <span class="text-xs px-3 py-1.5 bg-capri-50 text-capri-600 rounded-full font-medium">ZTL attiva</span>
+            <span class="text-xs px-3 py-1.5 bg-capri-50 text-capri-600 rounded-full font-medium">Traghetti da Napoli</span>
+            <span class="text-xs px-3 py-1.5 bg-capri-50 text-capri-600 rounded-full font-medium">Sentiero degli Dei</span>
+          </div>
+          <a href="/it-it/costiera-amalfitana/positano/"
+             class="inline-block bg-capri-500 text-white font-semibold px-8 py-3.5 rounded-full hover:bg-capri-600 transition-colors text-sm">
+            Guida completa a Positano
+          </a>
+        </div>
+        <div class="bg-offwhite rounded-3xl p-8 space-y-4">
+          <p class="text-[10px] uppercase tracking-widest text-gray-400 font-medium">Fast Facts · Positano</p>
+          <div class="grid grid-cols-2 gap-4">
+            {[
+              { label: 'Altitudine', value: '0–350 m' },
+              { label: 'Popolazione', value: '≈ 3.900' },
+              { label: 'ZTL', value: 'Sì (est.)' },
+              { label: 'Accesso', value: 'Ferry · Bus' },
+              { label: 'Provincia', value: 'Salerno (SA)' },
+              { label: 'Best season', value: 'Mag · Set' },
+            ].map(f => (
+              <div class="bg-white rounded-2xl p-4 border border-gray-100">
+                <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-1">{f.label}</p>
+                <p class="font-semibold text-charcoal text-sm">{f.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>

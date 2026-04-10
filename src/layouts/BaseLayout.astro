@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import StickyBar from '../components/StickyBar.astro';
 import { getTranslations, getLocalePath, slugMap } from '../i18n/translations';
 import type { Locale } from '../i18n/translations';
 
@@ -9,49 +10,54 @@ interface Props {
   description: string;
   lang: Locale;
   pageKey?: string;
+  breadcrumbs?: { name: string; url: string }[];
+  schema?: object[];
 }
 
-const { title, description, lang, pageKey } = Astro.props;
+const { title, description, lang, pageKey, breadcrumbs, schema } = Astro.props;
 const t = getTranslations(lang);
 const site = 'https://amalficoast-travel.com';
 
-const locales: Locale[] = ['en', 'en-gb', 'de', 'fr', 'es', 'it'];
+const locales: Locale[] = ['en-us', 'en-gb', 'de-de', 'fr-fr', 'es-es', 'it-it'];
 const hreflangs = locales.map((l) => {
-  const path = pageKey ? getLocalePath(l, pageKey) : (l === 'en' ? '/' : `/${l}/`);
+  const path = pageKey ? getLocalePath(l, pageKey) : `/${l}/`;
   return { locale: l, url: `${site}${path}` };
 });
 
-const canonicalUrl = pageKey
-  ? `${site}${getLocalePath(lang, pageKey)}`
-  : `${site}${lang === 'en' ? '/' : `/${lang}/`}`;
-
-const schemaLocale: Record<Locale, string> = {
-  en: 'en-US', 'en-gb': 'en-GB', de: 'de-DE', fr: 'fr-FR', es: 'es-ES', it: 'it-IT',
+const schemaLocaleMap: Record<Locale, string> = {
+  'en-us': 'en-US', 'en-gb': 'en-GB', 'de-de': 'de-DE',
+  'fr-fr': 'fr-FR', 'es-es': 'es-ES', 'it-it': 'it-IT',
 };
+const htmlLang = schemaLocaleMap[lang];
+const canonicalUrl = pageKey ? `${site}${getLocalePath(lang, pageKey)}` : `${site}/${lang}/`;
 
-const touristSchema = {
+// Base website schema
+const websiteSchema = {
   "@context": "https://schema.org",
-  "@type": "TouristDestination",
-  "name": "Amalfi Coast",
-  "alternateName": "Costiera Amalfitana",
-  "description": "A UNESCO World Heritage Site stretching 50 km along the southern edge of the Sorrentine Peninsula in the Province of Salerno in southern Italy.",
+  "@type": "WebSite",
+  "name": "Amalfi Coast Travel Guide",
   "url": site,
-  "image": "https://amalficoast-travel.com/images/amalfi-coast-hero.jpg",
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "40.6340",
-    "longitude": "14.6027"
-  },
-  "touristType": ["Beach tourism", "Cultural tourism", "Nature tourism"],
-  "containedInPlace": {
-    "@type": "Country",
-    "name": "Italy"
-  }
+  "description": "Guida turistica alla Costiera Amalfitana, Penisola Sorrentina e Isole del Golfo di Napoli.",
+  "inLanguage": htmlLang,
 };
+
+// Breadcrumb schema
+const breadcrumbSchema = breadcrumbs ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbs.map((b, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": b.name,
+    "item": `${site}${b.url}`
+  }))
+} : null;
+
+const allSchemas = [websiteSchema, ...(schema || []), ...(breadcrumbSchema ? [breadcrumbSchema] : [])];
 ---
 
 <!DOCTYPE html>
-<html lang={schemaLocale[lang]}>
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -61,9 +67,9 @@ const touristSchema = {
 
     <!-- Hreflang -->
     {hreflangs.map(({ locale, url }) => (
-      <link rel="alternate" hreflang={schemaLocale[locale as Locale]} href={url} />
+      <link rel="alternate" hreflang={schemaLocaleMap[locale as Locale]} href={url} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={`${site}/`} />
+    <link rel="alternate" hreflang="x-default" href={`${site}/en-us/`} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -71,12 +77,17 @@ const touristSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="Amalfi Coast Travel Guide" />
-    <meta property="og:locale" content={schemaLocale[lang]} />
+    <meta property="og:locale" content={htmlLang} />
 
-    <!-- Schema.org -->
-    <script type="application/ld+json" set:html={JSON.stringify(touristSchema)} />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Schema.org JSON-LD -->
+    {allSchemas.map(s => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C9MBPN3GKX"></script>
@@ -95,12 +106,15 @@ const touristSchema = {
     <script type="text/javascript" src="https://cs.iubenda.com/autoblocking/4492263.js"></script>
     <script type="text/javascript" src="//cdn.iubenda.com/cs/gpp/stub.js"></script>
     <script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
-  <body class="bg-white text-gray-800 font-sans antialiased">
+  <body class="bg-white text-charcoal font-sans antialiased">
     <Header lang={lang} pageKey={pageKey} />
     <main>
       <slot />
     </main>
     <Footer lang={lang} />
+    {lang === 'it-it' && <StickyBar />}
   </body>
 </html>

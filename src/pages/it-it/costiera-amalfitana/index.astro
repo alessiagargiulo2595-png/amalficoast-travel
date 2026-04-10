@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Costiera Amalfitana', url: '/it-it/costiera-amalfitana/' },
+];
+
+const borghi = [
+  {
+    name: 'Positano',
+    href: '/it-it/costiera-amalfitana/positano/',
+    desc: 'Il borgo più fotografato della costiera, con case colorate a strapiombo sul mare e la celebre Spiaggia Grande.',
+    tag: 'Il più iconico',
+  },
+  {
+    name: 'Amalfi',
+    href: '/it-it/costiera-amalfitana/amalfi/',
+    desc: 'Capitale storica della costiera, con il Duomo di Sant\'Andrea e il museo della carta.',
+    tag: 'Capitale storica',
+  },
+  {
+    name: 'Ravello',
+    href: '/it-it/costiera-amalfitana/ravello/',
+    desc: 'A 350 m sul mare, la "città della musica" con villa Rufolo e villa Cimbrone.',
+    tag: 'Vista panoramica',
+  },
+  {
+    name: 'Praiano',
+    href: '/it-it/costiera-amalfitana/praiano/',
+    desc: 'Il segreto meglio custodito: meno folla, tramonti spettacolari dalla Baia di Praia.',
+    tag: 'La più autentica',
+  },
+  {
+    name: 'Maiori',
+    href: '/it-it/costiera-amalfitana/maiori/',
+    desc: 'La spiaggia sabbiosa più lunga della costiera: ideale per chi cerca il mare senza rinunciare al comfort.',
+    tag: 'Spiaggia sabbiosa',
+  },
+  {
+    name: 'Minori',
+    href: '/it-it/costiera-amalfitana/minori/',
+    desc: 'Borgo della limonara, con i resti di una villa romana del I sec. d.C. e ottime pasticcerie.',
+    tag: 'Sapori autentici',
+  },
+];
+
+const destinationSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  "name": "Costiera Amalfitana",
+  "description": "La Costiera Amalfitana è un tratto costiero della Campania lungo 50 km, Patrimonio UNESCO dal 1997, con borghi colorati, scogliere e il blu del Mar Tirreno.",
+  "url": "https://amalficoast-travel.com/it-it/costiera-amalfitana/",
+  "touristType": ["Cultura", "Mare", "Natura", "Gastronomia", "Escursionismo"],
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6333,
+    "longitude": 14.6027
+  }
+};
+---
+
+<BaseLayout
+  title="Costiera Amalfitana 2025: Guida Completa ai Borghi"
+  description="Guida alla Costiera Amalfitana: borghi da visitare, spiagge, come arrivare, quando andare. Da Positano ad Amalfi, tutto quello che devi sapere."
+  lang={lang}
+  pageKey="costiera-amalfitana"
+  breadcrumbs={breadcrumbs}
+  schema={[destinationSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-capri-900 via-capri-700 to-capri-600"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/it-it/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-white">Costiera Amalfitana</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-lemon-400 text-sm font-medium uppercase tracking-widest mb-3">Patrimonio UNESCO</p>
+        <h1 class="font-serif text-display text-white mb-4">Costiera Amalfitana</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Cinquanta chilometri di scogliere, borghi colorati e acque turchesi. La costiera più famosa d'Italia in una guida completa e aggiornata al 2025.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+
+    <!-- Intro -->
+    <section class="max-w-text">
+      <p class="text-xl leading-relaxed text-charcoal">
+        La Costiera Amalfitana è uno di quei luoghi che supera qualsiasi aspettativa. Non importa quante fotografie tu abbia visto: la realtà — il profumo di limoni, il riverbero del sole sul mare, le case aggrappate alla roccia — è sempre più intensa.
+      </p>
+      <p class="mt-4 text-gray-600 leading-relaxed">
+        Riconosciuta Patrimonio dell'Umanità UNESCO nel 1997, si estende per 50 km dalla penisola sorrentina fino a Vietri sul Mare, nella provincia di Salerno. Il cuore è la SS163, una strada tortuosa scavata nella roccia che collega 13 comuni, ognuno con una storia, un paesaggio e un sapore diverso.
+      </p>
+    </section>
+
+    <!-- Borghi Grid -->
+    <section>
+      <div class="flex items-end justify-between mb-8">
+        <h2 class="font-serif text-3xl font-semibold text-charcoal">I borghi della Costiera</h2>
+        <p class="text-sm text-gray-400 hidden sm:block">Da ovest a est lungo la SS163</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {borghi.map(b => (
+          <a href={b.href} class="group bg-white border border-gray-200 rounded-2xl p-6 hover:border-capri-300 hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-serif text-xl font-semibold text-charcoal group-hover:text-capri-600 transition-colors">{b.name}</h3>
+              <span class="text-[10px] uppercase tracking-wide bg-capri-50 text-capri-600 px-2 py-1 rounded-full font-medium flex-shrink-0 ml-2">{b.tag}</span>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed">{b.desc}</p>
+            <p class="text-capri-500 text-sm font-medium mt-4 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+              Scopri {b.name}
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+            </p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Did You Know -->
+    <section class="bg-charcoal text-white rounded-3xl p-10">
+      <p class="text-[10px] uppercase tracking-widest text-lemon-400 font-medium mb-8">La costiera in numeri</p>
+      <div class="grid sm:grid-cols-4 gap-8 text-center">
+        <div>
+          <p class="font-serif text-5xl font-bold text-lemon-400">50 km</p>
+          <p class="text-white/60 text-sm mt-2">di litorale UNESCO</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-lemon-400">13</p>
+          <p class="text-white/60 text-sm mt-2">comuni costieri</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-lemon-400">1997</p>
+          <p class="text-white/60 text-sm mt-2">anno UNESCO</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-lemon-400">2 mln+</p>
+          <p class="text-white/60 text-sm mt-2">turisti/anno</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section>
+      <h2 class="font-serif text-3xl font-semibold text-charcoal mb-8">Guide pratiche</h2>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <a href="/it-it/costiera-amalfitana/come-arrivare/" class="flex items-center gap-4 bg-offwhite rounded-2xl p-5 hover:bg-capri-50 transition-colors group border border-gray-100">
+          <div class="w-10 h-10 rounded-xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18"/></svg>
+          </div>
+          <div>
+            <p class="font-medium text-charcoal group-hover:text-capri-600 text-sm transition-colors">Come arrivare</p>
+            <p class="text-xs text-gray-500">Traghetti, bus, auto</p>
+          </div>
+        </a>
+        <a href="/it-it/quando-visitare/" class="flex items-center gap-4 bg-offwhite rounded-2xl p-5 hover:bg-capri-50 transition-colors group border border-gray-100">
+          <div class="w-10 h-10 rounded-xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path stroke-linecap="round" d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+          <div>
+            <p class="font-medium text-charcoal group-hover:text-capri-600 text-sm transition-colors">Quando andare</p>
+            <p class="text-xs text-gray-500">Mese per mese</p>
+          </div>
+        </a>
+        <a href="/it-it/spiagge/" class="flex items-center gap-4 bg-offwhite rounded-2xl p-5 hover:bg-capri-50 transition-colors group border border-gray-100">
+          <div class="w-10 h-10 rounded-xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17c3-3 6-3 9 0s6 3 9 0M3 12c3-3 6-3 9 0s6 3 9 0"/></svg>
+          </div>
+          <div>
+            <p class="font-medium text-charcoal group-hover:text-capri-600 text-sm transition-colors">Le spiagge</p>
+            <p class="text-xs text-gray-500">8 spiagge selezionate</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>
