@@ -1,4 +1,5 @@
 import type { Locale } from './translations';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 export interface Town {
   name: string;
@@ -51,7 +52,7 @@ export interface DestinationsContent {
 // ===== HOME CONTENT =====
 
 export const homeContent: Record<Locale, HomeContent> = {
-  en: {
+  'en-us': {
     intro: 'The Amalfi Coast is one of those rare places that genuinely exceeds expectations. Stretching 50 kilometres along the southern edge of the Sorrentine Peninsula, this UNESCO World Heritage Site packs extraordinary scenery, ancient towns, and crystal-clear Mediterranean waters into a compact, dramatic landscape. Vertical cliffs plunge into the sea, villages cling to terraced hillsides, and lemons the size of grapefruits hang from pergolas lining the winding SS163 coastal road.',
     why_visit: [
       { title: 'Unmatched Scenery', text: 'The interplay of mountains, sea, and colourful architecture creates landscapes that have inspired painters, writers, and filmmakers for centuries. Every bend in the road reveals a new postcard view.' },
@@ -159,7 +160,7 @@ export const homeContent: Record<Locale, HomeContent> = {
     ],
   },
 
-  de: {
+  'de-de': {
     intro: 'Die Amalfiküste ist einer jener seltenen Orte, die die Erwartungen wirklich übertreffen. Auf 50 Kilometern entlang des südlichen Randes der Sorrentinischen Halbinsel vereint dieses UNESCO-Weltkulturerbe außergewöhnliche Landschaften, uralte Städte und kristallklares Mittelmeerwasser in einer kompakten, dramatischen Kulisse. Steile Klippen stürzen ins Meer, Dörfer klammern sich an terrassierte Hänge, und riesige Zitronen hängen von Pergolen entlang der kurvenreichen Küstenstraße SS163.',
     why_visit: [
       { title: 'Unvergleichliche Landschaften', text: 'Das Zusammenspiel von Bergen, Meer und bunter Architektur schafft Landschaften, die seit Jahrhunderten Maler, Schriftsteller und Filmemacher inspiriert haben. Jede Kurve der Straße offenbart eine neue Postkarten-Ansicht.' },
@@ -213,7 +214,7 @@ export const homeContent: Record<Locale, HomeContent> = {
     ],
   },
 
-  fr: {
+  'fr-fr': {
     intro: 'La Côte Amalfitaine est l\'un de ces rares endroits qui dépassent véritablement les attentes. S\'étendant sur 50 kilomètres le long du bord sud de la péninsule Sorrentine, ce site du Patrimoine mondial de l\'UNESCO concentre des paysages extraordinaires, des villes antiques et des eaux méditerranéennes cristallines dans un décor compact et dramatique. Des falaises abruptes plongent dans la mer, des villages s\'accrochent à des collines en terrasses, et d\'énormes citrons pendent des pergolas le long de la sinueuse route côtière SS163.',
     why_visit: [
       { title: 'Des paysages incomparables', text: 'L\'interaction entre les montagnes, la mer et l\'architecture colorée crée des paysages qui inspirent peintres, écrivains et cinéastes depuis des siècles. Chaque virage de la route révèle une nouvelle vue de carte postale.' },
@@ -267,7 +268,7 @@ export const homeContent: Record<Locale, HomeContent> = {
     ],
   },
 
-  es: {
+  'es-es': {
     intro: 'La Costa Amalfitana es uno de esos lugares raros que genuinamente superan las expectativas. Extendiéndose 50 kilómetros a lo largo del borde sur de la Península Sorrentina, este Patrimonio Mundial de la UNESCO concentra paisajes extraordinarios, ciudades antiguas y aguas mediterráneas cristalinas en un paisaje compacto y dramático. Los acantilados verticales se precipitan al mar, los pueblos se aferran a colinas en terrazas, y enormes limones cuelgan de pérgolas a lo largo de la sinuosa carretera costera SS163.',
     why_visit: [
       { title: 'Paisajes incomparables', text: 'La interacción entre montañas, mar y arquitectura colorida crea paisajes que han inspirado a pintores, escritores y cineastas durante siglos. Cada curva del camino revela una nueva vista de postal.' },
@@ -321,7 +322,7 @@ export const homeContent: Record<Locale, HomeContent> = {
     ],
   },
 
-  it: {
+  'it-it': {
     intro: 'La Costiera Amalfitana è uno di quei rari luoghi che superano genuinamente le aspettative. Estendendosi per 50 chilometri lungo il bordo meridionale della Penisola Sorrentina, questo Sito del Patrimonio Mondiale dell\'UNESCO concentra paesaggi straordinari, borghi antichi e acque mediterranee cristalline in un paesaggio compatto e drammatico. Scogliere verticali si tuffano nel mare, i villaggi si aggrappano ai fianchi delle colline terrazzate, e limoni enormi pendono dai pergolati lungo la tortuosa strada costiera SS163.',
     why_visit: [
       { title: 'Paesaggi senza pari', text: 'L\'interazione tra monti, mare e architettura colorata crea paesaggi che hanno ispirato pittori, scrittori e registi per secoli. Ogni curva della strada svela un nuovo panorama da cartolina.' },

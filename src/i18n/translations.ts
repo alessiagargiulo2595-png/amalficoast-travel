@@ -1,4 +1,4 @@
-export type Locale = 'en' | 'en-gb' | 'de' | 'fr' | 'es' | 'it';
+export type Locale = 'en-us' | 'en-gb' | 'de-de' | 'fr-fr' | 'es-es' | 'it-it';
 
 export interface Translations {
   nav: {
@@ -52,7 +52,7 @@ export interface Translations {
 }
 
 export const translations: Record<Locale, Translations> = {
-  en: {
+  'en-us': {
     nav: {
       home: 'Home',
       destinations: 'Destinations',
@@ -101,12 +101,12 @@ export const translations: Record<Locale, Translations> = {
     },
     lang_switcher: 'Language',
     languages: {
-      en: '🇺🇸 English (US)',
+      'en-us': '🇺🇸 English (US)',
       'en-gb': '🇬🇧 English (UK)',
-      de: '🇩🇪 Deutsch',
-      fr: '🇫🇷 Français',
-      es: '🇪🇸 Español',
-      it: '🇮🇹 Italiano',
+      'de-de': '🇩🇪 Deutsch',
+      'fr-fr': '🇫🇷 Français',
+      'es-es': '🇪🇸 Español',
+      'it-it': '🇮🇹 Italiano',
     },
   },
 
@@ -159,16 +159,16 @@ export const translations: Record<Locale, Translations> = {
     },
     lang_switcher: 'Language',
     languages: {
-      en: '🇺🇸 English (US)',
+      'en-us': '🇺🇸 English (US)',
       'en-gb': '🇬🇧 English (UK)',
-      de: '🇩🇪 Deutsch',
-      fr: '🇫🇷 Français',
-      es: '🇪🇸 Español',
-      it: '🇮🇹 Italiano',
+      'de-de': '🇩🇪 Deutsch',
+      'fr-fr': '🇫🇷 Français',
+      'es-es': '🇪🇸 Español',
+      'it-it': '🇮🇹 Italiano',
     },
   },
 
-  de: {
+  'de-de': {
     nav: {
       home: 'Startseite',
       destinations: 'Reiseziele',
@@ -217,16 +217,16 @@ export const translations: Record<Locale, Translations> = {
     },
     lang_switcher: 'Sprache',
     languages: {
-      en: '🇺🇸 English (US)',
+      'en-us': '🇺🇸 English (US)',
       'en-gb': '🇬🇧 English (UK)',
-      de: '🇩🇪 Deutsch',
-      fr: '🇫🇷 Français',
-      es: '🇪🇸 Español',
-      it: '🇮🇹 Italiano',
+      'de-de': '🇩🇪 Deutsch',
+      'fr-fr': '🇫🇷 Français',
+      'es-es': '🇪🇸 Español',
+      'it-it': '🇮🇹 Italiano',
     },
   },
 
-  fr: {
+  'fr-fr': {
     nav: {
       home: 'Accueil',
       destinations: 'Destinations',
@@ -275,16 +275,16 @@ export const translations: Record<Locale, Translations> = {
     },
     lang_switcher: 'Langue',
     languages: {
-      en: '🇺🇸 English (US)',
+      'en-us': '🇺🇸 English (US)',
       'en-gb': '🇬🇧 English (UK)',
-      de: '🇩🇪 Deutsch',
-      fr: '🇫🇷 Français',
-      es: '🇪🇸 Español',
-      it: '🇮🇹 Italiano',
+      'de-de': '🇩🇪 Deutsch',
+      'fr-fr': '🇫🇷 Français',
+      'es-es': '🇪🇸 Español',
+      'it-it': '🇮🇹 Italiano',
     },
   },
 
-  es: {
+  'es-es': {
     nav: {
       home: 'Inicio',
       destinations: 'Destinos',
@@ -333,16 +333,16 @@ export const translations: Record<Locale, Translations> = {
     },
     lang_switcher: 'Idioma',
     languages: {
-      en: '🇺🇸 English (US)',
+      'en-us': '🇺🇸 English (US)',
       'en-gb': '🇬🇧 English (UK)',
-      de: '🇩🇪 Deutsch',
-      fr: '🇫🇷 Français',
-      es: '🇪🇸 Español',
-      it: '🇮🇹 Italiano',
+      'de-de': '🇩🇪 Deutsch',
+      'fr-fr': '🇫🇷 Français',
+      'es-es': '🇪🇸 Español',
+      'it-it': '🇮🇹 Italiano',
     },
   },
 
-  it: {
+  'it-it': {
     nav: {
       home: 'Home',
       destinations: 'Destinazioni',
@@ -391,68 +391,68 @@ export const translations: Record<Locale, Translations> = {
     },
     lang_switcher: 'Lingua',
     languages: {
-      en: '🇺🇸 English (US)',
+      'en-us': '🇺🇸 English (US)',
       'en-gb': '🇬🇧 English (UK)',
-      de: '🇩🇪 Deutsch',
-      fr: '🇫🇷 Français',
-      es: '🇪🇸 Español',
-      it: '🇮🇹 Italiano',
+      'de-de': '🇩🇪 Deutsch',
+      'fr-fr': '🇫🇷 Français',
+      'es-es': '🇪🇸 Español',
+      'it-it': '🇮🇹 Italiano',
     },
   },
 };
 
 export function getTranslations(locale: Locale): Translations {
-  return translations[locale] ?? translations['en'];
+  return translations[locale] ?? translations['en-us'];
 }
 
 export type SlugMap = Record<Locale, string>;
 
 export const slugMap: Record<string, SlugMap> = {
   destinations: {
-    en: 'destinations',
+    'en-us': 'destinations',
     'en-gb': 'destinations',
-    de: 'destinations',
-    fr: 'destinations',
-    es: 'destinos',
-    it: 'destinazioni',
+    'de-de': 'destinations',
+    'fr-fr': 'destinations',
+    'es-es': 'destinos',
+    'it-it': 'destinazioni',
   },
   beaches: {
-    en: 'beaches',
+    'en-us': 'beaches',
     'en-gb': 'beaches',
-    de: 'strande',
-    fr: 'plages',
-    es: 'playas',
-    it: 'spiagge',
+    'de-de': 'strande',
+    'fr-fr': 'plages',
+    'es-es': 'playas',
+    'it-it': 'spiagge',
   },
   'getting-here': {
-    en: 'getting-here',
+    'en-us': 'getting-here',
     'en-gb': 'getting-here',
-    de: 'anreise',
-    fr: 'comment-venir',
-    es: 'como-llegar',
-    it: 'come-arrivare',
+    'de-de': 'anreise',
+    'fr-fr': 'comment-venir',
+    'es-es': 'como-llegar',
+    'it-it': 'come-arrivare',
   },
   itineraries: {
-    en: 'itineraries',
+    'en-us': 'itineraries',
     'en-gb': 'itineraries',
-    de: 'reiserouten',
-    fr: 'itineraires',
-    es: 'itinerarios',
-    it: 'itinerari',
+    'de-de': 'reiserouten',
+    'fr-fr': 'itineraires',
+    'es-es': 'itinerarios',
+    'it-it': 'itinerari',
   },
   'when-to-visit': {
-    en: 'when-to-visit',
+    'en-us': 'when-to-visit',
     'en-gb': 'when-to-visit',
-    de: 'reisezeit',
-    fr: 'quand-visiter',
-    es: 'cuando-visitar',
-    it: 'quando-visitare',
+    'de-de': 'reisezeit',
+    'fr-fr': 'quand-visiter',
+    'es-es': 'cuando-visitar',
+    'it-it': 'quando-visitare',
   },
 };
 
 export function getLocalePath(locale: Locale, pageKey: string): string {
-  const prefix = locale === 'en' ? '' : `/${locale}`;
-  if (pageKey === 'home') return prefix === '' ? '/' : `${prefix}/`;
+  const prefix = `/${locale}`;
+  if (pageKey === 'home') return `${prefix}/`;
   const slug = slugMap[pageKey]?.[locale] ?? pageKey;
   return `${prefix}/${slug}/`;
 }

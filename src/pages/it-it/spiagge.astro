@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTranslations, getLocalePath } from '../../i18n/translations';
+
+const lang = 'it-it';
+const t = getTranslations(lang);
+
+const beaches = [
+  {
+    name: 'Spiaggia Grande',
+    location: 'Positano',
+    type: 'Ciottoli',
+    description: 'La spiaggia principale di Positano è animata, colorata e perfetta per chi vuole vivere l\'atmosfera della costiera. Attrezzata con stabilimenti balneari, lettini e ombrelloni a pagamento, ha anche una parte libera. Le acque sono pulite e l\'ingresso è comodo dal centro. In luglio e agosto è affollata: arrivi entro le 9 per trovare posto.',
+    bestFor: 'Atmosfera, convenienza, centro',
+    access: 'A piedi dal centro di Positano, scalinata dalla SS163',
+    season: 'Aprile–ottobre',
+    tip: 'I bar sul lungomare servono ottimi cocktail al tramonto.',
+  },
+  {
+    name: 'Spiaggia di Fornillo',
+    location: 'Positano',
+    type: 'Ciottoli',
+    description: 'Meno nota della Spiaggia Grande ma amata dai frequentatori abituali di Positano, Fornillo è raggiungibile solo a piedi lungo un sentiero panoramico dal porto. Più tranquilla, con stabilimenti balneari di qualità e acque cristalline. Perfetta per chi vuole godersi Positano senza la ressa.',
+    bestFor: 'Tranquillità, snorkeling, ambiente locale',
+    access: '10 minuti a piedi dal porto di Positano',
+    season: 'Maggio–settembre',
+    tip: 'Il sentiero per Fornillo offre viste mozzafiato su Positano.',
+  },
+  {
+    name: 'Marina di Praia',
+    location: 'Praiano',
+    type: 'Ciottoli e sabbia',
+    description: 'Una piccola perla incastonata in una gola tra le scogliere, Marina di Praia è la spiaggia più suggestiva della costiera per i suoi amanti. Le acque sono di un turchese eccezionale, ideali per lo snorkeling. C\'è uno stabilimento balneare con ristorante (ottimo pesce) e una parte di spiaggia libera. Poco affollata anche in agosto perché non raggiungibile con autobus di linea.',
+    bestFor: 'Snorkeling, romanticismo, autenticità',
+    access: 'Sentiero ripido dalla SS163, circa 5 minuti',
+    season: 'Maggio–settembre',
+    tip: 'La sera la spiaggia si trasforma in un punto di ritrovo per aperitivi al tramonto.',
+  },
+  {
+    name: 'Spiaggia di Amalfi (Lido delle Sirene)',
+    location: 'Amalfi',
+    type: 'Ciottoli',
+    description: 'La spiaggia di Amalfi è comoda, accessibile e perfetta come base. Non è la più bella della costiera, ma la posizione vicino al centro storico la rende ideale per chi usa Amalfi come base e vuole fare un bagno prima o dopo la visita al Duomo e al centro storico. Stabilimenti balneari e parte libera.',
+    bestFor: 'Comodità, famiglie, combinare mare e cultura',
+    access: 'A piedi dal centro di Amalfi, 2 minuti',
+    season: 'Aprile–ottobre',
+    tip: 'Usa Amalfi come base per i traghetti verso Positano e Ravello.',
+  },
+  {
+    name: 'Spiaggia di Vettica Maggiore',
+    location: 'Praiano',
+    type: 'Ciottoli',
+    description: 'La spiaggia principale di Praiano è ancora poco conosciuta dai turisti stranieri. Ampia, con acque pulite e profondi colori del mare, ha stabilimenti balneari e parcheggio nelle vicinanze. Ideale per famiglie che cercano tranquillità e un\'esperienza autentica lontana dai circuiti di massa.',
+    bestFor: 'Famiglie, tranquillità, autenticità locale',
+    access: 'Dal centro di Praiano, scalinata sulla SS163',
+    season: 'Maggio–settembre',
+    tip: 'I ristoranti sul lungomare offrono pesce freschissimo a prezzi molto più bassi di Positano.',
+  },
+  {
+    name: 'Spiaggia di Cetara',
+    location: 'Cetara',
+    type: 'Ciottoli',
+    description: 'Cetara è il borgo di pescatori più autentico della costiera, e la sua spiaggia riflette questo carattere: poche strutture turistiche, molta vita vera. I pescatori riparano le reti al mattino, i bambini del posto giocano nel pomeriggio. Le acque sono pulite e il lungomare ha ottimi ristoranti di pesce. La colatura di alici locale è uno dei prodotti gastronomici più pregiati d\'Italia.',
+    bestFor: 'Autenticità, gastronomia, atmosfera locale',
+    access: 'Direttamente dalla piazza principale di Cetara',
+    season: 'Maggio–settembre',
+    tip: 'Assaggia la colatura di alici negli spaghetti al ristorante Acqua Pazza.',
+  },
+  {
+    name: 'Grotta dello Smeraldo',
+    location: 'Conca dei Marini',
+    type: 'Grotta marina',
+    description: 'Non è una spiaggia nel senso tradizionale, ma è una delle meraviglie naturali della costiera: una grotta marina dove la luce filtra dal basso attraverso un ingresso sottomarino, tingendo l\'acqua di un verde smeraldo spettacolare. Si visita in barca dal molo di Conca dei Marini o con i traghetti che vi transitano. Imperdibile.',
+    bestFor: 'Esperienza unica, fotografia, bambini',
+    access: 'Traghetto da Amalfi o Positano, oppure scalinata dalla SS163',
+    season: 'Tutto l\'anno (meglio primavera e autunno)',
+    tip: 'Vai al mattino presto per evitare l\'affollamento e godere della luce migliore.',
+  },
+  {
+    name: 'Spiaggia di Marina di Vietri',
+    location: 'Vietri sul Mare',
+    type: 'Sabbia e ciottoli',
+    description: 'La spiaggia più orientale della costiera è anche una delle poche con sabbia. Meno scenografica delle altre, è però la più grande e la più accessibile (parcheggi e trasporti pubblici comodi da Salerno). Ideale come prima o ultima tappa di un itinerario sulla costiera.',
+    bestFor: 'Famiglie, sabbia, accessibilità',
+    access: 'Bus da Salerno, ampio parcheggio nelle vicinanze',
+    season: 'Maggio–settembre',
+    tip: 'Combinala con una visita ai laboratori di ceramica di Vietri in mattinata.',
+  },
+];
+---
+
+<BaseLayout
+  title={t.meta.beaches_title}
+  description={t.meta.beaches_description}
+  lang={lang}
+  pageKey="beaches"
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-teal-600 to-sea-500 text-white py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-teal-100 text-sm uppercase tracking-widest mb-3">Costiera Amalfitana</p>
+      <h1 class="text-4xl md:text-5xl font-bold font-serif mb-4">Le migliori spiagge</h1>
+      <p class="text-teal-100 text-lg max-w-2xl mx-auto">Da Positano a Vietri sul Mare: guida completa alle spiagge della Costiera Amalfitana, con consigli pratici su come raggiungerle e quando andarci.</p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <p class="text-lg text-gray-600 leading-relaxed">
+      Le spiagge della Costiera Amalfitana non sono spiagge di sabbia bianca e mare piatto: sono calette di ciottoli incastonate tra scogliere a picco, raggiungibili spesso solo a piedi o in barca, con acque di un blu e di un verde impossibile da dimenticare. Alcune sono attrezzate con stabilimenti balneari di qualità, altre sono completamente libere. Tutte sono piccole — la costiera non ha spazio per grandi arenili — e in luglio e agosto si riempiono presto. Il consiglio è sempre lo stesso: partire la mattina.
+    </p>
+  </section>
+
+  <!-- Beach cards -->
+  <section class="pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {beaches.map(beach => (
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-gradient-to-br from-sea-100 to-teal-100 h-40 flex items-center justify-center">
+              <div class="text-center">
+                <div class="text-5xl mb-1">🏖️</div>
+                <span class="text-sea-700 text-sm font-medium">{beach.location}</span>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between mb-3">
+                <h2 class="text-xl font-bold text-gray-900">{beach.name}</h2>
+                <span class="text-xs bg-sea-100 text-sea-700 px-2 py-1 rounded-full whitespace-nowrap ml-2">{beach.type}</span>
+              </div>
+              <p class="text-gray-600 text-sm leading-relaxed mb-4">{beach.description}</p>
+              <div class="space-y-2 text-sm">
+                <div class="flex gap-2">
+                  <span class="text-gray-400 w-20 flex-shrink-0">Ideale per:</span>
+                  <span class="text-gray-700">{beach.bestFor}</span>
+                </div>
+                <div class="flex gap-2">
+                  <span class="text-gray-400 w-20 flex-shrink-0">Accesso:</span>
+                  <span class="text-gray-700">{beach.access}</span>
+                </div>
+                <div class="flex gap-2">
+                  <span class="text-gray-400 w-20 flex-shrink-0">Stagione:</span>
+                  <span class="text-gray-700">{beach.season}</span>
+                </div>
+              </div>
+              <div class="mt-4 p-3 bg-amalfi-lemon/30 rounded-xl">
+                <p class="text-sm text-gray-700"><span class="font-semibold">Consiglio:</span> {beach.tip}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Consigli pratici -->
+  <section class="bg-sea-50 py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold font-serif text-gray-900 mb-8">Consigli pratici per le spiagge</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl p-6 shadow-sm">
+          <h3 class="font-bold text-gray-900 mb-3">🕘 Quando andare</h3>
+          <p class="text-gray-600 text-sm">In luglio e agosto arrivi sempre prima delle 9 per trovare posto. La sera è il momento migliore per godersi le spiagge meno affollate e il tramonto sul mare.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-sm">
+          <h3 class="font-bold text-gray-900 mb-3">👟 Cosa portare</h3>
+          <p class="text-gray-600 text-sm">Le spiagge sono quasi tutte di ciottoli: porta scarpe da scoglio. Utile anche uno zaino impermeabile se raggiungi la spiaggia in barca o lungo sentieri.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-sm">
+          <h3 class="font-bold text-gray-900 mb-3">💶 Costi</h3>
+          <p class="text-gray-600 text-sm">Uno stabilimento balneare costa tra 15 e 35 euro a persona al giorno (lettino + ombrellone). Tutte le spiagge hanno anche una parte libera gratuita.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-sm">
+          <h3 class="font-bold text-gray-900 mb-3">🌊 Qualità dell'acqua</h3>
+          <p class="text-gray-600 text-sm">L'acqua della costiera è tra le più pulite d'Italia, con classificazione Bandiera Blu in molti tratti. La visibilità sottomarina è eccellente: porta la maschera.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Vuoi scoprire i borghi vicino alle spiagge?</h2>
+      <a href={getLocalePath(lang, 'destinations')}
+        class="inline-block bg-sea-600 text-white font-semibold px-8 py-3 rounded-full hover:bg-sea-700 transition-colors">
+        Esplora le destinazioni
+      </a>
+    </div>
+  </section>
+</BaseLayout>
