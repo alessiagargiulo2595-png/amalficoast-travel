@@ -1,0 +1,35 @@
+---
+interface SliderItem {
+  name: string;
+  href: string;
+  tag: string;
+  desc: string;
+}
+interface Props {
+  heading?: string;
+  items: SliderItem[];
+}
+const { heading = 'Esplora anche', items } = Astro.props;
+---
+
+<section class="bg-offwhite border-t border-gray-100 py-12">
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">{heading}</h2>
+    <div class="flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory -mx-4 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {items.map(item => (
+        <a
+          href={item.href}
+          class="flex-shrink-0 w-56 snap-start bg-white border border-gray-200 rounded-2xl p-5 hover:border-capri-300 hover:shadow-md transition-all duration-200 group"
+        >
+          <span class="text-[10px] uppercase tracking-wide bg-capri-50 text-capri-600 px-2 py-1 rounded-full font-medium">{item.tag}</span>
+          <h3 class="font-serif text-lg font-semibold text-charcoal mt-3 mb-1 group-hover:text-capri-600 transition-colors">{item.name}</h3>
+          <p class="text-xs text-gray-500 leading-relaxed line-clamp-3">{item.desc}</p>
+          <p class="text-capri-500 text-xs font-medium mt-3 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+            Scopri
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+          </p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
