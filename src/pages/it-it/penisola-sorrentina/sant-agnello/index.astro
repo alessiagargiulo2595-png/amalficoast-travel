@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Penisola Sorrentina', url: '/it-it/penisola-sorrentina/' },
+  { name: 'Sant\'Agnello', url: '/it-it/penisola-sorrentina/sant-agnello/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Cosa c\'e da vedere a Sant\'Agnello?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sant\'Agnello e un comune residenziale tra Sorrento e Piano di Sorrento. I principali punti di interesse sono il Parco dei Principi (hotel con giardini disegnati da Gio Ponti), Villa Crawford e la passeggiata dei Colli di San Pietro con vista sul Golfo." }
+    },
+    {
+      "@type": "Question",
+      "name": "Come arrivare a Sant\'Agnello?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Circumvesuviana da Napoli: fermata Sant\'Agnello (60 min da Napoli, ~€3.50), una fermata prima di Sorrento. In bus: EAV da Sorrento (~5 min). A piedi da Sorrento: ~20 min lungo il Corso Italia." }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Posizione', dd: 'Penisola Sorrentina, NA' },
+  { dt: 'Popolazione', dd: '~9.000 abitanti' },
+  { dt: 'Da Napoli', dd: '~60 min (Circumvesuviana)' },
+  { dt: 'Da Sorrento', dd: '~5 min (bus/piedi)' },
+  { dt: 'Atmosfera', dd: 'Residenziale, quieta' },
+  { dt: 'Miglior periodo', dd: 'Apr–Ott' },
+];
+---
+
+<BaseLayout
+  title="Sant\'Agnello 2025: Alternativa Quieta a Sorrento | Guida Completa"
+  description="Guida a Sant\'Agnello: l\'alternativa residenziale e quieta a Sorrento. Il Parco dei Principi, Villa Crawford e la passeggiata dei Colli di San Pietro. Come arrivare."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative min-h-[50vh] flex items-end bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-capri-900 via-capri-700 to-capri-500"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"></div>
+    <div class="relative z-10 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-lemon-400 text-sm font-medium uppercase tracking-widest mb-3">Penisola Sorrentina · Quiete & Lusso</p>
+        <h1 class="font-serif text-display text-white mb-4">Sant'Agnello</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          A 5 minuti da Sorrento ma con la quiete di un paese residenziale: Sant\'Agnello è la scelta di chi vuole dormire sulla penisola senza pagare i prezzi del centro di Sorrento, restando a breve distanza da tutto.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+      <div class="space-y-12">
+
+        <p class="text-xl leading-relaxed text-charcoal">
+          Sant\'Agnello non ha attrazioni da cartolina, ma ha qualcosa di raro nella penisola: la quiete. Un paio di belle ville storiche, hotel di charme (il Parco dei Principi con i giardini disegnati da Gio Ponti è tra i più belli d\'Italia), una passeggiata panoramica e prezzi del 20–30% inferiori a Sorrento.
+        </p>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">Cosa vedere a Sant\'Agnello</h2>
+          <div class="space-y-6">
+            {[
+              { title: 'Parco dei Principi', text: 'L\'hotel e i giardini disegnati da Gio Ponti negli anni \'60: un capolavoro di design razionalista con piscina a bordo scogliera. Anche se non ci si alloggia, i giardini aperti al pubblico valgono una visita. Accesso dalla via Rivo.' },
+              { title: 'Passeggiata dei Colli di San Pietro', text: 'Un sentiero panoramico che collega Sant\'Agnello a Piano di Sorrento lungo la scogliera, con vista sul Golfo di Napoli. Lunghezza: ~3 km. Gratuito, senza traffico. Ideale all\'alba o al tramonto.' },
+              { title: 'Villa Crawford', text: 'La villa dello scrittore americano Francis Marion Crawford (1854–1909), che visse qui per 30 anni scrivendo romanzi storici. Visibile solo dall\'esterno; proprietà privata. Il giardino è tra i più belli della penisola.' },
+            ].map(({ title, text }) => (
+              <div class="border-l-2 border-capri-200 pl-5">
+                <h3 class="font-semibold text-charcoal mb-1">{title}</h3>
+                <p class="text-sm text-gray-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="bg-lemon-50 border border-lemon-200 rounded-2xl p-6">
+          <p class="font-semibold text-charcoal mb-2">Perché scegliere Sant\'Agnello come base?</p>
+          <p class="text-sm text-gray-600 leading-relaxed">Se il tuo budget è limitato ma vuoi stare sulla penisola, Sant\'Agnello offre hotel con le stesse viste di Sorrento a prezzi inferiori. La Circumvesuviana si ferma qui, così come i bus EAV per Sorrento (5 min) e Massa Lubrense. Non hai bisogno di noleggiare un\'auto.</p>
+        </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">Domande frequenti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-charcoal text-white rounded-2xl p-6">
+          <p class="text-[10px] uppercase tracking-widest text-lemon-400 font-medium mb-4">Fast Facts — Sant'Agnello</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/60 text-sm flex-shrink-0">{dt}</dt>
+                  <dd class="text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/10"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+        <div class="bg-white border border-gray-200 rounded-2xl p-6">
+          <p class="text-[10px] uppercase tracking-widest text-gray-400 font-medium mb-3">Penisola Sorrentina</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/it-it/penisola-sorrentina/sorrento/', label: 'Sorrento' },
+              { href: '/it-it/penisola-sorrentina/vico-equense/', label: 'Vico Equense' },
+              { href: '/it-it/penisola-sorrentina/massa-lubrense/', label: 'Massa Lubrense' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-capri-50 hover:text-capri-600 transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-capri-300"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Esplora la Penisola"
+    items={[
+      { name: 'Sorrento',      href: '/it-it/penisola-sorrentina/sorrento/',       tag: 'Base ideale',  desc: 'Piazza Tasso, limoncello e aliscafi per Capri.' },
+      { name: 'Capri',         href: '/it-it/isole/capri/',                         tag: 'La più iconica', desc: 'Grotta Azzurra e Faraglioni a 25 min di aliscafo.' },
+      { name: 'Massa Lubrense',href: '/it-it/penisola-sorrentina/massa-lubrense/',  tag: 'Natura',      desc: 'Punta Campanella e la migliore spiaggia della penisola.' },
+      { name: 'Positano',      href: '/it-it/costiera-amalfitana/positano/',        tag: 'Fashion & Vista', desc: 'Le case colorate della Costiera Amalfitana.' },
+    ]}
+  />
+
+</BaseLayout>

@@ -1,0 +1,315 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Penisola Sorrentina', url: '/it-it/penisola-sorrentina/' },
+  { name: 'Sorrento', url: '/it-it/penisola-sorrentina/sorrento/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come arrivare a Sorrento da Napoli?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La Circumvesuviana collega Napoli Centrale a Sorrento in circa 70 minuti (~€3.90). Alternativa: aliscafo dal Molo Beverello in circa 60 minuti. In auto circa 1 ora senza traffico (ZTL in centro in estate)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Sorrento ha spiagge di sabbia?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Le spiagge di Sorrento sono su roccia lavica, ciottoli o piattaforme attrezzate. Marina Grande e Marina Piccola sono le due baie principali, raggiungibili dalla scogliera tramite scalinate o ascensori." }
+    },
+    {
+      "@type": "Question",
+      "name": "Conviene dormire a Sorrento o Positano?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sorrento e la base perfetta per chi vuole esplorare la regione: ha stazione Circumvesuviana, porto per aliscafi, e prezzi inferiori del 30-40% rispetto a Positano. Positano e piu romantica ma piu cara e piu isolata." }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa mangiare a Sorrento?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Gnocchi alla sorrentina (con pomodoro, basilico e fior di latte), delizia al limone (dolce tipico a forma di sfera), limoncello artigianale, pesce di giornata. Evitare i ristoranti direttamente su Piazza Tasso: rapporto qualita-prezzo basso." }
+    },
+    {
+      "@type": "Question",
+      "name": "Da Sorrento si puo visitare Capri in giornata?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Si, e anzi il modo migliore: aliscafo da Sorrento a Capri in 25 minuti (~€22 A/R). Partenza consigliata ore 8:00 per arrivare prima delle cale turistiche. Ultimo rientro alle 18:30-19:00." }
+    }
+  ]
+};
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Sorrento",
+  "description": "Sorrento e la capitale della Penisola Sorrentina, famosa per il limoncello, l\'intarsia lignea, Piazza Tasso e la posizione strategica come base per Capri, Napoli e la Costiera Amalfitana.",
+  "url": "https://amalficoast-travel.com/it-it/penisola-sorrentina/sorrento/",
+  "touristType": ["Cultura", "Gastronomia", "Mare", "Base viaggi"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Sorrento", "addressRegion": "Napoli", "addressCountry": "IT" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.6260, "longitude": 14.3752 }
+};
+
+const schemas = [touristAttractionSchema, faqSchema];
+
+const fastFacts = [
+  { dt: 'Posizione', dd: 'Penisola Sorrentina, NA' },
+  { dt: 'Altitudine', dd: '~50 m slm (scogliera)' },
+  { dt: 'Popolazione', dd: '~16.000 abitanti' },
+  { dt: 'ZTL', dd: 'Sì, centro storico' },
+  { dt: 'Da Napoli', dd: '70 min (Circumvesuviana)' },
+  { dt: 'Per Capri', dd: '25 min (aliscafo)' },
+  { dt: 'Spiagge', dd: 'Roccia e ciottoli' },
+  { dt: 'Miglior periodo', dd: 'Apr–Giu / Set–Ott' },
+  { dt: 'Specialità', dd: 'Limoncello, gnocchi, intarsia' },
+];
+
+const tips = [
+  'Il Vallone dei Mulini — a 2 minuti da Piazza Tasso — è gratuito, quasi sconosciuto ai turisti e assolutamente fotogenico.',
+  'Per il limoncello, compra dai produttori in via San Cesareo (centro storico) e non dai negozi sul lungomare.',
+  'La Circumvesuviana è economica ma lenta: se hai fretta usa l\'aliscafo (più caro ma 1h vs 70 min con stazioni).',
+  'La Marina Grande (porto di pescatori) è raggiungibile a piedi con la scalinata di via Marina Grande: più autentica della Marina Piccola.',
+];
+---
+
+<BaseLayout
+  title="Sorrento 2025: Guida Completa | Piazza Tasso, Limoncello e Come Arrivare"
+  description="Guida completa a Sorrento: Piazza Tasso, Chiostro di San Francesco, Marina Grande, limoncello, come arrivare con Circumvesuviana e aliscafi. Base ideale per Capri, Napoli e Costiera."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={schemas}
+>
+
+  <!-- Hero -->
+  <section class="relative min-h-[70vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/sorrento-hero.jpg" alt="Sorrento, Penisola Sorrentina" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-lemon-400 text-sm font-medium uppercase tracking-widest mb-3">Penisola Sorrentina · Hub per Capri e Costiera</p>
+        <h1 class="font-serif text-display text-white mb-4">Sorrento</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La città del limoncello e dell\'intarsia, affacciata a picco sul Golfo di Napoli con il Vesuvio di fronte e Capri a 25 minuti di aliscafo. Sorrento non è solo una meta: è il punto di partenza ideale per tutta la Campania.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-lemon-400 text-charcoal text-sm font-semibold rounded-full hover:bg-lemon-300 transition-colors">Fast Facts</a>
+          <a href="#come-arrivare" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">Come arrivare</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Sorrento è una città di contrasti: il traffico caotico di Piazza Tasso e i vicoli silenziosi del centro storico, i ristoranti per turisti sul corso e le trattorie nascoste dove i sorrentini cenano da generazioni, il mare visto dall\'alto delle scogliere e raggiunto solo a piedi con scalinate ripide.
+          </p>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            È famosa in tutto il mondo per il limoncello (qui si fa con i limoni IGP della Penisola), per l\'intarsia lignea (un\'arte del legno intarsiato che risale al Rinascimento) e per essere la base logistica perfetta per la regione: da qui in un\'ora raggiungi Napoli, Pompei, Capri, Positano o Amalfi.
+          </p>
+        </div>
+
+        <!-- Attractions -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-8">Cosa vedere a Sorrento</h2>
+          <div class="space-y-8">
+            {[
+              {
+                n: 1,
+                title: 'Piazza Tasso',
+                text: 'Il cuore pulsante di Sorrento: bar, ristoranti, il palazzo dei congressi e la statua di Torquato Tasso. È il ritrovo serale per residenti e turisti. Non è particolarmente bella ma è il punto d\'incontro obbligatorio. Da qui partono tutte le principali strade del centro.',
+              },
+              {
+                n: 2,
+                title: 'Chiostro di San Francesco',
+                text: 'Il monumento più bello di Sorrento: un chiostro gotico-arabo del XIV secolo con archi intrecciati e un giardino di glicini. Gratuito, aperto tutto l\'anno. Ospita concerti estivi e mostre d\'arte. A due passi dalla Villa Comunale con il panorama sul Golfo.',
+              },
+              {
+                n: 3,
+                title: 'Villa Comunale e Belvedere',
+                text: 'Il giardino pubblico con la terrazza panoramica più bella di Sorrento: il Vesuvio fumante, il Golfo di Napoli, Capri all\'orizzonte. Gratuito, aperto tutto il giorno. Il posto migliore per l\'aperitivo al tramonto senza spendere €10 al bar.',
+              },
+              {
+                n: 4,
+                title: 'Marina Grande',
+                text: 'Il porto dei pescatori, raggiungibile a piedi con la scalinata di via Marina Grande (15 min dal centro). Case colorate, barche tirate in secca, qualche ristorante di pesce autentico. Meno turistico di Marina Piccola. Il posto giusto per fare il bagno lontano dalla folla.',
+              },
+              {
+                n: 5,
+                title: 'Vallone dei Mulini',
+                text: 'Un canyon naturale a pochi passi da Piazza Tasso, completamente dimenticato dai turisti: un vecchio mulino abbandonato avvolto dalla vegetazione tropicale, 40 m sotto il livello della città. Visibile gratuitamente dall\'affaccio su via Fuorimura. Fotografabile dal bordo, accessibile su prenotazione.',
+              },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-gray-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Come arrivare -->
+        <div id="come-arrivare">
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-6">Come arrivare a Sorrento</h2>
+
+          <div class="space-y-6">
+            <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+              <h3 class="font-semibold text-charcoal mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5 text-capri-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Circumvesuviana (da Napoli)
+              </h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-3">Treno EAV da Napoli Porta Nolana o Napoli Centrale (Piazza Garibaldi) verso Sorrento. Durata: ~70 min. Costo: ~€3.90. Passa per Ercolano (Scavi), Pompei (Scavi Villa dei Misteri), Castellammare di Stabia, Vico Equense. Frequenza: ogni 30–40 min dalle 6:00 alle 22:00.</p>
+              <p class="text-xs text-gray-400">* Attenzione ai borseggiatori. Verifica orari su eavsrl.it</p>
+            </div>
+
+            <div class="overflow-x-auto rounded-2xl border border-gray-200">
+              <table class="w-full text-sm">
+                <caption class="text-left text-xs text-gray-500 px-4 py-2 bg-gray-50 rounded-t-2xl border-b border-gray-200 font-medium">Aliscafi da Napoli Beverello → Sorrento</caption>
+                <thead>
+                  <tr class="bg-capri-50 text-capri-800">
+                    <th class="text-left px-4 py-3 font-semibold">Partenza Napoli</th>
+                    <th class="text-left px-4 py-3 font-semibold">Arrivo Sorrento</th>
+                    <th class="text-left px-4 py-3 font-semibold">Compagnia</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  {[
+                    ['07:00', '08:05', 'Alilauro'],
+                    ['08:30', '09:35', 'Alilauro'],
+                    ['10:00', '11:05', 'Alilauro'],
+                    ['12:00', '13:05', 'Alilauro'],
+                    ['15:00', '16:05', 'Alilauro'],
+                    ['17:00', '18:05', 'Alilauro'],
+                  ].map(([p, a, c]) => (
+                    <tr class="hover:bg-gray-50 transition-colors">
+                      <td class="px-4 py-3 font-mono">{p}</td>
+                      <td class="px-4 py-3 font-mono">{a}</td>
+                      <td class="px-4 py-3 text-gray-500">{c}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p class="text-xs text-gray-400 mt-1">* Orari indicativi estate 2025. Verifica su alilauro.it</p>
+          </div>
+        </div>
+
+        <!-- Hidden Gems -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-6">Sorrento lontano dai turisti</h2>
+          <div class="grid sm:grid-cols-2 gap-6">
+            {[
+              { title: 'Sedile Dominova', text: 'Una loggia aperta del XV secolo con affreschi originali, nascosta in un vicolo del centro. Un tempo sede dell\'assemblea nobile locale, oggi usata come circolo da anziani del quartiere. Gratuito, sempre aperto.' },
+              { title: 'Via San Cesareo', text: 'La vera via dello shopping sorrentino: negozi di intarsia lignea, botteghe di limoncello artigianale, salumerie e caseifici. Molto meno cara e più autentica del Corso Italia.' },
+              { title: 'Museo della Tarsia Lignea', text: 'Il museo dell\'intarsia di Sorrento, ospitato in un palazzo del XVIII secolo con soffitti affrescati. Collezione di mobili e oggetti intarsiati dal XVI al XIX secolo. Ingresso ~€8.' },
+              { title: 'Tramonto da Capo di Sorrento', text: 'Le rovine romane dei Bagni della Regina Giovanna a Capo di Sorrento: raggiungibili a piedi in 45 min dal centro lungo il sentiero costiero. Piscine naturali tra le rocce, tramonto sul mare aperto. Gratuito.' },
+            ].map(({ title, text }) => (
+              <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+                <h3 class="font-semibold text-charcoal mb-2">{title}</h3>
+                <p class="text-sm text-gray-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-8">Domande frequenti su Sorrento</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-charcoal text-white rounded-2xl p-6">
+          <p class="text-[10px] uppercase tracking-widest text-lemon-400 font-medium mb-4">Fast Facts — Sorrento</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/60 text-sm flex-shrink-0">{dt}</dt>
+                  <dd class="text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/10"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-lemon-50 border border-lemon-300 rounded-2xl p-6">
+          <p class="text-[10px] uppercase tracking-widest text-lemon-700 font-medium mb-3">Consigli degli insider</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-2xl p-6">
+          <p class="text-[10px] uppercase tracking-widest text-gray-400 font-medium mb-3">Penisola Sorrentina</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/it-it/penisola-sorrentina/vico-equense/', label: 'Vico Equense' },
+              { href: '/it-it/penisola-sorrentina/massa-lubrense/', label: 'Massa Lubrense' },
+              { href: '/it-it/penisola-sorrentina/sant-agnello/', label: 'Sant\'Agnello' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-capri-50 hover:text-capri-600 transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-capri-300"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Esplora anche"
+    items={[
+      { name: 'Capri',         href: '/it-it/isole/capri/',                  tag: 'La più iconica',   desc: 'Grotta Azzurra, Faraglioni e la Piazzetta a 25 min di aliscafo.' },
+      { name: 'Positano',      href: '/it-it/costiera-amalfitana/positano/', tag: 'Fashion & Vista',  desc: 'Le case colorate a picco sul mare della Costiera Amalfitana.' },
+      { name: 'Vico Equense',  href: '/it-it/penisola-sorrentina/vico-equense/', tag: 'Autentica',   desc: 'Pizza al metro Da Gigino e il Castello Giusso a picco sul mare.' },
+      { name: 'Massa Lubrense',href: '/it-it/penisola-sorrentina/massa-lubrense/', tag: 'Natura & Cucina', desc: 'Punta Campanella, Marina del Cantone e gli spaghetti di Nerano.' },
+      { name: 'Ischia',        href: '/it-it/isole/ischia/',                 tag: 'Terme & Natura',   desc: 'Terme naturali e Castello Aragonese a 75 min di traghetto.' },
+    ]}
+  />
+
+</BaseLayout>

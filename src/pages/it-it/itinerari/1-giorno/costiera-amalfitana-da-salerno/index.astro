@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Itinerari', url: '/it-it/itinerari/' },
+  { name: '1 Giorno da Salerno', url: '/it-it/itinerari/1-giorno/costiera-amalfitana-da-salerno/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si arriva alla Costiera Amalfitana da Salerno?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Da Salerno hai due opzioni: traghetto Travelmar per Amalfi (45 min, ~€8, stagionale apr-ott) oppure bus SITA dalla stazione di Salerno (direzione Amalfi via SS163, ~60 min, ~€2.80). Il traghetto è più panoramico e veloce; il bus è attivo tutto l'anno." }
+    },
+    {
+      "@type": "Question",
+      "name": "Vale la pena partire dalla porta est della Costiera (Vietri, Maiori)?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sì, soprattutto in bassa stagione quando i borghi sono meno affollati. Vietri sul Mare è famosa per le ceramiche, Maiori ha il lungomare più lungo della Costiera e un'atmosfera rilassata. Minori vale una sosta per le rovine della Villa Romana." }
+    }
+  ]
+};
+
+const schedule = [
+  { time: '08:30', place: 'Salerno', action: 'Traghetto Travelmar per Amalfi (apr-ott, 45 min, ~€8) o bus SITA (60 min, ~€2.80)' },
+  { time: '09:30', place: 'Amalfi', action: 'Duomo di Sant\'Andrea, Chiostro del Paradiso, Museo della Carta (2.5h)' },
+  { time: '12:00', place: 'Amalfi', action: 'Pranzo in centro (trattorie sul corso o sul porto)' },
+  { time: '13:30', place: 'Amalfi → Maiori', action: 'Bus SITA est per Maiori (20 min, ~€1.50). Lungomare e spiaggia.' },
+  { time: '15:00', place: 'Maiori → Minori', action: 'A piedi lungo il lungomare (20 min) o bus. Villa Romana di Minori (gratuita).' },
+  { time: '16:00', place: 'Minori → Vietri sul Mare', action: 'Bus SITA per Vietri (~30 min). Ceramiche, Museo della Ceramica, passeggiata.' },
+  { time: '17:30', place: 'Vietri', action: 'Bus per Salerno (15 min) o a piedi lungo la costa (45 min panoramici)' },
+];
+---
+
+<BaseLayout
+  title="Costiera Amalfitana da Salerno in 1 Giorno 2025 | Itinerario Est"
+  description="Itinerario di 1 giorno dalla porta est della Costiera Amalfitana: Amalfi, Maiori, Minori e Vietri sul Mare partendo da Salerno. Orari traghetti e bus SITA."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-capri-900 via-capri-700 to-capri-500"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/it-it/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <a href="/it-it/itinerari/" class="hover:text-white transition-colors">Itinerari</a>
+        <span>/</span>
+        <span class="text-white">Costiera da Salerno — 1 giorno</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-lemon-400 text-sm font-medium uppercase tracking-widest mb-3">Itinerario · 1 giorno</p>
+        <h1 class="font-serif text-display text-white mb-4">Costiera Amalfitana da Salerno</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La porta est della Costiera: meno folla, più autenticità. Amalfi in traghetto da Salerno, poi i borghi tranquilli di Maiori, Minori e le ceramiche di Vietri.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <section class="max-w-text">
+      <div class="grid sm:grid-cols-3 gap-4 mb-8">
+        <div class="bg-offwhite rounded-2xl p-4 text-center border border-gray-100">
+          <p class="text-xs text-gray-400 mb-1">Durata</p>
+          <p class="font-semibold text-charcoal">1 giorno</p>
+        </div>
+        <div class="bg-offwhite rounded-2xl p-4 text-center border border-gray-100">
+          <p class="text-xs text-gray-400 mb-1">Costo trasporti</p>
+          <p class="font-semibold text-charcoal">~€12–18</p>
+        </div>
+        <div class="bg-offwhite rounded-2xl p-4 text-center border border-gray-100">
+          <p class="text-xs text-gray-400 mb-1">Difficoltà</p>
+          <p class="font-semibold text-charcoal">Facile</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">Il programma ora per ora</h2>
+      <div class="space-y-0">
+        {schedule.map((s, i) => (
+          <div class="flex gap-4 group">
+            <div class="flex flex-col items-center">
+              <div class="w-8 h-8 rounded-full bg-capri-600 text-white text-xs font-mono flex items-center justify-center flex-shrink-0">{i + 1}</div>
+              {i < schedule.length - 1 && <div class="w-px flex-1 bg-gray-200 my-1"></div>}
+            </div>
+            <div class="pb-6">
+              <span class="text-xs font-mono text-capri-600 font-semibold">{s.time}</span>
+              <p class="font-semibold text-charcoal text-sm">{s.place}</p>
+              <p class="text-sm text-gray-600">{s.action}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-lemon-50 border border-lemon-200 rounded-2xl p-8">
+      <p class="font-semibold text-charcoal text-lg mb-3">Perché partire da Salerno</p>
+      <ul class="space-y-2">
+        {[
+          'Salerno è collegata a Napoli e Roma in treno ad alta velocità: ottimo punto di partenza.',
+          'Il traghetto Travelmar da Salerno è panoramico e arriva ad Amalfi senza percorrere la SS163.',
+          'La parte est della Costiera (Maiori, Minori, Vietri) è molto meno affollata di Positano.',
+          'Vietri sul Mare è la capitale italiana delle ceramiche: ottima per souvenir di qualità.',
+          'In bassa stagione il bus SITA è l\'unica opzione (traghetto sospeso): parte da Piazza della Concordia.',
+        ].map(tip => (
+          <li class="flex items-start gap-2 text-sm text-charcoal">
+            <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
+            <span>{tip}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">Domande frequenti</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>

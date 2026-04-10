@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Esperienze', url: '/it-it/esperienze/' },
+  { name: 'Tour in Barca', url: '/it-it/esperienze/tour-barca/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quanto costa un tour in barca sulla Costiera Amalfitana?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Un tour in barca di gruppo sulla Costiera Amalfitana (4-6 ore) costa dai €50 agli €80 a persona. I tour privati (barca a nolo senza skipper) partono da €200/giorno per imbarcazioni piccole; con skipper da €400-800/giorno. Da Capri, i giri in barchetta per la Grotta Azzurra costano ~€15." }
+    },
+    {
+      "@type": "Question",
+      "name": "Da dove partono i tour in barca?",
+      "acceptedAnswer": { "@type": "Answer", "text": "I tour in barca partono principalmente da: Positano (per la Costiera e Capri), Amalfi (per la Costiera e grotte), Sorrento (per Capri e Costiera), Marina Grande di Capri (per Faraglioni e Grotta Azzurra). In estate si consiglia di prenotare con 1-2 giorni di anticipo." }
+    },
+    {
+      "@type": "Question",
+      "name": "Il tour in barca si cancella con brutto tempo?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Si, tutti i tour in barca vengono cancellati con mare mosso (onde oltre 0.8-1m) o vento forte. Le cancellazioni sono frequenti in aprile, ottobre e in caso di tramontana. Verifica sempre le condizioni meteo marine il giorno prima su windguru.cz o windy.com." }
+    }
+  ]
+};
+
+const tours = [
+  {
+    name: 'Giro dei Faraglioni di Capri',
+    from: 'Marina Grande, Capri',
+    duration: '1–2 ore',
+    price: '~€18–25 p.p.',
+    highlights: 'Faraglioni, Grotta Verde, passaggio sotto l\'arco di Mezzo, snorkeling',
+    type: 'Gruppo',
+  },
+  {
+    name: 'Grotta Azzurra (barchetta)',
+    from: 'Marina Grande, Capri',
+    duration: '30 min (attesa + grotta)',
+    price: '~€15 + ingresso €14',
+    highlights: 'Luce blu unica, barche a remi, emozione garantita',
+    type: 'Individuale',
+  },
+  {
+    name: 'Tour Costiera Amalfitana da Positano',
+    from: 'Positano, Spiaggia Grande',
+    duration: '4–6 ore',
+    price: '~€50–80 p.p.',
+    highlights: 'Emerald Grotto, Praiano, Amalfi vista dal mare, snorkeling in cale isolate',
+    type: 'Gruppo',
+  },
+  {
+    name: 'Tour Costiera da Amalfi',
+    from: 'Amalfi, porto',
+    duration: '3–5 ore',
+    price: '~€40–70 p.p.',
+    highlights: 'Grotta dello Smeraldo, Positano, cale inaccessibili a terra, pranzo sul mare',
+    type: 'Gruppo',
+  },
+  {
+    name: 'Barca privata Sorrento → Capri',
+    from: 'Sorrento, Marina Piccola',
+    duration: 'Giornata intera',
+    price: '~€400–800 (barca intera)',
+    highlights: 'Itinerario su misura, nessuna folla, snorkeling, pranzo a bordo',
+    type: 'Privato',
+  },
+];
+---
+
+<BaseLayout
+  title="Tour in Barca Costiera Amalfitana 2025 | Capri, Positano, Amalfi"
+  description="I migliori tour in barca sulla Costiera Amalfitana: Faraglioni di Capri, Grotta Azzurra, tour da Positano e Amalfi. Prezzi, durate e consigli per scegliere il tour giusto."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative min-h-[60vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/capri-hero.jpg" alt="Tour in barca, Costiera Amalfitana" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/it-it/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-white/60">Esperienze</span>
+        <span>/</span>
+        <span class="text-white">Tour in Barca</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-lemon-400 text-sm font-medium uppercase tracking-widest mb-3">Esperienze</p>
+        <h1 class="font-serif text-display text-white mb-4">Tour in Barca</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La Costiera Amalfitana vista dal mare è un'altra cosa: grotte inaccessibili da terra, calette nascoste, i Faraglioni che ti passano sopra la testa. Ecco i tour migliori, dai giri economici ai noleggi privati.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">I tour più apprezzati</h2>
+      <div class="space-y-4">
+        {tours.map(t => (
+          <div class="bg-white border border-gray-200 rounded-2xl p-6 hover:border-capri-300 transition-colors">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="font-semibold text-charcoal text-lg">{t.name}</h3>
+              <span class={`text-[10px] uppercase tracking-wide px-2 py-1 rounded-full font-medium flex-shrink-0 ${t.type === 'Privato' ? 'bg-lemon-50 text-lemon-700' : t.type === 'Individuale' ? 'bg-capri-50 text-capri-600' : 'bg-gray-50 text-gray-500'}`}>
+                {t.type}
+              </span>
+            </div>
+            <div class="grid sm:grid-cols-3 gap-3 text-sm mb-3">
+              <div><span class="text-gray-400">Partenza</span><br /><span class="font-medium">{t.from}</span></div>
+              <div><span class="text-gray-400">Durata</span><br /><span class="font-medium">{t.duration}</span></div>
+              <div><span class="text-gray-400">Prezzo</span><br /><span class="font-mono font-medium text-capri-600">{t.price}</span></div>
+            </div>
+            <p class="text-xs text-gray-500">{t.highlights}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-lemon-50 border border-lemon-200 rounded-2xl p-8">
+      <p class="font-semibold text-charcoal text-lg mb-3">Consigli per scegliere il tour giusto</p>
+      <ul class="space-y-2">
+        {[
+          'Per la Grotta Azzurra a Capri: arriva prima delle 10:00 mattina. La coda pomeridiana può essere di 2 ore.',
+          'I tour di gruppo da Positano sono ottimi per chi viaggia da solo: si socializza, si vede la Costiera e si spende meno.',
+          'Con famiglia (bambini): scegli tour di 3-4h max e evita le barche veloci/gommoni (più rollio).',
+          'La Grotta dello Smeraldo da Amalfi è raggiungibile anche a piedi (€5 ingresso): non serve il tour se hai un mezzo.',
+          'Prenota online almeno 1-2 giorni prima in luglio-agosto: i posti si esauriscono velocemente.',
+        ].map(tip => (
+          <li class="flex items-start gap-2 text-sm text-charcoal">
+            <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
+            <span>{tip}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">Domande frequenti</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </div>
+
+  <CorrelationSlider
+    heading="Esplora le destinazioni dei tour"
+    items={[
+      { name: 'Capri',    href: '/it-it/isole/capri/',                 tag: 'Faraglioni',   desc: 'Grotta Azzurra, giro dei Faraglioni e calette inaccessibili.' },
+      { name: 'Positano', href: '/it-it/costiera-amalfitana/positano/', tag: 'Tour Costiera', desc: 'Punto di partenza dei tour della Costiera verso levante.' },
+      { name: 'Amalfi',   href: '/it-it/costiera-amalfitana/amalfi/',   tag: 'Grotta Smeraldo', desc: 'La Grotta dello Smeraldo e i tour verso Positano.' },
+      { name: 'Procida',  href: '/it-it/isole/procida/',                tag: 'Isola Autentica', desc: 'Giri in barca attorno alla piccola isola dei pescatori.' },
+    ]}
+  />
+
+</BaseLayout>

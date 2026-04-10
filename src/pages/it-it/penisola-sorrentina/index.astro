@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Penisola Sorrentina', url: '/it-it/penisola-sorrentina/' },
+];
+
+const borghi = [
+  {
+    name: 'Sorrento',
+    href: '/it-it/penisola-sorrentina/sorrento/',
+    desc: 'La capitale della penisola: Piazza Tasso, il chiostro di San Francesco, il limoncello e gli aliscafi per Capri e Napoli.',
+    tag: 'Base ideale',
+  },
+  {
+    name: 'Vico Equense',
+    href: '/it-it/penisola-sorrentina/vico-equense/',
+    desc: 'Patria della pizza al metro Da Gigino e del Castello Giusso a picco sul mare. Meno touristy, più vera.',
+    tag: 'Autentica',
+  },
+  {
+    name: 'Massa Lubrense',
+    href: '/it-it/penisola-sorrentina/massa-lubrense/',
+    desc: 'Il comune più meridionale della penisola: Punta Campanella, Marina del Cantone e gli spaghetti alle zucchine di Nerano.',
+    tag: 'Natura & Cucina',
+  },
+  {
+    name: 'Sant\'Agnello',
+    href: '/it-it/penisola-sorrentina/sant-agnello/',
+    desc: 'Tra Sorrento e Piano di Sorrento: ville storiche, hotel di charme e una quiete rara a due passi dalla mondanità.',
+    tag: 'Quiete & Lusso',
+  },
+];
+
+const destinationSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  "name": "Penisola Sorrentina",
+  "description": "La Penisola Sorrentina si protende nel Golfo di Napoli tra il Vesuvio e la Costiera Amalfitana: Sorrento, Vico Equense, Massa Lubrense e Sant\'Agnello.",
+  "url": "https://amalficoast-travel.com/it-it/penisola-sorrentina/",
+  "touristType": ["Mare", "Cultura", "Gastronomia", "Escursionismo"],
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6264,
+    "longitude": 14.3757
+  }
+};
+---
+
+<BaseLayout
+  title="Penisola Sorrentina 2025: Sorrento, Vico Equense, Massa Lubrense"
+  description="Guida alla Penisola Sorrentina: Sorrento, Vico Equense, Massa Lubrense e Sant\'Agnello. Come arrivare con Circumvesuviana e aliscafi, cosa vedere, dove mangiare."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[destinationSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative bg-charcoal overflow-hidden">
+    <img src="/images/sorrento-hero.jpg" alt="Penisola Sorrentina, Golfo di Napoli" class="absolute inset-0 w-full h-full object-cover opacity-50" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/70"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/it-it/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-white">Penisola Sorrentina</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-lemon-400 text-sm font-medium uppercase tracking-widest mb-3">Golfo di Napoli · Campania</p>
+        <h1 class="font-serif text-display text-white mb-4">Penisola Sorrentina</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Il promontorio che divide il Golfo di Napoli dalla Costiera Amalfitana. Sorrento mondana e profumata di limoni, Vico Equense con la sua pizza al metro, Massa Lubrense selvaggia e Punta Campanella che guarda Capri da così vicino da sembrare di poterla toccare.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+
+    <!-- Intro -->
+    <section class="max-w-text">
+      <p class="text-xl leading-relaxed text-charcoal">
+        La Penisola Sorrentina è il punto di partenza naturale per esplorare tutta la Campania costiera. Da Sorrento si raggiunge Capri in 25 minuti di aliscafo, Napoli in 70 minuti di Circumvesuviana, Pompei in 30 minuti, Amalfi in meno di 2 ore. Non è solo una destinazione: è un hub perfetto.
+      </p>
+      <p class="mt-4 text-gray-600 leading-relaxed">
+        La Circumvesuviana collega Napoli a Sorrento passando per Ercolano, Pompei e Vico Equense. I traghetti e gli aliscafi raggiungono Capri, Ischia, Positano e Napoli. Il bus SITA percorre la SS145 fino ad Amalfi. Da Sorrento, il mondo è a portata di traghetto.
+      </p>
+    </section>
+
+    <!-- Borghi Grid -->
+    <section>
+      <div class="flex items-end justify-between mb-8">
+        <h2 class="font-serif text-3xl font-semibold text-charcoal">I borghi della Penisola</h2>
+        <p class="text-sm text-gray-400 hidden sm:block">Golfo di Napoli, Campania</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-6">
+        {borghi.map(b => (
+          <a href={b.href} class="group bg-white border border-gray-200 rounded-2xl p-6 hover:border-capri-300 hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-serif text-xl font-semibold text-charcoal group-hover:text-capri-600 transition-colors">{b.name}</h3>
+              <span class="text-[10px] uppercase tracking-wide bg-capri-50 text-capri-600 px-2 py-1 rounded-full font-medium flex-shrink-0 ml-2">{b.tag}</span>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed">{b.desc}</p>
+            <p class="text-capri-500 text-sm font-medium mt-4 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+              Scopri {b.name}
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+            </p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Come arrivare -->
+    <section>
+      <h2 class="font-serif text-3xl font-semibold text-charcoal mb-8">Come raggiungere la Penisola Sorrentina</h2>
+      <div class="grid sm:grid-cols-3 gap-6">
+        <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+          <p class="text-[10px] uppercase tracking-widest text-capri-500 font-semibold mb-3">Treno</p>
+          <p class="font-semibold text-charcoal mb-1">Circumvesuviana</p>
+          <p class="text-sm text-gray-600 leading-relaxed">Da Napoli Centrale a Sorrento: ~70 min, ~€3.90. Passa per Ercolano, Pompei, Castellammare, Vico Equense. Frequenza ogni 30–40 min.</p>
+        </div>
+        <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+          <p class="text-[10px] uppercase tracking-widest text-capri-500 font-semibold mb-3">Traghetto/Aliscafo</p>
+          <p class="font-semibold text-charcoal mb-1">Da Napoli o Amalfi</p>
+          <p class="text-sm text-gray-600 leading-relaxed">Sorrento–Napoli Molo Beverello: ~1h di aliscafo. Sorrento–Capri: ~25 min. Sorrento–Positano: ~35 min (stagionale).</p>
+        </div>
+        <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+          <p class="text-[10px] uppercase tracking-widest text-capri-500 font-semibold mb-3">Bus / Auto</p>
+          <p class="font-semibold text-charcoal mb-1">SS145 e SS163</p>
+          <p class="text-sm text-gray-600 leading-relaxed">Da Napoli in auto ~1h (senza traffico). Bus SITA da Amalfi via SS163 e poi SS145 per Sorrento: ~2h. ZTL in centro Sorrento in estate.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="bg-charcoal text-white rounded-3xl p-10">
+      <p class="text-[10px] uppercase tracking-widest text-lemon-400 font-medium mb-8">La Penisola in numeri</p>
+      <div class="grid sm:grid-cols-4 gap-8 text-center">
+        <div>
+          <p class="font-serif text-5xl font-bold text-lemon-400">70 min</p>
+          <p class="text-white/60 text-sm mt-2">Napoli → Sorrento in Circumvesuviana</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-lemon-400">25 min</p>
+          <p class="text-white/60 text-sm mt-2">Sorrento → Capri in aliscafo</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-lemon-400">77 km</p>
+          <p class="text-white/60 text-sm mt-2">Lunghezza della Penisola Sorrentina</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-lemon-400">497 m</p>
+          <p class="text-white/60 text-sm mt-2">Monte Faito, punto più alto</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>

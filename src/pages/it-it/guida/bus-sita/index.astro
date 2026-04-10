@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Guida Pratica', url: '/it-it/guida/' },
+  { name: 'Bus SITA', url: '/it-it/guida/bus-sita/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come funziona il bus SITA sulla Costiera Amalfitana?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Il bus SITA (oggi SITA Sud, gestito da EAV) percorre la SS163 tra Sorrento e Salerno, passando per Positano, Praiano, Amalfi, Maiori e Minori. I biglietti si acquistano in tabaccheria o edicola prima di salire: non si comprano sul bus. Costo: ~€2.50-4 a tratta." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto tempo impiega il bus da Sorrento ad Amalfi?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In condizioni normali: 90-100 min. In estate (luglio-agosto) puo allungarsi fino a 2-2.5 ore per il traffico sulla SS163. La tratta Amalfi-Positano e circa 45-50 min; Amalfi-Ravello ~25 min (bus diverso, SITA per Ravello)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso portare bagagli grandi sul bus SITA?",
+      "acceptedAnswer": { "@type": "Answer", "text": "I bus SITA sulla SS163 sono piccoli (devono fare le curve della Costiera). In estate sono stracolmi. Valigie grandi sono difficili da gestire: usa un trolley compatto o uno zaino. I trolley vanno nel vano anteriore se disponibile." }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Bus SITA Costiera Amalfitana 2025 | Orari Sorrento-Positano-Amalfi"
+  description="Come usare il bus SITA sulla Costiera Amalfitana: tratta Sorrento-Positano-Amalfi-Salerno sulla SS163. Orari, prezzi, dove comprare i biglietti e consigli pratici."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-capri-900 via-capri-700 to-capri-500"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/50"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/it-it/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-white/60">Guida Pratica</span>
+        <span>/</span>
+        <span class="text-white">Bus SITA</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-lemon-400 text-sm font-medium uppercase tracking-widest mb-3">Guida Pratica</p>
+        <h1 class="font-serif text-display text-white mb-4">Bus SITA — SS163</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Il mezzo più usato (e più lento) della Costiera: il bus SITA percorre la SS163 tra Sorrento e Salerno passando per ogni borgo. Economico, panoramico, spesso affollato. Ecco tutto quello che devi sapere.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <section class="max-w-text">
+      <p class="text-xl leading-relaxed text-charcoal">
+        La Strada Statale 163 Amalfitana è una delle più spettacolari e difficili d\'Europa: 40 km di curve, tunnel, gallerie e viadotti tra Vietri sul Mare e Positano. Il bus SITA la percorre quotidianamente, tutto l\'anno, con corse che si moltiplicano in estate.
+      </p>
+      <p class="mt-4 text-gray-600 leading-relaxed">
+        Il biglietto non si compra sul bus: va acquistato in anticipo in tabaccheria, edicola o bar che espone il simbolo SITA/EAV. Senza biglietto, il conducente non fa salire. In estate, i bus si riempiono rapidamente: considera di partire presto al mattino.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">Orari principali (indicativi)</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="overflow-x-auto rounded-2xl border border-gray-200">
+          <table class="w-full text-sm">
+            <caption class="text-left text-xs text-gray-500 px-4 py-2 bg-gray-50 rounded-t-2xl border-b border-gray-200 font-medium">Sorrento → Amalfi (via Positano, Praiano)</caption>
+            <thead>
+              <tr class="bg-capri-50 text-capri-800">
+                <th class="text-left px-4 py-3 font-semibold">Sorrento</th>
+                <th class="text-left px-4 py-3 font-semibold">Positano</th>
+                <th class="text-left px-4 py-3 font-semibold">Amalfi</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              {[
+                ['06:25', '07:30', '08:20'],
+                ['08:30', '09:35', '10:25'],
+                ['09:30', '10:35', '11:25'],
+                ['11:00', '12:05', '12:55'],
+                ['14:00', '15:05', '15:55'],
+                ['16:30', '17:35', '18:25'],
+                ['18:00', '19:05', '19:55'],
+              ].map(([s, p, a]) => (
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="px-4 py-2.5 font-mono">{s}</td>
+                  <td class="px-4 py-2.5 font-mono">{p}</td>
+                  <td class="px-4 py-2.5 font-mono">{a}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div class="overflow-x-auto rounded-2xl border border-gray-200">
+          <table class="w-full text-sm">
+            <caption class="text-left text-xs text-gray-500 px-4 py-2 bg-gray-50 rounded-t-2xl border-b border-gray-200 font-medium">Amalfi → Sorrento (via Positano)</caption>
+            <thead>
+              <tr class="bg-capri-50 text-capri-800">
+                <th class="text-left px-4 py-3 font-semibold">Amalfi</th>
+                <th class="text-left px-4 py-3 font-semibold">Positano</th>
+                <th class="text-left px-4 py-3 font-semibold">Sorrento</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              {[
+                ['07:00', '07:50', '08:55'],
+                ['09:00', '09:50', '10:55'],
+                ['10:30', '11:20', '12:25'],
+                ['13:00', '13:50', '14:55'],
+                ['15:30', '16:20', '17:25'],
+                ['17:30', '18:20', '19:25'],
+                ['19:00', '19:50', '20:55'],
+              ].map(([a, p, s]) => (
+                <tr class="hover:bg-gray-50 transition-colors">
+                  <td class="px-4 py-2.5 font-mono">{a}</td>
+                  <td class="px-4 py-2.5 font-mono">{p}</td>
+                  <td class="px-4 py-2.5 font-mono">{s}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="text-xs text-gray-400 mt-2">* Orari indicativi estate 2025. Consulta sitasudtrasporti.it o eavsrl.it per l\'orario ufficiale aggiornato.</p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">Prezzi e come comprare i biglietti</h2>
+      <div class="overflow-x-auto rounded-2xl border border-gray-200">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-capri-50 text-capri-800">
+              <th class="text-left px-4 py-3 font-semibold">Tratta</th>
+              <th class="text-left px-4 py-3 font-semibold">Prezzo indicativo</th>
+              <th class="text-left px-4 py-3 font-semibold">Durata</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {[
+              ['Sorrento → Positano', '~€2.50', '~50 min'],
+              ['Sorrento → Amalfi', '~€3.50', '~90 min'],
+              ['Amalfi → Ravello (bus locale)', '~€1.50', '~25 min'],
+              ['Amalfi → Salerno (via SS163)', '~€2.80', '~60 min'],
+              ['Biglietto giornaliero zona Costiera', '~€7.50', 'Illimitato'],
+            ].map(([t, p, d]) => (
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="px-4 py-3">{t}</td>
+                <td class="px-4 py-3 font-mono">{p}</td>
+                <td class="px-4 py-3 text-gray-500">{d}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="bg-lemon-50 border border-lemon-200 rounded-2xl p-8">
+      <p class="font-semibold text-charcoal text-lg mb-3">Consigli pratici per il bus SITA</p>
+      <ul class="space-y-2">
+        {[
+          'Compra il biglietto PRIMA di salire: in tabaccheria, bar o edicola. Sul bus non si vende.',
+          'In estate il bus alle 9:00 da Sorrento per Positano e già pieno: prendi quello delle 7:30 o aspetta le 10:30.',
+          'Il bus si ferma in tanti punti lungo la SS163: se non sai dove scendere, chiedi al conducente.',
+          'La corsia destra del bus (venendo da Sorrento) ha le viste migliori sul mare.',
+          'Non aspettarti puntalità: il traffico sulla SS163 è imprevedibile. Lascia sempre 30 min di margine.',
+        ].map(tip => (
+          <li class="flex items-start gap-2 text-sm text-charcoal">
+            <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
+            <span>{tip}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">Domande frequenti</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>
