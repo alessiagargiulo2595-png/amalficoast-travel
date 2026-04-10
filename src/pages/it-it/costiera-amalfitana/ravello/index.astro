@@ -1,0 +1,366 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Costiera Amalfitana', url: '/it-it/costiera-amalfitana/' },
+  { name: 'Ravello', url: '/it-it/costiera-amalfitana/ravello/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Ravello",
+  "description": "Ravello è un borgo medievale a 350 m sul mare, famoso per Villa Rufolo, Villa Cimbrone e il Ravello Festival. La 'città della musica' offre le viste più spettacolari dell'intera Costiera Amalfitana.",
+  "url": "https://amalficoast-travel.com/it-it/costiera-amalfitana/ravello/",
+  "image": "https://amalficoast-travel.com/images/ravello-hero.jpg",
+  "touristType": ["Cultura", "Musica", "Panorama", "Giardini"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ravello",
+    "addressRegion": "Salerno",
+    "addressCountry": "IT",
+    "postalCode": "84010"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6492,
+    "longitude": 14.6122
+  }
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Ravello, Costiera Amalfitana",
+  "description": "Borgo medievale a 350 m slm sulla Costiera Amalfitana, provincia di Salerno.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6492,
+    "longitude": 14.6122
+  },
+  "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Costiera Amalfitana"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si arriva a Ravello da Amalfi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Da Amalfi si prende il bus SITA per Ravello (circa 25 min, ~€1,30). Le corse partono dalla piazza del porto di Amalfi. In auto la strada è stretta e tortuosa; meglio il bus. Non c'è accesso diretto in traghetto."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quando si svolge il Ravello Festival?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il Ravello Festival si svolge ogni anno da giugno a settembre, con concerti nel suggestivo scenario di Villa Rufolo. È uno dei festival musicali più prestigiosi d'Italia. I biglietti vanno acquistati in anticipo su ravellofestival.com."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costa l'ingresso a Villa Cimbrone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'ingresso ai giardini di Villa Cimbrone costa circa €7 per adulto. I giardini sono aperti tutto l'anno dalle 9:00 al tramonto. Il Belvedere dell'Infinito è il punto panoramico più fotografato della costiera."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ravello è adatta ai bambini?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ravello è un borgo tranquillo e abbastanza piano rispetto ad altri centri costieri. I giardini di Villa Rufolo e Villa Cimbrone sono adatti a famiglie. L'unica difficoltà è la strada stretta per arrivarci; meglio il bus con bambini piccoli."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Si può dormire a Ravello?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, Ravello offre alcune delle sistemazioni più esclusive della costiera: dal leggendario Hotel Caruso (5 stelle con piscina a sfioro sul mare) a B&B più accessibili. Dormire a Ravello permette di godersi il borgo la sera, quando i turisti giornalieri se ne vanno."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Ravello 2025: Guida Completa | Villa Rufolo e Villa Cimbrone"
+  description="Tutto su Ravello: Villa Rufolo, Villa Cimbrone, Ravello Festival, come arrivare da Amalfi, cosa vedere, quando andare. La guida alla città della musica della Costiera Amalfitana."
+  lang={lang}
+  pageKey="ravello"
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, placeSchema, faqSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative min-h-[70vh] flex items-end bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-capri-950 via-capri-800 to-capri-700 opacity-70"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-lemon-400 text-sm font-medium uppercase tracking-widest mb-3">350 m sul mare · La città della musica</p>
+        <h1 class="font-serif text-display text-white mb-4">Ravello</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Sospesa tra cielo e mare, Ravello è il punto più alto e silenzioso della costiera. Ville con giardini pensili, un festival musicale di fama mondiale e i panorami più celebri d'Italia: il Belvedere dell'Infinito di Villa Cimbrone.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-lemon-400 text-charcoal text-sm font-semibold rounded-full hover:bg-lemon-300 transition-colors">Fast Facts</a>
+          <a href="#come-arrivare" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">Come arrivare</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Grid -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <!-- Intro -->
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Ravello è l'unico borgo della costiera che non si affaccia direttamente sul mare — eppure offre le viste più spettacolari. A 350 metri di altitudine, il paese galleggia letteralmente sulla costa: ogni finestra, ogni giardino, ogni terrazza è un belvedere sul Golfo di Salerno.
+          </p>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            Wagner compose qui parte del Parsifal. Greta Garbo vi si rifugiò negli anni '30. Gore Vidal vi visse per decenni. Ravello ha sempre attirato artisti e intellettuali in cerca di bellezza assoluta e silenzio. Oggi è meta di chi vuole godersi la costiera senza il caos dei borghi sul mare.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-capri-50 border-l-4 border-capri-500 rounded-r-2xl p-8">
+          <p class="text-[10px] uppercase tracking-widest text-capri-500 font-medium mb-4">Lo sapevi?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-capri-600">350 m</p>
+              <p class="text-sm text-gray-600 mt-1">altitudine sul livello del mare</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-capri-600">1953</p>
+              <p class="text-sm text-gray-600 mt-1">prima edizione del Ravello Festival</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-capri-600">2.400</p>
+              <p class="text-sm text-gray-600 mt-1">abitanti nel comune</p>
+            </div>
+          </div>
+          <p class="text-sm text-gray-500 mt-6 italic">
+            Richard Wagner visitò Villa Rufolo nel 1880 e rimase così colpito dal giardino arabeggiante da dichiararlo il "giardino di Klingsor" del suo Parsifal.
+          </p>
+        </div>
+
+        <!-- Cosa Vedere -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-8">Cosa vedere a Ravello</h2>
+          <div class="space-y-8">
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">1</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Villa Rufolo</h3>
+                <p class="text-gray-600 leading-relaxed">Costruita nel XIII secolo da una ricca famiglia amalfitana, la villa è famosa per i suoi giardini arabeggianti e la torre medievale. In estate ospita il palco del Ravello Festival, con concerti sull'orlo della scogliera. Ingresso circa €7. Aperta tutto l'anno.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">2</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Villa Cimbrone e il Belvedere dell'Infinito</h3>
+                <p class="text-gray-600 leading-relaxed">Il punto panoramico più celebre della costiera: una balconata di busti classici sull'orlo del precipizio, con vista a 180° sul Golfo di Salerno. La villa (oggi hotel di lusso) apre i giardini al pubblico. Ingresso circa €7. Da non perdere all'alba o al tramonto.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">3</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Duomo di Ravello e Museo del Duomo</h3>
+                <p class="text-gray-600 leading-relaxed">La cattedrale romanica del XII secolo ospita due magnifici amboni con mosaici cosmateschi e un cero pasquale in marmo intarsiato. Il piccolo museo annesso conserva reperti medievali e il famoso busto in bronzo di Sighelgaita. Ingresso gratuito alla chiesa.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">4</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Sentiero Ravello–Minori</h3>
+                <p class="text-gray-600 leading-relaxed">Un trekking di 5 km che scende da Ravello a Minori attraverso limonaie terrazzate, scale di pietra e borghi silenziosi. Circa 1h30 di discesa. Si può tornare a Ravello con il bus SITA da Minori. Livello: facile–medio.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-capri-100 flex items-center justify-center flex-shrink-0 text-capri-600 font-serif font-bold text-lg">5</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Piazza Vescovado e il centro</h3>
+                <p class="text-gray-600 leading-relaxed">La piazza principale di Ravello, silenziosa e raccolta, con vista sul campanile del Duomo. Nei vicoli intorno si trovano ceramiche artigianali, limonari e trattorie locali. Ravello è uno dei borghi più tranquilli e vivibili della costiera.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Come Arrivare -->
+        <div id="come-arrivare">
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-6">Come arrivare a Ravello</h2>
+          <p class="text-gray-600 mb-8 leading-relaxed">Ravello non è raggiungibile in traghetto. L'unico accesso è via strada dalla SS163. Il bus SITA da Amalfi è l'opzione più comoda e frequente.</p>
+
+          <div class="mb-10">
+            <h3 class="font-semibold text-charcoal text-xl mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5 text-capri-500" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="M3 10h18M8 19v2M16 19v2"/></svg>
+              Bus SITA — Tratta Amalfi ↔ Ravello
+            </h3>
+            <p class="text-sm text-gray-500 mb-4">Partenza dal porto di Amalfi. Durata circa 25 min, biglietto ~€1,30. Corse frequenti tutto l'anno.</p>
+            <div class="overflow-x-auto rounded-2xl border border-gray-200">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="bg-capri-50 text-capri-800">
+                    <th class="text-left px-4 py-3 font-semibold">Partenza Amalfi</th>
+                    <th class="text-left px-4 py-3 font-semibold">Arrivo Ravello</th>
+                    <th class="text-left px-4 py-3 font-semibold">Frequenza</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                  <tr class="hover:bg-gray-50 transition-colors"><td class="px-4 py-3 font-mono">07:45</td><td class="px-4 py-3 font-mono">08:10</td><td class="px-4 py-3 text-gray-500">Solo feriali</td></tr>
+                  <tr class="hover:bg-gray-50 transition-colors"><td class="px-4 py-3 font-mono">09:00</td><td class="px-4 py-3 font-mono">09:25</td><td class="px-4 py-3 text-gray-500">Ogni giorno</td></tr>
+                  <tr class="hover:bg-gray-50 transition-colors"><td class="px-4 py-3 font-mono">10:30</td><td class="px-4 py-3 font-mono">10:55</td><td class="px-4 py-3 text-gray-500">Ogni giorno</td></tr>
+                  <tr class="hover:bg-gray-50 transition-colors"><td class="px-4 py-3 font-mono">12:00</td><td class="px-4 py-3 font-mono">12:25</td><td class="px-4 py-3 text-gray-500">Ogni giorno</td></tr>
+                  <tr class="hover:bg-gray-50 transition-colors"><td class="px-4 py-3 font-mono">14:30</td><td class="px-4 py-3 font-mono">14:55</td><td class="px-4 py-3 text-gray-500">Ogni giorno</td></tr>
+                  <tr class="hover:bg-gray-50 transition-colors"><td class="px-4 py-3 font-mono">17:00</td><td class="px-4 py-3 font-mono">17:25</td><td class="px-4 py-3 text-gray-500">Ogni giorno</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-xs text-gray-400 mt-2">* Orari indicativi. Consulta sitasudtrasporti.it per l'orario aggiornato.</p>
+          </div>
+        </div>
+
+        <!-- Hidden Gems -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-6">Luoghi nascosti di Ravello</h2>
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+              <h3 class="font-semibold text-charcoal mb-2">Borgo di Torello</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Una frazione silenziosa a pochi minuti a piedi da Ravello centro. Quasi nessun turista, viste mozzafiato sul mare e sulle terrazze coltivate. Il punto di partenza ideale per i sentieri verso Minori e Atrani.</p>
+            </div>
+            <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+              <h3 class="font-semibold text-charcoal mb-2">Auditorium Oscar Niemeyer</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Un edificio modernissimo firmato dal grande architetto brasiliano, costruito sulla scogliera con vista sul mare. Spesso aperto per eventi; vale la pena cercarne la programmazione. L'architettura contrasta spettacolarmente con il paesaggio medievale.</p>
+            </div>
+            <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+              <h3 class="font-semibold text-charcoal mb-2">Sentiero degli Innamorati</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Un breve sentiero panoramico che parte da Villa Cimbrone e si addentra tra limoneti e terrazzamenti. Quasi sconosciuto ai turisti di passaggio. Ideale all'alba, quando Ravello è ancora silenziosa.</p>
+            </div>
+            <div class="bg-offwhite rounded-2xl p-6 border border-gray-100">
+              <h3 class="font-semibold text-charcoal mb-2">Ristoranti senza vista mare</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">I locali con terrazza panoramica praticano prezzi da turista. I ristorantini nelle vie interne del borgo (Via Roma, Via dei Rufolo) offrono cucina locale a prezzi molto più accessibili con qualità spesso superiore.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-charcoal mb-8">Domande frequenti su Ravello</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-gray-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-gray-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6">
+        <div id="fast-facts" class="bg-charcoal text-white rounded-2xl p-6 sticky top-24">
+          <p class="text-[10px] uppercase tracking-widest text-lemon-400 font-medium mb-4">Fast Facts — Ravello</p>
+          <dl class="space-y-3">
+            {[
+              { dt: 'Posizione', dd: 'Costiera Amalfitana, SA' },
+              { dt: 'Altitudine', dd: '350 m slm' },
+              { dt: 'Popolazione', dd: '~2.400 abitanti' },
+              { dt: 'Accesso', dd: 'Solo bus / auto' },
+              { dt: 'Mezzi', dd: 'Bus SITA da Amalfi' },
+              { dt: 'Spiaggia', dd: 'Nessuna (vicina Minori)' },
+              { dt: 'Miglior periodo', dd: 'Apr–Giu / Set–Ott' },
+              { dt: 'Festival', dd: 'Giu–Set (Ravello Festival)' },
+              { dt: 'Valuta', dd: 'Euro (€)' },
+            ].map(({ dt, dd }, i, arr) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/60 text-sm flex-shrink-0">{dt}</dt>
+                  <dd class="text-sm text-right">{dd}</dd>
+                </div>
+                {i < arr.length - 1 && <div class="border-t border-white/10"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-lemon-50 border border-lemon-300 rounded-2xl p-6">
+          <p class="text-[10px] uppercase tracking-widest text-lemon-700 font-medium mb-3">Consigli degli insider</p>
+          <ul class="space-y-3">
+            {[
+              'Arriva la mattina presto: alle 8:30 hai Villa Rufolo quasi per te solo, prima che arrivino i bus da Amalfi.',
+              'Combina le due ville in una mattinata: Villa Rufolo apre alle 9:00, Villa Cimbrone è a 15 minuti a piedi.',
+              'Se vuoi dormire a Ravello, prenota con largo anticipo: i posti sono pochi e molto richiesti in estate.',
+              'Il sentiero per Minori è la cosa più bella che puoi fare gratis: scendi a piedi e torna in bus.',
+            ].map(tip => (
+              <li class="flex items-start gap-2 text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-2xl p-6">
+          <p class="text-[10px] uppercase tracking-widest text-gray-400 font-medium mb-3">Esplora la Costiera</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/it-it/costiera-amalfitana/positano/', label: 'Positano' },
+              { href: '/it-it/costiera-amalfitana/amalfi/', label: 'Amalfi' },
+              { href: '/it-it/costiera-amalfitana/praiano/', label: 'Praiano' },
+              { href: '/it-it/costiera-amalfitana/maiori/', label: 'Maiori' },
+              { href: '/it-it/costiera-amalfitana/minori/', label: 'Minori' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-capri-50 hover:text-capri-600 transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-capri-300"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</BaseLayout>
