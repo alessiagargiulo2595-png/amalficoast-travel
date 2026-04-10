@@ -1,0 +1,88 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getTranslations, getLocalePath, slugMap } from '../i18n/translations';
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Locale;
+  pageKey?: string;
+}
+
+const { title, description, lang, pageKey } = Astro.props;
+const t = getTranslations(lang);
+const site = 'https://amalficoast-travel.com';
+
+const locales: Locale[] = ['en', 'en-gb', 'de', 'fr', 'es', 'it'];
+const hreflangs = locales.map((l) => {
+  const path = pageKey ? getLocalePath(l, pageKey) : (l === 'en' ? '/' : `/${l}/`);
+  return { locale: l, url: `${site}${path}` };
+});
+
+const canonicalUrl = pageKey
+  ? `${site}${getLocalePath(lang, pageKey)}`
+  : `${site}${lang === 'en' ? '/' : `/${lang}/`}`;
+
+const schemaLocale: Record<Locale, string> = {
+  en: 'en-US', 'en-gb': 'en-GB', de: 'de-DE', fr: 'fr-FR', es: 'es-ES', it: 'it-IT',
+};
+
+const touristSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  "name": "Amalfi Coast",
+  "alternateName": "Costiera Amalfitana",
+  "description": "A UNESCO World Heritage Site stretching 50 km along the southern edge of the Sorrentine Peninsula in the Province of Salerno in southern Italy.",
+  "url": site,
+  "image": "https://amalficoast-travel.com/images/amalfi-coast-hero.jpg",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "40.6340",
+    "longitude": "14.6027"
+  },
+  "touristType": ["Beach tourism", "Cultural tourism", "Nature tourism"],
+  "containedInPlace": {
+    "@type": "Country",
+    "name": "Italy"
+  }
+};
+---
+
+<!DOCTYPE html>
+<html lang={schemaLocale[lang]}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Hreflang -->
+    {hreflangs.map(({ locale, url }) => (
+      <link rel="alternate" hreflang={schemaLocale[locale as Locale]} href={url} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${site}/`} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Amalfi Coast Travel Guide" />
+    <meta property="og:locale" content={schemaLocale[lang]} />
+
+    <!-- Schema.org -->
+    <script type="application/ld+json" set:html={JSON.stringify(touristSchema)} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-white text-gray-800 font-sans antialiased">
+    <Header lang={lang} pageKey={pageKey} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

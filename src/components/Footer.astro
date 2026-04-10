@@ -1,0 +1,82 @@
+---
+import { getTranslations, getLocalePath } from '../i18n/translations';
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+
+const navLinks = [
+  { key: 'destinations', label: t.nav.destinations },
+  { key: 'beaches', label: t.nav.beaches },
+  { key: 'itineraries', label: t.nav.itineraries },
+  { key: 'getting-here', label: t.nav.getting_here },
+  { key: 'when-to-visit', label: t.nav.when_to_visit },
+];
+---
+
+<footer class="bg-sea-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- About -->
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 bg-sea-500 rounded-full flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+            </svg>
+          </div>
+          <span class="font-bold text-lg">Amalfi Coast Travel</span>
+        </div>
+        <p class="text-sea-100 text-sm leading-relaxed">{t.footer.about_text}</p>
+        <p class="mt-3 text-sea-300 text-xs italic">{t.footer.tagline}</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="font-semibold text-white mb-4">{t.footer.quick_links}</h3>
+        <ul class="space-y-2">
+          {navLinks.map(link => (
+            <li>
+              <a
+                href={getLocalePath(lang, link.key)}
+                class="text-sea-200 hover:text-white text-sm transition-colors"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="font-semibold text-white mb-4">{t.footer.contact_title}</h3>
+        <a
+          href={`mailto:${t.footer.contact_email}`}
+          class="text-sea-200 hover:text-white text-sm transition-colors flex items-center gap-2"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          {t.footer.contact_email}
+        </a>
+        <div class="mt-6">
+          <p class="text-sea-300 text-xs">UNESCO World Heritage Site</p>
+          <p class="text-sea-300 text-xs mt-1">Campania, Southern Italy</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="border-t border-sea-700 mt-8 pt-6 text-center">
+      <p class="text-sea-300 text-xs">{t.footer.copyright}</p>
+    </div>
+  </div>
+</footer>
