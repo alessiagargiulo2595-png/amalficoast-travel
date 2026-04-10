@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Isole del Golfo', url: '/it-it/isole/' },
+];
+
+const isole = [
+  {
+    name: 'Capri',
+    href: '/it-it/isole/capri/',
+    desc: 'La Grotta Azzurra, i Faraglioni e la mondana Piazzetta: l\'isola più iconica del Golfo di Napoli.',
+    tag: 'La più iconica',
+  },
+  {
+    name: 'Ischia',
+    href: '/it-it/isole/ischia/',
+    desc: 'L\'isola verde del Golfo: terme naturali, il Castello Aragonese, spiagge vulcaniche e il Monte Epomeo.',
+    tag: 'Terme & natura',
+  },
+  {
+    name: 'Procida',
+    href: '/it-it/isole/procida/',
+    desc: 'La più piccola e autentica: case colorate a Marina Corricella, Capitale italiana della Cultura 2022.',
+    tag: 'La più autentica',
+  },
+];
+
+const destinationSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  "name": "Isole del Golfo di Napoli",
+  "description": "Capri, Ischia e Procida: le tre isole del Golfo di Napoli, raggiungibili in traghetto da Napoli, Pozzuoli e Sorrento.",
+  "url": "https://amalficoast-travel.com/it-it/isole/",
+  "touristType": ["Mare", "Cultura", "Terme", "Natura"],
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.5500,
+    "longitude": 14.1000
+  }
+};
+---
+
+<BaseLayout
+  title="Isole del Golfo di Napoli 2025: Capri, Ischia e Procida"
+  description="Guida alle isole del Golfo di Napoli: Capri, Ischia e Procida. Come arrivare, cosa vedere, quando andare. Tutto per organizzare la gita in traghetto da Napoli."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[destinationSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-capri-900 via-capri-700 to-capri-600"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/it-it/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-white">Isole del Golfo</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-lemon-400 text-sm font-medium uppercase tracking-widest mb-3">Golfo di Napoli</p>
+        <h1 class="font-serif text-display text-white mb-4">Le Isole del Golfo</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Tre isole, tre caratteri completamente diversi. Capri mondana e senza tempo, Ischia vulcanica e termale, Procida colorata e autentica. Tutte raggiungibili in traghetto da Napoli in meno di un'ora.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+
+    <!-- Intro -->
+    <section class="max-w-text">
+      <p class="text-xl leading-relaxed text-charcoal">
+        Il Golfo di Napoli è uno dei più belli del Mediterraneo, e le sue isole ne sono la corona. Ciascuna ha un'identità forte e inconfondibile: difficile visitarle tutte in un solo viaggio, ma impossibile scegliere una sola.
+      </p>
+      <p class="mt-4 text-gray-600 leading-relaxed">
+        Capri, Ischia e Procida si raggiungono tutte da Napoli Molo Beverello o Pozzuoli con traghetti e aliscafi frequenti. In estate i collegamenti si moltiplicano. Da Sorrento si raggiunge Capri in 20–25 minuti di aliscafo.
+      </p>
+    </section>
+
+    <!-- Isole Grid -->
+    <section>
+      <div class="flex items-end justify-between mb-8">
+        <h2 class="font-serif text-3xl font-semibold text-charcoal">Le tre isole</h2>
+        <p class="text-sm text-gray-400 hidden sm:block">Golfo di Napoli, Campania</p>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-6">
+        {isole.map(b => (
+          <a href={b.href} class="group bg-white border border-gray-200 rounded-2xl p-6 hover:border-capri-300 hover:shadow-lg transition-all duration-300">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-serif text-xl font-semibold text-charcoal group-hover:text-capri-600 transition-colors">{b.name}</h3>
+              <span class="text-[10px] uppercase tracking-wide bg-capri-50 text-capri-600 px-2 py-1 rounded-full font-medium flex-shrink-0 ml-2">{b.tag}</span>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed">{b.desc}</p>
+            <p class="text-capri-500 text-sm font-medium mt-4 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+              Scopri {b.name}
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+            </p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="bg-charcoal text-white rounded-3xl p-10">
+      <p class="text-[10px] uppercase tracking-widest text-lemon-400 font-medium mb-8">Le isole in numeri</p>
+      <div class="grid sm:grid-cols-4 gap-8 text-center">
+        <div>
+          <p class="font-serif text-5xl font-bold text-lemon-400">3</p>
+          <p class="text-white/60 text-sm mt-2">isole nel Golfo di Napoli</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-lemon-400">25 min</p>
+          <p class="text-white/60 text-sm mt-2">Sorrento → Capri in aliscafo</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-lemon-400">789 m</p>
+          <p class="text-white/60 text-sm mt-2">Monte Epomeo, Ischia</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-lemon-400">2022</p>
+          <p class="text-white/60 text-sm mt-2">Procida Capitale della Cultura</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Come arrivare riepilogo -->
+    <section>
+      <h2 class="font-serif text-3xl font-semibold text-charcoal mb-8">Come raggiungere le isole</h2>
+      <div class="overflow-x-auto rounded-2xl border border-gray-200">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-capri-50 text-capri-800">
+              <th class="text-left px-4 py-3 font-semibold">Isola</th>
+              <th class="text-left px-4 py-3 font-semibold">Da Napoli (Beverello)</th>
+              <th class="text-left px-4 py-3 font-semibold">Da Sorrento</th>
+              <th class="text-left px-4 py-3 font-semibold">Da Pozzuoli</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="px-4 py-3 font-semibold text-charcoal">Capri</td>
+              <td class="px-4 py-3">~50 min (traghetto) / ~40 min (aliscafo)</td>
+              <td class="px-4 py-3">~20–25 min (aliscafo)</td>
+              <td class="px-4 py-3 text-gray-400">—</td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="px-4 py-3 font-semibold text-charcoal">Ischia</td>
+              <td class="px-4 py-3">~75 min (traghetto) / ~50 min (aliscafo)</td>
+              <td class="px-4 py-3 text-gray-400">—</td>
+              <td class="px-4 py-3">~35 min (traghetto)</td>
+            </tr>
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="px-4 py-3 font-semibold text-charcoal">Procida</td>
+              <td class="px-4 py-3">~35 min (aliscafo)</td>
+              <td class="px-4 py-3 text-gray-400">—</td>
+              <td class="px-4 py-3">~15 min (traghetto)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-gray-400 mt-2">* Tempi indicativi. Verifica su caremar.it, snav.it, medmar.it per orari aggiornati.</p>
+    </section>
+
+  </div>
+
+</BaseLayout>
