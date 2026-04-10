@@ -34,6 +34,7 @@ export default {
         'med-gold':       '#D4AF37',
         'med-cream':      '#FDFBF7',
         'med-terracotta': '#E2725B',
+        'med-water':      '#40E0D0',
       },
       fontFamily: {
         serif:  ['"Playfair Display"', 'Georgia', 'serif'],
