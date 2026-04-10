@@ -18,7 +18,17 @@ const navLinks = [
   { key: 'when-to-visit', label: t.nav.when_to_visit },
 ];
 
-const locales: Locale[] = ['en', 'en-gb', 'de', 'fr', 'es', 'it'];
+const locales: Locale[] = ['en-us', 'en-gb', 'de-de', 'fr-fr', 'es-es', 'it-it'];
+
+// Pages that exist per locale (only link to pages that are built)
+const existingPages: Record<Locale, string[]> = {
+  'en-us': [],
+  'en-gb': [],
+  'de-de': [],
+  'fr-fr': [],
+  'es-es': [],
+  'it-it': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit'],
+};
 ---
 
 <header class="bg-white shadow-sm sticky top-0 z-50">
@@ -43,16 +53,21 @@ const locales: Locale[] = ['en', 'en-gb', 'de', 'fr', 'es', 'it'];
 
       <!-- Desktop Nav -->
       <nav class="hidden lg:flex items-center gap-6">
-        {navLinks.map(link => (
-          <a
-            href={getLocalePath(lang, link.key)}
-            class={`text-sm font-medium transition-colors hover:text-sea-600 ${
-              pageKey === link.key ? 'text-sea-600 border-b-2 border-sea-500 pb-0.5' : 'text-gray-600'
-            }`}
-          >
-            {link.label}
-          </a>
-        ))}
+        {navLinks.map(link => {
+          const exists = existingPages[lang].includes(link.key);
+          return exists ? (
+            <a
+              href={getLocalePath(lang, link.key)}
+              class={`text-sm font-medium transition-colors hover:text-sea-600 ${
+                pageKey === link.key ? 'text-sea-600 border-b-2 border-sea-500 pb-0.5' : 'text-gray-600'
+              }`}
+            >
+              {link.label}
+            </a>
+          ) : (
+            <span class="text-sm font-medium text-gray-300 cursor-not-allowed">{link.label}</span>
+          );
+        })}
       </nav>
 
       <!-- Language Switcher -->
@@ -64,16 +79,20 @@ const locales: Locale[] = ['en', 'en-gb', 'de', 'fr', 'es', 'it'];
           </svg>
         </button>
         <div class="absolute right-0 mt-1 w-44 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-          {locales.map(l => (
-            <a
-              href={pageKey ? getLocalePath(l, pageKey) : (l === 'en' ? '/' : `/${l}/`)}
-              class={`flex items-center gap-2 px-4 py-2 text-sm hover:bg-sea-50 hover:text-sea-600 transition-colors first:rounded-t-xl last:rounded-b-xl ${
-                l === lang ? 'bg-sea-50 text-sea-600 font-medium' : 'text-gray-700'
-              }`}
-            >
-              {t.languages[l]}
-            </a>
-          ))}
+          {locales.map(l => {
+            const pageExists = pageKey && existingPages[l].includes(pageKey);
+            const href = pageExists ? getLocalePath(l, pageKey!) : `/${l}/`;
+            return (
+              <a
+                href={href}
+                class={`flex items-center gap-2 px-4 py-2 text-sm hover:bg-sea-50 hover:text-sea-600 transition-colors first:rounded-t-xl last:rounded-b-xl ${
+                  l === lang ? 'bg-sea-50 text-sea-600 font-medium' : 'text-gray-700'
+                }`}
+              >
+                {t.languages[l]}
+              </a>
+            );
+          })}
         </div>
       </div>
 
@@ -93,26 +112,35 @@ const locales: Locale[] = ['en', 'en-gb', 'de', 'fr', 'es', 'it'];
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-100 bg-white">
     <div class="px-4 py-4 space-y-1">
-      {navLinks.map(link => (
-        <a
-          href={getLocalePath(lang, link.key)}
-          class="block px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-sea-50 hover:text-sea-600 transition-colors"
-        >
-          {link.label}
-        </a>
-      ))}
+      {navLinks.map(link => {
+        const exists = existingPages[lang].includes(link.key);
+        return exists ? (
+          <a
+            href={getLocalePath(lang, link.key)}
+            class="block px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-sea-50 hover:text-sea-600 transition-colors"
+          >
+            {link.label}
+          </a>
+        ) : (
+          <span class="block px-4 py-2 rounded-lg text-sm font-medium text-gray-300">{link.label}</span>
+        );
+      })}
       <div class="border-t border-gray-100 pt-3 mt-3">
         <p class="px-4 text-xs text-gray-400 mb-2">{t.lang_switcher}</p>
-        {locales.map(l => (
-          <a
-            href={pageKey ? getLocalePath(l, pageKey) : (l === 'en' ? '/' : `/${l}/`)}
-            class={`block px-4 py-2 rounded-lg text-sm transition-colors ${
-              l === lang ? 'bg-sea-50 text-sea-600 font-medium' : 'text-gray-700 hover:bg-gray-50'
-            }`}
-          >
-            {t.languages[l]}
-          </a>
-        ))}
+        {locales.map(l => {
+          const pageExists = pageKey && existingPages[l].includes(pageKey);
+          const href = pageExists ? getLocalePath(l, pageKey!) : `/${l}/`;
+          return (
+            <a
+              href={href}
+              class={`block px-4 py-2 rounded-lg text-sm transition-colors ${
+                l === lang ? 'bg-sea-50 text-sea-600 font-medium' : 'text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              {t.languages[l]}
+            </a>
+          );
+        })}
       </div>
     </div>
   </div>
