@@ -30,6 +30,10 @@ export default {
         },
         charcoal: '#333333',
         offwhite: '#FAFAF8',
+        'med-blue':       '#005B96',
+        'med-gold':       '#D4AF37',
+        'med-cream':      '#FDFBF7',
+        'med-terracotta': '#E2725B',
       },
       fontFamily: {
         serif:  ['"Playfair Display"', 'Georgia', 'serif'],
