@@ -40,6 +40,64 @@ const silos = [
   },
 ];
 
+const borghi = [
+  {
+    name: 'Positano',
+    subtitle: 'La cartolina vivente',
+    description: 'Celebre per le sue case color pastello che sfidano la gravità, boutique di lusso e spiagge iconiche.',
+    img: '/images/positano-hero.jpg',
+    href: '/it-it/costiera-amalfitana/positano/',
+    tags: ['Iconico', 'Moda', 'Spiaggia Grande'],
+  },
+  {
+    name: 'Amalfi',
+    subtitle: "L'antica Repubblica Marinara",
+    description: 'Il cuore storico della costa, dominato dal maestoso Duomo di Sant\'Andrea e dalle antiche cartiere.',
+    img: '/images/amalfi-hero.jpg',
+    href: '/it-it/costiera-amalfitana/amalfi/',
+    tags: ['Storia', 'Duomo', 'Piazza'],
+  },
+  {
+    name: 'Ravello',
+    subtitle: 'La città della musica',
+    description: 'Sospesa tra cielo e mare, offre i panorami più spettacolari dalle sue ville storiche e giardini incantati.',
+    img: '/images/ravello-hero.jpg',
+    href: '/it-it/costiera-amalfitana/ravello/',
+    tags: ['Musica', 'Villa Cimbrone', 'Panorama'],
+  },
+  {
+    name: 'Praiano',
+    subtitle: 'Il borgo dei tramonti',
+    description: "Un'oasi di tranquillità con viste mozzafiato e una vivace scena artistica locale tra mare e monti.",
+    img: '/images/praiano-hero.jpg',
+    href: '/it-it/costiera-amalfitana/praiano/',
+    tags: ['Tramonti', 'Relax', 'Marina di Praia'],
+  },
+  {
+    name: 'Maiori',
+    subtitle: 'La spiaggia più lunga',
+    description: 'Il lungomare più esteso della Costiera, autentica e meno affollata, con i resti di una Villa Romana.',
+    img: '/images/maiori-hero.jpg',
+    href: '/it-it/costiera-amalfitana/maiori/',
+    tags: ['Spiaggia', 'Relax', 'Autenticità'],
+  },
+  {
+    name: 'Minori',
+    subtitle: "L'anima gastronomica",
+    description: 'Famosa per il limoncello, la pasta fresca e i resti della Villa Romana affacciata sul mare.',
+    img: '/images/minori-hero.jpg',
+    href: '/it-it/costiera-amalfitana/minori/',
+    tags: ['Gastronomia', 'Villa Romana', 'Limoni'],
+  },
+];
+
+const topBeaches = [
+  { name: 'Spiaggia Grande', location: 'Positano' },
+  { name: 'Marina di Praia', location: 'Praiano' },
+  { name: 'Spiaggia di Maiori', location: 'Maiori' },
+  { name: 'Spiaggia di Minori', location: 'Minori' },
+];
+
 const editorial = [
   { label: 'Guida', title: 'Quando visitare la Costiera Amalfitana', subtitle: 'Mese per mese: clima, folla e prezzi', href: '/it-it/quando-visitare/' },
   { label: 'Itinerari', title: 'Da 1 giorno a 1 settimana', subtitle: 'I migliori percorsi pronti da seguire', href: '/it-it/itinerari/' },
@@ -105,6 +163,67 @@ const editorial = [
           La Costiera Amalfitana è una delle coste più fotografate del mondo, eppure continua a sorprendere chi la visita dal vivo. Il profumo dei limoni, il suono dei traghetti al mattino, i vicoli troppo stretti per le automobili, i pranzi che durano fino al tramonto. Questa guida non ti dirà solo dove andare — ti aiuterà a capire come viverla.
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- BORGHI INCANTATI -->
+  <section id="borghi" class="py-24 bg-med-cream">
+    <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <div class="max-w-2xl">
+          <p class="text-med-blue text-xs font-bold uppercase tracking-[0.2em] mb-3">Esplora la Costiera</p>
+          <h2 class="font-serif text-4xl md:text-5xl font-bold text-charcoal tracking-tight mb-4">I Borghi Incantati</h2>
+          <p class="text-gray-500 text-lg">Esplora le perle della costiera, ognuna con la sua anima e le sue tradizioni secolari.</p>
+        </div>
+        <a href="/it-it/costiera-amalfitana/" class="group flex items-center gap-2 text-med-blue font-semibold hover:text-med-gold transition-colors flex-shrink-0">
+          Tutte le destinazioni
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Griglia borghi -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        {borghi.map((b, i) => (
+          <a href={b.href} class="group cursor-pointer fade-in-card" style={`animation-delay: ${i * 0.1}s`}>
+            <div class="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] mb-6 shadow-2xl">
+              <img
+                src={b.img}
+                alt={b.name}
+                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div class="absolute bottom-8 left-8 right-8">
+                <span class="text-med-gold text-xs font-bold uppercase tracking-[0.2em] mb-2 block">{b.subtitle}</span>
+                <h3 class="font-serif text-3xl font-bold text-white tracking-tight">{b.name}</h3>
+              </div>
+            </div>
+            <p class="text-gray-500 text-sm leading-relaxed mb-4">{b.description}</p>
+            <div class="flex flex-wrap gap-2">
+              {b.tags.map(tag => (
+                <span class="text-[10px] uppercase tracking-wider font-bold text-med-blue bg-med-blue/5 px-3 py-1 rounded-full">{tag}</span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- Le spiagge più belle -->
+      <div class="mt-32">
+        <div class="text-center mb-12">
+          <h2 class="font-serif text-4xl font-bold text-charcoal tracking-tight mb-4">Le Spiagge più Belle</h2>
+          <div class="w-20 h-1 bg-med-gold mx-auto rounded-full"></div>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {topBeaches.map((beach) => (
+            <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100 text-center hover:shadow-2xl transition-shadow duration-300">
+              <h4 class="font-serif font-bold text-charcoal mb-1">{beach.name}</h4>
+              <p class="text-med-blue text-[10px] font-bold uppercase tracking-[0.2em]">{beach.location}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -260,5 +379,13 @@ const editorial = [
       </div>
     </div>
   </section>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.15 }
+  );
+  document.querySelectorAll('.fade-in-card').forEach(el => observer.observe(el));
+</script>
 
 </BaseLayout>
