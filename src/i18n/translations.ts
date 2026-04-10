@@ -82,7 +82,7 @@ export const translations: Record<Locale, Translations> = {
       quick_links: 'Quick Links',
       contact_title: 'Get in Touch',
       contact_email: 'hello@amalficoast-travel.com',
-      copyright: '© 2025 Amalfi Coast Travel Guide. All rights reserved.',
+      copyright: '© 2026 Amalfi Coast Travel Guide. All rights reserved.',
       tagline: 'The Amalfi Coast — La Costiera Amalfitana',
     },
     meta: {
@@ -140,7 +140,7 @@ export const translations: Record<Locale, Translations> = {
       quick_links: 'Quick Links',
       contact_title: 'Get in Touch',
       contact_email: 'hello@amalficoast-travel.com',
-      copyright: '© 2025 Amalfi Coast Travel Guide. All rights reserved.',
+      copyright: '© 2026 Amalfi Coast Travel Guide. All rights reserved.',
       tagline: 'The Amalfi Coast — La Costiera Amalfitana',
     },
     meta: {
@@ -198,7 +198,7 @@ export const translations: Record<Locale, Translations> = {
       quick_links: 'Schnelllinks',
       contact_title: 'Kontakt',
       contact_email: 'hello@amalficoast-travel.com',
-      copyright: '© 2025 Amalfiküste Reiseführer. Alle Rechte vorbehalten.',
+      copyright: '© 2026 Amalfiküste Reiseführer. Alle Rechte vorbehalten.',
       tagline: 'Die Amalfiküste — La Costiera Amalfitana',
     },
     meta: {
@@ -256,7 +256,7 @@ export const translations: Record<Locale, Translations> = {
       quick_links: 'Liens rapides',
       contact_title: 'Nous contacter',
       contact_email: 'hello@amalficoast-travel.com',
-      copyright: '© 2025 Guide de voyage Côte Amalfitaine. Tous droits réservés.',
+      copyright: '© 2026 Guide de voyage Côte Amalfitaine. Tous droits réservés.',
       tagline: 'La Côte Amalfitaine — La Costiera Amalfitana',
     },
     meta: {
@@ -314,7 +314,7 @@ export const translations: Record<Locale, Translations> = {
       quick_links: 'Enlaces rápidos',
       contact_title: 'Contacto',
       contact_email: 'hello@amalficoast-travel.com',
-      copyright: '© 2025 Guía de viaje Costa Amalfitana. Todos los derechos reservados.',
+      copyright: '© 2026 Guía de viaje Costa Amalfitana. Todos los derechos reservados.',
       tagline: 'La Costa Amalfitana — La Costiera Amalfitana',
     },
     meta: {
@@ -372,7 +372,7 @@ export const translations: Record<Locale, Translations> = {
       quick_links: 'Link rapidi',
       contact_title: 'Contattaci',
       contact_email: 'hello@amalficoast-travel.com',
-      copyright: '© 2025 Guida turistica Costiera Amalfitana. Tutti i diritti riservati.',
+      copyright: '© 2026 Guida turistica Costiera Amalfitana. Tutti i diritti riservati.',
       tagline: 'La Costiera Amalfitana — Un patrimonio dell\'umanità UNESCO',
     },
     meta: {
