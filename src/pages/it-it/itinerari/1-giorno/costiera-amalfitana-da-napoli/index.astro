@@ -32,15 +32,31 @@ const faqSchema = {
 };
 
 const schedule = [
-  { time: '07:45', place: 'Napoli Centrale', action: 'Treno per Salerno (Trenitalia/Italo, 40 min, ~€5-12)' },
-  { time: '09:00', place: 'Salerno', action: 'Traghetto Travelmar per Amalfi (45 min, ~€8, stagionale apr-ott)' },
-  { time: '09:45', place: 'Amalfi', action: 'Duomo di Sant\'Andrea, Chiostro del Paradiso, corso e centro storico (2h)' },
-  { time: '12:00', place: 'Amalfi → Ravello', action: 'Bus SITA locale per Ravello (25 min, ~€1.50). Pranzo in piazza.' },
-  { time: '13:30', place: 'Ravello', action: 'Villa Rufolo, belvedere, Villa Cimbrone (1.5h)' },
-  { time: '15:15', place: 'Ravello → Amalfi → Positano', action: 'Bus per Amalfi (25 min), poi bus SITA per Positano (45 min)' },
-  { time: '16:30', place: 'Positano', action: 'Passeggiata via Cristoforo Colombo, Spiaggia Grande, aperitivo (1.5h)' },
-  { time: '18:30', place: 'Positano', action: 'Bus SITA per Sorrento (50 min), poi Circumvesuviana per Napoli (70 min)' },
+  { time: '07:45', place: 'Napoli Centrale', action: 'Treno per Salerno (Trenitalia/Italo, 40 min, ~€5-12)', transport: 'train' },
+  { time: '09:00', place: 'Salerno', action: 'Traghetto Travelmar per Amalfi (45 min, ~€8, stagionale apr-ott)', transport: 'ferry' },
+  { time: '09:45', place: 'Amalfi', action: 'Duomo di Sant\'Andrea, Chiostro del Paradiso, corso e centro storico (2h)', transport: 'visit' },
+  { time: '12:00', place: 'Amalfi → Ravello', action: 'Bus SITA locale per Ravello (25 min, ~€1.50). Pranzo in piazza.', transport: 'bus' },
+  { time: '13:30', place: 'Ravello', action: 'Villa Rufolo, belvedere, Villa Cimbrone (1.5h)', transport: 'visit' },
+  { time: '15:15', place: 'Ravello → Amalfi → Positano', action: 'Bus per Amalfi (25 min), poi bus SITA per Positano (45 min)', transport: 'bus' },
+  { time: '16:30', place: 'Positano', action: 'Passeggiata via Cristoforo Colombo, Spiaggia Grande, aperitivo (1.5h)', transport: 'visit' },
+  { time: '18:30', place: 'Positano → Napoli', action: 'Bus SITA per Sorrento (50 min), poi Circumvesuviana per Napoli (70 min)', transport: 'bus' },
 ];
+
+const tips = [
+  'Il traghetto Travelmar da Salerno è stagionale (apr-ott): in inverno usa il bus SITA da Salerno.',
+  'Compra il biglietto del bus SITA in tabaccheria prima di salire — non si vende a bordo.',
+  'In luglio-agosto il bus Amalfi→Positano può impiegare 1.5h invece di 45 min: calcola il margine.',
+  'Ravello vale il detour: Villa Rufolo (€7) è uno dei belvedere più belli della Costiera.',
+  'Il rientro da Positano in bus SITA è più lento (curve + traffico) — calcola almeno 1h per Sorrento.',
+];
+
+const transportBadge: Record<string, { label: string; cls: string }> = {
+  train: { label: 'TRENO', cls: 'bg-orange-100 text-orange-700' },
+  ferry: { label: 'NAVE', cls: 'bg-blue-100 text-blue-700' },
+  bus:   { label: 'BUS', cls: 'bg-green-100 text-green-700' },
+  walk:  { label: 'PIEDI', cls: 'bg-gray-100 text-gray-500' },
+  visit: { label: '', cls: '' },
+};
 ---
 
 <BaseLayout
@@ -51,8 +67,9 @@ const schedule = [
   schema={[faqSchema]}
 >
 
+  <!-- Hero -->
   <section class="relative bg-charcoal overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-capri-900 via-capri-700 to-capri-500"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-[#001a33] via-med-blue to-[#0077cc]"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70"></div>
     <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
@@ -62,10 +79,10 @@ const schedule = [
         <span>/</span>
         <span class="text-white">Costiera da Napoli — 1 giorno</span>
       </nav>
-      <div class="max-w-3xl">
-        <p class="text-lemon-400 text-sm font-medium uppercase tracking-widest mb-3">Itinerario · 1 giorno</p>
+      <div class="max-w-2xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.2em] mb-3">Itinerario · 1 giorno</p>
         <h1 class="font-serif text-display text-white mb-4">Costiera Amalfitana da Napoli</h1>
-        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+        <p class="text-xl text-white/80 leading-relaxed">
           Amalfi, Ravello e Positano in una giornata senza auto. Treno fino a Salerno, traghetto fino ad Amalfi, poi bus SITA lungo la Costiera. Fattibile, spettacolare, economico.
         </p>
       </div>
@@ -74,60 +91,108 @@ const schedule = [
 
   <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
 
-    <section class="max-w-text">
-      <div class="grid sm:grid-cols-3 gap-4 mb-8">
-        <div class="bg-offwhite rounded-2xl p-4 text-center border border-gray-100">
-          <p class="text-xs text-gray-400 mb-1">Durata</p>
-          <p class="font-semibold text-charcoal">1 giorno</p>
-        </div>
-        <div class="bg-offwhite rounded-2xl p-4 text-center border border-gray-100">
-          <p class="text-xs text-gray-400 mb-1">Costo trasporti</p>
-          <p class="font-semibold text-charcoal">~€25–40</p>
-        </div>
-        <div class="bg-offwhite rounded-2xl p-4 text-center border border-gray-100">
-          <p class="text-xs text-gray-400 mb-1">Difficoltà</p>
-          <p class="font-semibold text-charcoal">Facile</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">Il programma ora per ora</h2>
-      <div class="space-y-0">
-        {schedule.map((s, i) => (
-          <div class="flex gap-4 group">
-            <div class="flex flex-col items-center">
-              <div class="w-8 h-8 rounded-full bg-capri-600 text-white text-xs font-mono flex items-center justify-center flex-shrink-0">{i + 1}</div>
-              {i < schedule.length - 1 && <div class="w-px flex-1 bg-gray-200 my-1"></div>}
-            </div>
-            <div class="pb-6">
-              <span class="text-xs font-mono text-capri-600 font-semibold">{s.time}</span>
-              <p class="font-semibold text-charcoal text-sm">{s.place}</p>
-              <p class="text-sm text-gray-600">{s.action}</p>
-            </div>
+    <!-- Fast Facts Bar -->
+    <section class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-3 gap-6">
+        <div class="bg-white border border-gray-100 rounded-[2rem] p-6 text-center shadow-sm flex flex-col items-center gap-3">
+          <svg class="w-7 h-7 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <div>
+            <p class="text-xs text-gray-400 uppercase tracking-wide mb-0.5">Durata</p>
+            <p class="font-bold text-charcoal text-lg">1 giorno</p>
           </div>
-        ))}
+        </div>
+        <div class="bg-white border border-gray-100 rounded-[2rem] p-6 text-center shadow-sm flex flex-col items-center gap-3">
+          <svg class="w-7 h-7 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>
+          </svg>
+          <div>
+            <p class="text-xs text-gray-400 uppercase tracking-wide mb-0.5">Costo trasporti</p>
+            <p class="font-bold text-charcoal text-lg">~€25–40</p>
+          </div>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-[2rem] p-6 text-center shadow-sm flex flex-col items-center gap-3">
+          <svg class="w-7 h-7 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          <div>
+            <p class="text-xs text-gray-400 uppercase tracking-wide mb-0.5">Difficoltà</p>
+            <p class="font-bold text-charcoal text-lg">Facile</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="bg-lemon-50 border border-lemon-200 rounded-2xl p-8">
-      <p class="font-semibold text-charcoal text-lg mb-3">Consigli pratici</p>
-      <ul class="space-y-2">
-        {[
-          'Il traghetto Travelmar da Salerno è stagionale (apr-ott): in inverno usa il bus SITA da Salerno.',
-          'Compra il biglietto del bus SITA in tabaccheria prima di salire — non si vende a bordo.',
-          'In luglio-agosto il bus Amalfi→Positano può impiegare 1.5h invece di 45 min: calcola il margine.',
-          'Ravello vale il detour: Villa Rufolo (€7) è uno dei belvedere più belli della Costiera.',
-          'Il rientro da Positano in bus SITA è più lento (curve + traffico) — calcola almeno 1h per Sorrento.',
-        ].map(tip => (
-          <li class="flex items-start gap-2 text-sm text-charcoal">
-            <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
-            <span>{tip}</span>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <!-- Two-column layout -->
+    <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
 
+      <!-- Timeline (col-span-8) -->
+      <section class="lg:col-span-8">
+        <h2 class="font-serif text-2xl font-semibold text-charcoal mb-8">Il programma ora per ora</h2>
+        <div class="relative">
+          <div class="space-y-12 border-l-2 border-gray-200 pl-8 ml-3">
+            {schedule.map((s, i) => {
+              const badge = transportBadge[s.transport] ?? transportBadge.visit;
+              return (
+                <div class="relative">
+                  <div class="absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full bg-med-blue ring-4 ring-white shadow-sm"></div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="font-mono text-med-blue font-bold text-sm">{s.time}</span>
+                    {badge.label && (
+                      <span class={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${badge.cls}`}>{badge.label}</span>
+                    )}
+                  </div>
+                  <p class="font-semibold text-charcoal text-base leading-snug">{s.place}</p>
+                  <p class="text-gray-600 text-sm mt-1 leading-relaxed">{s.action}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <!-- Sidebar (col-span-4) -->
+      <aside class="lg:col-span-4 mt-12 lg:mt-0">
+        <div class="lg:sticky lg:top-24 space-y-6">
+
+          <!-- Insider Tips -->
+          <div class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+            <p class="font-semibold text-charcoal mb-4 flex items-center gap-2">
+              <svg class="w-4 h-4 text-lemon-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M12 2a7 7 0 0 1 7 7c0 3-1.7 5.2-4 6.4V17a1 1 0 0 1-1 1H10a1 1 0 0 1-1-1v-1.6C6.7 14.2 5 12 5 9a7 7 0 0 1 7-7z"/><path d="M10 21h4M12 17v4"/>
+              </svg>
+              Insider Tips
+            </p>
+            <ul class="space-y-3">
+              {tips.map(tip => (
+                <li class="flex gap-2.5 text-sm text-charcoal">
+                  <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span>
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Mappa Rapida -->
+          <div class="bg-white border border-gray-200 rounded-[2rem] p-6">
+            <p class="font-semibold text-charcoal mb-3 flex items-center gap-2">
+              <svg class="w-4 h-4 text-med-blue" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/>
+              </svg>
+              Mappa Rapida
+            </p>
+            <a href="https://maps.google.com/maps?q=Amalfi,Italy" target="_blank" rel="noopener" class="flex items-center justify-between bg-gray-50 hover:bg-blue-50 rounded-xl px-4 py-3 text-sm text-med-blue font-medium transition-colors group">
+              Apri percorso in Google Maps
+              <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </aside>
+    </div>
+
+    <!-- FAQ -->
     <section id="faq">
       <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">Domande frequenti</h2>
       <div class="space-y-4">

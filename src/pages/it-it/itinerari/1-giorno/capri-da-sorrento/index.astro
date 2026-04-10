@@ -32,15 +32,31 @@ const faqSchema = {
 };
 
 const schedule = [
-  { time: '07:30', place: 'Sorrento, Marina Piccola', action: 'Aliscafo NLG/Alilauro per Capri (20-25 min, ~€9-11 a/r disponibile)' },
-  { time: '08:00', place: 'Capri, Marina Grande', action: 'Bus per Grotta Azzurra (20 min, ~€2). Arriva prima delle 10 per evitare code.' },
-  { time: '08:30', place: 'Grotta Azzurra', action: 'Barchetta a remi nella grotta (€15 + ingresso €14). Attesa variabile.' },
-  { time: '10:00', place: 'Anacapri', action: 'Bus da Capri per Anacapri (15 min). Villa San Michele (~€7). Seggiovia Monte Solaro (589 m, ~€13 A/R).' },
-  { time: '12:30', place: 'Anacapri', action: 'Pranzo in trattoria locale (meno cara di Capri)' },
-  { time: '14:00', place: 'Capri', action: 'Bus per Capri centro. Piazzetta, Via Camerelle, Giardini di Augusto, Faraglioni vista.' },
-  { time: '16:00', place: 'Capri, Marina Grande', action: 'Giro in barchetta attorno ai Faraglioni (~€18-25 p.p., 1-2h)' },
-  { time: '18:00', place: 'Capri, Marina Grande', action: 'Aliscafo di rientro per Sorrento (20-25 min)' },
+  { time: '07:30', place: 'Sorrento, Marina Piccola', action: 'Aliscafo NLG/Alilauro per Capri (20-25 min, ~€9-11)', transport: 'ferry' },
+  { time: '08:00', place: 'Capri, Marina Grande', action: 'Bus per Grotta Azzurra (20 min, ~€2). Arriva prima delle 10 per evitare code.', transport: 'bus' },
+  { time: '08:30', place: 'Grotta Azzurra', action: 'Barchetta a remi nella grotta (€15 + ingresso €14). Attesa variabile.', transport: 'ferry' },
+  { time: '10:00', place: 'Anacapri', action: 'Bus da Capri per Anacapri (15 min). Villa San Michele (~€7). Seggiovia Monte Solaro (589 m, ~€13 A/R).', transport: 'bus' },
+  { time: '12:30', place: 'Anacapri', action: 'Pranzo in trattoria locale (meno cara di Capri centro)', transport: 'visit' },
+  { time: '14:00', place: 'Capri centro', action: 'Bus per Capri. Piazzetta, Via Camerelle, Giardini di Augusto, Faraglioni vista.', transport: 'bus' },
+  { time: '16:00', place: 'Marina Grande', action: 'Giro in barchetta attorno ai Faraglioni (~€18-25 p.p., 1-2h)', transport: 'ferry' },
+  { time: '18:00', place: 'Capri → Sorrento', action: 'Aliscafo di rientro per Sorrento (20-25 min)', transport: 'ferry' },
 ];
+
+const tips = [
+  'Grotta Azzurra: prima delle 10:00 è quasi senza coda. Dopo le 11 l\'attesa può essere 1-2 ore.',
+  'In luglio-agosto prenota l\'aliscafo online il giorno prima: le prime corse si esauriscono.',
+  'Capri è cara: pranzo ad Anacapri costa il 30-40% meno che in Piazzetta.',
+  'La seggiovia per Monte Solaro da Anacapri è imperdibile: 589 m, vista 360° su Costiera e Napoli.',
+  'L\'aliscafo non parte con mare mosso: controlla il meteo marino e tieni un piano B.',
+];
+
+const transportBadge: Record<string, { label: string; cls: string }> = {
+  train: { label: 'TRENO', cls: 'bg-orange-100 text-orange-700' },
+  ferry: { label: 'NAVE', cls: 'bg-blue-100 text-blue-700' },
+  bus:   { label: 'BUS', cls: 'bg-green-100 text-green-700' },
+  walk:  { label: 'PIEDI', cls: 'bg-gray-100 text-gray-500' },
+  visit: { label: '', cls: '' },
+};
 ---
 
 <BaseLayout
@@ -52,7 +68,7 @@ const schedule = [
 >
 
   <section class="relative bg-charcoal overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-capri-900 via-capri-700 to-capri-500"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-[#001a33] via-med-blue to-[#0077cc]"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70"></div>
     <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
@@ -62,10 +78,10 @@ const schedule = [
         <span>/</span>
         <span class="text-white">Capri da Sorrento — 1 giorno</span>
       </nav>
-      <div class="max-w-3xl">
-        <p class="text-lemon-400 text-sm font-medium uppercase tracking-widest mb-3">Itinerario · 1 giorno</p>
+      <div class="max-w-2xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.2em] mb-3">Itinerario · 1 giorno</p>
         <h1 class="font-serif text-display text-white mb-4">Capri da Sorrento</h1>
-        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+        <p class="text-xl text-white/80 leading-relaxed">
           25 minuti di aliscafo e sei sull'isola più famosa d'Italia. Grotta Azzurra di mattina presto, Monte Solaro ad Anacapri, Faraglioni nel pomeriggio: la giornata perfetta a Capri.
         </p>
       </div>
@@ -74,59 +90,75 @@ const schedule = [
 
   <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
 
-    <section class="max-w-text">
-      <div class="grid sm:grid-cols-3 gap-4 mb-8">
-        <div class="bg-offwhite rounded-2xl p-4 text-center border border-gray-100">
-          <p class="text-xs text-gray-400 mb-1">Durata</p>
-          <p class="font-semibold text-charcoal">1 giorno</p>
+    <section class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-3 gap-6">
+        <div class="bg-white border border-gray-100 rounded-[2rem] p-6 text-center shadow-sm flex flex-col items-center gap-3">
+          <svg class="w-7 h-7 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><p class="text-xs text-gray-400 uppercase tracking-wide mb-0.5">Durata</p><p class="font-bold text-charcoal text-lg">1 giorno</p></div>
         </div>
-        <div class="bg-offwhite rounded-2xl p-4 text-center border border-gray-100">
-          <p class="text-xs text-gray-400 mb-1">Costo trasporti</p>
-          <p class="font-semibold text-charcoal">~€40–60</p>
+        <div class="bg-white border border-gray-100 rounded-[2rem] p-6 text-center shadow-sm flex flex-col items-center gap-3">
+          <svg class="w-7 h-7 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          <div><p class="text-xs text-gray-400 uppercase tracking-wide mb-0.5">Costo trasporti</p><p class="font-bold text-charcoal text-lg">~€40–60</p></div>
         </div>
-        <div class="bg-offwhite rounded-2xl p-4 text-center border border-gray-100">
-          <p class="text-xs text-gray-400 mb-1">Difficoltà</p>
-          <p class="font-semibold text-charcoal">Facile</p>
+        <div class="bg-white border border-gray-100 rounded-[2rem] p-6 text-center shadow-sm flex flex-col items-center gap-3">
+          <svg class="w-7 h-7 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div><p class="text-xs text-gray-400 uppercase tracking-wide mb-0.5">Difficoltà</p><p class="font-bold text-charcoal text-lg">Facile</p></div>
         </div>
       </div>
     </section>
 
-    <section>
-      <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">Il programma ora per ora</h2>
-      <div class="space-y-0">
-        {schedule.map((s, i) => (
-          <div class="flex gap-4">
-            <div class="flex flex-col items-center">
-              <div class="w-8 h-8 rounded-full bg-capri-600 text-white text-xs font-mono flex items-center justify-center flex-shrink-0">{i + 1}</div>
-              {i < schedule.length - 1 && <div class="w-px flex-1 bg-gray-200 my-1"></div>}
-            </div>
-            <div class="pb-6">
-              <span class="text-xs font-mono text-capri-600 font-semibold">{s.time}</span>
-              <p class="font-semibold text-charcoal text-sm">{s.place}</p>
-              <p class="text-sm text-gray-600">{s.action}</p>
-            </div>
+    <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
+      <section class="lg:col-span-8">
+        <h2 class="font-serif text-2xl font-semibold text-charcoal mb-8">Il programma ora per ora</h2>
+        <div class="relative">
+          <div class="space-y-12 border-l-2 border-gray-200 pl-8 ml-3">
+            {schedule.map((s) => {
+              const badge = transportBadge[s.transport] ?? transportBadge.visit;
+              return (
+                <div class="relative">
+                  <div class="absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full bg-med-blue ring-4 ring-white shadow-sm"></div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="font-mono text-med-blue font-bold text-sm">{s.time}</span>
+                    {badge.label && <span class={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${badge.cls}`}>{badge.label}</span>}
+                  </div>
+                  <p class="font-semibold text-charcoal text-base leading-snug">{s.place}</p>
+                  <p class="text-gray-600 text-sm mt-1 leading-relaxed">{s.action}</p>
+                </div>
+              );
+            })}
           </div>
-        ))}
-      </div>
-    </section>
+        </div>
+      </section>
 
-    <section class="bg-lemon-50 border border-lemon-200 rounded-2xl p-8">
-      <p class="font-semibold text-charcoal text-lg mb-3">Consigli per Capri in giornata</p>
-      <ul class="space-y-2">
-        {[
-          'Grotta Azzurra: prima delle 10:00 è quasi senza coda. Dopo le 11 l\'attesa può essere 1-2 ore.',
-          'In luglio-agosto prenota l\'aliscafo online il giorno prima: le prime corse si esauriscono.',
-          'Capri è cara: pranzo ad Anacapri costa il 30-40% meno che in Piazzetta.',
-          'La seggiovia per Monte Solaro da Anacapri è imperdibile: 589 m, vista 360° su Costiera e Napoli.',
-          'L\'aliscafo non parte con mare mosso: controlla il meteo marino e tieni un piano B (traghetto più stabile).',
-        ].map(tip => (
-          <li class="flex items-start gap-2 text-sm text-charcoal">
-            <span class="w-1.5 h-1.5 rounded-full bg-lemon-500 mt-1.5 flex-shrink-0"></span>
-            <span>{tip}</span>
-          </li>
-        ))}
-      </ul>
-    </section>
+      <aside class="lg:col-span-4 mt-12 lg:mt-0">
+        <div class="lg:sticky lg:top-24 space-y-6">
+          <div class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+            <p class="font-semibold text-charcoal mb-4 flex items-center gap-2">
+              <svg class="w-4 h-4 text-lemon-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 3-1.7 5.2-4 6.4V17a1 1 0 0 1-1 1H10a1 1 0 0 1-1-1v-1.6C6.7 14.2 5 12 5 9a7 7 0 0 1 7-7z"/><path d="M10 21h4M12 17v4"/></svg>
+              Insider Tips
+            </p>
+            <ul class="space-y-3">
+              {tips.map(tip => (
+                <li class="flex gap-2.5 text-sm text-charcoal">
+                  <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span>
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-white border border-gray-200 rounded-[2rem] p-6">
+            <p class="font-semibold text-charcoal mb-3 flex items-center gap-2">
+              <svg class="w-4 h-4 text-med-blue" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+              Mappa Rapida
+            </p>
+            <a href="https://maps.google.com/maps?q=Capri,Italy" target="_blank" rel="noopener" class="flex items-center justify-between bg-gray-50 hover:bg-blue-50 rounded-xl px-4 py-3 text-sm text-med-blue font-medium transition-colors group">
+              Apri percorso in Google Maps
+              <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
 
     <section id="faq">
       <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">Domande frequenti</h2>
@@ -137,14 +169,11 @@ const schedule = [
               {q.name}
               <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
             </summary>
-            <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">
-              {q.acceptedAnswer.text}
-            </div>
+            <div class="px-6 pb-5 text-gray-600 leading-relaxed text-sm border-t border-gray-100 pt-4">{q.acceptedAnswer.text}</div>
           </details>
         ))}
       </div>
     </section>
 
   </div>
-
 </BaseLayout>
