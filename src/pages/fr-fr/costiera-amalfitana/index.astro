@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Côte Amalfitaine', url: '/fr-fr/costiera-amalfitana/' },
+];
+
+const borghi = [
+  {
+    name: 'Positano',
+    href: '/fr-fr/costiera-amalfitana/positano/',
+    desc: 'Le village le plus photographié de la côte, avec ses maisons colorées surplombant la mer et la célèbre Spiaggia Grande.',
+    tag: 'Le plus iconique',
+  },
+  {
+    name: 'Amalfi',
+    href: '/fr-fr/costiera-amalfitana/amalfi/',
+    desc: 'Capitale historique de la côte, avec la cathédrale de Sant\'Andrea et le musée du papier.',
+    tag: 'Capitale historique',
+  },
+  {
+    name: 'Ravello',
+    href: '/fr-fr/costiera-amalfitana/ravello/',
+    desc: 'À 350 m au-dessus de la mer, la « ville de la musique » avec la Villa Rufolo et la Villa Cimbrone.',
+    tag: 'Vue panoramique',
+  },
+  {
+    name: 'Praiano',
+    href: '/fr-fr/costiera-amalfitana/praiano/',
+    desc: 'Le secret le mieux gardé : moins de foule, couchers de soleil spectaculaires sur la Baie de Praia.',
+    tag: 'La plus authentique',
+  },
+  {
+    name: 'Maiori',
+    href: '/fr-fr/costiera-amalfitana/maiori/',
+    desc: 'La plage de sable la plus longue de la côte : idéale pour ceux qui cherchent la mer sans renoncer au confort.',
+    tag: 'Plage de sable',
+  },
+  {
+    name: 'Minori',
+    href: '/fr-fr/costiera-amalfitana/minori/',
+    desc: 'Village des citronniers, avec les vestiges d\'une villa romaine du Ier siècle et d\'excellentes pâtisseries.',
+    tag: 'Saveurs authentiques',
+  },
+];
+
+const destinationSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  "name": "Côte Amalfitaine",
+  "description": "La Côte Amalfitaine est un tronçon côtier de Campanie long de 50 km, classé au patrimoine mondial de l'UNESCO depuis 1997, avec des villages colorés, des falaises et le bleu de la mer Tyrrhénienne.",
+  "url": "https://amalficoast-travel.com/fr-fr/costiera-amalfitana/",
+  "touristType": ["Culture", "Mer", "Nature", "Gastronomie", "Randonnée"],
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6333,
+    "longitude": 14.6027
+  }
+};
+---
+
+<BaseLayout
+  title="Côte Amalfitaine 2026 : Guide Complet des Villages"
+  description="Guide de la Côte Amalfitaine : villages à visiter, plages, comment y arriver, quand y aller. De Positano à Amalfi, tout ce que vous devez savoir."
+  lang={lang}
+  pageKey="costiera-amalfitana"
+  breadcrumbs={breadcrumbs}
+  schema={[destinationSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative bg-charcoal overflow-hidden">
+    <img src="/images/costiera-hero.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager"  referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/fr-fr/" class="hover:text-white transition-colors">Accueil</a>
+        <span>/</span>
+        <span class="text-white">Côte Amalfitaine</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Patrimoine mondial UNESCO</p>
+        <h1 class="font-serif text-display text-white mb-4">Côte Amalfitaine</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Cinquante kilomètres de falaises, villages colorés et eaux turquoise. La côte la plus célèbre d'Italie dans un guide complet et mis à jour pour 2026.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+
+    <!-- Intro -->
+    <section class="max-w-text">
+      <p class="text-xl leading-relaxed text-charcoal">
+        La Côte Amalfitaine est l'un de ces endroits qui dépassent toutes les attentes. Peu importe le nombre de photos que vous avez vues : la réalité — le parfum des citrons, le miroitement du soleil sur la mer, les maisons accrochées à la roche — est toujours plus intense.
+      </p>
+      <p class="mt-4 text-slate-600 leading-relaxed">
+        Reconnue patrimoine mondial de l'UNESCO en 1997, elle s'étend sur 50 km de la péninsule sorrentine jusqu'à Vietri sul Mare, dans la province de Salerne. Le cœur de la côte est la SS163, une route sinueuse creusée dans la roche qui relie 13 communes, chacune avec sa propre histoire, son paysage et ses saveurs.
+      </p>
+    </section>
+
+    <!-- Borghi Grid -->
+    <section>
+      <div class="flex items-end justify-between mb-8">
+        <h2 class="font-serif text-3xl font-semibold text-slate-900">Les villages de la côte</h2>
+        <p class="text-sm text-slate-400 hidden sm:block">D'ouest en est le long de la SS163</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {borghi.map(b => (
+          <a href={b.href} class="group bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm hover:border-med-blue/30 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-serif text-xl font-semibold text-slate-900 group-hover:text-med-blue transition-colors">{b.name}</h3>
+              <span class="text-[10px] uppercase tracking-wide bg-med-blue/5 text-med-blue px-2 py-1 rounded-full font-medium flex-shrink-0 ml-2">{b.tag}</span>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed">{b.desc}</p>
+            <p class="text-med-blue text-sm font-medium mt-4 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+              Découvrir {b.name}
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+            </p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Did You Know -->
+    <section class="bg-charcoal text-white rounded-[2rem] p-10">
+      <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-8">La côte en chiffres</p>
+      <div class="grid sm:grid-cols-4 gap-8 text-center">
+        <div>
+          <p class="font-serif text-5xl font-bold text-med-gold">50 km</p>
+          <p class="text-white/60 text-sm mt-2">de littoral UNESCO</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-med-gold">13</p>
+          <p class="text-white/60 text-sm mt-2">communes côtières</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-med-gold">1997</p>
+          <p class="text-white/60 text-sm mt-2">année UNESCO</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-med-gold">2 M+</p>
+          <p class="text-white/60 text-sm mt-2">touristes/an</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section>
+      <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Guides pratiques</h2>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <a href="/fr-fr/costiera-amalfitana/come-arrivare/" class="flex items-center gap-4 bg-med-cream rounded-2xl p-5 hover:bg-med-blue/5 transition-colors group border border-slate-100">
+          <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 text-med-blue">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18"/></svg>
+          </div>
+          <div>
+            <p class="font-medium text-charcoal group-hover:text-med-blue text-sm transition-colors">Comment y arriver</p>
+            <p class="text-xs text-slate-500">Ferries, bus, voiture</p>
+          </div>
+        </a>
+        <a href="/fr-fr/quando-visitare/" class="flex items-center gap-4 bg-med-cream rounded-2xl p-5 hover:bg-med-blue/5 transition-colors group border border-slate-100">
+          <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 text-med-blue">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path stroke-linecap="round" d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+          <div>
+            <p class="font-medium text-charcoal group-hover:text-med-blue text-sm transition-colors">Quand y aller</p>
+            <p class="text-xs text-slate-500">Mois par mois</p>
+          </div>
+        </a>
+        <a href="/fr-fr/spiagge/" class="flex items-center gap-4 bg-med-cream rounded-2xl p-5 hover:bg-med-blue/5 transition-colors group border border-slate-100">
+          <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 text-med-blue">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17c3-3 6-3 9 0s6 3 9 0M3 12c3-3 6-3 9 0s6 3 9 0"/></svg>
+          </div>
+          <div>
+            <p class="font-medium text-charcoal group-hover:text-med-blue text-sm transition-colors">Les plages</p>
+            <p class="text-xs text-slate-500">8 plages sélectionnées</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>

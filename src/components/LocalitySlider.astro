@@ -1,0 +1,68 @@
+---
+interface LocalityItem {
+  name: string;
+  href: string;
+  image: string;
+  tag?: string;
+}
+interface Props {
+  heading?: string;
+  items: LocalityItem[];
+}
+const { heading = 'Località Vicine', items } = Astro.props;
+---
+
+<section class="border-t border-slate-200 py-16 px-6 max-w-7xl mx-auto">
+  <div class="flex justify-between items-end mb-10">
+    <div>
+      <span class="text-med-gold font-bold uppercase tracking-[0.3em] text-[10px] mb-2 block">Esplora i dintorni</span>
+      <h3 class="text-3xl font-serif font-bold text-slate-900">{heading}</h3>
+    </div>
+  </div>
+  <div class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    {items.map((item, i) => (
+      <a
+        href={item.href}
+        class="locality-card flex-shrink-0 w-[260px] snap-start group"
+        style={`animation-delay: ${i * 0.1}s`}
+      >
+        <div class="relative aspect-[3/4] rounded-[2rem] overflow-hidden shadow-lg">
+          <img
+            src={item.image}
+            alt={item.name}
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent"></div>
+          {item.tag && (
+            <div class="absolute top-4 left-4">
+              <span class="bg-med-gold text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">{item.tag}</span>
+            </div>
+          )}
+          <div class="absolute bottom-6 left-6 right-6">
+            <h4 class="text-xl font-serif font-bold text-white leading-tight">{item.name}</h4>
+            <p class="text-white/70 text-xs mt-2 inline-flex items-center gap-1 group-hover:text-white transition-colors duration-300">
+              Scopri
+              <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+            </p>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .locality-card {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+    animation: localityCardIn 0.5s ease forwards;
+  }
+  @keyframes localityCardIn {
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+</style>
