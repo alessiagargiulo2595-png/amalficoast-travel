@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTranslations, getLocalePath } from '../../i18n/translations';
+import { homeContent } from '../../i18n/content';
+
+const lang = 'fr-fr';
+const t = getTranslations(lang);
+const content = homeContent[lang];
+---
+
+<BaseLayout
+  title={t.meta.destinations_title}
+  description={t.meta.destinations_description}
+  lang={lang}
+  pageKey="destinations"
+>
+  <!-- Hero -->
+  <section class="bg-charcoal text-white py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-white/80 text-sm uppercase tracking-[0.3em] mb-3">Côte Amalfitaine</p>
+      <h1 class="text-4xl md:text-5xl font-bold font-serif mb-4">Villes & Destinations</h1>
+      <p class="text-white/80 text-lg max-w-2xl mx-auto">De la mondaine Positano à la paisible Cetara : chaque village de la Côte Amalfitaine a un caractère unique.</p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <p class="text-lg text-slate-600 leading-relaxed">
+      La Côte Amalfitaine n'est pas une seule destination mais un collier de villages extraordinairement divers, enfilés sur 50 kilomètres de falaises surplombant la mer. Chacun a son histoire, son architecture, son caractère. Positano attire les amateurs de mode et les photographes; Amalfi conserve les monuments d'une République maritime qui fut une puissance mondiale; Ravello vit de musique et de jardins; les petits villages comme Praiano, Cetara et Vietri offrent une Italie authentique, loin des circuits touristiques.
+    </p>
+  </section>
+
+  <!-- Towns -->
+  <section class="pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-16">
+        {content.towns.map((town, i) => (
+          <div class={`flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center`}>
+            <div class="lg:w-1/2">
+              <div class="bg-gradient-to-br from-charcoal to-charcoal rounded-[2rem] h-64 flex items-center justify-center">
+                <div class="text-center">
+                  <div class="text-6xl mb-2">🏘️</div>
+                  <p class="text-charcoal font-semibold">{town.name}</p>
+                </div>
+              </div>
+            </div>
+            <div class="lg:w-1/2">
+              <h2 class="text-3xl font-bold font-serif text-slate-900 mb-2">{town.name}</h2>
+              <p class="text-med-blue font-medium mb-4">{town.tagline}</p>
+              <p class="text-slate-600 leading-relaxed mb-6">{town.description}</p>
+              <div>
+                <h3 class="font-semibold text-slate-900 mb-3">À ne pas manquer :</h3>
+                <ul class="space-y-2">
+                  {town.highlights.map(h => (
+                    <li class="flex items-center gap-2 text-slate-600 text-sm">
+                      <svg class="w-4 h-4 text-med-blue flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                      </svg>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Se déplacer entre les villages -->
+  <section class="bg-med-blue py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold font-serif text-slate-900 mb-6">Se déplacer entre les villages</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-[2rem] p-6 shadow-sm">
+          <div class="text-3xl mb-3">⛴️</div>
+          <h3 class="font-bold text-slate-900 mb-2">Ferry</h3>
+          <p class="text-slate-600 text-sm">La façon la plus belle et souvent la plus rapide de se déplacer. Les ferries relient Positano, Amalfi et Salerne d'avril à octobre.</p>
+        </div>
+        <div class="bg-white rounded-[2rem] p-6 shadow-sm">
+          <div class="text-3xl mb-3">🚌</div>
+          <h3 class="font-bold text-slate-900 mb-2">Bus SITA</h3>
+          <p class="text-slate-600 text-sm">Le bus public parcourt la SS163 toute l'année. Économique mais lent en haute saison. Billets à bord ou dans les bureaux de tabac.</p>
+        </div>
+        <div class="bg-white rounded-[2rem] p-6 shadow-sm">
+          <div class="text-3xl mb-3">🚗</div>
+          <h3 class="font-bold text-slate-900 mb-2">Voiture privée</h3>
+          <p class="text-slate-600 text-sm">Déconseillée en juillet et août. Au printemps et en automne pratique, mais le stationnement est limité et coûteux.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-slate-900 mb-4">Prêt à planifier votre voyage ?</h2>
+      <p class="text-slate-600 mb-8">Découvrez nos itinéraires recommandés pour profiter au maximum de la Côte Amalfitaine.</p>
+      <a href={getLocalePath(lang, 'itineraries')}
+        class="inline-block bg-med-blue text-white font-semibold px-8 py-3 rounded-full hover:bg-med-blue transition-colors">
+        Voir les itinéraires
+      </a>
+    </div>
+  </section>
+</BaseLayout>

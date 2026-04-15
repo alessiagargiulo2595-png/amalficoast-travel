@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTranslations, getLocalePath } from '../../i18n/translations';
+
+const lang = 'en-us';
+const t = getTranslations(lang);
+
+const months = [
+  { name: 'January', weather: '8–14°C', sea: 'Cold', crowds: 'Empty', notes: 'The coast is almost deserted. Many hotels and restaurants closed. Perfect for those who love absolute silence and photography without people in the frame.' },
+  { name: 'February', weather: '9–15°C', sea: 'Cold', crowds: 'Empty', notes: 'Similar to January. A few openings for Carnival. Mimosa in bloom on the hillsides.' },
+  { name: 'March', weather: '11–17°C', sea: 'Cool', crowds: 'Low', notes: 'The coast wakes up. Lemons and citrus ripening. A few visitors but still quiet. Excellent for hiking.' },
+  { name: 'April', weather: '13–20°C', sea: 'Cool', crowds: 'Moderate', notes: 'Ideal period: pleasant temperature, lush green landscapes, relatively few tourists. Ferries restart. Easter brings some crowds.' },
+  { name: 'May', weather: '16–24°C', sea: 'Mild', crowds: 'Moderate–High', notes: 'One of the best months of the year. Everything open, sea already swimmable for the brave, flowers everywhere. Book accommodation in advance.' },
+  { name: 'June', weather: '20–28°C', sea: 'Warm', crowds: 'High', notes: 'First week still manageable, then high season begins. Gorgeous sea, long luminous evenings. High prices.' },
+  { name: 'July', weather: '23–32°C', sea: 'Warm', crowds: 'Very High', notes: 'Busiest month. Heavy traffic on the SS163, packed beaches, peak prices. Avoid if you dislike crowds, otherwise the sea is magnificent.' },
+  { name: 'August', weather: '23–32°C', sea: 'Warm', crowds: 'Very High', notes: "Like July, even worse. Ferragosto brings the Italian summer exodus. If you come, book everything months in advance. Evening magic is unmatched though." },
+  { name: 'September', weather: '20–27°C', sea: 'Warm', crowds: 'Moderate–High', notes: "September is the insiders' secret month: sea still warm, crowds dropping from mid-month, prices falling. Arguably the single best month." },
+  { name: 'October', weather: '16–22°C', sea: 'Mild', crowds: 'Low', notes: 'The coast returns to itself. Local life resumes on weekends. Autumn colours on the hillsides, ripe lemons. Excellent for hiking and photography.' },
+  { name: 'November', weather: '12–17°C', sea: 'Cool', crowds: 'Empty', notes: 'Many establishments close. Possible rain. For those who want absolute silence, minimum prices and authentic Italy.' },
+  { name: 'December', weather: '9–14°C', sea: 'Cold', crowds: 'Very Low', notes: 'Some openings for Christmas. Living nativity scenes in Praiano and the sea caves. Unique atmosphere but limited services.' },
+];
+
+const crowdColor: Record<string, string> = {
+  'Empty':          'bg-med-gold/10 text-med-gold',
+  'Low':            'bg-med-gold/10 text-med-gold',
+  'Very Low':       'bg-med-gold/10 text-med-gold',
+  'Moderate':       'bg-med-blue/10 text-med-blue',
+  'Moderate–High':  'bg-med-blue/15 text-med-blue',
+  'High':           'bg-slate-200 text-slate-700',
+  'Very High':      'bg-slate-800 text-white',
+};
+---
+
+<BaseLayout
+  title={t.meta.when_to_visit_title}
+  description={t.meta.when_to_visit_description}
+  lang={lang}
+  pageKey="when-to-visit"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/quando-visitare-hero.jpg" alt="Villa Cimbrone, Ravello" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+      <p class="text-med-gold text-sm uppercase tracking-[0.3em] mb-3 font-medium">Seasonal guide</p>
+      <h1 class="font-serif text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Best Time to Visit the Amalfi Coast</h1>
+      <p class="text-white/80 text-lg max-w-2xl mx-auto font-light">Every month has its pros and cons. Complete month-by-month guide to weather, crowds and prices.</p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <p class="text-lg text-slate-600 leading-relaxed">
+      The most common question from anyone planning a trip to the Amalfi Coast is: when should I go? The honest answer is there is no single perfect time — it depends on what you're looking for. In July and August the sea is magnificent but the coast is overcrowded; in spring and autumn the landscape is stunning and crowds are minimal, but some services are reduced. This month-by-month guide will help you choose the right period for you.
+    </p>
+  </section>
+
+  <!-- Top recommendation -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Best -->
+      <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8 text-center">
+        <div class="w-12 h-12 rounded-2xl bg-med-gold/15 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"/>
+          </svg>
+        </div>
+        <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-2">Best period</p>
+        <p class="font-serif text-2xl font-bold text-white mb-2">May · September</p>
+        <p class="text-white/50 text-sm">Ideal temperature, swimmable sea, manageable crowds</p>
+      </div>
+
+      <!-- Good alternative -->
+      <div class="bg-white border border-slate-100 rounded-[3rem] p-8 text-center shadow-sm">
+        <div class="w-12 h-12 rounded-2xl bg-med-blue/10 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+          </svg>
+        </div>
+        <p class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-medium mb-2">Good alternative</p>
+        <p class="font-serif text-2xl font-bold text-slate-900 mb-2">April · October</p>
+        <p class="text-slate-500 text-sm">Less hot, lower prices, beautiful scenery</p>
+      </div>
+
+      <!-- Avoid -->
+      <div class="bg-white border border-slate-100 rounded-[3rem] p-8 text-center shadow-sm">
+        <div class="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/>
+          </svg>
+        </div>
+        <p class="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-medium mb-2">Avoid (if possible)</p>
+        <p class="font-serif text-2xl font-bold text-slate-900 mb-2">July · August</p>
+        <p class="text-slate-500 text-sm">Overcrowded, expensive, heavy traffic</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Month-by-month table -->
+  <section class="pb-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold font-serif text-slate-900 mb-8">Month-by-month guide</h2>
+      <div class="space-y-4">
+        {months.map(month => (
+          <div class="bg-white rounded-[3rem] shadow-sm border border-slate-100 p-6 sm:p-8">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <h3 class="font-bold text-slate-900 text-lg w-24">{month.name}</h3>
+              <span class="text-sm text-slate-500 flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z"/></svg>
+                {month.weather}
+              </span>
+              <span class="text-sm text-slate-500 flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-med-blue flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3.744 12 2.25l5.25 1.494m-10.5 0 5.25 1.494M6.75 3.744 2.25 9l4.5 5.256 5.25-1.494M17.25 3.744 21.75 9l-4.5 5.256-5.25-1.494M12 15.75 6.75 14.25m5.25 1.5 5.25-1.5"/></svg>
+                Sea: {month.sea}
+              </span>
+              <span class={`text-xs font-semibold px-3 py-1 rounded-full ${crowdColor[month.crowds]}`}>
+                Crowds: {month.crowds}
+              </span>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed">{month.notes}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section class="bg-slate-900 py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Calendar</p>
+      <h2 class="text-2xl font-bold font-serif text-white mb-10">Events not to miss</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div class="bg-white/5 border border-white/10 rounded-[3rem] p-8">
+          <div class="w-10 h-10 rounded-xl bg-med-gold/15 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m9 9 10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163Zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553Z"/></svg>
+          </div>
+          <h3 class="font-serif font-bold text-white text-lg mb-1">Ravello Festival</h3>
+          <p class="text-med-gold text-xs font-medium uppercase tracking-widest mb-3">July – September</p>
+          <p class="text-white/60 text-sm leading-relaxed">Classical music concerts on the sea-facing terrace of Villa Rufolo. One of Italy's most emotionally charged cultural events. Book tickets in advance.</p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-[3rem] p-8">
+          <div class="w-10 h-10 rounded-xl bg-med-gold/15 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/></svg>
+          </div>
+          <h3 class="font-serif font-bold text-white text-lg mb-1">Regatta of the Ancient Maritime Republics</h3>
+          <p class="text-med-gold text-xs font-medium uppercase tracking-widest mb-3">June (every 4 years in Amalfi)</p>
+          <p class="text-white/60 text-sm leading-relaxed">The regatta pitting Amalfi, Venice, Genoa and Pisa against each other. When it's Amalfi's turn to host, the city dresses in medieval costumes.</p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-[3rem] p-8">
+          <div class="w-10 h-10 rounded-xl bg-med-gold/15 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+          </div>
+          <h3 class="font-serif font-bold text-white text-lg mb-1">Luminara di Sant'Andrea</h3>
+          <p class="text-med-gold text-xs font-medium uppercase tracking-widest mb-3">27 June and 30 November</p>
+          <p class="text-white/60 text-sm leading-relaxed">The feast of Amalfi's patron saint illuminates the Cathedral and square with thousands of candles. An extraordinary night-time spectacle, deeply felt by the local community.</p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-[3rem] p-8">
+          <div class="w-10 h-10 rounded-xl bg-med-gold/15 flex items-center justify-center mb-5">
+            <svg class="w-5 h-5 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+          </div>
+          <h3 class="font-serif font-bold text-white text-lg mb-1">Lemon Festival (Sagra del Limone)</h3>
+          <p class="text-med-gold text-xs font-medium uppercase tracking-widest mb-3">August (various villages)</p>
+          <p class="text-white/60 text-sm leading-relaxed">Limoncello tastings, lemon desserts, artisan markets. The sfusato amalfitano lemon is a PGI product: take the opportunity to bring some home.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-slate-900 mb-4">Have you decided when to come?</h2>
+      <p class="text-slate-600 mb-6">Discover how to make the most of your days on the coast.</p>
+      <a href={getLocalePath(lang, 'itineraries')}
+        class="inline-block bg-med-blue text-white font-semibold px-8 py-3 rounded-full hover:shadow-lg transition-shadow">
+        View itineraries
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

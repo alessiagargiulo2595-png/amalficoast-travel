@@ -1,0 +1,265 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTranslations, getLocalePath } from '../../i18n/translations';
+
+const lang = 'en-us';
+const t = getTranslations(lang);
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Beaches', url: '/en-us/beaches' },
+];
+
+const schemaBeaches = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Best Beaches on the Amalfi Coast",
+  "description": "Complete guide to the beaches of the Amalfi Coast, Sorrentine Peninsula and Gulf Islands.",
+  "url": "https://amalficoast-travel.com/en-us/beaches",
+  "numberOfItems": 9,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Fiordo di Furore", "url": "https://amalficoast-travel.com/en-us/beaches/amalfi-coast/fiordo-di-furore" },
+    { "@type": "ListItem", "position": 2, "name": "Spiaggia Grande Positano", "url": "https://amalficoast-travel.com/en-us/beaches/amalfi-coast/spiaggia-grande-positano" },
+    { "@type": "ListItem", "position": 3, "name": "Santa Croce Amalfi", "url": "https://amalficoast-travel.com/en-us/beaches/amalfi-coast/santa-croce-amalfi" },
+    { "@type": "ListItem", "position": 4, "name": "Bagni della Regina Giovanna", "url": "https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/regina-giovanna" },
+    { "@type": "ListItem", "position": 5, "name": "Marina del Cantone", "url": "https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/marina-del-cantone" },
+    { "@type": "ListItem", "position": 6, "name": "Cala di Mitigliano", "url": "https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/cala-mitigliano" },
+    { "@type": "ListItem", "position": 7, "name": "Marina Piccola Capri", "url": "https://amalficoast-travel.com/en-us/beaches/islands/marina-piccola-capri" },
+    { "@type": "ListItem", "position": 8, "name": "Spiaggia dei Maronti", "url": "https://amalficoast-travel.com/en-us/beaches/islands/spiaggia-maronti" },
+    { "@type": "ListItem", "position": 9, "name": "Cala del Pozzo Vecchio", "url": "https://amalficoast-travel.com/en-us/beaches/islands/cala-del-pozzo-vecchio" },
+  ],
+};
+---
+
+<BaseLayout
+  title={t.meta.beaches_title}
+  description={t.meta.beaches_description}
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaBeaches]}
+  pageKey="beaches"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <img
+      src="/images/spiagge-hero.jpg"
+      alt="Beaches of the Amalfi Coast"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+      referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/en-us/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-white">Beaches</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Guide 2026</p>
+        <h1 class="font-serif text-display text-white mb-4">The Beaches</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          From secret coves reachable only by sea to family-friendly beach clubs. Discover the perfect blue of Campania.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category cards -->
+  <section class="bg-med-cream py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Amalfi Coast -->
+        <div class="bg-white p-10 rounded-[3rem] shadow-xl border border-slate-100 flex flex-col h-full">
+          <div class="w-14 h-14 rounded-2xl bg-med-gold/10 flex items-center justify-center mb-8">
+            <svg class="w-7 h-7 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M23 12a11.05 11.05 0 0 0-22 0z"/>
+              <path d="M17 19a5 5 0 0 1-10 0v-7"/>
+            </svg>
+          </div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-4">Amalfi Coast</h2>
+          <p class="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">Pebble coves nestled between sheer cliffs, from Positano to Vietri sul Mare.</p>
+          <div class="space-y-3">
+            <a href="/en-us/beaches/amalfi-coast/fiordo-di-furore" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Fiordo di Furore</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Photogenic</span>
+            </a>
+            <a href="/en-us/beaches/amalfi-coast/spiaggia-grande-positano" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Spiaggia Grande</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Glamour</span>
+            </a>
+            <a href="/en-us/beaches/amalfi-coast/santa-croce-amalfi" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Santa Croce</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">By sea only</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Sorrentine Peninsula -->
+        <div class="bg-white p-10 rounded-[3rem] shadow-xl border border-slate-100 flex flex-col h-full">
+          <div class="w-14 h-14 rounded-2xl bg-med-gold/10 flex items-center justify-center mb-8">
+            <svg class="w-7 h-7 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+              <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+              <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+            </svg>
+          </div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-4">Sorrentine Peninsula</h2>
+          <p class="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">Volcanic beaches and fishing villages overlooking the Gulf of Naples.</p>
+          <div class="space-y-3">
+            <a href="/en-us/beaches/sorrentine-peninsula/regina-giovanna" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Regina Giovanna</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Archeo-beach</span>
+            </a>
+            <a href="/en-us/beaches/sorrentine-peninsula/marina-del-cantone" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Marina del Cantone</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Foodie</span>
+            </a>
+            <a href="/en-us/beaches/sorrentine-peninsula/cala-mitigliano" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Cala di Mitigliano</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Capri View</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Gulf Islands -->
+        <div class="bg-white p-10 rounded-[3rem] shadow-xl border border-slate-100 flex flex-col h-full">
+          <div class="w-14 h-14 rounded-2xl bg-med-gold/10 flex items-center justify-center mb-8">
+            <svg class="w-7 h-7 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <circle cx="12" cy="5" r="3"/>
+              <line x1="12" y1="22" x2="12" y2="8"/>
+              <path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
+            </svg>
+          </div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-4">Gulf Islands</h2>
+          <p class="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">The pearls of the Mediterranean: Capri, Ischia and colourful Procida.</p>
+          <div class="space-y-3">
+            <a href="/en-us/beaches/islands/marina-piccola-capri" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Marina Piccola</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Capri</span>
+            </a>
+            <a href="/en-us/beaches/islands/spiaggia-maronti" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Spiaggia dei Maronti</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Ischia</span>
+            </a>
+            <a href="/en-us/beaches/islands/cala-del-pozzo-vecchio" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Cala del Pozzo Vecchio</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Procida</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Thematic Guides -->
+  <section class="bg-slate-900 py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-4xl font-bold text-white mb-4">Thematic Guides</h2>
+        <p class="text-white/40">Curated selections for every need</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- By sea only -->
+        <a href="/en-us/beaches#by-sea-only" class="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-all text-center">
+          <div class="flex justify-center mb-6">
+            <svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <circle cx="12" cy="5" r="3"/>
+              <line x1="12" y1="22" x2="12" y2="8"/>
+              <path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-white mb-4">Reachable by sea only</h3>
+          <span class="text-med-gold text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Discover more →</span>
+        </a>
+
+        <!-- Families -->
+        <a href="/en-us/beaches#families" class="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-all text-center">
+          <div class="flex justify-center mb-6">
+            <svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-white mb-4">Family-friendly beaches</h3>
+          <span class="text-med-gold text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Discover more →</span>
+        </a>
+
+        <!-- Sunset -->
+        <a href="/en-us/beaches#sunset" class="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-all text-center">
+          <div class="flex justify-center mb-6">
+            <svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M17 18a5 5 0 0 0-10 0"/>
+              <line x1="12" y1="9" x2="12" y2="2"/>
+              <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/>
+              <line x1="1" y1="18" x2="3" y2="18"/>
+              <line x1="21" y1="18" x2="23" y2="18"/>
+              <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/>
+              <line x1="23" y1="22" x2="1" y2="22"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-white mb-4">Best spots for sunset</h3>
+          <span class="text-med-gold text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Discover more →</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Practical Tips -->
+  <section class="bg-med-blue py-16" id="practical-tips">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="font-serif text-2xl font-bold text-white mb-8">Practical beach tips</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-[2rem] p-6 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <h3 class="font-bold text-slate-900">When to go</h3>
+          </div>
+          <p class="text-slate-600 text-sm">In July and August, arrive before 9 am to find a spot. Evening is the best time to enjoy beaches with fewer crowds.</p>
+        </div>
+        <div class="bg-white rounded-[2rem] p-6 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/>
+            </svg>
+            <h3 class="font-bold text-slate-900">What to bring</h3>
+          </div>
+          <p class="text-slate-600 text-sm">Most beaches are pebbled: bring water shoes. A waterproof bag is handy for beaches accessed by boat or trail.</p>
+        </div>
+        <div class="bg-white rounded-[2rem] p-6 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+            <h3 class="font-bold text-slate-900">Costs</h3>
+          </h3>
+          </div>
+          <p class="text-slate-600 text-sm">A beach club costs between €15 and €35 per person (sun lounger + umbrella). All beaches also have a free public section.</p>
+        </div>
+        <div class="bg-white rounded-[2rem] p-6 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+              <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+              <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+            </svg>
+            <h3 class="font-bold text-slate-900">Water quality</h3>
+          </div>
+          <p class="text-slate-600 text-sm">The coast's water is among the cleanest in Italy, with Blue Flag status in many stretches. Underwater visibility is excellent: bring a mask.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

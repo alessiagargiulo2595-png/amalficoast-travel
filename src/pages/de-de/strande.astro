@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getTranslations, getLocalePath } from '../../i18n/translations';
+
+const lang = 'de-de';
+const t = getTranslations(lang);
+
+const breadcrumbs = [
+  { name: 'Startseite', url: '/de-de/' },
+  { name: 'Strände', url: '/de-de/strande' },
+];
+
+const schemaBeaches = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Die schönsten Strände der Amalfiküste",
+  "description": "Vollständiger Strandführer für die Amalfiküste, Sorrentiner Halbinsel und Golfinseln.",
+  "url": "https://amalficoast-travel.com/de-de/strande",
+  "numberOfItems": 9,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Fiordo di Furore", "url": "https://amalficoast-travel.com/de-de/strande/amalfikuste/fiordo-di-furore" },
+    { "@type": "ListItem", "position": 2, "name": "Spiaggia Grande Positano", "url": "https://amalficoast-travel.com/de-de/strande/amalfikuste/spiaggia-grande-positano" },
+    { "@type": "ListItem", "position": 3, "name": "Santa Croce Amalfi", "url": "https://amalficoast-travel.com/de-de/strande/amalfikuste/santa-croce-amalfi" },
+    { "@type": "ListItem", "position": 4, "name": "Bagni della Regina Giovanna", "url": "https://amalficoast-travel.com/de-de/strande/sorrentiner-halbinsel/regina-giovanna" },
+    { "@type": "ListItem", "position": 5, "name": "Marina del Cantone", "url": "https://amalficoast-travel.com/de-de/strande/sorrentiner-halbinsel/marina-del-cantone" },
+    { "@type": "ListItem", "position": 6, "name": "Cala di Mitigliano", "url": "https://amalficoast-travel.com/de-de/strande/sorrentiner-halbinsel/cala-mitigliano" },
+    { "@type": "ListItem", "position": 7, "name": "Marina Piccola Capri", "url": "https://amalficoast-travel.com/de-de/strande/inseln/marina-piccola-capri" },
+    { "@type": "ListItem", "position": 8, "name": "Spiaggia dei Maronti", "url": "https://amalficoast-travel.com/de-de/strande/inseln/spiaggia-maronti" },
+    { "@type": "ListItem", "position": 9, "name": "Cala del Pozzo Vecchio", "url": "https://amalficoast-travel.com/de-de/strande/inseln/cala-del-pozzo-vecchio" },
+  ],
+};
+---
+
+<BaseLayout
+  title={t.meta.beaches_title}
+  description={t.meta.beaches_description}
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaBeaches]}
+  pageKey="beaches"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <img
+      src="/images/spiagge-hero.jpg"
+      alt="Strände der Amalfiküste"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+      referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/de-de/" class="hover:text-white transition-colors">Startseite</a>
+        <span>/</span>
+        <span class="text-white">Strände</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Reiseführer 2026</p>
+        <h1 class="font-serif text-display text-white mb-4">Die Strände</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Von geheimen Buchten, die nur per Boot erreichbar sind, bis hin zu familienfreundlichen Badestränden. Entdecken Sie das perfekte Blau Kampaniens.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category cards -->
+  <section class="bg-med-cream py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Amalfiküste -->
+        <div class="bg-white p-10 rounded-[3rem] shadow-xl border border-slate-100 flex flex-col h-full">
+          <div class="w-14 h-14 rounded-2xl bg-med-gold/10 flex items-center justify-center mb-8">
+            <svg class="w-7 h-7 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M23 12a11.05 11.05 0 0 0-22 0z"/>
+              <path d="M17 19a5 5 0 0 1-10 0v-7"/>
+            </svg>
+          </div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-4">Amalfiküste</h2>
+          <p class="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">Kiesbuchten zwischen senkrechten Klippen, von Positano bis Vietri sul Mare.</p>
+          <div class="space-y-3">
+            <a href="/de-de/strande/amalfikuste/fiordo-di-furore" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Fiordo di Furore</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Fotogen</span>
+            </a>
+            <a href="/de-de/strande/amalfikuste/spiaggia-grande-positano" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Spiaggia Grande</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Glamour</span>
+            </a>
+            <a href="/de-de/strande/amalfikuste/santa-croce-amalfi" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Santa Croce</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Nur per Boot</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Sorrentiner Halbinsel -->
+        <div class="bg-white p-10 rounded-[3rem] shadow-xl border border-slate-100 flex flex-col h-full">
+          <div class="w-14 h-14 rounded-2xl bg-med-gold/10 flex items-center justify-center mb-8">
+            <svg class="w-7 h-7 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+              <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+              <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+            </svg>
+          </div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-4">Sorrentiner Halbinsel</h2>
+          <p class="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">Vulkanstrände und Fischerdörfer mit Blick auf den Golf von Neapel.</p>
+          <div class="space-y-3">
+            <a href="/de-de/strande/sorrentiner-halbinsel/regina-giovanna" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Regina Giovanna</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Archeo-Strand</span>
+            </a>
+            <a href="/de-de/strande/sorrentiner-halbinsel/marina-del-cantone" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Marina del Cantone</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Kulinarisch</span>
+            </a>
+            <a href="/de-de/strande/sorrentiner-halbinsel/cala-mitigliano" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Cala di Mitigliano</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Capri-Blick</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Golfinseln -->
+        <div class="bg-white p-10 rounded-[3rem] shadow-xl border border-slate-100 flex flex-col h-full">
+          <div class="w-14 h-14 rounded-2xl bg-med-gold/10 flex items-center justify-center mb-8">
+            <svg class="w-7 h-7 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <circle cx="12" cy="5" r="3"/>
+              <line x1="12" y1="22" x2="12" y2="8"/>
+              <path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
+            </svg>
+          </div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-4">Golfinseln</h2>
+          <p class="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">Die Perlen des Mittelmeers: Capri, Ischia und das farbenfrohe Procida.</p>
+          <div class="space-y-3">
+            <a href="/de-de/strande/inseln/marina-piccola-capri" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Marina Piccola</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Capri</span>
+            </a>
+            <a href="/de-de/strande/inseln/spiaggia-maronti" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Spiaggia dei Maronti</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Ischia</span>
+            </a>
+            <a href="/de-de/strande/inseln/cala-del-pozzo-vecchio" class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-med-gold/10 transition-colors group">
+              <span class="font-medium text-slate-700 group-hover:text-med-gold transition-colors">Cala del Pozzo Vecchio</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-med-gold transition-colors">Procida</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Thematische Reiseführer -->
+  <section class="bg-slate-900 py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-4xl font-bold text-white mb-4">Thematische Reiseführer</h2>
+        <p class="text-white/40">Kuratierte Auswahl für jeden Bedarf</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <a href="/de-de/strande#nur-per-boot" class="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-all text-center">
+          <div class="flex justify-center mb-6">
+            <svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <circle cx="12" cy="5" r="3"/>
+              <line x1="12" y1="22" x2="12" y2="8"/>
+              <path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-white mb-4">Nur per Boot erreichbar</h3>
+          <span class="text-med-gold text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Mehr entdecken →</span>
+        </a>
+
+        <a href="/de-de/strande#familien" class="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-all text-center">
+          <div class="flex justify-center mb-6">
+            <svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-white mb-4">Familienfreundliche Strände</h3>
+          <span class="text-med-gold text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Mehr entdecken →</span>
+        </a>
+
+        <a href="/de-de/strande#sonnenuntergang" class="group bg-white/5 p-8 rounded-3xl border border-white/10 hover:bg-white/10 transition-all text-center">
+          <div class="flex justify-center mb-6">
+            <svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M17 18a5 5 0 0 0-10 0"/>
+              <line x1="12" y1="9" x2="12" y2="2"/>
+              <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/>
+              <line x1="1" y1="18" x2="3" y2="18"/>
+              <line x1="21" y1="18" x2="23" y2="18"/>
+              <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/>
+              <line x1="23" y1="22" x2="1" y2="22"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-xl font-bold text-white mb-4">Die besten Sonnenuntergangsplätze</h3>
+          <span class="text-med-gold text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Mehr entdecken →</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Praktische Tipps -->
+  <section class="bg-med-blue py-16" id="tipps">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="font-serif text-2xl font-bold text-white mb-8">Praktische Strändtipps</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-[2rem] p-6 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <h3 class="font-bold text-slate-900">Wann hingehen</h3>
+          </div>
+          <p class="text-slate-600 text-sm">Im Juli und August vor 9 Uhr ankommen, um einen Platz zu finden. Der Abend ist die beste Zeit, die Strände mit weniger Gedränge zu genießen.</p>
+        </div>
+        <div class="bg-white rounded-[2rem] p-6 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/>
+            </svg>
+            <h3 class="font-bold text-slate-900">Was mitnehmen</h3>
+          </div>
+          <p class="text-slate-600 text-sm">Die meisten Strände sind Kiesstände: Wasserschuhe mitbringen. Eine wasserdichte Tasche ist praktisch für per Boot oder Pfad erreichbare Strände.</p>
+        </div>
+        <div class="bg-white rounded-[2rem] p-6 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+            <h3 class="font-bold text-slate-900">Kosten</h3>
+          </div>
+          <p class="text-slate-600 text-sm">Ein Badestrand kostet zwischen 15 und 35 Euro pro Person (Liegestuhl + Sonnenschirm). Alle Strände haben auch einen kostenlosen öffentlichen Bereich.</p>
+        </div>
+        <div class="bg-white rounded-[2rem] p-6 shadow-sm">
+          <div class="flex items-center gap-3 mb-3">
+            <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+              <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+              <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+            </svg>
+            <h3 class="font-bold text-slate-900">Wasserqualität</h3>
+          </div>
+          <p class="text-slate-600 text-sm">Das Wasser der Küste gehört zu den saubersten in Italien, mit Blaue-Flagge-Status in vielen Abschnitten. Hervorragende Unterwassersicht: Schnorchelmaske mitbringen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
