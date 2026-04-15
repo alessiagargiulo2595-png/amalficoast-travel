@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Amalfi Coast', url: '/en-us/costiera-amalfitana/' },
+  { name: 'Praiano', url: '/en-us/costiera-amalfitana/praiano/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you get to Praiano from Positano?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "By SITA bus from Positano: about 20 minutes, ~€1.30. The bus stops along the SS163 main road. From there you walk down steps to the various beaches and hamlets."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best sunset viewpoint in Praiano?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The terrace of the Church of San Gennaro in the hamlet of Vettica Maggiore offers one of the best sunsets on the entire Amalfi Coast, with a view extending to Capri on the horizon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Praiano less crowded than Positano?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, significantly. Praiano is one of the quieter villages on the Amalfi Coast. It receives far fewer day-trippers than Positano or Amalfi and retains a more authentic, local character."
+      }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Location', dd: 'Amalfi Coast, SA' },
+  { dt: 'Population', dd: '~2,000 inhabitants' },
+  { dt: 'From Positano', dd: '~20 min (SITA bus)' },
+  { dt: 'From Amalfi', dd: '~25 min (SITA bus)' },
+  { dt: 'Beaches', dd: 'Marina di Praia, Gavitella' },
+  { dt: 'Best for', dd: 'Sunset, quiet, diving' },
+  { dt: 'Best time', dd: 'May–Oct' },
+];
+---
+
+<BaseLayout
+  title="Praiano 2026: Complete Guide | Amalfi Coast"
+  description="Guide to Praiano: the best sunset on the Amalfi Coast, the Marina di Praia beach, the Gavitella cove and how to get there by SITA bus from Positano or Amalfi."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative min-h-[60vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/praiano-hero.jpg" alt="Praiano, Amalfi Coast" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Amalfi Coast · Sunset & Quiet</p>
+        <h1 class="font-serif text-display text-white mb-4">Praiano</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Between Positano and Amalfi, Praiano is the village the crowds pass through without stopping — which is exactly what makes it one of the best-kept secrets on the coast. The best sunset view in the entire Amalfi Coast is here, from the terrace of San Gennaro.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+      <div class="space-y-12">
+
+        <p class="text-xl leading-relaxed text-charcoal">
+          Praiano is split into two hamlets: Vettica Maggiore (the upper part, along the main road) and Marina di Praia (the small bay at sea level, reachable via steps or by car through a tunnel). The village is known for its diving conditions, its August candle festival (the Luminaria di San Domenico) and for having the best west-facing sunset view on the coast.
+        </p>
+
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Did You Know?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">2,000</p>
+              <p class="text-white/60 text-xs italic mt-1">residents — fewer than anywhere else on the coast</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1–4</p>
+              <p class="text-white/60 text-xs italic mt-1">August: the Luminaria di San Domenico candle festival</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">270°</p>
+              <p class="text-white/60 text-xs italic mt-1">sea view from the San Gennaro terrace</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">What to See and Do</h2>
+          <div class="space-y-6">
+            {[
+              { title: 'San Gennaro Sunset Terrace', text: 'The west-facing terrace of the Church of San Gennaro in Vettica Maggiore is the finest sunset viewpoint on the Amalfi Coast, with an unobstructed view toward Capri and the open sea. Free, open at all hours.' },
+              { title: 'Marina di Praia', text: 'A tiny bay enclosed between two cliffs, with a pebble beach, fishing boats and a few beach bars. Reachable by steps from the SS163 or through a rock tunnel by car. One of the most photogenic spots on the coast.' },
+              { title: 'Gavitella Beach', text: 'A cove with clear water accessible by boat or via a long staircase. Quieter than Marina di Praia; ideal for snorkelling.' },
+              { title: 'Luminaria di San Domenico (1–4 August)', text: 'Thousands of candles are lit every evening to honour the Dominican tradition. On 4 August the finale includes fire performances and projections. Free access.' },
+            ].map(({ title, text }) => (
+              <div class="border-l-2 border-med-blue/20 pl-5">
+                <h3 class="font-semibold text-charcoal mb-1">{title}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">How to Get Here</h2>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">SITA Bus ⭐</p>
+              <p class="text-slate-700 font-medium mb-1">From Positano or Amalfi</p>
+              <p class="text-slate-500 text-sm">The SS163 SITA bus stops in Praiano. About 20 min from Positano, 25 min from Amalfi. ~€1.30.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">By Car</p>
+              <p class="text-slate-700 font-medium mb-1">SS163 Amalfitana</p>
+              <p class="text-slate-500 text-sm">Limited paid parking near the main road. In summer, traffic on the SS163 can be very slow.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts — Praiano</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Amalfi Coast</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/en-us/costiera-amalfitana/positano/', label: 'Positano' },
+              { href: '/en-us/costiera-amalfitana/amalfi/', label: 'Amalfi' },
+              { href: '/en-us/costiera-amalfitana/ravello/', label: 'Ravello' },
+              { href: '/en-us/costiera-amalfitana/maiori/', label: 'Maiori' },
+              { href: '/en-us/costiera-amalfitana/minori/', label: 'Minori' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Also Explore the Coast"
+    items={[
+      { name: 'Positano', href: '/en-us/costiera-amalfitana/positano/', tag: 'Iconic',          desc: 'Coloured houses over the sea and the most photographed beach on the coast.' },
+      { name: 'Amalfi',   href: '/en-us/costiera-amalfitana/amalfi/',   tag: 'Art & History',   desc: 'The Cathedral, Paper Museum and the lanes of the Maritime Republic.' },
+      { name: 'Ravello',  href: '/en-us/costiera-amalfitana/ravello/',  tag: 'Music & Gardens', desc: 'Villa Rufolo, Villa Cimbrone and the Ravello Festival above the sea.' },
+      { name: 'Maiori',   href: '/en-us/costiera-amalfitana/maiori/',   tag: 'Beach & Relax',   desc: "The coast's longest sandy beach: 300 m of seafront promenade." },
+    ]}
+  />
+
+</BaseLayout>

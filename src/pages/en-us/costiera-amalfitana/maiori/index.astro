@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Amalfi Coast', url: '/en-us/costiera-amalfitana/' },
+  { name: 'Maiori', url: '/en-us/costiera-amalfitana/maiori/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you get to Maiori from Salerno?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "By Travelmar ferry from Salerno (about 50 min, seasonal April–October) or by SITA bus from Salerno or Amalfi. The bus is the most frequent option year-round."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Maiori have a sandy beach?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — Maiori has the longest sandy beach on the Amalfi Coast, about 300 metres, with both free public sections and paid beach clubs. The sand here is coarser than the pebbles typical of other coast villages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Maiori worth visiting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, especially if you prefer a more local, less touristy atmosphere. Maiori is popular with Italian families for its beach, seafront promenade and lower prices compared to Positano and Amalfi."
+      }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Location', dd: 'Amalfi Coast, SA' },
+  { dt: 'Population', dd: '~5,500 inhabitants' },
+  { dt: 'From Salerno', dd: '~50 min (ferry)' },
+  { dt: 'From Amalfi', dd: '~20 min (SITA bus)' },
+  { dt: 'Beach', dd: 'Sandy (300 m)' },
+  { dt: 'Best for', dd: 'Beach, families, local life' },
+  { dt: 'Best time', dd: 'Jun–Sep' },
+];
+---
+
+<BaseLayout
+  title="Maiori 2026: Complete Guide | Amalfi Coast"
+  description="Guide to Maiori: the longest sandy beach on the Amalfi Coast, the Palazzo Mezzacapo gardens, the Abbey of Santa Maria de Olearia. How to get there by ferry from Salerno."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative min-h-[60vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/maiori-hero.jpg" alt="Maiori, Amalfi Coast" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Amalfi Coast · Beach & Local Life</p>
+        <h1 class="font-serif text-display text-white mb-4">Maiori</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          The longest beach on the Amalfi Coast: 300 metres of sand instead of the pebbles you find everywhere else. Maiori is the coast's most relaxed town — a proper seafront promenade, local restaurants and prices that won't make you wince.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+      <div class="space-y-12">
+
+        <p class="text-xl leading-relaxed text-charcoal">
+          Maiori sits at the mouth of the Regina valley, which cuts inland from the coast and gives the town the widest coastal plain — and therefore the widest beach — on the entire Amalfi Coast. It is a real working town with a supermarket, a post office and residents who live here year-round, which is unusual on this stretch of coast.
+        </p>
+
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Did You Know?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">300 m</p>
+              <p class="text-white/60 text-xs italic mt-1">the longest sandy beach on the coast</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">XI</p>
+              <p class="text-white/60 text-xs italic mt-1">century: the Abbey of Santa Maria de Olearia</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">5,500</p>
+              <p class="text-white/60 text-xs italic mt-1">year-round residents</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">What to See in Maiori</h2>
+          <div class="space-y-6">
+            {[
+              { title: 'The Beach', text: 'The main sandy beach with 300 m of sand — the longest on the Amalfi Coast. Both free public sections and paid beach clubs are available. A seafront promenade with bars and restaurants runs along the waterfront.' },
+              { title: 'Abbey of Santa Maria de Olearia', text: 'A remarkable 11th-century Benedictine abbey carved into the cliff above the coast road, with three superimposed chapels and medieval frescoes. Open for visits; check seasonal hours.' },
+              { title: 'Palazzo Mezzacapo Gardens', text: 'A 19th-century garden with rare plants, a panoramic terrace and views over the bay. Free public access.' },
+              { title: 'Ferragosto Fireworks (15 August)', text: 'On 15 August Maiori celebrates the feast of Santa Maria a Mare with a procession at sea and fireworks over the bay — one of the best Ferragosto spectacles on the coast.' },
+            ].map(({ title, text }) => (
+              <div class="border-l-2 border-med-blue/20 pl-5">
+                <h3 class="font-semibold text-charcoal mb-1">{title}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">How to Get Here</h2>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Ferry (Seasonal) ⭐</p>
+              <p class="text-slate-700 font-medium mb-1">Travelmar from Salerno</p>
+              <p class="text-slate-500 text-sm">~50 min, April–October. The most scenic option arriving from Salerno.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">SITA Bus</p>
+              <p class="text-slate-700 font-medium mb-1">From Amalfi or Salerno</p>
+              <p class="text-slate-500 text-sm">~20 min from Amalfi. Year-round service along the SS163.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts — Maiori</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Amalfi Coast</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/en-us/costiera-amalfitana/positano/', label: 'Positano' },
+              { href: '/en-us/costiera-amalfitana/amalfi/', label: 'Amalfi' },
+              { href: '/en-us/costiera-amalfitana/ravello/', label: 'Ravello' },
+              { href: '/en-us/costiera-amalfitana/praiano/', label: 'Praiano' },
+              { href: '/en-us/costiera-amalfitana/minori/', label: 'Minori' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Also Explore the Coast"
+    items={[
+      { name: 'Minori',   href: '/en-us/costiera-amalfitana/minori/',   tag: 'Flavours & Culture', desc: '1st-century Roman villa, scialatielli pasta and artisan pastry shops.' },
+      { name: 'Amalfi',   href: '/en-us/costiera-amalfitana/amalfi/',   tag: 'Art & History',       desc: 'The Cathedral, Paper Museum and the Maritime Republic.' },
+      { name: 'Ravello',  href: '/en-us/costiera-amalfitana/ravello/',  tag: 'Music & Gardens',     desc: 'Villa Rufolo, Villa Cimbrone and the Ravello Festival.' },
+      { name: 'Positano', href: '/en-us/costiera-amalfitana/positano/', tag: 'Iconic',               desc: 'Coloured houses over the sea and the most famous beach.' },
+    ]}
+  />
+
+</BaseLayout>

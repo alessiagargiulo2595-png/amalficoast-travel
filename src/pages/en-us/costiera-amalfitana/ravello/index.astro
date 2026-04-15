@@ -1,0 +1,254 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Amalfi Coast', url: '/en-us/costiera-amalfitana/' },
+  { name: 'Ravello', url: '/en-us/costiera-amalfitana/ravello/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Ravello",
+  "description": "Ravello is a medieval hilltop village 350 m above the sea, famous for Villa Rufolo, Villa Cimbrone and the Ravello Festival. The 'city of music' offers the most spectacular views on the entire Amalfi Coast.",
+  "url": "https://amalficoast-travel.com/en-us/costiera-amalfitana/ravello/",
+  "image": "https://amalficoast-travel.com/images/ravello-hero.jpg",
+  "touristType": ["Culture", "Music", "Views", "Gardens"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ravello",
+    "addressRegion": "Salerno",
+    "addressCountry": "IT",
+    "postalCode": "84010"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6492,
+    "longitude": 14.6122
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you get to Ravello from Amalfi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From Amalfi take the SITA bus to Ravello (about 25 min, ~€1.30). Buses depart from the harbour square in Amalfi. By car the road is narrow and winding — the bus is a better choice. There is no direct ferry access."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does the Ravello Festival take place?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Ravello Festival takes place every year from June to September, with concerts in the spectacular setting of Villa Rufolo. It is one of Italy's most prestigious music festivals. Tickets must be purchased in advance at ravellofestival.com."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does entry to Villa Cimbrone cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Entry to the gardens of Villa Cimbrone costs about €7 per adult. The gardens are open year-round from 9:00 am until sunset. The Belvedere dell'Infinito (Terrace of Infinity) is the most photographed viewpoint on the coast."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Ravello worth visiting without attending the Festival?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. Villa Rufolo and Villa Cimbrone with their gardens and views are worth the trip independently of the Festival. The medieval centre, the Piazza Vescovado and the Cathedral are also well worth exploring."
+      }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Location', dd: 'Amalfi Coast, SA' },
+  { dt: 'Altitude', dd: '350 m asl' },
+  { dt: 'Population', dd: '~2,500 inhabitants' },
+  { dt: 'From Amalfi', dd: '~25 min (SITA bus)' },
+  { dt: 'Transport', dd: 'SITA bus only' },
+  { dt: 'Must-see', dd: 'Villa Rufolo, Villa Cimbrone' },
+  { dt: 'Festival', dd: 'Jun–Sep 2026' },
+  { dt: 'Best time', dd: 'May–Oct' },
+];
+---
+
+<BaseLayout
+  title="Ravello 2026: Complete Guide | Amalfi Coast"
+  description="Everything about Ravello: Villa Rufolo, Villa Cimbrone, the Ravello Festival 2026, how to get there by bus from Amalfi. The complete guide to the city of music above the Amalfi Coast."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, faqSchema]}
+>
+
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div>
+    <img src="/images/ravello-hero.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Amalfi Coast · Music & Gardens</p>
+        <h1 class="font-serif text-display text-white mb-4">Ravello</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          350 metres above the Tyrrhenian Sea, Ravello looks down at the coast like a stage backdrop. Wagner composed here. Greta Garbo hid here. And every summer, the Ravello Festival turns Villa Rufolo into a concert hall suspended between sky and sea.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-sm font-semibold rounded-full hover:scale-105 transition-all duration-300">Fast Facts</a>
+          <a href="#how-to-get-here" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">How to Get Here</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+      <div class="space-y-12">
+
+        <p class="text-xl leading-relaxed text-charcoal">
+          Ravello is the only town on the Amalfi Coast that has no direct access to the sea — and that is exactly its appeal. The views from the Belvedere dell'Infinito of Villa Cimbrone rank among the most celebrated in the world, described by Gore Vidal as "the most beautiful on earth."
+        </p>
+
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Did You Know?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">350 m</p>
+              <p class="text-white/60 text-xs italic mt-1">altitude above sea level</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1953</p>
+              <p class="text-white/60 text-xs italic mt-1">year the Ravello Festival was founded</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1880</p>
+              <p class="text-white/60 text-xs italic mt-1">year Wagner visited Villa Rufolo</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Richard Wagner was so moved by the gardens of Villa Rufolo that he declared he had found the inspiration for the garden of Klingsor in Parsifal. A concert is held here every year in his memory.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">What to See in Ravello</h2>
+          <div class="space-y-6">
+            {[
+              { title: 'Villa Rufolo', text: 'The 13th-century villa with its terraced gardens and the famous belvedere from which the sea can be seen far below. The stage of Villa Rufolo is the venue for the Ravello Festival concerts. Open daily; entrance ~€7.' },
+              { title: 'Villa Cimbrone', text: 'The most romantic villa on the coast, with the Terrace of Infinity (Belvedere dell\'Infinito) lined with marble busts looking out over an infinite expanse of blue sea. Open year-round from 9 am to sunset; entrance ~€7.' },
+              { title: 'Ravello Cathedral', text: 'The 11th-century cathedral in Piazza Vescovado with a remarkable 12th-century bronze door. Inside, two mosaic ambo pulpits (12th–13th century) are among the finest examples of medieval stone inlay work in southern Italy.' },
+              { title: 'SITA Bus from Amalfi', text: 'The easiest and most scenic way to reach Ravello. Buses leave from the harbour square in Amalfi approximately every 40 minutes. Journey time: ~25 minutes. Ticket: ~€1.30.' },
+            ].map(({ title, text }) => (
+              <div class="border-l-2 border-med-blue/20 pl-5">
+                <h3 class="font-semibold text-charcoal mb-1">{title}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div id="how-to-get-here" class="bg-charcoal rounded-[3rem] p-10 text-white">
+          <h2 class="font-serif text-2xl font-bold text-white mb-6">How to Get to Ravello</h2>
+          <div class="overflow-x-auto rounded-2xl border border-white/10">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-white/5 text-white/70">
+                  <th class="text-left px-4 py-3 font-semibold">Transport</th>
+                  <th class="text-left px-4 py-3 font-semibold">Route</th>
+                  <th class="text-left px-4 py-3 font-semibold">Notes</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-white/5">
+                <tr><td class="px-4 py-3 text-white font-medium">SITA Bus</td><td class="px-4 py-3 text-white/60">From Amalfi harbour</td><td class="px-4 py-3 text-white/40 text-xs">~25 min, ~€1.30, every ~40 min</td></tr>
+                <tr><td class="px-4 py-3 text-white font-medium">By Car</td><td class="px-4 py-3 text-white/60">SP13 from Amalfi</td><td class="px-4 py-3 text-white/40 text-xs">Narrow, winding road; paid car parks at entrance</td></tr>
+                <tr><td class="px-4 py-3 text-white font-medium">Taxi</td><td class="px-4 py-3 text-white/60">From Amalfi or Maiori</td><td class="px-4 py-3 text-white/40 text-xs">~€20–25, negotiate in advance</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts — Ravello</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Amalfi Coast</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/en-us/costiera-amalfitana/positano/', label: 'Positano' },
+              { href: '/en-us/costiera-amalfitana/amalfi/', label: 'Amalfi' },
+              { href: '/en-us/costiera-amalfitana/praiano/', label: 'Praiano' },
+              { href: '/en-us/costiera-amalfitana/maiori/', label: 'Maiori' },
+              { href: '/en-us/costiera-amalfitana/minori/', label: 'Minori' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Also Explore the Coast"
+    items={[
+      { name: 'Amalfi',   href: '/en-us/costiera-amalfitana/amalfi/',   tag: 'Art & History',    desc: 'The Cathedral, the Cloister of Paradise and the lanes of the maritime republic.' },
+      { name: 'Positano', href: '/en-us/costiera-amalfitana/positano/', tag: 'Iconic',             desc: 'Coloured houses over the sea and the most famous beach on the coast.' },
+      { name: 'Praiano',  href: '/en-us/costiera-amalfitana/praiano/', tag: 'Sunset & Quiet',     desc: 'The sunset from San Gennaro and the Marina di Praia beach.' },
+      { name: 'Capri',    href: '/en-us/isole/capri/',                  tag: 'The most iconic',    desc: 'Blue Grotto, Faraglioni sea stacks and the glamorous Piazzetta.' },
+    ]}
+  />
+
+</BaseLayout>
