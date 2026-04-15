@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Travel Guide', url: '/en-us/guide/' },
+  { name: 'Ferries & Hydrofoils', url: '/en-us/guide/ferries/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between a ferry and a hydrofoil on the Amalfi Coast?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The ferry (traghetto) is slower (50–90 min Naples–Capri) but cheaper and more stable. The hydrofoil (aliscafo) is faster (40–50 min) but more expensive and doesn't run in rough seas. In summer, prefer the hydrofoil to save time; in winter or bad weather, the ferry is more reliable." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I book Amalfi Coast ferries online?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, almost all companies allow online booking: nlg.it, alilauro.it, snav.it, travelmar.it, caremar.it. In summer (July–August) it's recommended to book at least 1–2 days in advance for ferries from Naples to Capri and Ischia." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does the ferry from Naples to Capri cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ferry Naples–Capri (Caremar/SNAV): ~€13–15 one way. Hydrofoil (NLG/Alilauro): ~€20–23 one way. From Sorrento: ~€18–22 return by hydrofoil. Prices vary slightly between companies and season." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do ferries run in winter?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, but with reduced frequency. Naples–Capri: at least 4–5 sailings per day year-round. Naples–Ischia: frequent year-round service. Seasonal routes (Positano, Amalfi, Salerno) run from April to October." }
+    }
+  ]
+};
+
+const routes = [
+  { from: 'Naples Beverello', to: 'Capri', time: '40–50 min (hydrofoil) / 75 min (ferry)', price: '€20–23 / €13–15', companies: 'NLG, Alilauro, SNAV, Caremar', seasonal: false },
+  { from: 'Naples Beverello', to: 'Ischia (Casamicciola/Porto)', time: '50 min (hydrofoil) / 75 min (ferry)', price: '€20–24 / €12–14', companies: 'Alilauro, SNAV, Caremar, Medmar', seasonal: false },
+  { from: 'Naples Beverello', to: 'Procida', time: '35 min (hydrofoil)', price: '€15–18', companies: 'Alilauro, SNAV', seasonal: false },
+  { from: 'Sorrento', to: 'Capri', time: '20–25 min (hydrofoil)', price: '€18–22', companies: 'NLG, Alilauro', seasonal: false },
+  { from: 'Pozzuoli', to: 'Ischia / Procida', time: '35 min / 15 min (ferry)', price: '€10–13 / €7–9', companies: 'Medmar, Caremar', seasonal: false },
+  { from: 'Salerno', to: 'Amalfi / Positano / Capri', time: '45 min / 65 min / 100 min', price: '€8–12 / €12–16 / €18–22', companies: 'Travelmar, NLG', seasonal: true },
+  { from: 'Naples Beverello', to: 'Positano / Amalfi', time: '75 min / 90 min', price: '€15–20 / €18–22', companies: 'NLG, Alilauro', seasonal: true },
+];
+---
+
+<BaseLayout
+  title="Amalfi Coast Ferries & Hydrofoils 2026 | Schedules and Prices"
+  description="Complete guide to ferries and hydrofoils on the Amalfi Coast: Naples–Capri, Naples–Ischia, Sorrento–Capri, Salerno–Amalfi–Positano. Companies, timetables and updated prices."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/traghetti-hero.jpg" alt="Ferry on the Amalfi Coast" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/en-us/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-white/60">Travel Guide</span>
+        <span>/</span>
+        <span class="text-white">Ferries & Hydrofoils</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Travel Guide</p>
+        <h1 class="font-serif text-display text-white mb-4">Ferries & Hydrofoils</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          All maritime routes in Campania: Naples, Sorrento, Salerno, Positano, Amalfi, Capri, Ischia and Procida. Companies, indicative schedules and updated prices for the 2026 season.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">All main routes</h2>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-med-blue/5 text-charcoal">
+              <th class="text-left px-4 py-3 font-semibold">From</th>
+              <th class="text-left px-4 py-3 font-semibold">To</th>
+              <th class="text-left px-4 py-3 font-semibold">Duration</th>
+              <th class="text-left px-4 py-3 font-semibold">Price (one way)</th>
+              <th class="text-left px-4 py-3 font-semibold">Companies</th>
+              <th class="text-left px-4 py-3 font-semibold">Seasonal</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {routes.map(r => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-4 py-3 font-medium text-charcoal">{r.from}</td>
+                <td class="px-4 py-3">{r.to}</td>
+                <td class="px-4 py-3 text-slate-600">{r.time}</td>
+                <td class="px-4 py-3 font-mono text-sm">{r.price}</td>
+                <td class="px-4 py-3 text-slate-500 text-xs">{r.companies}</td>
+                <td class="px-4 py-3">
+                  {r.seasonal
+                    ? <span class="text-[10px] bg-med-cream text-med-gold px-2 py-0.5 rounded-full font-medium">Apr–Oct</span>
+                    : <span class="text-[10px] bg-med-blue/5 text-med-blue px-2 py-0.5 rounded-full font-medium">Year-round</span>
+                  }
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-400 mt-2">* Prices and durations are indicative. Always verify with the companies: nlg.it, alilauro.it, snav.it, caremar.it, medmar.it, travelmar.it</p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Ferry companies</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {[
+          { name: 'NLG', desc: 'Naples→Capri, Sorrento→Capri. Fast and frequent hydrofoils. Book at nlg.it.' },
+          { name: 'Alilauro', desc: 'Naples→Capri/Ischia/Procida/Sorrento. The largest hydrofoil fleet. alilauro.it.' },
+          { name: 'SNAV', desc: 'Naples→Capri/Ischia/Procida. Also fast ferries. snav.it.' },
+          { name: 'Caremar', desc: 'Slow ferries Naples→Capri/Ischia/Procida. Cheapest but slowest. caremar.it.' },
+          { name: 'Medmar', desc: 'Ferries Pozzuoli→Ischia/Procida. Affordable and frequent. medmar.it.' },
+          { name: 'Travelmar', desc: 'Salerno→Amalfi→Positano seasonal route. travelmar.it.' },
+        ].map(c => (
+          <div class="bg-med-cream rounded-xl p-4 border border-slate-100">
+            <p class="font-semibold text-charcoal mb-1">{c.name}</p>
+            <p class="text-xs text-slate-600">{c.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-8">
+      <p class="font-semibold text-charcoal text-lg mb-3">Practical tips</p>
+      <ul class="space-y-2">
+        {[
+          'In July and August, book tickets the day before: first morning sailings (7:00–8:30) sell out quickly.',
+          'Hydrofoils don\'t run in rough seas (Beaufort 4–5): always check marine weather forecasts.',
+          'The embarkation port in Naples for almost all routes is Molo Beverello (Piazza Municipio). Medmar departs from Pozzuoli.',
+          'With young children, the ferry is more stable than the hydrofoil: less rolling, accessible outdoor deck.',
+          'Return tickets can be purchased on the island — no need to buy the return leg upfront.',
+        ].map(tip => (
+          <li class="flex items-start gap-2 text-sm text-charcoal">
+            <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span>
+            <span>{tip}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Frequently asked questions</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>

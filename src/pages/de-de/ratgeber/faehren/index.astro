@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+
+const lang = 'de-de';
+
+const breadcrumbs = [
+  { name: 'Startseite', url: '/de-de/' },
+  { name: 'Reiseratgeber', url: '/de-de/ratgeber/' },
+  { name: 'Fähren & Tragflügelboote', url: '/de-de/ratgeber/faehren/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ist der Unterschied zwischen Fähre und Tragflügelboot an der Amalfiküste?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die Fähre (traghetto) ist langsamer (50–90 Min. Neapel–Capri), aber günstiger und stabiler. Das Tragflügelboot (aliscafo) ist schneller (40–50 Min.), teurer und fährt bei rauer See nicht. Im Sommer empfiehlt sich das Tragflügelboot; bei schlechtem Wetter ist die Fähre zuverlässiger." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich Fähren online buchen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, fast alle Reedereien bieten Online-Buchung an: nlg.it, alilauro.it, snav.it, travelmar.it, caremar.it. Im Sommer (Juli–August) empfiehlt es sich, mindestens 1–2 Tage im Voraus zu buchen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet die Fähre von Neapel nach Capri?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Fähre Neapel–Capri (Caremar/SNAV): ~€13–15 einfache Fahrt. Tragflügelboot (NLG/Alilauro): ~€20–23 einfache Fahrt. Ab Sorrent: ~€18–22 mit Tragflügelboot." }
+    },
+    {
+      "@type": "Question",
+      "name": "Fahren Fähren auch im Winter?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, aber mit reduzierter Häufigkeit. Neapel–Capri: mindestens 4–5 Fahrten täglich das ganze Jahr. Saisonale Verbindungen (Positano, Amalfi, Salerno) verkehren von April bis Oktober." }
+    }
+  ]
+};
+
+const routes = [
+  { from: 'Neapel Beverello', to: 'Capri', time: '40–50 Min. (Tragflügelboot) / 75 Min. (Fähre)', price: '€20–23 / €13–15', companies: 'NLG, Alilauro, SNAV, Caremar', seasonal: false },
+  { from: 'Neapel Beverello', to: 'Ischia (Casamicciola/Porto)', time: '50 Min. (Tragflügelboot) / 75 Min. (Fähre)', price: '€20–24 / €12–14', companies: 'Alilauro, SNAV, Caremar, Medmar', seasonal: false },
+  { from: 'Neapel Beverello', to: 'Procida', time: '35 Min. (Tragflügelboot)', price: '€15–18', companies: 'Alilauro, SNAV', seasonal: false },
+  { from: 'Sorrent', to: 'Capri', time: '20–25 Min. (Tragflügelboot)', price: '€18–22', companies: 'NLG, Alilauro', seasonal: false },
+  { from: 'Pozzuoli', to: 'Ischia / Procida', time: '35 Min. / 15 Min. (Fähre)', price: '€10–13 / €7–9', companies: 'Medmar, Caremar', seasonal: false },
+  { from: 'Salerno', to: 'Amalfi / Positano / Capri', time: '45 Min. / 65 Min. / 100 Min.', price: '€8–12 / €12–16 / €18–22', companies: 'Travelmar, NLG', seasonal: true },
+  { from: 'Neapel Beverello', to: 'Positano / Amalfi', time: '75 Min. / 90 Min.', price: '€15–20 / €18–22', companies: 'NLG, Alilauro', seasonal: true },
+];
+---
+
+<BaseLayout
+  title="Fähren & Tragflügelboote Amalfiküste 2026 | Fahrpläne und Preise"
+  description="Vollständiger Leitfaden zu Fähren und Tragflügelbooten an der Amalfiküste: Neapel–Capri, Neapel–Ischia, Sorrent–Capri, Salerno–Amalfi–Positano. Reedereien, Fahrpläne und aktuelle Preise."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/traghetti-hero.jpg" alt="Fähre an der Amalfiküste" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/de-de/" class="hover:text-white transition-colors">Startseite</a>
+        <span>/</span>
+        <span class="text-white/60">Reiseratgeber</span>
+        <span>/</span>
+        <span class="text-white">Fähren & Tragflügelboote</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Reiseratgeber</p>
+        <h1 class="font-serif text-display text-white mb-4">Fähren & Tragflügelboote</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Alle Schiffsverbindungen in Kampanien: Neapel, Sorrent, Salerno, Positano, Amalfi, Capri, Ischia und Procida. Reedereien, Fahrpläne und aktuelle Preise für die Saison 2026.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Alle wichtigen Strecken</h2>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-med-blue/5 text-charcoal">
+              <th class="text-left px-4 py-3 font-semibold">Von</th>
+              <th class="text-left px-4 py-3 font-semibold">Nach</th>
+              <th class="text-left px-4 py-3 font-semibold">Dauer</th>
+              <th class="text-left px-4 py-3 font-semibold">Preis (einfach)</th>
+              <th class="text-left px-4 py-3 font-semibold">Reedereien</th>
+              <th class="text-left px-4 py-3 font-semibold">Saisonal</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {routes.map(r => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-4 py-3 font-medium text-charcoal">{r.from}</td>
+                <td class="px-4 py-3">{r.to}</td>
+                <td class="px-4 py-3 text-slate-600">{r.time}</td>
+                <td class="px-4 py-3 font-mono text-sm">{r.price}</td>
+                <td class="px-4 py-3 text-slate-500 text-xs">{r.companies}</td>
+                <td class="px-4 py-3">
+                  {r.seasonal
+                    ? <span class="text-[10px] bg-med-cream text-med-gold px-2 py-0.5 rounded-full font-medium">Apr–Okt</span>
+                    : <span class="text-[10px] bg-med-blue/5 text-med-blue px-2 py-0.5 rounded-full font-medium">Ganzjährig</span>
+                  }
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-400 mt-2">* Preise und Fahrzeiten sind Richtwerte. Bitte auf den Websites der Reedereien prüfen: nlg.it, alilauro.it, snav.it, caremar.it, medmar.it, travelmar.it</p>
+    </section>
+
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-8">
+      <p class="font-semibold text-charcoal text-lg mb-3">Praktische Tipps</p>
+      <ul class="space-y-2">
+        {[
+          'Im Juli und August Tickets am Vortag buchen: die ersten Abfahrten (7:00–8:30 Uhr) sind oft ausgebucht.',
+          'Tragflügelboote fahren bei rauer See nicht (Beaufort 4–5): immer Seewettervorhersage prüfen.',
+          'Der Abfahrtshafen in Neapel ist für fast alle Verbindungen Molo Beverello (Piazza Municipio). Medmar fährt ab Pozzuoli.',
+          'Mit Kleinkindern ist die Fähre stabiler als das Tragflügelboot.',
+          'Rückfahrkarten können auf der Insel gekauft werden.',
+        ].map(tip => (
+          <li class="flex items-start gap-2 text-sm text-charcoal">
+            <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span>
+            <span>{tip}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Häufig gestellte Fragen</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>

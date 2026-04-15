@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Travel Guide', url: '/en-us/guide/' },
+  { name: 'Parking & ZTL', url: '/en-us/guide/parking-ztl/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I drive to Positano?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In summer Positano is closed to traffic from 9:00 to 18:00 (ZTL). Only residents and hotel guests can enter by car. Best advice: park in Sorrento or Praiano and come by SITA bus or ferry." }
+    },
+    {
+      "@type": "Question",
+      "name": "Where should I park to visit the Amalfi Coast?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Best options: 1) Leave the car in Salerno or Vietri sul Mare and take the bus/ferry. 2) Park in Sorrento (Garage Achille Lauro, ~€2/h) and take the SITA bus or hydrofoil. 3) Use Amalfi's paid car parks (Luna Rossa, Flavio Gioia, ~€4–5/h) as a base." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does parking in Amalfi cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Amalfi's main car parks (Luna Rossa and Flavio Gioia) cost ~€4–5/hour or ~€25–30/day. They are almost always full in July and August. It's recommended to arrive before 9:00 or use public transport." }
+    }
+  ]
+};
+
+const ztlData = [
+  { location: 'Positano', ztl: 'Yes', period: 'Jun–Sep (9:00–18:00)', note: 'Access reserved for residents and hotel guests. SITA bus or ferry recommended.' },
+  { location: 'Amalfi', ztl: 'Yes', period: 'Year-round (centre)', note: 'Permanent ZTL in the historic core. Paid car parks on the seafront (~€4/h).' },
+  { location: 'Ravello', ztl: 'Yes', period: 'Summer (10:00–19:00)', note: 'SITA bus from Amalfi only (25 min, ~€1.50) or car with hotel permit.' },
+  { location: 'Sorrento', ztl: 'Yes', period: 'Summer (centre)', note: 'Covered garages available. Piazza Lauro ~€2/h.' },
+  { location: 'Praiano', ztl: 'No', period: '—', note: 'Free and paid parking along the SS163. A great stopping point.' },
+  { location: 'Maiori', ztl: 'No', period: '—', note: 'Parking available along the seafront. Easier than villages further west.' },
+  { location: 'Minori', ztl: 'No', period: '—', note: 'Seafront car parks, free or low-cost.' },
+];
+---
+
+<BaseLayout
+  title="Amalfi Coast Parking & ZTL 2026 | Where to Leave Your Car"
+  description="Complete guide to parking and ZTL restricted zones on the Amalfi Coast: Positano, Amalfi, Ravello, Sorrento. Where to park and how to reach the villages stress-free."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/parcheggi-hero.jpg" alt="Sorrento, Sorrentine Peninsula" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/en-us/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-white/60">Travel Guide</span>
+        <span>/</span>
+        <span class="text-white">Parking & ZTL</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Travel Guide</p>
+        <h1 class="font-serif text-display text-white mb-4">Parking & ZTL Zones</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          The Amalfi Coast in summer is a nightmare for drivers: ZTL restrictions everywhere, narrow roads and expensive parking. Main advice: leave the car and use public transport. Here's how.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <section class="max-w-text">
+      <div class="bg-red-50 border border-red-200 rounded-[2rem] p-6 mb-8">
+        <p class="font-semibold text-red-800 mb-2">⚠️ ZTL Warning</p>
+        <p class="text-sm text-red-700">ZTL (Limited Traffic Zones) on the Amalfi Coast are monitored by cameras. Entering without authorisation results in a fine of €80–160 sent directly to your rental company or home address. This is enforced seriously.</p>
+      </div>
+      <p class="text-xl leading-relaxed text-charcoal">
+        The best strategy for visiting the Coast by car is the "strategic parking" approach: leave the car at an accessible point (Salerno, Vietri, Sorrento or Praiano) and use buses, ferries or hydrofoils from there.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">ZTL and parking for each village</h2>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-med-blue/5 text-charcoal">
+              <th class="text-left px-4 py-3 font-semibold">Village</th>
+              <th class="text-left px-4 py-3 font-semibold">ZTL</th>
+              <th class="text-left px-4 py-3 font-semibold">Period</th>
+              <th class="text-left px-4 py-3 font-semibold">Advice</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {ztlData.map(r => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-4 py-3 font-semibold text-charcoal">{r.location}</td>
+                <td class="px-4 py-3">
+                  {r.ztl === 'Yes'
+                    ? <span class="text-[10px] bg-red-50 text-red-600 px-2 py-0.5 rounded-full font-medium">Yes</span>
+                    : <span class="text-[10px] bg-med-blue/5 text-med-blue px-2 py-0.5 rounded-full font-medium">No</span>
+                  }
+                </td>
+                <td class="px-4 py-3 text-slate-500">{r.period}</td>
+                <td class="px-4 py-3 text-slate-600 text-xs">{r.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">The 3 best strategies</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {[
+          { title: 'Base in Salerno', desc: 'Free or low-cost parking in Salerno (Piazza della Concordia, ~€5/day). Then Travelmar ferry to Amalfi, Positano and Capri. Ideal from April to October.', badge: 'Budget-friendly' },
+          { title: 'Base in Sorrento', desc: 'Garage Achille Lauro or EAV car park (~€2–3/h, ~€15/day). From Sorrento: hydrofoil to Capri (25 min), SITA bus to Positano (50 min), Circumvesuviana to Naples (70 min).', badge: 'Versatile' },
+          { title: 'Base in Praiano', desc: 'Praiano has no ZTL and has available parking. Great central position on the SS163: 15 min from Positano and 25 min from Amalfi by bus. Fewer amenities but great value.', badge: 'Central' },
+        ].map(s => (
+          <div class="bg-med-cream rounded-[2rem] p-6 border border-slate-100">
+            <span class="text-[10px] uppercase tracking-wide bg-med-blue/5 text-med-blue px-2 py-1 rounded-full font-medium">{s.badge}</span>
+            <h3 class="font-semibold text-charcoal mt-3 mb-2">{s.title}</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Frequently asked questions</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>
