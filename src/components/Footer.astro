@@ -1,5 +1,5 @@
 ---
-import { getTranslations, getLocalePath } from '../i18n/translations';
+import { getTranslations } from '../i18n/translations';
 import type { Locale } from '../i18n/translations';
 
 interface Props {
@@ -9,28 +9,150 @@ interface Props {
 const { lang } = Astro.props;
 const t = getTranslations(lang);
 
-const navLinks = [
-  { key: 'destinations', label: t.nav.destinations },
-  { key: 'beaches', label: t.nav.beaches },
-  { key: 'itineraries', label: t.nav.itineraries },
-  { key: 'getting-here', label: t.nav.getting_here },
-  { key: 'when-to-visit', label: t.nav.when_to_visit },
-];
+/* ── Town base paths per locale ── */
+const townBase: Record<Locale, string> = {
+  'it-it': '/it-it/costiera-amalfitana',
+  'en-us': '/en-us/amalfi-coast',
+  'en-gb': '/en-gb/amalfi-coast',
+  'de-de': '/de-de/amalfikueste',
+  'fr-fr': '/fr-fr/cote-amalfitaine',
+  'es-es': '/es-es/costa-amalfitana',
+};
+
+const towns = ['positano', 'amalfi', 'ravello', 'praiano', 'maiori', 'minori'];
+const townLabels = ['Positano', 'Amalfi', 'Ravello', 'Praiano', 'Maiori', 'Minori'];
+
+/* ── Section headings per locale ── */
+type SectionKeys = 'territori' | 'guida' | 'esperienze' | 'eventi';
+const sectionHeadings: Record<Locale, Record<SectionKeys, string>> = {
+  'it-it': { territori: 'Territori', guida: 'Guida Pratica', esperienze: 'Esperienze', eventi: 'Eventi 2026' },
+  'en-us': { territori: 'Destinations', guida: 'Practical Guide', esperienze: 'Experiences', eventi: 'Events 2026' },
+  'en-gb': { territori: 'Destinations', guida: 'Practical Guide', esperienze: 'Experiences', eventi: 'Events 2026' },
+  'de-de': { territori: 'Orte', guida: 'Praktischer Ratgeber', esperienze: 'Erlebnisse', eventi: 'Veranstaltungen 2026' },
+  'fr-fr': { territori: 'Destinations', guida: 'Guide Pratique', esperienze: 'Expériences', eventi: 'Événements 2026' },
+  'es-es': { territori: 'Destinos', guida: 'Guía Práctica', esperienze: 'Experiencias', eventi: 'Eventos 2026' },
+};
+
+/* ── Guida Pratica links per locale ── */
+type GuidaKeys = 'ferries' | 'bus' | 'parking' | 'beaches' | 'trekking';
+const guidaLinks: Record<Locale, Record<GuidaKeys, { label: string; href: string }>> = {
+  'it-it': {
+    ferries:  { label: 'Traghetti 2025',    href: '/it-it/guida/traghetti/' },
+    bus:      { label: 'Bus SITA',          href: '/it-it/guida/bus-sita/' },
+    parking:  { label: 'Parcheggi',         href: '/it-it/guida/parcheggi-ztl/' },
+    beaches:  { label: 'Spiagge Libere',    href: '/it-it/spiagge/' },
+    trekking: { label: 'Sentieri Trekking', href: '/it-it/esperienze/trekking/' },
+  },
+  'en-us': {
+    ferries:  { label: 'Ferries 2025',   href: '/en-us/guide/ferries/' },
+    bus:      { label: 'SITA Bus',       href: '/en-us/guide/sita-bus/' },
+    parking:  { label: 'Parking & ZTL',  href: '/en-us/guide/parking-ztl/' },
+    beaches:  { label: 'Free Beaches',   href: '/en-us/beaches' },
+    trekking: { label: 'Hiking Trails',  href: '/en-us/experiences/trekking/' },
+  },
+  'en-gb': {
+    ferries:  { label: 'Ferries 2025',   href: '/en-gb/guide/ferries/' },
+    bus:      { label: 'SITA Bus',       href: '/en-gb/guide/sita-bus/' },
+    parking:  { label: 'Parking & ZTL',  href: '/en-gb/guide/parking-ztl/' },
+    beaches:  { label: 'Free Beaches',   href: '/en-gb/beaches' },
+    trekking: { label: 'Hiking Trails',  href: '/en-gb/experiences/trekking/' },
+  },
+  'de-de': {
+    ferries:  { label: 'Fähren 2025',    href: '/de-de/ratgeber/faehren/' },
+    bus:      { label: 'SITA Bus',       href: '/de-de/ratgeber/sita-bus/' },
+    parking:  { label: 'Parken & ZTL',   href: '/de-de/ratgeber/parken-ztl/' },
+    beaches:  { label: 'Freie Strände',  href: '/de-de/strande' },
+    trekking: { label: 'Wanderwege',     href: '#' },
+  },
+  'fr-fr': {
+    ferries:  { label: 'Ferries 2025',    href: '/fr-fr/guide/ferries/' },
+    bus:      { label: 'Bus SITA',        href: '/fr-fr/guide/bus-sita/' },
+    parking:  { label: 'Parking & ZTL',   href: '/fr-fr/guide/parking-ztl/' },
+    beaches:  { label: 'Plages Libres',   href: '/fr-fr/plages' },
+    trekking: { label: 'Randonnées',      href: '#' },
+  },
+  'es-es': {
+    ferries:  { label: 'Ferries 2025',        href: '/es-es/guia/ferries/' },
+    bus:      { label: 'Bus SITA',            href: '/es-es/guia/bus-sita/' },
+    parking:  { label: 'Aparcamiento & ZTL',  href: '/es-es/guia/aparcamiento-ztl/' },
+    beaches:  { label: 'Playas Libres',       href: '/es-es/playas' },
+    trekking: { label: 'Rutas de Senderismo', href: '#' },
+  },
+};
+
+/* ── Esperienze links (per locale labels, hrefs TBD) ── */
+type EsperienzeKeys = 'cooking' | 'weddings' | 'restaurants' | 'limoncello' | 'mozzarella';
+const esperienzeLabels: Record<Locale, Record<EsperienzeKeys, string>> = {
+  'it-it': { cooking: 'Cooking Class', weddings: 'Matrimoni', restaurants: 'Ristoranti Stellati', limoncello: 'Limoncello Tour', mozzarella: 'Mozzarella Experience' },
+  'en-us': { cooking: 'Cooking Class', weddings: 'Weddings', restaurants: 'Michelin Restaurants', limoncello: 'Limoncello Tour', mozzarella: 'Mozzarella Experience' },
+  'en-gb': { cooking: 'Cooking Class', weddings: 'Weddings', restaurants: 'Michelin Restaurants', limoncello: 'Limoncello Tour', mozzarella: 'Mozzarella Experience' },
+  'de-de': { cooking: 'Kochkurs', weddings: 'Hochzeiten', restaurants: 'Sterne-Restaurants', limoncello: 'Limoncello Tour', mozzarella: 'Mozzarella Erlebnis' },
+  'fr-fr': { cooking: 'Cours de Cuisine', weddings: 'Mariages', restaurants: 'Restaurants Étoilés', limoncello: 'Tour Limoncello', mozzarella: 'Atelier Mozzarella' },
+  'es-es': { cooking: 'Clase de Cocina', weddings: 'Bodas', restaurants: 'Restaurantes Estrella', limoncello: 'Tour del Limoncello', mozzarella: 'Experiencia Mozzarella' },
+};
+
+/* ── Eventi 2026 links per locale ── */
+type EventiKeys = 'ravello' | 'regata' | 'capodanno' | 'sagra';
+const eventiLinks: Record<Locale, Record<EventiKeys, { label: string; href: string }>> = {
+  'it-it': {
+    ravello:   { label: 'Ravello Festival',    href: '/it-it/eventi/costiera-amalfitana/ravello-festival/' },
+    regata:    { label: 'Regata Storica',      href: '#' },
+    capodanno: { label: 'Capodanno Bizantino', href: '#' },
+    sagra:     { label: 'Sagra del Pesce',     href: '/it-it/eventi/costiera-amalfitana/sagra-del-pesce-positano/' },
+  },
+  'en-us': {
+    ravello:   { label: 'Ravello Festival',   href: '/en-us/events/amalfi-coast/ravello-festival/' },
+    regata:    { label: 'Historic Regatta',   href: '#' },
+    capodanno: { label: 'Byzantine New Year', href: '#' },
+    sagra:     { label: 'Fish Festival',      href: '/en-us/events/amalfi-coast/sagra-del-pesce-positano/' },
+  },
+  'en-gb': {
+    ravello:   { label: 'Ravello Festival',   href: '/en-gb/events/amalfi-coast/ravello-festival/' },
+    regata:    { label: 'Historic Regatta',   href: '#' },
+    capodanno: { label: 'Byzantine New Year', href: '#' },
+    sagra:     { label: 'Fish Festival',      href: '#' },
+  },
+  'de-de': {
+    ravello:   { label: 'Ravello Festival',        href: '#' },
+    regata:    { label: 'Historische Regatta',     href: '#' },
+    capodanno: { label: 'Byzantinisches Neujahr',  href: '#' },
+    sagra:     { label: 'Fischfest',               href: '#' },
+  },
+  'fr-fr': {
+    ravello:   { label: 'Festival de Ravello',  href: '#' },
+    regata:    { label: 'Régate Historique',    href: '#' },
+    capodanno: { label: 'Nouvel An Byzantin',   href: '#' },
+    sagra:     { label: 'Fête du Poisson',      href: '#' },
+  },
+  'es-es': {
+    ravello:   { label: 'Festival de Ravello',  href: '#' },
+    regata:    { label: 'Regata Histórica',     href: '#' },
+    capodanno: { label: 'Año Nuevo Bizantino',  href: '#' },
+    sagra:     { label: 'Fiesta del Pescado',   href: '#' },
+  },
+};
+
+const h = sectionHeadings[lang];
+const guida = Object.values(guidaLinks[lang]);
+const esperienze = Object.values(esperienzeLabels[lang]);
+const eventi = Object.values(eventiLinks[lang]);
+const base = townBase[lang];
 ---
 
 <footer class="bg-slate-900 border-t border-white/5 text-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
-      <!-- About -->
-      <div>
-        <div class="mb-6">
-          <img src="/logo-footer.svg" alt="Amalfi Coast Travel Guide" class="h-10 w-auto" />
+    <!-- Top grid: brand + 4 link columns -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-8">
+
+      <!-- Brand -->
+      <div class="col-span-2 md:col-span-3 lg:col-span-1">
+        <div class="mb-5">
+          <img src="/logo-footer.svg" alt="Amalfi Coast Travel Guide" class="h-9 w-auto" />
         </div>
         <p class="text-white/40 text-sm leading-relaxed">{t.footer.about_text}</p>
         <p class="mt-4 text-white/20 text-xs italic">{t.footer.tagline}</p>
-        <!-- Social icons -->
-        <div class="flex items-center gap-4 mt-6">
+        <div class="flex items-center gap-4 mt-5">
           <a href="#" aria-label="Instagram" class="text-white/40 hover:text-med-gold transition-colors">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
@@ -46,16 +168,27 @@ const navLinks = [
         </div>
       </div>
 
-      <!-- Quick Links -->
+      <!-- Territori -->
       <div>
-        <h3 class="font-serif font-bold text-white mb-6">{t.footer.quick_links}</h3>
-        <ul class="space-y-3">
-          {navLinks.map(link => (
+        <h3 class="font-serif font-bold text-white/90 text-sm uppercase tracking-[0.15em] mb-5">{h.territori}</h3>
+        <ul class="space-y-2.5">
+          {towns.map((slug, i) => (
             <li>
-              <a
-                href={getLocalePath(lang, link.key)}
-                class="text-white/40 hover:text-med-gold text-sm transition-colors"
-              >
+              <a href={`${base}/${slug}/`} class="text-white/45 hover:text-med-gold text-sm transition-colors">
+                {townLabels[i]}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Guida Pratica -->
+      <div>
+        <h3 class="font-serif font-bold text-white/90 text-sm uppercase tracking-[0.15em] mb-5">{h.guida}</h3>
+        <ul class="space-y-2.5">
+          {guida.map(link => (
+            <li>
+              <a href={link.href} class="text-white/45 hover:text-med-gold text-sm transition-colors">
                 {link.label}
               </a>
             </li>
@@ -63,19 +196,44 @@ const navLinks = [
         </ul>
       </div>
 
-      <!-- Contact -->
+      <!-- Esperienze -->
       <div>
-        <div class="mt-0 space-y-2">
-          <p class="text-white/20 text-xs uppercase tracking-[0.2em]">UNESCO World Heritage Site</p>
-          <p class="text-white/20 text-xs uppercase tracking-[0.2em]">Campania, Southern Italy</p>
-        </div>
+        <h3 class="font-serif font-bold text-white/90 text-sm uppercase tracking-[0.15em] mb-5">{h.esperienze}</h3>
+        <ul class="space-y-2.5">
+          {esperienze.map(label => (
+            <li>
+              <a href="#" class="text-white/45 hover:text-med-gold text-sm transition-colors">
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Eventi 2026 -->
+      <div>
+        <h3 class="font-serif font-bold text-white/90 text-sm uppercase tracking-[0.15em] mb-5">{h.eventi}</h3>
+        <ul class="space-y-2.5">
+          {eventi.map(link => (
+            <li>
+              <a href={link.href} class="text-white/45 hover:text-med-gold text-sm transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
     </div>
 
-    <div class="border-t border-white/5 mt-16 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <!-- Bottom bar -->
+    <div class="border-t border-white/5 mt-14 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p class="text-white/20 text-[10px] uppercase tracking-[0.3em]">{t.footer.copyright}</p>
-      <p class="text-white/20 text-[10px] uppercase tracking-[0.3em]">Mediterranean Luxury Travel Guide</p>
+      <div class="flex items-center gap-6">
+        <p class="text-white/20 text-[10px] uppercase tracking-[0.3em]">UNESCO World Heritage Site</p>
+        <p class="text-white/20 text-[10px] uppercase tracking-[0.3em]">Campania, Southern Italy</p>
+      </div>
     </div>
+
   </div>
 </footer>
