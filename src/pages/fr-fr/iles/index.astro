@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Îles', url: '/fr-fr/iles/' },
+];
+
+const islands = [
+  {
+    name: 'Capri',
+    href: '/fr-fr/iles/capri/',
+    desc: 'La Grotte Bleue, les Faraglioni et la glamoureuse Piazzetta : l\'île la plus emblématique du golfe de Naples.',
+    tag: 'La plus iconique',
+    facts: ['40 min de Naples', 'Pas de voitures privées', 'Grotte Bleue'],
+  },
+  {
+    name: 'Ischia',
+    href: '/fr-fr/iles/ischia/',
+    desc: 'L\'île verte du golfe : parcs thermaux naturels, le Château Aragonais, plages volcaniques et le Monte Epomeo à 789 m.',
+    tag: 'Thermes & Nature',
+    facts: ['50 min de Naples', '100+ sources thermales', 'Château Aragonais'],
+  },
+  {
+    name: 'Procida',
+    href: '/fr-fr/iles/procida/',
+    desc: 'La plus petite et la plus authentique : maisons colorées à Marina Corricella, Capitale italienne de la Culture 2022.',
+    tag: 'La plus authentique',
+    facts: ['15 min de Pozzuoli', 'Capitale de la Culture 2022', "L'île du Facteur"],
+  },
+];
+
+const destinationSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  "name": "Îles du golfe de Naples",
+  "description": "Capri, Ischia et Procida : les trois îles du golfe de Naples, accessibles en ferry depuis Naples, Pozzuoli et Sorrente.",
+  "url": "https://amalficoast-travel.com/fr-fr/iles/",
+  "touristType": ["Mer", "Culture", "Thermes", "Nature"],
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.5500,
+    "longitude": 14.1000
+  }
+};
+---
+
+<BaseLayout
+  title="Îles du golfe de Naples 2026 : Capri, Ischia & Procida"
+  description="Guide des îles du golfe de Naples : Capri, Ischia et Procida. Comment y aller, que voir, quand y aller. Tout pour planifier votre excursion ou séjour insulaire."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[destinationSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative bg-charcoal py-24 md:py-32 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-med-blue/80 via-charcoal to-charcoal"></div>
+    <div class="relative z-10 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-white/50 text-xs mb-8">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white/80">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-4">Golfe de Naples</p>
+      <h1 class="font-serif text-display text-white mb-6 max-w-3xl">Les Îles du golfe de Naples</h1>
+      <p class="text-xl text-white/70 leading-relaxed max-w-2xl">
+        Trois îles, trois caractères radicalement différents. Capri pour le glamour et les panoramas iconiques. Ischia pour les thermes volcaniques et la nature sauvage. Procida pour l'authenticité et l'Italie que les touristes trouvent rarement. Toutes accessibles en ferry ou hydroglisseur en moins d'une heure.
+      </p>
+    </div>
+    <div class="absolute top-0 right-0 w-96 h-96 bg-med-gold/5 rounded-full blur-3xl pointer-events-none"></div>
+  </section>
+
+  <!-- Island Cards -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="grid md:grid-cols-3 gap-8">
+      {islands.map(({ name, href, desc, tag, facts }) => (
+        <a href={href} class="group block bg-white rounded-[3rem] border border-slate-100 p-8 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">{tag}</p>
+          <h2 class="font-serif text-3xl font-bold text-charcoal mb-3 group-hover:text-med-blue transition-colors">{name}</h2>
+          <p class="text-slate-600 leading-relaxed text-sm mb-6">{desc}</p>
+          <ul class="space-y-2 mb-6">
+            {facts.map(fact => (
+              <li class="flex items-center gap-2 text-xs text-slate-500">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>
+                {fact}
+              </li>
+            ))}
+          </ul>
+          <span class="inline-flex items-center gap-1.5 text-med-blue text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-2.5 transition-all">
+            Découvrir {name}
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Comparison -->
+  <section class="bg-slate-50 py-20">
+    <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mb-4">Quelle île vous correspond ?</h2>
+      <p class="text-slate-500 mb-10 max-w-2xl leading-relaxed">Chaque île a une personnalité distincte. Un comparatif rapide pour vous aider à choisir.</p>
+
+      <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-slate-50 border-b border-slate-200">
+              <th class="text-left px-6 py-4 font-semibold text-charcoal">Caractéristique</th>
+              <th class="text-left px-6 py-4 font-semibold text-charcoal">Capri</th>
+              <th class="text-left px-6 py-4 font-semibold text-charcoal">Ischia</th>
+              <th class="text-left px-6 py-4 font-semibold text-charcoal">Procida</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {[
+              ['Superficie', '10,4 km²', '46,3 km²', '4,1 km²'],
+              ['Affluence', 'Très élevée en été', 'Modérée', 'Faible à modérée'],
+              ['Niveau de prix', '€€€€', '€€–€€€', '€–€€'],
+              ['Idéal pour', 'Glamour, panoramas, excursion', 'Séjour 2–3 j, thermes', 'Authenticité, excursion'],
+              ['Plages', 'Rochers & galets', 'Sable volcanique noir', 'Sable noir & clair'],
+              ['Voiture ?', 'Non (résidents seulement)', 'Oui', 'Scooters & petites voitures'],
+              ['Depuis Naples', '~40 min hydroglisseur', '~50 min hydroglisseur', '~35 min hydroglisseur'],
+              ['Port le plus proche', 'Sorrente (25 min)', 'Pozzuoli (35 min)', 'Pozzuoli (15 min)'],
+            ].map(([feature, capri, ischia, procida]) => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-6 py-3 font-medium text-charcoal">{feature}</td>
+                <td class="px-6 py-3 text-slate-600">{capri}</td>
+                <td class="px-6 py-3 text-slate-600">{ischia}</td>
+                <td class="px-6 py-3 text-slate-600">{procida}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Getting There -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="bg-charcoal rounded-[3rem] p-10 md:p-14 text-white relative overflow-hidden">
+      <div class="relative z-10">
+        <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-4">Rejoindre les îles</p>
+        <h2 class="font-serif text-3xl font-bold text-white mb-6 tracking-tight">Toutes les îles en ferry ou hydroglisseur</h2>
+        <p class="text-white/60 mb-10 leading-relaxed max-w-2xl">Pas de pont, pas d'aéroport. Le seul moyen d'atteindre les îles du golfe est la mer — ce qui fait partie de l'expérience. Les principaux points de départ sont Naples Molo Beverello et Pozzuoli. Sorrente ne dessert que Capri.</p>
+        <div class="grid sm:grid-cols-3 gap-6 mb-10">
+          {[
+            { from: 'Naples → Capri', time: '~40 min', note: 'Hydroglisseur, toute l\'année' },
+            { from: 'Naples → Ischia', time: '~50 min', note: 'Hydroglisseur, toute l\'année' },
+            { from: 'Pozzuoli → Procida', time: '~15 min', note: 'Ferry, toute l\'année' },
+          ].map(({ from, time, note }) => (
+            <div class="bg-white/5 rounded-2xl p-5 border border-white/10">
+              <p class="text-white/50 text-xs mb-1">{from}</p>
+              <p class="font-serif text-2xl font-bold text-med-gold">{time}</p>
+              <p class="text-white/40 text-xs mt-1">{note}</p>
+            </div>
+          ))}
+        </div>
+        <a href="/fr-fr/guide/ferries/" class="inline-flex items-center gap-2 text-med-gold font-bold text-xs uppercase tracking-[0.3em] hover:underline">
+          Guide complet des ferries avec horaires
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+    </div>
+  </section>
+
+</BaseLayout>

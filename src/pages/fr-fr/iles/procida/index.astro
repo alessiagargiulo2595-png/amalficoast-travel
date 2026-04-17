@@ -1,0 +1,400 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Îles', url: '/fr-fr/iles/' },
+  { name: 'Procida', url: '/fr-fr/iles/procida/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment aller de Naples à Procida ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Depuis Naples Molo Beverello, des hydroglisseurs partent pour Procida (~35 min, SNAV/Caremar). Depuis Pozzuoli, les ferries Caremar prennent ~15 min et sont la liaison la moins chère et la plus fréquente. En été, les traversées quotidiennes sont très nombreuses." }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi Procida est-elle devenue célèbre ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Procida a toujours été aimée des artistes : Elsa Morante a situé son roman 'L'Île d'Arturo' (1957) ici, Massimo Troisi a tourné 'Le Facteur' (Il Postino, 1994) sur l'île. La notoriété internationale a explosé en 2022 quand elle a été nommée Capitale italienne de la Culture." }
+    },
+    {
+      "@type": "Question",
+      "name": "Marina Corricella vaut-elle le détour ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui, Marina Corricella est l'un des villages de pêcheurs les plus beaux et les plus photographiés d'Italie : maisons multicolores en jaune, orange, rose et bleu directement face à la mer, sans route pour les voitures. Accessible à pied en 15 minutes depuis Marina Grande. Le coucher de soleil depuis là est inoubliable." }
+    },
+    {
+      "@type": "Question",
+      "name": "Procida convient-elle pour une excursion à la journée ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui, Procida est petite (4,1 km²) et peut confortablement être explorée en une journée. En un jour, on peut visiter Marina Grande, Marina Corricella, Terra Murata, la Spiaggia del Pozzo Vecchio et La Chiaiolella. Les ferries depuis Pozzuoli permettent de partir le matin et de rentrer le soir." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelle est la plus belle plage de Procida ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La Spiaggia del Pozzo Vecchio (connue comme 'la plage de l'Île d'Arturo' d'après le film) est la plus célèbre et la plus évocatrice. La Chiaiolella est la plus grande et la mieux équipée. La Spiaggia di Ciraccio est la plus tranquille. Toutes les plages de Procida ont une eau très claire grâce à la position ouverte de l'île." }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Situation',         dd: 'Golfe de Naples, NA' },
+  { dt: 'Superficie',        dd: '4,1 km²' },
+  { dt: 'Population',        dd: '~10 000 habitants' },
+  { dt: 'Capitale de la Culture', dd: '2022' },
+  { dt: 'Depuis Naples',     dd: '~35 min (hydroglisseur)' },
+  { dt: 'Depuis Pozzuoli',   dd: '~15 min (ferry)' },
+  { dt: 'Plages',            dd: 'Sable noir et clair' },
+  { dt: 'Meilleure période', dd: 'Mai–Jun / Sep–Oct' },
+  { dt: 'Monnaie',           dd: 'Euro (€)' },
+];
+
+const tips = [
+  "Prendre le ferry depuis Pozzuoli plutôt que Naples : moins cher, plus rapide et moins fréquenté.",
+  "Louer un vélo ou un scooter : Procida est petite mais marcher partout en pleine chaleur estivale est fatigant.",
+  "Visiter Marina Corricella vers le coucher du soleil : le jeu de lumière sur les maisons colorées est extraordinaire.",
+  "Commander les langoustines (scampi) : Procida est célèbre pour ses langoustines — tout restaurant de l'île en a de fraîches.",
+];
+---
+
+<BaseLayout
+  title="Procida 2026 : Guide Complet | Marina Corricella & L'Île du Facteur"
+  description="Guide complet de Procida : Marina Corricella, Terra Murata, Spiaggia del Pozzo Vecchio. Comment y aller depuis Naples et Pozzuoli, horaires des ferries, que voir."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div>
+    <img src="/images/procida-hero.jpg" alt="Procida, golfe de Naples" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Île · Golfe de Naples · Capitale italienne de la Culture 2022</p>
+        <h1 class="font-serif text-display text-white mb-4">Procida</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La plus petite, la plus authentique et — beaucoup le diraient — la plus belle île du golfe de Naples. Procida n'a pas d'hôtels de luxe, pas de boutiques de créateurs, pas de grottes célèbres. Ce qu'elle a est plus rare : une vraie communauté de pêcheurs, une palette de couleurs pastel qui semble impossible, et un rythme de vie qui n'a pas changé depuis des siècles.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#infos-pratiques" class="px-5 py-2.5 bg-med-gold text-white text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">
+            Infos pratiques
+          </a>
+          <a href="#comment-venir" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            Comment y aller
+          </a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            FAQ
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Grid -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <!-- Intro -->
+        <div>
+          <p class="text-xl leading-relaxed text-charcoal">
+            Si Capri est l'île des célébrités et Ischia l'île du bien-être, Procida est l'île de l'âme. Avec seulement 4 km², c'est la plus petite île habitée d'Italie — et l'une des plus émouvantes. L'écrivaine Elsa Morante en a fait le décor de son chef-d'œuvre <em>L'Île d'Arturo</em> (1957). Massimo Troisi y a tourné son dernier rôle dans <em>Le Facteur</em> (1994). En 2022, elle a été nommée Capitale italienne de la Culture.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Ce qui rend Procida spéciale, c'est précisément ce qui lui manque : pas d'infrastructure touristique de masse, pas de foules d'excursionnistes de paquebots, pas de chaînes hôtelières internationales. L'île fonctionne à son propre rythme — les bateaux de pêche aux langoustines partent à l'aube, les enfants jouent dans les ruelles de Terra Murata, et les bars ferment quand le dernier pêcheur rentre chez lui.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Le saviez-vous ?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">4,1 km²</p>
+              <p class="text-white/60 text-xs italic mt-1">la plus petite île habitée d'Italie</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1994</p>
+              <p class="text-white/60 text-xs italic mt-1">Il Postino tourné ici, Oscar de la meilleure musique</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">2022</p>
+              <p class="text-white/60 text-xs italic mt-1">Capitale italienne de la Culture</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Les langoustines de Procida (scampi di Procida) sont considérées parmi les meilleures d'Italie. Les pêcheurs locaux sortent encore en mer chaque matin — chercher les restaurants servant des "gamberi di paranza" directement issus de la pêche du matin.
+          </p>
+        </div>
+
+        <!-- What to See -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Que voir à Procida</h2>
+          <div class="space-y-8">
+            {[
+              {
+                n: 1,
+                title: 'Marina Corricella',
+                text: "Le plus beau village de pêcheurs de Méditerranée : maisons en jaune, orange, rose, bleu et blanc empilées sur une colline, toutes face à la mer, sans route pour les véhicules. Accessible à pied en 15 minutes depuis Marina Grande. Bateaux, filets de pêche, chats. Rester pour le coucher du soleil.",
+              },
+              {
+                n: 2,
+                title: 'Terra Murata',
+                text: "Le village fortifié médiéval au sommet de l'île (91 m), avec l'abbaye de San Michele Arcangelo et des vues panoramiques sur tout le golfe de Naples. Les vieilles maisons à l'intérieur des remparts sont en partie abandonnées, en partie habitées — un endroit d'une atmosphère unique. Visite gratuite.",
+              },
+              {
+                n: 3,
+                title: 'Spiaggia del Pozzo Vecchio',
+                text: "Connue comme 'la plage de l'Île d'Arturo' d'après le roman d'Elsa Morante et le film. Une petite crique photogénique au sable sombre, à l'eau claire et avec une grotte naturelle. Moins fréquentée que La Chiaiolella. Accessible à pied depuis Marina Grande en 20 minutes.",
+              },
+              {
+                n: 4,
+                title: 'La Chiaiolella',
+                text: "La plus grande plage et la mieux équipée de Procida, à l'extrémité ouest de l'île. En forme de croissant, avec du sable clair et une eau peu profonde et chaude, idéale pour les familles. Location de bateaux disponible. Le village de Chiaiolella à proximité a d'excellents restaurants et une atmosphère animée le soir.",
+              },
+              {
+                n: 5,
+                title: 'Abbaye de San Michele Arcangelo',
+                text: "Le cœur spirituel de l'île, fondée au XIe siècle et reconstruite plusieurs fois. Abrite une collection de peintures d'artistes locaux, un plafond peint du XVIIe siècle et des catacombes. La vue depuis la terrasse sur Terra Murata et la mer en contrebas est extraordinaire. Entrée ~3 €.",
+              },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- How to Get Here -->
+        <div id="comment-venir" class="bg-charcoal rounded-[3rem] p-10 md:p-14 text-white relative overflow-hidden">
+          <div class="relative z-10">
+            <h2 class="font-serif text-3xl font-bold text-white mb-3 tracking-tight">Comment aller à Procida</h2>
+            <p class="text-white/60 mb-10 leading-relaxed">Procida est l'île la plus proche du continent. L'option la plus rapide est le ferry depuis Pozzuoli (15 min). Depuis Naples Beverello, les hydroglisseurs prennent environ 35 minutes.</p>
+            <div class="grid sm:grid-cols-2 gap-8 mb-10">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18M8 11V7a4 4 0 018 0v4"/></svg>
+                </div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Depuis Pozzuoli</h3><p class="text-white/50 text-sm leading-relaxed">Ferry Caremar ~15 min. L'option la moins chère et la plus pratique — prendre la ligne 2 du métro de Naples jusqu'à Pozzuoli Solfatara, puis 10 min à pied jusqu'au port.</p></div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="M3 10h18M8 19v2M16 19v2"/></svg>
+                </div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Depuis Naples</h3><p class="text-white/50 text-sm leading-relaxed">Hydroglisseur ~35 min (SNAV, Caremar) depuis Molo Beverello. Plusieurs départs quotidiens. Légèrement plus cher que Pozzuoli mais plus pratique depuis le centre-ville.</p></div>
+              </div>
+            </div>
+            <a href="/fr-fr/guide/ferries/" class="inline-flex items-center gap-2 text-med-gold font-bold text-xs uppercase tracking-[0.3em] hover:underline">
+              Guide complet des ferries
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- Ferry Schedules -->
+        <div>
+          <h3 class="font-semibold text-charcoal text-xl mb-4">Horaires des ferries — Été 2026</h3>
+          <p class="text-sm text-slate-500 mb-4">Services toute l'année. En été, départs très fréquents depuis Pozzuoli et Naples. Vérifier sur caremar.it.</p>
+
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 mb-6">
+            <table class="w-full text-sm">
+              <caption class="text-left text-xs text-slate-500 px-4 py-2 bg-slate-50 rounded-t-2xl border-b border-slate-200 font-medium">
+                Ferry — Pozzuoli → Marina Grande, Procida (Caremar, ~15 min)
+              </caption>
+              <thead>
+                <tr class="bg-med-blue/5 text-charcoal">
+                  <th class="text-left px-4 py-3 font-semibold">Départ Pozzuoli</th>
+                  <th class="text-left px-4 py-3 font-semibold">Arrivée Procida</th>
+                  <th class="text-left px-4 py-3 font-semibold">Durée</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                {[
+                  ['06:00', '06:15', '~15 min'],
+                  ['07:30', '07:45', '~15 min'],
+                  ['09:00', '09:15', '~15 min'],
+                  ['11:00', '11:15', '~15 min'],
+                  ['13:30', '13:45', '~15 min'],
+                  ['16:00', '16:15', '~15 min'],
+                  ['18:30', '18:45', '~15 min'],
+                  ['20:00', '20:15', '~15 min'],
+                ].map(([dep, arr, dur]) => (
+                  <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">{dep}</td>
+                    <td class="px-4 py-3 font-mono">{arr}</td>
+                    <td class="px-4 py-3 text-slate-500">{dur}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="overflow-x-auto rounded-2xl border border-slate-200">
+            <table class="w-full text-sm">
+              <caption class="text-left text-xs text-slate-500 px-4 py-2 bg-slate-50 rounded-t-2xl border-b border-slate-200 font-medium">
+                Hydroglisseur — Naples Beverello → Marina Grande, Procida (~35 min)
+              </caption>
+              <thead>
+                <tr class="bg-med-blue/5 text-charcoal">
+                  <th class="text-left px-4 py-3 font-semibold">Départ Naples</th>
+                  <th class="text-left px-4 py-3 font-semibold">Arrivée Procida</th>
+                  <th class="text-left px-4 py-3 font-semibold">Compagnie</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                {[
+                  ['07:00', '07:35', 'SNAV'],
+                  ['09:15', '09:50', 'Caremar'],
+                  ['12:00', '12:35', 'SNAV'],
+                  ['15:00', '15:35', 'Caremar'],
+                  ['18:00', '18:35', 'SNAV'],
+                ].map(([dep, arr, co]) => (
+                  <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">{dep}</td>
+                    <td class="px-4 py-3 font-mono">{arr}</td>
+                    <td class="px-4 py-3 text-slate-500">{co}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-slate-400 mt-2">* Horaires indicatifs pour l'été 2026. Vérifier sur caremar.it et snav.it.</p>
+        </div>
+
+        <!-- Hidden Gems -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-3 tracking-tight">Procida hors des sentiers battus</h2>
+          <p class="text-slate-500 mb-8">Une île aussi authentique ne manque pas de moments cachés.</p>
+          <div class="grid sm:grid-cols-2 gap-6">
+            {[
+              { title: 'Le marché aux poissons le matin', text: "À 7h à Marina Grande, les pêcheurs déchargent leur prise de la nuit. Le marché aux poissons dure environ une heure. Observer la vente des langoustines, des calmars et du poisson frais directement du bateau — une tranche de vie insulaire authentique." },
+              { title: 'Via Vittorio Emanuele au crépuscule', text: "La rue principale de l'île devient une passeggiata à 19h. Les locaux sortent se promener, les enfants jouent, les bars se remplissent. Pas de touristes, pas de selfie. Prendre un Spritz dans un bar local et regarder la communauté à son heure la plus authentique." },
+              { title: 'Spiaggia di Ciraccio', text: "La plage la plus tranquille de l'île, sur la côte nord-ouest. Sable plus sombre, moins de monde même en haute saison, eau magnifique. Accessible en scooter ou à pied en 30 minutes depuis Marina Grande. Parfait pour une baignade matinale avant les foules." },
+              { title: "Palazzo d'Avalos", text: "L'ancien palais royal devenu prison au XVIIIe siècle et fermé seulement en 1988. Le bâtiment sur la presqu'île est encore en partie délabré mais l'extérieur avec ses vues sur la mer est profondément atmosphérique. Des travaux de restauration sont en cours — vérifier si des visites guidées ont repris." },
+            ].map(({ title, text }) => (
+              <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+                <h3 class="font-semibold text-charcoal mb-2">{title}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Local Tip -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20">
+              <svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+            </div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Conseil local</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">Commander les langoustines</h3>
+              <p class="text-white/70 leading-relaxed">Les scampi de Procida (langoustines) sont célèbres dans tout le golfe de Naples. Demander "gamberi di Procida" ou "scampi alla griglia" — tout restaurant de l'île en a. Les crustacés les plus frais et les plus savoureux de toute la côte, à environ un tiers du prix de Capri.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Questions fréquentes sur Procida</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+
+        <div id="infos-pratiques" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Infos pratiques — Procida</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Conseils locaux</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Autres îles</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/fr-fr/iles/capri/', label: 'Capri' },
+              { href: '/fr-fr/iles/ischia/', label: 'Ischia' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explorer aussi"
+    items={[
+      { name: 'Capri',     href: '/fr-fr/iles/capri/',               tag: 'La plus iconique',   desc: 'Grotte Bleue, Faraglioni et la glamoureuse Piazzetta.' },
+      { name: 'Ischia',    href: '/fr-fr/iles/ischia/',              tag: 'Thermes & Nature',   desc: 'Parcs thermaux naturels, le Château Aragonais et le Monte Epomeo.' },
+      { name: 'Positano',  href: '/fr-fr/cote-amalfitaine/positano/', tag: 'Mode & Panoramas',   desc: 'Maisons pastel en cascade vers la mer et la plage la plus célèbre.' },
+      { name: 'Amalfi',    href: '/fr-fr/cote-amalfitaine/amalfi/',   tag: 'Art & Histoire',     desc: 'La Cathédrale, le Cloître du Paradis et les ruelles de la république maritime.' },
+      { name: 'Ravello',   href: '/fr-fr/cote-amalfitaine/ravello/', tag: 'Musique & Jardins',  desc: 'Villa Rufolo, Villa Cimbrone et le Festival de Ravello.' },
+    ]}
+  />
+
+</BaseLayout>
