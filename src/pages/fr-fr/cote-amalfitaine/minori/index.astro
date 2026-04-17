@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Côte Amalfitaine', url: '/fr-fr/cote-amalfitaine/' },
+  { name: 'Minori', url: '/fr-fr/cote-amalfitaine/minori/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Pour quoi Minori est-elle connue ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Minori est connue pour deux choses : sa villa romaine du Ier siècle (l'une des mieux conservées de la côte) et sa tradition de pâtisserie artisanale, notamment les pâtes scialatielli et le gâteau delizia al limone. C'est la plus petite des communes côtières." }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment aller d'Amalfi à Minori ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "En bus SITA depuis Amalfi : environ 10–15 minutes, ~1,30 €. En ferry Travelmar (saisonnier, avril–octobre) : environ 15 minutes. À pied sur le sentier côtier depuis Maiori : environ 40 minutes." }
+    },
+    {
+      "@type": "Question",
+      "name": "La villa romaine de Minori est-elle gratuite ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui, la villa romaine du Ier siècle de Minori est gratuite. Elle se trouve en plein centre du village, sous le niveau de la rue moderne, et est ouverte la plupart des jours de l'année." }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Situation', dd: 'Côte Amalfitaine, SA' },
+  { dt: 'Population', dd: '~2 800 hab.' },
+  { dt: "D'Amalfi", dd: '~10 min (bus SITA)' },
+  { dt: 'De Maiori', dd: '~5 min (bus SITA)' },
+  { dt: 'À voir', dd: 'Villa romaine (Ier s.)' },
+  { dt: 'Idéal pour', dd: 'Gastronomie, histoire' },
+  { dt: 'Meilleure période', dd: 'Avr–Oct' },
+];
+---
+
+<BaseLayout
+  title="Minori 2026 : Guide Complet | Côte Amalfitaine"
+  description="Guide de Minori : la villa romaine du Ier siècle, les pâtes scialatielli, la delizia al limone et comment y aller depuis Amalfi. La tranquille capitale gastronomique de la Côte Amalfitaine."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative min-h-[60vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/minori-hero.jpg" alt="Minori, Côte Amalfitaine" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>{i > 0 && <span>/</span>}{i < breadcrumbs.length - 1 ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a> : <span class="text-white">{b.name}</span>}</>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Côte Amalfitaine · Saveurs & Culture</p>
+        <h1 class="font-serif text-display text-white mb-4">Minori</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La plus petite commune de la Côte Amalfitaine cache sous ses rues une villa romaine du Ier siècle, des pâtisseries artisanales que les habitants de toute la côte viennent visiter, et l'authenticité tranquille que les destinations plus célèbres ont depuis longtemps perdue.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+      <div class="space-y-12">
+
+        <p class="text-xl leading-relaxed text-charcoal">
+          Minori se trouve entre Maiori et Atrani, à seulement 10 minutes de bus d'Amalfi. Le village est assez compact pour être exploré entièrement à pied en une matinée, laissant l'après-midi libre pour manger : la tradition pâtissière y est sérieuse, et les scialatielli — des rubans de pâtes épais et courts, meilleurs avec des fruits de mer — ont été inventés dans ce coin de la côte.
+        </p>
+
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Le saviez-vous ?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">I</p><p class="text-white/60 text-xs italic mt-1">siècle ap. J.-C. : la villa romaine sous le village</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">2 800</p><p class="text-white/60 text-xs italic mt-1">habitants — plus petite commune côtière</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">1978</p><p class="text-white/60 text-xs italic mt-1">invention des scialatielli ici</p></div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Ce qu'il faut voir et goûter</h2>
+          <div class="space-y-6">
+            {[
+              { title: 'Villa romaine du Ier siècle', text: 'Découverte dans les années 1950 sous le centre-ville, c\'est l\'une des villas maritimes romaines les mieux conservées de la côte. Magnifiquement décorée de fresques et de mosaïques. Entrée gratuite, ouverte toute l\'année.' },
+              { title: 'Pâtes scialatielli', text: 'Inventées par le chef Enrico Cosentino à Minori en 1978, les scialatielli sont des rubans de pâtes épais et courts, meilleurs avec des palourdes, des moules et des fruits de mer locaux. À goûter dans l\'une des trattorias traditionnelles du village.' },
+              { title: 'Delizia al limone', text: 'Un gâteau moelleux imbibé de crème au limoncello et recouvert d\'un glaçage à la crème pâtissière citronnée. Les pâtisseries de Minori sont considérées comme les meilleures de toute la côte pour ce dessert classique.' },
+              { title: 'Gole di Sant\'Elia', text: 'Une courte promenade dans les gorges (environ 1,5 km) depuis le centre du village, suivant le torrent Regina dans une vallée luxuriante et ombragée. Gratuit et facile ; aucun équipement technique nécessaire.' },
+            ].map(({ title, text }) => (
+              <div class="border-l-2 border-med-blue/20 pl-5">
+                <h3 class="font-semibold text-charcoal mb-1">{title}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Comment y aller</h2>
+          <div class="overflow-x-auto rounded-2xl border border-slate-200">
+            <table class="w-full text-sm">
+              <thead><tr class="bg-med-blue/5 text-charcoal"><th class="text-left px-4 py-3 font-semibold">Transport</th><th class="text-left px-4 py-3 font-semibold">Depuis</th><th class="text-left px-4 py-3 font-semibold">Durée</th></tr></thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50 transition-colors"><td class="px-4 py-3 font-medium">Bus SITA</td><td class="px-4 py-3 text-slate-600">Amalfi</td><td class="px-4 py-3 text-slate-500">~10–15 min, ~1,30 €</td></tr>
+                <tr class="hover:bg-slate-50 transition-colors"><td class="px-4 py-3 font-medium">Ferry</td><td class="px-4 py-3 text-slate-600">Salerne (Travelmar)</td><td class="px-4 py-3 text-slate-500">~45 min, saisonnier</td></tr>
+                <tr class="hover:bg-slate-50 transition-colors"><td class="px-4 py-3 font-medium">À pied</td><td class="px-4 py-3 text-slate-600">Maiori</td><td class="px-4 py-3 text-slate-500">~40 min sur le sentier côtier</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Questions fréquentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Infos Pratiques — Minori</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <><div class="flex justify-between items-start gap-3"><dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt><dd class="text-white font-medium text-sm text-right">{dd}</dd></div>{i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}</>
+            ))}
+          </dl>
+        </div>
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Côte Amalfitaine</p>
+          <nav class="space-y-1">
+            {[['positano','Positano'],['amalfi','Amalfi'],['ravello','Ravello'],['praiano','Praiano'],['maiori','Maiori']].map(([s,l]) => (
+              <a href={`/fr-fr/cote-amalfitaine/${s}/`} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors"><span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {l}</a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explorer aussi la côte"
+    items={[
+      { name: 'Maiori',   href: '/fr-fr/cote-amalfitaine/maiori/',   tag: 'Plage & Vie locale', desc: 'La plus longue plage de sable de la côte et une vraie ville animée.' },
+      { name: 'Amalfi',   href: '/fr-fr/cote-amalfitaine/amalfi/',   tag: 'Art & Histoire',     desc: 'La Cathédrale, le Musée du Papier et la République maritime.' },
+      { name: 'Ravello',  href: '/fr-fr/cote-amalfitaine/ravello/',  tag: 'Musique & Jardins',  desc: 'Villa Rufolo, Villa Cimbrone et le Festival de Ravello.' },
+      { name: 'Positano', href: '/fr-fr/cote-amalfitaine/positano/', tag: 'Iconique',            desc: 'Maisons colorées sur la mer et la plage la plus célèbre.' },
+    ]}
+  />
+
+</BaseLayout>

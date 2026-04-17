@@ -1,0 +1,326 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'de-de';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/de-de/' },
+  { name: 'Amalfiküste', url: '/de-de/amalfikueste/' },
+  { name: 'Ravello', url: '/de-de/amalfikueste/ravello/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Ravello",
+  "description": "Ravello ist ein mittelalterliches Bergdorf 350 m über dem Meer, berühmt für die Villa Rufolo, die Villa Cimbrone und das Ravello Festival. Die 'Stadt der Musik' bietet die spektakulärsten Aussichten der gesamten Amalfiküste.",
+  "url": "https://amalficoast-travel.com/de-de/amalfikueste/ravello/",
+  "image": "https://amalficoast-travel.com/images/ravello-hero.jpg",
+  "touristType": ["Kultur", "Musik", "Aussichten", "Gärten"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ravello",
+    "addressRegion": "Salerno",
+    "addressCountry": "IT",
+    "postalCode": "84010"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6492,
+    "longitude": 14.6122
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie kommt man von Amalfi nach Ravello?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Von Amalfi nimmt man den SITA-Bus nach Ravello (ca. 25 Min., ~1,30 €). Busse fahren vom Hafenplatz in Amalfi ab. Mit dem Auto ist die Straße schmal und kurvenreich — der Bus ist die bessere Wahl. Es gibt keinen direkten Fährzugang."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wann findet das Ravello Festival statt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das Ravello Festival findet jedes Jahr von Juni bis September statt, mit Konzerten in der spektakulären Kulisse der Villa Rufolo. Es ist eines der renommiertesten Musikfestivals Italiens. Tickets müssen im Voraus auf ravellofestival.com gekauft werden."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet der Eintritt in die Villa Cimbrone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Eintritt in die Gärten der Villa Cimbrone kostet etwa 7 € pro Erwachsenem. Die Gärten sind ganzjährig von 9:00 Uhr bis Sonnenuntergang geöffnet. Das Belvedere dell'Infinito (Terrasse der Unendlichkeit) ist der meistfotografierte Aussichtspunkt der Küste."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Lohnt sich Ravello auch ohne das Festival?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolut. Die Villa Rufolo und die Villa Cimbrone mit ihren Gärten und Aussichten sind unabhängig vom Festival die Reise wert. Das mittelalterliche Zentrum, die Piazza Vescovado und der Dom sind ebenfalls sehr sehenswert."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist die beste Jahreszeit für einen Besuch in Ravello?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ravello ist das ganze Jahr über schön, aber Mai bis Oktober ist ideal. Im Sommer (Juni–August) finden die Festivalkonzerte statt. Im Frühling und Herbst sind die Gärten in voller Pracht und die Menschenmassen geringer. Im Winter ist das Dorf sehr ruhig und einige Einrichtungen schließen."
+      }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Lage', dd: 'Amalfiküste, SA' },
+  { dt: 'Höhe', dd: '350 m ü. M.' },
+  { dt: 'Einwohner', dd: '~2.500' },
+  { dt: 'Von Amalfi', dd: '~25 Min. (SITA-Bus)' },
+  { dt: 'Verkehr', dd: 'Nur SITA-Bus' },
+  { dt: 'Highlights', dd: 'Villa Rufolo, Villa Cimbrone' },
+  { dt: 'Festival', dd: 'Jun–Sep 2026' },
+  { dt: 'Beste Reisezeit', dd: 'Mai–Okt' },
+];
+---
+
+<BaseLayout
+  title="Ravello 2026: Vollständiger Reiseführer | Amalfiküste"
+  description="Alles über Ravello: Villa Rufolo, Villa Cimbrone, das Ravello Festival 2026, Anreise per Bus von Amalfi. Der vollständige Reiseführer zur Musikstadt über der Amalfiküste."
+  lang={lang}
+  pageKey="ravello"
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, faqSchema]}
+>
+
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div>
+    <img src="/images/ravello-hero.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Amalfiküste · Musik & Gärten</p>
+        <h1 class="font-serif text-display text-white mb-4">Ravello</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          350 Meter über dem Tyrrhenischen Meer blickt Ravello auf die Küste herab wie eine Bühnenkulisse. Wagner komponierte hier. Greta Garbo verbarg sich hier. Und jeden Sommer verwandelt das Ravello Festival die Villa Rufolo in einen Konzertsaal zwischen Himmel und Meer.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-sm font-semibold rounded-full hover:scale-105 transition-all duration-300">Kurzinfos</a>
+          <a href="#how-to-get-here" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">Anreise</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+      <div class="space-y-12">
+
+        <p class="text-xl leading-relaxed text-charcoal">
+          Ravello ist die einzige Stadt an der Amalfiküste ohne direkten Meereszugang — und genau das ist ihr Reiz. Die Aussichten vom Belvedere dell'Infinito der Villa Cimbrone gelten als eine der gefeiertsten der Welt, von Gore Vidal als „die schönsten der Erde" beschrieben.
+        </p>
+
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Wusstest du?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">350 m</p>
+              <p class="text-white/60 text-xs italic mt-1">Höhe über dem Meeresspiegel</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1953</p>
+              <p class="text-white/60 text-xs italic mt-1">Gründungsjahr des Ravello Festivals</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1880</p>
+              <p class="text-white/60 text-xs italic mt-1">Jahr von Wagners Besuch der Villa Rufolo</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Richard Wagner war so bewegt von den Gärten der Villa Rufolo, dass er erklärte, die Inspiration für den Zaubergarten des Klingsor in Parsifal gefunden zu haben. Jedes Jahr wird hier ein Konzert zu seinem Gedenken veranstaltet.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Sehenswürdigkeiten in Ravello</h2>
+          <div class="space-y-6">
+            {[
+              { title: 'Villa Rufolo', text: 'Die Villa aus dem 13. Jahrhundert mit ihren Terrassengärten und dem berühmten Belvedere, von dem aus das Meer weit unten zu sehen ist. Die Bühne der Villa Rufolo ist der Veranstaltungsort der Konzerte des Ravello Festivals. Täglich geöffnet; Eintritt ~7 €.' },
+              { title: 'Villa Cimbrone', text: 'Die romantischste Villa der Küste mit der Terrasse der Unendlichkeit (Belvedere dell\'Infinito), gesäumt von Marmorbrüsten mit Blick auf ein unendliches blaues Meer. Ganzjährig von 9 Uhr bis Sonnenuntergang geöffnet; Eintritt ~7 €.' },
+              { title: 'Dom von Ravello', text: 'Der Dom aus dem 11. Jahrhundert auf der Piazza Vescovado mit einer bemerkenswerten Bronzetür aus dem 12. Jahrhundert. Im Inneren sind zwei Mosaikamben (12.–13. Jh.) einige der schönsten Beispiele mittelalterlicher Steinintarsienarbeit in Süditalien.' },
+              { title: 'SITA-Bus von Amalfi', text: 'Der einfachste und malerischste Weg nach Ravello. Busse fahren vom Hafenplatz in Amalfi etwa alle 40 Minuten ab. Fahrtdauer: ~25 Minuten. Ticket: ~1,30 €.' },
+            ].map(({ title, text }) => (
+              <div class="border-l-2 border-med-blue/20 pl-5">
+                <h3 class="font-semibold text-charcoal mb-1">{title}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div id="how-to-get-here" class="bg-charcoal rounded-[3rem] p-10 text-white">
+          <h2 class="font-serif text-2xl font-bold text-white mb-6">Anreise nach Ravello</h2>
+          <div class="overflow-x-auto rounded-2xl border border-white/10">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-white/5 text-white/70">
+                  <th class="text-left px-4 py-3 font-semibold">Verkehrsmittel</th>
+                  <th class="text-left px-4 py-3 font-semibold">Strecke</th>
+                  <th class="text-left px-4 py-3 font-semibold">Hinweise</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-white/5">
+                <tr><td class="px-4 py-3 text-white font-medium">SITA-Bus</td><td class="px-4 py-3 text-white/60">Vom Hafen Amalfi</td><td class="px-4 py-3 text-white/40 text-xs">~25 Min., ~1,30 €, alle ~40 Min.</td></tr>
+                <tr><td class="px-4 py-3 text-white font-medium">Mit dem Auto</td><td class="px-4 py-3 text-white/60">SP13 von Amalfi</td><td class="px-4 py-3 text-white/40 text-xs">Enge, kurvenreiche Straße; bezahlte Parkplätze am Eingang</td></tr>
+                <tr><td class="px-4 py-3 text-white font-medium">Taxi</td><td class="px-4 py-3 text-white/60">Von Amalfi oder Maiori</td><td class="px-4 py-3 text-white/40 text-xs">~20–25 €, im Voraus verhandeln</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Verborgene Ecken -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-3 tracking-tight">Verborgene Ecken in Ravello</h2>
+          <p class="text-slate-500 mb-8">Jenseits der Postkarten: vier Winkel, die Durchgangstouristen nie finden.</p>
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+              <h3 class="font-semibold text-charcoal mb-2">Piazza Vescovado bei Nacht</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Wenn die Tagestouristen abgereist sind, kehrt die Piazza Vescovado zu ihrer mittelalterlichen Stille zurück. Ein Abend auf dem Platz mit Blick auf den Dom bei Mondschein ist unvergesslich.</p>
+            </div>
+            <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+              <h3 class="font-semibold text-charcoal mb-2">Sentiero degli Aranci</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Der Pfad durch Zitronenhaine und Orangengärten zwischen Ravello und Minori. Eine ruhige Alternative zur Straße, mit Ausblicken, die kaum ein Tourist kennt.</p>
+            </div>
+            <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+              <h3 class="font-semibold text-charcoal mb-2">Kirche Santa Maria a Gradillo</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Eine kleine romanische Kirche aus dem 11. Jahrhundert, abseits der Hauptwege gelegen. Die Stille des Innenraums und die schlichte Schönheit der Architektur heben sie über bekanntere Sehenswürdigkeiten hinaus.</p>
+            </div>
+            <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+              <h3 class="font-semibold text-charcoal mb-2">Ausblick vom Belvedere Principessa di Piemonte</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Weniger bekannt als die Terrasse der Unendlichkeit, bietet dieser Aussichtspunkt am Ortsrand einen freien, atemberaubenden Blick auf die Küste — ohne Eintritt und ohne Warteschlange.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Local Tip -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20">
+              <svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+            </div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Insider-Tipp</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">Sonnenuntergang von der Terrasse der Unendlichkeit</h3>
+              <p class="text-white/70 leading-relaxed">Den Besuch der Villa Cimbrone für die letzten zwei Stunden vor Sonnenuntergang planen. Wenn das Licht goldene Töne annimmt und die Marmorbrüsten auf der Terrasse leuchten, versteht man, warum Gore Vidal diese Aussicht die schönste der Welt nannte. Um 19:00 Uhr hat man sie fast für sich allein.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Häufig gestellte Fragen</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Kurzinfos — Ravello</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <!-- Insider-Tipps -->
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Insider-Tipps</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+              <span>Tickets für das Ravello Festival weit im Voraus buchen — die besten Konzerte sind Monate vorher ausverkauft.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+              <span>Villa Rufolo und Villa Cimbrone am selben Tag besuchen — beide sind zu Fuß zu erreichen.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+              <span>Mit dem SITA-Bus anreisen: der letzte Bus zurück nach Amalfi fährt früh — Abfahrtszeiten prüfen.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+              <span>Übernachtung in Ravello erwägen: nach Abzug der Tagestouristen wird das Dorf magisch ruhig.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Amalfiküste</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/de-de/amalfikueste/positano/', label: 'Positano' },
+              { href: '/de-de/amalfikueste/amalfi/', label: 'Amalfi' },
+              { href: '/de-de/amalfikueste/praiano/', label: 'Praiano' },
+              { href: '/de-de/amalfikueste/maiori/', label: 'Maiori' },
+              { href: '/de-de/amalfikueste/minori/', label: 'Minori' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Auch die Küste erkunden"
+    items={[
+      { name: 'Amalfi',   href: '/de-de/amalfikueste/amalfi/',   tag: 'Kunst & Geschichte',    desc: 'Der Dom, der Kreuzgang des Paradieses und die Gassen der Seerepublik.' },
+      { name: 'Positano', href: '/de-de/amalfikueste/positano/', tag: 'Das Ikonischste',        desc: 'Bunte Häuser über dem Meer und der berühmteste Strand der Küste.' },
+      { name: 'Praiano',  href: '/de-de/amalfikueste/praiano/', tag: 'Sonnenuntergang & Ruhe', desc: 'Der Sonnenuntergang von San Gennaro und der Marina di Praia-Strand.' },
+      { name: 'Capri',    href: '/de-de/inseln/capri/',          tag: 'Das Ikonischste',        desc: 'Blaue Grotte, Faraglioni-Felsen und die glamouröse Piazzetta.' },
+    ]}
+  />
+
+</BaseLayout>

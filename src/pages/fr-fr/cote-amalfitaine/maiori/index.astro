@@ -1,0 +1,326 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Côte Amalfitaine', url: '/fr-fr/cote-amalfitaine/' },
+  { name: 'Maiori', url: '/fr-fr/cote-amalfitaine/maiori/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment se rendre à Maiori depuis Salerne ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En ferry Travelmar depuis Salerne (environ 50 min, saisonnier avril–octobre) ou en bus SITA depuis Salerne ou Amalfi. Le bus est l'option la plus fréquente toute l'année."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Maiori a-t-elle une plage de sable ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui — Maiori possède la plus longue plage de sable de la Côte Amalfitaine, environ 300 mètres, avec des sections publiques gratuites et des clubs de plage payants. Le sable y est plus grossier que les galets caractéristiques des autres villages de la côte."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Maiori vaut-elle la visite ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, surtout si vous préférez une atmosphère plus locale et moins touristique. Maiori est très appréciée des familles italiennes pour sa plage, sa promenade en bord de mer et ses prix nettement inférieurs à Positano et Amalfi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qu'y a-t-il à voir à Maiori en dehors de la plage ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'abbaye de Santa Maria de Olearia (XIe s.) taillée dans la falaise, les jardins du Palazzo Mezzacapo avec terrasse panoramique, et la tour normande sont les principales attractions. Les feux d'artifice du 15 août sur la baie sont également un spectacle incontournable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on aller à Ravello depuis Maiori ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, un bus SITA relie Maiori à Ravello (environ 25–30 min). C'est une excellente combinaison : plage le matin à Maiori, puis montée à Ravello l'après-midi pour les jardins des villas et la vue panoramique."
+      }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Localisation', dd: 'Côte Amalfitaine, SA' },
+  { dt: 'Population', dd: '~5 500 habitants' },
+  { dt: 'Depuis Salerne', dd: '~50 min (ferry)' },
+  { dt: 'Depuis Amalfi', dd: '~20 min (bus SITA)' },
+  { dt: 'Plage', dd: 'Sable (300 m)' },
+  { dt: 'Idéal pour', dd: 'Plage, familles, vie locale' },
+  { dt: 'Meilleure période', dd: 'Juin–Sep' },
+  { dt: 'Monnaie', dd: 'Euro (€)' },
+];
+---
+
+<BaseLayout
+  title="Maiori 2026 : Guide Complet | Côte Amalfitaine"
+  description="Guide de Maiori : la plus longue plage de sable de la Côte Amalfitaine, les jardins du Palazzo Mezzacapo, l'abbaye de Santa Maria de Olearia. Comment y arriver en ferry depuis Salerne."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative min-h-[60vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/maiori-hero.jpg" alt="Maiori, Côte Amalfitaine" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Côte Amalfitaine · Plage & Vie locale</p>
+        <h1 class="font-serif text-display text-white mb-4">Maiori</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La plus longue plage de la Côte Amalfitaine : 300 mètres de sable au lieu des galets que l'on trouve partout ailleurs. Maiori est la ville la plus détendue de la côte — une vraie promenade en bord de mer, des restaurants locaux et des prix qui ne font pas grimper les sourcils.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Grid -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+      <div class="space-y-12">
+
+        <p class="text-xl leading-relaxed text-charcoal">
+          Maiori est située à l'embouchure de la vallée de la Regina, qui s'enfonce depuis la côte à l'intérieur des terres et donne à la ville la plaine côtière la plus large — et donc la plage la plus longue — de toute la Côte Amalfitaine. C'est une vraie ville avec un supermarché, une poste et des habitants qui y vivent toute l'année, ce qui est rare sur ce tronçon de côte.
+        </p>
+
+        <!-- Le saviez-vous ? -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Le saviez-vous ?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">300 m</p>
+              <p class="text-white/60 text-xs italic mt-1">la plus longue plage de sable de la côte</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">XI</p>
+              <p class="text-white/60 text-xs italic mt-1">siècle : l'abbaye de Santa Maria de Olearia</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">5 500</p>
+              <p class="text-white/60 text-xs italic mt-1">résidents permanents</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Que voir -->
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Que voir à Maiori</h2>
+          <div class="space-y-6">
+            {[
+              { title: 'La plage', text: 'La plage principale de sable avec 300 m de sable — la plus longue de la Côte Amalfitaine. Des sections publiques gratuites et des clubs de plage payants sont disponibles. Une promenade en bord de mer avec bars et restaurants longe le front de mer.' },
+              { title: 'Abbaye de Santa Maria de Olearia', text: 'Une remarquable abbaye bénédictine du XIe siècle taillée dans la falaise au-dessus de la route côtière, avec trois chapelles superposées et des fresques médiévales. Visites possibles ; vérifiez les horaires saisonniers.' },
+              { title: 'Jardins du Palazzo Mezzacapo', text: 'Un jardin du XIXe siècle avec des plantes rares, une terrasse panoramique et des vues sur la baie. Accès public gratuit.' },
+              { title: 'Feux d\'artifice du 15 août', text: 'Le 15 août, Maiori célèbre la fête de Santa Maria a Mare avec une procession en mer et des feux d\'artifice sur la baie — l\'un des plus beaux spectacles du 15 août sur toute la côte.' },
+            ].map(({ title, text }) => (
+              <div class="border-l-2 border-med-blue/20 pl-5">
+                <h3 class="font-semibold text-charcoal mb-1">{title}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Comment y arriver -->
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Comment y arriver</h2>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Ferry (saisonnier)</p>
+              <p class="text-slate-700 font-medium mb-1">Travelmar depuis Salerne</p>
+              <p class="text-slate-500 text-sm">~50 min, avril–octobre. L'option la plus panoramique depuis Salerne.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus SITA</p>
+              <p class="text-slate-700 font-medium mb-1">Depuis Amalfi ou Salerne</p>
+              <p class="text-slate-500 text-sm">~20 min depuis Amalfi. Service toute l'année sur la SS163.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Horaires ferry -->
+        <div>
+          <h3 class="font-semibold text-charcoal text-xl mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18M3 17l-1.5 3h21L21 17M8 11V7a4 4 0 018 0v4"/></svg>
+            Horaires des ferries — Été 2026
+          </h3>
+          <div class="overflow-x-auto rounded-2xl border border-slate-200">
+            <table class="w-full text-sm">
+              <caption class="text-left text-xs text-slate-500 px-4 py-2 bg-slate-50 rounded-t-2xl border-b border-slate-200 font-medium">Travelmar — Salerne ↔ Maiori</caption>
+              <thead>
+                <tr class="bg-med-blue/5 text-charcoal">
+                  <th class="text-left px-4 py-3 font-semibold">Départ Salerne</th>
+                  <th class="text-left px-4 py-3 font-semibold">Arrivée Maiori</th>
+                  <th class="text-left px-4 py-3 font-semibold">Notes</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50 transition-colors"><td class="px-4 py-3 font-mono">07:15</td><td class="px-4 py-3 font-mono">08:05</td><td class="px-4 py-3 text-slate-500">Via Cetara</td></tr>
+                <tr class="hover:bg-slate-50 transition-colors"><td class="px-4 py-3 font-mono">09:00</td><td class="px-4 py-3 font-mono">09:50</td><td class="px-4 py-3 text-slate-500">—</td></tr>
+                <tr class="hover:bg-slate-50 transition-colors"><td class="px-4 py-3 font-mono">11:00</td><td class="px-4 py-3 font-mono">11:50</td><td class="px-4 py-3 text-slate-500">—</td></tr>
+                <tr class="hover:bg-slate-50 transition-colors"><td class="px-4 py-3 font-mono">14:15</td><td class="px-4 py-3 font-mono">15:05</td><td class="px-4 py-3 text-slate-500">—</td></tr>
+                <tr class="hover:bg-slate-50 transition-colors"><td class="px-4 py-3 font-mono">16:30</td><td class="px-4 py-3 font-mono">17:20</td><td class="px-4 py-3 text-slate-500">—</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-slate-400 mt-2">* Horaires indicatifs pour 2026. Confirmez sur travelmar.it.</p>
+        </div>
+
+        <!-- Coins cachés -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-3 tracking-tight">Coins cachés de Maiori</h2>
+          <p class="text-slate-500 mb-8">Maiori n'est pas que sa plage : quatre endroits à découvrir hors des sentiers battus.</p>
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+              <h3 class="font-semibold text-charcoal mb-2">Abbaye de Santa Maria de Olearia</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">La plupart des visiteurs passent devant sans la voir. Taillée dans la falaise au-dessus de la route côtière, cette abbaye bénédictine du XIe siècle abrite des fresques médiévales rarissimes sur la côte.</p>
+            </div>
+            <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+              <h3 class="font-semibold text-charcoal mb-2">Marché du jeudi matin</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Le marché hebdomadaire de Maiori est l'un des plus vivants de la côte : fruits et légumes locaux, poisson frais, vêtements et produits artisanaux. Une plongée dans la vie locale authentique.</p>
+            </div>
+            <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+              <h3 class="font-semibold text-charcoal mb-2">Tour normande et sentier côtier</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">La tour normande au-dessus du centre historique est accessible par un sentier panoramique. Vues sur la plage et la baie, sans l'affluence des sites plus célèbres de la côte.</p>
+            </div>
+            <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+              <h3 class="font-semibold text-charcoal mb-2">Gelateria locale sur la promenade</h3>
+              <p class="text-sm text-slate-600 leading-relaxed">Les gelaterias familiales de la promenade de Maiori proposent des glaces artisanales aux saveurs locales (citron, figue de Barbarie, myrte) à des prix bien inférieurs à ceux de Positano ou Amalfi.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conseil local -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20">
+              <svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+            </div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Conseil local</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">Maiori + Ravello : la combinaison parfaite</h3>
+              <p class="text-white/70 leading-relaxed">Passez la matinée sur la plage de Maiori, puis prenez le bus de 13h vers Ravello pour les jardins de la Villa Cimbrone et la Terrasse de l'Infini à l'heure dorée. Rentrez à Maiori pour le dîner en bord de mer. Deux expériences totalement différentes en une seule journée.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Questions fréquentes sur Maiori</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Infos pratiques — Maiori</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <!-- Conseils d'initiés -->
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Conseils d'initiés</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+              <span>Arrivez à la plage avant 9h en juillet-août pour trouver de la place dans la section gratuite.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+              <span>Le ferry du matin depuis Salerne est le plus agréable : lumière dorée et mer calme.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+              <span>Les restaurants en dehors de la promenade principale sont moins chers et souvent meilleurs.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+              <span>Prenez le bus tôt pour Ravello — évitez les heures de pointe (10h30–12h30).</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Côte Amalfitaine</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/fr-fr/cote-amalfitaine/positano/', label: 'Positano' },
+              { href: '/fr-fr/cote-amalfitaine/amalfi/', label: 'Amalfi' },
+              { href: '/fr-fr/cote-amalfitaine/ravello/', label: 'Ravello' },
+              { href: '/fr-fr/cote-amalfitaine/praiano/', label: 'Praiano' },
+              { href: '/fr-fr/cote-amalfitaine/minori/', label: 'Minori' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Découvrez aussi la côte"
+    items={[
+      { name: 'Minori',   href: '/fr-fr/cote-amalfitaine/minori/',   tag: 'Saveurs & Culture', desc: 'Villa romaine du Ier s., scialatielli frais et pâtisseries artisanales.' },
+      { name: 'Amalfi',   href: '/fr-fr/cote-amalfitaine/amalfi/',   tag: 'Art & Histoire',    desc: 'La Cathédrale, le Musée du Papier et la République Maritime.' },
+      { name: 'Ravello',  href: '/fr-fr/cote-amalfitaine/ravello/',  tag: 'Musique & Jardins', desc: 'Villa Rufolo, Villa Cimbrone et le Festival de Ravello.' },
+      { name: 'Positano', href: '/fr-fr/cote-amalfitaine/positano/', tag: 'Iconique',            desc: 'Maisons colorées sur la mer et la plage la plus célèbre.' },
+    ]}
+  />
+
+</BaseLayout>

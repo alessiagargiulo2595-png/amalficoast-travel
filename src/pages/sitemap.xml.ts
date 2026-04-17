@@ -31,6 +31,14 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/de-de/anreise/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/de-de/reisezeit/', priority: '0.7', changefreq: 'yearly' },
 
+  // Amalfiküste — de-de
+  { loc: '/de-de/amalfikueste/positano/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/de-de/amalfikueste/amalfi/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/de-de/amalfikueste/ravello/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/de-de/amalfikueste/praiano/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/amalfikueste/maiori/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/amalfikueste/minori/', priority: '0.7', changefreq: 'monthly' },
+
   // Hub principali — fr-fr
   { loc: '/fr-fr/destinations/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/fr-fr/plages/', priority: '0.8', changefreq: 'monthly' },
@@ -38,12 +46,28 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/fr-fr/comment-venir/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/fr-fr/quand-visiter/', priority: '0.7', changefreq: 'yearly' },
 
+  // Côte Amalfitaine — fr-fr
+  { loc: '/fr-fr/cote-amalfitaine/positano/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/fr-fr/cote-amalfitaine/amalfi/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/fr-fr/cote-amalfitaine/ravello/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/fr-fr/cote-amalfitaine/praiano/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/cote-amalfitaine/maiori/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/cote-amalfitaine/minori/', priority: '0.7', changefreq: 'monthly' },
+
   // Hub principali — es-es
   { loc: '/es-es/destinos/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/es-es/playas/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/es-es/itinerarios/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/es-es/como-llegar/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/es-es/cuando-visitar/', priority: '0.7', changefreq: 'yearly' },
+
+  // Costa Amalfitana — es-es
+  { loc: '/es-es/costa-amalfitana/positano/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/es-es/costa-amalfitana/amalfi/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/es-es/costa-amalfitana/ravello/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/es-es/costa-amalfitana/praiano/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/costa-amalfitana/maiori/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/costa-amalfitana/minori/', priority: '0.7', changefreq: 'monthly' },
 
   // Hub principali
   { loc: '/it-it/costiera-amalfitana/', priority: '0.9', changefreq: 'monthly' },
