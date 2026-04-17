@@ -456,3 +456,69 @@ export function getLocalePath(locale: Locale, pageKey: string): string {
   const slug = slugMap[pageKey]?.[locale] ?? pageKey;
   return `${prefix}/${slug}/`;
 }
+
+// Path-segment translation table for automatic hreflang computation on deep pages
+export const pathSegments: Array<Record<Locale, string>> = [
+  // Coast hub + sub-paths (beaches/events/…)
+  { 'en-us': 'amalfi-coast',         'en-gb': 'amalfi-coast',         'de-de': 'amalfikueste',       'fr-fr': 'cote-amalfitaine',     'es-es': 'costa-amalfitana',     'it-it': 'costiera-amalfitana'  },
+  // Islands hub
+  { 'en-us': 'isole',                'en-gb': 'isole',                'de-de': 'inseln',              'fr-fr': 'iles',                 'es-es': 'islas',                'it-it': 'isole'                },
+  // Beaches hub
+  { 'en-us': 'beaches',              'en-gb': 'beaches',              'de-de': 'strande',             'fr-fr': 'plages',               'es-es': 'playas',               'it-it': 'spiagge'              },
+  // Guide hub
+  { 'en-us': 'guide',                'en-gb': 'guide',                'de-de': 'ratgeber',            'fr-fr': 'guide',                'es-es': 'guia',                 'it-it': 'guida'                },
+  // Events hub
+  { 'en-us': 'events',               'en-gb': 'events',               'de-de': 'events',              'fr-fr': 'events',               'es-es': 'events',               'it-it': 'eventi'               },
+  // Experiences hub
+  { 'en-us': 'experiences',          'en-gb': 'experiences',          'de-de': 'experiences',         'fr-fr': 'experiences',          'es-es': 'experiences',          'it-it': 'esperienze'           },
+  // Itineraries hub
+  { 'en-us': 'itineraries',          'en-gb': 'itineraries',          'de-de': 'reiserouten',         'fr-fr': 'itineraires',          'es-es': 'itinerarios',          'it-it': 'itinerari'            },
+  // Getting here
+  { 'en-us': 'getting-here',         'en-gb': 'getting-here',         'de-de': 'anreise',             'fr-fr': 'comment-venir',        'es-es': 'como-llegar',          'it-it': 'come-arrivare'        },
+  // When to visit
+  { 'en-us': 'when-to-visit',        'en-gb': 'when-to-visit',        'de-de': 'reisezeit',           'fr-fr': 'quand-visiter',        'es-es': 'cuando-visitar',       'it-it': 'quando-visitare'      },
+  // Destinations page
+  { 'en-us': 'destinations',         'en-gb': 'destinations',         'de-de': 'destinations',        'fr-fr': 'destinations',         'es-es': 'destinos',             'it-it': 'destinazioni'         },
+  // Guide sub-pages
+  { 'en-us': 'ferries',              'en-gb': 'ferries',              'de-de': 'faehren',             'fr-fr': 'ferries',              'es-es': 'ferries',              'it-it': 'traghetti'            },
+  { 'en-us': 'sita-bus',             'en-gb': 'sita-bus',             'de-de': 'sita-bus',            'fr-fr': 'bus-sita',             'es-es': 'bus-sita',             'it-it': 'bus-sita'             },
+  { 'en-us': 'parking-ztl',          'en-gb': 'parking-ztl',          'de-de': 'parken-ztl',          'fr-fr': 'parking-ztl',          'es-es': 'aparcamiento-ztl',     'it-it': 'parcheggi-ztl'        },
+  // Itinerary duration folders
+  { 'en-us': '1-day',                'en-gb': '1-day',                'de-de': '1-tag',               'fr-fr': '1-jour',               'es-es': '1-dia',                'it-it': '1-giorno'             },
+  { 'en-us': '3-days',               'en-gb': '3-days',               'de-de': '3-tage',              'fr-fr': '3-jours',              'es-es': '3-dias',               'it-it': '3-giorni'             },
+  { 'en-us': '7-days',               'en-gb': '7-days',               'de-de': '7-tage',              'fr-fr': '7-jours',              'es-es': '7-dias',               'it-it': '7-giorni'             },
+  // Events sub-area slugs
+  { 'en-us': 'islands',              'en-gb': 'islands',              'de-de': 'inseln',              'fr-fr': 'iles',                 'es-es': 'islas',                'it-it': 'isole'                },
+  { 'en-us': 'sorrentine-peninsula', 'en-gb': 'sorrentine-peninsula', 'de-de': 'penisola-sorrentina', 'fr-fr': 'penisola-sorrentina',  'es-es': 'penisola-sorrentina',  'it-it': 'penisola-sorrentina'  },
+  // Experiences sub-pages
+  { 'en-us': 'boat-tours',           'en-gb': 'boat-tours',           'de-de': 'boat-tours',          'fr-fr': 'boat-tours',           'es-es': 'boat-tours',           'it-it': 'tour-barca'           },
+];
+
+/**
+ * Translates a URL pathname from one locale to another by mapping
+ * locale-specific path segments using pathSegments table.
+ * Segments not found in the table (e.g. town slugs) are kept as-is.
+ */
+export function translatePath(pathname: string, source: Locale, target: Locale): string {
+  if (source === target) return pathname;
+
+  // Build lookup: source-locale segment value → row (first match wins)
+  const lookup = new Map<string, Record<Locale, string>>();
+  for (const row of pathSegments) {
+    const val = row[source];
+    if (val && !lookup.has(val)) lookup.set(val, row);
+  }
+
+  const hasTrailingSlash = pathname.endsWith('/');
+  const parts = pathname.split('/').filter(Boolean);
+  if (parts.length === 0) return `/${target}/`;
+
+  const out = parts.map((part, i) => {
+    if (i === 0) return target; // replace locale prefix
+    const row = lookup.get(part);
+    return row ? (row[target] ?? part) : part;
+  });
+
+  const joined = '/' + out.join('/');
+  return hasTrailingSlash ? joined + '/' : joined;
+}

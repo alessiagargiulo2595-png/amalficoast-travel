@@ -3,7 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import StickyBar from '../components/StickyBar.astro';
-import { getTranslations, getLocalePath, slugMap } from '../i18n/translations';
+import { getTranslations, getLocalePath, slugMap, translatePath } from '../i18n/translations';
 import type { Locale } from '../i18n/translations';
 
 interface Props {
@@ -21,7 +21,9 @@ const site = 'https://amalficoast-travel.com';
 
 const locales: Locale[] = ['en-us', 'en-gb', 'de-de', 'fr-fr', 'es-es', 'it-it'];
 const hreflangs = locales.map((l) => {
-  const path = pageKey ? getLocalePath(l, pageKey) : `/${l}/`;
+  const path = pageKey
+    ? getLocalePath(l, pageKey)
+    : translatePath(Astro.url.pathname, lang, l);
   return { locale: l, url: `${site}${path}` };
 });
 
