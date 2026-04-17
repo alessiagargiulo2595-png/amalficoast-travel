@@ -24,6 +24,20 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/en-us/isole/ischia/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/en-us/isole/procida/', priority: '0.8', changefreq: 'monthly' },
 
+  // Amalfi Coast — en-us
+  { loc: '/en-us/amalfi-coast/', priority: '0.9', changefreq: 'monthly' },
+  { loc: '/en-us/amalfi-coast/positano/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/en-us/amalfi-coast/amalfi/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/en-us/amalfi-coast/ravello/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/en-us/amalfi-coast/praiano/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/amalfi-coast/maiori/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/amalfi-coast/minori/', priority: '0.7', changefreq: 'monthly' },
+
+  // Guida pratica — en-us
+  { loc: '/en-us/guide/ferries/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/guide/sita-bus/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/guide/parking-ztl/', priority: '0.7', changefreq: 'monthly' },
+
   // Hub principali — de-de
   { loc: '/de-de/destinations/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/de-de/strande/', priority: '0.8', changefreq: 'monthly' },
@@ -37,7 +51,13 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/de-de/inseln/ischia/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/de-de/inseln/procida/', priority: '0.8', changefreq: 'monthly' },
 
+  // Ratgeber — de-de
+  { loc: '/de-de/ratgeber/faehren/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/ratgeber/sita-bus/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/ratgeber/parken-ztl/', priority: '0.7', changefreq: 'monthly' },
+
   // Amalfiküste — de-de
+  { loc: '/de-de/amalfikueste/', priority: '0.9', changefreq: 'monthly' },
   { loc: '/de-de/amalfikueste/positano/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/de-de/amalfikueste/amalfi/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/de-de/amalfikueste/ravello/', priority: '0.8', changefreq: 'monthly' },
@@ -58,7 +78,13 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/fr-fr/iles/ischia/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/fr-fr/iles/procida/', priority: '0.8', changefreq: 'monthly' },
 
+  // Guide pratique — fr-fr
+  { loc: '/fr-fr/guide/ferries/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/guide/bus-sita/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/guide/parking-ztl/', priority: '0.7', changefreq: 'monthly' },
+
   // Côte Amalfitaine — fr-fr
+  { loc: '/fr-fr/cote-amalfitaine/', priority: '0.9', changefreq: 'monthly' },
   { loc: '/fr-fr/cote-amalfitaine/positano/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/fr-fr/cote-amalfitaine/amalfi/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/fr-fr/cote-amalfitaine/ravello/', priority: '0.8', changefreq: 'monthly' },
@@ -79,7 +105,13 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/es-es/islas/ischia/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/es-es/islas/procida/', priority: '0.8', changefreq: 'monthly' },
 
+  // Guía práctica — es-es
+  { loc: '/es-es/guia/ferries/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/guia/bus-sita/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/guia/aparcamiento-ztl/', priority: '0.7', changefreq: 'monthly' },
+
   // Costa Amalfitana — es-es
+  { loc: '/es-es/costa-amalfitana/', priority: '0.9', changefreq: 'monthly' },
   { loc: '/es-es/costa-amalfitana/positano/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/es-es/costa-amalfitana/amalfi/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/es-es/costa-amalfitana/ravello/', priority: '0.8', changefreq: 'monthly' },
