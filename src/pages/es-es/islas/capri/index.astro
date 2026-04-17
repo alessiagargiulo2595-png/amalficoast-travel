@@ -1,0 +1,400 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'es-es';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Islas', url: '/es-es/islas/' },
+  { name: 'Capri', url: '/es-es/islas/capri/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo ir de Nápoles a Capri?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Desde Nápoles Molo Beverello se puede llegar a Capri en ferry (~50 min, Caremar/SNAV) o en hidroplano (~40 min, NLG/Alilauro). Desde Sorrento el hidroplano tarda solo 20–25 minutos. Compra los billetes online o en taquilla. En verano, reserva el viaje de vuelta con mucha antelación." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Se puede llevar el coche a Capri?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Capri tiene una prohibición casi total de coches privados: solo los residentes pueden llevar vehículos. Los turistas se mueven a pie, en autobús local, en taxi descubierto o en funicular. Esta es una de las razones por las que la isla es tan agradable de visitar." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto cuesta la entrada a la Gruta Azul?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La entrada a la Gruta Azul cuesta unos 14 € por persona (incluye el paseo en barca de remos dentro de la cueva). El barco desde Marina Grande cuesta aparte (~15 € ida y vuelta). En temporada alta las colas pueden durar 1–2 horas. Se recomienda encarecidamente ir muy temprano por la mañana." }
+    },
+    {
+      "@type": "Question",
+      "name": "Capri o Anacapri: ¿cuál es mejor?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Capri (el pueblo principal) es más glamuroso, con la Piazzetta y las tiendas de lujo. Anacapri, en lo alto de la isla, es más tranquila y auténtica, con la Villa San Michele y el telesilla hasta el Monte Solaro. Para un día completo, visita ambas; para medio día, elige según tu estilo." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la mejor época para visitar Capri?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Mayo, junio y septiembre son ideales: tiempo perfecto, mar cálido y aglomeraciones manejables. Julio y agosto son muy calurosos y masificados (los visitantes diarios superan los 10.000). Abril y octubre son tranquilos pero algunos servicios están reducidos." }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Ubicación',      dd: 'Golfo de Nápoles, NA' },
+  { dt: 'Superficie',     dd: '10,4 km²' },
+  { dt: 'Población',      dd: '~14.000 hab.' },
+  { dt: 'Coches privados', dd: 'Prohibidos a turistas' },
+  { dt: 'Desde Nápoles',  dd: '40–50 min (hidro/ferry)' },
+  { dt: 'Desde Sorrento', dd: '20–25 min (hidroplano)' },
+  { dt: 'Playas',         dd: 'Rocas y guijarros' },
+  { dt: 'Mejor época',    dd: 'May–Jun / Sep' },
+  { dt: 'Moneda',         dd: 'Euro (€)' },
+];
+
+const tips = [
+  'Tomar el primer hidroplano de la mañana (7:00–8:00): llegas antes que las masas y la Gruta Azul está sin cola.',
+  'Evitar el taxi desde el puerto: tomar el funicular a Capri o el autobús a Anacapri — sale diez veces más barato.',
+  'La Piazzetta es cara pero un aperitivo allí es casi obligatorio: sentarse, disfrutar del espectáculo.',
+  'Los Jardines de Augusto (entrada ~1 €) dan la vista postal de los Faraglioni — gratis antes de las 10:00.',
+];
+---
+
+<BaseLayout
+  title="Capri 2026: Guía Completa | Gruta Azul, Faraglioni y Piazzetta"
+  description="Guía completa de Capri: Gruta Azul, Faraglioni, Piazzetta, Villa San Michele, Monte Solaro. Cómo llegar desde Nápoles y Sorrento, horarios de ferries, qué ver."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div>
+    <img src="/images/capri-hero.jpg" alt="Capri, golfo de Nápoles" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Isla · Golfo de Nápoles · Sin coches privados</p>
+        <h1 class="font-serif text-display text-white mb-4">Capri</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Una isla calcárea que emerge del Tirreno con una fuerza visual sin igual. La Gruta Azul que ilumina el agua en azul eléctrico, los Faraglioni que se alzan desde el mar, la Piazzetta donde el mundo tiene su cita desde hace un siglo. Capri nunca decepciona.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#datos-rapidos" class="px-5 py-2.5 bg-med-gold text-white text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">
+            Datos rápidos
+          </a>
+          <a href="#como-llegar" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            Cómo llegar
+          </a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            Preguntas frecuentes
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Grid -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <!-- Intro -->
+        <div>
+          <p class="text-xl leading-relaxed text-charcoal">
+            Capri es probablemente la isla más famosa de Italia. Emperadores romanos, intelectuales del siglo XX, estrellas de Hollywood — todos han cedido a su encanto. No es un destino barato, ni tranquilo en verano — pero sí una experiencia que perdura.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            La isla está dividida en dos municipios: Capri (abajo, más glamuroso) y Anacapri (arriba, más tranquilo). Marina Grande es el puerto principal. Desde allí, el funicular o un taxi te llevan al centro en minutos. Sin coches, te mueves a pie, en autobús o en taxi descubierto — lo que contribuye enormemente al encanto del lugar.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">¿Sabías que...?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">27 a.C.</p>
+              <p class="text-white/60 text-xs italic mt-1">Augusto compró Capri a Nápoles</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">12</p>
+              <p class="text-white/60 text-xs italic mt-1">villas imperiales romanas en la isla</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">10.000+</p>
+              <p class="text-white/60 text-xs italic mt-1">visitantes al día en agosto</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            La Gruta Azul ya era conocida por los romanos como el "baño de Tiberio". Fue redescubierta por artistas europeos en 1826 y desde entonces es una de las atracciones más visitadas de Italia.
+          </p>
+        </div>
+
+        <!-- What to See -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Qué ver en Capri</h2>
+          <div class="space-y-8">
+            {[
+              {
+                n: 1,
+                title: 'Gruta Azul (Grotta Azzurra)',
+                text: 'La cueva marina más famosa del Mediterráneo: la luz solar se filtra por una abertura submarina e ilumina el agua en un azul eléctrico irreal. Se entra tumbado en pequeñas barcas de remos. Entrada ~14 €. Accesible en barco desde Marina Grande o a pie (luego en barca). Cerrada con mal tiempo.',
+              },
+              {
+                n: 2,
+                title: 'Los Faraglioni',
+                text: 'Los tres grandes peñascos que emergen del mar al este de la isla son el símbolo absoluto de Capri. Admíralos desde los Jardines de Augusto, el mirador de Punta Tragara, o de cerca en una excursión en barco. El barco pasa por el arco natural del Faraglione central — un momento inolvidable.',
+              },
+              {
+                n: 3,
+                title: 'La Piazzetta (Piazza Umberto I)',
+                text: 'El salón del mundo: cuatro terrazas de café, el campanario, los escalones de la iglesia de Santo Stefano. Un aperitivo aquí es caro (~8–12 €) pero sentarse en la Piazzetta es un rito ineludible. Se anima todavía más por la noche.',
+              },
+              {
+                n: 4,
+                title: 'Villa San Michele (Anacapri)',
+                text: 'Construida a finales del siglo XIX por el médico sueco Axel Munthe sobre las ruinas de una villa de Tiberio, es uno de los jardines más románticos de Italia. La vista sobre la costa y el golfo de Nápoles desde el mirador es extraordinaria. Entrada ~8 €. Abierta todo el año.',
+              },
+              {
+                n: 5,
+                title: 'Monte Solaro (Anacapri)',
+                text: 'El punto más alto de la isla (589 m), accesible en telesilla desde Anacapri (~15 min, ~12 € ida y vuelta). Panorama de 360° sobre Capri, Ischia, Procida, la costa y el Vesubio. Arriba: silencio absoluto, una cafetería y el santuario de la Madonna del Soccorso. No te lo pierdas.',
+              },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- How to Get Here -->
+        <div id="como-llegar" class="bg-charcoal rounded-[3rem] p-10 md:p-14 text-white relative overflow-hidden">
+          <div class="relative z-10">
+            <h2 class="font-serif text-3xl font-bold text-white mb-3 tracking-tight">Cómo llegar a Capri</h2>
+            <p class="text-white/60 mb-10 leading-relaxed">Capri no tiene puente ni aeropuerto. La única manera de llegar es por mar — ferry o hidroplano desde Nápoles, Sorrento, Positano y Amalfi (estos dos últimos solo en temporada).</p>
+            <div class="grid sm:grid-cols-2 gap-8 mb-10">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18M8 11V7a4 4 0 018 0v4"/></svg>
+                </div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Desde Nápoles</h3><p class="text-white/50 text-sm leading-relaxed">Hidroplano ~40 min (NLG, Alilauro) o ferry ~50 min (Caremar, SNAV) desde Molo Beverello. Varias salidas diarias, todo el año.</p></div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="M3 10h18M8 19v2M16 19v2"/></svg>
+                </div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Desde Sorrento</h3><p class="text-white/50 text-sm leading-relaxed">Solo hidroplano ~20–25 min. La opción más rápida y cómoda si ya estás en la Península Sorrentina.</p></div>
+              </div>
+            </div>
+            <a href="/es-es/como-llegar/" class="inline-flex items-center gap-2 text-med-gold font-bold text-xs uppercase tracking-[0.3em] hover:underline">
+              Guía completa de ferries
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- Ferry Schedules -->
+        <div>
+          <h3 class="font-semibold text-charcoal text-xl mb-4">Horarios de hidroplanos — Verano 2026</h3>
+          <p class="text-sm text-slate-500 mb-4">Servicios todo el año desde Nápoles; frecuentes desde Sorrento en verano. Confirmar en los sitios oficiales de las compañías.</p>
+
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 mb-6">
+            <table class="w-full text-sm">
+              <caption class="text-left text-xs text-slate-500 px-4 py-2 bg-slate-50 rounded-t-2xl border-b border-slate-200 font-medium">
+                Hidroplanos — Nápoles Beverello → Marina Grande, Capri
+              </caption>
+              <thead>
+                <tr class="bg-med-blue/5 text-charcoal">
+                  <th class="text-left px-4 py-3 font-semibold">Sale Nápoles</th>
+                  <th class="text-left px-4 py-3 font-semibold">Llega Capri</th>
+                  <th class="text-left px-4 py-3 font-semibold">Compañía</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                {[
+                  ['07:15', '07:55', 'NLG'],
+                  ['08:00', '08:40', 'Alilauro'],
+                  ['09:15', '09:55', 'NLG'],
+                  ['10:30', '11:10', 'SNAV'],
+                  ['12:00', '12:40', 'NLG'],
+                  ['14:30', '15:10', 'Alilauro'],
+                  ['16:00', '16:40', 'NLG'],
+                ].map(([dep, arr, co]) => (
+                  <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">{dep}</td>
+                    <td class="px-4 py-3 font-mono">{arr}</td>
+                    <td class="px-4 py-3 text-slate-500">{co}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="overflow-x-auto rounded-2xl border border-slate-200">
+            <table class="w-full text-sm">
+              <caption class="text-left text-xs text-slate-500 px-4 py-2 bg-slate-50 rounded-t-2xl border-b border-slate-200 font-medium">
+                Hidroplanos — Sorrento → Marina Grande, Capri
+              </caption>
+              <thead>
+                <tr class="bg-med-blue/5 text-charcoal">
+                  <th class="text-left px-4 py-3 font-semibold">Sale Sorrento</th>
+                  <th class="text-left px-4 py-3 font-semibold">Llega Capri</th>
+                  <th class="text-left px-4 py-3 font-semibold">Duración</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                {[
+                  ['08:00', '08:25', '~25 min'],
+                  ['09:30', '09:55', '~25 min'],
+                  ['11:00', '11:25', '~25 min'],
+                  ['13:30', '13:55', '~25 min'],
+                  ['15:30', '15:55', '~25 min'],
+                  ['17:30', '17:55', '~25 min'],
+                ].map(([dep, arr, dur]) => (
+                  <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">{dep}</td>
+                    <td class="px-4 py-3 font-mono">{arr}</td>
+                    <td class="px-4 py-3 text-slate-500">{dur}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-slate-400 mt-2">* Horarios orientativos para el verano de 2026. Confirmar en nlg.it, alilauro.it, snav.it.</p>
+        </div>
+
+        <!-- Hidden Gems -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-3 tracking-tight">Los rincones escondidos de Capri</h2>
+          <p class="text-slate-500 mb-8">Más allá de las postales: cuatro lugares que el turista de paso nunca encuentra.</p>
+          <div class="grid sm:grid-cols-2 gap-6">
+            {[
+              { title: 'Arco Naturale', text: 'Un arco calcáreo a 185 m sobre el mar, accesible a pie desde el centro de Capri en 40 minutos. Casi sin colas, vistas espectaculares sobre el mar oriental. El camino pasa junto a la Villa Malaparte (fotografiable desde fuera).' },
+              { title: 'Mirador Punta Cannone', text: 'Un mirador poco conocido detrás de la Certosa di San Giacomo con vistas directas a los Faraglioni. Gratuito, sin colas, accesible a pie en 10 minutos desde la Piazzetta. La foto de los Faraglioni desde aquí supera a la de los Jardines de Augusto.' },
+              { title: 'Grotta di Matromania', text: 'Una antigua cueva consagrada a las ninfas, transformada más tarde en ninfeo romano. Accesible a pie desde el Arco Naturale en 15 minutos. Casi sin turistas. Cerca está la Villa Malaparte, la icónica casa roja sobre el acantilado.' },
+              { title: 'Bagni di Tiberio', text: 'Los restos de la villa marítima de Tiberio en la costa norte de Capri, accesibles en barco desde Marina Grande o a pie en 20 minutos. Entrada gratuita. En la bahía cercana se puede nadar en un agua excepcionalmente clara.' },
+            ].map(({ title, text }) => (
+              <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+                <h3 class="font-semibold text-charcoal mb-2">{title}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Local Tip -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20">
+              <svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+            </div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Consejo local</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">Cómo evitar las masas en Capri</h3>
+              <p class="text-white/70 leading-relaxed">Tomar el primer hidroplano de la mañana (7:00–7:30). A las 8:30 ya estás en la Gruta Azul sin cola. Cuando los excursionistas se agolpan a las 10:00, habrás visto lo mejor de la isla y subirás a Anacapri a comer tranquilamente.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Preguntas frecuentes sobre Capri</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+
+        <div id="datos-rapidos" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Datos rápidos — Capri</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Consejos locales</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Otras islas</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/es-es/islas/ischia/', label: 'Ischia' },
+              { href: '/es-es/islas/procida/', label: 'Procida' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explorar también"
+    items={[
+      { name: 'Ischia',    href: '/es-es/islas/ischia/',              tag: 'Termas & Naturaleza', desc: 'Parques termales naturales, el Castillo Aragonés, playas volcánicas y el Monte Epomeo.' },
+      { name: 'Procida',   href: '/es-es/islas/procida/',             tag: 'La más auténtica',    desc: 'Casas de colores en Marina Corricella, Capital italiana de la Cultura 2022.' },
+      { name: 'Positano',  href: '/es-es/costa-amalfitana/positano/', tag: 'Moda & Vistas',       desc: 'Casas de colores en cascada hasta el mar y la playa más famosa.' },
+      { name: 'Amalfi',    href: '/es-es/costa-amalfitana/amalfi/',   tag: 'Arte & Historia',     desc: 'La Catedral, el Claustro del Paraíso y los callejones de la república marítima.' },
+      { name: 'Ravello',   href: '/es-es/costa-amalfitana/ravello/',  tag: 'Música & Jardines',   desc: 'Villa Rufolo, Villa Cimbrone y el Festival de Ravello.' },
+    ]}
+  />
+
+</BaseLayout>
