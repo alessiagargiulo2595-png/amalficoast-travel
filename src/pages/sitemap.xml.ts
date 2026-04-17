@@ -73,6 +73,12 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/es-es/como-llegar/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/es-es/cuando-visitar/', priority: '0.7', changefreq: 'yearly' },
 
+  // Islas — es-es
+  { loc: '/es-es/islas/', priority: '0.9', changefreq: 'monthly' },
+  { loc: '/es-es/islas/capri/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/es-es/islas/ischia/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/es-es/islas/procida/', priority: '0.8', changefreq: 'monthly' },
+
   // Costa Amalfitana — es-es
   { loc: '/es-es/costa-amalfitana/positano/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/es-es/costa-amalfitana/amalfi/', priority: '0.8', changefreq: 'monthly' },

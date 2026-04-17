@@ -1,0 +1,401 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'es-es';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Islas', url: '/es-es/islas/' },
+  { name: 'Ischia', url: '/es-es/islas/ischia/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo ir de Nápoles a Ischia?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Desde Nápoles Molo Beverello hay hidroplanos (~50 min, Alilauro/SNAV) y ferries lentos (~1 h 20 min, Caremar). Desde Pozzuoli hay ferries más frecuentes y económicos (~35 min). Ischia Porto es el puerto principal; Casamicciola y Forio tienen servicios adicionales en temporada. Compra los billetes online o en taquilla el mismo día." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuáles son los mejores parques termales de Ischia?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Los más conocidos son Poseidon (Forio, con 22 piscinas termales, €35–45), Negombo (Sant'Angelo, entorno natural espectacular, €40–50) y Giardini Ravino (Forio, entrada botánica + termas, €15–25). Los más económicos son Cavascura (Maronti, balneario histórico al aire libre, €15) y las piscinas de la Baia di Sorgeto (gratuitas, con aguas calientes naturales)." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué ver en el Castillo Aragonés de Ischia?",
+      "acceptedAnswer": { "@type": "Answer", "text": "El Castillo Aragonés (Castello Aragonese) es un islote rocoso unido a Ischia por un puente de piedra. Contiene iglesias medievales, el antiguo convento de las clarisas, museos y miradores extraordinarios. La visita completa dura 2–3 horas. Entrada ~12 €. Abierto todo el año, cierra los martes en invierno. La vista al atardecer desde la terraza superior es una de las mejores de toda la zona." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuántos días hacen falta para visitar Ischia?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Para ver la isla con calma se recomiendan al menos 2–3 días: un día para el Castillo Aragonés y Ischia Porto/Ponte, otro para los parques termales y las playas del sur (Maronti, Cava Scura), y un tercero para la parte oeste (Forio, Fungo, Panza) y una excursión al Monte Epomeo. Una visita de un solo día es posible pero obliga a elegir entre termas o cultura." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es la mejor época para visitar Ischia?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Mayo, junio y septiembre son ideales: termas en funcionamiento, playas sin masas y temperatura agradable. Julio y agosto tienen las playas llenas y los precios más altos, pero la mayoría de los servicios están al máximo. Ischia es visitable casi todo el año gracias a sus termas: incluso en noviembre–marzo los parques termales más grandes siguen abiertos." }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Ubicación',       dd: 'Golfo de Nápoles, NA' },
+  { dt: 'Superficie',      dd: '46,3 km²' },
+  { dt: 'Población',       dd: '~60.000 hab.' },
+  { dt: 'Punto más alto',  dd: 'Monte Epomeo 789 m' },
+  { dt: 'Desde Nápoles',   dd: '~50 min (hidroplano)' },
+  { dt: 'Desde Pozzuoli',  dd: '~35 min (ferry)' },
+  { dt: 'Playas',          dd: 'Arena volcánica oscura' },
+  { dt: 'Mejor época',     dd: 'May–Jun / Sep' },
+  { dt: 'Moneda',          dd: 'Euro (€)' },
+];
+
+const tips = [
+  'Reservar el parque termal con antelación en verano: Poseidon y Negombo se agotan a primera hora de la mañana.',
+  'Alquilar una motocicleta o scooter al llegar: es la manera más práctica de recorrer los 6 municipios.',
+  'La Baia di Sorgeto tiene agua termal natural caliente y gratuita — baja por la tarde cuando los grupos se van.',
+  'Subir al Monte Epomeo a pie desde Fontana (1 h 30 min ida): el panorama vale cada gota de sudor.',
+];
+---
+
+<BaseLayout
+  title="Ischia 2026: Guía Completa | Termas, Castillo Aragonés y Playas Volcánicas"
+  description="Guía completa de Ischia: parques termales, Castillo Aragonés, Monte Epomeo, playas de arena oscura. Cómo llegar desde Nápoles y Pozzuoli, horarios de ferries, qué ver."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div>
+    <img src="/images/ischia-hero.jpg" alt="Ischia, golfo de Nápoles" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Isla · Golfo de Nápoles · Termas Volcánicas</p>
+        <h1 class="font-serif text-display text-white mb-4">Ischia</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La isla verde del golfo: más de cien fuentes termales, playas de arena volcánica oscura, el imponente Castillo Aragonés sobre el mar y el Monte Epomeo a 789 m. Ischia es la isla más grande del golfo y la que ofrece más variedad — del relax termal al senderismo, de los restaurantes de lujo a las trattorie de pueblo.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#datos-rapidos" class="px-5 py-2.5 bg-med-gold text-white text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">
+            Datos rápidos
+          </a>
+          <a href="#como-llegar" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            Cómo llegar
+          </a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            Preguntas frecuentes
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Grid -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <!-- Intro -->
+        <div>
+          <p class="text-xl leading-relaxed text-charcoal">
+            Ischia es la isla más grande del golfo de Nápoles y también la más diversa. A diferencia de Capri (glamour concentrado) o Procida (autenticidad íntima), Ischia ofrece de todo: termas milenarias, seis municipios con carácter propio, kilómetros de costa variada y el Monte Epomeo que domina el paisaje desde cualquier punto.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            El agua termal brota de más de cien fuentes a lo largo de la isla — resultado del origen volcánico. Los grandes parques termales la han convertido en el destino preferido de los europeos que buscan combinar playa y wellness. Pero Ischia es mucho más que termas: el Castillo Aragonés es uno de los monumentos medievales más dramáticos del sur de Italia.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">¿Sabías que...?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">100+</p>
+              <p class="text-white/60 text-xs italic mt-1">fuentes de agua termal en la isla</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">789 m</p>
+              <p class="text-white/60 text-xs italic mt-1">Monte Epomeo, el pico más alto</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1301</p>
+              <p class="text-white/60 text-xs italic mt-1">construcción del Castillo Aragonés</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Ischia fue la primera colonia griega en Italia occidental, fundada en el siglo VIII a.C. con el nombre de Pithecusae. Los griegos eligieron esta isla volcánica precisamente por sus aguas calientes y sus recursos minerales.
+          </p>
+        </div>
+
+        <!-- What to See -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Qué ver en Ischia</h2>
+          <div class="space-y-8">
+            {[
+              {
+                n: 1,
+                title: 'Castillo Aragonés (Castello Aragonese)',
+                text: 'El símbolo de Ischia: un islote volcánico coronado por un castillo medieval, unido a tierra por un puente de 220 m. Dentro encontrarás iglesias superpuestas del siglo IX al XIX, el macabro cementerio de las clarissas, museos y terrazas con vistas a 360°. La visita completa requiere 2–3 horas. Entrada ~12 €. Uno de los monumentos más espectaculares del sur de Italia.',
+              },
+              {
+                n: 2,
+                title: 'Parques termales',
+                text: 'Ischia tiene más de 100 fuentes termales y docenas de parques. Los más grandes son Poseidon (Forio, 22 piscinas), Negombo (Lacco Ameno, entorno botánico tropical) y Giardini Ravino. Para una experiencia gratuita y auténtica: la Baia di Sorgeto, donde el agua termal brota directamente en el mar. Perfecta al atardecer.',
+              },
+              {
+                n: 3,
+                title: 'Monte Epomeo',
+                text: 'El volcán dormido que domina Ischia desde sus 789 m. La ruta más popular sube desde Fontana a pie en 1 h 30 min (sendero fácil-moderado). Arriba: un ermitaño, una pequeña iglesia excavada en la roca y un panorama sobre las tres islas, la costa y el Vesubio que justifica ampliamente el esfuerzo.',
+              },
+              {
+                n: 4,
+                title: 'Spiaggia dei Maronti',
+                text: 'La playa más larga y salvaje de Ischia (1,5 km) en la costa sur de Barano. Arena oscura volcánica, aguas turquesas y vapor termal que sale directamente de la arena en la zona de Cavascura. Accesible en taxi acuático desde Sant\'Angelo (~5 min) o por una larga carretera de montaña. Impresionante.',
+              },
+              {
+                n: 5,
+                title: 'Sant\'Angelo',
+                text: 'El pueblo más pintoresco de Ischia: un promontorio sin coches conectado a tierra por un istmo de arena, con casas de colores, restaurantes de marisco y una bahía con plataformas de baño. Peatonal desde la entrada del pueblo. El punto de partida perfecto para la Baia di Sorgeto y la Spiaggia dei Maronti.',
+              },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- How to Get Here -->
+        <div id="como-llegar" class="bg-charcoal rounded-[3rem] p-10 md:p-14 text-white relative overflow-hidden">
+          <div class="relative z-10">
+            <h2 class="font-serif text-3xl font-bold text-white mb-3 tracking-tight">Cómo llegar a Ischia</h2>
+            <p class="text-white/60 mb-10 leading-relaxed">Ischia no tiene aeropuerto ni puente. Se llega exclusivamente por mar — ferry o hidroplano desde Nápoles o Pozzuoli. El puerto principal es Ischia Porto; Casamicciola y Forio tienen conexiones adicionales en temporada.</p>
+            <div class="grid sm:grid-cols-2 gap-8 mb-10">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18M8 11V7a4 4 0 018 0v4"/></svg>
+                </div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Desde Nápoles</h3><p class="text-white/50 text-sm leading-relaxed">Hidroplano ~50 min (Alilauro, SNAV) o ferry ~1 h 20 min (Caremar) desde Molo Beverello. Varias salidas diarias todo el año.</p></div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="M3 10h18M8 19v2M16 19v2"/></svg>
+                </div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Desde Pozzuoli</h3><p class="text-white/50 text-sm leading-relaxed">Ferry ~35 min (Caremar, Medmar). La opción más frecuente, económica y cómoda si llegas desde la zona flegrea o el aeropuerto de Nápoles.</p></div>
+              </div>
+            </div>
+            <a href="/es-es/como-llegar/" class="inline-flex items-center gap-2 text-med-gold font-bold text-xs uppercase tracking-[0.3em] hover:underline">
+              Guía completa de ferries
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- Ferry Schedules -->
+        <div>
+          <h3 class="font-semibold text-charcoal text-xl mb-4">Horarios de ferries — Verano 2026</h3>
+          <p class="text-sm text-slate-500 mb-4">Servicios todo el año desde Nápoles y Pozzuoli. Confirmar en los sitios oficiales de las compañías.</p>
+
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 mb-6">
+            <table class="w-full text-sm">
+              <caption class="text-left text-xs text-slate-500 px-4 py-2 bg-slate-50 rounded-t-2xl border-b border-slate-200 font-medium">
+                Hidroplanos — Nápoles Beverello → Ischia Porto
+              </caption>
+              <thead>
+                <tr class="bg-med-blue/5 text-charcoal">
+                  <th class="text-left px-4 py-3 font-semibold">Sale Nápoles</th>
+                  <th class="text-left px-4 py-3 font-semibold">Llega Ischia</th>
+                  <th class="text-left px-4 py-3 font-semibold">Compañía</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                {[
+                  ['07:00', '07:50', 'Alilauro'],
+                  ['08:30', '09:20', 'SNAV'],
+                  ['09:30', '10:20', 'Alilauro'],
+                  ['11:00', '11:50', 'SNAV'],
+                  ['13:00', '13:50', 'Alilauro'],
+                  ['15:30', '16:20', 'SNAV'],
+                  ['17:30', '18:20', 'Alilauro'],
+                ].map(([dep, arr, co]) => (
+                  <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">{dep}</td>
+                    <td class="px-4 py-3 font-mono">{arr}</td>
+                    <td class="px-4 py-3 text-slate-500">{co}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="overflow-x-auto rounded-2xl border border-slate-200">
+            <table class="w-full text-sm">
+              <caption class="text-left text-xs text-slate-500 px-4 py-2 bg-slate-50 rounded-t-2xl border-b border-slate-200 font-medium">
+                Ferries — Pozzuoli → Ischia Porto
+              </caption>
+              <thead>
+                <tr class="bg-med-blue/5 text-charcoal">
+                  <th class="text-left px-4 py-3 font-semibold">Sale Pozzuoli</th>
+                  <th class="text-left px-4 py-3 font-semibold">Llega Ischia</th>
+                  <th class="text-left px-4 py-3 font-semibold">Duración</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                {[
+                  ['06:30', '07:05', '~35 min'],
+                  ['08:00', '08:35', '~35 min'],
+                  ['10:00', '10:35', '~35 min'],
+                  ['12:30', '13:05', '~35 min'],
+                  ['14:30', '15:05', '~35 min'],
+                  ['16:30', '17:05', '~35 min'],
+                  ['19:00', '19:35', '~35 min'],
+                ].map(([dep, arr, dur]) => (
+                  <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="px-4 py-3 font-mono">{dep}</td>
+                    <td class="px-4 py-3 font-mono">{arr}</td>
+                    <td class="px-4 py-3 text-slate-500">{dur}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-slate-400 mt-2">* Horarios orientativos para el verano de 2026. Confirmar en alilauro.it, snav.it, caremar.it, medmar.it.</p>
+        </div>
+
+        <!-- Hidden Gems -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-3 tracking-tight">Los rincones escondidos de Ischia</h2>
+          <p class="text-slate-500 mb-8">Más allá de los grandes parques termales: cuatro lugares que el turista habitual no conoce.</p>
+          <div class="grid sm:grid-cols-2 gap-6">
+            {[
+              { title: 'Baia di Sorgeto', text: 'Una pequeña cala accesible solo en barco o bajando 200 escalones desde Panza. El agua termal brota directamente en el mar, creando pozas naturales a 30–40 °C junto al agua fría del Tirreno. Gratuita, abierta 24 h. Espectacular de noche con las estrellas.' },
+              { title: 'Fumarole di Cavascura', text: 'En la Spiaggia dei Maronti, vapor termal brota directamente de la arena en la zona denominada Cavascura. Baños naturales al aire libre a precio simbólico (~15 €). Un spa geotérmico al aire libre que los romanos ya usaban hace 2.000 años.' },
+              { title: 'Eremo di San Nicola (Monte Epomeo)', text: 'En la cumbre del Monte Epomeo, un eremitorio del siglo XIII excavado directamente en la roca tufácea verde. Habitado hasta el siglo pasado, ofrece una vista asombrosa y una paz absoluta. A pocos metros: la mejor focaccia de la isla (en el bar-refugio de la cima).' },
+              { title: 'Punta Imperatore', text: 'El extremo occidental de Ischia: un faro del siglo XIX sobre acantilados de 100 m. Al atardecer, la luz sobre el mar y la silueta del Vesuvio son de una belleza desconcertante. Casi sin turistas incluso en agosto. Accesible en moto o bus desde Forio.' },
+            ].map(({ title, text }) => (
+              <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+                <h3 class="font-semibold text-charcoal mb-2">{title}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Local Tip -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20">
+              <svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+            </div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Consejo local</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">El secreto de la Baia di Sorgeto</h3>
+              <p class="text-white/70 leading-relaxed">Llega a la Baia di Sorgeto entre semana por la tarde (17:00–19:00): los grupos de excursionistas ya se han ido, el agua está a temperatura perfecta y el atardecer sobre el mar es absolutamente inesperado. Lleva una linterna para subir los escalones de vuelta si te quedas después del anochecer.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Preguntas frecuentes sobre Ischia</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+
+        <div id="datos-rapidos" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Datos rápidos — Ischia</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Consejos locales</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Otras islas</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/es-es/islas/capri/',   label: 'Capri' },
+              { href: '/es-es/islas/procida/', label: 'Procida' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explorar también"
+    items={[
+      { name: 'Capri',     href: '/es-es/islas/capri/',              tag: 'La más icónica',   desc: 'La Gruta Azul, los Faraglioni y la glamurosa Piazzetta: la isla más icónica del golfo.' },
+      { name: 'Procida',   href: '/es-es/islas/procida/',            tag: 'La más auténtica', desc: 'Casas de colores en Marina Corricella, Capital italiana de la Cultura 2022.' },
+      { name: 'Positano',  href: '/es-es/costa-amalfitana/positano/', tag: 'Moda & Vistas',   desc: 'Casas de colores en cascada hasta el mar y la playa más famosa.' },
+      { name: 'Amalfi',    href: '/es-es/costa-amalfitana/amalfi/',   tag: 'Arte & Historia', desc: 'La Catedral, el Claustro del Paraíso y los callejones de la república marítima.' },
+      { name: 'Ravello',   href: '/es-es/costa-amalfitana/ravello/',  tag: 'Música & Jardines', desc: 'Villa Rufolo, Villa Cimbrone y el Festival de Ravello.' },
+    ]}
+  />
+
+</BaseLayout>
