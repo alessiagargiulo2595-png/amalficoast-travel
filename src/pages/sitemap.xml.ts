@@ -17,6 +17,12 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/en-us/itineraries/', priority: '0.9', changefreq: 'monthly' },
   { loc: '/en-us/getting-here/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/en-us/when-to-visit/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/isole/', priority: '0.9', changefreq: 'monthly' },
+
+  // Islands — en-us
+  { loc: '/en-us/isole/capri/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/en-us/isole/ischia/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/en-us/isole/procida/', priority: '0.8', changefreq: 'monthly' },
 
   // Hub principali — de-de
   { loc: '/de-de/destinations/', priority: '0.8', changefreq: 'monthly' },
