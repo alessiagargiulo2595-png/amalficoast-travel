@@ -31,6 +31,12 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/de-de/anreise/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/de-de/reisezeit/', priority: '0.7', changefreq: 'yearly' },
 
+  // Inseln — de-de
+  { loc: '/de-de/inseln/', priority: '0.9', changefreq: 'monthly' },
+  { loc: '/de-de/inseln/capri/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/de-de/inseln/ischia/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/de-de/inseln/procida/', priority: '0.8', changefreq: 'monthly' },
+
   // Amalfiküste — de-de
   { loc: '/de-de/amalfikueste/positano/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/de-de/amalfikueste/amalfi/', priority: '0.8', changefreq: 'monthly' },
