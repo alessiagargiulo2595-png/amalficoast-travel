@@ -1,0 +1,180 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'de-de';
+
+const breadcrumbs = [
+  { name: 'Startseite', url: '/de-de/' },
+  { name: 'Sorrentinische Halbinsel', url: '/de-de/sorrentinische-halbinsel/' },
+  { name: 'Massa Lubrense', url: '/de-de/sorrentinische-halbinsel/massa-lubrense/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ist der schönste Strand in Massa Lubrense?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Marina del Cantone im Dorf Nerano ist der schönste: helle Kiesel, kristallklares Wasser und ein Meeresschutzgebiet. Ideal zum Schnorcheln. Per Bus ab Sorrent oder per Boot ab Capri erreichbar." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie kommt man von Sorrent nach Massa Lubrense?",
+      "acceptedAnswer": { "@type": "Answer", "text": "EAV-Bus ab Sorrent (~20-30 Min., ~€1,50). Mit dem Auto: SS145 ab Sorrent Richtung Massa Lubrense." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was sind Spaghetti alla Nerano?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Spaghetti mit gebratenen Zucchini, Provolone del Monaco-Käse, Basilikum und Pecorino. In den 1950er Jahren in Nerano in der Trattoria da Maria Grazia erfunden." }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Lage', dd: 'Spitze der Sorrentinischen Halbinsel' },
+  { dt: 'Ortsteile', dd: "Nerano, Termini, Sant'Agata" },
+  { dt: 'Ab Sorrent', dd: '~20 Min. (EAV-Bus)' },
+  { dt: 'Spezialität', dd: 'Spaghetti alla Nerano' },
+  { dt: 'Strand', dd: 'Marina del Cantone (Kiesel)' },
+  { dt: 'Meeresschutzgebiet', dd: 'Punta Campanella' },
+  { dt: 'Beste Reisezeit', dd: 'Mai-Okt' },
+];
+---
+
+<BaseLayout
+  title="Massa Lubrense 2026: Punta Campanella, Marina del Cantone und Nerano"
+  description="Reiseführer Massa Lubrense: Strand Marina del Cantone, Spaghetti alla Nerano und das Meeresschutzgebiet Punta Campanella. Sehenswürdigkeiten und Anreise ab Sorrent."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative min-h-[60vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/massa-lubrense-hero.jpg" alt="Massa Lubrense, Italien" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrentinische Halbinsel · Natur & Küche</p>
+        <h1 class="font-serif text-display text-white mb-4">Massa Lubrense</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Die südlichste Spitze der Halbinsel mit Blick auf Capri. Meeresschutzgebiete, Wanderungen, Strand Marina del Cantone und Spaghetti alla Nerano: ein Paradies für Slow Tourism.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+      <div class="space-y-12">
+
+        <p class="text-xl leading-relaxed text-charcoal">
+          Massa Lubrense ist eine Gemeinde mit 15 verstreuten Ortsteilen inmitten von Olivenhainen und Zitronenhainen am Hang mit Blick auf Capri. Jeder Ortsteil hat seinen eigenen Charakter: Nerano für Feinschmecker, Sant'Agata sui Due Golfi für die besten Ausblicke auf beide Golfe und Marina del Cantone für den schönsten Strand der Halbinsel.
+        </p>
+
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Wussten Sie das?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">15</p><p class="text-white/60 text-xs italic mt-1">Ortsteile in der Gemeinde</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">4,9 km</p><p class="text-white/60 text-xs italic mt-1">von Punta Campanella nach Capri</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">1997</p><p class="text-white/60 text-xs italic mt-1">Gründung des Meeresschutzgebiets</p></div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Das Meeresschutzgebiet Punta Campanella gehörte zu den ersten in Italien. Heute schützt es 1.172 Hektar Meeresboden mit Posidonia-Wiesen, Coralligenen-Lebensräumen und geschützten Tierarten wie der Unechten Karettschildkröte.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Highlights</h2>
+          <div class="space-y-6">
+            {[
+              { title: 'Marina del Cantone', text: "Die Bucht mit hellen Kieseln und dem klarsten Wasser der Halbinsel, geschützt durch das Meeresschutzgebiet Punta Campanella. Ideal zum Schnorcheln. Per Bus ab Sorrent oder per Boot ab Capri erreichbar." },
+              { title: 'Spaghetti alla Nerano', text: "Das bekannteste Gericht der Region: Spaghetti mit großzügig gebratenen Zucchini, geschmolzenem Provolone del Monaco, frischem Basilikum und etwas Pecorino. In den 1950er Jahren in der Trattoria da Maria Grazia in Nerano erfunden. Im Conca del Sogno oder bei Maria Grazia selbst probieren." },
+              { title: 'Punta Campanella', text: "Die Felsküste mit Ruinen eines Athena-Tempels und einem angevinischen Turm aus dem 14. Jahrhundert. Zu Fuß ab Termini in 45 Min. erreichbar. Blick auf Capri in 4,9 km Entfernung. Eines der ersten Meeresschutzgebiete Italiens." },
+              { title: "Sant'Agata sui Due Golfi", text: 'Der spektakulärste Aussichtspunkt der Halbinsel: Von diesem Ortsteil aus sieht man gleichzeitig den Golf von Neapel im Norden (mit Vesuv und Capri) und den Golf von Salerno im Süden (mit der Amalfiküste). Freier Zugang, Parkplatz vorhanden.' },
+            ].map(({ title, text }) => (
+              <div class="border-l-2 border-med-blue/20 pl-5">
+                <h3 class="font-semibold text-charcoal mb-1">{title}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Häufig gestellte Fragen</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Steckbrief - Massa Lubrense</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Sorrentinische Halbinsel</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/de-de/sorrentinische-halbinsel/sorrent/', label: 'Sorrent' },
+              { href: '/de-de/sorrentinische-halbinsel/vico-equense/', label: 'Vico Equense' },
+              { href: '/de-de/sorrentinische-halbinsel/sant-agnello/', label: "Sant'Agnello" },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Auch entdecken"
+    items={[
+      { name: 'Sorrent',   href: '/de-de/sorrentinische-halbinsel/sorrent/',  tag: 'Ideale Basis',  desc: 'Hub für Capri, Neapel und die Küste. Limoncello und Piazza Tasso.' },
+      { name: 'Capri',     href: '/de-de/inseln/capri/',                       tag: 'Unverzichtbar', desc: '5 km ab Punta Campanella: Blaue Grotte und Faraglioni.' },
+      { name: 'Positano',  href: '/de-de/amalfikueste/positano/',              tag: 'Mode & Aussicht', desc: 'Die bunten Häuser an der Amalfiküste.' },
+      { name: 'Praiano',   href: '/de-de/amalfikueste/praiano/',               tag: 'Sonnenuntergang', desc: 'Der Sonnenuntergang von der Kirche San Gennaro und Marina di Praia.' },
+    ]}
+  />
+
+</BaseLayout>
