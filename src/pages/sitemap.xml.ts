@@ -223,6 +223,34 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/es-es/itinerarios/7-dias/gran-tour-costa-peninsula/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/es-es/itinerarios/7-dias/slow-travel-pueblos-gastronomia/', priority: '0.7', changefreq: 'yearly' },
 
+  // Sorrento Peninsula - en-us
+  { loc: '/en-us/sorrento-peninsula/', priority: '0.9', changefreq: 'monthly' },
+  { loc: '/en-us/sorrento-peninsula/sorrento/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/en-us/sorrento-peninsula/vico-equense/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/sorrento-peninsula/massa-lubrense/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/sorrento-peninsula/sant-agnello/', priority: '0.7', changefreq: 'monthly' },
+
+  // Sorrentinische Halbinsel - de-de
+  { loc: '/de-de/sorrentinische-halbinsel/', priority: '0.9', changefreq: 'monthly' },
+  { loc: '/de-de/sorrentinische-halbinsel/sorrent/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/de-de/sorrentinische-halbinsel/vico-equense/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/sorrentinische-halbinsel/massa-lubrense/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/sorrentinische-halbinsel/sant-agnello/', priority: '0.7', changefreq: 'monthly' },
+
+  // Péninsule Sorrentine - fr-fr
+  { loc: '/fr-fr/peninsule-sorrentine/', priority: '0.9', changefreq: 'monthly' },
+  { loc: '/fr-fr/peninsule-sorrentine/sorrente/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/fr-fr/peninsule-sorrentine/vico-equense/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/peninsule-sorrentine/massa-lubrense/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/peninsule-sorrentine/sant-agnello/', priority: '0.7', changefreq: 'monthly' },
+
+  // Península Sorrentina - es-es
+  { loc: '/es-es/peninsula-sorrentina/', priority: '0.9', changefreq: 'monthly' },
+  { loc: '/es-es/peninsula-sorrentina/sorrento/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/es-es/peninsula-sorrentina/vico-equense/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/peninsula-sorrentina/massa-lubrense/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/peninsula-sorrentina/sant-agnello/', priority: '0.7', changefreq: 'monthly' },
+
   // Guida pratica
   { loc: '/it-it/guida/traghetti/', priority: '0.7', changefreq: 'monthly' },
   { loc: '/it-it/guida/bus-sita/', priority: '0.7', changefreq: 'monthly' },
