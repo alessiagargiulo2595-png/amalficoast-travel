@@ -279,6 +279,17 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/de-de/erlebnisse/trekking/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/de-de/erlebnisse/bootstouren/', priority: '0.7', changefreq: 'yearly' },
 
+  // Plages individuelles - fr-fr
+  { loc: '/fr-fr/plages/cote-amalfitaine/fiordo-di-furore/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/fr-fr/plages/cote-amalfitaine/spiaggia-grande-positano/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/fr-fr/plages/cote-amalfitaine/santa-croce-amalfi/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/plages/peninsule-sorrentine/regina-giovanna/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/plages/peninsule-sorrentine/marina-del-cantone/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/plages/peninsule-sorrentine/cala-mitigliano/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/plages/iles/marina-piccola-capri/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/plages/iles/spiaggia-maronti/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/plages/iles/cala-del-pozzo-vecchio/', priority: '0.7', changefreq: 'yearly' },
+
   // Expériences - fr-fr
   { loc: '/fr-fr/experiences/trekking/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/fr-fr/experiences/tours-en-bateau/', priority: '0.7', changefreq: 'yearly' },
