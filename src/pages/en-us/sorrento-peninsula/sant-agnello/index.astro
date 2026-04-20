@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'en-us';
 const breadcrumbs = [
@@ -14,61 +15,86 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "What is there to see in Sant'Agnello?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sant'Agnello is a residential town. Main points of interest are Parco dei Principi (hotel with Gio Ponti gardens), Villa Crawford, and the Colli di San Pietro walk." }
+    },
+    {
+      "@type": "Question",
       "name": "How to get to Sant'Agnello?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Circumvesuviana from Naples: Sant'Agnello stop (60 min), one stop before Sorrento." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Circumvesuviana from Naples: Sant'Agnello stop (60 min), one stop before Sorrento. By bus: EAV from Sorrento (~5 min). On foot: ~20 min along Corso Italia." }
     }
   ]
 };
 
 const fastFacts = [
   { dt: 'Location', dd: 'Sorrento Peninsula, NA' },
+  { dt: 'Population', dd: '~9,000 residents' },
+  { dt: 'From Naples', dd: '~60 min (Train)' },
+  { dt: 'From Sorrento', dd: '~5 min (bus/walk)' },
   { dt: 'Atmosphere', dd: 'Residential, quiet' },
-  { dt: 'From Sorrento', dd: '~5 min (Bus/Walk)' },
   { dt: 'Best Period', dd: 'Apr–Oct' },
 ];
 ---
 
 <BaseLayout
-  title="Sant'Agnello 2026: A Quiet Alternative to Sorrento"
-  description="Guide to Sant'Agnello: a quiet residential alternative to Sorrento. Parco dei Principi and Villa Crawford."
+  title="Sant'Agnello 2026: A Quiet Alternative to Sorrento | Complete Guide"
+  description="Guide to Sant'Agnello: a quiet residential alternative to Sorrento. Parco dei Principi, Villa Crawford, and the Colli di San Pietro walk."
   lang={lang}
   breadcrumbs={breadcrumbs}
   schema={[faqSchema]}
 >
-  <section class="relative min-h-[50vh] flex items-end bg-charcoal overflow-hidden">
-    <img src="/images/sorrento-hero.jpg" alt="Sant'Agnello" class="absolute inset-0 w-full h-full object-cover" />
+  <section class="relative min-h-[50vh] flex items-end bg-charcoal overflow-hidden text-white">
+    <img src="/images/sorrento-hero.jpg" alt="Sant'Agnello, Italy" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"></div>
-    <div class="relative z-10 max-w-editorial mx-auto px-4 pb-16 pt-24 text-white">
-      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrento Peninsula · Quiet & Luxury</p>
-      <h1 class="font-serif text-display mb-4">Sant'Agnello</h1>
-      <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
-        Only 5 minutes from Sorrento but with the quiet of a residential village.
-      </p>
+    <div class="relative z-10 max-w-editorial mx-auto px-4 pb-16 pt-24">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrento Peninsula · Quiet & Luxury</p>
+        <h1 class="font-serif text-display mb-4">Sant'Agnello</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Only 5 minutes from Sorrento but with the quiet of a residential village. A choice for those who want to stay on the peninsula without Sorrento's center prices.
+        </p>
+      </div>
     </div>
   </section>
 
-  <section class="max-w-editorial mx-auto px-4 py-16">
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 text-charcoal">
     <div class="grid lg:grid-cols-[1fr_300px] gap-12">
-      <div class="space-y-12 text-charcoal">
+      <div class="space-y-12">
         <p class="text-xl leading-relaxed">
-          Sant'Agnello offers peace and beautiful historic villas with prices 20-30% lower than Sorrento.
+          Sant'Agnello doesn't have postcard landmarks, but it has something rare: peace. Beautiful historic villas, charm hotels, and prices 20–30% lower than Sorrento.
         </p>
-        <h2 class="font-serif text-2xl font-semibold">What to See</h2>
-        <div class="space-y-6">
-          <h3 class="font-semibold">Parco dei Principi</h3>
-          <p class="text-sm text-slate-600">A masterpiece of design by Gio Ponti featuring beautiful gardens and a cliffside pool.</p>
-          <h3 class="font-semibold">Villa Crawford</h3>
-          <p class="text-sm text-slate-600">The former home of American writer Francis Marion Crawford, with one of the most beautiful gardens on the peninsula.</p>
+
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Did you know?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">5 min</p><p class="text-white/60 text-xs italic mt-1">from Sorrento</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">-30%</p><p class="text-white/60 text-xs italic mt-1">hotel price vs Sorrento</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">9,000</p><p class="text-white/60 text-xs italic mt-1">residents</p></div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">Parco dei Principi, with gardens designed by Gio Ponti in the '60s, is a masterpiece of rationalist architecture.</p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold mb-6">What to see</h2>
+          <div class="space-y-6">
+            {[
+              { title: 'Parco dei Principi', text: 'Rationalist hotel design with public gardens worth visiting. Access via via Rivo.' },
+              { title: 'Colli di San Pietro Walk', text: 'A 2-mile panoramic trail along the cliffside with Gulf views. Best at sunset.' },
+              { title: 'Villa Crawford', text: "Home of American writer Francis Marion Crawford. The gardens are among the peninsula's finest." }
+            ].map(({ title, text }) => (
+              <div class="border-l-2 border-med-blue/20 pl-5">
+                <h3 class="font-semibold mb-1">{title}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <aside class="bg-slate-900 text-white p-6 rounded-[3rem] self-start">
-        <p class="text-med-gold text-xs font-bold mb-4 uppercase">Fast Facts</p>
+        <p class="text-med-gold text-[10px] font-bold mb-4 uppercase">Fast Facts</p>
         <dl class="space-y-3">
-          {fastFacts.map(f => (
-            <div class="flex justify-between text-sm">
-              <dt class="text-white/40">{f.dt}</dt>
-              <dd class="text-white">{f.dd}</dd>
-            </div>
+          {fastFacts.map(({ dt, dd }) => (
+            <div class="flex justify-between text-sm"><dt class="text-white/40">{dt}</dt><dd>{dd}</dd></div>
           ))}
         </dl>
       </aside>

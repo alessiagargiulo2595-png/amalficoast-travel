@@ -15,13 +15,23 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How to get to Sorrento from Naples?",
-      "acceptedAnswer": { "@type": "Answer", "text": "The Circumvesuviana connects Naples Central to Sorrento in about 70 minutes (~€3.90). Alternatively: hydrofoil from Molo Beverello in about 60 minutes." }
+      "name": "How do I get to Sorrento from Naples?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The Circumvesuviana train connects Naples Central to Sorrento in about 70 minutes (~€3.90). Alternative: hydrofoil from Molo Beverello in about 60 minutes. By car: about 1 hour without traffic (ZTL restricted zones in effect in the center during summer)." }
     },
     {
       "@type": "Question",
       "name": "Does Sorrento have sandy beaches?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. Sorrento's beaches are on volcanic rock, pebbles, or equipped platforms. Marina Grande and Marina Piccola are the main bays." }
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Sorrento's beaches are on volcanic rock, pebbles, or equipped platforms. Marina Grande and Marina Piccola are the two main bays, reachable via stairs or elevators from the cliffs." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it better to stay in Sorrento or Positano?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sorrento is the perfect base: it has the train station, hydrofoil port, and prices are 30-40% lower than Positano. Positano is more romantic but more expensive and isolated." }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I eat in Sorrento?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Gnocchi alla sorrentina (with tomato, basil, and fior di latte), delizia al limone (spherical lemon cake), artisanal limoncello, and fresh daily catch. Avoid restaurants directly on Piazza Tasso for better value." }
     }
   ]
 };
@@ -29,60 +39,98 @@ const faqSchema = {
 const fastFacts = [
   { dt: 'Location', dd: 'Sorrento Peninsula, NA' },
   { dt: 'Altitude', dd: '~50 m asl (cliffside)' },
-  { dt: 'From Naples', dd: '70 min (Circumvesuviana)' },
+  { dt: 'ZTL', dd: 'Yes, historic center' },
   { dt: 'To Capri', dd: '25 min (hydrofoil)' },
+  { dt: 'Best Period', dd: 'Apr–Jun / Sep–Oct' },
   { dt: 'Specialties', dd: 'Limoncello, gnocchi, wood inlay' },
+];
+
+const tips = [
+  'The Vallone dei Mulini — 2 minutes from Piazza Tasso — is free, virtually unknown to tourists, and extremely photogenic.',
+  'For limoncello, buy from producers on via San Cesareo (historic center) rather than shops on the waterfront.',
+  'Circumvesuviana is cheap but slow: if in a hurry, use the hydrofoil (more expensive but 45 min vs 70 min).',
+  'Marina Grande (fishing village) is reachable via the stone steps of via Marina Grande: more authentic than Marina Piccola.',
 ];
 ---
 
 <BaseLayout
-  title="Sorrento 2026: Complete Guide | Piazza Tasso & Limoncello"
-  description="Guide to Sorrento: Piazza Tasso, San Francesco Cloister, Marina Grande, and limoncello. Ideal base for Capri and the Amalfi Coast."
+  title="Sorrento 2026: Complete Guide | Piazza Tasso, Limoncello, and Travel Tips"
+  description="Ultimate guide to Sorrento: Piazza Tasso, Marina Grande, and limoncello. How to get there from Naples and why it's the perfect base for Capri and the Amalfi Coast."
   lang={lang}
   breadcrumbs={breadcrumbs}
   schema={[faqSchema]}
 >
   <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
-    <img src="/images/sorrento-hero.jpg" alt="Sorrento" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+    <img src="/images/sorrento-hero.jpg" alt="Sorrento, Italy" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
     <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
-    <div class="relative z-20 max-w-editorial mx-auto px-4 text-white">
-      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrento Peninsula · Hub for Capri & Coast</p>
-      <h1 class="font-serif text-display mb-4">Sorrento</h1>
-      <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
-        The city of limoncello and wood inlay, perched on cliffs overlooking the Gulf of Naples with Vesuvius in front.
-      </p>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrento Peninsula · Hub for Capri & Coast</p>
+        <h1 class="font-serif text-display text-white mb-4">Sorrento</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          The city of limoncello and wood inlay, perched on cliffs overlooking the Gulf of Naples with Vesuvius in front and Capri just 25 minutes away. Sorrento is the ideal starting point for all of Campania.
+        </p>
+      </div>
     </div>
   </section>
 
-  <section class="max-w-editorial mx-auto px-4 py-16">
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="grid lg:grid-cols-[1fr_320px] gap-12">
-      <div class="space-y-12">
-        <h2 class="font-serif text-3xl font-semibold">What to See</h2>
-        <div class="space-y-6">
-          <div>
-            <h3 class="font-semibold text-lg">Piazza Tasso</h3>
-            <p class="text-slate-600">The beating heart of Sorrento, a mandatory meeting point for residents and tourists.</p>
+      <div class="space-y-16">
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Sorrento is a city of contrasts: the bustling energy of Piazza Tasso and the silent alleys of the historic center, waterfront tourist spots and hidden trattorias where locals have dined for generations.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            World-famous for its limoncello (made here with PGI lemons), its inlaid wood art (a Renaissance tradition), and its status as the perfect logistical hub: from here, you can reach Naples, Pompeii, Capri, Positano, or Amalfi in about an hour.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Did you know?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">70 min</p><p class="text-white/60 text-xs italic mt-1">from Naples via train</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">25 min</p><p class="text-white/60 text-xs italic mt-1">to Capri via hydrofoil</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">16,000</p><p class="text-white/60 text-xs italic mt-1">residents</p></div>
           </div>
-          <div>
-            <h3 class="font-semibold text-lg">Cloister of San Francesco</h3>
-            <p class="text-slate-600">A 14th-century Gothic-Arabian cloister with interlaced arches and a wisteria garden.</p>
-          </div>
-          <div>
-            <h3 class="font-semibold text-lg">Valley of the Mills</h3>
-            <p class="text-slate-600">A natural canyon just steps from Piazza Tasso, featuring an abandoned mill surrounded by tropical vegetation.</p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">What to see in Sorrento</h2>
+          <div class="space-y-8">
+            {[
+              { n: 1, title: 'Piazza Tasso', text: 'The heart of Sorrento: bars, restaurants, and the statue of Torquato Tasso. It is the mandatory evening meeting point for locals and tourists alike.' },
+              { n: 2, title: 'Cloister of San Francesco', text: "Sorrento's most beautiful monument: a 14th-century Gothic-Arabian cloister with interlaced arches and a wisteria garden. Free entry." },
+              { n: 3, title: 'Villa Comunale & Belvedere', text: 'Public gardens with the most spectacular terrace in Sorrento: views of Vesuvius, the Gulf of Naples, and Capri on the horizon.' },
+              { n: 4, title: 'Marina Grande', text: 'The fishing harbor, reachable via the stone steps of via Marina Grande. Colorful houses, beached boats, and authentic seafood restaurants.' },
+              { n: 5, title: 'Vallone dei Mulini', text: 'A natural canyon steps away from Piazza Tasso: an abandoned mill covered in tropical vegetation, visible from the via Fuorimura bridge.' }
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div><h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3><p class="text-slate-600 leading-relaxed">{text}</p></div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-      <aside class="bg-slate-900 text-white p-6 rounded-[3rem]">
-        <p class="text-med-gold text-xs font-bold mb-4 uppercase">Fast Facts</p>
-        <dl class="space-y-3">
-          {fastFacts.map(f => (
-            <div class="flex justify-between text-sm">
-              <dt class="text-white/40">{f.dt}</dt>
-              <dd>{f.dd}</dd>
-            </div>
-          ))}
-        </dl>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts — Sorrento</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }) => (
+              <div class="flex justify-between text-sm"><dt class="text-white/40">{dt}</dt><dd class="font-medium">{dd}</dd></div>
+            ))}
+          </dl>
+        </div>
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Insider Tips</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-sm text-charcoal"><span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>{tip}</li>
+            ))}
+          </ul>
+        </div>
       </aside>
     </div>
   </section>
