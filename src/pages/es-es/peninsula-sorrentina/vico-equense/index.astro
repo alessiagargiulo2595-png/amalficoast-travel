@@ -1,0 +1,180 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'es-es';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Península Sorrentina', url: '/es-es/peninsula-sorrentina/' },
+  { name: 'Vico Equense', url: '/es-es/peninsula-sorrentina/vico-equense/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Dónde comer pizza por metros en Vico Equense?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La pizza por metros fue inventada por Gigino Dell'Amura en 1938 en la Trattoria Università della Pizza, conocida como Da Gigino, en via Nicotera. Se pide por longitud (mínimo 1 metro) con distintos ingredientes en cada tramo." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo llegar a Vico Equense desde Nápoles?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Circumvesuviana desde Nápoles Central dirección Sorrento: bajarse en Vico Equense (~50 min, ~€3,10). En coche: autopista A3, salida Castellammare di Stabia, luego SS145 hacia Sorrento." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Vale la pena visitar Vico Equense?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, especialmente si se quiere evitar la masificación de Sorrento. El centro medieval, el Castillo Giusso y las vistas son auténticos y menos turísticos. Ideal para una parada de medio día." }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Ubicación', dd: 'Península Sorrentina, NA' },
+  { dt: 'Habitantes', dd: '~21.000' },
+  { dt: 'Desde Nápoles', dd: '~50 min (Circumvesuviana)' },
+  { dt: 'Desde Sorrento', dd: '~15 min (Circumvesuviana)' },
+  { dt: 'Especialidades', dd: 'Pizza por metros, fior di latte' },
+  { dt: 'Playa', dd: 'Marina di Vico (guijarros)' },
+  { dt: 'Mejor época', dd: 'Abr-Oct' },
+];
+---
+
+<BaseLayout
+  title="Vico Equense 2026: Pizza por Metros, Castillo Giusso - Guía Completa"
+  description="Guía de Vico Equense: pizza por metros en Da Gigino, Castillo Giusso y el casco histórico medieval. Cómo llegar desde Nápoles en Circumvesuviana."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative min-h-[60vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/vico-equense-hero.jpg" alt="Vico Equense, Italia" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Península Sorrentina · Pizza por Metros</p>
+        <h1 class="font-serif text-display text-white mb-4">Vico Equense</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          El pueblo medieval donde nació la pizza por metros en 1938. Un centro auténtico, el Castillo Giusso sobre el mar y menos turistas que Sorrento, a solo 15 minutos en tren.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+      <div class="space-y-12">
+
+        <p class="text-xl leading-relaxed text-charcoal">
+          Vico Equense es uno de los destinos más ignorados por los turistas que van directamente a Sorrento. Un error: el centro medieval sobre el acantilado, el Castillo Giusso del siglo XII y, sobre todo, la pizza por metros de Gigino merecen al menos medio día.
+        </p>
+
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">¿Sabías que?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">1938</p><p class="text-white/60 text-xs italic mt-1">año en que se inventó la pizza por metros</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">105 m</p><p class="text-white/60 text-xs italic mt-1">altura del Castillo sobre el mar</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">21.000</p><p class="text-white/60 text-xs italic mt-1">habitantes</p></div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Gigino Dell'Amura inventó la pizza por metros en 1938 porque sus clientes querían porciones más grandes. Su trattoria - hoy conocida como Università della Pizza - sigue abierta con la misma receta original.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Qué ver en Vico Equense</h2>
+          <div class="space-y-6">
+            {[
+              { title: 'Castillo Giusso', text: "Un castillo medieval del siglo XII a 105 m sobre el mar. Hoy acoge eventos culturales y bodas. Se puede ver desde fuera gratuitamente; visitas con cita previa. Ofrece algunas de las mejores vistas del Golfo de Nápoles de toda la península." },
+              { title: 'Pizza por metros en Da Gigino', text: "El inventor de la pizza por metros: Gigino Dell'Amura abrió en 1938 lo que hoy se llama Trattoria Università della Pizza. Se pide por metros con distintos ingredientes en cada tramo. Precios honestos (~€8-12/metro), casi siempre hay cola por la noche. Via Nicotera 15." },
+              { title: 'Catedral de Vico Equense', text: "La Basílica della SS. Annunziata del siglo XIV, uno de los pocos edificios góticos de Campania. Fachada sencilla pero interior con frescos y cripta medieval. Entrada gratuita, horario limitado." },
+              { title: 'Marina di Vico', text: 'Un pequeño puerto y playa de guijarros al pie del acantilado, accesible por carretera desde el centro. Más tranquilo que las playas de Sorrento, con algunos chiringuitos y barcos de pesca.' },
+            ].map(({ title, text }) => (
+              <div class="border-l-2 border-med-blue/20 pl-5">
+                <h3 class="font-semibold text-charcoal mb-1">{title}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Preguntas frecuentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Datos Rápidos - Vico Equense</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Península Sorrentina</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/es-es/peninsula-sorrentina/sorrento/', label: 'Sorrento' },
+              { href: '/es-es/peninsula-sorrentina/massa-lubrense/', label: 'Massa Lubrense' },
+              { href: '/es-es/peninsula-sorrentina/sant-agnello/', label: "Sant'Agnello" },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explora la Península y las Islas"
+    items={[
+      { name: 'Sorrento',       href: '/es-es/peninsula-sorrentina/sorrento/',      tag: 'Base ideal',     desc: 'Hub para Capri, Nápoles y la Costa. Limoncello y Piazza Tasso.' },
+      { name: 'Massa Lubrense', href: '/es-es/peninsula-sorrentina/massa-lubrense/', tag: 'Naturaleza',     desc: 'Punta Campanella, Marina del Cantone y los espaguetis de Nerano.' },
+      { name: 'Capri',          href: '/es-es/islas/capri/',                          tag: 'Más icónica',    desc: 'Gruta Azul, Farallones y la famosa Piazzetta.' },
+      { name: 'Positano',       href: '/es-es/costa-amalfitana/positano/',            tag: 'Moda & Vistas',  desc: 'Las coloridas casas sobre el acantilado de la Costa Amalfitana.' },
+    ]}
+  />
+
+</BaseLayout>

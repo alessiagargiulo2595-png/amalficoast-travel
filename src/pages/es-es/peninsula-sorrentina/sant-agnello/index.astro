@@ -1,0 +1,178 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'es-es';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Península Sorrentina', url: '/es-es/peninsula-sorrentina/' },
+  { name: "Sant'Agnello", url: '/es-es/peninsula-sorrentina/sant-agnello/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué ver en Sant'Agnello?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sant'Agnello es un pueblo residencial. Los principales puntos de interés son el Parco dei Principi (hotel con jardines de Gio Ponti), la Villa Crawford y el paseo de los Colli di San Pietro." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo llegar a Sant'Agnello?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Circumvesuviana desde Nápoles: parada Sant'Agnello (60 min), una parada antes de Sorrento. En autobús: EAV desde Sorrento (~5 min). A pie: ~20 min por el Corso Italia." }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Ubicación', dd: 'Península Sorrentina, NA' },
+  { dt: 'Habitantes', dd: '~9.000' },
+  { dt: 'Desde Nápoles', dd: '~60 min (Circumvesuviana)' },
+  { dt: 'Desde Sorrento', dd: '~5 min (autobús/a pie)' },
+  { dt: 'Ambiente', dd: 'Residencial, tranquilo' },
+  { dt: 'Mejor época', dd: 'Abr-Oct' },
+];
+---
+
+<BaseLayout
+  title="Sant'Agnello 2026: Alternativa Tranquila a Sorrento - Guía Completa"
+  description="Guía de Sant'Agnello: la alternativa tranquila y más económica a Sorrento. Parco dei Principi, Villa Crawford y el paseo de los Colli di San Pietro."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative min-h-[50vh] flex items-end bg-charcoal overflow-hidden text-white">
+    <img src="/images/sorrento-hero.jpg" alt="Sant'Agnello, Italia" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"></div>
+    <div class="relative z-10 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Península Sorrentina · Tranquilidad & Lujo</p>
+        <h1 class="font-serif text-display mb-4">Sant'Agnello</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          A solo 5 minutos de Sorrento pero con la tranquilidad de un pueblo residencial. La opción ideal para quienes quieren alojarse en la península sin pagar los precios del centro de Sorrento.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 text-charcoal">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+      <div class="space-y-12">
+
+        <p class="text-xl leading-relaxed">
+          Sant'Agnello no tiene monumentos de postal, pero tiene algo más difícil de encontrar: paz. Hermosas villas históricas, hoteles con encanto y precios un 20-30% más bajos que Sorrento.
+        </p>
+
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">¿Sabías que?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">5 min</p><p class="text-white/60 text-xs italic mt-1">desde Sorrento en autobús o a pie</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">-30%</p><p class="text-white/60 text-xs italic mt-1">precio hotel frente a Sorrento</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">9.000</p><p class="text-white/60 text-xs italic mt-1">habitantes</p></div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            El Parco dei Principi de Sant'Agnello, con jardines diseñados por Gio Ponti en los años 60, está considerado uno de los mejores ejemplos de arquitectura racionalista aplicada a la hostelería mediterránea.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold mb-6">Qué ver en Sant'Agnello</h2>
+          <div class="space-y-6">
+            {[
+              { title: 'Parco dei Principi', text: "El hotel y jardines diseñados por Gio Ponti en los años 60: una obra maestra del diseño racionalista con piscina sobre el acantilado. Aunque no te alojes allí, los jardines públicos merecen una visita. Acceso por via Rivo." },
+              { title: 'Paseo de los Colli di San Pietro', text: "Un sendero panorámico que conecta Sant'Agnello con Piano di Sorrento a lo largo del acantilado, con vistas sobre el Golfo de Nápoles. Longitud: ~3 km. Libre y sin tráfico. Mejor al amanecer o al atardecer." },
+              { title: 'Villa Crawford', text: "Residencia del escritor americano Francis Marion Crawford (1854-1909), que vivió aquí 30 años escribiendo novelas históricas. Solo se puede ver desde fuera; es propiedad privada. Los jardines son de los más bonitos de la península." },
+            ].map(({ title, text }) => (
+              <div class="border-l-2 border-med-blue/20 pl-5">
+                <h3 class="font-semibold mb-1">{title}</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+          <p class="font-semibold text-charcoal mb-2">¿Por qué elegir Sant'Agnello como base?</p>
+          <p class="text-sm text-slate-600 leading-relaxed">Si el presupuesto es ajustado pero se quiere estar en la península, Sant'Agnello ofrece hoteles con las mismas vistas que Sorrento a precios más bajos. La Circumvesuviana para aquí, al igual que los autobuses EAV a Sorrento (5 min) y Massa Lubrense. No hace falta alquilar coche.</p>
+        </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-2xl font-semibold mb-6">Preguntas frecuentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Datos Rápidos - Sant'Agnello</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Península Sorrentina</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/es-es/peninsula-sorrentina/sorrento/', label: 'Sorrento' },
+              { href: '/es-es/peninsula-sorrentina/vico-equense/', label: 'Vico Equense' },
+              { href: '/es-es/peninsula-sorrentina/massa-lubrense/', label: 'Massa Lubrense' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explora la Península"
+    items={[
+      { name: 'Sorrento',       href: '/es-es/peninsula-sorrentina/sorrento/',       tag: 'Base ideal',    desc: 'Piazza Tasso, limoncello e hidrofoils a Capri.' },
+      { name: 'Capri',          href: '/es-es/islas/capri/',                           tag: 'Más icónica',   desc: 'Gruta Azul y Farallones - 25 min en hidrofoil.' },
+      { name: 'Massa Lubrense', href: '/es-es/peninsula-sorrentina/massa-lubrense/', tag: 'Naturaleza',    desc: 'Punta Campanella y la mejor playa de la península.' },
+      { name: 'Positano',       href: '/es-es/costa-amalfitana/positano/',             tag: 'Moda & Vistas', desc: 'Las coloridas casas sobre el acantilado de la Costa Amalfitana.' },
+    ]}
+  />
+
+</BaseLayout>
