@@ -3,6 +3,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'en-us';
+
 const breadcrumbs = [
   { name: 'Home', url: '/en-us/' },
   { name: 'Sorrento Peninsula', url: '/en-us/sorrento-peninsula/' },
@@ -33,8 +34,9 @@ const faqSchema = {
 
 const fastFacts = [
   { dt: 'Location', dd: 'Tip of Sorrento Peninsula' },
-  { dt: 'Main Hamlets', dd: 'Nerano, Termini, Sant\'Agata' },
-  { dt: 'From Sorrento', dd: '~20 min (Bus)' },
+  { dt: 'Main Hamlets', dd: "Nerano, Termini, Sant'Agata" },
+  { dt: 'From Sorrento', dd: '~20 min (EAV bus)' },
+  { dt: 'Specialty', dd: 'Spaghetti alla Nerano' },
   { dt: 'Beaches', dd: 'Marina del Cantone (pebbles)' },
   { dt: 'Marine Reserve', dd: 'Punta Campanella' },
   { dt: 'Best Period', dd: 'May–Oct' },
@@ -48,10 +50,22 @@ const fastFacts = [
   breadcrumbs={breadcrumbs}
   schema={[faqSchema]}
 >
+
   <section class="relative min-h-[60vh] flex items-end bg-charcoal overflow-hidden">
-    <img src="/images/massa-lubrense-hero.jpg" alt="Massa Lubrense, Italy" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+    <img src="/images/massa-lubrense-hero.jpg" alt="Massa Lubrense, Italy" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
     <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
     <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
       <div class="max-w-3xl">
         <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrento Peninsula · Nature & Cuisine</p>
         <h1 class="font-serif text-display text-white mb-4">Massa Lubrense</h1>
@@ -62,49 +76,105 @@ const fastFacts = [
     </div>
   </section>
 
-  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 text-charcoal">
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
       <div class="space-y-12">
-        <p class="text-xl leading-relaxed">
-          Massa Lubrense is a municipality of 15 scattered hamlets. Nerano is for foodies, Sant'Agata offers the best dual-gulf views, and Marina del Cantone is the best beach on the peninsula.
+
+        <p class="text-xl leading-relaxed text-charcoal">
+          Massa Lubrense is a municipality of 15 scattered hamlets among olive groves and lemon orchards on the hillside facing Capri. Each hamlet has its own character: Nerano for foodies, Sant'Agata sui Due Golfi for the best dual-gulf views, and Marina del Cantone for the best beach on the peninsula.
         </p>
 
         <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
           <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Did you know?</p>
           <div class="grid sm:grid-cols-3 gap-6">
-            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">15</p><p class="text-white/60 text-xs italic mt-1">hamlets in the town</p></div>
-            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">4.9 km</p><p class="text-white/60 text-xs italic mt-1">distance to Capri</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">15</p><p class="text-white/60 text-xs italic mt-1">hamlets in the municipality</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">4.9 km</p><p class="text-white/60 text-xs italic mt-1">from Punta Campanella to Capri</p></div>
             <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">1997</p><p class="text-white/60 text-xs italic mt-1">marine reserve founded</p></div>
           </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            The Punta Campanella marine reserve was among the first established in Italy. It now protects 1,172 hectares of seabed with posidonia meadows, coralligenous habitat, and protected species including the loggerhead sea turtle.
+          </p>
         </div>
 
         <div>
           <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Must-See</h2>
           <div class="space-y-6">
             {[
-              { title: 'Marina del Cantone', text: 'Crystal-clear water and light pebbles. Perfect for snorkeling and home to world-class seafood restaurants.' },
-              { title: 'Spaghetti alla Nerano', text: 'Zucchini, Provolone del Monaco, and basil. Invented at Maria Grazia in the 1950s.' },
-              { title: 'Punta Campanella', text: 'The rocky tip where an Athena temple once stood. Trek from Termini (45 min) for unmatched views of Capri.' },
-              { title: "Sant'Agata sui Due Golfi", text: 'Spectacular viewpoint where you can see the Gulf of Naples and the Gulf of Salerno at the same time.' }
+              { title: 'Marina del Cantone', text: "The bay with light pebbles and the clearest water on the peninsula, protected by the Punta Campanella Marine Reserve. Perfect for snorkeling. Reachable by bus from Sorrento or by boat from Capri." },
+              { title: 'Spaghetti alla Nerano', text: "The most famous dish in the area: spaghetti with generously fried zucchini, melted Provolone del Monaco, fresh basil, and a touch of pecorino. Invented at Trattoria da Maria Grazia in Nerano in the 1950s. Try it at Conca del Sogno or at Maria Grazia herself." },
+              { title: 'Punta Campanella', text: "The rocky tip with ruins of an Athena temple and a 14th-century Angevin tower. Reachable on foot from Termini in 45 min. Views of Capri at 4.9 km. One of Italy's first marine protected areas." },
+              { title: "Sant'Agata sui Due Golfi", text: 'The most spectacular viewpoint on the peninsula: from this hamlet you can simultaneously see the Gulf of Naples to the north (with Vesuvius and Capri) and the Gulf of Salerno to the south (with the Amalfi Coast). Free, parking available.' },
             ].map(({ title, text }) => (
               <div class="border-l-2 border-med-blue/20 pl-5">
-                <h3 class="font-semibold mb-1">{title}</h3>
+                <h3 class="font-semibold text-charcoal mb-1">{title}</h3>
                 <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
               </div>
             ))}
           </div>
         </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
       </div>
+
       <aside class="space-y-6 lg:sticky lg:top-24 self-start">
-        <div class="bg-slate-900 text-white rounded-[3rem] p-6">
-          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts</p>
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts — Massa Lubrense</p>
           <dl class="space-y-3">
-            {fastFacts.map(({ dt, dd }) => (
-              <div class="flex justify-between text-sm"><dt class="text-white/40">{dt}</dt><dd>{dd}</dd></div>
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
             ))}
           </dl>
         </div>
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Sorrento Peninsula</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/en-us/sorrento-peninsula/sorrento/', label: 'Sorrento' },
+              { href: '/en-us/sorrento-peninsula/vico-equense/', label: 'Vico Equense' },
+              { href: '/en-us/sorrento-peninsula/sant-agnello/', label: "Sant'Agnello" },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
       </aside>
+
     </div>
   </section>
+
+  <CorrelationSlider
+    heading="Explore also"
+    items={[
+      { name: 'Sorrento',  href: '/en-us/sorrento-peninsula/sorrento/',  tag: 'Ideal Base',     desc: 'Hub for Capri, Naples, and the Coast. Limoncello and Piazza Tasso.' },
+      { name: 'Capri',     href: '/en-us/islands/capri/',                 tag: 'Most iconic',    desc: '5 km from Punta Campanella: Blue Grotto and Faraglioni.' },
+      { name: 'Positano',  href: '/en-us/amalfi-coast/positano/',         tag: 'Fashion & Views', desc: 'The colorful cliffside houses of the Amalfi Coast.' },
+      { name: 'Praiano',   href: '/en-us/amalfi-coast/praiano/',          tag: 'Sunset',         desc: 'The sunset from San Gennaro church and Marina di Praia.' },
+    ]}
+  />
+
 </BaseLayout>

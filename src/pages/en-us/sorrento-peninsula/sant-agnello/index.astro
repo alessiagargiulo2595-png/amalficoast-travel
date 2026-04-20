@@ -3,6 +3,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'en-us';
+
 const breadcrumbs = [
   { name: 'Home', url: '/en-us/' },
   { name: 'Sorrento Peninsula', url: '/en-us/sorrento-peninsula/' },
@@ -29,7 +30,7 @@ const faqSchema = {
 const fastFacts = [
   { dt: 'Location', dd: 'Sorrento Peninsula, NA' },
   { dt: 'Population', dd: '~9,000 residents' },
-  { dt: 'From Naples', dd: '~60 min (Train)' },
+  { dt: 'From Naples', dd: '~60 min (Circumvesuviana)' },
   { dt: 'From Sorrento', dd: '~5 min (bus/walk)' },
   { dt: 'Atmosphere', dd: 'Residential, quiet' },
   { dt: 'Best Period', dd: 'Apr–Oct' },
@@ -43,10 +44,22 @@ const fastFacts = [
   breadcrumbs={breadcrumbs}
   schema={[faqSchema]}
 >
+
   <section class="relative min-h-[50vh] flex items-end bg-charcoal overflow-hidden text-white">
-    <img src="/images/sorrento-hero.jpg" alt="Sant'Agnello, Italy" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+    <img src="/images/sorrento-hero.jpg" alt="Sant'Agnello, Italy" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"></div>
-    <div class="relative z-10 max-w-editorial mx-auto px-4 pb-16 pt-24">
+    <div class="relative z-10 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
       <div class="max-w-3xl">
         <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrento Peninsula · Quiet & Luxury</p>
         <h1 class="font-serif text-display mb-4">Sant'Agnello</h1>
@@ -59,7 +72,9 @@ const fastFacts = [
 
   <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 text-charcoal">
     <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
       <div class="space-y-12">
+
         <p class="text-xl leading-relaxed">
           Sant'Agnello doesn't have postcard landmarks, but it has something rare: peace. Beautiful historic villas, charm hotels, and prices 20–30% lower than Sorrento.
         </p>
@@ -67,20 +82,22 @@ const fastFacts = [
         <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
           <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Did you know?</p>
           <div class="grid sm:grid-cols-3 gap-6">
-            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">5 min</p><p class="text-white/60 text-xs italic mt-1">from Sorrento</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">5 min</p><p class="text-white/60 text-xs italic mt-1">from Sorrento by bus or on foot</p></div>
             <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">-30%</p><p class="text-white/60 text-xs italic mt-1">hotel price vs Sorrento</p></div>
             <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">9,000</p><p class="text-white/60 text-xs italic mt-1">residents</p></div>
           </div>
-          <p class="text-white/40 text-xs mt-6 italic">Parco dei Principi, with gardens designed by Gio Ponti in the '60s, is a masterpiece of rationalist architecture.</p>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Parco dei Principi in Sant'Agnello, with gardens designed by Gio Ponti in the 1960s, is considered one of the finest examples of rationalist architecture applied to Mediterranean hospitality.
+          </p>
         </div>
 
         <div>
-          <h2 class="font-serif text-2xl font-semibold mb-6">What to see</h2>
+          <h2 class="font-serif text-2xl font-semibold mb-6">What to see in Sant'Agnello</h2>
           <div class="space-y-6">
             {[
-              { title: 'Parco dei Principi', text: 'Rationalist hotel design with public gardens worth visiting. Access via via Rivo.' },
-              { title: 'Colli di San Pietro Walk', text: 'A 2-mile panoramic trail along the cliffside with Gulf views. Best at sunset.' },
-              { title: 'Villa Crawford', text: "Home of American writer Francis Marion Crawford. The gardens are among the peninsula's finest." }
+              { title: 'Parco dei Principi', text: "The hotel and gardens designed by Gio Ponti in the 1960s: a masterpiece of rationalist design with a clifftop pool. Even if you're not staying, the public gardens are worth a visit. Access via via Rivo." },
+              { title: 'Colli di San Pietro Walk', text: "A panoramic path connecting Sant'Agnello to Piano di Sorrento along the cliffside, with views over the Gulf of Naples. Length: ~3 km. Free, no traffic. Best at dawn or sunset." },
+              { title: 'Villa Crawford', text: "Home of American writer Francis Marion Crawford (1854–1909), who lived here for 30 years writing historical novels. Viewable from outside only; private property. The gardens are among the peninsula's finest." },
             ].map(({ title, text }) => (
               <div class="border-l-2 border-med-blue/20 pl-5">
                 <h3 class="font-semibold mb-1">{title}</h3>
@@ -89,15 +106,73 @@ const fastFacts = [
             ))}
           </div>
         </div>
+
+        <div class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+          <p class="font-semibold text-charcoal mb-2">Why choose Sant'Agnello as your base?</p>
+          <p class="text-sm text-slate-600 leading-relaxed">If your budget is limited but you want to stay on the peninsula, Sant'Agnello offers hotels with the same views as Sorrento at lower prices. The Circumvesuviana stops here, as do EAV buses to Sorrento (5 min) and Massa Lubrense. You don't need to rent a car.</p>
+        </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-2xl font-semibold mb-6">Frequently asked questions</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
       </div>
-      <aside class="bg-slate-900 text-white p-6 rounded-[3rem] self-start">
-        <p class="text-med-gold text-[10px] font-bold mb-4 uppercase">Fast Facts</p>
-        <dl class="space-y-3">
-          {fastFacts.map(({ dt, dd }) => (
-            <div class="flex justify-between text-sm"><dt class="text-white/40">{dt}</dt><dd>{dd}</dd></div>
-          ))}
-        </dl>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts — Sant'Agnello</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Sorrento Peninsula</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/en-us/sorrento-peninsula/sorrento/', label: 'Sorrento' },
+              { href: '/en-us/sorrento-peninsula/vico-equense/', label: 'Vico Equense' },
+              { href: '/en-us/sorrento-peninsula/massa-lubrense/', label: 'Massa Lubrense' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
       </aside>
+
     </div>
   </section>
+
+  <CorrelationSlider
+    heading="Explore the Peninsula"
+    items={[
+      { name: 'Sorrento',       href: '/en-us/sorrento-peninsula/sorrento/',       tag: 'Ideal Base',     desc: 'Piazza Tasso, limoncello, and hydrofoils to Capri.' },
+      { name: 'Capri',          href: '/en-us/islands/capri/',                      tag: 'Most iconic',    desc: 'Blue Grotto and Faraglioni — 25 min by hydrofoil.' },
+      { name: 'Massa Lubrense', href: '/en-us/sorrento-peninsula/massa-lubrense/', tag: 'Nature',         desc: 'Punta Campanella and the best beach on the peninsula.' },
+      { name: 'Positano',       href: '/en-us/amalfi-coast/positano/',              tag: 'Fashion & Views', desc: 'The colorful cliffside houses of the Amalfi Coast.' },
+    ]}
+  />
+
 </BaseLayout>
