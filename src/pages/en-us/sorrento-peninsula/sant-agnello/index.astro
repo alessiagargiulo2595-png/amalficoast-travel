@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+
+const lang = 'en-us';
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Sorrento Peninsula', url: '/en-us/sorrento-peninsula/' },
+  { name: "Sant'Agnello", url: '/en-us/sorrento-peninsula/sant-agnello/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How to get to Sant'Agnello?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Circumvesuviana from Naples: Sant'Agnello stop (60 min), one stop before Sorrento." }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Location', dd: 'Sorrento Peninsula, NA' },
+  { dt: 'Atmosphere', dd: 'Residential, quiet' },
+  { dt: 'From Sorrento', dd: '~5 min (Bus/Walk)' },
+  { dt: 'Best Period', dd: 'Apr–Oct' },
+];
+---
+
+<BaseLayout
+  title="Sant'Agnello 2026: A Quiet Alternative to Sorrento"
+  description="Guide to Sant'Agnello: a quiet residential alternative to Sorrento. Parco dei Principi and Villa Crawford."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+  <section class="relative min-h-[50vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/sorrento-hero.jpg" alt="Sant'Agnello" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"></div>
+    <div class="relative z-10 max-w-editorial mx-auto px-4 pb-16 pt-24 text-white">
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrento Peninsula · Quiet & Luxury</p>
+      <h1 class="font-serif text-display mb-4">Sant'Agnello</h1>
+      <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+        Only 5 minutes from Sorrento but with the quiet of a residential village.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+      <div class="space-y-12 text-charcoal">
+        <p class="text-xl leading-relaxed">
+          Sant'Agnello offers peace and beautiful historic villas with prices 20-30% lower than Sorrento.
+        </p>
+        <h2 class="font-serif text-2xl font-semibold">What to See</h2>
+        <div class="space-y-6">
+          <h3 class="font-semibold">Parco dei Principi</h3>
+          <p class="text-sm text-slate-600">A masterpiece of design by Gio Ponti featuring beautiful gardens and a cliffside pool.</p>
+          <h3 class="font-semibold">Villa Crawford</h3>
+          <p class="text-sm text-slate-600">The former home of American writer Francis Marion Crawford, with one of the most beautiful gardens on the peninsula.</p>
+        </div>
+      </div>
+      <aside class="bg-slate-900 text-white p-6 rounded-[3rem] self-start">
+        <p class="text-med-gold text-xs font-bold mb-4 uppercase">Fast Facts</p>
+        <dl class="space-y-3">
+          {fastFacts.map(f => (
+            <div class="flex justify-between text-sm">
+              <dt class="text-white/40">{f.dt}</dt>
+              <dd class="text-white">{f.dd}</dd>
+            </div>
+          ))}
+        </dl>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
