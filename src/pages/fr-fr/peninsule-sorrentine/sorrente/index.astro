@@ -1,0 +1,258 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Péninsule Sorrentine', url: '/fr-fr/peninsule-sorrentine/' },
+  { name: 'Sorrente', url: '/fr-fr/peninsule-sorrentine/sorrente/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment aller de Sorrente à Capri ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Hydrofoil depuis le port de Sorrente (Marina Piccola) : ~25 min, ~€20-22. Premier départ vers 07h30. En haute saison (juillet-août), réserver à l'avance. Opérateurs : Alilauro, NLG, SNAV." }
+    },
+    {
+      "@type": "Question",
+      "name": "Où acheter le vrai limoncello à Sorrente ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Limone di Sorrento IGP est le label d'authenticité. Acheter directement chez les producteurs : Limonoro (via San Cesareo), Profumi della Costiera, ou dans les caves de la Villa Comunale. Éviter les bouteilles industrielles en supermarché." }
+    },
+    {
+      "@type": "Question",
+      "name": "Sorrente vaut-elle le détour ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui, surtout comme base logistique. Sorrente est à 25 min de Capri en hydrofoil, 70 min de Naples en train, 30 min de Pompéi. Le centre historique, la Piazza Tasso, le Vallone dei Mulini et la Marina Grande méritent une demi-journée." }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment aller de Naples à Sorrente ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Circumvesuviana depuis Naples Centrale (Porta Nolana) direction Sorrente : ~70 min, ~€3,90. Départs toutes les 30-40 min. Attention aux pickpockets dans le train. Alternative : hydrofoil Molo Beverello - Sorrente ~1h." }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on faire Capri en excursion depuis Sorrente ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui, c'est le meilleur point de départ. Hydrofoil 25 min, premier départ 07h30. Compter une journée complète pour la Grotte Bleue (matin), Anacapri (Monte Solaro en télésiège), les Faraglioni. Retour dernier départ vers 19h-20h. Budget transport ~€40-45 aller-retour." }
+    }
+  ]
+};
+
+const attractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Sorrente",
+  "description": "Ville côtière sur la Péninsule Sorrentine, hub pour Capri, Naples et la Côte Amalfitaine. Piazza Tasso, limoncello et vues sur le Golfe de Naples.",
+  "url": "https://amalficoast-travel.com/fr-fr/peninsule-sorrentine/sorrente/",
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.6263, "longitude": 14.3757 },
+  "touristType": ["Base logistique", "Culture", "Gastronomie", "Vues panoramiques"]
+};
+
+const fastFacts = [
+  { dt: 'Emplacement', dd: 'Péninsule Sorrentine, NA' },
+  { dt: 'Habitants', dd: '~19.000' },
+  { dt: 'Depuis Naples', dd: '~70 min (Circumvesuviana)' },
+  { dt: 'Depuis Capri', dd: '~25 min (hydrofoil)' },
+  { dt: 'Spécialité', dd: 'Limoncello, spaghettis alle vongole' },
+  { dt: 'Port', dd: 'Marina Piccola (hydrofoils), Marina Grande (ferries)' },
+  { dt: 'Meilleure période', dd: 'Avr-Oct' },
+];
+---
+
+<BaseLayout
+  title="Sorrente 2026 : Guide Complet - Hydrofoil Capri, Limoncello, Piazza Tasso"
+  description="Guide de Sorrente : comment aller à Capri en hydrofoil, où acheter le limoncello, Piazza Tasso, Vallone dei Mulini. La base parfaite pour la Côte Amalfitaine."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema, attractionSchema]}
+>
+
+  <section class="relative min-h-[65vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/sorrento-hero.jpg" alt="Sorrente, Italie" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Péninsule Sorrentine · Base idéale</p>
+        <h1 class="font-serif text-display text-white mb-4">Sorrente</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La capitale de la Péninsule Sorrentine et le hub parfait pour explorer le Golfe de Naples. Capri à 25 minutes, Naples à 70 minutes, Pompéi à 30 minutes. Et la nuit : limoncello, Piazza Tasso et vues sur le Vésuve.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+      <div class="space-y-12">
+
+        <p class="text-xl leading-relaxed text-charcoal">
+          Sorrente n'est pas seulement une belle ville - c'est le hub logistique le plus pratique du Sud de l'Italie. En un seul séjour, on peut visiter Capri, Naples, Pompéi, Herculanum et la Côte Amalfitaine sans jamais changer d'hôtel.
+        </p>
+
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Le saviez-vous ?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">25 min</p><p class="text-white/60 text-xs italic mt-1">Sorrente - Capri en hydrofoil</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">77 m</p><p class="text-white/60 text-xs italic mt-1">hauteur du Vallone dei Mulini</p></div>
+            <div class="text-center"><p class="font-serif text-5xl font-bold text-med-gold">IGP</p><p class="text-white/60 text-xs italic mt-1">label du Limone di Sorrento</p></div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Le nom "Sorrento" vient du grec "Surrentum", qui signifie "ville des sirènes". Selon la mythologie, c'est au large de la Péninsule Sorrentine qu'Ulysse dut se faire attacher au mât pour résister au chant des sirènes.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Que voir à Sorrente</h2>
+          <ol class="space-y-6 list-none">
+            {[
+              { n: '01', title: 'Piazza Tasso', text: "Le salon de Sorrente : terrasses de café, vue sur le port et sur le Vésuve. Point de départ de toutes les promenades. Animée le soir avec l'apéritif en plein air." },
+              { n: '02', title: 'Vallone dei Mulini', text: "Un gouffre naturel de 40 m de profondeur en plein centre-ville, avec des ruines de moulins du XVe siècle envahies par la végétation. Accessible depuis via Fuorimura. Entrée gratuite depuis la terrasse." },
+              { n: '03', title: "Cloître de San Francesco", text: "Le cloître du XIVe siècle avec ses colonnes alternant tufs et marbres. Le soir, accueille des concerts de musique classique. Entrée libre." },
+              { n: '04', title: 'Marina Grande', text: "Le vieux port de pêche au pied de la falaise, avec ses maisons colorées et ses restaurants de poisson. Plus authentique que le centre touristique. Y aller à pied par la via Marina Grande." },
+              { n: '05', title: 'Musée Correale', text: "Collection de céramiques, argenterie et peintures napolitaines du XVIIe-XVIIIe siècle dans une villa avec jardin sur la falaise. ~€8, ouvert mar-dim." },
+            ].map(({ n, title, text }) => (
+              <li class="flex gap-5">
+                <span class="font-serif text-3xl font-bold text-med-blue/20 flex-shrink-0 leading-none mt-1">{n}</span>
+                <div>
+                  <h3 class="font-semibold text-charcoal mb-1">{title}</h3>
+                  <p class="text-sm text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Comment rejoindre Sorrente</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-slate-50 text-left">
+                  <th class="px-4 py-3 font-semibold text-charcoal border-b border-slate-200">Depuis</th>
+                  <th class="px-4 py-3 font-semibold text-charcoal border-b border-slate-200">Moyen</th>
+                  <th class="px-4 py-3 font-semibold text-charcoal border-b border-slate-200">Durée</th>
+                  <th class="px-4 py-3 font-semibold text-charcoal border-b border-slate-200">Prix</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { from: 'Naples', how: 'Circumvesuviana', time: '~70 min', price: '~€3,90' },
+                  { from: 'Naples', how: 'Hydrofoil', time: '~1h', price: '~€14' },
+                  { from: 'Capri', how: 'Hydrofoil', time: '~25 min', price: '~€20' },
+                  { from: 'Positano', how: 'Ferry (saison)', time: '~35 min', price: '~€15' },
+                  { from: 'Amalfi', how: 'Bus SITA', time: '~90 min', price: '~€2,50' },
+                ].map((r, i) => (
+                  <tr class={i % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}>
+                    <td class="px-4 py-3 text-charcoal border-b border-slate-100">{r.from}</td>
+                    <td class="px-4 py-3 text-slate-600 border-b border-slate-100">{r.how}</td>
+                    <td class="px-4 py-3 text-slate-600 border-b border-slate-100">{r.time}</td>
+                    <td class="px-4 py-3 font-medium text-med-blue border-b border-slate-100">{r.price}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Sorrente hors des sentiers battus</h2>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {[
+              { title: 'Bagni Regina Giovanna', text: 'Piscine naturelle dans les ruines d\'une villa romaine, à 2 km du centre à pied.' },
+              { title: 'Sentier des Moulins', text: 'Descente vers Marina Grande à travers les limoniers et la végétation méditerranéenne.' },
+              { title: 'Mercado du samedi', text: 'Marché local piazza Lauro : fruits, légumes, limoncello artisanal, produits locaux.' },
+              { title: 'Caves de limoniers', text: 'Visite des jardins en terrasses où poussent les citrons IGP au lever du soleil.' },
+            ].map(({ title, text }) => (
+              <div class="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                <p class="font-semibold text-charcoal text-sm mb-1">{title}</p>
+                <p class="text-xs text-slate-500 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="bg-med-blue/5 border border-med-blue/20 rounded-[2rem] p-6">
+          <p class="font-semibold text-med-blue mb-2">Conseil local</p>
+          <p class="text-sm text-slate-700 leading-relaxed">Le centre de Sorrente est ZTL (zone à circulation limitée) en été. Si vous arrivez en voiture, garez-vous à l'extérieur du centre (Piazza Lauro, Via degli Aranci) et continuez à pied ou en bus. La Circumvesuviana reste le moyen le plus pratique pour visiter la région.</p>
+        </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Questions fréquentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Infos Rapides - Sorrente</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Péninsule Sorrentine</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/fr-fr/peninsule-sorrentine/vico-equense/', label: 'Vico Equense' },
+              { href: '/fr-fr/peninsule-sorrentine/massa-lubrense/', label: 'Massa Lubrense' },
+              { href: '/fr-fr/peninsule-sorrentine/sant-agnello/', label: "Sant'Agnello" },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explorer la Péninsule et les Îles"
+    items={[
+      { name: 'Capri',          href: '/fr-fr/iles/capri/',                          tag: 'Incontournable', desc: 'Grotte Bleue, Faraglioni et la célèbre Piazzetta.' },
+      { name: 'Vico Equense',   href: '/fr-fr/peninsule-sorrentine/vico-equense/',   tag: 'Authentique',    desc: 'Pizza au mètre et Château Giusso, moins touristique.' },
+      { name: 'Massa Lubrense', href: '/fr-fr/peninsule-sorrentine/massa-lubrense/', tag: 'Nature',         desc: 'Punta Campanella, Marina del Cantone et spaghettis de Nerano.' },
+      { name: 'Positano',       href: '/fr-fr/cote-amalfitaine/positano/',           tag: 'Mode & Vues',    desc: 'Les maisons colorées sur la falaise de la Côte Amalfitaine.' },
+    ]}
+  />
+
+</BaseLayout>

@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Péninsule Sorrentine', url: '/fr-fr/peninsule-sorrentine/' },
+];
+
+const borghi = [
+  {
+    name: 'Sorrente',
+    href: '/fr-fr/peninsule-sorrentine/sorrente/',
+    desc: 'La capitale de la péninsule : Piazza Tasso, le cloître de San Francesco, le limoncello et les hydrofoils vers Capri et Naples.',
+    tag: 'Base idéale',
+  },
+  {
+    name: 'Vico Equense',
+    href: '/fr-fr/peninsule-sorrentine/vico-equense/',
+    desc: 'Berceau de la pizza au mètre chez Da Gigino et du Château Giusso au-dessus de la mer. Moins touristique, plus authentique.',
+    tag: 'Authentique',
+  },
+  {
+    name: 'Massa Lubrense',
+    href: '/fr-fr/peninsule-sorrentine/massa-lubrense/',
+    desc: 'La commune la plus méridionale : Punta Campanella, Marina del Cantone et les célèbres spaghettis de Nerano.',
+    tag: 'Nature & Cuisine',
+  },
+  {
+    name: "Sant'Agnello",
+    href: '/fr-fr/peninsule-sorrentine/sant-agnello/',
+    desc: 'Entre Sorrente et Piano : villas historiques, hôtels de charme et une tranquillité exceptionnelle à deux pas de l\'agitation.',
+    tag: 'Tranquillité & Luxe',
+  },
+];
+
+const destinationSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  "name": "Péninsule Sorrentine",
+  "description": "La Péninsule Sorrentine s'avance dans le Golfe de Naples entre le Vésuve et la Côte Amalfitaine : Sorrente, Vico Equense, Massa Lubrense et Sant'Agnello.",
+  "url": "https://amalficoast-travel.com/fr-fr/peninsule-sorrentine/",
+  "touristType": ["Mer", "Culture", "Gastronomie", "Randonnée"],
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6264,
+    "longitude": 14.3757
+  }
+};
+---
+
+<BaseLayout
+  title="Péninsule Sorrentine 2026 : Sorrente, Vico Equense, Massa Lubrense"
+  description="Guide de la Péninsule Sorrentine : Sorrente, Vico Equense, Massa Lubrense et Sant'Agnello. Comment y aller en Circumvesuviana et hydrofoil, que voir et où manger."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[destinationSchema]}
+>
+
+  <section class="relative bg-charcoal overflow-hidden">
+    <img src="/images/sorrento-hero.jpg" alt="Péninsule Sorrentine, Golfe de Naples" class="absolute inset-0 w-full h-full object-cover opacity-50" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/70"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/fr-fr/" class="hover:text-white transition-colors">Accueil</a>
+        <span>/</span>
+        <span class="text-white">Péninsule Sorrentine</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Golfe de Naples · Campanie</p>
+        <h1 class="font-serif text-display text-white mb-4">Péninsule Sorrentine</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Le promontoire qui sépare le Golfe de Naples de la Côte Amalfitaine. La glamoureuse Sorrente parfumée de citrons, Vico Equense et sa pizza au mètre, et la sauvage Massa Lubrense où Punta Campanella regarde Capri si près qu'on croirait pouvoir la toucher.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+
+    <section class="max-w-text">
+      <p class="text-xl leading-relaxed text-charcoal">
+        La Péninsule Sorrentine est le point de départ naturel pour explorer toute la Campanie côtière. Depuis Sorrente on atteint Capri en 25 minutes en hydrofoil, Naples en 70 minutes en Circumvesuviana, Pompéi en 30 minutes et Amalfi en moins de 2 heures. Ce n'est pas seulement une destination : c'est le hub idéal.
+      </p>
+      <p class="mt-4 text-slate-600 leading-relaxed">
+        La Circumvesuviana relie Naples à Sorrente en passant par Herculanum, Pompéi et Vico Equense. Les ferries et hydrofoils desservent Capri, Ischia, Positano et Naples. Le bus SITA parcourt la SS145 jusqu'à Amalfi. Depuis Sorrente, le monde est à un ferry de distance.
+      </p>
+    </section>
+
+    <section>
+      <div class="flex items-end justify-between mb-8">
+        <h2 class="font-serif text-3xl font-semibold text-slate-900">Villages de la Péninsule</h2>
+        <p class="text-sm text-slate-400 hidden sm:block">Golfe de Naples, Campanie</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-6">
+        {borghi.map(b => (
+          <a href={b.href} class="group bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm hover:border-med-blue/30 hover:shadow-xl transition-all duration-300">
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-serif text-xl font-semibold text-slate-900 group-hover:text-med-blue transition-colors">{b.name}</h3>
+              <span class="text-[10px] uppercase tracking-wide bg-med-blue/5 text-med-blue px-2 py-1 rounded-full font-medium flex-shrink-0 ml-2">{b.tag}</span>
+            </div>
+            <p class="text-sm text-slate-600 leading-relaxed">{b.desc}</p>
+            <p class="text-med-blue text-sm font-medium mt-4 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+              Découvrir {b.name}
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+            </p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Comment rejoindre la Péninsule Sorrentine</h2>
+      <div class="grid sm:grid-cols-3 gap-6">
+        <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold mb-3">Train</p>
+          <p class="font-semibold text-charcoal mb-1">Circumvesuviana</p>
+          <p class="text-sm text-slate-600 leading-relaxed">De Naples Centrale à Sorrente : ~70 min, ~€3,90. Arrêts à Herculanum, Pompéi, Castellammare, Vico Equense. Fréquence toutes les 30-40 min.</p>
+        </div>
+        <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold mb-3">Ferry / Hydrofoil</p>
+          <p class="font-semibold text-charcoal mb-1">Depuis Naples ou Amalfi</p>
+          <p class="text-sm text-slate-600 leading-relaxed">Sorrente-Naples Molo Beverello : ~1h en hydrofoil. Sorrente-Capri : ~25 min. Sorrente-Positano : ~35 min (saison).</p>
+        </div>
+        <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold mb-3">Bus / Voiture</p>
+          <p class="font-semibold text-charcoal mb-1">SS145 et SS163</p>
+          <p class="text-sm text-slate-600 leading-relaxed">Depuis Naples en voiture ~1h (sans trafic). Bus SITA depuis Amalfi via SS163 et SS145 jusqu'à Sorrente : ~2h. ZTL dans le centre de Sorrente en été.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-charcoal text-white rounded-[2rem] p-10">
+      <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-8">La Péninsule en chiffres</p>
+      <div class="grid sm:grid-cols-4 gap-8 text-center">
+        <div>
+          <p class="font-serif text-5xl font-bold text-med-gold">70 min</p>
+          <p class="text-white/60 text-sm mt-2">Naples - Sorrente en Circumvesuviana</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-med-gold">25 min</p>
+          <p class="text-white/60 text-sm mt-2">Sorrente - Capri en hydrofoil</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-med-gold">77 km</p>
+          <p class="text-white/60 text-sm mt-2">Longueur de la Péninsule Sorrentine</p>
+        </div>
+        <div>
+          <p class="font-serif text-5xl font-bold text-med-gold">497 m</p>
+          <p class="text-white/60 text-sm mt-2">Monte Faito, point culminant</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>
