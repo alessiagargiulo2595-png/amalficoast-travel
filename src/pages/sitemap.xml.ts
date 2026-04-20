@@ -260,6 +260,17 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/it-it/esperienze/trekking/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/it-it/esperienze/tour-barca/', priority: '0.7', changefreq: 'yearly' },
 
+  // Beaches individual - en-us
+  { loc: '/en-us/beaches/amalfi-coast/fiordo-di-furore/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/en-us/beaches/amalfi-coast/spiaggia-grande-positano/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/en-us/beaches/amalfi-coast/santa-croce-amalfi/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/beaches/sorrentine-peninsula/regina-giovanna/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/beaches/sorrentine-peninsula/marina-del-cantone/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/beaches/sorrentine-peninsula/cala-mitigliano/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/beaches/islands/marina-piccola-capri/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/beaches/islands/spiaggia-maronti/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/beaches/islands/cala-del-pozzo-vecchio/', priority: '0.7', changefreq: 'yearly' },
+
   // Experiences - en-us
   { loc: '/en-us/experiences/trekking/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/en-us/experiences/boat-tours/', priority: '0.7', changefreq: 'yearly' },
