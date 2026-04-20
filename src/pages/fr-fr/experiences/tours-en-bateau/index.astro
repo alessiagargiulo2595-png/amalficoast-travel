@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Expériences', url: '/fr-fr/experiences/' },
+  { name: 'Tours en Bateau', url: '/fr-fr/experiences/tours-en-bateau/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Combien coûte un tour en bateau sur la Côte Amalfitaine ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Un tour en bateau de groupe sur la Côte Amalfitaine (4-6 heures) coûte €50-€80 par personne. La location privée (sans skipper) commence à €200/jour pour les petites embarcations ; avec skipper €400-800/jour. À Capri, les barques à rames pour la Grotte Bleue coûtent ~€15." }
+    },
+    {
+      "@type": "Question",
+      "name": "D'où partent les tours en bateau ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Les tours en bateau partent principalement de : Positano (pour la Côte et Capri), Amalfi (pour la Côte et les grottes), Sorrente (pour Capri et la Côte), Marina Grande de Capri (pour les Faraglioni et la Grotte Bleue). En été, réserver 1-2 jours à l'avance." }
+    },
+    {
+      "@type": "Question",
+      "name": "Les tours en bateau sont-ils annulés par mauvais temps ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui, tous les tours en bateau sont annulés par mer agitée (vagues au-dessus de 0,8-1m) ou fort vent. Les annulations sont fréquentes en avril, octobre et avec la tramontane. Vérifier toujours les conditions marines la veille sur windguru.cz ou windy.com." }
+    }
+  ]
+};
+
+const tours = [
+  { name: 'Tour des Faraglioni, Capri', from: 'Marina Grande, Capri', duration: '1-2 heures', price: '~€18-25 p.p.', highlights: 'Faraglioni, Grotta Verde, passage sous l\'arche de Mezzo, snorkeling', type: 'Groupe' },
+  { name: 'Grotte Bleue (barque)', from: 'Marina Grande, Capri', duration: '30 min (attente + grotte)', price: '~€15 + €14 entrée', highlights: 'Lumière bleue unique, barques à rames, expérience inoubliable', type: 'Individuel' },
+  { name: 'Tour Côte depuis Positano', from: 'Positano, Spiaggia Grande', duration: '4-6 heures', price: '~€50-80 p.p.', highlights: 'Grotte Émeraude, Praiano, Amalfi depuis la mer, snorkeling dans des criques cachées', type: 'Groupe' },
+  { name: 'Tour Côte depuis Amalfi', from: 'Amalfi, port', duration: '3-5 heures', price: '~€40-70 p.p.', highlights: 'Grotta dello Smeraldo, Positano, criques inaccessibles, déjeuner en mer', type: 'Groupe' },
+  { name: 'Bateau privé Sorrente → Capri', from: 'Sorrente, Marina Piccola', duration: 'Journée complète', price: '~€400-800 (bateau entier)', highlights: 'Itinéraire sur mesure, sans foule, snorkeling, déjeuner à bord', type: 'Privé' },
+];
+---
+
+<BaseLayout
+  title="Tours en Bateau Côte Amalfitaine 2026 | Capri, Positano, Grotte Bleue"
+  description="Meilleurs tours en bateau sur la Côte Amalfitaine : Faraglioni de Capri, Grotte Bleue, tours depuis Positano et Amalfi. Prix, durées et conseils."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative min-h-[60vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/capri-hero.jpg" alt="Tour en bateau, Côte Amalfitaine" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/fr-fr/" class="hover:text-white transition-colors">Accueil</a>
+        <span>/</span>
+        <span class="text-white/60">Expériences</span>
+        <span>/</span>
+        <span class="text-white">Tours en Bateau</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Expériences</p>
+        <h1 class="font-serif text-display text-white mb-4">Tours en Bateau</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La Côte Amalfitaine vue depuis la mer est une autre dimension : des grottes inaccessibles par la terre, des criques cachées, les Faraglioni au-dessus de la tête. Des tours en groupe économiques aux locations privées.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Tours les plus appréciés</h2>
+      <div class="space-y-4">
+        {tours.map(t => (
+          <div class="bg-white border border-slate-200 rounded-[2rem] p-6 hover:border-med-blue/30 transition-colors">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="font-semibold text-charcoal text-lg">{t.name}</h3>
+              <span class={`text-[10px] uppercase tracking-wide px-2 py-1 rounded-full font-medium flex-shrink-0 ${t.type === 'Privé' ? 'bg-med-cream text-med-gold' : t.type === 'Individuel' ? 'bg-med-blue/5 text-med-blue' : 'bg-slate-50 text-slate-500'}`}>
+                {t.type}
+              </span>
+            </div>
+            <div class="grid sm:grid-cols-3 gap-3 text-sm mb-3">
+              <div><span class="text-slate-400">Départ</span><br /><span class="font-medium">{t.from}</span></div>
+              <div><span class="text-slate-400">Durée</span><br /><span class="font-medium">{t.duration}</span></div>
+              <div><span class="text-slate-400">Prix</span><br /><span class="font-mono font-medium text-med-blue">{t.price}</span></div>
+            </div>
+            <p class="text-xs text-slate-500">{t.highlights}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-8">
+      <p class="font-semibold text-charcoal text-lg mb-3">Conseils pour choisir le bon tour</p>
+      <ul class="space-y-2">
+        {[
+          'Pour la Grotte Bleue à Capri : arriver avant 10h00. La queue de l\'après-midi peut durer 2 heures.',
+          'Les tours de groupe depuis Positano sont parfaits pour les voyageurs seuls : rencontres, Côte découverte, moins de dépenses.',
+          'En famille (enfants) : choisir des tours de 3-4h max, éviter les speedboats/zodiaques (plus de roulis).',
+          'La Grotte Émeraude depuis Amalfi est aussi accessible à pied (€5 entrée) : pas besoin de tour avec son propre transport.',
+          'En juillet-août réserver en ligne au moins 1-2 jours à l\'avance : les places partent vite.',
+        ].map(tip => (
+          <li class="flex items-start gap-2 text-sm text-charcoal">
+            <span class="w-1.5 h-1.5 rounded-full bg-med-gold/50 mt-1.5 flex-shrink-0"></span>
+            <span>{tip}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Questions fréquentes</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <CorrelationSlider
+    heading="Explorer les destinations des tours"
+    items={[
+      { name: 'Capri',    href: '/fr-fr/iles/capri/',                  tag: 'Faraglioni',    desc: 'Grotte Bleue, tour des Faraglioni et criques inaccessibles.' },
+      { name: 'Positano', href: '/fr-fr/cote-amalfitaine/positano/',   tag: 'Tours Côte',    desc: 'Point de départ des tours vers l\'est.' },
+      { name: 'Amalfi',   href: '/fr-fr/cote-amalfitaine/amalfi/',     tag: 'Grotte Émeraude', desc: 'La Grotte Émeraude et les tours vers Positano.' },
+      { name: 'Procida',  href: '/fr-fr/iles/procida/',                tag: 'Île authentique', desc: 'Tours en bateau autour de la petite île des pêcheurs.' },
+    ]}
+  />
+
+</BaseLayout>

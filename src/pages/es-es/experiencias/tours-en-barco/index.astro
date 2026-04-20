@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'es-es';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Experiencias', url: '/es-es/experiencias/' },
+  { name: 'Tours en Barco', url: '/es-es/experiencias/tours-en-barco/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuánto cuesta un tour en barco por la Costa Amalfitana?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Un tour en barco en grupo por la Costa Amalfitana (4-6 horas) cuesta €50-€80 por persona. El alquiler privado (sin patrón) desde €200/día para embarcaciones pequeñas; con patrón €400-800/día. En Capri, los botes de remos para la Gruta Azul cuestan ~€15." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Desde dónde salen los tours en barco?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Los tours en barco salen principalmente de: Positano (para la Costa y Capri), Amalfi (para la Costa y grutas), Sorrento (para Capri y la Costa), Marina Grande de Capri (para los Farallones y la Gruta Azul). En verano, reservar con 1-2 días de antelación." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Se cancelan los tours en barco con mal tiempo?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, todos los tours en barco se cancelan con mar agitado (olas por encima de 0,8-1m) o viento fuerte. Las cancelaciones son frecuentes en abril, octubre y con tramontana. Verificar siempre las condiciones marinas el día anterior en windguru.cz o windy.com." }
+    }
+  ]
+};
+
+const tours = [
+  { name: 'Tour Farallones, Capri', from: 'Marina Grande, Capri', duration: '1-2 horas', price: '~€18-25 p.p.', highlights: 'Farallones, Gruta Verde, paso bajo el arco Mezzo, snorkel', type: 'Grupo' },
+  { name: 'Gruta Azul (bote de remos)', from: 'Marina Grande, Capri', duration: '30 min (espera + gruta)', price: '~€15 + €14 entrada', highlights: 'Luz azul única, botes de remos, experiencia inolvidable', type: 'Individual' },
+  { name: 'Tour Costa desde Positano', from: 'Positano, Spiaggia Grande', duration: '4-6 horas', price: '~€50-80 p.p.', highlights: 'Gruta Esmeralda, Praiano, Amalfi desde el mar, snorkel en calas escondidas', type: 'Grupo' },
+  { name: 'Tour Costa desde Amalfi', from: 'Amalfi, puerto', duration: '3-5 horas', price: '~€40-70 p.p.', highlights: 'Grotta dello Smeraldo, Positano, calas inaccesibles, almuerzo en el mar', type: 'Grupo' },
+  { name: 'Barco privado Sorrento → Capri', from: 'Sorrento, Marina Piccola', duration: 'Día completo', price: '~€400-800 (barco entero)', highlights: 'Itinerario personalizado, sin masas, snorkel, almuerzo a bordo', type: 'Privado' },
+];
+---
+
+<BaseLayout
+  title="Tours en Barco Costa Amalfitana 2026 | Capri, Positano, Gruta Azul"
+  description="Mejores tours en barco por la Costa Amalfitana: Farallones de Capri, Gruta Azul, tours desde Positano y Amalfi. Precios, duraciones y consejos para elegir."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative min-h-[60vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/capri-hero.jpg" alt="Tour en barco, Costa Amalfitana" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/es-es/" class="hover:text-white transition-colors">Inicio</a>
+        <span>/</span>
+        <span class="text-white/60">Experiencias</span>
+        <span>/</span>
+        <span class="text-white">Tours en Barco</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Experiencias</p>
+        <h1 class="font-serif text-display text-white mb-4">Tours en Barco</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La Costa Amalfitana desde el mar es otro mundo: grutas inaccesibles por tierra, calas escondidas, los Farallones sobre la cabeza. Desde tours en grupo económicos hasta chárteres privados.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Tours más populares</h2>
+      <div class="space-y-4">
+        {tours.map(t => (
+          <div class="bg-white border border-slate-200 rounded-[2rem] p-6 hover:border-med-blue/30 transition-colors">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="font-semibold text-charcoal text-lg">{t.name}</h3>
+              <span class={`text-[10px] uppercase tracking-wide px-2 py-1 rounded-full font-medium flex-shrink-0 ${t.type === 'Privado' ? 'bg-med-cream text-med-gold' : t.type === 'Individual' ? 'bg-med-blue/5 text-med-blue' : 'bg-slate-50 text-slate-500'}`}>
+                {t.type}
+              </span>
+            </div>
+            <div class="grid sm:grid-cols-3 gap-3 text-sm mb-3">
+              <div><span class="text-slate-400">Salida</span><br /><span class="font-medium">{t.from}</span></div>
+              <div><span class="text-slate-400">Duración</span><br /><span class="font-medium">{t.duration}</span></div>
+              <div><span class="text-slate-400">Precio</span><br /><span class="font-mono font-medium text-med-blue">{t.price}</span></div>
+            </div>
+            <p class="text-xs text-slate-500">{t.highlights}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-8">
+      <p class="font-semibold text-charcoal text-lg mb-3">Consejos para elegir el tour correcto</p>
+      <ul class="space-y-2">
+        {[
+          'Para la Gruta Azul en Capri: llegar antes de las 10:00. La cola de la tarde puede ser de 2 horas.',
+          'Los tours en grupo desde Positano son ideales para viajeros solos: conocer gente, ver la Costa, gastar menos.',
+          'Con familia (niños): elegir tours de máximo 3-4h y evitar lanchas rápidas/zodiac (más balanceo).',
+          'La Gruta Esmeralda desde Amalfi es accesible también a pie (€5 entrada): no hace falta tour con transporte propio.',
+          'En julio-agosto reservar online con al menos 1-2 días de antelación: las plazas se agotan rápido.',
+        ].map(tip => (
+          <li class="flex items-start gap-2 text-sm text-charcoal">
+            <span class="w-1.5 h-1.5 rounded-full bg-med-gold/50 mt-1.5 flex-shrink-0"></span>
+            <span>{tip}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Preguntas frecuentes</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <CorrelationSlider
+    heading="Explorar destinos de tours"
+    items={[
+      { name: 'Capri',    href: '/es-es/islas/capri/',                  tag: 'Farallones',    desc: 'Gruta Azul, tour de los Farallones y calas inaccesibles.' },
+      { name: 'Positano', href: '/es-es/costa-amalfitana/positano/',    tag: 'Tours Costa',   desc: 'Punto de salida de los tours hacia el este.' },
+      { name: 'Amalfi',   href: '/es-es/costa-amalfitana/amalfi/',      tag: 'Gruta Esmeralda', desc: 'La Gruta Esmeralda y los tours hacia Positano.' },
+      { name: 'Procida',  href: '/es-es/islas/procida/',                tag: 'Isla auténtica', desc: 'Tours en barco alrededor de la pequeña isla de pescadores.' },
+    ]}
+  />
+
+</BaseLayout>

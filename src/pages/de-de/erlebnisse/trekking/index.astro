@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'de-de';
+
+const breadcrumbs = [
+  { name: 'Startseite', url: '/de-de/' },
+  { name: 'Erlebnisse', url: '/de-de/erlebnisse/' },
+  { name: 'Trekking & Götterweg', url: '/de-de/erlebnisse/trekking/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie schwierig ist der Götterweg?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Der Götterweg (Agerola nach Nocelle) ist als EE (erfahrene Wanderer) eingestuft: 8 km, ~500 m Höhenunterschied, 3-4 Stunden. Wanderschuhe, gute Kondition und Schwindelfreiheit erforderlich. Nicht geeignet für Kleinkinder oder Personen mit eingeschränkter Mobilität." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie kommt man zum Götterweg?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Startpunkt: Agerola (Ortsteil San Lazzaro, 618 m ü. NN). Ab Amalfi: SITA-Bus nach Agerola (~45 Min., begrenzte Verbindungen). Ab Neapel oder Salerno: Zug/Bus bis Amalfi, dann Bus nach Agerola. Morgendlicher Start (9:00-10:00) empfohlen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann man den Götterweg in umgekehrter Richtung gehen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Technisch ja, aber nicht empfohlen: die Richtung Agerola→Nocelle verläuft fast durchgehend bergab und ist sicherer. Die Gegenrichtung (Nocelle→Agerola) erfordert 500 m steilen Aufstieg auf instabilem Untergrund. Die CAI-Beschilderung ist für die traditionelle Richtung ausgelegt." }
+    }
+  ]
+};
+
+const trails = [
+  { name: 'Götterweg (Sentiero degli Dei)', difficulty: 'EE', km: '8 km', time: '3-4h', start: 'Agerola (S. Lazzaro)', end: 'Nocelle (Positano)', highlights: 'Atemberaubende Küstenaussichten, Mittelmeerflora, kein Asphalt' },
+  { name: 'Valle delle Ferriere', difficulty: 'E', km: '7 km hin/zurück', time: '2,5-3h', start: 'Amalfi Zentrum', end: 'Amalfi (Rückkehr)', highlights: 'Wasserfälle, tropische Farne, wilder Papyrus, natürlicher Schatten' },
+  { name: "Via dell'Infinito (Ravello)", difficulty: 'E', km: '5 km hin/zurück', time: '2h', start: 'Ravello', end: 'Ravello', highlights: 'Panoramablick auf die Küste, Olivenhaine, totale Stille' },
+  { name: 'Punta Campanella', difficulty: 'E', km: '6 km hin/zurück', time: '2,5h', start: 'Termini (Massa Lubrense)', end: 'Termini', highlights: 'Südlichste Spitze, römische Ruinen, Capri-Blick, Meeresschutzgebiet' },
+  { name: 'Monte Solaro (Capri)', difficulty: 'E', km: '4 km', time: '2h (Aufstieg)', start: 'Anacapri', end: 'Anacapri (Sessellift zurück)', highlights: '589 m, 360°-Panorama, Heiligtum, Stille' },
+];
+---
+
+<BaseLayout
+  title="Trekking Amalfiküste 2026 | Götterweg und beste Wanderwege"
+  description="Die besten Wanderwege an der Amalfiküste: Götterweg (Agerola-Nocelle), Valle delle Ferriere, Punta Campanella. Schwierigkeitsgrad, Zeiten und Anreise."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative min-h-[60vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/trekking-hero.jpg" alt="Götterweg, Amalfiküste" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/80"></div>
+    <div class="relative z-10 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/de-de/" class="hover:text-white transition-colors">Startseite</a>
+        <span>/</span>
+        <span class="text-white/60">Erlebnisse</span>
+        <span>/</span>
+        <span class="text-white">Trekking</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Erlebnisse</p>
+        <h1 class="font-serif text-display text-white mb-4">Trekking & Götterweg</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Die Amalfiküste ist nicht nur Strände und Fähren: Sie ist auch eine der spektakulärsten Landschaften Europas, die man zu Fuß erkunden kann. Vom legendären Götterweg bis zu den Wasserfällen der Valle delle Ferriere.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Die 5 besten Wanderwege</h2>
+      <div class="space-y-4">
+        {trails.map(t => (
+          <div class="bg-white border border-slate-200 rounded-[2rem] p-6 hover:border-med-blue/30 transition-colors">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="font-semibold text-charcoal text-lg">{t.name}</h3>
+              <span class={`text-[10px] uppercase tracking-wide px-2 py-1 rounded-full font-medium flex-shrink-0 ${t.difficulty === 'EE' ? 'bg-red-50 text-red-600' : 'bg-med-blue/5 text-med-blue'}`}>
+                {t.difficulty === 'EE' ? 'EE - Anspruchsvoll' : 'E - Leicht'}
+              </span>
+            </div>
+            <div class="grid sm:grid-cols-4 gap-3 text-sm mb-3">
+              <div><span class="text-slate-400">Distanz</span><br /><span class="font-medium">{t.km}</span></div>
+              <div><span class="text-slate-400">Zeit</span><br /><span class="font-medium">{t.time}</span></div>
+              <div><span class="text-slate-400">Start</span><br /><span class="font-medium">{t.start}</span></div>
+              <div><span class="text-slate-400">Ende</span><br /><span class="font-medium">{t.end}</span></div>
+            </div>
+            <p class="text-sm text-med-blue font-medium">{t.highlights}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-charcoal text-white rounded-[2rem] p-8">
+      <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Götterweg - Kurzführer</p>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div><p class="text-white/60 text-sm mb-1">Anreise zum Start</p><p class="text-sm leading-relaxed">Ab Amalfi: SITA-Bus nach Agerola (begrenzte Verbindungen, ~45 Min.). Empfehlung: Amalfi um 8:30 verlassen, um den Bus um 9:15 nach Agerola zu erreichen.</p></div>
+        <div><p class="text-white/60 text-sm mb-1">Rückkehr vom Ziel</p><p class="text-sm leading-relaxed">Ab Nocelle: Ortsbus nach Positano Zentrum (~15 Min.) oder zu Fuß (~1.000 Stufen, 45 Min.). Ab Positano: SITA-Bus oder Fähre nach Amalfi/Sorrent/Neapel.</p></div>
+        <div><p class="text-white/60 text-sm mb-1">Ausrüstung</p><p class="text-sm leading-relaxed">Wanderschuhe (keine Sandalen), 1,5L Wasser, Hut, Sonnencreme, Snacks, leichte Jacke. Der Weg hat keine Wasserquellen oder Geschäfte.</p></div>
+        <div><p class="text-white/60 text-sm mb-1">Beste Jahreszeit</p><p class="text-sm leading-relaxed">April-Juni und September-Oktober. Im Juli und August macht die Hitze den Weg anstrengend und überfüllt. Im Winter möglich, aber schlammig und rutschig.</p></div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Häufig gestellte Fragen</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <CorrelationSlider
+    heading="Wanderziele entdecken"
+    items={[
+      { name: 'Positano',       href: '/de-de/amalfikueste/positano/',             tag: 'Wegziel',       desc: 'Das bunte Dorf, wo der Götterweg endet.' },
+      { name: 'Amalfi',         href: '/de-de/amalfikueste/amalfi/',               tag: 'Valle-Start',   desc: 'Ausgangspunkt für die Valle delle Ferriere.' },
+      { name: 'Massa Lubrense', href: '/de-de/sorrentinische-halbinsel/massa-lubrense/', tag: 'Punta Campanella', desc: 'Meeresschutzgebiet mit Weg zur Punta Campanella.' },
+      { name: 'Capri',          href: '/de-de/inseln/capri/',                       tag: 'Monte Solaro',  desc: 'Sessellift oder Trekking zum 589-m-Gipfel.' },
+    ]}
+  />
+
+</BaseLayout>

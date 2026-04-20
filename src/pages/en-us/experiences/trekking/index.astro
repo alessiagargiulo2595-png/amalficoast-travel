@@ -1,0 +1,149 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Experiences', url: '/en-us/experiences/' },
+  { name: 'Trekking & Path of the Gods', url: '/en-us/experiences/trekking/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How difficult is the Path of the Gods?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The Path of the Gods (Agerola to Nocelle) is rated EE (experienced hikers): 8 km, ~500 m elevation change, 3-4 hours. Requires hiking boots, good fitness and no fear of heights. Not suitable for young children or people with mobility issues." }
+    },
+    {
+      "@type": "Question",
+      "name": "How to get to the Path of the Gods?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Starting point: Agerola (San Lazzaro hamlet, 618 m a.s.l.). From Amalfi: SITA bus to Agerola (~45 min, limited services). From Naples or Salerno: train/bus to Amalfi, then bus to Agerola. Morning start (9:00-10:00) recommended to avoid afternoon heat." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you do the Path of the Gods in reverse?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Technically yes, but not recommended: the Agerola→Nocelle direction is mostly downhill and safer. Reverse (Nocelle→Agerola) involves 500 m of steep uphill on unstable terrain. CAI trail markings are designed for the traditional direction." }
+    }
+  ]
+};
+
+const trails = [
+  { name: 'Path of the Gods', difficulty: 'EE', km: '8 km', time: '3-4h', start: 'Agerola (S. Lazzaro)', end: 'Nocelle (Positano)', highlights: 'Breathtaking coastal views, Mediterranean flora, no asphalt' },
+  { name: 'Valle delle Ferriere', difficulty: 'E', km: '7 km RT', time: '2.5-3h', start: 'Amalfi centre', end: 'Amalfi (return)', highlights: 'Waterfalls, tropical ferns, wild papyrus, natural shade' },
+  { name: "Via dell'Infinito (Ravello)", difficulty: 'E', km: '5 km RT', time: '2h', start: 'Ravello', end: 'Ravello', highlights: 'Panoramic views of the coast, olive groves, total silence' },
+  { name: 'Punta Campanella', difficulty: 'E', km: '6 km RT', time: '2.5h', start: 'Termini (Massa Lubrense)', end: 'Termini', highlights: 'Southernmost tip, Roman ruins, Capri views, marine reserve' },
+  { name: 'Monte Solaro (Capri)', difficulty: 'E', km: '4 km', time: '2h (ascent)', start: 'Anacapri', end: 'Anacapri (chairlift return)', highlights: '589 m, 360° panorama, sanctuary, silence' },
+];
+---
+
+<BaseLayout
+  title="Trekking Amalfi Coast 2026 | Path of the Gods and Best Hikes"
+  description="Best hiking trails on the Amalfi Coast: Path of the Gods (Agerola-Nocelle), Valle delle Ferriere, Punta Campanella. Difficulty, times and how to get there."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative min-h-[60vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/trekking-hero.jpg" alt="Path of the Gods, Amalfi Coast" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/80"></div>
+    <div class="relative z-10 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-32">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/en-us/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-white/60">Experiences</span>
+        <span>/</span>
+        <span class="text-white">Trekking</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Experiences</p>
+        <h1 class="font-serif text-display text-white mb-4">Trekking & Path of the Gods</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          The Amalfi Coast isn't just beaches and ferries: it's also one of Europe's most spectacular landscapes to explore on foot. From the legendary Path of the Gods to the waterfalls of Valle delle Ferriere.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">The 5 must-do trails</h2>
+      <div class="space-y-4">
+        {trails.map(t => (
+          <div class="bg-white border border-slate-200 rounded-[2rem] p-6 hover:border-med-blue/30 transition-colors">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="font-semibold text-charcoal text-lg">{t.name}</h3>
+              <span class={`text-[10px] uppercase tracking-wide px-2 py-1 rounded-full font-medium flex-shrink-0 ${t.difficulty === 'EE' ? 'bg-red-50 text-red-600' : 'bg-med-blue/5 text-med-blue'}`}>
+                {t.difficulty === 'EE' ? 'EE - Challenging' : 'E - Easy'}
+              </span>
+            </div>
+            <div class="grid sm:grid-cols-4 gap-3 text-sm mb-3">
+              <div><span class="text-slate-400">Distance</span><br /><span class="font-medium">{t.km}</span></div>
+              <div><span class="text-slate-400">Time</span><br /><span class="font-medium">{t.time}</span></div>
+              <div><span class="text-slate-400">Start</span><br /><span class="font-medium">{t.start}</span></div>
+              <div><span class="text-slate-400">End</span><br /><span class="font-medium">{t.end}</span></div>
+            </div>
+            <p class="text-sm text-med-blue font-medium">{t.highlights}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-charcoal text-white rounded-[2rem] p-8">
+      <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Path of the Gods - Quick Guide</p>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div>
+          <p class="text-white/60 text-sm mb-1">Getting to the start</p>
+          <p class="text-sm leading-relaxed">From Amalfi: SITA bus to Agerola (limited services, ~45 min). Recommended: leave Amalfi at 8:30 to catch the 9:15 bus to Agerola.</p>
+        </div>
+        <div>
+          <p class="text-white/60 text-sm mb-1">Getting back from the end</p>
+          <p class="text-sm leading-relaxed">From Nocelle: local bus to Positano centre (~15 min) or walk down (~1,000 steps, 45 min). From Positano: SITA bus or ferry to Amalfi/Sorrento/Naples.</p>
+        </div>
+        <div>
+          <p class="text-white/60 text-sm mb-1">What to bring</p>
+          <p class="text-sm leading-relaxed">Hiking boots (not sandals), 1.5L water, hat, sunscreen, snacks, light jacket. The trail has no water points or shops.</p>
+        </div>
+        <div>
+          <p class="text-white/60 text-sm mb-1">Best season</p>
+          <p class="text-sm leading-relaxed">April-June and September-October. In July and August the heat makes it exhausting and crowded. Winter is possible but muddy and slippery.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Frequently asked questions</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </div>
+
+  <CorrelationSlider
+    heading="Explore trekking destinations"
+    items={[
+      { name: 'Positano',       href: '/en-us/amalfi-coast/positano/',             tag: 'Trail end',      desc: 'The colourful village where the Path of the Gods ends.' },
+      { name: 'Amalfi',         href: '/en-us/amalfi-coast/amalfi/',               tag: 'Valle start',    desc: 'Starting point for the Valle delle Ferriere.' },
+      { name: 'Massa Lubrense', href: '/en-us/sorrento-peninsula/massa-lubrense/', tag: 'Punta Campanella', desc: 'Marine reserve with the trail to Punta Campanella.' },
+      { name: 'Capri',          href: '/en-us/isole/capri/',                        tag: 'Monte Solaro',   desc: 'Chairlift or trek to the 589 m summit of Monte Solaro.' },
+    ]}
+  />
+
+</BaseLayout>

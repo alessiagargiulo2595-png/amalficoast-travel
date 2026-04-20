@@ -256,9 +256,25 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/it-it/guida/bus-sita/', priority: '0.7', changefreq: 'monthly' },
   { loc: '/it-it/guida/parcheggi-ztl/', priority: '0.7', changefreq: 'monthly' },
 
-  // Esperienze
+  // Esperienze - it-it
   { loc: '/it-it/esperienze/trekking/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/it-it/esperienze/tour-barca/', priority: '0.7', changefreq: 'yearly' },
+
+  // Experiences - en-us
+  { loc: '/en-us/experiences/trekking/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/experiences/boat-tours/', priority: '0.7', changefreq: 'yearly' },
+
+  // Erlebnisse - de-de
+  { loc: '/de-de/erlebnisse/trekking/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/erlebnisse/bootstouren/', priority: '0.7', changefreq: 'yearly' },
+
+  // Expériences - fr-fr
+  { loc: '/fr-fr/experiences/trekking/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/experiences/tours-en-bateau/', priority: '0.7', changefreq: 'yearly' },
+
+  // Experiencias - es-es
+  { loc: '/es-es/experiencias/trekking/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/experiencias/tours-en-barco/', priority: '0.7', changefreq: 'yearly' },
 
   // Eventi - Costiera Amalfitana
   { loc: '/it-it/eventi/costiera-amalfitana/ravello-festival/', priority: '0.7', changefreq: 'yearly' },
