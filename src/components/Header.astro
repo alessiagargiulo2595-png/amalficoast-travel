@@ -20,8 +20,6 @@ const existingPages: Record<Locale, string[]> = {
   'it-it': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'costiera-amalfitana', 'positano'],
 };
 
-const isIT = lang === 'it-it';
-
 const flagMap: Record<Locale, string> = {
   'it-it': '🇮🇹',
   'en-us': '🇺🇸',
@@ -31,102 +29,263 @@ const flagMap: Record<Locale, string> = {
   'es-es': '🇪🇸',
 };
 
+/* ── Nav labels ── */
+const nav = ({
+  'en-us': { dest: 'Destinations', spiagge: 'Beaches',  guida: 'Travel Guide',   esp: 'Experiences',  ev: 'Events' },
+  'en-gb': { dest: 'Destinations', spiagge: 'Beaches',  guida: 'Travel Guide',   esp: 'Experiences',  ev: 'Events' },
+  'de-de': { dest: 'Reiseziele',   spiagge: 'Strände',  guida: 'Ratgeber',       esp: 'Erlebnisse',   ev: 'Veranstaltungen' },
+  'fr-fr': { dest: 'Destinations', spiagge: 'Plages',   guida: 'Guide Pratique', esp: 'Expériences',  ev: 'Événements' },
+  'es-es': { dest: 'Destinos',     spiagge: 'Playas',   guida: 'Guía Práctica',  esp: 'Experiencias', ev: 'Eventos' },
+  'it-it': { dest: 'Destinazioni', spiagge: 'Spiagge',  guida: 'Guida Pratica',  esp: 'Esperienze',   ev: 'Eventi' },
+} as const)[lang];
+
+/* ── Destinazioni section headings ── */
+const dh = ({
+  'en-us': { costiera: 'Amalfi Coast',       sorrentina: 'Sorrentine Peninsula',      isole: 'Gulf Islands' },
+  'en-gb': { costiera: 'Amalfi Coast',       sorrentina: 'Sorrentine Peninsula',      isole: 'Gulf Islands' },
+  'de-de': { costiera: 'Amalfiküste',        sorrentina: 'Sorrentinische Halbinsel',  isole: 'Golfinseln' },
+  'fr-fr': { costiera: 'Côte Amalfitaine',   sorrentina: 'Péninsule Sorrentine',      isole: 'Îles du Golfe' },
+  'es-es': { costiera: 'Costa Amalfitana',   sorrentina: 'Península Sorrentina',      isole: 'Islas del Golfo' },
+  'it-it': { costiera: 'Costiera Amalfitana',sorrentina: 'Penisola Sorrentina',       isole: 'Isole del Golfo' },
+} as const)[lang];
+
+/* ── Base paths ── */
+const costieraBase = ({ 'en-us': '/en-us/amalfi-coast', 'en-gb': '/en-gb/amalfi-coast', 'de-de': '/de-de/amalfikueste', 'fr-fr': '/fr-fr/cote-amalfitaine', 'es-es': '/es-es/costa-amalfitana', 'it-it': '/it-it/costiera-amalfitana' } as const)[lang];
+const sorrentineHref = lang === 'it-it' ? '/it-it/penisola-sorrentina/' : '#';
+const isoleHref      = ({ 'en-us': '/en-us/isole/', 'en-gb': '#', 'de-de': '/de-de/inseln/', 'fr-fr': '/fr-fr/iles/', 'es-es': '/es-es/islas/', 'it-it': '/it-it/isole/' } as const)[lang];
+const spiaggeHref    = ({ 'en-us': '/en-us/beaches/', 'en-gb': '#', 'de-de': '/de-de/strande/', 'fr-fr': '/fr-fr/plages/', 'es-es': '/es-es/playas/', 'it-it': '/it-it/spiagge/' } as const)[lang];
+const tutteBeachLabel = ({ 'en-us': 'All Beaches', 'en-gb': 'All Beaches', 'de-de': 'Alle Strände', 'fr-fr': 'Toutes les Plages', 'es-es': 'Todas las Playas', 'it-it': 'Tutte le Spiagge' } as const)[lang];
+const esperienzeHref  = lang === 'it-it' ? '/it-it/esperienze/' : '#';
+const itinerariLabel  = ({ 'en-us': 'Itineraries', 'en-gb': 'Itineraries', 'de-de': 'Reiserouten', 'fr-fr': 'Itinéraires', 'es-es': 'Itinerarios', 'it-it': 'Itinerari' } as const)[lang];
+const itinerariHref   = ({ 'en-us': '/en-us/itineraries/', 'en-gb': '#', 'de-de': '/de-de/reiserouten/', 'fr-fr': '/fr-fr/itineraires/', 'es-es': '/es-es/itinerarios/', 'it-it': '/it-it/itinerari/' } as const)[lang];
+const tuttiEvLabel    = ({ 'en-us': 'All events →', 'en-gb': 'All events →', 'de-de': 'Alle Veranstaltungen →', 'fr-fr': 'Tous les événements →', 'es-es': 'Todos los eventos →', 'it-it': 'Tutti gli eventi →' } as const)[lang];
+const tuttiEvHref     = lang === 'it-it' ? '/it-it/eventi/' : '#';
+
+/* ── Destinazioni: Costiera borghi ── */
 const costieraBorghi = [
-  { name: 'Positano',  href: '/it-it/costiera-amalfitana/positano/' },
-  { name: 'Amalfi',    href: '/it-it/costiera-amalfitana/amalfi/' },
-  { name: 'Ravello',   href: '/it-it/costiera-amalfitana/ravello/' },
-  { name: 'Praiano',   href: '/it-it/costiera-amalfitana/praiano/' },
-  { name: 'Maiori',    href: '/it-it/costiera-amalfitana/maiori/' },
-  { name: 'Minori',    href: '/it-it/costiera-amalfitana/minori/' },
-];
-const sorrentinaBorghi = [
-  { name: 'Sorrento',        href: '/it-it/penisola-sorrentina/sorrento/' },
-  { name: 'Vico Equense',    href: '/it-it/penisola-sorrentina/vico-equense/' },
-  { name: 'Massa Lubrense',  href: '/it-it/penisola-sorrentina/massa-lubrense/' },
-  { name: 'Sant\'Agnello',   href: '/it-it/penisola-sorrentina/sant-agnello/' },
-];
-const isole = [
-  { name: 'Capri',    href: '/it-it/isole/capri/' },
-  { name: 'Ischia',   href: '/it-it/isole/ischia/' },
-  { name: 'Procida',  href: '/it-it/isole/procida/' },
-];
-const guidaLinks = [
-  { name: 'Traghetti & Aliscafi', href: '/it-it/guida/traghetti/' },
-  { name: 'Bus SITA',             href: '/it-it/guida/bus-sita/' },
-  { name: 'Parcheggi e ZTL',      href: '/it-it/guida/parcheggi-ztl/' },
-  { name: 'Quando andare',        href: '/it-it/quando-visitare/' },
-];
-const esperienze = [
-  { name: 'Trekking & Sentiero degli Dei', href: '/it-it/esperienze/trekking/' },
-  { name: 'Tour in Barca',              href: '/it-it/esperienze/tour-barca/' },
+  { name: 'Positano',  href: `${costieraBase}/positano/` },
+  { name: 'Amalfi',    href: `${costieraBase}/amalfi/` },
+  { name: 'Ravello',   href: `${costieraBase}/ravello/` },
+  { name: 'Praiano',   href: `${costieraBase}/praiano/` },
+  { name: 'Maiori',    href: `${costieraBase}/maiori/` },
+  { name: 'Minori',    href: `${costieraBase}/minori/` },
 ];
 
+/* ── Destinazioni: Sorrentina (pages exist only for IT) ── */
+const sorrentinaBorghi = lang === 'it-it' ? [
+  { name: 'Sorrento',       href: '/it-it/penisola-sorrentina/sorrento/' },
+  { name: 'Vico Equense',   href: '/it-it/penisola-sorrentina/vico-equense/' },
+  { name: 'Massa Lubrense', href: '/it-it/penisola-sorrentina/massa-lubrense/' },
+  { name: "Sant'Agnello",   href: '/it-it/penisola-sorrentina/sant-agnello/' },
+] : [
+  { name: 'Sorrento', href: '#' }, { name: 'Vico Equense', href: '#' },
+  { name: 'Massa Lubrense', href: '#' }, { name: "Sant'Agnello", href: '#' },
+];
+
+/* ── Destinazioni: Isole ── */
+const isoleLinks = ({
+  'en-us': [{ name: 'Capri', href: '/en-us/isole/capri/' },  { name: 'Ischia', href: '/en-us/isole/ischia/' },  { name: 'Procida', href: '/en-us/isole/procida/' }],
+  'en-gb': [{ name: 'Capri', href: '#' },                    { name: 'Ischia', href: '#' },                    { name: 'Procida', href: '#' }],
+  'de-de': [{ name: 'Capri', href: '/de-de/inseln/capri/' }, { name: 'Ischia', href: '/de-de/inseln/ischia/' }, { name: 'Procida', href: '/de-de/inseln/procida/' }],
+  'fr-fr': [{ name: 'Capri', href: '/fr-fr/iles/capri/' },   { name: 'Ischia', href: '/fr-fr/iles/ischia/' },   { name: 'Procida', href: '/fr-fr/iles/procida/' }],
+  'es-es': [{ name: 'Capri', href: '/es-es/islas/capri/' },  { name: 'Ischia', href: '/es-es/islas/ischia/' },  { name: 'Procida', href: '/es-es/islas/procida/' }],
+  'it-it': [{ name: 'Capri', href: '/it-it/isole/capri/' },  { name: 'Ischia', href: '/it-it/isole/ischia/' },  { name: 'Procida', href: '/it-it/isole/procida/' }],
+} as const)[lang];
+
+/* ── Spiagge areas (individual beach pages exist only for IT) ── */
 const spiaggeAree = [
   {
     area: 'Costiera Amalfitana',
-    href: '/it-it/spiagge/#costiera-amalfitana',
+    href: spiaggeHref === '#' ? '#' : `${spiaggeHref}#costiera-amalfitana`,
     beaches: [
-      { name: 'Fiordo di Furore',   href: '/it-it/spiagge/costiera-amalfitana/fiordo-di-furore/' },
-      { name: 'Spiaggia Grande',    href: '/it-it/spiagge/costiera-amalfitana/spiaggia-grande-positano/' },
-      { name: 'Santa Croce',        href: '/it-it/spiagge/costiera-amalfitana/santa-croce-amalfi/' },
+      { name: 'Fiordo di Furore',  href: lang === 'it-it' ? '/it-it/spiagge/costiera-amalfitana/fiordo-di-furore/' : '#' },
+      { name: 'Spiaggia Grande',   href: lang === 'it-it' ? '/it-it/spiagge/costiera-amalfitana/spiaggia-grande-positano/' : '#' },
+      { name: 'Santa Croce',       href: lang === 'it-it' ? '/it-it/spiagge/costiera-amalfitana/santa-croce-amalfi/' : '#' },
     ],
   },
   {
     area: 'Penisola Sorrentina',
-    href: '/it-it/spiagge/#penisola-sorrentina',
+    href: spiaggeHref === '#' ? '#' : `${spiaggeHref}#penisola-sorrentina`,
     beaches: [
-      { name: 'Regina Giovanna',    href: '/it-it/spiagge/penisola-sorrentina/regina-giovanna/' },
-      { name: 'Marina del Cantone', href: '/it-it/spiagge/penisola-sorrentina/marina-del-cantone/' },
-      { name: 'Cala di Mitigliano', href: '/it-it/spiagge/penisola-sorrentina/cala-mitigliano/' },
+      { name: 'Regina Giovanna',    href: lang === 'it-it' ? '/it-it/spiagge/penisola-sorrentina/regina-giovanna/' : '#' },
+      { name: 'Marina del Cantone', href: lang === 'it-it' ? '/it-it/spiagge/penisola-sorrentina/marina-del-cantone/' : '#' },
+      { name: 'Cala di Mitigliano', href: lang === 'it-it' ? '/it-it/spiagge/penisola-sorrentina/cala-mitigliano/' : '#' },
     ],
   },
   {
     area: 'Isole del Golfo',
-    href: '/it-it/spiagge/#isole',
+    href: spiaggeHref === '#' ? '#' : `${spiaggeHref}#isole`,
     beaches: [
-      { name: 'Marina Piccola',       href: '/it-it/spiagge/isole/marina-piccola-capri/' },
-      { name: 'Maronti (Ischia)',     href: '/it-it/spiagge/isole/spiaggia-maronti/' },
-      { name: 'Pozzo Vecchio',        href: '/it-it/spiagge/isole/cala-del-pozzo-vecchio/' },
+      { name: 'Marina Piccola',     href: lang === 'it-it' ? '/it-it/spiagge/isole/marina-piccola-capri/' : '#' },
+      { name: 'Maronti (Ischia)',   href: lang === 'it-it' ? '/it-it/spiagge/isole/spiaggia-maronti/' : '#' },
+      { name: 'Pozzo Vecchio',      href: lang === 'it-it' ? '/it-it/spiagge/isole/cala-del-pozzo-vecchio/' : '#' },
     ],
   },
 ];
-const eventiCultura = [
-  { name: 'Ravello Festival',           href: '/it-it/eventi/costiera-amalfitana/ravello-festival/' },
-  { name: 'Regata Repubbliche Marinare',href: '/it-it/eventi/costiera-amalfitana/regata-storica-amalfi/' },
-  { name: 'Capodanno Bizantino',        href: '/it-it/eventi/costiera-amalfitana/capodanno-bizantino/' },
-  { name: 'Positano Arte & Cultura',    href: '/it-it/eventi/costiera-amalfitana/positano-mare-sole-cultura/' },
-  { name: 'Ischia Film Festival',       href: '/it-it/eventi/isole/ischia-global-film-festival/' },
-];
-const eventiTradizioni = [
-  { name: 'Luminaria di San Domenico',  href: '/it-it/eventi/costiera-amalfitana/luminaria-san-domenico-praiano/' },
-  { name: 'Fuochi di Ferragosto',       href: '/it-it/eventi/costiera-amalfitana/fuochi-ferragosto-positano-maiori/' },
-  { name: 'Festa di Sant\'Andrea',      href: '/it-it/eventi/costiera-amalfitana/festa-sant-andrea-amalfi/' },
-  { name: 'Festa di Sant\'Antonino',    href: '/it-it/eventi/penisola-sorrentina/festa-sant-antonino/' },
-  { name: 'Sagra del Mare (Procida)',   href: '/it-it/eventi/isole/sagra-del-mare-graziella-procida/' },
-];
-const eventiGastronomia = [
-  { name: 'Sagra del Limone (Massa)',   href: '/it-it/eventi/penisola-sorrentina/sagra-limone-massa-lubrense/' },
-  { name: 'Sagra della Melanzana',      href: '/it-it/eventi/penisola-sorrentina/sagra-melanzana-preazzano/' },
-  { name: 'Sagra del Pesce (Positano)', href: '/it-it/eventi/costiera-amalfitana/sagra-del-pesce-positano/' },
-  { name: 'Festival del Limone (Minori)',href: '/it-it/eventi/costiera-amalfitana/festival-limone-minori/' },
-  { name: 'Gustamincanto',              href: '/it-it/eventi/penisola-sorrentina/gustamincanto-vico-equense/' },
-];
-const itinerari1g = [
-  { name: 'Costiera da Napoli',      href: '/it-it/itinerari/1-giorno/costiera-amalfitana-da-napoli/' },
-  { name: 'Costiera da Salerno',     href: '/it-it/itinerari/1-giorno/costiera-amalfitana-da-salerno/' },
-  { name: 'Penisola Sorrentina',     href: '/it-it/itinerari/1-giorno/penisola-sorrentina-da-napoli/' },
-  { name: 'Sentiero degli Dei',      href: '/it-it/itinerari/1-giorno/trekking-sentiero-degli-dei/' },
-  { name: 'Capri da Sorrento',       href: '/it-it/itinerari/1-giorno/capri-da-sorrento/' },
-];
-const itinerari3g = [
-  { name: 'Classico Costiera',       href: '/it-it/itinerari/3-giorni/classico-costiera-amalfitana/' },
-  { name: 'Sorrento, Pompei e Storia', href: '/it-it/itinerari/3-giorni/sorrento-pompei-storia/' },
-  { name: 'Isole: Ischia e Procida', href: '/it-it/itinerari/3-giorni/isole-ischia-procida/' },
-];
-const itinerari7g = [
-  { name: 'Grand Tour Costiera',     href: '/it-it/itinerari/7-giorni/grand-tour-costiera-penisola/' },
-  { name: 'Slow Travel Borghi & Cibo', href: '/it-it/itinerari/7-giorni/slow-travel-borghi-cibo/' },
-];
+
+/* ── Guida Pratica links ── */
+const guidaLinks = ({
+  'en-us': [
+    { name: 'Ferries & Hydrofoils', href: '/en-us/guide/ferries/' },
+    { name: 'SITA Bus',             href: '/en-us/guide/sita-bus/' },
+    { name: 'Parking & ZTL',        href: '/en-us/guide/parking-ztl/' },
+    { name: 'When to Visit',        href: '/en-us/when-to-visit/' },
+  ],
+  'en-gb': [
+    { name: 'Ferries & Hydrofoils', href: '#' },
+    { name: 'SITA Bus',             href: '#' },
+    { name: 'Parking & ZTL',        href: '#' },
+    { name: 'When to Visit',        href: '#' },
+  ],
+  'de-de': [
+    { name: 'Fähren & Tragflügelboote', href: '/de-de/ratgeber/faehren/' },
+    { name: 'SITA Bus',                 href: '/de-de/ratgeber/sita-bus/' },
+    { name: 'Parken & ZTL',             href: '/de-de/ratgeber/parken-ztl/' },
+    { name: 'Beste Reisezeit',          href: '/de-de/reisezeit/' },
+  ],
+  'fr-fr': [
+    { name: 'Ferries & Hydroglisseurs', href: '/fr-fr/guide/ferries/' },
+    { name: 'Bus SITA',                 href: '/fr-fr/guide/bus-sita/' },
+    { name: 'Parking & ZTL',            href: '/fr-fr/guide/parking-ztl/' },
+    { name: 'Quand Visiter',            href: '/fr-fr/quand-visiter/' },
+  ],
+  'es-es': [
+    { name: 'Ferries y Aliscafos',   href: '/es-es/guia/ferries/' },
+    { name: 'Bus SITA',              href: '/es-es/guia/bus-sita/' },
+    { name: 'Aparcamiento & ZTL',    href: '/es-es/guia/aparcamiento-ztl/' },
+    { name: 'Cuándo Visitar',        href: '/es-es/cuando-visitar/' },
+  ],
+  'it-it': [
+    { name: 'Traghetti & Aliscafi', href: '/it-it/guida/traghetti/' },
+    { name: 'Bus SITA',             href: '/it-it/guida/bus-sita/' },
+    { name: 'Parcheggi e ZTL',      href: '/it-it/guida/parcheggi-ztl/' },
+    { name: 'Quando andare',        href: '/it-it/quando-visitare/' },
+  ],
+} as const)[lang];
+
+/* ── Esperienze ── */
+const esperienze = ({
+  'en-us': [{ name: 'Trekking & Path of the Gods',  href: '#' }, { name: 'Boat Tours',     href: '#' }],
+  'en-gb': [{ name: 'Trekking & Path of the Gods',  href: '#' }, { name: 'Boat Tours',     href: '#' }],
+  'de-de': [{ name: 'Trekking & Weg der Götter',    href: '#' }, { name: 'Bootstouren',    href: '#' }],
+  'fr-fr': [{ name: 'Trekking & Sentier des Dieux', href: '#' }, { name: 'Tours en Bateau',href: '#' }],
+  'es-es': [{ name: 'Trekking & Sendero de los Dioses', href: '#' }, { name: 'Tours en Barco', href: '#' }],
+  'it-it': [{ name: 'Trekking & Sentiero degli Dei', href: '/it-it/esperienze/trekking/' }, { name: 'Tour in Barca', href: '/it-it/esperienze/tour-barca/' }],
+} as const)[lang];
+
+/* ── Itinerari ── */
+const itPeriods = ({ 'en-us': { d1: '1 day', d3: '3 days', d7: '7 days' }, 'en-gb': { d1: '1 day', d3: '3 days', d7: '7 days' }, 'de-de': { d1: '1 Tag', d3: '3 Tage', d7: '7 Tage' }, 'fr-fr': { d1: '1 jour', d3: '3 jours', d7: '7 jours' }, 'es-es': { d1: '1 día', d3: '3 días', d7: '7 días' }, 'it-it': { d1: '1 giorno', d3: '3 giorni', d7: '7 giorni' } } as const)[lang];
+
+const itinerari1g = ({
+  'en-us': [
+    { name: 'Amalfi Coast from Naples',  href: '/en-us/itineraries/1-day/amalfi-coast-from-naples/' },
+    { name: 'Amalfi Coast from Salerno', href: '/en-us/itineraries/1-day/amalfi-coast-from-salerno/' },
+    { name: 'Sorrentine Peninsula',      href: '/en-us/itineraries/1-day/sorrentine-peninsula-from-naples/' },
+    { name: 'Path of the Gods Trek',     href: '/en-us/itineraries/1-day/path-of-the-gods-trek/' },
+    { name: 'Capri from Sorrento',       href: '/en-us/itineraries/1-day/capri-from-sorrento/' },
+  ],
+  'en-gb': [
+    { name: 'Amalfi Coast from Naples', href: '#' }, { name: 'Amalfi Coast from Salerno', href: '#' },
+    { name: 'Sorrentine Peninsula', href: '#' }, { name: 'Path of the Gods Trek', href: '#' }, { name: 'Capri from Sorrento', href: '#' },
+  ],
+  'de-de': [
+    { name: 'Amalfiküste von Neapel',          href: '/de-de/reiserouten/1-tag/amalfikueste-von-neapel/' },
+    { name: 'Amalfiküste von Salerno',          href: '/de-de/reiserouten/1-tag/amalfikueste-von-salerno/' },
+    { name: 'Sorrentinische Halbinsel',         href: '/de-de/reiserouten/1-tag/sorrentinische-halbinsel-von-neapel/' },
+    { name: 'Weg der Götter',                   href: '/de-de/reiserouten/1-tag/weg-der-goetter-trekking/' },
+    { name: 'Capri von Sorrent',                href: '/de-de/reiserouten/1-tag/capri-von-sorrent/' },
+  ],
+  'fr-fr': [
+    { name: 'Côte Amalfitaine depuis Naples',  href: '/fr-fr/itineraires/1-jour/cote-amalfitaine-depuis-naples/' },
+    { name: 'Côte Amalfitaine depuis Salerne', href: '/fr-fr/itineraires/1-jour/cote-amalfitaine-depuis-salerne/' },
+    { name: 'Péninsule Sorrentine',            href: '/fr-fr/itineraires/1-jour/peninsule-sorrentine-depuis-naples/' },
+    { name: 'Sentier des Dieux',               href: '/fr-fr/itineraires/1-jour/sentier-des-dieux-trek/' },
+    { name: 'Capri depuis Sorrente',           href: '/fr-fr/itineraires/1-jour/capri-depuis-sorrente/' },
+  ],
+  'es-es': [
+    { name: 'Costa Amalfitana desde Nápoles', href: '/es-es/itinerarios/1-dia/costa-amalfitana-desde-napoles/' },
+    { name: 'Costa Amalfitana desde Salerno', href: '/es-es/itinerarios/1-dia/costa-amalfitana-desde-salerno/' },
+    { name: 'Península Sorrentina',           href: '/es-es/itinerarios/1-dia/peninsula-sorrentina-desde-napoles/' },
+    { name: 'Sendero de los Dioses',          href: '/es-es/itinerarios/1-dia/sendero-de-los-dioses-trek/' },
+    { name: 'Capri desde Sorrento',           href: '/es-es/itinerarios/1-dia/capri-desde-sorrento/' },
+  ],
+  'it-it': [
+    { name: 'Costiera da Napoli',   href: '/it-it/itinerari/1-giorno/costiera-amalfitana-da-napoli/' },
+    { name: 'Costiera da Salerno',  href: '/it-it/itinerari/1-giorno/costiera-amalfitana-da-salerno/' },
+    { name: 'Penisola Sorrentina',  href: '/it-it/itinerari/1-giorno/penisola-sorrentina-da-napoli/' },
+    { name: 'Sentiero degli Dei',   href: '/it-it/itinerari/1-giorno/trekking-sentiero-degli-dei/' },
+    { name: 'Capri da Sorrento',    href: '/it-it/itinerari/1-giorno/capri-da-sorrento/' },
+  ],
+} as const)[lang];
+
+const itinerari3g = ({
+  'en-us': [{ name: 'Classic Amalfi Coast',     href: '/en-us/itineraries/3-days/classic-amalfi-coast/' }],
+  'en-gb': [{ name: 'Classic Amalfi Coast',     href: '#' }],
+  'de-de': [{ name: 'Klassische Amalfiküste',   href: '#' }],
+  'fr-fr': [{ name: 'Côte Amalfitaine Classique', href: '#' }],
+  'es-es': [{ name: 'Costa Amalfitana Clásica', href: '#' }],
+  'it-it': [
+    { name: 'Classico Costiera',        href: '/it-it/itinerari/3-giorni/classico-costiera-amalfitana/' },
+    { name: 'Sorrento, Pompei e Storia',href: '/it-it/itinerari/3-giorni/sorrento-pompei-storia/' },
+    { name: 'Isole: Ischia e Procida',  href: '/it-it/itinerari/3-giorni/isole-ischia-procida/' },
+  ],
+} as const)[lang];
+
+const itinerari7g = ({
+  'en-us': [], 'en-gb': [], 'de-de': [], 'fr-fr': [], 'es-es': [],
+  'it-it': [
+    { name: 'Grand Tour Costiera',       href: '/it-it/itinerari/7-giorni/grand-tour-costiera-penisola/' },
+    { name: 'Slow Travel Borghi & Cibo', href: '/it-it/itinerari/7-giorni/slow-travel-borghi-cibo/' },
+  ],
+} as const)[lang];
+
+/* ── Eventi section headings ── */
+const evSec = ({ 'en-us': { cultura: 'Culture', tradizioni: 'Traditions', gastro: 'Gastronomy' }, 'en-gb': { cultura: 'Culture', tradizioni: 'Traditions', gastro: 'Gastronomy' }, 'de-de': { cultura: 'Kultur', tradizioni: 'Traditionen', gastro: 'Gastronomie' }, 'fr-fr': { cultura: 'Culture', tradizioni: 'Traditions', gastro: 'Gastronomie' }, 'es-es': { cultura: 'Cultura', tradizioni: 'Tradiciones', gastro: 'Gastronomía' }, 'it-it': { cultura: 'Cultura', tradizioni: 'Tradizioni', gastro: 'Gastronomia' } } as const)[lang];
+
+const eventiCultura = ({
+  'en-us': [{ name: 'Ravello Festival', href: '#' }, { name: 'Historic Regatta', href: '#' }, { name: 'Byzantine New Year', href: '#' }, { name: 'Positano Arts & Culture', href: '#' }, { name: 'Ischia Film Festival', href: '#' }],
+  'en-gb': [{ name: 'Ravello Festival', href: '#' }, { name: 'Historic Regatta', href: '#' }, { name: 'Byzantine New Year', href: '#' }, { name: 'Positano Arts & Culture', href: '#' }, { name: 'Ischia Film Festival', href: '#' }],
+  'de-de': [{ name: 'Ravello Festival', href: '#' }, { name: 'Historische Regatta', href: '#' }, { name: 'Byzantinisches Neujahr', href: '#' }, { name: 'Positano Kunst & Kultur', href: '#' }, { name: 'Ischia Filmfestival', href: '#' }],
+  'fr-fr': [{ name: 'Festival de Ravello', href: '#' }, { name: 'Régate Historique', href: '#' }, { name: 'Nouvel An Byzantin', href: '#' }, { name: 'Positano Arts & Culture', href: '#' }, { name: "Festival du Film d'Ischia", href: '#' }],
+  'es-es': [{ name: 'Festival de Ravello', href: '#' }, { name: 'Regata Histórica', href: '#' }, { name: 'Año Nuevo Bizantino', href: '#' }, { name: 'Positano Arte y Cultura', href: '#' }, { name: 'Festival de Cine de Ischia', href: '#' }],
+  'it-it': [
+    { name: 'Ravello Festival',           href: '/it-it/eventi/costiera-amalfitana/ravello-festival/' },
+    { name: 'Regata Repubbliche Marinare',href: '/it-it/eventi/costiera-amalfitana/regata-storica-amalfi/' },
+    { name: 'Capodanno Bizantino',        href: '#' },
+    { name: 'Positano Arte & Cultura',    href: '/it-it/eventi/costiera-amalfitana/positano-mare-sole-cultura/' },
+    { name: 'Ischia Film Festival',       href: '/it-it/eventi/isole/ischia-global-film-festival/' },
+  ],
+} as const)[lang];
+
+const eventiTradizioni = ({
+  'en-us': [{ name: 'Luminaria di San Domenico', href: '#' }, { name: 'Ferragosto Fireworks', href: '#' }, { name: "Feast of Sant'Andrea", href: '#' }, { name: "Feast of Sant'Antonino", href: '#' }, { name: 'Sea Festival (Procida)', href: '#' }],
+  'en-gb': [{ name: 'Luminaria di San Domenico', href: '#' }, { name: 'Ferragosto Fireworks', href: '#' }, { name: "Feast of Sant'Andrea", href: '#' }, { name: "Feast of Sant'Antonino", href: '#' }, { name: 'Sea Festival (Procida)', href: '#' }],
+  'de-de': [{ name: 'Luminaria di San Domenico', href: '#' }, { name: 'Ferragosto Feuerwerk', href: '#' }, { name: 'Fest des hl. Andreas', href: '#' }, { name: 'Fest des hl. Antonino', href: '#' }, { name: 'Meeresfest (Procida)', href: '#' }],
+  'fr-fr': [{ name: 'Luminaria di San Domenico', href: '#' }, { name: 'Feux de la Ferragosto', href: '#' }, { name: "Fête de Sant'Andrea", href: '#' }, { name: "Fête de Sant'Antonino", href: '#' }, { name: 'Fête de la Mer (Procida)', href: '#' }],
+  'es-es': [{ name: 'Luminaria di San Domenico', href: '#' }, { name: 'Fuegos de Ferragosto', href: '#' }, { name: "Fiesta de Sant'Andrea", href: '#' }, { name: "Fiesta de Sant'Antonino", href: '#' }, { name: 'Sagra del Mare (Procida)', href: '#' }],
+  'it-it': [
+    { name: 'Luminaria di San Domenico',  href: '/it-it/eventi/costiera-amalfitana/luminaria-san-domenico-praiano/' },
+    { name: 'Fuochi di Ferragosto',       href: '/it-it/eventi/costiera-amalfitana/fuochi-ferragosto-positano-maiori/' },
+    { name: "Festa di Sant'Andrea",       href: '/it-it/eventi/costiera-amalfitana/festa-sant-andrea-amalfi/' },
+    { name: "Festa di Sant'Antonino",     href: '/it-it/eventi/penisola-sorrentina/festa-sant-antonino/' },
+    { name: 'Sagra del Mare (Procida)',   href: '/it-it/eventi/isole/sagra-del-mare-graziella-procida/' },
+  ],
+} as const)[lang];
+
+const eventiGastronomia = ({
+  'en-us': [{ name: 'Lemon Festival (Massa)', href: '#' }, { name: 'Aubergine Festival', href: '#' }, { name: 'Fish Festival (Positano)', href: '#' }, { name: 'Lemon Festival (Minori)', href: '#' }, { name: 'Gustamincanto', href: '#' }],
+  'en-gb': [{ name: 'Lemon Festival (Massa)', href: '#' }, { name: 'Aubergine Festival', href: '#' }, { name: 'Fish Festival (Positano)', href: '#' }, { name: 'Lemon Festival (Minori)', href: '#' }, { name: 'Gustamincanto', href: '#' }],
+  'de-de': [{ name: 'Zitronenfest (Massa)', href: '#' }, { name: 'Auberginenfest', href: '#' }, { name: 'Fischfest (Positano)', href: '#' }, { name: 'Zitronenfest (Minori)', href: '#' }, { name: 'Gustamincanto', href: '#' }],
+  'fr-fr': [{ name: 'Fête du Citron (Massa)', href: '#' }, { name: "Fête de l'Aubergine", href: '#' }, { name: 'Fête du Poisson (Positano)', href: '#' }, { name: 'Fête du Citron (Minori)', href: '#' }, { name: 'Gustamincanto', href: '#' }],
+  'es-es': [{ name: 'Festival del Limón (Massa)', href: '#' }, { name: 'Festival de la Berenjena', href: '#' }, { name: 'Fiesta del Pescado (Positano)', href: '#' }, { name: 'Festival del Limón (Minori)', href: '#' }, { name: 'Gustamincanto', href: '#' }],
+  'it-it': [
+    { name: 'Sagra del Limone (Massa)',    href: '/it-it/eventi/penisola-sorrentina/sagra-limone-massa-lubrense/' },
+    { name: 'Sagra della Melanzana',       href: '/it-it/eventi/penisola-sorrentina/sagra-melanzana-preazzano/' },
+    { name: 'Sagra del Pesce (Positano)',  href: '/it-it/eventi/costiera-amalfitana/sagra-del-pesce-positano/' },
+    { name: 'Festival del Limone (Minori)',href: '/it-it/eventi/costiera-amalfitana/festival-limone-minori/' },
+    { name: 'Gustamincanto',               href: '/it-it/eventi/penisola-sorrentina/gustamincanto-vico-equense/' },
+  ],
+} as const)[lang];
 ---
 
 <header class="glass-nav sticky top-0 z-50">
@@ -138,281 +297,265 @@ const itinerari7g = [
         <img src="/logo.svg" alt="Amalfi Coast Travel Guide" class="h-10 w-auto" />
       </a>
 
-      <!-- Desktop Nav -->
-      {isIT ? (
-        <nav class="hidden lg:flex items-center gap-1">
+      <!-- Desktop Nav (mega dropdown — all locales) -->
+      <nav class="hidden lg:flex items-center gap-1">
 
-          <!-- Destinazioni mega-dropdown -->
-          <div class="relative group/dest">
-            <button class="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5 group-hover/dest:text-med-blue">
-              Destinazioni
-              <svg class="w-3.5 h-3.5 opacity-50 group-hover/dest:opacity-100 transition-transform group-hover/dest:rotate-180 duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
-            <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover/dest:opacity-100 group-hover/dest:visible transition-all duration-200 z-50">
-              <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 grid grid-cols-3 gap-6 w-[580px]">
+        <!-- Destinazioni mega-dropdown -->
+        <div class="relative group/dest">
+          <button class="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5 group-hover/dest:text-med-blue">
+            {nav.dest}
+            <svg class="w-3.5 h-3.5 opacity-50 group-hover/dest:opacity-100 transition-transform group-hover/dest:rotate-180 duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover/dest:opacity-100 group-hover/dest:visible transition-all duration-200 z-50">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 grid grid-cols-3 gap-6 w-[580px]">
 
-                <!-- Costiera -->
-                <div>
-                  <a href="/it-it/costiera-amalfitana/" class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
-                    Costiera Amalfitana
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
-                  </a>
-                  <div class="space-y-0.5 mt-2">
-                    {costieraBorghi.map(b => (
-                      <a href={b.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                        <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
-                        {b.name}
-                      </a>
-                    ))}
-                  </div>
+              <!-- Costiera -->
+              <div>
+                <a href={`${costieraBase}/`} class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
+                  {dh.costiera}
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+                </a>
+                <div class="space-y-0.5 mt-2">
+                  {costieraBorghi.map(b => (
+                    <a href={b.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                      <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
+                      {b.name}
+                    </a>
+                  ))}
                 </div>
-
-                <!-- Penisola -->
-                <div>
-                  <a href="/it-it/penisola-sorrentina/" class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
-                    Penisola Sorrentina
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
-                  </a>
-                  <div class="space-y-0.5 mt-2">
-                    {sorrentinaBorghi.map(b => (
-                      <a href={b.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                        <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
-                        {b.name}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-
-                <!-- Isole -->
-                <div>
-                  <a href="/it-it/isole/" class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
-                    Isole del Golfo
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
-                  </a>
-                  <div class="space-y-0.5 mt-2">
-                    {isole.map(b => (
-                      <a href={b.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                        <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
-                        {b.name}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-
               </div>
+
+              <!-- Penisola -->
+              <div>
+                <a href={sorrentineHref} class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
+                  {dh.sorrentina}
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+                </a>
+                <div class="space-y-0.5 mt-2">
+                  {sorrentinaBorghi.map(b => (
+                    <a href={b.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                      <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
+                      {b.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Isole -->
+              <div>
+                <a href={isoleHref} class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
+                  {dh.isole}
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+                </a>
+                <div class="space-y-0.5 mt-2">
+                  {isoleLinks.map(b => (
+                    <a href={b.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                      <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
+                      {b.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
             </div>
           </div>
+        </div>
 
-          <!-- Spiagge dropdown -->
-          <div class="relative group/spiagge">
-            <button class="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5 group-hover/spiagge:text-med-blue">
-              Spiagge
-              <svg class="w-3.5 h-3.5 opacity-50 group-hover/spiagge:opacity-100 transition-transform group-hover/spiagge:rotate-180 duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
-            <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover/spiagge:opacity-100 group-hover/spiagge:visible transition-all duration-200 z-50">
-              <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 grid grid-cols-3 gap-6 w-[560px]">
-                <div class="col-span-3 mb-1">
-                  <a href="/it-it/spiagge/" class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold flex items-center gap-1">
-                    Tutte le Spiagge
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+        <!-- Spiagge dropdown -->
+        <div class="relative group/spiagge">
+          <button class="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5 group-hover/spiagge:text-med-blue">
+            {nav.spiagge}
+            <svg class="w-3.5 h-3.5 opacity-50 group-hover/spiagge:opacity-100 transition-transform group-hover/spiagge:rotate-180 duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover/spiagge:opacity-100 group-hover/spiagge:visible transition-all duration-200 z-50">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 grid grid-cols-3 gap-6 w-[560px]">
+              <div class="col-span-3 mb-1">
+                <a href={spiaggeHref} class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold flex items-center gap-1">
+                  {tutteBeachLabel}
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+                </a>
+              </div>
+              {spiaggeAree.map(area => (
+                <div>
+                  <a href={area.href} class="text-[10px] uppercase tracking-[0.3em] text-slate-400 hover:text-med-blue font-semibold mb-3 block">
+                    {area.area}
                   </a>
-                </div>
-                {spiaggeAree.map(area => (
-                  <div>
-                    <a href={area.href} class="text-[10px] uppercase tracking-[0.3em] text-slate-400 hover:text-med-blue font-semibold mb-3 block">
-                      {area.area}
-                    </a>
-                    <div class="space-y-0.5">
-                      {area.beaches.map(b => (
-                        <a href={b.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                          <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
-                          {b.name}
-                        </a>
-                      ))}
-                    </div>
+                  <div class="space-y-0.5">
+                    {area.beaches.map(b => (
+                      <a href={b.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                        <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
+                        {b.name}
+                      </a>
+                    ))}
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Guida Pratica -->
+        <div class="relative group/guida">
+          <button class="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5 group-hover/guida:text-med-blue">
+            {nav.guida}
+            <svg class="w-3.5 h-3.5 opacity-50 group-hover/guida:opacity-100 transition-transform group-hover/guida:rotate-180 duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover/guida:opacity-100 group-hover/guida:visible transition-all duration-200 z-50">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-4 w-52">
+              <div class="space-y-0.5">
+                {guidaLinks.map(l => (
+                  <a href={l.href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                    <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
+                    {l.name}
+                  </a>
                 ))}
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Guida Pratica -->
-          <div class="relative group/guida">
-            <button class="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5 group-hover/guida:text-med-blue">
-              Guida Pratica
-              <svg class="w-3.5 h-3.5 opacity-50 group-hover/guida:opacity-100 transition-transform group-hover/guida:rotate-180 duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
-            <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover/guida:opacity-100 group-hover/guida:visible transition-all duration-200 z-50">
-              <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-4 w-52">
-                <div class="space-y-0.5">
-                  {guidaLinks.map(l => (
-                    <a href={l.href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+        <!-- Esperienze -->
+        <div class="relative group/esp">
+          <button class="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5 group-hover/esp:text-med-blue">
+            {nav.esp}
+            <svg class="w-3.5 h-3.5 opacity-50 group-hover/esp:opacity-100 transition-transform group-hover/esp:rotate-180 duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover/esp:opacity-100 group-hover/esp:visible transition-all duration-200 z-50">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-5 grid grid-cols-2 gap-5 w-[480px]">
+
+              <!-- Esperienze -->
+              <div>
+                <a href={esperienzeHref} class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
+                  {nav.esp}
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+                </a>
+                <div class="space-y-0.5 mt-2">
+                  {esperienze.map(l => (
+                    <a href={l.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
                       <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
                       {l.name}
                     </a>
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
 
-          <!-- Esperienze -->
-          <div class="relative group/esp">
-            <button class="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5 group-hover/esp:text-med-blue">
-              Esperienze
-              <svg class="w-3.5 h-3.5 opacity-50 group-hover/esp:opacity-100 transition-transform group-hover/esp:rotate-180 duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
-            <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover/esp:opacity-100 group-hover/esp:visible transition-all duration-200 z-50">
-              <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-5 grid grid-cols-2 gap-5 w-[480px]">
-
-                <!-- Esperienze -->
-                <div>
-                  <a href="/it-it/esperienze/" class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
-                    Esperienze
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
-                  </a>
-                  <div class="space-y-0.5 mt-2">
-                    {esperienze.map(l => (
-                      <a href={l.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                        <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
-                        {l.name}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-
-                <!-- Itinerari -->
-                <div>
-                  <a href="/it-it/itinerari/" class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
-                    Itinerari
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
-                  </a>
-                  <div class="mt-2">
-                    <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em] px-2 mb-1">1 giorno</p>
-                    <div class="space-y-0.5 mb-2">
-                      {itinerari1g.map(l => (
-                        <a href={l.href} class="flex items-center gap-2 px-2 py-1 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                          <span class="w-1.5 h-1.5 rounded-full bg-med-blue/20 flex-shrink-0"></span>
-                          {l.name}
-                        </a>
-                      ))}
-                    </div>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em] px-2 mb-1">3 giorni</p>
-                    <div class="space-y-0.5 mb-2">
-                      {itinerari3g.map(l => (
-                        <a href={l.href} class="flex items-center gap-2 px-2 py-1 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                          <span class="w-1.5 h-1.5 rounded-full bg-med-blue/20 flex-shrink-0"></span>
-                          {l.name}
-                        </a>
-                      ))}
-                    </div>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em] px-2 mb-1">7 giorni</p>
-                    <div class="space-y-0.5">
-                      {itinerari7g.map(l => (
-                        <a href={l.href} class="flex items-center gap-2 px-2 py-1 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                          <span class="w-1.5 h-1.5 rounded-full bg-med-blue/20 flex-shrink-0"></span>
-                          {l.name}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          <!-- Eventi -->
-          <div class="relative group/ev">
-            <button class="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5 group-hover/ev:text-med-blue">
-              Eventi
-              <svg class="w-3.5 h-3.5 opacity-50 group-hover/ev:opacity-100 transition-transform group-hover/ev:rotate-180 duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-              </svg>
-            </button>
-            <div class="absolute right-0 top-full pt-2 opacity-0 invisible group-hover/ev:opacity-100 group-hover/ev:visible transition-all duration-200 z-50">
-              <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-5 grid grid-cols-3 gap-5 w-[580px]">
-
-                <!-- Cultura -->
-                <div>
-                  <p class="text-[10px] uppercase tracking-[0.3em] text-med-terracotta font-semibold mb-3 flex items-center gap-1">
-                    <span class="w-2 h-2 rounded-full bg-med-terracotta/60"></span> Cultura
-                  </p>
-                  <div class="space-y-0.5">
-                    {eventiCultura.map(l => (
-                      <a href={l.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-terracotta/5 hover:text-med-terracotta transition-colors">
-                        <span class="w-1.5 h-1.5 rounded-full bg-med-terracotta/30 flex-shrink-0"></span>
-                        {l.name}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-
-                <!-- Tradizioni -->
-                <div>
-                  <p class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold mb-3 flex items-center gap-1">
-                    <span class="w-2 h-2 rounded-full bg-med-blue/40"></span> Tradizioni
-                  </p>
-                  <div class="space-y-0.5">
-                    {eventiTradizioni.map(l => (
-                      <a href={l.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <!-- Itinerari -->
+              <div>
+                <a href={itinerariHref} class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
+                  {itinerariLabel}
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+                </a>
+                <div class="mt-2">
+                  <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em] px-2 mb-1">{itPeriods.d1}</p>
+                  <div class="space-y-0.5 mb-2">
+                    {itinerari1g.map(l => (
+                      <a href={l.href} class="flex items-center gap-2 px-2 py-1 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
                         <span class="w-1.5 h-1.5 rounded-full bg-med-blue/20 flex-shrink-0"></span>
                         {l.name}
                       </a>
                     ))}
                   </div>
-                </div>
-
-                <!-- Gastronomia -->
-                <div>
-                  <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-semibold mb-3 flex items-center gap-1">
-                    <span class="w-2 h-2 rounded-full bg-med-gold/60"></span> Gastronomia
-                  </p>
-                  <div class="space-y-0.5">
-                    {eventiGastronomia.map(l => (
-                      <a href={l.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-gold/5 hover:text-med-gold transition-colors">
-                        <span class="w-1.5 h-1.5 rounded-full bg-med-gold/30 flex-shrink-0"></span>
+                  <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em] px-2 mb-1">{itPeriods.d3}</p>
+                  <div class="space-y-0.5 mb-2">
+                    {itinerari3g.map(l => (
+                      <a href={l.href} class="flex items-center gap-2 px-2 py-1 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                        <span class="w-1.5 h-1.5 rounded-full bg-med-blue/20 flex-shrink-0"></span>
                         {l.name}
                       </a>
                     ))}
                   </div>
-                  <a href="/it-it/eventi/" class="mt-3 flex items-center gap-1 px-2 py-1.5 text-xs text-med-blue hover:text-med-blue/70 font-medium transition-colors">
-                    Tutti gli eventi →
-                  </a>
+                  {itinerari7g.length > 0 && (
+                    <>
+                      <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em] px-2 mb-1">{itPeriods.d7}</p>
+                      <div class="space-y-0.5">
+                        {itinerari7g.map(l => (
+                          <a href={l.href} class="flex items-center gap-2 px-2 py-1 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                            <span class="w-1.5 h-1.5 rounded-full bg-med-blue/20 flex-shrink-0"></span>
+                            {l.name}
+                          </a>
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
-
               </div>
+
             </div>
           </div>
+        </div>
 
-        </nav>
-      ) : (
-        <nav class="hidden lg:flex items-center gap-1">
-          <a href={getLocalePath(lang, 'destinations')} class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5">
-            {t.nav.destinations}
-          </a>
-          <a href={getLocalePath(lang, 'beaches')} class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5">
-            {t.nav.beaches}
-          </a>
-          <a href={getLocalePath(lang, 'itineraries')} class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5">
-            {t.nav.itineraries}
-          </a>
-          <a href={getLocalePath(lang, 'getting-here')} class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5">
-            {t.nav.getting_here}
-          </a>
-          <a href={getLocalePath(lang, 'when-to-visit')} class="px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5">
-            {t.nav.when_to_visit}
-          </a>
-        </nav>
-      )}
+        <!-- Eventi -->
+        <div class="relative group/ev">
+          <button class="flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-700 hover:text-med-blue transition-colors rounded-lg hover:bg-med-blue/5 group-hover/ev:text-med-blue">
+            {nav.ev}
+            <svg class="w-3.5 h-3.5 opacity-50 group-hover/ev:opacity-100 transition-transform group-hover/ev:rotate-180 duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="absolute right-0 top-full pt-2 opacity-0 invisible group-hover/ev:opacity-100 group-hover/ev:visible transition-all duration-200 z-50">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-5 grid grid-cols-3 gap-5 w-[580px]">
+
+              <!-- Cultura -->
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.3em] text-med-terracotta font-semibold mb-3 flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-med-terracotta/60"></span> {evSec.cultura}
+                </p>
+                <div class="space-y-0.5">
+                  {eventiCultura.map(l => (
+                    <a href={l.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-terracotta/5 hover:text-med-terracotta transition-colors">
+                      <span class="w-1.5 h-1.5 rounded-full bg-med-terracotta/30 flex-shrink-0"></span>
+                      {l.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Tradizioni -->
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold mb-3 flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-med-blue/40"></span> {evSec.tradizioni}
+                </p>
+                <div class="space-y-0.5">
+                  {eventiTradizioni.map(l => (
+                    <a href={l.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                      <span class="w-1.5 h-1.5 rounded-full bg-med-blue/20 flex-shrink-0"></span>
+                      {l.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Gastronomia -->
+              <div>
+                <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-semibold mb-3 flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-med-gold/60"></span> {evSec.gastro}
+                </p>
+                <div class="space-y-0.5">
+                  {eventiGastronomia.map(l => (
+                    <a href={l.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-gold/5 hover:text-med-gold transition-colors">
+                      <span class="w-1.5 h-1.5 rounded-full bg-med-gold/30 flex-shrink-0"></span>
+                      {l.name}
+                    </a>
+                  ))}
+                </div>
+                <a href={tuttiEvHref} class="mt-3 flex items-center gap-1 px-2 py-1.5 text-xs text-med-blue hover:text-med-blue/70 font-medium transition-colors">
+                  {tuttiEvLabel}
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </nav>
 
       <!-- Right: Language + CTA -->
       <div class="flex items-center gap-2">
@@ -458,72 +601,76 @@ const itinerari7g = [
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white max-h-[80vh] overflow-y-auto">
     <div class="px-4 py-5 space-y-1">
-      {!isIT && (
+
+      <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-2 pb-1 font-semibold">{dh.costiera}</p>
+      {costieraBorghi.map(b => (
+        <a href={b.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{b.name}</a>
+      ))}
+
+      <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">{dh.sorrentina}</p>
+      {sorrentinaBorghi.map(b => (
+        <a href={b.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{b.name}</a>
+      ))}
+
+      <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">{dh.isole}</p>
+      {isoleLinks.map(b => (
+        <a href={b.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{b.name}</a>
+      ))}
+
+      <a href={spiaggeHref} class="block px-3 py-2.5 mt-4 rounded-xl text-sm font-semibold text-med-blue bg-med-blue/5">🏖️ {tutteBeachLabel}</a>
+      {spiaggeAree.map(area => (
         <>
-          <a href={getLocalePath(lang, 'destinations')} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{t.nav.destinations}</a>
-          <a href={getLocalePath(lang, 'beaches')} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{t.nav.beaches}</a>
-          <a href={getLocalePath(lang, 'itineraries')} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{t.nav.itineraries}</a>
-          <a href={getLocalePath(lang, 'getting-here')} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{t.nav.getting_here}</a>
-          <a href={getLocalePath(lang, 'when-to-visit')} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{t.nav.when_to_visit}</a>
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-3 pb-1 font-semibold">{area.area}</p>
+          {area.beaches.map(b => (
+            <a href={b.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{b.name}</a>
+          ))}
         </>
-      )}
-      {isIT && (
+      ))}
+
+      <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">{nav.guida}</p>
+      {guidaLinks.map(l => (
+        <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
+      ))}
+
+      <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">{nav.esp}</p>
+      {esperienze.map(l => (
+        <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
+      ))}
+
+      <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">{itinerariLabel} — {itPeriods.d1}</p>
+      {itinerari1g.map(l => (
+        <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
+      ))}
+
+      <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">{itinerariLabel} — {itPeriods.d3}</p>
+      {itinerari3g.map(l => (
+        <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
+      ))}
+
+      {itinerari7g.length > 0 && (
         <>
-          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-2 pb-1 font-semibold">Costiera Amalfitana</p>
-          {costieraBorghi.map(b => (
-            <a href={b.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{b.name}</a>
-          ))}
-          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">Penisola Sorrentina</p>
-          {sorrentinaBorghi.map(b => (
-            <a href={b.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{b.name}</a>
-          ))}
-          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">Isole del Golfo</p>
-          {isole.map(b => (
-            <a href={b.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{b.name}</a>
-          ))}
-          <a href="/it-it/spiagge/" class="block px-3 py-2.5 mt-4 rounded-xl text-sm font-semibold text-med-blue bg-med-blue/5">🏖️ Tutte le Spiagge</a>
-          {spiaggeAree.map(area => (
-            <>
-              <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-3 pb-1 font-semibold">{area.area}</p>
-              {area.beaches.map(b => (
-                <a href={b.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{b.name}</a>
-              ))}
-            </>
-          ))}
-          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">Guida Pratica</p>
-          {guidaLinks.map(l => (
-            <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-          ))}
-          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">Esperienze</p>
-          {esperienze.map(l => (
-            <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-          ))}
-          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">Itinerari — 1 giorno</p>
-          {itinerari1g.map(l => (
-            <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-          ))}
-          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">Itinerari — 3 giorni</p>
-          {itinerari3g.map(l => (
-            <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-          ))}
-          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">Itinerari — 7 giorni</p>
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">{itinerariLabel} — {itPeriods.d7}</p>
           {itinerari7g.map(l => (
             <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
           ))}
-          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">Eventi — Cultura</p>
-          {eventiCultura.map(l => (
-            <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-terracotta/5 hover:text-med-terracotta transition-colors">{l.name}</a>
-          ))}
-          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">Eventi — Tradizioni</p>
-          {eventiTradizioni.map(l => (
-            <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-          ))}
-          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">Eventi — Gastronomia</p>
-          {eventiGastronomia.map(l => (
-            <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-gold/5 hover:text-med-gold transition-colors">{l.name}</a>
-          ))}
         </>
       )}
+
+      <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">{nav.ev} — {evSec.cultura}</p>
+      {eventiCultura.map(l => (
+        <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-terracotta/5 hover:text-med-terracotta transition-colors">{l.name}</a>
+      ))}
+
+      <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">{nav.ev} — {evSec.tradizioni}</p>
+      {eventiTradizioni.map(l => (
+        <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
+      ))}
+
+      <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pt-4 pb-1 font-semibold">{nav.ev} — {evSec.gastro}</p>
+      {eventiGastronomia.map(l => (
+        <a href={l.href} class="block px-3 py-2.5 rounded-xl text-sm text-slate-700 hover:bg-med-gold/5 hover:text-med-gold transition-colors">{l.name}</a>
+      ))}
+
       <div class="border-t border-slate-100 mt-4 pt-4">
         <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 px-3 pb-2">Lingua</p>
         {locales.map(l => {

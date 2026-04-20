@@ -78,12 +78,12 @@ export const translations: Record<Locale, Translations> = {
     },
     footer: {
       about_title: 'About This Guide',
-      about_text: 'Your independent travel guide to the Amalfi Coast — honest, detailed, and updated regularly.',
+      about_text: 'Amalfi Coast Travel helps travelers from around the world plan their trip to the Amalfi Coast through guides, travel tips, and much more. The entire project is lovingly curated by Alessia, directly from Massa Lubrense.',
       quick_links: 'Quick Links',
       contact_title: 'Get in Touch',
       contact_email: 'hello@amalficoast-travel.com',
       copyright: '© 2026 Amalfi Coast Travel Guide. All rights reserved.',
-      tagline: 'The Amalfi Coast — La Costiera Amalfitana',
+      tagline: 'The Amalfi Coast — A UNESCO World Heritage Site',
     },
     meta: {
       home_title: 'Amalfi Coast Travel Guide — Positano, Amalfi & Beyond',
@@ -136,12 +136,12 @@ export const translations: Record<Locale, Translations> = {
     },
     footer: {
       about_title: 'About This Guide',
-      about_text: 'Your independent travel guide to the Amalfi Coast — honest, detailed, and regularly updated.',
+      about_text: 'Amalfi Coast Travel helps travellers from around the world plan their trip to the Amalfi Coast through guides, travel tips, and much more. The entire project is lovingly curated by Alessia, directly from Massa Lubrense.',
       quick_links: 'Quick Links',
       contact_title: 'Get in Touch',
       contact_email: 'hello@amalficoast-travel.com',
       copyright: '© 2026 Amalfi Coast Travel Guide. All rights reserved.',
-      tagline: 'The Amalfi Coast — La Costiera Amalfitana',
+      tagline: 'The Amalfi Coast — A UNESCO World Heritage Site',
     },
     meta: {
       home_title: 'Amalfi Coast Travel Guide — Positano, Amalfi & Beyond',
@@ -194,12 +194,12 @@ export const translations: Record<Locale, Translations> = {
     },
     footer: {
       about_title: 'Über diesen Reiseführer',
-      about_text: 'Ihr unabhängiger Reiseführer für die Amalfiküste — ehrlich, detailliert und regelmäßig aktualisiert.',
+      about_text: 'Amalfi Coast Travel hilft Reisenden aus aller Welt, ihre Reise an die Amalfiküste zu planen – mit Reiseführern, Reisetipps und vielem mehr. Das gesamte Projekt wird mit ❤ von Alessia direkt aus Massa Lubrense betreut.',
       quick_links: 'Schnelllinks',
       contact_title: 'Kontakt',
       contact_email: 'hello@amalficoast-travel.com',
       copyright: '© 2026 Amalfiküste Reiseführer. Alle Rechte vorbehalten.',
-      tagline: 'Die Amalfiküste — La Costiera Amalfitana',
+      tagline: 'Die Amalfiküste — UNESCO-Weltkulturerbe',
     },
     meta: {
       home_title: 'Amalfiküste Reiseführer — Positano, Amalfi & mehr',
@@ -252,12 +252,12 @@ export const translations: Record<Locale, Translations> = {
     },
     footer: {
       about_title: 'À propos de ce guide',
-      about_text: 'Votre guide de voyage indépendant sur la Côte Amalfitaine — honnête, détaillé et régulièrement mis à jour.',
+      about_text: 'Amalfi Coast Travel aide les voyageurs du monde entier à planifier leur séjour sur la Côte Amalfitaine grâce à des guides, des conseils de voyage et bien plus encore. L\'ensemble du projet est géré avec ❤ par Alessia, directement depuis Massa Lubrense.',
       quick_links: 'Liens rapides',
       contact_title: 'Nous contacter',
       contact_email: 'hello@amalficoast-travel.com',
       copyright: '© 2026 Guide de voyage Côte Amalfitaine. Tous droits réservés.',
-      tagline: 'La Côte Amalfitaine — La Costiera Amalfitana',
+      tagline: 'La Côte Amalfitaine — Site du patrimoine mondial de l\'UNESCO',
     },
     meta: {
       home_title: 'Guide de voyage Côte Amalfitaine — Positano, Amalfi et plus',
@@ -310,12 +310,12 @@ export const translations: Record<Locale, Translations> = {
     },
     footer: {
       about_title: 'Sobre esta guía',
-      about_text: 'Tu guía de viaje independiente para la Costa Amalfitana — honesta, detallada y actualizada regularmente.',
+      about_text: 'Amalfi Coast Travel ayuda a viajeros de todo el mundo a planificar su viaje a la Costa Amalfitana a través de guías, consejos de viaje y mucho más. Todo el proyecto está cuidado con ❤ por Alessia, directamente desde Massa Lubrense.',
       quick_links: 'Enlaces rápidos',
       contact_title: 'Contacto',
       contact_email: 'hello@amalficoast-travel.com',
       copyright: '© 2026 Guía de viaje Costa Amalfitana. Todos los derechos reservados.',
-      tagline: 'La Costa Amalfitana — La Costiera Amalfitana',
+      tagline: 'La Costa Amalfitana — Patrimonio Mundial de la UNESCO',
     },
     meta: {
       home_title: 'Guía de la Costa Amalfitana — Positano, Amalfi y más',
@@ -368,7 +368,7 @@ export const translations: Record<Locale, Translations> = {
     },
     footer: {
       about_title: 'Sulla guida',
-      about_text: 'La tua guida di viaggio indipendente alla Costiera Amalfitana — onesta, dettagliata e aggiornata regolarmente.',
+      about_text: 'Amalfi Coast Travel aiuta i viaggiatori di tutto il mondo a pianificare il loro viaggio in Costiera Amalfitana attraverso guide, consigli di viaggio e molto altro. L\'intero progetto è curato con ❤ da Alessia, direttamente da Massa Lubrense.',
       quick_links: 'Link rapidi',
       contact_title: 'Contattaci',
       contact_email: 'hello@amalficoast-travel.com',
