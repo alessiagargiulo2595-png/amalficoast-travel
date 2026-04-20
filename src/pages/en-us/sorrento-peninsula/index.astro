@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Sorrento Peninsula', url: '/en-us/sorrento-peninsula/' },
+];
+
+const villages = [
+  {
+    name: 'Sorrento',
+    href: '/en-us/sorrento-peninsula/sorrento/',
+    desc: 'The peninsula\'s capital: Piazza Tasso, the San Francesco cloister, limoncello, and hydrofoils to Capri and Naples.',
+    tag: 'Ideal Base',
+  },
+  {
+    name: 'Vico Equense',
+    href: '/en-us/sorrento-peninsula/vico-equense/',
+    desc: 'Home of "pizza by the meter" at Da Gigino and the cliffside Giusso Castle. Less touristy, more authentic.',
+    tag: 'Authentic',
+  },
+  {
+    name: 'Massa Lubrense',
+    href: '/en-us/sorrento-peninsula/massa-lubrense/',
+    desc: 'The southernmost town: Punta Campanella, Marina del Cantone, and the famous Nerano zucchini spaghetti.',
+    tag: 'Nature & Cuisine',
+  },
+  {
+    name: "Sant'Agnello",
+    href: '/en-us/sorrento-peninsula/sant-agnello/',
+    desc: 'Between Sorrento and Piano: historic villas, charming hotels, and a rare quietness just steps from the bustle.',
+    tag: 'Quiet & Luxury',
+  },
+];
+
+const destinationSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristDestination",
+  "name": "Sorrento Peninsula",
+  "description": "The Sorrento Peninsula stretches into the Gulf of Naples between Mount Vesuvius and the Amalfi Coast.",
+  "touristType": ["Sea", "Culture", "Gastronomy", "Hiking"],
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6264,
+    "longitude": 14.3757
+  }
+};
+---
+
+<BaseLayout
+  title="Sorrento Peninsula 2026: Sorrento, Vico Equense, Massa Lubrense"
+  description="Guide to the Sorrento Peninsula: Sorrento, Vico Equense, Massa Lubrense, and Sant'Agnello. How to get there, what to see, and where to eat."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[destinationSchema]}
+>
+
+  <section class="relative bg-charcoal overflow-hidden">
+    <img src="/images/sorrento-hero.jpg" alt="Sorrento Peninsula" class="absolute inset-0 w-full h-full object-cover opacity-50" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/70"></div>
+    <div class="relative max-w-editorial mx-auto px-4 py-24">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/en-us/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-white">Sorrento Peninsula</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Gulf of Naples · Campania</p>
+        <h1 class="font-serif text-display text-white mb-4">Sorrento Peninsula</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          The headland dividing the Gulf of Naples from the Amalfi Coast. Explore glamorous Sorrento, Vico Equense's authentic flavors, and the wild beauty of Massa Lubrense.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 py-16 space-y-20">
+    <section class="grid sm:grid-cols-2 gap-6">
+      {villages.map(v => (
+        <a href={v.href} class="group bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm hover:shadow-xl transition-all">
+          <div class="flex items-start justify-between mb-3">
+            <h3 class="font-serif text-xl font-semibold text-slate-900 group-hover:text-med-blue transition-colors">{v.name}</h3>
+            <span class="text-[10px] uppercase tracking-wide bg-med-blue/5 text-med-blue px-2 py-1 rounded-full">{v.tag}</span>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed">{v.desc}</p>
+        </a>
+      ))}
+    </section>
+  </div>
+
+</BaseLayout>
