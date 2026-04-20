@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'en-us';
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Sorrento Peninsula', url: '/en-us/sorrento-peninsula/' },
+  { name: 'Sorrento', url: '/en-us/sorrento-peninsula/sorrento/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How to get to Sorrento from Naples?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The Circumvesuviana connects Naples Central to Sorrento in about 70 minutes (~€3.90). Alternatively: hydrofoil from Molo Beverello in about 60 minutes." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Sorrento have sandy beaches?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Sorrento's beaches are on volcanic rock, pebbles, or equipped platforms. Marina Grande and Marina Piccola are the main bays." }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Location', dd: 'Sorrento Peninsula, NA' },
+  { dt: 'Altitude', dd: '~50 m asl (cliffside)' },
+  { dt: 'From Naples', dd: '70 min (Circumvesuviana)' },
+  { dt: 'To Capri', dd: '25 min (hydrofoil)' },
+  { dt: 'Specialties', dd: 'Limoncello, gnocchi, wood inlay' },
+];
+---
+
+<BaseLayout
+  title="Sorrento 2026: Complete Guide | Piazza Tasso & Limoncello"
+  description="Guide to Sorrento: Piazza Tasso, San Francesco Cloister, Marina Grande, and limoncello. Ideal base for Capri and the Amalfi Coast."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/sorrento-hero.jpg" alt="Sorrento" class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 text-white">
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrento Peninsula · Hub for Capri & Coast</p>
+      <h1 class="font-serif text-display mb-4">Sorrento</h1>
+      <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+        The city of limoncello and wood inlay, perched on cliffs overlooking the Gulf of Naples with Vesuvius in front.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+      <div class="space-y-12">
+        <h2 class="font-serif text-3xl font-semibold">What to See</h2>
+        <div class="space-y-6">
+          <div>
+            <h3 class="font-semibold text-lg">Piazza Tasso</h3>
+            <p class="text-slate-600">The beating heart of Sorrento, a mandatory meeting point for residents and tourists.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg">Cloister of San Francesco</h3>
+            <p class="text-slate-600">A 14th-century Gothic-Arabian cloister with interlaced arches and a wisteria garden.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg">Valley of the Mills</h3>
+            <p class="text-slate-600">A natural canyon just steps from Piazza Tasso, featuring an abandoned mill surrounded by tropical vegetation.</p>
+          </div>
+        </div>
+      </div>
+      <aside class="bg-slate-900 text-white p-6 rounded-[3rem]">
+        <p class="text-med-gold text-xs font-bold mb-4 uppercase">Fast Facts</p>
+        <dl class="space-y-3">
+          {fastFacts.map(f => (
+            <div class="flex justify-between text-sm">
+              <dt class="text-white/40">{f.dt}</dt>
+              <dd>{f.dd}</dd>
+            </div>
+          ))}
+        </dl>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
