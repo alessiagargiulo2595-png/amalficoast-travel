@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Itineraries', url: '/en-us/itineraries/' },
+  { name: 'Classic Amalfi Coast — 3 days', url: '/en-us/itineraries/3-days/classic-amalfi-coast/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where should you stay to visit the Amalfi Coast in 3 days?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The best bases are Amalfi (most central, good choice of hotels and B&Bs, well served by bus and ferry) or Positano (more romantic but more expensive). Sorrento is excellent for those who want a more convenient town with more amenities and lower prices, with day trips to the Coast." }
+    },
+    {
+      "@type": "Question",
+      "name": "3 days on the Coast: better in high or low season?",
+      "acceptedAnswer": { "@type": "Answer", "text": "May–June and September–October are the best months: perfect weather, fewer crowds than July–August, lower prices. In July–August buses are packed, parking is gone and beaches are crowded. In winter many places close but the villages are peaceful and authentic." }
+    }
+  ]
+};
+
+const days = [
+  {
+    day: 'Day 1',
+    title: 'Arrival and Positano',
+    items: [
+      'Arrive in Sorrento or Amalfi. Check in.',
+      'Afternoon in Positano: Spiaggia Grande, Via Cristoforo Colombo, Santa Maria Assunta church.',
+      'Aperitivo with views from the belvedere above the village.',
+      'Dinner in Positano or return by bus to Amalfi.',
+    ],
+  },
+  {
+    day: 'Day 2',
+    title: 'Amalfi and Ravello',
+    items: [
+      'Morning: Amalfi Cathedral, Cloister of Paradise, Paper Museum (Amalfi paper, 13th century).',
+      'SITA bus to Ravello (25 min). Villa Rufolo, Villa Cimbrone, panoramas over the Coast.',
+      'Lunch in Ravello, then back to Amalfi in the afternoon.',
+      'Dinner at Amalfi harbour: fresh fish, buffalo mozzarella.',
+    ],
+  },
+  {
+    day: 'Day 3',
+    title: 'Praiano and Emerald Grotto',
+    items: [
+      'Morning: SITA bus towards Positano, stop at Praiano (peaceful stroll, Gavitella beach).',
+      'Emerald Grotto near Conca dei Marini: entry ~€5, spectacular green light.',
+      'Free afternoon in Amalfi or boat excursion (coastal tour from Amalfi, ~€40–70 p.p.).',
+      'Departure in the late afternoon towards Naples/Salerno.',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Amalfi Coast in 3 Days 2026 | Classic Complete Itinerary"
+  description="Classic 3-day itinerary on the Amalfi Coast: Positano, Amalfi, Ravello and the Emerald Grotto. Where to stay, what to see and how to get around."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative bg-charcoal overflow-hidden">
+    <img src="/images/costiera-hero.jpg" alt="Classic Amalfi Coast" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-br from-[#001a33]/80 via-med-blue/60 to-[#0077cc]/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/en-us/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <a href="/en-us/itineraries/" class="hover:text-white transition-colors">Itineraries</a>
+        <span>/</span>
+        <span class="text-white">Classic Amalfi Coast — 3 days</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Itinerary · 3 days</p>
+        <h1 class="font-serif text-display text-white mb-4">Classic Amalfi Coast</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Three days to see the best of the Coast: Positano, Amalfi, Ravello and the Emerald Grotto. The classic route, optimised for those travelling by public transport.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <section class="max-w-text">
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100">
+          <p class="text-xs text-slate-400 mb-1">Duration</p>
+          <p class="font-semibold text-charcoal">3 days / 2 nights</p>
+        </div>
+        <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100">
+          <p class="text-xs text-slate-400 mb-1">Recommended base</p>
+          <p class="font-semibold text-charcoal">Amalfi or Positano</p>
+        </div>
+        <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100">
+          <p class="text-xs text-slate-400 mb-1">Transport</p>
+          <p class="font-semibold text-charcoal">SITA bus + ferries</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Day-by-Day Schedule</h2>
+      <div class="space-y-8">
+        {days.map(d => (
+          <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+            <div class="bg-med-blue/5 px-6 py-4 flex items-center gap-3">
+              <span class="text-[10px] uppercase tracking-wide bg-med-blue text-white px-2 py-1 rounded-full font-medium">{d.day}</span>
+              <h3 class="font-semibold text-charcoal">{d.title}</h3>
+            </div>
+            <ul class="px-6 py-4 space-y-2">
+              {d.items.map(item => (
+                <li class="flex items-start gap-2 text-sm text-charcoal">
+                  <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-8">
+      <p class="font-semibold text-charcoal text-lg mb-3">Tips for 3 Days on the Coast</p>
+      <ul class="space-y-2">
+        {[
+          'Base in Amalfi: central location, cheaper than Positano, excellent bus and ferry connections.',
+          'Buy SITA bus tickets in bulk (at a tobacconist) on arrival: saves time every morning.',
+          'Ravello has no beaches but is the finest viewpoint on the Coast: give it at least half a day.',
+          'A boat tour on day 3 is optional but transforms the experience: book the day before.',
+          'In summer: move by 9:00 to avoid packed buses and queues at the sites.',
+        ].map(tip => (
+          <li class="flex items-start gap-2 text-sm text-charcoal">
+            <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span>
+            <span>{tip}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>

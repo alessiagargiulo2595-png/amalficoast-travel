@@ -1,0 +1,180 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+
+const lang = 'de-de';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/de-de/' },
+  { name: 'Reiserouten', url: '/de-de/reiserouten/' },
+  { name: 'Capri von Sorrent', url: '/de-de/reiserouten/1-tag/capri-von-sorrent/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert die Fahrt von Sorrent nach Capri mit dem Tragflügelboot?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Das Tragflügelboot von Sorrent (Marina Piccola) nach Capri (Marina Grande) dauert etwa 20–25 Minuten. Die wichtigsten Anbieter sind NLG und Alilauro. Im Sommer fahren Boote alle 30–60 Minuten von 7:00 bis 20:00 Uhr. Das Hin- und Rückfahrticket kostet ~€18–22." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann man die Blaue Grotte an einem Tag von Sorrent aus besuchen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, aber es erfordert genaue Planung. Das erste Tragflügelboot ab Sorrent nehmen (7:30–8:00 Uhr), nach Capri fahren und sofort zur Blauen Grotte gehen, bevor es voll wird (am besten vor 10:00 Uhr). Danach Capri und Anacapri am Nachmittag erkunden. Rückfahrt nach Sorrent mit dem letzten Tragflügelboot (gegen 18:30–19:00 Uhr)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Capri vs. Anacapri: Was an einem Tag besuchen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Beide lohnen sich, aber mit einem Tag wählt man je nach Interessen: Capri-Stadt ist schicker, voller Geschäfte und mit den Faraglioni. Anacapri ist ruhiger, mit der Villa San Michele und dem Sessellift zum Monte Solaro (589 m). Ein guter Tag: Morgens Blaue Grotte, Mittagessen in Anacapri, Nachmittag in Capri und Faraglioni." }
+    }
+  ]
+};
+
+const schedule = [
+  { time: '07:30', place: 'Sorrent, Marina Piccola', action: 'Tragflügelboot NLG/Alilauro nach Capri (20–25 Min., ~€9–11)', transport: 'ferry' },
+  { time: '08:00', place: 'Capri, Marina Grande', action: 'Bus zur Blauen Grotte (20 Min., ~€2). Vor 10 Uhr ankommen, um Schlangen zu vermeiden.', transport: 'bus' },
+  { time: '08:30', place: 'Blaue Grotte', action: 'Ruderboot in die Grotte (€15 + Eintritt €14). Wartezeit variiert.', transport: 'ferry' },
+  { time: '10:00', place: 'Anacapri', action: 'Bus von Capri nach Anacapri (15 Min.). Villa San Michele (~€7). Sessellift Monte Solaro (589 m, ~€13 A/R).', transport: 'bus' },
+  { time: '12:30', place: 'Anacapri', action: 'Mittagessen in einer lokalen Trattoria (günstiger als Capri-Zentrum)', transport: 'visit' },
+  { time: '14:00', place: 'Capri Zentrum', action: 'Bus nach Capri. Piazzetta, Via Camerelle, Giardini di Augusto, Faraglioni-Aussicht.', transport: 'bus' },
+  { time: '16:00', place: 'Marina Grande', action: 'Bootsrundfahrt um die Faraglioni (~€18–25 p.P., 1–2h)', transport: 'ferry' },
+  { time: '18:00', place: 'Capri → Sorrent', action: 'Rückfahrt mit Tragflügelboot nach Sorrent (20–25 Min.)', transport: 'ferry' },
+];
+
+const tips = [
+  'Blaue Grotte: Vor 10:00 Uhr fast ohne Warteschlange. Nach 11 Uhr kann die Wartezeit 1–2 Stunden betragen.',
+  'Im Juli–August das Tragflügelboot online am Vortag buchen: Die ersten Fahrten sind schnell ausverkauft.',
+  'Capri ist teuer: Ein Mittagessen in Anacapri kostet 30–40% weniger als auf der Piazzetta.',
+  'Der Sessellift zum Monte Solaro ab Anacapri ist ein Muss: 589 m, 360°-Aussicht auf Küste und Neapel.',
+  'Das Tragflügelboot fährt bei rauher See nicht: Seewetter prüfen und Plan B parat haben.',
+];
+
+const transportBadge: Record<string, { label: string; cls: string }> = {
+  train: { label: 'ZUG', cls: 'bg-orange-100 text-orange-700' },
+  ferry: { label: 'FÄHRE', cls: 'bg-blue-100 text-blue-700' },
+  bus:   { label: 'BUS', cls: 'bg-green-100 text-green-700' },
+  walk:  { label: 'ZU FUSS', cls: 'bg-gray-100 text-slate-500' },
+  visit: { label: '', cls: '' },
+};
+---
+
+<BaseLayout
+  title="Capri ab Sorrent in 1 Tag 2026 | Blaue Grotte, Faraglioni, Anacapri"
+  description="Tagesausflug nach Capri ab Sorrent: Blaue Grotte, Anacapri, Monte Solaro und Faraglioni. Tragflügelboote, Fahrzeiten und Tipps zur Schlangenvermeidung."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative bg-charcoal overflow-hidden">
+    <img src="/images/capri-hero.jpg" alt="Capri von Sorrent" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-br from-[#001a33]/80 via-med-blue/60 to-[#0077cc]/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/de-de/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <a href="/de-de/reiserouten/" class="hover:text-white transition-colors">Reiserouten</a>
+        <span>/</span>
+        <span class="text-white">Capri ab Sorrent — 1 Tag</span>
+      </nav>
+      <div class="max-w-2xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Reiseroute · 1 Tag</p>
+        <h1 class="font-serif text-display text-white mb-4">Capri von Sorrent</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          25 Minuten Tragflügelboot und man ist auf der berühmtesten Insel Italiens. Blaue Grotte am frühen Morgen, Monte Solaro in Anacapri, Faraglioni am Nachmittag: der perfekte Tag auf Capri.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <section class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-3 gap-6">
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 text-center shadow-sm flex flex-col items-center gap-3">
+          <svg class="w-7 h-7 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Dauer</p><p class="font-bold text-charcoal text-lg">1 Tag</p></div>
+        </div>
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 text-center shadow-sm flex flex-col items-center gap-3">
+          <svg class="w-7 h-7 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Kosten Transport</p><p class="font-bold text-charcoal text-lg">~€40–60</p></div>
+        </div>
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 text-center shadow-sm flex flex-col items-center gap-3">
+          <svg class="w-7 h-7 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Schwierigkeit</p><p class="font-bold text-charcoal text-lg">Einfach</p></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
+      <section class="lg:col-span-8">
+        <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Stunde-für-Stunde-Programm</h2>
+        <div class="relative">
+          <div class="space-y-12 border-l-2 border-slate-200 pl-8 ml-3">
+            {schedule.map((s) => {
+              const badge = transportBadge[s.transport] ?? transportBadge.visit;
+              return (
+                <div class="relative">
+                  <div class="absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full bg-med-blue ring-4 ring-white shadow-sm"></div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="font-mono text-med-blue font-bold text-sm">{s.time}</span>
+                    {badge.label && <span class={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${badge.cls}`}>{badge.label}</span>}
+                  </div>
+                  <p class="font-semibold text-charcoal text-base leading-snug">{s.place}</p>
+                  <p class="text-slate-600 text-sm mt-1 leading-relaxed">{s.action}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <aside class="lg:col-span-4 mt-12 lg:mt-0">
+        <div class="lg:sticky lg:top-24 space-y-6">
+          <div class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+            <p class="font-semibold text-charcoal mb-4 flex items-center gap-2">
+              <svg class="w-4 h-4 text-med-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 3-1.7 5.2-4 6.4V17a1 1 0 0 1-1 1H10a1 1 0 0 1-1-1v-1.6C6.7 14.2 5 12 5 9a7 7 0 0 1 7-7z"/><path d="M10 21h4M12 17v4"/></svg>
+              Insider-Tipps
+            </p>
+            <ul class="space-y-3">
+              {tips.map(tip => (
+                <li class="flex gap-2.5 text-sm text-charcoal">
+                  <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span>
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-[2rem] p-6">
+            <p class="font-semibold text-charcoal mb-3 flex items-center gap-2">
+              <svg class="w-4 h-4 text-med-blue" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+              Schnellkarte
+            </p>
+            <a href="https://maps.google.com/maps?q=Capri,Italy" target="_blank" rel="noopener" class="flex items-center justify-between bg-slate-50 hover:bg-med-blue/5 rounded-xl px-4 py-3 text-sm text-med-blue font-medium transition-colors group">
+              Route in Google Maps öffnen
+              <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Häufig gestellte Fragen</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/fr-fr/' },
+  { name: 'Itinéraires', url: '/fr-fr/itineraires/' },
+  { name: 'Trek Sentier des Dieux', url: '/fr-fr/itineraires/1-jour/sentier-des-dieux-trek/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment organiser le Sentier des Dieux en une journée depuis Naples ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Partez de Naples avec la Circumvésuvienne jusqu'à Sorrente (70 min), puis bus SITA pour Amalfi (90 min), puis bus local pour Agerola (45 min). Le sentier Agerola→Nocelle fait 8 km, 3-4h. Depuis Nocelle, bus local pour Positano (15 min), puis bus SITA ou ferry pour Sorrente et Circumvésuvienne pour Naples." }
+    },
+    {
+      "@type": "Question",
+      "name": "Faut-il réserver pour le Sentier des Dieux ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "En haute saison (juillet-août), le Sentier des Dieux nécessite une réservation obligatoire sur le portail du Parc des Monts Lattari. Le coût est symbolique (~5€). Hors saison, aucune réservation n'est requise. Vérifiez toujours les conditions sur le site officiel avant de partir." }
+    },
+    {
+      "@type": "Question",
+      "name": "Que faut-il emporter pour le Sentier des Dieux ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Obligatoire : chaussures de randonnée (pas de sandales ni baskets lisses), au moins 1,5 L d'eau, protection solaire, chapeau. Le sentier n'a ni fontaines ni boutiques. Emportez un en-cas. Au printemps/automne, une veste légère est conseillée pour le vent en altitude." }
+    }
+  ]
+};
+
+const schedule = [
+  { time: '07:00', place: 'Naples', action: 'Circumvésuvienne pour Sorrente (70 min, ~3,90€)', transport: 'train' },
+  { time: '08:15', place: 'Sorrente', action: 'Bus SITA pour Amalfi (90 min, ~3,50€) — départ 8h30', transport: 'bus' },
+  { time: '10:00', place: 'Amalfi', action: 'Bus local pour Agerola, hameau San Lazzaro (45 min, ~1,50€). Début du sentier.', transport: 'bus' },
+  { time: '11:00', place: 'Agerola (618 m)', action: 'Départ Sentier des Dieux. 8 km, ~500 m de descente, EE. Paysages à couper le souffle.', transport: 'walk' },
+  { time: '14:30', place: 'Nocelle', action: 'Arrivée à Nocelle. Pause et déjeuner dans l\'un des refuges/bars locaux.', transport: 'visit' },
+  { time: '15:15', place: 'Nocelle → Positano', action: 'Bus local pour Positano centre (15 min, ~1,50€) ou à pied (~1 000 marches, 45 min)', transport: 'bus' },
+  { time: '16:00', place: 'Positano', action: 'Promenade, glace, plage (1h libre)', transport: 'visit' },
+  { time: '17:15', place: 'Positano → Naples', action: 'Bus SITA pour Sorrente (~50 min), puis Circumvésuvienne pour Naples (70 min)', transport: 'bus' },
+];
+
+const tips = [
+  'Saison idéale : avril-juin et septembre-octobre. Juillet-août est très chaud et très fréquenté.',
+  'Le bus d\'Amalfi pour Agerola a des horaires limités : vérifiez sur eavsrl.it la veille au soir.',
+  'Partez toujours dans le sens Agerola→Nocelle : presque tout en descente, balisage conçu dans ce sens.',
+  'Le sentier n\'a pas de points d\'eau : emportez au moins 1,5 L. Le dernier bar est à Agerola avant le départ.',
+  'Depuis Nocelle on descend à Positano à pied (~1 000 marches, 45 min) ou en bus (15 min, ~1,50€).',
+];
+
+const transportBadge: Record<string, { label: string; cls: string }> = {
+  train: { label: 'TRAIN', cls: 'bg-orange-100 text-orange-700' },
+  ferry: { label: 'FERRY', cls: 'bg-blue-100 text-blue-700' },
+  bus:   { label: 'BUS', cls: 'bg-green-100 text-green-700' },
+  walk:  { label: 'TREKKING', cls: 'bg-red-100 text-red-700' },
+  visit: { label: '', cls: '' },
+};
+---
+
+<BaseLayout
+  title="Sentier des Dieux en 1 Jour depuis Naples 2026 | Itinéraire Trek"
+  description="Comment faire le Sentier des Dieux (Agerola-Nocelle) en une journée depuis Naples : horaires, transports, réservation et conseils. 8 km de randonnée avec vue sur la Côte Amalfitaine."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+
+  <section class="relative bg-charcoal overflow-hidden">
+    <img src="/images/trekking-hero.jpg" alt="Sentier des Dieux, Côte Amalfitaine" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-br from-[#001a33]/80 via-med-blue/60 to-[#0077cc]/50"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/fr-fr/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <a href="/fr-fr/itineraires/" class="hover:text-white transition-colors">Itinéraires</a>
+        <span>/</span>
+        <span class="text-white">Sentier des Dieux — 1 jour</span>
+      </nav>
+      <div class="max-w-2xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Itinéraire · Trekking · 1 jour</p>
+        <h1 class="font-serif text-display text-white mb-4">Trek Sentier des Dieux</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          8 km d'Agerola à Nocelle/Positano avec la Côte Amalfitaine à vos pieds. Le sentier le plus spectaculaire du sud de l'Italie — faisable en journée depuis Naples en transports en commun.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+
+    <section class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-4 gap-5">
+        <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm flex flex-col items-center gap-2">
+          <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 12h18M3 12l4-4M3 12l4 4"/></svg>
+          <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Distance</p><p class="font-bold text-charcoal">8 km</p></div>
+        </div>
+        <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm flex flex-col items-center gap-2">
+          <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Dénivelé</p><p class="font-bold text-charcoal">~500 m ↓</p></div>
+        </div>
+        <div class="bg-white border border-red-100 rounded-2xl p-5 text-center shadow-sm flex flex-col items-center gap-2">
+          <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Difficulté</p><p class="font-bold text-red-600">EE</p></div>
+        </div>
+        <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm flex flex-col items-center gap-2">
+          <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Transport</p><p class="font-bold text-charcoal">~12–18€</p></div>
+        </div>
+      </div>
+      <div class="mt-5 bg-red-50 border border-red-200 rounded-2xl px-5 py-4">
+        <p class="font-semibold text-red-800 text-sm">Réservation obligatoire juillet-août — Parc des Monts Lattari (~5€)</p>
+      </div>
+    </section>
+
+    <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
+      <section class="lg:col-span-8">
+        <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Programme Heure par Heure</h2>
+        <div class="relative">
+          <div class="space-y-12 border-l-2 border-slate-200 pl-8 ml-3">
+            {schedule.map((s) => {
+              const badge = transportBadge[s.transport] ?? transportBadge.visit;
+              return (
+                <div class="relative">
+                  <div class="absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full bg-med-blue ring-4 ring-white shadow-sm"></div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="font-mono text-med-blue font-bold text-sm">{s.time}</span>
+                    {badge.label && <span class={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${badge.cls}`}>{badge.label}</span>}
+                  </div>
+                  <p class="font-semibold text-charcoal text-base leading-snug">{s.place}</p>
+                  <p class="text-slate-600 text-sm mt-1 leading-relaxed">{s.action}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <aside class="lg:col-span-4 mt-12 lg:mt-0">
+        <div class="lg:sticky lg:top-24 space-y-6">
+          <div class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+            <p class="font-semibold text-charcoal mb-4 flex items-center gap-2">
+              <svg class="w-4 h-4 text-med-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 3-1.7 5.2-4 6.4V17a1 1 0 0 1-1 1H10a1 1 0 0 1-1-1v-1.6C6.7 14.2 5 12 5 9a7 7 0 0 1 7-7z"/><path d="M10 21h4M12 17v4"/></svg>
+              Conseils Pratiques
+            </p>
+            <ul class="space-y-3">
+              {tips.map(tip => (
+                <li class="flex gap-2.5 text-sm text-charcoal">
+                  <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span>
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-[2rem] p-6">
+            <p class="font-semibold text-charcoal mb-3 flex items-center gap-2">
+              <svg class="w-4 h-4 text-med-blue" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+              Carte Rapide
+            </p>
+            <a href="https://maps.google.com/maps?q=Sentiero+degli+Dei+Agerola" target="_blank" rel="noopener" class="flex items-center justify-between bg-slate-50 hover:bg-med-blue/5 rounded-xl px-4 py-3 text-sm text-med-blue font-medium transition-colors group">
+              Ouvrir l'itinéraire dans Google Maps
+              <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Questions Fréquentes</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

@@ -491,7 +491,20 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'islands',              'en-gb': 'islands',              'de-de': 'inseln',              'fr-fr': 'iles',                 'es-es': 'islas',                'it-it': 'isole'                },
   { 'en-us': 'sorrentine-peninsula', 'en-gb': 'sorrentine-peninsula', 'de-de': 'penisola-sorrentina', 'fr-fr': 'penisola-sorrentina',  'es-es': 'penisola-sorrentina',  'it-it': 'penisola-sorrentina'  },
   // Experiences sub-pages
-  { 'en-us': 'boat-tours',           'en-gb': 'boat-tours',           'de-de': 'boat-tours',          'fr-fr': 'boat-tours',           'es-es': 'boat-tours',           'it-it': 'tour-barca'           },
+  { 'en-us': 'boat-tours',                        'en-gb': 'boat-tours',                        'de-de': 'boat-tours',                       'fr-fr': 'boat-tours',                        'es-es': 'boat-tours',                        'it-it': 'tour-barca'                        },
+  // Itinerary detail slugs — 1 day
+  { 'en-us': 'amalfi-coast-from-naples',          'en-gb': 'amalfi-coast-from-naples',          'de-de': 'amalfikueste-von-neapel',           'fr-fr': 'cote-amalfitaine-depuis-naples',    'es-es': 'costa-amalfitana-desde-napoles',    'it-it': 'costiera-amalfitana-da-napoli'     },
+  { 'en-us': 'amalfi-coast-from-salerno',         'en-gb': 'amalfi-coast-from-salerno',         'de-de': 'amalfikueste-von-salerno',           'fr-fr': 'cote-amalfitaine-depuis-salerne',   'es-es': 'costa-amalfitana-desde-salerno',    'it-it': 'costiera-amalfitana-da-salerno'    },
+  { 'en-us': 'capri-from-sorrento',               'en-gb': 'capri-from-sorrento',               'de-de': 'capri-von-sorrent',                  'fr-fr': 'capri-depuis-sorrente',             'es-es': 'capri-desde-sorrento',              'it-it': 'capri-da-sorrento'                 },
+  { 'en-us': 'sorrentine-peninsula-from-naples',  'en-gb': 'sorrentine-peninsula-from-naples',  'de-de': 'sorrentinische-halbinsel-von-neapel','fr-fr': 'peninsule-sorrentine-depuis-naples','es-es': 'peninsula-sorrentina-desde-napoles','it-it': 'penisola-sorrentina-da-napoli'     },
+  { 'en-us': 'path-of-the-gods-trek',             'en-gb': 'path-of-the-gods-trek',             'de-de': 'weg-der-goetter-trekking',           'fr-fr': 'sentier-des-dieux-trek',            'es-es': 'sendero-de-los-dioses-trek',        'it-it': 'trekking-sentiero-degli-dei'       },
+  // Itinerary detail slugs — 3 days
+  { 'en-us': 'classic-amalfi-coast',              'en-gb': 'classic-amalfi-coast',              'de-de': 'klassische-amalfikueste',            'fr-fr': 'cote-amalfitaine-classique',        'es-es': 'costa-amalfitana-clasica',          'it-it': 'classico-costiera-amalfitana'      },
+  { 'en-us': 'islands-ischia-procida',            'en-gb': 'islands-ischia-procida',            'de-de': 'inseln-ischia-procida',              'fr-fr': 'iles-ischia-procida',               'es-es': 'islas-ischia-procida',              'it-it': 'isole-ischia-procida'              },
+  { 'en-us': 'sorrento-pompeii-history',          'en-gb': 'sorrento-pompeii-history',          'de-de': 'sorrent-pompeji-geschichte',         'fr-fr': 'sorrente-pompei-histoire',          'es-es': 'sorrento-pompeya-historia',         'it-it': 'sorrento-pompei-storia'            },
+  // Itinerary detail slugs — 7 days
+  { 'en-us': 'grand-tour-coast-peninsula',        'en-gb': 'grand-tour-coast-peninsula',        'de-de': 'grand-tour-kueste-halbinsel',        'fr-fr': 'grand-tour-cote-peninsule',         'es-es': 'gran-tour-costa-peninsula',         'it-it': 'grand-tour-costiera-penisola'      },
+  { 'en-us': 'slow-travel-villages-food',         'en-gb': 'slow-travel-villages-food',         'de-de': 'slow-travel-doerfer-kulinarik',      'fr-fr': 'slow-travel-villages-gastronomie',  'es-es': 'slow-travel-pueblos-gastronomia',   'it-it': 'slow-travel-borghi-cibo'           },
 ];
 
 /**

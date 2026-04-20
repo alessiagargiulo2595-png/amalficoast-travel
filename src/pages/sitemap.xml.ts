@@ -175,6 +175,54 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/it-it/itinerari/7-giorni/grand-tour-costiera-penisola/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/it-it/itinerari/7-giorni/slow-travel-borghi-cibo/', priority: '0.7', changefreq: 'yearly' },
 
+  // Itinerari — en-us (Wave 1)
+  { loc: '/en-us/itineraries/1-day/amalfi-coast-from-naples/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/en-us/itineraries/1-day/amalfi-coast-from-salerno/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/en-us/itineraries/1-day/capri-from-sorrento/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/en-us/itineraries/1-day/sorrentine-peninsula-from-naples/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/itineraries/1-day/path-of-the-gods-trek/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/itineraries/3-days/classic-amalfi-coast/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/en-us/itineraries/3-days/islands-ischia-procida/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/itineraries/3-days/sorrento-pompeii-history/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/itineraries/7-days/grand-tour-coast-peninsula/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/itineraries/7-days/slow-travel-villages-food/', priority: '0.7', changefreq: 'yearly' },
+
+  // Itinerari — de-de (Wave 1)
+  { loc: '/de-de/reiserouten/1-tag/amalfikueste-von-neapel/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/de-de/reiserouten/1-tag/amalfikueste-von-salerno/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/de-de/reiserouten/1-tag/capri-von-sorrent/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/de-de/reiserouten/1-tag/sorrentinische-halbinsel-von-neapel/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/reiserouten/1-tag/weg-der-goetter-trekking/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/reiserouten/3-tage/klassische-amalfikueste/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/de-de/reiserouten/3-tage/inseln-ischia-procida/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/reiserouten/3-tage/sorrent-pompeji-geschichte/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/reiserouten/7-tage/grand-tour-kueste-halbinsel/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/reiserouten/7-tage/slow-travel-doerfer-kulinarik/', priority: '0.7', changefreq: 'yearly' },
+
+  // Itinéraires — fr-fr (Wave 1)
+  { loc: '/fr-fr/itineraires/1-jour/cote-amalfitaine-depuis-naples/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/fr-fr/itineraires/1-jour/cote-amalfitaine-depuis-salerne/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/fr-fr/itineraires/1-jour/capri-depuis-sorrente/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/fr-fr/itineraires/1-jour/peninsule-sorrentine-depuis-naples/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/itineraires/1-jour/sentier-des-dieux-trek/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/itineraires/3-jours/cote-amalfitaine-classique/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/fr-fr/itineraires/3-jours/iles-ischia-procida/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/itineraires/3-jours/sorrente-pompei-histoire/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/itineraires/7-jours/grand-tour-cote-peninsule/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/itineraires/7-jours/slow-travel-villages-gastronomie/', priority: '0.7', changefreq: 'yearly' },
+
+  // Itinerarios — es-es (Wave 1)
+  { loc: '/es-es/itinerarios/1-dia/costa-amalfitana-desde-napoles/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/es-es/itinerarios/1-dia/costa-amalfitana-desde-salerno/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/es-es/itinerarios/1-dia/capri-desde-sorrento/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/es-es/itinerarios/1-dia/peninsula-sorrentina-desde-napoles/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/itinerarios/1-dia/sendero-de-los-dioses-trek/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/itinerarios/3-dias/costa-amalfitana-clasica/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/es-es/itinerarios/3-dias/islas-ischia-procida/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/itinerarios/3-dias/sorrento-pompeya-historia/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/itinerarios/7-dias/gran-tour-costa-peninsula/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/itinerarios/7-dias/slow-travel-pueblos-gastronomia/', priority: '0.7', changefreq: 'yearly' },
+
   // Guida pratica
   { loc: '/it-it/guida/traghetti/', priority: '0.7', changefreq: 'monthly' },
   { loc: '/it-it/guida/bus-sita/', priority: '0.7', changefreq: 'monthly' },
