@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'en-us';
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Sorrento Peninsula', url: '/en-us/sorrento-peninsula/' },
+  { name: 'Massa Lubrense', url: '/en-us/sorrento-peninsula/massa-lubrense/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Best beach in Massa Lubrense?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Marina del Cantone in Nerano is the most beautiful: pebbles and crystal-clear water." }
+    },
+    {
+      "@type": "Question",
+      "name": "What are Spaghetti alla Nerano?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A signature dish from Nerano: spaghetti with fried zucchini and Provolone del Monaco cheese." }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Location', dd: 'Tip of Sorrento Peninsula' },
+  { dt: 'From Sorrento', dd: '~20 min (Bus)' },
+  { dt: 'Specialty', dd: 'Spaghetti alla Nerano' },
+  { dt: 'Nature', dd: 'Punta Campanella Reserve' },
+];
+---
+
+<BaseLayout
+  title="Massa Lubrense 2026: Punta Campanella & Nerano"
+  description="Guide to Massa Lubrense: Marina del Cantone beach, Nerano, and Punta Campanella nature reserve."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+  <section class="relative min-h-[60vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/massa-lubrense-hero.jpg" alt="Massa Lubrense" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 pb-16">
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrento Peninsula · Nature & Cuisine</p>
+      <h1 class="font-serif text-display text-white mb-4">Massa Lubrense</h1>
+      <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+        The southernmost tip of the peninsula looking at Capri. Marine reserves, trekking, and the famous Nerano pasta.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+      <div class="space-y-12">
+        <h2 class="font-serif text-2xl font-semibold">Must-See</h2>
+        <div class="space-y-6">
+          <h3 class="font-semibold">Marina del Cantone</h3>
+          <p class="text-sm text-slate-600">The most beautiful beach on the peninsula with light pebbles and crystal-clear water.</p>
+          <h3 class="font-semibold">Punta Campanella</h3>
+          <p class="text-sm text-slate-600">A rocky point with an ancient tower and views of Capri only 3 miles away.</p>
+        </div>
+      </div>
+      <aside class="bg-slate-900 text-white p-6 rounded-[3rem] self-start">
+        <p class="text-med-gold text-xs font-bold mb-4 uppercase">Fast Facts</p>
+        <dl class="space-y-3">
+          {fastFacts.map(f => (
+            <div class="flex justify-between text-sm">
+              <dt class="text-white/40">{f.dt}</dt>
+              <dd class="text-white">{f.dd}</dd>
+            </div>
+          ))}
+        </dl>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
