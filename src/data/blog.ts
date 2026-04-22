@@ -22,4 +22,15 @@ export const blogPosts: BlogPost[] = [
     image: '/images/grotta-smeraldo-hero.webp',
     path: '/it-it/blog/grotta-dello-smeraldo/',
   },
+  {
+    id: '02',
+    title: 'Le Alici di Cetara: L\'Oro d\'Argento della Costiera Amalfitana',
+    slug: 'alici-di-cetara',
+    excerpt: 'Dal terzigno di rovere alla tavola: la storia della Colatura DOP, erede del Garum romano, e dello Spaghetto alla Colatura, piatto cult di un borgo di 2.000 anime.',
+    category: 'FOOD',
+    date: '22 Aprile 2026',
+    readTime: '7 min',
+    image: '/images/alici-cetara-hero.jpg',
+    path: '/it-it/blog/alici-di-cetara/',
+  },
 ];

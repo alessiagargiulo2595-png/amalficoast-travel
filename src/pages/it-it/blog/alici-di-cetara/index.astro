@@ -1,0 +1,342 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { blogPosts } from '../../../../data/blog';
+
+const lang = 'it-it';
+const post = blogPosts.find(p => p.slug === 'alici-di-cetara')!;
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Blog', url: '/it-it/blog/' },
+  { name: 'Alici di Cetara', url: '/it-it/blog/alici-di-cetara/' },
+];
+
+const keyTakeaways = [
+  'La Colatura di Alici di Cetara DOP è l\'erede diretta del Garum romano, recuperata dai monaci medievali e oggi riconosciuta presidio di eccellenza mondiale.',
+  'Le alici vengono pescate con le lampare di notte, tra marzo e agosto, e lavorate a mano lo stesso giorno della cattura.',
+  'La maturazione nei terzigni di rovere dura almeno 9 mesi per disciplinare DOP; le riserve migliori invecchiano per diversi anni.',
+  'Lo Spaghetto alla Colatura si condisce sempre a crudo e senza sale nell\'acqua: la colatura è già naturalmente sapidissima.',
+  'Una sola goccia di colatura è sufficiente per insaporire pasta, verdure bollite e zuppe di legumi — mai scaldarla per preservarne il bouquet aromatico.',
+];
+
+const faq = [
+  {
+    q: 'Quanto tempo devono maturare le alici per fare la colatura?',
+    a: 'Il disciplinare DOP prevede un invecchiamento minimo di 9 mesi, ma le riserve migliori possono maturare nei terzigni di legno anche per diversi anni, acquisendo note più complesse e scure.',
+  },
+  {
+    q: 'La colatura è molto salata?',
+    a: 'Sì, è estremamente sapida. Per questo motivo, quando la si usa come condimento, non va mai aggiunto sale all\'acqua di cottura della pasta o alle pietanze.',
+  },
+  {
+    q: 'È vero che le alici di Cetara fanno bene alla salute?',
+    a: 'Assolutamente sì. Essendo pesce azzurro, sono ricchissime di Omega-3, proteine di alta qualità e sali minerali. La lavorazione sotto sale ne preserva le proprietà nutrizionali senza l\'uso di conservanti chimici.',
+  },
+  {
+    q: 'Dove si acquista la Colatura DOP originale?',
+    a: 'Lungo il corso principale di Cetara ci sono laboratori artigianali e botteghe storiche dove acquistare i terzigni originali. Cercate sempre il marchio DOP in confezione: molte imitazioni usano pesce proveniente da altri mari.',
+  },
+  {
+    q: 'Qual è il periodo migliore per visitare Cetara?',
+    a: 'La stagione di pesca va da marzo ad agosto, con il picco notturno delle lampare in primavera. In questo periodo i ristoranti del borgo servono il pesce più fresco e si può assistere alla lavorazione artigianale nei magazzini sul porto.',
+  },
+  {
+    q: 'Come si conservano le alici sotto sale a casa?',
+    a: 'Le alici sotto sale nei barattoli di vetro vanno tenute sempre coperte dal loro liquido o da un filo d\'olio per evitare che si secchino e perdano fragranza. Conservarle in frigorifero dopo l\'apertura e consumarle entro poche settimane.',
+  },
+  {
+    q: 'Cosa si intende per tecnica "testa-coda"?',
+    a: 'È il metodo tradizionale di disposizione delle alici nel terzigno: ogni strato viene alternato capovolgendo l\'orientamento dei pesci (testa vs coda), così da massimizzare la compattezza e favorire una salatura uniforme durante la maturazione.',
+  },
+];
+
+const schemaArticle = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.title,
+  "description": "La storia della Colatura di Alici DOP di Cetara, erede del Garum romano: dalla pesca con le lampare alla tavola. Come acquistarla, usarla in cucina e lo Spaghetto alla Colatura originale.",
+  "image": `https://amalficoast-travel.com${post.image}`,
+  "datePublished": "2026-04-22",
+  "dateModified": "2026-04-22",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "publisher": { "@type": "Organization", "name": "Amalfi Coast Travel", "url": "https://amalficoast-travel.com" },
+  "url": "https://amalficoast-travel.com/it-it/blog/alici-di-cetara/",
+  "inLanguage": "it-IT",
+  "keywords": "alici Cetara, colatura di alici DOP, Cetara gastronomia, spaghetto alla colatura, pesce azzurro Costiera Amalfitana",
+};
+
+const schemaFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a },
+  })),
+};
+
+const quickInfo = [
+  { label: 'Prodotto', value: 'Alici sotto sale · Colatura DOP' },
+  { label: 'Localita', value: 'Cetara (SA)' },
+  { label: 'Stagione di pesca', value: 'Marzo - Agosto' },
+  { label: 'Maturazione DOP', value: 'Min. 9 mesi in terzigno' },
+  { label: 'Piatto cult', value: 'Spaghetti alla Colatura' },
+  { label: 'Da sapere', value: 'Mai salare l\'acqua della pasta' },
+  { label: 'Consiglio acquisto', value: 'Botteghe artigianali sul corso' },
+  { label: 'Certificazione', value: 'DOP - Denominazione Origine Protetta' },
+];
+---
+
+<BaseLayout
+  title="Alici di Cetara: Colatura DOP e Spaghetto alla Colatura | Guida 2026"
+  description="La storia della Colatura di Alici DOP di Cetara, erede del Garum romano: pesca con le lampare, maturazione nei terzigni, ricetta originale dello Spaghetto alla Colatura e consigli per acquistarla."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaArticle, schemaFaq]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] overflow-hidden flex items-center justify-center">
+    <img
+      src={post.image}
+      alt="Alici di Cetara e Colatura DOP - Costiera Amalfitana"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/80"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-4">
+        {post.category} · {post.date}
+      </p>
+      <h1 class="font-serif text-display text-white mb-6 leading-tight">
+        Le Alici di Cetara
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-white/80">
+        L'Oro d'Argento della Costiera Amalfitana
+      </p>
+      <div class="mt-6 flex items-center justify-center gap-4 text-white/60 text-sm">
+        <span>{post.date}</span>
+        <span>·</span>
+        <span>{post.readTime} di lettura</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenuto + Sidebar -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+      <!-- Articolo -->
+      <article class="lg:col-span-8 space-y-12">
+
+        <!-- Key Takeaways -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+          <div class="flex items-center gap-3 mb-6">
+            <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Key Takeaways</h2>
+          </div>
+          <ul class="space-y-4">
+            {keyTakeaways.map((point) => (
+              <li class="flex items-start gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+                <span class="text-white/80 text-sm leading-relaxed">{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Intro -->
+        <div>
+          <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+            Se c'e un borgo che e riuscito a racchiudere il sapore del mare in un barattolo, quel borgo e Cetara. Superato il promontorio di Capo d'Orso, questo piccolo villaggio di pescatori appare come un presepe di case bianche strette attorno a una torre saracena. Ma il vero tesoro di Cetara non e visibile dalla strada: si nasconde nelle reti dei suoi pescherecci e nelle antiche botti di legno che custodiscono il segreto delle sue famose alici.
+          </p>
+        </div>
+
+        <!-- Una tradizione antica -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Una Tradizione Antica: Dalla Lampara al Terzigno</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La pesca delle alici a Cetara ha radici millenarie. Ancora oggi, durante le notti di luna nuova tra marzo e agosto, le "lampare" prendono il largo. La tecnica e rimasta quasi invariata: le luci attirano il pesce azzurro in superficie e le reti lo avvolgono.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            Ma la vera magia avviene a terra. Appena pescate, le alici vengono decapitate ed eviscerate a mano ("scapezzate"), poi sistemate a strati, con la classica tecnica "testa-coda", in piccoli barili di rovere chiamati <strong>terzigni</strong>. Qui, sotto il peso di una pressa di legno e coperti di sale marino, iniziano la loro maturazione.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <h4 class="font-bold text-slate-900 mb-2">La tecnica "testa-coda"</h4>
+              <p class="text-slate-600 text-sm leading-relaxed">Ogni strato viene alternato capovolgendo l'orientamento dei pesci, per massimizzare la compattezza e garantire una salatura uniforme durante la maturazione.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <h4 class="font-bold text-slate-900 mb-2">Il terzigno di rovere</h4>
+              <p class="text-slate-600 text-sm leading-relaxed">Il piccolo barile di legno di rovere non e un semplice contenitore: il legno respira, regola l'umidita e contribuisce allo sviluppo aromatico durante la lunga maturazione sotto sale.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- La Colatura -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Colatura: L'Essenza Liquida del Mare</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Il prodotto piu nobile di questa lavorazione e la <strong>Colatura di Alici di Cetara DOP</strong>. Si tratta di un liquido ambrato e limpido, frutto della lenta fermentazione delle alici sotto sale.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La leggenda vuole che la colatura sia l'erede del <strong>Garum romano</strong>, la salsa di pesce tanto amata dagli imperatori. A Cetara, questa tradizione e stata recuperata dai monaci medievali e oggi e diventata un presidio di eccellenza mondiale. Una sola goccia di questo distillato e capace di trasformare un piatto semplice in un'esperienza gourmet.
+          </p>
+
+          <blockquote class="border-l-4 border-med-gold pl-6 my-8">
+            <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+              "La Colatura di Cetara non e un condimento, e l'anima del Mediterraneo distillata goccia dopo goccia."
+            </p>
+          </blockquote>
+        </div>
+
+        <!-- Come degustarle -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Degustarle: Il Piatto Iconico</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Se visitate Cetara, c'e un rito a cui non potete sottrarvi: lo <strong>Spaghetto alla Colatura</strong>. E il piatto della vigilia, della semplicita estrema che diventa lusso.
+          </p>
+
+          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">La Ricetta Originale</h3>
+            <div class="space-y-3">
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+                <p class="text-slate-600 text-sm leading-relaxed"><strong>Niente sale nell'acqua</strong> - la colatura e gia naturalmente sapidissima.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+                <p class="text-slate-600 text-sm leading-relaxed"><strong>Condimento a crudo</strong> - olio extravergine, aglio tritato, peperoncino, prezzemolo e un generoso cucchiaio di colatura.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+                <p class="text-slate-600 text-sm leading-relaxed"><strong>Mai scaldare la colatura</strong> - il calore ne altera il bouquet aromatico che si e sviluppato in mesi di maturazione.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dove acquistare -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Dove Acquistare e Degustare</h2>
+          <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+            <table class="w-full text-sm">
+              <thead class="bg-slate-900 text-white">
+                <tr>
+                  <th class="text-left p-5 font-serif font-bold text-med-gold">Esperienza</th>
+                  <th class="text-left p-5 font-serif font-bold text-med-gold">Suggerimento</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white">
+                <tr class="border-b border-slate-100">
+                  <td class="p-5 font-bold text-slate-900">Botteghe Storiche</td>
+                  <td class="p-5 text-slate-600">Lungo il corso principale di Cetara troverete laboratori artigianali dove acquistare i terzigni originali. Cercate sempre il marchio DOP in confezione.</td>
+                </tr>
+                <tr>
+                  <td class="p-5 font-bold text-slate-900">Degustazione</td>
+                  <td class="p-5 text-slate-600">Molti ristoranti del borgo offrono il "cuoppo" di alici fritte o marinate appena pescate. E il modo piu autentico per assaggiarle.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Local Tips -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-6">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+            <h3 class="text-xl font-bold text-slate-900">I Consigli dell'Esperto</h3>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-slate-900 mb-1">Occhio alla DOP</p>
+              <p class="text-slate-600 text-sm leading-relaxed">Assicuratevi che sulla confezione ci sia il marchio DOP. Molte imitazioni usano pesce proveniente da altri mari, ma solo le alici pescate nel Golfo di Salerno hanno quel bilanciamento perfetto di grasso e sapore.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">Il Segreto in Cucina</p>
+              <p class="text-slate-600 text-sm leading-relaxed">La colatura e ottima anche per insaporire verdure lesse (come scarole o broccoli) o per dare un tocco "umami" alle zuppe di legumi. Ma attenzione: usatela sempre a crudo per non alterarne il bouquet aromatico.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">La Conservazione</p>
+              <p class="text-slate-600 text-sm leading-relaxed">Le alici sotto sale nei barattoli di vetro vanno sempre tenute coperte dal loro liquido o da un filo d'olio per evitare che si secchino e perdano fragranza. In frigorifero dopo l'apertura, consumarle entro poche settimane.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
+          <div class="space-y-4">
+            {faq.map((item) => (
+              <div class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
+                <details class="group">
+                  <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
+                    <span class="font-bold text-slate-900">{item.q}</span>
+                    <svg class="w-5 h-5 text-med-gold flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </summary>
+                  <div class="px-6 pb-6 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                    {item.a}
+                  </div>
+                </details>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Author box -->
+        <div class="flex items-center gap-5 pt-8 border-t border-slate-100">
+          <div class="w-14 h-14 rounded-full bg-med-gold/15 flex items-center justify-center flex-shrink-0">
+            <span class="text-med-gold font-serif font-bold text-xl">AC</span>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Scritto da</p>
+            <p class="font-bold text-slate-900">Redazione Discovery</p>
+            <p class="text-slate-500 text-sm">Food & Travel Specialist · Costiera Amalfitana</p>
+          </div>
+        </div>
+
+        <!-- Back link -->
+        <div class="pt-4">
+          <a href="/it-it/blog/" class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-slate-900 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            Torna al Blog
+          </a>
+        </div>
+
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 text-med-gold">Info Rapide</h3>
+          <div class="space-y-5">
+            {quickInfo.map((item) => (
+              <div class="border-b border-white/5 pb-4 last:border-0">
+                <span class="text-white/40 text-[10px] uppercase tracking-wider font-light block mb-1">{item.label}</span>
+                <span class="text-white font-medium text-sm">{item.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-10 pt-8 border-t border-white/10 space-y-3">
+            <a href="/it-it/esperienze/cooking-class/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Cooking Class
+            </a>
+            <a href="/it-it/esperienze/ristoranti-stellati/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Ristoranti Stellati
+            </a>
+            <a href="/it-it/esperienze/limoncello-tour/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Limoncello Tour
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</BaseLayout>
