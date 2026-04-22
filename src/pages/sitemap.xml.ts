@@ -262,6 +262,7 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/it-it/esperienze/tour-barca/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/it-it/esperienze/mozzarella-experience/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/it-it/esperienze/limoncello-tour/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/it-it/esperienze/matrimoni/', priority: '0.7', changefreq: 'yearly' },
 
   // Beaches individual - en-us
   { loc: '/en-us/beaches/amalfi-coast/fiordo-di-furore/', priority: '0.8', changefreq: 'yearly' },

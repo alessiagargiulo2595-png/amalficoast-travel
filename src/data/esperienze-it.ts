@@ -45,4 +45,13 @@ export const esperienze: Esperienza[] = [
     description: 'Un viaggio sensoriale tra i profumi del Limone di Sorrento IGP.',
     path: '/it-it/esperienze/limoncello-tour/',
   },
+  {
+    id: 'matrimoni',
+    title: 'Matrimoni',
+    subtitle: 'Promesse Sospese tra Roccia e Sale.',
+    category: 'WEDDING',
+    image: '/images/matrimoni-costiera.jpg',
+    description: 'Perché la Terra delle Sirene è la capitale mondiale del Destination Wedding.',
+    path: '/it-it/esperienze/matrimoni/',
+  },
 ];
