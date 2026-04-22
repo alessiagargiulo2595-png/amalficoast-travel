@@ -46,6 +46,15 @@ export const esperienze: Esperienza[] = [
     path: '/it-it/esperienze/limoncello-tour/',
   },
   {
+    id: 'cooking-class',
+    title: 'Cooking Class',
+    subtitle: 'I Segreti della Cucina Costiera.',
+    category: 'FOOD',
+    image: '/images/cooking-class-costiera.jpg',
+    description: 'Un viaggio tra farina, basilico e tradizioni tramandate in Penisola Sorrentina.',
+    path: '/it-it/esperienze/cooking-class/',
+  },
+  {
     id: 'matrimoni',
     title: 'Matrimoni',
     subtitle: 'Promesse Sospese tra Roccia e Sale.',
