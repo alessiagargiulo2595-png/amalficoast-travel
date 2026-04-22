@@ -9,6 +9,9 @@ const breadcrumbs = [
   { name: 'Blog', url: '/it-it/blog/' },
 ];
 
+// Ricava categorie uniche dall'elenco articoli
+const categories = ['Tutte', ...new Set(blogPosts.map(p => p.category))];
+
 const schemaBlog = {
   "@context": "https://schema.org",
   "@type": "Blog",
@@ -62,50 +65,77 @@ const schemaBlog = {
   <section class="bg-med-cream py-24 px-6">
     <div class="max-w-7xl mx-auto">
 
-      <!-- Header sezione -->
-      <div class="flex items-end justify-between mb-14">
-        <div>
-          <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Articoli</p>
-          <h2 class="font-serif text-3xl font-bold text-slate-900">Tutte le storie</h2>
+      <!-- Header + filtri -->
+      <div class="mb-14">
+        <div class="flex items-end justify-between mb-8">
+          <div>
+            <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Articoli</p>
+            <h2 class="font-serif text-3xl font-bold text-slate-900">Tutte le storie</h2>
+          </div>
+          <p id="blog-counter" class="text-slate-400 text-sm hidden sm:block">
+            {blogPosts.length} {blogPosts.length === 1 ? 'articolo' : 'articoli'}
+          </p>
         </div>
-        <p class="text-slate-400 text-sm hidden sm:block">{blogPosts.length} {blogPosts.length === 1 ? 'articolo' : 'articoli'}</p>
+
+        <!-- Tag categorie -->
+        <div class="flex flex-wrap gap-3">
+          {categories.map((cat) => (
+            <button
+              data-filter={cat}
+              data-active={cat === 'Tutte' ? 'true' : undefined}
+              class="filter-btn"
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </div>
 
       <!-- Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="blog-grid">
         {blogPosts.map((post) => (
-          <a href={post.path} class="group block">
-            <div class="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-5 shadow-lg">
-              <img
-                src={post.image}
-                alt={post.title}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                loading="lazy"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
-              <div class="absolute top-5 left-5">
-                <span class="bg-med-gold text-slate-900 text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-full">
-                  {post.category}
-                </span>
+          <div data-category={post.category} class="blog-card">
+            <a href={post.path} class="group block">
+              <div class="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-5 shadow-lg">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+                <div class="absolute top-5 left-5">
+                  <span class="bg-med-gold text-slate-900 text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-full">
+                    {post.category}
+                  </span>
+                </div>
               </div>
-            </div>
-            <div class="px-1">
-              <div class="flex items-center gap-3 text-slate-400 text-xs mb-3">
-                <span>{post.date}</span>
-                <span>·</span>
-                <span>{post.readTime} di lettura</span>
+              <div class="px-1">
+                <div class="flex items-center gap-3 text-slate-400 text-xs mb-3">
+                  <span>{post.date}</span>
+                  <span>·</span>
+                  <span>{post.readTime} di lettura</span>
+                </div>
+                <h2 class="font-serif text-xl font-bold text-slate-900 mb-3 leading-tight group-hover:text-med-blue transition-colors">
+                  {post.title}
+                </h2>
+                <p class="text-slate-500 text-sm leading-relaxed">{post.excerpt}</p>
+                <div class="mt-4 flex items-center gap-1 text-med-gold text-sm font-medium">
+                  Leggi l'articolo
+                  <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </div>
               </div>
-              <h2 class="font-serif text-xl font-bold text-slate-900 mb-3 leading-tight group-hover:text-med-blue transition-colors">
-                {post.title}
-              </h2>
-              <p class="text-slate-500 text-sm leading-relaxed">{post.excerpt}</p>
-              <div class="mt-4 flex items-center gap-1 text-med-gold text-sm font-medium">
-                Leggi l'articolo
-                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              </div>
-            </div>
-          </a>
+            </a>
+          </div>
         ))}
+      </div>
+
+      <!-- Nessun risultato -->
+      <div id="blog-empty" class="hidden text-center py-20">
+        <p class="text-slate-400 text-lg mb-6">Nessun articolo trovato in questa categoria.</p>
+        <button data-filter="Tutte" class="filter-btn" id="reset-btn">
+          Mostra tutti
+        </button>
       </div>
 
     </div>
@@ -125,3 +155,62 @@ const schemaBlog = {
   </section>
 
 </BaseLayout>
+
+<style>
+  .filter-btn {
+    @apply px-5 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer;
+    background-color: #0f172a; /* slate-900 */
+    color: white;
+  }
+  .filter-btn[data-active="true"] {
+    background-color: #D4AF37; /* med-gold */
+    color: #0f172a;
+  }
+  .blog-card[data-hidden] {
+    display: none;
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-category]');
+  const emptyMsg = document.getElementById('blog-empty');
+  const counterEl = document.getElementById('blog-counter');
+
+  function applyFilter(filter: string) {
+    // Aggiorna bottoni attivi
+    buttons.forEach(b => {
+      if (b.dataset.filter === filter) {
+        b.setAttribute('data-active', 'true');
+      } else {
+        b.removeAttribute('data-active');
+      }
+    });
+
+    // Mostra/nascondi card
+    let visible = 0;
+    cards.forEach(card => {
+      const match = filter === 'Tutte' || card.dataset.category === filter;
+      if (match) {
+        card.removeAttribute('data-hidden');
+        visible++;
+      } else {
+        card.setAttribute('data-hidden', '');
+      }
+    });
+
+    // Aggiorna contatore
+    if (counterEl) {
+      counterEl.textContent = `${visible} ${visible === 1 ? 'articolo' : 'articoli'}`;
+    }
+
+    // Messaggio vuoto
+    if (emptyMsg) {
+      emptyMsg.classList.toggle('hidden', visible > 0);
+    }
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => applyFilter(btn.dataset.filter ?? 'Tutte'));
+  });
+</script>
