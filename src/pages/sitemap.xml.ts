@@ -260,6 +260,7 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/it-it/blog/', priority: '0.8', changefreq: 'weekly' },
   { loc: '/it-it/blog/grotta-dello-smeraldo/', priority: '0.7', changefreq: 'monthly' },
   { loc: '/it-it/blog/alici-di-cetara/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/it-it/blog/valle-delle-ferriere/', priority: '0.7', changefreq: 'monthly' },
 
   // Esperienze - it-it
   { loc: '/it-it/esperienze/', priority: '0.8', changefreq: 'monthly' },

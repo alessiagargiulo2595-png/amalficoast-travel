@@ -23,6 +23,17 @@ export const blogPosts: BlogPost[] = [
     path: '/it-it/blog/grotta-dello-smeraldo/',
   },
   {
+    id: '03',
+    title: 'Valle delle Ferriere: Trekking nel Cuore Verde e Selvaggio di Amalfi',
+    slug: 'valle-delle-ferriere',
+    excerpt: 'Felci preistoriche, cascate e rovine di antiche cartiere medievali: il segreto meglio custodito della Costiera, a pochi minuti a piedi dal centro di Amalfi.',
+    category: 'SCOPERTE',
+    date: '22 Aprile 2026',
+    readTime: '8 min',
+    image: '/images/valle-ferriere-hero.jpg',
+    path: '/it-it/blog/valle-delle-ferriere/',
+  },
+  {
     id: '02',
     title: 'Le Alici di Cetara: L\'Oro d\'Argento della Costiera Amalfitana',
     slug: 'alici-di-cetara',
