@@ -1,0 +1,334 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { blogPostsFr } from '../../../../data/blog-fr';
+
+const lang = 'fr-fr';
+const post = blogPostsFr.find(p => p.slug === 'grotte-emeraude')!;
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Blog', url: '/fr-fr/blog/' },
+  { name: 'Grotte Émeraude', url: '/fr-fr/blog/grotte-emeraude/' },
+];
+
+const faq = [
+  {
+    q: 'Comment accéder à la Grotte Émeraude ?',
+    a: 'Il existe deux possibilités : par mer avec les taxi-boats depuis Amalfi (environ 10 minutes, départs fréquents en haute saison), ou par voie terrestre le long de la Statale Amalfitana — à Conca dei Marini, un ascenseur panoramique descend directement jusqu\'à l\'embarcadère de la grotte.',
+  },
+  {
+    q: 'Quelle est la meilleure période pour la visiter ?',
+    a: 'Les heures matinales entre 10h et 12h sont les plus magiques : la lumière solaire filtre plus directement par l\'ouverture sous-marine, amplifiant l\'effet émeraude. Évitez les journées de mer agitée : en cas de vagues, la grotte peut être inaccessible.',
+  },
+  {
+    q: 'Quel est le prix du billet d\'entrée ?',
+    a: 'Le billet d\'entrée à la grotte est d\'environ 7 euros par personne (2026). Le coût du taxi-boat depuis Amalfi s\'ajoute séparément (environ 10-12 euros A/R). Si l\'on arrive par voie terrestre, le coût de l\'ascenseur est inclus dans le billet.',
+  },
+  {
+    q: 'Qu\'est-ce que la Crèche Sous-Marine ?',
+    a: 'C\'est une crèche en céramique placée sur le fond de la grotte en 1956 à environ 4 mètres de profondeur, œuvre de l\'artiste Attilio Pentone. Les figurines en terre cuite émaillée représentent la Nativité et sont parfaitement visibles à travers les eaux limpides. Chaque année le 24 décembre, des plongeurs ajoutent de nouvelles statuettes.',
+  },
+  {
+    q: 'Pourquoi l\'eau est-elle de couleur émeraude ?',
+    a: 'La grotte possède une ouverture sous-marine à environ 8 mètres de profondeur. La lumière solaire pénètre par cette fissure, est réfractée par l\'eau et illumine la caverne de bas en haut, créant une intense luminescence vert émeraude. L\'effet est totalement naturel et varie avec l\'angle du soleil.',
+  },
+  {
+    q: 'Combien de temps dure la visite ?',
+    a: 'La visite en barque à l\'intérieur de la grotte dure en moyenne 20-30 minutes. En tenant compte des transferts par mer depuis Amalfi, il est conseillé de prévoir environ 1h30-2h au total pour l\'expérience complète.',
+  },
+];
+
+const schemaArticle = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.title,
+  "description": "Guide complet de la Grotte Émeraude de Conca dei Marini : histoire, comment y accéder, horaires, tarifs, la crèche sous-marine et l\'explication du phénomène émeraude.",
+  "image": `https://amalficoast-travel.com${post.image}`,
+  "datePublished": "2026-04-22",
+  "dateModified": "2026-04-22",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "publisher": { "@type": "Organization", "name": "Amalfi Coast Travel", "url": "https://amalficoast-travel.com" },
+  "url": "https://amalficoast-travel.com/fr-fr/blog/grotte-emeraude/",
+  "inLanguage": "fr-FR",
+};
+
+const schemaFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a },
+  })),
+};
+
+const quickInfo = [
+  { label: 'Découverte', value: '1932 – Luigi Buonocore' },
+  { label: 'Commune', value: 'Conca dei Marini (SA)' },
+  { label: 'Dimensions', value: '60 m de large · 24 m de hauteur' },
+  { label: 'Ouverture sous-marine', value: '~8 mètres de profondeur' },
+  { label: 'Horaires', value: '9h00 – 16h00 (env.)' },
+  { label: 'Billet', value: 'env. 7 € par personne' },
+  { label: 'Durée visite', value: '20-30 minutes' },
+  { label: 'Meilleure période', value: 'Matin (10h-12h)' },
+];
+---
+
+<BaseLayout
+  title="Grotte Émeraude : Guide Complet 2026 | Conca dei Marini"
+  description="Guide de la Grotte Émeraude de Conca dei Marini : comment y accéder, horaires, tarifs, la crèche sous-marine et le secret de la couleur émeraude. Tout ce qu'il faut savoir."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaArticle, schemaFaq]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] overflow-hidden flex items-center justify-center">
+    <img
+      src={post.image}
+      alt="Grotte Émeraude - Conca dei Marini, Côte Amalfitaine"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/80"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-4">
+        {post.category} · {post.date}
+      </p>
+      <h1 class="font-serif text-display text-white mb-6 leading-tight">
+        Grotte Émeraude
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-white/80">
+        Guide Complet du Joyau de Conca dei Marini
+      </p>
+      <div class="mt-6 flex items-center justify-center gap-4 text-white/60 text-sm">
+        <span>{post.date}</span>
+        <span>·</span>
+        <span>{post.readTime} de lecture</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenu + Sidebar -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+      <!-- Article -->
+      <article class="lg:col-span-8 space-y-12">
+
+        <!-- Intro -->
+        <div>
+          <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+            Il y a un moment précis où la barque s'enfonce dans l'obscurité de la caverne et puis, soudain, tout se transforme. L'eau n'est plus bleue : elle devient verte. Un vert intense, irréel, comme si quelqu'un avait dissous une énorme émeraude dans les eaux de la Tyrrhénienne. Bienvenue à la Grotte Émeraude, l'un des phénomènes naturels les plus extraordinaires de la Côte Amalfitaine.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Située à Conca dei Marini, une petite commune de moins de 800 habitants nichée entre Positano et Amalfi, la grotte est accessible aussi bien par mer que par voie terrestre. C'est l'une des destinations les plus fascinantes — et les moins frénétiques — de toute la Côte.
+          </p>
+        </div>
+
+        <!-- Histoire géologique -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Découverte et l'Histoire Géologique</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            C'était en 1932 lorsque le pêcheur local Luigi Buonocore, longeant la côte avec sa barque à la recherche d'abris rocheux, découvrit une petite ouverture dans la roche calcaire. En s'y glissant curieusement, il se retrouva face à un spectacle qu'il n'avait jamais vu : une caverne gigantesque illuminée par une lumière verte surnaturelle. C'est ainsi que la Grotte Émeraude fut officiellement découverte.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Mais la véritable histoire géologique de la grotte est bien plus ancienne. Il s'agit d'une caverne karstique formée il y a des millions d'années dans les calcaires mésozoïques qui constituent la dorsale des Monts Lattari. À l'origine, c'était une grotte terrestre, avec les classiques formations de stalactites et stalagmites.
+          </p>
+
+          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm my-8">
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Le Bradysisme : Quand la Terre s'Enfonce</h3>
+            <p class="text-slate-600 leading-relaxed mb-4">
+              Le phénomène qui a transformé cette grotte terrestre en caverne marine s'appelle le <strong>bradysisme</strong> : un affaissement lent mais inexorable du sol causé par l'activité volcanique sous-jacente. Au fil des siècles, toute cette section de côte s'est « enfoncée » de plusieurs mètres, portant le sol de la grotte sous le niveau de la mer.
+            </p>
+            <p class="text-slate-600 leading-relaxed">
+              Le résultat est une caverne mi-terrestre (avec les stalactites pendant du plafond) et mi-marine, avec l'eau de la Tyrrhénienne occupant la partie basse. Les stalagmites d'origine sont maintenant submergées à environ 4 mètres de profondeur, visibles d'en haut à travers les eaux cristallines.
+            </p>
+          </div>
+        </div>
+
+        <!-- Le phénomène émeraude -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Le Secret de la Couleur Émeraude</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Le phénomène qui rend cette grotte unique au monde est purement optique-physique, mais pas moins merveilleux pour autant. Au fond de la grotte, à environ 8 mètres de profondeur, s'ouvre une large fissure dans le calcaire qui communique directement avec la mer ouverte.
+          </p>
+
+          <div class="space-y-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">1</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">La lumière entre par le bas</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">La lumière solaire pénètre depuis l'extérieur par cette ouverture sous-marine. Au lieu d'illuminer la caverne par le haut comme normalement, elle l'illumine de bas en haut.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">2</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">L'eau filtre les longueurs d'onde rouges</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">L'eau marine absorbe les longueurs d'onde les plus longues du spectre (les rouges et les oranges) tout en laissant passer les fréquences vertes et bleu-vert. Le résultat est une lumière qui arrive à la surface de la caverne déjà fortement orientée vers le vert.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">3</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">La réfraction amplifie l'effet</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Quand cette lumière verte filtrée émerge en surface, elle illumine la caverne par le bas en créant un halo qui se reflète sur les parois calcaires et le plafond. Le résultat est cette atmosphère magique, presque sous-marine, qui vous enveloppe dès l'entrée.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- La Crèche Sous-Marine -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Crèche Sous-Marine : Une Tradition depuis 1956</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            À environ 4 mètres de profondeur, sur le fond de la grotte, reposent les figurines d'une crèche en céramique émaillée. C'est la Crèche Sous-Marine, l'une des traditions les plus suggestives de toute la Côte Amalfitaine.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            L'histoire commence en 1956, quand le propriétaire de l'embarcadère Donato Carotenuto décide de placer quelques figurines en céramique sur le fond de la grotte. L'œuvre fut réalisée par l'artiste sorrentais <strong>Attilio Pentone</strong>, spécialisé dans la céramique traditionnelle campanienne. Les figurines représentent la classique Nativité : la Sainte Famille, les Rois Mages, les bergers et les animaux de la crèche napolitaine.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Chaque 24 décembre, un groupe de plongeurs locaux descend sur le fond pour ajouter de nouvelles figurines, maintenant vivante une tradition qui compte aujourd'hui plus de 30 statuettes, visibles à travers les eaux limpides baignées par la lumière émeraude.
+          </p>
+        </div>
+
+        <!-- Comment accéder -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Comment Accéder : Toutes les Options</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            La Grotte Émeraude se trouve sur la Statale Amalfitana entre Amalfi (5 km) et Positano (15 km). Il existe trois façons de l'atteindre.
+          </p>
+
+          <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+            <table class="w-full text-sm">
+              <thead class="bg-slate-900 text-white">
+                <tr>
+                  <th class="text-left p-5 font-serif font-bold text-med-gold">Moyen</th>
+                  <th class="text-left p-5 font-serif font-bold text-med-gold">Départ</th>
+                  <th class="text-left p-5 font-serif font-bold text-med-gold">Durée</th>
+                  <th class="text-left p-5 font-serif font-bold text-med-gold">Notes</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white">
+                <tr class="border-b border-slate-100">
+                  <td class="p-5 font-bold text-slate-900">Par mer (recommandé)</td>
+                  <td class="p-5 text-slate-600">Port d'Amalfi</td>
+                  <td class="p-5 text-slate-600">~10 min</td>
+                  <td class="p-5 text-slate-500">Taxi-boat avec départs fréquents (avril-octobre). Prix env. 10-12 € A/R. On monte directement sur la barque qui entre dans la grotte.</td>
+                </tr>
+                <tr class="border-b border-slate-100">
+                  <td class="p-5 font-bold text-slate-900">Par voie terrestre (ascenseur)</td>
+                  <td class="p-5 text-slate-600">SS163 – Conca dei Marini</td>
+                  <td class="p-5 text-slate-600">2 min en ascenseur</td>
+                  <td class="p-5 text-slate-500">Parking sur la Statale, puis ascenseur panoramique jusqu'à l'embarcadère. Idéal si on vient en voiture. Inclus dans le billet.</td>
+                </tr>
+                <tr>
+                  <td class="p-5 font-bold text-slate-900">Bus SITA</td>
+                  <td class="p-5 text-slate-600">Amalfi / Positano</td>
+                  <td class="p-5 text-slate-600">15-25 min</td>
+                  <td class="p-5 text-slate-500">Descendre à l'arrêt "Grotta dello Smeraldo" sur la SS163. Puis ascenseur. Solution la plus économique mais dépendante des horaires SITA.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Conseils locaux -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-6">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+            <h3 class="text-xl font-bold text-slate-900">3 Conseils des Locaux</h3>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-slate-900 mb-1">1. Allez-y le matin, entre 10h et 12h</p>
+              <p class="text-slate-600 leading-relaxed text-sm">C'est le moment où le soleil illumine l'ouverture sous-marine avec le meilleur angle, maximisant l'effet émeraude. L'après-midi la lumière décline et les tons s'éteignent considérablement.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">2. Vérifiez les conditions de mer avant de partir</p>
+              <p class="text-slate-600 leading-relaxed text-sm">Avec une mer force 3 ou plus, l'accès à la grotte par mer est suspendu. S'il y a du vent de Libeccio, mieux vaut vérifier l'opérationnalité des taxi-boats directement au port d'Amalfi.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">3. Combinez avec la promenade de Conca dei Marini</p>
+              <p class="text-slate-600 leading-relaxed text-sm">Après la grotte, montez au centre de Conca dei Marini : c'est l'un des villages les plus authentiques et les moins touristiques de la Côte. La sfogliatella originale se mange uniquement ici. Puis descendez à pied vers Amalfi par le sentier côtier.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Questions Fréquentes</h2>
+          <div class="space-y-4">
+            {faq.map((item) => (
+              <div class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
+                <details class="group">
+                  <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
+                    <span class="font-bold text-slate-900">{item.q}</span>
+                    <svg class="w-5 h-5 text-med-gold flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </summary>
+                  <div class="px-6 pb-6 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                    {item.a}
+                  </div>
+                </details>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Auteur -->
+        <div class="flex items-center gap-5 pt-8 border-t border-slate-100">
+          <div class="w-14 h-14 rounded-full bg-med-gold/15 flex items-center justify-center flex-shrink-0">
+            <span class="text-med-gold font-serif font-bold text-xl">AC</span>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Écrit par</p>
+            <p class="font-bold text-slate-900">Amalfi Coast Travel</p>
+            <p class="text-slate-500 text-sm">Guides locaux · Côte Amalfitaine</p>
+          </div>
+        </div>
+
+        <!-- Retour -->
+        <div class="pt-4">
+          <a href="/fr-fr/blog/" class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-slate-900 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            Retour au Blog
+          </a>
+        </div>
+
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 text-med-gold">Infos Pratiques</h3>
+          <div class="space-y-5">
+            {quickInfo.map((item) => (
+              <div class="border-b border-white/5 pb-4 last:border-0">
+                <span class="text-white/40 text-[10px] uppercase tracking-wider font-light block mb-1">{item.label}</span>
+                <span class="text-white font-medium text-sm">{item.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-10 pt-8 border-t border-white/10 space-y-3">
+            <a href="/fr-fr/experiences/tour-bateau/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Tours en Bateau
+            </a>
+            <a href="/fr-fr/guide/ferries/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Ferries et Hydrofoils
+            </a>
+            <a href="/fr-fr/guide/bus-sita/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Bus SITA
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</BaseLayout>

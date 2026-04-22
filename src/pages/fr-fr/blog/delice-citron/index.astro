@@ -1,0 +1,256 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { blogPostsFr } from '../../../../data/blog-fr';
+
+const lang = 'fr-fr';
+const post = blogPostsFr.find(p => p.slug === 'delice-citron')!;
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Blog', url: '/fr-fr/blog/' },
+  { name: 'Délice au Citron', url: '/fr-fr/blog/delice-citron/' },
+];
+
+const faq = [
+  {
+    q: 'Quelle est la différence entre la Delizia al Limone et un simple gâteau au citron ?',
+    a: 'La structure de la Delizia est bien plus complexe : elle prévoit une double crème (pâtissière et chantilly au citron) et un glaçage extérieur qui la maintient humide et moelleuse, contrairement à un gâteau classique qui tend à se dessécher.',
+  },
+  {
+    q: 'Peut-on utiliser des citrons ordinaires du supermarché ?',
+    a: 'On peut, mais le résultat ne sera pas le même. Le secret de la Delizia réside dans les huiles essentielles de la peau des citrons IGP de Sorrento ou d\'Amalfi, qui ne sont pas traités et ont un parfum infiniment plus persistant.',
+  },
+  {
+    q: 'Qui a inventé la Delizia al Limone ?',
+    a: 'Le maître pâtissier sorrentais Carmine Marzuillo, qui la présenta pour la première fois en 1978 à un concours gastronomique à Formia. En quelques années, elle devint le dessert symbole de toute la Côte Amalfitaine.',
+  },
+  {
+    q: 'Où manger la meilleure Delizia al Limone de la Côte ?',
+    a: 'Les lieux les plus célèbres sont : la Pasticceria Sal De Riso à Minori (probablement la plus réputée au monde), la Pasticceria Pansa à côté du Dôme d\'Amalfi et l\'Antico Francischiello à Massa Lubrense, lieu d\'origine de la recette.',
+  },
+  {
+    q: 'Existe-t-il une version sans gluten de la Delizia ?',
+    a: 'De nombreuses pâtisseries artisanales sur la Côte proposent désormais des versions sans gluten utilisant des farines de riz ou des amidons, en conservant intacte la magie de la crème au citron.',
+  },
+];
+
+const schemaArticle = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.title,
+  "description": "L\'histoire de la Delizia al Limone inventée en 1978 par Carmine Marzuillo, où la manger sur la Côte Amalfitaine et les secrets pour la refaire à la maison avec des citrons IGP.",
+  "image": `https://amalficoast-travel.com${post.image}`,
+  "datePublished": "2026-04-22",
+  "dateModified": "2026-04-22",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "publisher": { "@type": "Organization", "name": "Amalfi Coast Travel", "url": "https://amalficoast-travel.com" },
+  "url": "https://amalficoast-travel.com/fr-fr/blog/delice-citron/",
+  "inLanguage": "fr-FR",
+};
+
+const schemaFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a },
+  })),
+};
+
+const quickInfo = [
+  { label: 'Créateur', value: 'Carmine Marzuillo (1978)' },
+  { label: 'Ingrédient clé', value: 'Citron IGP (Sfusato ou Femminiello)' },
+  { label: 'Préparation', value: '45 min + 2h de repos' },
+  { label: 'Cuisson', value: '20 minutes' },
+  { label: 'Portions', value: '8 coupoles' },
+  { label: 'Difficulté', value: 'Moyenne (précision dans la crème)' },
+  { label: 'Accord', value: 'Limoncello glacé ou Passito de Tramonti' },
+  { label: 'Où la manger', value: 'Sal De Riso (Minori) · Pansa (Amalfi)' },
+];
+---
+
+<BaseLayout
+  title="Délice au Citron : Histoire, Recette et Où le Manger | Côte Amalfitaine 2026"
+  description="L'histoire de la Delizia al Limone inventée par Carmine Marzuillo en 1978, les secrets de la recette originale aux citrons IGP et les trois adresses incontournables sur la Côte Amalfitaine."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaArticle, schemaFaq]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] overflow-hidden flex items-center justify-center">
+    <img
+      src={post.image}
+      alt="Delizia al Limone - dessert symbole de la Côte Amalfitaine"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/80"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-4">
+        {post.category} · {post.date}
+      </p>
+      <h1 class="font-serif text-display text-white mb-6 leading-tight">
+        Délice au Citron
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-white/80">
+        Histoire et Secrets de la Coupole la Plus Aimée de la Côte
+      </p>
+      <div class="mt-6 flex items-center justify-center gap-4 text-white/60 text-sm">
+        <span>{post.date}</span>
+        <span>·</span>
+        <span>{post.readTime} de lecture</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenu + Sidebar -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+      <article class="lg:col-span-8 space-y-12">
+
+        <!-- Intro -->
+        <div>
+          <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+            Si la Côte Amalfitaine avait une saveur, ce serait sans aucun doute celle de la Delizia al Limone. Cette douce coupole de génoise, imbibée de sirop parfumé et recouverte d'un nuage de crème au citron, est bien plus qu'un dessert : c'est l'essence du soleil de Sorrento et d'Amalfi enfermée dans une bouchée.
+          </p>
+        </div>
+
+        <!-- L'Histoire -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">L'Histoire : L'Invention d'un Maître</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Contrairement à beaucoup de douceurs de la tradition campanienne dont les racines remontent à des siècles, la Delizia al Limone a une date de naissance précise : <strong>1978</strong>.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Son créateur est le maître pâtissier sorrentais <strong>Carmine Marzuillo</strong>, qui la présenta pour la première fois à un concours gastronomique à Formia. L'idée était simple mais révolutionnaire : utiliser le Sfusato Amalfitano et le Femminiello Sorrentino pour créer un dessert à la fois léger, frais et extrêmement parfumé. Le succès fut immédiat, et en quelques années la Delizia est passée des laboratoires de Sorrento aux tables du monde entier.
+          </p>
+
+          <blockquote class="border-l-4 border-med-gold pl-6 my-8">
+            <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+              "Un équilibre parfait entre l'acidité de l'agrume et la douceur de la crème : la Delizia est le baiser du soleil sur la table."
+            </p>
+          </blockquote>
+        </div>
+
+        <!-- Le citron IGP -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Le Citron IGP : L'Ingrédient Indispensable</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Le vrai secret de la Delizia al Limone est la qualité du citron. Sur la Côte, deux variétés sont utilisées : le <strong>Sfusato Amalfitano</strong> et le <strong>Femminiello Sorrentino</strong>, tous deux protégés par l'IGP (Indication Géographique Protégée). Ces citrons cultivés sur les terrasses en terrasses de la Côte ont une peau épaisse et huileuse, riche en essence, et une pulpe très parfumée qui se distingue radicalement des citrons ordinaires.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <h4 class="font-bold text-slate-900 mb-2">Sfusato Amalfitano</h4>
+              <p class="text-slate-600 text-sm leading-relaxed">Forme allongée et fuselée, peau épaisse très parfumée. Cultivé sur les terrasses de la Côte Amalfitaine depuis des siècles. La variété préférée des pâtissiers locaux pour sa note florale intense.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <h4 class="font-bold text-slate-900 mb-2">Femminiello Sorrentino</h4>
+              <p class="text-slate-600 text-sm leading-relaxed">Forme plus ronde, pulpe juteuse et très acide. C'est la base du Limoncello di Sorrento IGP. La combinaison d'acidité et de parfum en fait l'ingrédient star de la bagna et de la crème.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Où la manger -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Où Manger la Meilleure Delizia al Limone</h2>
+
+          <div class="space-y-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">1</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Pasticceria Sal De Riso – Minori</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Probablement la plus célèbre au monde. Sal De Riso a remporté de nombreux prix internationaux avec sa Delizia. La pâtisserie est sur le front de mer de Minori et la file d'attente en vaut la peine.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">2</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Pasticceria Pansa – Amalfi</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Fondée en 1830 à côté du Dôme d'Amalfi, c'est l'une des pâtisseries historiques de la Côte. La Delizia ici est préparée selon la tradition avec des citrons du jardin familial.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">3</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Antico Francischiello – Massa Lubrense</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Le lieu d'origine de la recette. C'est ici que Carmine Marzuillo travailla et développa sa Delizia. Une adresse pour les vrais connaisseurs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Questions Fréquentes</h2>
+          <div class="space-y-4">
+            {faq.map((item) => (
+              <div class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
+                <details class="group">
+                  <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
+                    <span class="font-bold text-slate-900">{item.q}</span>
+                    <svg class="w-5 h-5 text-med-gold flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </summary>
+                  <div class="px-6 pb-6 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                    {item.a}
+                  </div>
+                </details>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Auteur -->
+        <div class="flex items-center gap-5 pt-8 border-t border-slate-100">
+          <div class="w-14 h-14 rounded-full bg-med-gold/15 flex items-center justify-center flex-shrink-0">
+            <span class="text-med-gold font-serif font-bold text-xl">AC</span>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Écrit par</p>
+            <p class="font-bold text-slate-900">Amalfi Coast Travel</p>
+            <p class="text-slate-500 text-sm">Spécialiste Côte Amalfitaine</p>
+          </div>
+        </div>
+
+        <div class="pt-4">
+          <a href="/fr-fr/blog/" class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-slate-900 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            Retour au Blog
+          </a>
+        </div>
+
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 text-med-gold">Infos Pratiques</h3>
+          <div class="space-y-5">
+            {quickInfo.map((item) => (
+              <div class="border-b border-white/5 pb-4 last:border-0">
+                <span class="text-white/40 text-[10px] uppercase tracking-wider font-light block mb-1">{item.label}</span>
+                <span class="text-white font-medium text-sm">{item.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-10 pt-8 border-t border-white/10 space-y-3">
+            <a href="/fr-fr/blog/anchois-cetara/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Anchois de Cetara
+            </a>
+            <a href="/fr-fr/blog/vins-cote-amalfi/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Vins de la Côte d'Amalfi
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</BaseLayout>

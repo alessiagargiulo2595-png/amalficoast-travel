@@ -1,0 +1,280 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { blogPostsFr } from '../../../../data/blog-fr';
+
+const lang = 'fr-fr';
+const post = blogPostsFr.find(p => p.slug === 'atrani')!;
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Blog', url: '/fr-fr/blog/' },
+  { name: 'Atrani', url: '/fr-fr/blog/atrani/' },
+];
+
+const faq = [
+  {
+    q: 'À quelle distance Atrani se trouve-t-elle d\'Amalfi ?',
+    a: 'Seulement 700 mètres les séparent. On peut les parcourir à pied en 10-15 minutes environ par le tunnel piéton ou en suivant la route côtière.',
+  },
+  {
+    q: 'Est-il difficile de se garer à Atrani ?',
+    a: 'Oui, le stationnement est extrêmement limité et réservé presque exclusivement aux résidents. Il est vivement conseillé de se garer à Amalfi (parking Luna Rossa) et de rejoindre Atrani à pied.',
+  },
+  {
+    q: 'Atrani est-elle adaptée pour des vacances tranquilles ?',
+    a: 'Absolument. Par rapport à Amalfi ou Positano, Atrani offre un rythme beaucoup plus lent et silencieux, tout en étant à deux pas des principales liaisons de la Côte.',
+  },
+  {
+    q: 'Pourquoi Atrani a-t-elle été choisie comme décor de Ripley ?',
+    a: 'La série Netflix Ripley (2024) a choisi Atrani pour sa capacité à évoquer une Italie suspendue dans le temps, avec ses arches sur la nationale, ses ruelles médiévales et une place à quelques mètres de la mer. Le village est resté quasi inchangé depuis des décennies — une rareté absolue sur la Côte.',
+  },
+  {
+    q: 'Qu\'est-ce que le Sarchiapone d\'Atrani ?',
+    a: 'C\'est la spécialité gastronomique locale, préparée traditionnellement pour la fête de Santa Maria Maddalena le 22 juillet : une courge longue farcie de viande, fromages et œufs, puis frite et repassée au four. Un plat humble de la tradition paysanne côtière.',
+  },
+  {
+    q: 'Qu\'est-ce que le "birecto" et pourquoi est-il lié à Atrani ?',
+    a: 'Le birecto était la coiffure ducale des Doges de la République Maritime d\'Amalfi. À Atrani, dans l\'Église San Salvatore de\' Birecto, avait lieu l\'investiture solennelle des Doges : le village était le centre du pouvoir aristocratique de la République, et non la plus touristique Amalfi.',
+  },
+];
+
+const schemaArticle = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.title,
+  "description": "Guide d\'Atrani, la plus petite commune d\'Italie sur la Côte Amalfitaine : que voir, histoire des Doges, la légende de Masaniello, décor de Ripley sur Netflix et conseils pratiques.",
+  "image": `https://amalficoast-travel.com${post.image}`,
+  "datePublished": "2026-04-22",
+  "dateModified": "2026-04-22",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "publisher": { "@type": "Organization", "name": "Amalfi Coast Travel", "url": "https://amalficoast-travel.com" },
+  "url": "https://amalficoast-travel.com/fr-fr/blog/atrani/",
+  "inLanguage": "fr-FR",
+};
+
+const schemaFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a },
+  })),
+};
+
+const quickInfo = [
+  { label: 'Record', value: 'Plus petite commune d\'Italie (0,12 km²)' },
+  { label: 'Distance d\'Amalfi', value: '700 m · 10-15 min à pied' },
+  { label: 'Accès', value: 'À pied depuis Amalfi · Bus SITA' },
+  { label: 'Stationnement', value: 'Quasi inexistant — utiliser Amalfi' },
+  { label: 'Événement culte', value: 'Fête S. Maria Maddalena (22 juillet)' },
+  { label: 'Plat typique', value: 'Sarchiapone' },
+  { label: 'Décor cinématographique', value: 'Ripley (Netflix, 2024)' },
+  { label: 'Atmosphère', value: 'Authentique, médiévale, silencieuse' },
+];
+---
+
+<BaseLayout
+  title="Atrani : Le Plus Petit Village d'Italie sur la Côte Amalfitaine | Guide 2026"
+  description="Guide d'Atrani, plus petite commune d'Italie : histoire des Doges de la République d'Amalfi, la légende de Masaniello, décor de Ripley sur Netflix et conseils pratiques pour la visiter."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaArticle, schemaFaq]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] overflow-hidden flex items-center justify-center">
+    <img
+      src={post.image}
+      alt="Atrani - le plus petit village d'Italie sur la Côte Amalfitaine"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/80"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-4">
+        {post.category} · {post.date}
+      </p>
+      <h1 class="font-serif text-display text-white mb-6 leading-tight">Atrani</h1>
+      <p class="text-xl md:text-2xl font-light text-white/80">
+        Le Plus Petit Village d'Italie où le Temps s'est Arrêté
+      </p>
+      <div class="mt-6 flex items-center justify-center gap-4 text-white/60 text-sm">
+        <span>{post.date}</span>
+        <span>·</span>
+        <span>{post.readTime} de lecture</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenu + Sidebar -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+      <!-- Article -->
+      <article class="lg:col-span-8 space-y-12">
+
+        <!-- Intro -->
+        <div>
+          <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+            À quelques pas de la célèbre et animée Amalfi, séparée seulement par un court éperon rocheux, se dresse Atrani. Avec ses 0,12 km² de superficie, c'est la plus petite commune d'Italie, mais ce qui lui manque en dimensions, elle le compense largement en charme, en histoire et en authenticité. Atrani n'est pas seulement un village : c'est un amphithéâtre naturel face à la mer, un labyrinthe de ruelles et un refuge pour ceux qui cherchent la Côte Amalfitaine la plus vraie.
+          </p>
+        </div>
+
+        <!-- Architecture -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Une Architecture de Cinéma</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Dès l'arrivée à Atrani, le regard est capté par les célèbres arches qui soutiennent la Statale 163, transformant le passage des voitures en un élément scénographique qui encadre la plage et le village. Atrani a conservé intact son tissu médiéval : un enchevêtrement de ruelles étroites, de maisons blanches superposées et de petites cours qui s'ouvrent soudainement, en faisant l'un des <strong>Plus Beaux Villages d'Italie</strong>.
+          </p>
+
+          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Le Décor de Ripley</h3>
+            <p class="text-slate-600 leading-relaxed">
+              Ce n'est pas par hasard qu'Atrani a été choisie comme décor pour la série <strong>Netflix Ripley (2024)</strong>, grâce à sa capacité à évoquer une atmosphère suspendue dans le temps, loin du tourisme de masse. Les ruelles, la place et les arches sur la nationale sont restés presque identiques à des décennies en arrière — une rareté absolue sur la Côte.
+            </p>
+          </div>
+        </div>
+
+        <!-- Histoire -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Histoire et Légendes : Le Cœur de la République</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Malgré la proximité d'Amalfi, Atrani a toujours eu une identité forte et aristocratique. À l'époque ducale, c'est ici que résidaient les familles les plus nobles et où, dans l'<strong>Église San Salvatore de' Birecto</strong>, avait lieu l'investiture solennelle des Doges de la République Maritime d'Amalfi avec l'imposition du "birecto" (la coiffure ducale).
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            L'une des légendes les plus fascinantes concerne la <strong>Grotte de Masaniello</strong> : on dit que le célèbre révolutionnaire napolitain, dont la mère était originaire d'Atrani, se réfugia ici dans les ruelles du village pour échapper aux gardes du vice-roi.
+          </p>
+
+          <blockquote class="border-l-4 border-med-gold pl-6 my-8">
+            <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+              "Atrani est un secret murmuré entre les rochers, un endroit où le souffle de la mer entre jusque dans les maisons."
+            </p>
+          </blockquote>
+        </div>
+
+        <!-- Que voir -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Que Voir à Atrani</h2>
+          <div class="space-y-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">1</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Piazza Umberto I</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Le cœur battant du village. Une petite place intime, à quelques mètres du sable, parfaite pour un café ou un apéritif entouré de la vie quotidienne des habitants. Pas de souvenirs, pas de files : seulement le vrai Atrani.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">2</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Collégiale de Santa Maria Maddalena</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Avec son dôme en majolique qui domine le profil du village, c'est l'un des points les plus photographiés de la Côte. La façade baroque et la position à pic sur la mer la rendent unique.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">3</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Les "Scalinatielle"</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Perdez-vous dans les escaliers qui montent vers la partie haute du village. Chaque marche offre un nouvel aperçu, entre linge séchant au soleil et arômes de cuisine locale. Le vrai Atrani vit ici, pas sur la nationale.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conseils -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-6">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+            <h3 class="text-xl font-bold text-slate-900">Les Conseils de l'Expert</h3>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-slate-900 mb-1">Arriver à pied depuis Amalfi</p>
+              <p class="text-slate-600 text-sm leading-relaxed">Plutôt que le bus ou la voiture, parcourez le sentier piéton qui part de la partie haute d'Amalfi. En moins de 15 minutes de promenade panoramique, vous vous retrouverez au cœur d'Atrani, évitant le trafic de la nationale.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">La Plage</p>
+              <p class="text-slate-600 text-sm leading-relaxed">La plage d'Atrani est très ramassée et protégée, idéale pour les familles avec enfants ou ceux qui veulent profiter du soleil dans un cadre plus intime qu'à la voisine Amalfi. Moins fréquentée, plus silencieuse.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">Le Plat Typique : le Sarchiapone</p>
+              <p class="text-slate-600 text-sm leading-relaxed">Ne repartez pas sans avoir goûté le Sarchiapone, spécialité locale préparée traditionnellement pour Santa Maria Maddalena (22 juillet) : une courge longue farcie de viande, fromages et œufs, puis frite et repassée au four.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Questions Fréquentes</h2>
+          <div class="space-y-4">
+            {faq.map((item) => (
+              <div class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
+                <details class="group">
+                  <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
+                    <span class="font-bold text-slate-900">{item.q}</span>
+                    <svg class="w-5 h-5 text-med-gold flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </summary>
+                  <div class="px-6 pb-6 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                    {item.a}
+                  </div>
+                </details>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Auteur -->
+        <div class="flex items-center gap-5 pt-8 border-t border-slate-100">
+          <div class="w-14 h-14 rounded-full bg-med-gold/15 flex items-center justify-center flex-shrink-0">
+            <span class="text-med-gold font-serif font-bold text-xl">AC</span>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Écrit par</p>
+            <p class="font-bold text-slate-900">Amalfi Coast Travel</p>
+            <p class="text-slate-500 text-sm">Spécialiste Côte Amalfitaine</p>
+          </div>
+        </div>
+
+        <div class="pt-4">
+          <a href="/fr-fr/blog/" class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-slate-900 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            Retour au Blog
+          </a>
+        </div>
+
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 text-med-gold">Infos Pratiques</h3>
+          <div class="space-y-5">
+            {quickInfo.map((item) => (
+              <div class="border-b border-white/5 pb-4 last:border-0">
+                <span class="text-white/40 text-[10px] uppercase tracking-wider font-light block mb-1">{item.label}</span>
+                <span class="text-white font-medium text-sm">{item.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-10 pt-8 border-t border-white/10 space-y-3">
+            <a href="/fr-fr/cote-amalfitaine/amalfi/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Découvrir Amalfi
+            </a>
+            <a href="/fr-fr/guide/bus-sita/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Bus SITA
+            </a>
+            <a href="/fr-fr/blog/grotte-emeraude/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Grotte Émeraude
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</BaseLayout>

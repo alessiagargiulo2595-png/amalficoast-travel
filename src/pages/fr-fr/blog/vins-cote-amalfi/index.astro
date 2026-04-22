@@ -1,0 +1,272 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { blogPostsFr } from '../../../../data/blog-fr';
+
+const lang = 'fr-fr';
+const post = blogPostsFr.find(p => p.slug === 'vins-cote-amalfi')!;
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Blog', url: '/fr-fr/blog/' },
+  { name: 'Vins Côte d\'Amalfi', url: '/fr-fr/blog/vins-cote-amalfi/' },
+];
+
+const faq = [
+  {
+    q: 'Que signifie "Viticulture Héroïque" ?',
+    a: 'On parle de viticulture héroïque lorsque la pente du terrain est supérieure à 30%, avec des vignes sur des terrasses ou en haute altitude. Sur la Côte, tout le travail — de la taille aux vendanges — doit être fait à la main car les machines ne peuvent pas accéder aux terrasses.',
+  },
+  {
+    q: 'Quelle est la différence entre le vin de mer et celui de montagne sur la Côte ?',
+    a: 'Les vins de la côte (Furore, Positano) tendent à être plus sapides et solaires. Ceux de Tramonti et Scala ont une fraîcheur et une acidité plus marquées, avec des notes minérales plus profondes dues à la proximité des montagnes et aux écarts thermiques.',
+  },
+  {
+    q: 'Peut-on acheter les vins directement en cave ?',
+    a: 'Absolument oui. C\'est même la meilleure façon de découvrir de petites productions limitées (souvent quelques milliers de bouteilles) qui n\'arrivent jamais en grande distribution. De nombreuses caves de Tramonti acceptent des visites sur réservation.',
+  },
+  {
+    q: 'Qu\'est-ce que le Tintore di Tramonti ?',
+    a: 'C\'est un cépage autochtone unique au monde, avec des souches qui peuvent dépasser 150-200 ans d\'âge. Ayant survécu au phylloxéra grâce au sol volcanique et sableux, il produit un vin d\'une couleur rouge impénétrable, presque violacée, avec des notes de fruits des bois et un tanin puissant.',
+  },
+  {
+    q: 'Quand se font les vendanges dans la DOC Côte d\'Amalfi ?',
+    a: 'Les vendanges ont lieu entre fin octobre et début novembre, parmi les plus tardives d\'Italie. Les températures plus fraîches en altitude et l\'écart thermique prolongé permettent aux grappes de mûrir lentement, développant une complexité aromatique.',
+  },
+  {
+    q: 'Quels sont les cépages blancs autochtones de la DOC ?',
+    a: 'Les principaux cépages blancs autochtones sont Fenile, Ripoli et Ginestra — des noms rarissimes même dans le panorama œnologique campanien. Ils donnent des vins aux parfums de genêt, d\'herbes aromatiques et une sapidité marine marquée, très différents des blancs du sud de l\'Italie plus courants.',
+  },
+];
+
+const schemaArticle = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.title,
+  "description": "La viticulture héroïque de la DOC Côte d\'Amalfi entre Tramonti et Scala : vignes pré-phylloxéra de 200 ans, cépages autochtones (Tintore, Fenile, Ripoli) et guide des dégustations.",
+  "image": `https://amalficoast-travel.com${post.image}`,
+  "datePublished": "2026-04-22",
+  "dateModified": "2026-04-22",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "publisher": { "@type": "Organization", "name": "Amalfi Coast Travel", "url": "https://amalficoast-travel.com" },
+  "url": "https://amalficoast-travel.com/fr-fr/blog/vins-cote-amalfi/",
+  "inLanguage": "fr-FR",
+};
+
+const schemaFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a },
+  })),
+};
+
+const quickInfo = [
+  { label: 'DOC', value: 'Côte d\'Amalfi (Tramonti, Ravello, Furore)' },
+  { label: 'Cépage star', value: 'Tintore di Tramonti' },
+  { label: 'Blancs autochtones', value: 'Fenile · Ripoli · Ginestra' },
+  { label: 'Rouges', value: 'Tintore · Piedirosso · Aglianico' },
+  { label: 'Vendanges', value: 'Fin Octobre / Début Novembre' },
+  { label: 'Accord', value: 'Provolone del Monaco AOP' },
+  { label: 'Vignes les plus anciennes', value: 'Plus de 200 ans (pré-phylloxéra)' },
+  { label: 'Méthode', value: 'Exclusivement manuelle' },
+];
+---
+
+<BaseLayout
+  title="Vins DOC Côte d'Amalfi : Tintore, Tramonti et Viticulture Héroïque | Guide 2026"
+  description="La DOC Côte d'Amalfi entre Tramonti et Scala : vignes pré-phylloxéra de 200 ans, cépages autochtones (Tintore, Fenile, Ripoli), viticulture héroïque et guide des dégustations."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaArticle, schemaFaq]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] overflow-hidden flex items-center justify-center">
+    <img
+      src={post.image}
+      alt="Vignobles héroïques de la Côte d'Amalfi - Tramonti et Scala"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/80"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-4">
+        {post.category} · {post.date}
+      </p>
+      <h1 class="font-serif text-display text-white mb-6 leading-tight">
+        Vins de la Côte d'Amalfi
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-white/80">
+        Voyage parmi les Vignobles Héroïques de Tramonti et Scala
+      </p>
+      <div class="mt-6 flex items-center justify-center gap-4 text-white/60 text-sm">
+        <span>{post.date}</span>
+        <span>·</span>
+        <span>{post.readTime} de lecture</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenu + Sidebar -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+      <article class="lg:col-span-8 space-y-12">
+
+        <!-- Intro -->
+        <div>
+          <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+            On parle beaucoup des citrons de la Côte Amalfitaine, et un peu moins de ses vins. C'est dommage, car la DOC Côte d'Amalfi cache l'une des productions œnologiques les plus extraordinaires d'Italie : des vignes qui s'accrochent à des terrasses à pic sur la mer, des cépages qui n'existent nulle part ailleurs au monde, et une tradition de viticulture héroïque transmise de génération en génération depuis des siècles.
+          </p>
+        </div>
+
+        <!-- La viticulture héroïque -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Viticulture Héroïque : Entre Ciel et Mer</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Le terme "viticulture héroïque" n'est pas une figure de style. Dans la DOC Côte d'Amalfi, la pente moyenne des terrasses viticoles dépasse les 30-40%. Certains vignobles de Tramonti atteignent 700-800 mètres d'altitude, avec des expositions qui varient du plein sud à l'est selon les versants. Aucun engin mécanique ne peut accéder à ces terrasses : <strong>tout se fait à la main</strong>, de la taille en hiver jusqu'aux vendanges en automne.
+          </p>
+
+          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Les Terrasses : Un Patrimoine en Danger</h3>
+            <p class="text-slate-600 leading-relaxed mb-4">
+              Les terrasses en pierre sèche qui soutiennent les vignes et les limoniers de la Côte ont été construites sur des siècles de labeur. Aujourd'hui, face à l'abandon agricole et au tourisme de masse, de nombreuses terrasses sont en danger de décrépitude. Des producteurs locaux et des associations comme Slow Food travaillent à leur préservation.
+            </p>
+          </div>
+        </div>
+
+        <!-- Le Tintore -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Le Tintore di Tramonti : Une Vigne de 200 Ans</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Le cépage emblématique de la DOC est le <strong>Tintore di Tramonti</strong>, un rouge autochtone dont certaines souches ont plus de 150-200 ans. Sa survie au phylloxéra — le parasite qui a décimé les vignobles européens à la fin du XIXe siècle — est due au sol volcanique et sableux des versants de Tramonti, hostile aux larves de l'insecte.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Le Tintore produit un vin d'une couleur rouge impénétrable, presque violacée, avec des notes de fruits noirs, d'épices et un tanin puissant mais élégant. C'est un vin qui demande du temps : les meilleures cuvées vieillissent en barrique plusieurs années avant d'exprimer pleinement leur potentiel.
+          </p>
+
+          <blockquote class="border-l-4 border-med-gold pl-6 my-8">
+            <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+              "Goûter un Tintore de Tramonti, c'est boire deux siècles d'histoire volcanique dans un verre."
+            </p>
+          </blockquote>
+        </div>
+
+        <!-- Les blancs autochtones -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Les Blancs Autochtones : Fenile, Ripoli, Ginestra</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Le versant blanc de la DOC n'est pas moins fascinant. Trois cépages rarissimes dominent les productions : le <strong>Fenile</strong>, le <strong>Ripoli</strong> et la <strong>Ginestra</strong>. Leurs noms évoquent le paysage de la Côte — la fougère, le ripoll (rocher), le genêt — et leurs profils aromatiques sont à l'image du territoire : fleurs blanches, herbes aromatiques méditerranéennes, une sapidité marine marquée.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <h4 class="font-bold text-slate-900 mb-2">Fenile</h4>
+              <p class="text-slate-600 text-sm leading-relaxed">Notes florales et d'agrumes, finale minérale. Idéal sur les fruits de mer et la mozzarella di bufala.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <h4 class="font-bold text-slate-900 mb-2">Ripoli</h4>
+              <p class="text-slate-600 text-sm leading-relaxed">Plus structuré, avec une acidité vive et des notes d'herbes aromatiques. S'accorde avec les poissons de roche.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <h4 class="font-bold text-slate-900 mb-2">Ginestra</h4>
+              <p class="text-slate-600 text-sm leading-relaxed">Intense parfum de genêt et de fleurs blanches, avec une longue persistance aromatique. Parfait en apéritif.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Où déguster -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-6">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+            <h3 class="text-xl font-bold text-slate-900">Où Déguster les Vins de la DOC</h3>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-slate-900 mb-1">Caves de Tramonti</p>
+              <p class="text-slate-600 text-sm leading-relaxed">Le cœur de la DOC. Des producteurs comme Apicella, Reale et San Francesco accueillent des visites sur réservation. C'est l'occasion unique de déguster les vieux millésimes de Tintore directement en cave.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">Ravello et ses restaurants</p>
+              <p class="text-slate-600 text-sm leading-relaxed">La sous-zone Ravello de la DOC produit des blancs très fins. Les restaurants de Ravello proposent généralement une belle sélection des vins locaux à des prix raisonnables.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">Osteria Arbost – Tramonti</p>
+              <p class="text-slate-600 text-sm leading-relaxed">Une osteria de village parmi les meilleures de la Côte, avec une carte des vins entièrement dédiée aux producteurs locaux et une cuisine paysanne authentique. Réservation indispensable.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Questions Fréquentes</h2>
+          <div class="space-y-4">
+            {faq.map((item) => (
+              <div class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
+                <details class="group">
+                  <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
+                    <span class="font-bold text-slate-900">{item.q}</span>
+                    <svg class="w-5 h-5 text-med-gold flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </summary>
+                  <div class="px-6 pb-6 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                    {item.a}
+                  </div>
+                </details>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Auteur -->
+        <div class="flex items-center gap-5 pt-8 border-t border-slate-100">
+          <div class="w-14 h-14 rounded-full bg-med-gold/15 flex items-center justify-center flex-shrink-0">
+            <span class="text-med-gold font-serif font-bold text-xl">AC</span>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Écrit par</p>
+            <p class="font-bold text-slate-900">Amalfi Coast Travel</p>
+            <p class="text-slate-500 text-sm">Spécialiste Côte Amalfitaine</p>
+          </div>
+        </div>
+
+        <div class="pt-4">
+          <a href="/fr-fr/blog/" class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-slate-900 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            Retour au Blog
+          </a>
+        </div>
+
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 text-med-gold">Infos Pratiques</h3>
+          <div class="space-y-5">
+            {quickInfo.map((item) => (
+              <div class="border-b border-white/5 pb-4 last:border-0">
+                <span class="text-white/40 text-[10px] uppercase tracking-wider font-light block mb-1">{item.label}</span>
+                <span class="text-white font-medium text-sm">{item.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-10 pt-8 border-t border-white/10 space-y-3">
+            <a href="/fr-fr/blog/anchois-cetara/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Anchois de Cetara
+            </a>
+            <a href="/fr-fr/blog/delice-citron/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Délice au Citron
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</BaseLayout>

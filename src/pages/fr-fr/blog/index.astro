@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { blogPostsFr } from '../../../data/blog-fr';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Blog', url: '/fr-fr/blog/' },
+];
+
+// Du plus récent au plus ancien
+const sortedPosts = [...blogPostsFr].sort((a, b) => Number(b.id) - Number(a.id));
+
+// Catégories uniques
+const categories = ['Tous', ...new Set(sortedPosts.map(p => p.category))];
+
+const schemaBlog = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Blog - Amalfi Coast Travel",
+  "description": "Histoires, guides et curiosités de la Côte Amalfitaine : grottes marines, villages cachés, cuisine locale et conseils pour voyager comme un local.",
+  "url": "https://amalficoast-travel.com/fr-fr/blog/",
+  "inLanguage": "fr-FR",
+  "blogPost": sortedPosts.map(post => ({
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "url": `https://amalficoast-travel.com${post.path}`,
+    "datePublished": post.date,
+    "image": post.image,
+  })),
+};
+---
+
+<BaseLayout
+  title="Blog Côte Amalfitaine | Histoires, Guides et Curiosités"
+  description="Histoires, guides de voyage et curiosités sur la Côte Amalfitaine : grottes marines, villages cachés, gastronomie locale et conseils pratiques pour explorer comme un local."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaBlog]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[60vh] flex items-end bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-slate-900"></div>
+    <div
+      class="absolute inset-0 bg-cover bg-center opacity-40"
+      style="background-image: url('/images/blog-hub-hero.jpg')"
+    ></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/80"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pb-16 pt-32 w-full">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/fr-fr/" class="hover:text-white transition-colors">Accueil</a>
+        <span>/</span>
+        <span class="text-white">Blog</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Côte Amalfitaine</p>
+        <h1 class="font-serif text-display text-white mb-4">Blog</h1>
+        <p class="text-xl text-white/80 leading-relaxed mb-8">
+          Histoires vraies, grottes cachées, saveurs authentiques. La Côte au-delà des cartes postales.
+        </p>
+        <!-- Filtres catégories -->
+        <div class="flex flex-wrap gap-3">
+          {categories.map((cat) => (
+            <button
+              data-filter={cat}
+              data-active={cat === 'Tous' ? 'true' : undefined}
+              class="filter-btn"
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grille articles -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Compteur -->
+      <div class="flex justify-end mb-10">
+        <p id="blog-counter" class="text-slate-400 text-sm hidden sm:block">
+          {sortedPosts.length} {sortedPosts.length === 1 ? 'article' : 'articles'}
+        </p>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="blog-grid">
+        {sortedPosts.map((post) => (
+          <div data-category={post.category} class="blog-card">
+            <a href={post.path} class="group block">
+              <div class="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-5 shadow-lg">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+                <div class="absolute top-5 left-5">
+                  <span class="bg-med-gold text-slate-900 text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-full">
+                    {post.category}
+                  </span>
+                </div>
+              </div>
+              <div class="px-1">
+                <div class="flex items-center gap-3 text-slate-400 text-xs mb-3">
+                  <span>{post.date}</span>
+                  <span>·</span>
+                  <span>{post.readTime} de lecture</span>
+                </div>
+                <h2 class="font-serif text-xl font-bold text-slate-900 mb-3 leading-tight group-hover:text-med-blue transition-colors">
+                  {post.title}
+                </h2>
+                <p class="text-slate-500 text-sm leading-relaxed">{post.excerpt}</p>
+                <div class="mt-4 flex items-center gap-1 text-med-gold text-sm font-medium">
+                  Lire l'article
+                  <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <!-- Aucun résultat -->
+      <div id="blog-empty" class="hidden text-center py-20">
+        <p class="text-slate-400 text-lg mb-6">Aucun article trouvé dans cette catégorie.</p>
+        <button data-filter="Tous" class="filter-btn" id="reset-btn">
+          Afficher tout
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Éditorial -->
+  <section class="bg-white py-20 px-6 border-t border-slate-100">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Pourquoi un blog sur la Côte Amalfitaine ?</h2>
+      <p class="text-slate-600 text-lg leading-relaxed mb-6">
+        Il existe des milliers de guides touristiques sur la Côte. Ce blog est né pour raconter ce que les guides ne disent pas : les grottes découvertes par hasard, les saveurs authentiques loin des menus pour touristes, les sentiers que les habitants parcourent encore chaque matin.
+      </p>
+      <p class="text-slate-600 text-lg leading-relaxed">
+        Chaque article est écrit comme si on le racontait à un ami.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .filter-btn {
+    @apply px-5 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer;
+    background-color: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+  }
+  .filter-btn[data-active="true"] {
+    background-color: #D4AF37;
+    border-color: #D4AF37;
+    color: #0f172a;
+  }
+  .blog-card[data-hidden] {
+    display: none;
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-category]');
+  const emptyMsg = document.getElementById('blog-empty');
+  const counterEl = document.getElementById('blog-counter');
+
+  function applyFilter(filter: string) {
+    buttons.forEach(b => {
+      if (b.dataset.filter === filter) {
+        b.setAttribute('data-active', 'true');
+      } else {
+        b.removeAttribute('data-active');
+      }
+    });
+
+    let visible = 0;
+    cards.forEach(card => {
+      const match = filter === 'Tous' || card.dataset.category === filter;
+      if (match) {
+        card.removeAttribute('data-hidden');
+        visible++;
+      } else {
+        card.setAttribute('data-hidden', '');
+      }
+    });
+
+    if (counterEl) {
+      counterEl.textContent = `${visible} ${visible === 1 ? 'article' : 'articles'}`;
+    }
+
+    if (emptyMsg) {
+      emptyMsg.classList.toggle('hidden', visible > 0);
+    }
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => applyFilter(btn.dataset.filter ?? 'Tous'));
+  });
+</script>
