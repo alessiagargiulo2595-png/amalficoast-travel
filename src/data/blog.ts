@@ -23,6 +23,17 @@ export const blogPosts: BlogPost[] = [
     path: '/it-it/blog/grotta-dello-smeraldo/',
   },
   {
+    id: '05',
+    title: 'Atrani: Il Borgo Più Piccolo d\'Italia Dove il Tempo si è Fermato',
+    slug: 'atrani',
+    excerpt: 'A 700 metri da Amalfi, il comune più piccolo d\'Italia (0,12 km²): un anfiteatro medievale di vicoli bianchi, la chiesa dei Dogi e il set di Ripley su Netflix.',
+    category: 'SCOPERTE',
+    date: '22 Aprile 2026',
+    readTime: '6 min',
+    image: '/images/atrani-hero.jpg',
+    path: '/it-it/blog/atrani/',
+  },
+  {
     id: '04',
     title: 'Delizia al Limone: Storia e Segreti della Cupola più Amata della Costiera',
     slug: 'delizia-al-limone',
