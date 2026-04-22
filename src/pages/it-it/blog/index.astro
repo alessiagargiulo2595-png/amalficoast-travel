@@ -9,8 +9,11 @@ const breadcrumbs = [
   { name: 'Blog', url: '/it-it/blog/' },
 ];
 
-// Ricava categorie uniche dall'elenco articoli
-const categories = ['Tutte', ...new Set(blogPosts.map(p => p.category))];
+// Ordina dal più recente (id numerico più alto) al meno recente
+const sortedPosts = [...blogPosts].sort((a, b) => Number(b.id) - Number(a.id));
+
+// Ricava categorie uniche dall'elenco articoli (ordine di pubblicazione)
+const categories = ['Tutte', ...new Set(sortedPosts.map(p => p.category))];
 
 const schemaBlog = {
   "@context": "https://schema.org",
@@ -19,7 +22,7 @@ const schemaBlog = {
   "description": "Storie, guide e curiosita dalla Costiera Amalfitana: grotte, borghi nascosti, cucina locale e consigli per viaggiare come un locale.",
   "url": "https://amalficoast-travel.com/it-it/blog/",
   "inLanguage": "it-IT",
-  "blogPost": blogPosts.map(post => ({
+  "blogPost": sortedPosts.map(post => ({
     "@type": "BlogPosting",
     "headline": post.title,
     "url": `https://amalficoast-travel.com${post.path}`,
@@ -73,7 +76,7 @@ const schemaBlog = {
             <h2 class="font-serif text-3xl font-bold text-slate-900">Tutte le storie</h2>
           </div>
           <p id="blog-counter" class="text-slate-400 text-sm hidden sm:block">
-            {blogPosts.length} {blogPosts.length === 1 ? 'articolo' : 'articoli'}
+            {sortedPosts.length} {sortedPosts.length === 1 ? 'articolo' : 'articoli'}
           </p>
         </div>
 
@@ -93,7 +96,7 @@ const schemaBlog = {
 
       <!-- Cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="blog-grid">
-        {blogPosts.map((post) => (
+        {sortedPosts.map((post) => (
           <div data-category={post.category} class="blog-card">
             <a href={post.path} class="group block">
               <div class="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-5 shadow-lg">
