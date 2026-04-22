@@ -36,4 +36,13 @@ export const esperienze: Esperienza[] = [
     description: 'Dalla cagliata filante al tesoro stagionato dei Monti Lattari.',
     path: '/it-it/esperienze/mozzarella-experience/',
   },
+  {
+    id: 'limoncello-tour',
+    title: 'Limoncello Tour',
+    subtitle: 'L\'Oro Giallo e il Mito del Femminiello di Sorrento IGP.',
+    category: 'FOOD',
+    image: '/images/limoncello-tour.jpg',
+    description: 'Un viaggio sensoriale tra i profumi del Limone di Sorrento IGP.',
+    path: '/it-it/esperienze/limoncello-tour/',
+  },
 ];
