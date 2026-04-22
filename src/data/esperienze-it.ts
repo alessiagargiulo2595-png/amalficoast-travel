@@ -46,6 +46,15 @@ export const esperienze: Esperienza[] = [
     path: '/it-it/esperienze/limoncello-tour/',
   },
   {
+    id: 'ristoranti-stellati',
+    title: 'Ristoranti Stellati',
+    subtitle: 'Il Firmamento del Gusto 2026.',
+    category: 'FOOD',
+    image: '/images/ristoranti-stellati.jpg',
+    description: 'Un pellegrinaggio nel cuore della gastronomia d\'eccellenza tra Sorrento e la Costiera Amalfitana.',
+    path: '/it-it/esperienze/ristoranti-stellati/',
+  },
+  {
     id: 'cooking-class',
     title: 'Cooking Class',
     subtitle: 'I Segreti della Cucina Costiera.',
