@@ -23,6 +23,17 @@ export const blogPosts: BlogPost[] = [
     path: '/it-it/blog/grotta-dello-smeraldo/',
   },
   {
+    id: '04',
+    title: 'Delizia al Limone: Storia e Segreti della Cupola più Amata della Costiera',
+    slug: 'delizia-al-limone',
+    excerpt: 'Inventata nel 1978 da un maestro pasticciere sorrentino, la Delizia al Limone è l\'essenza del sole della Costiera racchiusa in una cupola di pan di spagna e crema profumata.',
+    category: 'FOOD',
+    date: '22 Aprile 2026',
+    readTime: '7 min',
+    image: '/images/delizia-limone-hero.jpg',
+    path: '/it-it/blog/delizia-al-limone/',
+  },
+  {
     id: '03',
     title: 'Valle delle Ferriere: Trekking nel Cuore Verde e Selvaggio di Amalfi',
     slug: 'valle-delle-ferriere',
