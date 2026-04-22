@@ -298,6 +298,28 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/es-es/experiencias/trekking/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/es-es/experiencias/tours-en-barco/', priority: '0.7', changefreq: 'yearly' },
 
+  // Playas individuales - es-es
+  { loc: '/es-es/playas/costa-amalfitana/fiordo-di-furore/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/es-es/playas/costa-amalfitana/spiaggia-grande-positano/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/es-es/playas/costa-amalfitana/santa-croce-amalfi/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/playas/peninsula-sorrentina/regina-giovanna/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/playas/peninsula-sorrentina/marina-del-cantone/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/playas/peninsula-sorrentina/cala-mitigliano/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/playas/islas/marina-piccola-capri/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/playas/islas/spiaggia-maronti/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/playas/islas/cala-del-pozzo-vecchio/', priority: '0.7', changefreq: 'yearly' },
+
+  // Strände individuell - de-de
+  { loc: '/de-de/strande/amalfikuste/fiordo-di-furore/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/de-de/strande/amalfikuste/spiaggia-grande-positano/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/de-de/strande/amalfikuste/santa-croce-amalfi/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/strande/sorrentiner-halbinsel/regina-giovanna/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/strande/sorrentiner-halbinsel/marina-del-cantone/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/strande/sorrentiner-halbinsel/cala-mitigliano/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/strande/inseln/marina-piccola-capri/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/strande/inseln/spiaggia-maronti/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/strande/inseln/cala-del-pozzo-vecchio/', priority: '0.7', changefreq: 'yearly' },
+
   // Eventi - Costiera Amalfitana
   { loc: '/it-it/eventi/costiera-amalfitana/ravello-festival/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/it-it/eventi/costiera-amalfitana/festa-sant-andrea-amalfi/', priority: '0.7', changefreq: 'yearly' },
