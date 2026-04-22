@@ -80,15 +80,15 @@ const guidaLinks: Record<Locale, Record<GuidaKeys, { label: string; href: string
   },
 };
 
-/* ── Esperienze links (per locale labels, hrefs TBD) ── */
+/* ── Esperienze links per locale ── */
 type EsperienzeKeys = 'cooking' | 'weddings' | 'restaurants' | 'limoncello' | 'mozzarella';
-const esperienzeLabels: Record<Locale, Record<EsperienzeKeys, string>> = {
-  'it-it': { cooking: 'Cooking Class', weddings: 'Matrimoni', restaurants: 'Ristoranti Stellati', limoncello: 'Limoncello Tour', mozzarella: 'Mozzarella Experience' },
-  'en-us': { cooking: 'Cooking Class', weddings: 'Weddings', restaurants: 'Michelin Restaurants', limoncello: 'Limoncello Tour', mozzarella: 'Mozzarella Experience' },
-  'en-gb': { cooking: 'Cooking Class', weddings: 'Weddings', restaurants: 'Michelin Restaurants', limoncello: 'Limoncello Tour', mozzarella: 'Mozzarella Experience' },
-  'de-de': { cooking: 'Kochkurs', weddings: 'Hochzeiten', restaurants: 'Sterne-Restaurants', limoncello: 'Limoncello Tour', mozzarella: 'Mozzarella Erlebnis' },
-  'fr-fr': { cooking: 'Cours de Cuisine', weddings: 'Mariages', restaurants: 'Restaurants Étoilés', limoncello: 'Tour Limoncello', mozzarella: 'Atelier Mozzarella' },
-  'es-es': { cooking: 'Clase de Cocina', weddings: 'Bodas', restaurants: 'Restaurantes Estrella', limoncello: 'Tour del Limoncello', mozzarella: 'Experiencia Mozzarella' },
+const esperienzeLinks: Record<Locale, Record<EsperienzeKeys, { label: string; href: string }>> = {
+  'it-it': { cooking: { label: 'Cooking Class', href: '#' }, weddings: { label: 'Matrimoni', href: '#' }, restaurants: { label: 'Ristoranti Stellati', href: '#' }, limoncello: { label: 'Limoncello Tour', href: '#' }, mozzarella: { label: 'Mozzarella Experience', href: '/it-it/esperienze/mozzarella-experience/' } },
+  'en-us': { cooking: { label: 'Cooking Class', href: '#' }, weddings: { label: 'Weddings', href: '#' }, restaurants: { label: 'Michelin Restaurants', href: '#' }, limoncello: { label: 'Limoncello Tour', href: '#' }, mozzarella: { label: 'Mozzarella Experience', href: '#' } },
+  'en-gb': { cooking: { label: 'Cooking Class', href: '#' }, weddings: { label: 'Weddings', href: '#' }, restaurants: { label: 'Michelin Restaurants', href: '#' }, limoncello: { label: 'Limoncello Tour', href: '#' }, mozzarella: { label: 'Mozzarella Experience', href: '#' } },
+  'de-de': { cooking: { label: 'Kochkurs', href: '#' }, weddings: { label: 'Hochzeiten', href: '#' }, restaurants: { label: 'Sterne-Restaurants', href: '#' }, limoncello: { label: 'Limoncello Tour', href: '#' }, mozzarella: { label: 'Mozzarella Erlebnis', href: '#' } },
+  'fr-fr': { cooking: { label: 'Cours de Cuisine', href: '#' }, weddings: { label: 'Mariages', href: '#' }, restaurants: { label: 'Restaurants Étoilés', href: '#' }, limoncello: { label: 'Tour Limoncello', href: '#' }, mozzarella: { label: 'Atelier Mozzarella', href: '#' } },
+  'es-es': { cooking: { label: 'Clase de Cocina', href: '#' }, weddings: { label: 'Bodas', href: '#' }, restaurants: { label: 'Restaurantes Estrella', href: '#' }, limoncello: { label: 'Tour del Limoncello', href: '#' }, mozzarella: { label: 'Experiencia Mozzarella', href: '#' } },
 };
 
 /* ── Eventi 2026 links per locale ── */
@@ -134,7 +134,7 @@ const eventiLinks: Record<Locale, Record<EventiKeys, { label: string; href: stri
 
 const h = sectionHeadings[lang];
 const guida = Object.values(guidaLinks[lang]);
-const esperienze = Object.values(esperienzeLabels[lang]);
+const esperienze = Object.values(esperienzeLinks[lang]);
 const eventi = Object.values(eventiLinks[lang]);
 const base = townBase[lang];
 ---
@@ -186,10 +186,10 @@ const base = townBase[lang];
       <div>
         <h3 class="font-serif font-bold text-white/90 text-sm uppercase tracking-[0.15em] mb-5">{h.esperienze}</h3>
         <ul class="space-y-2.5">
-          {esperienze.map(label => (
+          {esperienze.map(link => (
             <li>
-              <a href="#" class="text-white/45 hover:text-med-gold text-sm transition-colors">
-                {label}
+              <a href={link.href} class="text-white/45 hover:text-med-gold text-sm transition-colors">
+                {link.label}
               </a>
             </li>
           ))}
