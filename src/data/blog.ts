@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     category: 'SCOPERTE',
     date: '22 Aprile 2026',
     readTime: '6 min',
-    image: 'https://images.unsplash.com/photo-1590523214157-1996a7946396?auto=format&fit=crop&w=800&q=80',
+    image: '/images/grotta-smeraldo-hero.webp',
     path: '/it-it/blog/grotta-dello-smeraldo/',
   },
 ];
