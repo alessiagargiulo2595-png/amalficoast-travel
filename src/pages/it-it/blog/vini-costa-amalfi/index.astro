@@ -1,0 +1,314 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { blogPosts } from '../../../../data/blog';
+
+const lang = 'it-it';
+const post = blogPosts.find(p => p.slug === 'vini-costa-amalfi')!;
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Blog', url: '/it-it/blog/' },
+  { name: 'Vini Costa d\'Amalfi', url: '/it-it/blog/vini-costa-amalfi/' },
+];
+
+const faq = [
+  {
+    q: 'Cosa significa "Viticoltura Eroica"?',
+    a: 'Si definisce tale quando la pendenza del terreno è superiore al 30%, le vigne sono su terrazzamenti o ad altitudini elevate. In Costiera, tutto il lavoro — dalla potatura alla vendemmia — deve essere fatto a mano perché i macchinari non possono accedere ai terrazzamenti.',
+  },
+  {
+    q: 'Qual è la differenza tra il vino di mare e quello di montagna in Costiera?',
+    a: 'I vini della costa (Furore, Positano) tendono a essere più sapidi e solari. Quelli di Tramonti e Scala hanno una freschezza e un\'acidità più marcata, con note minerali più profonde dovute alla vicinanza dei monti e all\'escursione termica.',
+  },
+  {
+    q: 'Si possono acquistare i vini direttamente in cantina?',
+    a: 'Assolutamente sì. Anzi, è il modo migliore per scoprire piccole produzioni limitate (spesso poche migliaia di bottiglie) che non arrivano mai alla grande distribuzione. Molte cantine di Tramonti accettano visite su prenotazione.',
+  },
+  {
+    q: 'Cos\'è il Tintore di Tramonti?',
+    a: 'È un vitigno autoctono unico al mondo, con ceppi che possono superare i 150-200 anni di età. Sopravvissuto alla fillossera grazie al terreno vulcanico e sabbioso, produce un vino dal colore rosso impenetrabile, quasi violaceo, con note di frutti di bosco e un tannino potente.',
+  },
+  {
+    q: 'Quando si vendemmia nella DOC Costa d\'Amalfi?',
+    a: 'La vendemmia avviene tra fine ottobre e inizio novembre, una delle più tardive d\'Italia. Le temperature più fresche in quota e l\'escursione termica prolungata permettono ai grappoli di maturare lentamente, sviluppando complessità aromatica.',
+  },
+  {
+    q: 'Quali sono i vitigni bianchi autoctoni della DOC?',
+    a: 'I principali vitigni bianchi autoctoni sono Fenile, Ripoli e Ginestra — nomi rarissimi anche nel panorama enologico campano. Regalano vini dai profumi di ginestra, erbe aromatiche e una spiccata sapidità marina, molto diversi dai bianchi del sud Italia più comuni.',
+  },
+];
+
+const schemaArticle = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.title,
+  "description": "La viticoltura eroica della DOC Costa d'Amalfi: viti pre-fillossera di 200 anni a Tramonti, vitigni autoctoni come Tintore, Fenile e Ripoli, e guida alle degustazioni tra Tramonti e Scala.",
+  "image": `https://amalficoast-travel.com${post.image}`,
+  "datePublished": "2026-04-22",
+  "dateModified": "2026-04-22",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "publisher": { "@type": "Organization", "name": "Amalfi Coast Travel", "url": "https://amalficoast-travel.com" },
+  "url": "https://amalficoast-travel.com/it-it/blog/vini-costa-amalfi/",
+  "inLanguage": "it-IT",
+  "keywords": "vini Costa d'Amalfi DOC, Tintore Tramonti, viticoltura eroica, vigneti Scala, Fenile Ripoli, vini campani",
+};
+
+const schemaFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a },
+  })),
+};
+
+const quickInfo = [
+  { label: 'DOC', value: 'Costa d\'Amalfi (Tramonti, Ravello, Furore)' },
+  { label: 'Vitigno star', value: 'Tintore di Tramonti' },
+  { label: 'Bianchi autoctoni', value: 'Fenile · Ripoli · Ginestra' },
+  { label: 'Rossi', value: 'Tintore · Piedirosso · Aglianico' },
+  { label: 'Vendemmia', value: 'Fine Ottobre / Inizio Novembre' },
+  { label: 'Abbinamento', value: 'Provolone del Monaco DOP' },
+  { label: 'Viti più antiche', value: 'Oltre 200 anni (pre-fillossera)' },
+  { label: 'Metodo', value: 'Esclusivamente manuale' },
+];
+---
+
+<BaseLayout
+  title="Vini Costa d'Amalfi DOC: Tintore, Tramonti e Viticoltura Eroica | Guida 2026"
+  description="La DOC Costa d'Amalfi tra Tramonti e Scala: viti pre-fillossera di 200 anni, vitigni autoctoni (Tintore, Fenile, Ripoli), viticoltura eroica e guida alle degustazioni."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaArticle, schemaFaq]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] overflow-hidden flex items-center justify-center">
+    <img
+      src={post.image}
+      alt="Vigneti eroici della Costa d'Amalfi - Tramonti e Scala"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/80"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-4">
+        {post.category} · {post.date}
+      </p>
+      <h1 class="font-serif text-display text-white mb-6 leading-tight">
+        Vini della Costa d'Amalfi
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-white/80">
+        Viaggio tra i Vigneti Eroici di Tramonti e Scala
+      </p>
+      <div class="mt-6 flex items-center justify-center gap-4 text-white/60 text-sm">
+        <span>{post.date}</span>
+        <span>·</span>
+        <span>{post.readTime} di lettura</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenuto + Sidebar -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+      <!-- Articolo -->
+      <article class="lg:col-span-8 space-y-12">
+
+        <!-- Intro -->
+        <div>
+          <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+            Quando si pensa alla Costiera Amalfitana, l'immagine immediata è il blu del mare. Ma basta alzare lo sguardo verso i Monti Lattari per scoprire un'altra Costiera: verde, impervia e segnata da filari di vite che sfidano la gravità. È qui, tra Tramonti e Scala, che nasce la cosiddetta <strong>viticoltura eroica</strong>, dove il vino non è solo una bevanda, ma il racconto di una lotta millenaria tra l'uomo e la roccia.
+          </p>
+        </div>
+
+        <!-- Tramonti -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Tramonti: Il Polmone Verde e i Giganti Pre-Fillossera</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Tramonti è la terra dei vigneti centenari. Qui il paesaggio cambia drasticamente: l'aria si fa fresca e l'influenza del mare incontra le correnti montane. La vera particolarità di Tramonti è la presenza di viti di <strong>Tintore</strong>, un vitigno autoctono unico al mondo, con ceppi enormi che hanno superato i 150 o 200 anni di età.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            Queste piante sono sopravvissute alla fillossera grazie al terreno vulcanico e sabbioso. Vedere questi "giganti" nodosi, coltivati con il tradizionale sistema della <strong>raggiera tramontina</strong> — un antico metodo di allevamento che crea una sorta di tetto di foglie — è un'esperienza che emoziona ogni appassionato di vino.
+          </p>
+
+          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+            <div class="flex items-start gap-4">
+              <span class="text-med-gold font-bold text-2xl leading-none mt-1">●</span>
+              <div>
+                <h3 class="font-serif text-xl font-bold text-slate-900 mb-3">Il Tintore</h3>
+                <p class="text-slate-600 leading-relaxed">Un vino dal colore rosso impenetrabile, quasi violaceo, con note di frutti di bosco e un tannino potente che richiama la forza della terra vulcanica. Prodotto in poche migliaia di bottiglie l'anno, è uno dei rossi più ricercati del Mezzogiorno d'Italia.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scala -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Scala: L'Eleganza tra le Nuvole</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Scala è il borgo più antico della Costiera e i suoi vigneti riflettono questa nobiltà. Meno estesi di quelli di Tramonti, i filari di Scala sono spesso incastonati in piccoli terrazzamenti tra i ruderi di antiche chiese e palazzi nobiliari.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Qui la produzione si concentra su bianchi di estrema eleganza e rossi di grande finezza, che beneficiano di un'escursione termica notevole tra il calore del giorno e le notti fresche dei Monti Lattari.
+          </p>
+        </div>
+
+        <!-- I vitigni autoctoni -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">I Vitigni Autoctoni della DOC Costa d'Amalfi</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            Dimenticate i classici internazionali. Qui regnano sovrani nomi che profumano di storia.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Vitigni Bianchi</p>
+              <ul class="space-y-2 text-slate-600 text-sm">
+                <li><strong>Fenile</strong> — profumi di fiori bianchi e mandorla</li>
+                <li><strong>Ripoli</strong> — freschezza e sapidità marina</li>
+                <li><strong>Ginestra</strong> — erbe aromatiche e fiori gialli</li>
+              </ul>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Vitigni Rossi</p>
+              <ul class="space-y-2 text-slate-600 text-sm">
+                <li><strong>Tintore</strong> — potenza e longevità</li>
+                <li><strong>Piedirosso</strong> (Per 'e Palummo) — eleganza vulcanica</li>
+                <li><strong>Aglianico</strong> — struttura e mineralità</li>
+              </ul>
+            </div>
+          </div>
+
+          <blockquote class="border-l-4 border-med-gold pl-6">
+            <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+              "Bere un vino di Tramonti o Scala significa sorseggiare la storia di un territorio che non ha mai accettato compromessi con la modernità."
+            </p>
+          </blockquote>
+        </div>
+
+        <!-- Dove degustare -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Guida alla Degustazione: Dove Andare</h2>
+          <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+            <table class="w-full text-sm">
+              <thead class="bg-slate-900 text-white">
+                <tr>
+                  <th class="text-left p-5 font-serif font-bold text-med-gold">Zona</th>
+                  <th class="text-left p-5 font-serif font-bold text-med-gold">Esperienza Consigliata</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white">
+                <tr class="border-b border-slate-100">
+                  <td class="p-5 font-bold text-slate-900">Tramonti</td>
+                  <td class="p-5 text-slate-600">Visita alle cantine storiche per ammirare le viti pre-fillossera. Molte offrono degustazioni con formaggi e salumi locali su prenotazione.</td>
+                </tr>
+                <tr>
+                  <td class="p-5 font-bold text-slate-900">Scala</td>
+                  <td class="p-5 text-slate-600">Trekking tra i vigneti che guardano Ravello, con sosta in piccole aziende agricole familiari. Un'esperienza tra vino e paesaggio unica in Italia.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Local Tips -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-6">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+            <h3 class="text-xl font-bold text-slate-900">I Consigli dell'Esperto</h3>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-slate-900 mb-1">Il Binomio Perfetto</p>
+              <p class="text-slate-600 text-sm leading-relaxed">Abbinate un rosso di Tramonti (magari una riserva di Tintore) con il Provolone del Monaco DOP. La piccantezza del formaggio e la struttura del vino creano un equilibrio leggendario che i locali conoscono da secoli.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">La Cantina come Museo</p>
+              <p class="text-slate-600 text-sm leading-relaxed">Alcune cantine a Tramonti permettono di camminare letteralmente sotto le viti centenarie. È una cattedrale vegetale: portate la macchina fotografica perché la luce che filtra tra le foglie è magica, soprattutto al mattino.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">Non solo Bianco</p>
+              <p class="text-slate-600 text-sm leading-relaxed">Anche se la Costiera è terra di pesce, i rossi di queste zone sono incredibili con le carni povere della tradizione montanara, come la capra o il maiale nero. Chiedete consiglio al produttore.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
+          <div class="space-y-4">
+            {faq.map((item) => (
+              <div class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
+                <details class="group">
+                  <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
+                    <span class="font-bold text-slate-900">{item.q}</span>
+                    <svg class="w-5 h-5 text-med-gold flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                  </summary>
+                  <div class="px-6 pb-6 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                    {item.a}
+                  </div>
+                </details>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Author box -->
+        <div class="flex items-center gap-5 pt-8 border-t border-slate-100">
+          <div class="w-14 h-14 rounded-full bg-med-gold/15 flex items-center justify-center flex-shrink-0">
+            <span class="text-med-gold font-serif font-bold text-xl">AC</span>
+          </div>
+          <div>
+            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Scritto da</p>
+            <p class="font-bold text-slate-900">Redazione Discovery</p>
+            <p class="text-slate-500 text-sm">Wine & Territory Expert · Costiera Amalfitana</p>
+          </div>
+        </div>
+
+        <!-- Back link -->
+        <div class="pt-4">
+          <a href="/it-it/blog/" class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-slate-900 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            Torna al Blog
+          </a>
+        </div>
+
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-4">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 text-med-gold">Info Rapide</h3>
+          <div class="space-y-5">
+            {quickInfo.map((item) => (
+              <div class="border-b border-white/5 pb-4 last:border-0">
+                <span class="text-white/40 text-[10px] uppercase tracking-wider font-light block mb-1">{item.label}</span>
+                <span class="text-white font-medium text-sm">{item.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-10 pt-8 border-t border-white/10 space-y-3">
+            <a href="/it-it/esperienze/ristoranti-stellati/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Ristoranti Stellati
+            </a>
+            <a href="/it-it/blog/alici-di-cetara/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Alici di Cetara
+            </a>
+            <a href="/it-it/blog/delizia-al-limone/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              Delizia al Limone
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</BaseLayout>

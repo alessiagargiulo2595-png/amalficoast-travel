@@ -23,6 +23,17 @@ export const blogPosts: BlogPost[] = [
     path: '/it-it/blog/grotta-dello-smeraldo/',
   },
   {
+    id: '06',
+    title: 'Vini della Costa d\'Amalfi: Viaggio tra i Vigneti Eroici di Tramonti e Scala',
+    slug: 'vini-costa-amalfi',
+    excerpt: 'Viti pre-fillossera di 200 anni, vitigni autoctoni quasi scomparsi e una vendemmia a mano su terrazzamenti a picco: la storia della DOC Costa d\'Amalfi tra Tramonti e Scala.',
+    category: 'FOOD',
+    date: '22 Aprile 2026',
+    readTime: '8 min',
+    image: '/images/vini-costa-amalfi-hero.jpg',
+    path: '/it-it/blog/vini-costa-amalfi/',
+  },
+  {
     id: '05',
     title: 'Atrani: Il Borgo Più Piccolo d\'Italia Dove il Tempo si è Fermato',
     slug: 'atrani',
