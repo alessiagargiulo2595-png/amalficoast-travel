@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { experiences } from '../../../data/experiences-fr';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Expériences', url: '/fr-fr/experiences/' },
+];
+
+const schemaItemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Expériences sur la Côte Amalfitaine",
+  "description": "Les meilleures expériences authentiques sur la Côte Amalfitaine et la Péninsule Sorrentine : trekking, tours en bateau, cuisine locale et artisanat.",
+  "url": "https://amalficoast-travel.com/fr-fr/experiences/",
+  "numberOfItems": experiences.length,
+  "itemListElement": experiences.map((exp, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": exp.title,
+    "url": `https://amalficoast-travel.com${exp.path}`,
+  })),
+};
+---
+
+<BaseLayout
+  title="Expériences Côte Amalfitaine 2026 | Trekking, Tours en Bateau, Cuisine"
+  description="Les expériences authentiques incontournables sur la Côte Amalfitaine : Sentier des Dieux, tours en bateau vers les grottes, cours de cuisine campanienne et bien plus."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaItemList]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[70vh] flex items-end bg-charcoal overflow-hidden">
+    <img
+      src="/images/esperienze-hero.jpg"
+      alt="Expériences authentiques sur la Côte Amalfitaine"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+      referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pb-16 pt-32">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/fr-fr/" class="hover:text-white transition-colors">Accueil</a>
+        <span>/</span>
+        <span class="text-white">Expériences</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Guide 2026</p>
+        <h1 class="font-serif text-display text-white mb-4">Expériences</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Au-delà des plages et des belvédères. Découvrez la Côte Amalfitaine à travers les mains de ses artisans, ses sentiers et sa mer.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grille des expériences -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {experiences.map((exp) => (
+          <a href={exp.path} class="group block">
+            <div class="relative aspect-[4/5] rounded-[3rem] overflow-hidden mb-6 shadow-2xl">
+              <img
+                src={exp.image}
+                alt={exp.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                <span class="text-med-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-2">{exp.category}</span>
+                <h2 class="font-serif text-2xl font-bold text-white mb-2 leading-tight">{exp.title}</h2>
+                <p class="text-white/70 text-sm leading-relaxed">{exp.description}</p>
+              </div>
+            </div>
+            <p class="text-slate-500 text-sm leading-relaxed px-2">{exp.subtitle}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Introduction éditoriale -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Pourquoi vivre une expérience locale</h2>
+      <p class="text-slate-600 text-lg leading-relaxed mb-6">
+        La Côte Amalfitaine est l'un des endroits les plus photographiés au monde. Mais la véritable âme de ce territoire se trouve dans les fromageries de la Péninsule Sorrentine, les sentiers au-dessus de Positano, les grottes marines accessibles uniquement en bateau. Ces expériences ne se réservent pas dans un catalogue touristique : elles se trouvent en connaissant les bonnes personnes.
+      </p>
+      <p class="text-slate-600 text-lg leading-relaxed">
+        Les expériences dont nous écrivons sont sélectionnées pour leur authenticité, non leur popularité.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
