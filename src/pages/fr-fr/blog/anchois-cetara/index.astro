@@ -1,9 +1,20 @@
 ---
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import { blogPostsFr } from '../../../../data/blog-fr';
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
 
 const lang = 'fr-fr';
-const post = blogPostsFr.find(p => p.slug === 'anchois-cetara')!;
+const post = {
+  title: 'Les Anchois de Cetara',
+  subtitle: "L'Or d'Argent de la Côte Amalfitaine",
+  category: 'GASTRONOMIE',
+  date: '22 Avril 2026',
+  readTime: '7 min',
+  image: '/images/alici-cetara-hero.jpg',
+  imageAlt: 'Anchois de Cetara et Colatura AOP - Côte Amalfitaine',
+  path: '/fr-fr/blog/anchois-cetara/',
+};
+
+const metaTitle = 'Anchois de Cetara : Colatura AOP et Spaghetti alla Colatura | Guide 2026';
+const metaDescription = "L'histoire de la Colatura di Alici AOP de Cetara, héritière du Garum romain : pêche aux lamparos, maturation en tonnelets, recette originale des Spaghetti alla Colatura et conseils pour l'acheter.";
 
 const breadcrumbs = [
   { name: 'Accueil', url: '/fr-fr/' },
@@ -12,59 +23,12 @@ const breadcrumbs = [
 ];
 
 const keyTakeaways = [
-  'La Colatura di Alici de Cetara AOP est l\'héritière directe du Garum romain, récupérée par les moines médiévaux et aujourd\'hui reconnue comme excellence mondiale.',
+  "La Colatura di Alici de Cetara AOP est l'héritière directe du Garum romain, récupérée par les moines médiévaux et aujourd'hui reconnue comme excellence mondiale.",
   'Les anchois sont pêchés aux lamparos la nuit, entre mars et août, et travaillés à la main le jour même de la capture.',
-  'La maturation dans les tonnelets de chêne dure au moins 9 mois selon le cahier des charges AOP ; les meilleures réserves vieillissent plusieurs années.',
-  'Les Spaghetti alla Colatura se condimentent toujours à cru et sans sel dans l\'eau : la colatura est déjà naturellement très salée.',
-  'Une seule goutte de colatura suffit pour parfumer des pâtes, des légumes bouillis et des soupes de légumineuses — ne jamais la chauffer pour préserver son bouquet aromatique.',
+  "La maturation dans les tonnelets de chêne dure au moins 9 mois selon le cahier des charges AOP ; les meilleures réserves vieillissent plusieurs années.",
+  "Les Spaghetti alla Colatura se condimentent toujours à cru et sans sel dans l'eau : la colatura est déjà naturellement très salée.",
+  "Une seule goutte de colatura suffit pour parfumer des pâtes, des légumes bouillis et des soupes de légumineuses — ne jamais la chauffer pour préserver son bouquet aromatique.",
 ];
-
-const faq = [
-  {
-    q: 'Combien de temps les anchois doivent-ils mûrir pour faire la colatura ?',
-    a: 'Le cahier des charges AOP prévoit un vieillissement minimum de 9 mois, mais les meilleures réserves peuvent mûrir dans les tonnelets de bois également plusieurs années, acquérant des notes plus complexes et sombres.',
-  },
-  {
-    q: 'La colatura est-elle très salée ?',
-    a: 'Oui, elle est extrêmement sapide. C\'est pourquoi, lors de son utilisation comme condiment, il ne faut jamais ajouter de sel à l\'eau de cuisson des pâtes ou aux plats.',
-  },
-  {
-    q: 'Où acheter la Colatura AOP originale ?',
-    a: 'Le long du cours principal de Cetara se trouvent des laboratoires artisanaux et des boutiques historiques où acheter les tonnelets originaux. Cherchez toujours le label AOP sur l\'emballage : de nombreuses imitations utilisent du poisson provenant d\'autres mers.',
-  },
-  {
-    q: 'Quelle est la meilleure période pour visiter Cetara ?',
-    a: 'La saison de pêche va de mars à août, avec le pic nocturne des lamparos au printemps. Durant cette période, les restaurants du village servent le poisson le plus frais et on peut assister au travail artisanal dans les entrepôts du port.',
-  },
-  {
-    q: 'Qu\'est-ce que la technique "tête-queue" ?',
-    a: 'C\'est la méthode traditionnelle de disposition des anchois dans le tonnelet : chaque couche est alternée en inversant l\'orientation des poissons (tête vs queue), afin de maximiser la compacité et favoriser un salage uniforme pendant la maturation.',
-  },
-];
-
-const schemaArticle = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": post.title,
-  "description": "L\'histoire de la Colatura di Alici AOP de Cetara, héritière du Garum romain : de la pêche aux lamparos à la table. Comment l\'acheter, l\'utiliser en cuisine et la recette originale des Spaghetti alla Colatura.",
-  "image": `https://amalficoast-travel.com${post.image}`,
-  "datePublished": "2026-04-22",
-  "dateModified": "2026-04-22",
-  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
-  "publisher": { "@type": "Organization", "name": "Amalfi Coast Travel", "url": "https://amalficoast-travel.com" },
-  "url": "https://amalficoast-travel.com/fr-fr/blog/anchois-cetara/",
-  "inLanguage": "fr-FR",
-};
-
-const schemaFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faq.map(item => ({
-    "@type": "Question",
-    "name": item.q,
-    "acceptedAnswer": { "@type": "Answer", "text": item.a },
-  })),
-};
 
 const quickInfo = [
   { label: 'Produit', value: 'Anchois au sel · Colatura AOP' },
@@ -72,202 +36,132 @@ const quickInfo = [
   { label: 'Saison de pêche', value: 'Mars – Août' },
   { label: 'Maturation AOP', value: 'Min. 9 mois en tonnelet' },
   { label: 'Plat culte', value: 'Spaghetti alla Colatura' },
-  { label: 'À savoir', value: 'Ne jamais saler l\'eau des pâtes' },
+  { label: 'À savoir', value: "Ne jamais saler l'eau des pâtes" },
   { label: 'Conseil achat', value: 'Boutiques artisanales sur le cours' },
-  { label: 'Certification', value: 'AOP – Appellation d\'Origine Protégée' },
+  { label: 'Certification', value: "AOP – Appellation d'Origine Protégée" },
 ];
+
+const faq = [
+  {
+    q: 'Combien de temps les anchois doivent-ils mûrir pour faire la colatura ?',
+    a: "Le cahier des charges AOP prévoit un vieillissement minimum de 9 mois, mais les meilleures réserves peuvent mûrir dans les tonnelets de bois également plusieurs années, acquérant des notes plus complexes et sombres.",
+  },
+  {
+    q: 'La colatura est-elle très salée ?',
+    a: "Oui, elle est extrêmement sapide. C'est pourquoi, lors de son utilisation comme condiment, il ne faut jamais ajouter de sel à l'eau de cuisson des pâtes ou aux plats.",
+  },
+  {
+    q: 'Où acheter la Colatura AOP originale ?',
+    a: "Le long du cours principal de Cetara se trouvent des laboratoires artisanaux et des boutiques historiques où acheter les tonnelets originaux. Cherchez toujours le label AOP sur l'emballage : de nombreuses imitations utilisent du poisson provenant d'autres mers.",
+  },
+  {
+    q: 'Quelle est la meilleure période pour visiter Cetara ?',
+    a: 'La saison de pêche va de mars à août, avec le pic nocturne des lamparos au printemps. Durant cette période, les restaurants du village servent le poisson le plus frais et on peut assister au travail artisanal dans les entrepôts du port.',
+  },
+  {
+    q: 'Qu\'est-ce que la technique "tête-queue" ?',
+    a: "C'est la méthode traditionnelle de disposition des anchois dans le tonnelet : chaque couche est alternée en inversant l'orientation des poissons (tête vs queue), afin de maximiser la compacité et favoriser un salage uniforme pendant la maturation.",
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Délice au Citron', href: '/fr-fr/blog/delice-citron/' },
+  { label: "Vins de la Côte d'Amalfi", href: '/fr-fr/blog/vins-cote-amalfi/' },
+];
+
+const authorRole = 'Spécialiste Gastronomie · Côte Amalfitaine';
 ---
 
-<BaseLayout
-  title="Anchois de Cetara : Colatura AOP et Spaghetti alla Colatura | Guide 2026"
-  description="L'histoire de la Colatura di Alici AOP de Cetara, héritière du Garum romain : pêche aux lamparos, maturation en tonnelets, recette originale des Spaghetti alla Colatura et conseils pour l'acheter."
+<BlogPostLayout
   lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
   breadcrumbs={breadcrumbs}
-  schema={[schemaArticle, schemaFaq]}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
 >
 
-  <!-- Hero -->
-  <section class="relative h-[75vh] overflow-hidden flex items-center justify-center">
-    <img
-      src={post.image}
-      alt="Anchois de Cetara et Colatura AOP - Côte Amalfitaine"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/80"></div>
-    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-4">
-        {post.category} · {post.date}
-      </p>
-      <h1 class="font-serif text-display text-white mb-6 leading-tight">
-        Les Anchois de Cetara
-      </h1>
-      <p class="text-xl md:text-2xl font-light text-white/80">
-        L'Or d'Argent de la Côte Amalfitaine
-      </p>
-      <div class="mt-6 flex items-center justify-center gap-4 text-white/60 text-sm">
-        <span>{post.date}</span>
-        <span>·</span>
-        <span>{post.readTime} de lecture</span>
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <div class="flex items-center gap-3 mb-6">
+      <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Points Clés</h2>
+    </div>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      S'il y a un village qui a réussi à enfermer le goût de la mer dans un bocal, c'est Cetara. Passé le promontoire de Capo d'Orso, ce petit village de pêcheurs apparaît comme une crèche de maisons blanches serrées autour d'une tour sarrasine. Mais le vrai trésor de Cetara n'est pas visible depuis la route : il se cache dans les filets de ses bateaux de pêche et dans les anciennes barriques de bois qui gardent le secret de ses célèbres anchois.
+    </p>
+  </div>
+
+  <!-- Une tradition ancienne -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Une Tradition Ancienne : Du Lamparo au Tonnelet</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      La pêche des anchois à Cetara a des racines millénaires. Encore aujourd'hui, pendant les nuits de nouvelle lune entre mars et août, les "lamparos" prennent le large. La technique est restée presque inchangée : les lumières attirent le poisson bleu en surface et les filets l'enveloppent.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Mais la vraie magie se produit à terre. À peine pêchés, les anchois sont décapités et éviscérés à la main ("scapezzati"), puis disposés par couches, avec la technique classique "tête-queue", dans de petits barils de chêne appelés <strong>terzigni</strong>. Là, sous le poids d'une presse en bois et couverts de sel de mer, commence leur maturation.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-2">La technique "tête-queue"</h4>
+        <p class="text-slate-600 text-sm leading-relaxed">Chaque couche est alternée en inversant l'orientation des poissons, pour maximiser la compacité et garantir un salage uniforme pendant la maturation.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-2">Le tonnelet de chêne</h4>
+        <p class="text-slate-600 text-sm leading-relaxed">Le petit baril de bois de chêne n'est pas un simple contenant : le bois respire, régule l'humidité et contribue au développement aromatique pendant la longue maturation sous sel.</p>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Contenu + Sidebar -->
-  <section class="bg-med-cream py-24 px-6">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+  <!-- La Colatura -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Colatura : L'Essence Liquide de la Mer</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Le produit le plus noble de ce travail est la <strong>Colatura di Alici di Cetara AOP</strong>. Il s'agit d'un liquide ambré et limpide, fruit de la lente fermentation des anchois sous sel.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      La légende veut que la colatura soit l'héritière du <strong>Garum romain</strong>, la sauce de poisson tant aimée des empereurs. À Cetara, cette tradition a été récupérée par les moines médiévaux et est aujourd'hui devenue une excellence mondiale. Une seule goutte de ce distillat est capable de transformer un plat simple en une expérience gastronomique.
+    </p>
 
-      <!-- Article -->
-      <article class="lg:col-span-8 space-y-12">
+    <blockquote class="border-l-4 border-med-gold pl-6 my-8">
+      <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+        "La Colatura de Cetara n'est pas un condiment, c'est l'âme de la Méditerranée distillée goutte après goutte."
+      </p>
+    </blockquote>
+  </div>
 
-        <!-- Key Takeaways -->
-        <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
-          <div class="flex items-center gap-3 mb-6">
-            <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Points Clés</h2>
-          </div>
-          <ul class="space-y-4">
-            {keyTakeaways.map((point) => (
-              <li class="flex items-start gap-3">
-                <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
-                <span class="text-white/80 text-sm leading-relaxed">{point}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+  <!-- Comment les déguster -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Comment les Déguster : Le Plat Iconique</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Si vous visitez Cetara, il y a un rituel auquel vous ne pouvez pas vous soustraire : les <strong>Spaghetti alla Colatura</strong>. C'est le plat de la veille de Noël, de la simplicité extrême qui devient luxe.
+    </p>
 
-        <!-- Intro -->
-        <div>
-          <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
-            S'il y a un village qui a réussi à enfermer le goût de la mer dans un bocal, c'est Cetara. Passé le promontoire de Capo d'Orso, ce petit village de pêcheurs apparaît comme une crèche de maisons blanches serrées autour d'une tour sarrasine. Mais le vrai trésor de Cetara n'est pas visible depuis la route : il se cache dans les filets de ses bateaux de pêche et dans les anciennes barriques de bois qui gardent le secret de ses célèbres anchois.
-          </p>
-        </div>
-
-        <!-- Une tradition ancienne -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Une Tradition Ancienne : Du Lamparo au Tonnelet</h2>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            La pêche des anchois à Cetara a des racines millénaires. Encore aujourd'hui, pendant les nuits de nouvelle lune entre mars et août, les "lamparos" prennent le large. La technique est restée presque inchangée : les lumières attirent le poisson bleu en surface et les filets l'enveloppent.
-          </p>
-          <p class="text-slate-600 text-lg leading-relaxed mb-8">
-            Mais la vraie magie se produit à terre. À peine pêchés, les anchois sont décapités et éviscérés à la main ("scapezzati"), puis disposés par couches, avec la technique classique "tête-queue", dans de petits barils de chêne appelés <strong>terzigni</strong>. Là, sous le poids d'une presse en bois et couverts de sel de mer, commence leur maturation.
-          </p>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <h4 class="font-bold text-slate-900 mb-2">La technique "tête-queue"</h4>
-              <p class="text-slate-600 text-sm leading-relaxed">Chaque couche est alternée en inversant l'orientation des poissons, pour maximiser la compacité et garantir un salage uniforme pendant la maturation.</p>
-            </div>
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <h4 class="font-bold text-slate-900 mb-2">Le tonnelet de chêne</h4>
-              <p class="text-slate-600 text-sm leading-relaxed">Le petit baril de bois de chêne n'est pas un simple contenant : le bois respire, régule l'humidité et contribue au développement aromatique pendant la longue maturation sous sel.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- La Colatura -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Colatura : L'Essence Liquide de la Mer</h2>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Le produit le plus noble de ce travail est la <strong>Colatura di Alici di Cetara AOP</strong>. Il s'agit d'un liquide ambré et limpide, fruit de la lente fermentation des anchois sous sel.
-          </p>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            La légende veut que la colatura soit l'héritière du <strong>Garum romain</strong>, la sauce de poisson tant aimée des empereurs. À Cetara, cette tradition a été récupérée par les moines médiévaux et est aujourd'hui devenue une excellence mondiale. Une seule goutte de ce distillat est capable de transformer un plat simple en une expérience gastronomique.
-          </p>
-
-          <blockquote class="border-l-4 border-med-gold pl-6 my-8">
-            <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
-              "La Colatura de Cetara n'est pas un condiment, c'est l'âme de la Méditerranée distillée goutte après goutte."
-            </p>
-          </blockquote>
-        </div>
-
-        <!-- Comment les déguster -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Comment les Déguster : Le Plat Iconique</h2>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Si vous visitez Cetara, il y a un rituel auquel vous ne pouvez pas vous soustraire : les <strong>Spaghetti alla Colatura</strong>. C'est le plat de la veille de Noël, de la simplicité extrême qui devient luxe.
-          </p>
-
-          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
-            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">La Règle d'Or</h3>
-            <p class="text-slate-600 leading-relaxed mb-4">
-              Les Spaghetti alla Colatura se conditionnent <strong>toujours à cru</strong> : la colatura ne doit jamais être chauffée pour ne pas perdre son bouquet aromatique. On la mélange avec de l'huile d'olive extra-vierge, de l'ail, du persil et des flocons de piment, puis on verse ce condiment sur les pâtes égouttées bien al dente.
-            </p>
-            <p class="text-slate-600 leading-relaxed">
-              <strong>Important :</strong> ne jamais saler l'eau des pâtes. La colatura est déjà naturellement très sapide et apporte tout le sel nécessaire au plat.
-            </p>
-          </div>
-        </div>
-
-        <!-- FAQ -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Questions Fréquentes</h2>
-          <div class="space-y-4">
-            {faq.map((item) => (
-              <div class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
-                <details class="group">
-                  <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
-                    <span class="font-bold text-slate-900">{item.q}</span>
-                    <svg class="w-5 h-5 text-med-gold flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                  </summary>
-                  <div class="px-6 pb-6 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
-                    {item.a}
-                  </div>
-                </details>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Auteur -->
-        <div class="flex items-center gap-5 pt-8 border-t border-slate-100">
-          <div class="w-14 h-14 rounded-full bg-med-gold/15 flex items-center justify-center flex-shrink-0">
-            <span class="text-med-gold font-serif font-bold text-xl">AC</span>
-          </div>
-          <div>
-            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Écrit par</p>
-            <p class="font-bold text-slate-900">Amalfi Coast Travel</p>
-            <p class="text-slate-500 text-sm">Spécialiste Côte Amalfitaine</p>
-          </div>
-        </div>
-
-        <div class="pt-4">
-          <a href="/fr-fr/blog/" class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-slate-900 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-            Retour au Blog
-          </a>
-        </div>
-
-      </article>
-
-      <!-- Sidebar -->
-      <aside class="lg:col-span-4">
-        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
-          <h3 class="font-serif text-2xl font-bold mb-8 text-med-gold">Infos Pratiques</h3>
-          <div class="space-y-5">
-            {quickInfo.map((item) => (
-              <div class="border-b border-white/5 pb-4 last:border-0">
-                <span class="text-white/40 text-[10px] uppercase tracking-wider font-light block mb-1">{item.label}</span>
-                <span class="text-white font-medium text-sm">{item.value}</span>
-              </div>
-            ))}
-          </div>
-
-          <div class="mt-10 pt-8 border-t border-white/10 space-y-3">
-            <a href="/fr-fr/blog/delice-citron/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              Délice au Citron
-            </a>
-            <a href="/fr-fr/blog/vins-cote-amalfi/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              Vins de la Côte d'Amalfi
-            </a>
-          </div>
-        </div>
-      </aside>
-
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">La Règle d'Or</h3>
+      <p class="text-slate-600 leading-relaxed mb-4">
+        Les Spaghetti alla Colatura se conditionnent <strong>toujours à cru</strong> : la colatura ne doit jamais être chauffée pour ne pas perdre son bouquet aromatique. On la mélange avec de l'huile d'olive extra-vierge, de l'ail, du persil et des flocons de piment, puis on verse ce condiment sur les pâtes égouttées bien al dente.
+      </p>
+      <p class="text-slate-600 leading-relaxed">
+        <strong>Important :</strong> ne jamais saler l'eau des pâtes. La colatura est déjà naturellement très sapide et apporte tout le sel nécessaire au plat.
+      </p>
     </div>
-  </section>
+  </div>
 
-</BaseLayout>
+</BlogPostLayout>

@@ -1,9 +1,20 @@
 ---
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import { blogPostsFr } from '../../../../data/blog-fr';
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
 
 const lang = 'fr-fr';
-const post = blogPostsFr.find(p => p.slug === 'vallee-des-ferriere')!;
+const post = {
+  title: 'Vallée des Ferriere',
+  subtitle: "Randonnée au Cœur Vert et Sauvage d'Amalfi",
+  category: 'DÉCOUVERTES',
+  date: '22 Avril 2026',
+  readTime: '8 min',
+  image: '/images/valle-ferriere-hero.jpg',
+  imageAlt: 'Vallée des Ferriere - Randonnée à Amalfi',
+  path: '/fr-fr/blog/vallee-des-ferriere/',
+};
+
+const metaTitle = "Vallée des Ferriere Amalfi : Randonnée, Cascades et Fougères Préhistoriques 2026";
+const metaDescription = "Guide complet de la randonnée dans la Vallée des Ferriere d'Amalfi : parcours, fougères géantes préhistoriques, anciennes papeteries médiévales, cascades et conseils pratiques pour visiter la réserve naturelle.";
 
 const breadcrumbs = [
   { name: 'Accueil', url: '/fr-fr/' },
@@ -13,62 +24,11 @@ const breadcrumbs = [
 
 const keyTakeaways = [
   'La Vallée des Ferriere abrite la Woodwardia radicans, une fougère géante préhistorique survivante du Tertiaire grâce à un microclimat unique en Méditerranée.',
-  'Le nom vient des anciennes forges médiévales qui exploitaient le torrent Canneto ; le long du sentier se trouvent les ruines des papeteries historiques qui produisaient le célèbre Papier d\'Amalfi.',
+  "Le nom vient des anciennes forges médiévales qui exploitaient le torrent Canneto ; le long du sentier se trouvent les ruines des papeteries historiques qui produisaient le célèbre Papier d'Amalfi.",
   'Le sentier est classé E (Excursionniste) : environ 6 km, 3-4 heures avec pauses. Départ conseillé depuis Pontone pour descendre vers Amalfi.',
   'La zone des cascades et des fougères rares est une réserve intégrale protégée : réservation et contribution (~5 €) obligatoires.',
-  'Meilleure période : printemps (avril-juin) pour les cascades à leur maximum et le vert explosif ; automne pour les couleurs chaudes du bois.',
+  "Meilleure période : printemps (avril-juin) pour les cascades à leur maximum et le vert explosif ; automne pour les couleurs chaudes du bois.",
 ];
-
-const faq = [
-  {
-    q: 'Le sentier est-il adapté aux enfants ?',
-    a: 'Oui, le sentier principal est bien balisé et ne présente pas de dangers extrêmes. Cependant, il n\'est pas praticable avec des poussettes à cause des marches et des racines. Avec des jeunes enfants, il est conseillé de partir depuis Pontone (descente) plutôt que depuis Amalfi (montée).',
-  },
-  {
-    q: 'Peut-on se baigner dans le torrent ?',
-    a: 'Bien que l\'eau soit très limpide et attrayante, elle est extrêmement froide (environ 12-14°C) et, s\'agissant d\'une zone protégée, il vaut mieux éviter pour ne pas perturber l\'écosystème local.',
-  },
-  {
-    q: 'Quelle est la meilleure période pour la visite ?',
-    a: 'Le printemps (avril-juin) est le moment magique : les cascades sont à leur maximum et la végétation est d\'un vert explosif. L\'automne offre également de merveilleuses couleurs chaudes. En été la vallée reste fraîche grâce au microclimat, mais le débit des cascades se réduit.',
-  },
-  {
-    q: 'Y a-t-il du réseau dans la vallée ?',
-    a: 'Dans de nombreux endroits de la vallée, le signal est absent ou très faible. C\'est l\'occasion parfaite pour un digital detox, mais pensez à télécharger la carte hors ligne et à prévenir quelqu\'un de votre parcours avant de partir.',
-  },
-  {
-    q: 'Comment réserver l\'accès à la réserve intégrale ?',
-    a: 'L\'accès à la zone protégée des cascades et des fougères rares est souvent géré par des associations locales ou par la commune d\'Amalfi. Vérifiez avant la visite sur le site de la commune ou appelez le bureau d\'informations touristiques d\'Amalfi. La contribution est d\'environ 5 € par personne.',
-  },
-  {
-    q: 'Faut-il un guide ou peut-on y aller seul ?',
-    a: 'Le sentier principal est bien balisé et praticable en autonomie. Cependant, pour découvrir les détails historiques des papeteries, l\'écologie de la réserve et les meilleurs points d\'observation, un guide local ajoute une valeur énorme à l\'expérience.',
-  },
-];
-
-const schemaArticle = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": post.title,
-  "description": "Guide de la randonnée dans la Vallée des Ferriere d\'Amalfi : parcours, fougères préhistoriques, anciennes papeteries médiévales, cascades et conseils pratiques pour visiter la réserve naturelle.",
-  "image": `https://amalficoast-travel.com${post.image}`,
-  "datePublished": "2026-04-22",
-  "dateModified": "2026-04-22",
-  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
-  "publisher": { "@type": "Organization", "name": "Amalfi Coast Travel", "url": "https://amalficoast-travel.com" },
-  "url": "https://amalficoast-travel.com/fr-fr/blog/vallee-des-ferriere/",
-  "inLanguage": "fr-FR",
-};
-
-const schemaFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faq.map(item => ({
-    "@type": "Question",
-    "name": item.q,
-    "acceptedAnswer": { "@type": "Answer", "text": item.a },
-  })),
-};
 
 const quickInfo = [
   { label: 'Point de départ', value: 'Pontone ou Amalfi (centre)' },
@@ -80,197 +40,132 @@ const quickInfo = [
   { label: 'À voir', value: 'Cascades, fougères préhistoriques, papeteries' },
   { label: 'Meilleure période', value: 'Avril – Juin / Automne' },
 ];
+
+const faq = [
+  {
+    q: 'Le sentier est-il adapté aux enfants ?',
+    a: "Oui, le sentier principal est bien balisé et ne présente pas de dangers extrêmes. Cependant, il n'est pas praticable avec des poussettes à cause des marches et des racines. Avec des jeunes enfants, il est conseillé de partir depuis Pontone (descente) plutôt que depuis Amalfi (montée).",
+  },
+  {
+    q: 'Peut-on se baigner dans le torrent ?',
+    a: "Bien que l'eau soit très limpide et attrayante, elle est extrêmement froide (environ 12-14°C) et, s'agissant d'une zone protégée, il vaut mieux éviter pour ne pas perturber l'écosystème local.",
+  },
+  {
+    q: 'Quelle est la meilleure période pour la visite ?',
+    a: "Le printemps (avril-juin) est le moment magique : les cascades sont à leur maximum et la végétation est d'un vert explosif. L'automne offre également de merveilleuses couleurs chaudes. En été la vallée reste fraîche grâce au microclimat, mais le débit des cascades se réduit.",
+  },
+  {
+    q: 'Y a-t-il du réseau dans la vallée ?',
+    a: "Dans de nombreux endroits de la vallée, le signal est absent ou très faible. C'est l'occasion parfaite pour un digital detox, mais pensez à télécharger la carte hors ligne et à prévenir quelqu'un de votre parcours avant de partir.",
+  },
+  {
+    q: 'Comment réserver l\'accès à la réserve intégrale ?',
+    a: "L'accès à la zone protégée des cascades et des fougères rares est souvent géré par des associations locales ou par la commune d'Amalfi. Vérifiez avant la visite sur le site de la commune ou appelez le bureau d'informations touristiques d'Amalfi. La contribution est d'environ 5 € par personne.",
+  },
+  {
+    q: 'Faut-il un guide ou peut-on y aller seul ?',
+    a: "Le sentier principal est bien balisé et praticable en autonomie. Cependant, pour découvrir les détails historiques des papeteries, l'écologie de la réserve et les meilleurs points d'observation, un guide local ajoute une valeur énorme à l'expérience.",
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Grotte Émeraude', href: '/fr-fr/blog/grotte-emeraude/' },
+  { label: 'Atrani', href: '/fr-fr/blog/atrani/' },
+];
+
+const authorRole = 'Guide Nature & Randonnée · Côte Amalfitaine';
 ---
 
-<BaseLayout
-  title="Vallée des Ferriere Amalfi : Randonnée, Cascades et Fougères Préhistoriques 2026"
-  description="Guide complet de la randonnée dans la Vallée des Ferriere d'Amalfi : parcours, fougères géantes préhistoriques, anciennes papeteries médiévales, cascades et conseils pratiques pour visiter la réserve naturelle."
+<BlogPostLayout
   lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
   breadcrumbs={breadcrumbs}
-  schema={[schemaArticle, schemaFaq]}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
 >
 
-  <!-- Hero -->
-  <section class="relative h-[75vh] overflow-hidden flex items-center justify-center">
-    <img
-      src={post.image}
-      alt="Vallée des Ferriere - Randonnée à Amalfi"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/80"></div>
-    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-4">
-        {post.category} · {post.date}
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <div class="flex items-center gap-3 mb-6">
+      <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Points Clés</h2>
+    </div>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      À quelques minutes à pied du centre d'Amalfi se cache l'un des secrets les mieux gardés de toute la Côte : la Vallée des Ferriere. Une gorge verdoyante et sauvage où le temps s'est arrêté, où poussent des fougères géantes survivantes du Tertiaire, où cascadent des eaux limpides sur les ruines d'anciennes papeteries médiévales. Un autre monde, à deux pas du chaos touristique.
+    </p>
+  </div>
+
+  <!-- La Woodwardia -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Woodwardia Radicans : Un Fossile Vivant</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      La star absolue de la Vallée des Ferriere est la <strong>Woodwardia radicans</strong>, une fougère géante qui existait déjà à l'ère tertiaire — il y a environ 65 millions d'années. Ses frondes peuvent atteindre 2 mètres de longueur, et la vallée en abrite l'une des populations les plus importantes d'Europe.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Sa survie dans cette vallée est due à un <strong>microclimat exceptionnel</strong> : l'humidité constante du torrent Canneto, la protection des parois rocheuses et une température qui reste fraîche même en plein été ont créé une sorte de sanctuaire naturel où cette espèce préhistorique a traversé les glaciations sans évoluer.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Zone de Réserve Intégrale</h3>
+      <p class="text-slate-600 leading-relaxed">
+        La zone des cascades et des fougères rares est une réserve naturelle intégrale protégée. L'accès nécessite une <strong>réservation préalable</strong> et le versement d'une contribution d'environ 5 € par personne, gérée par des associations locales agréées. Cette mesure permet de préserver l'habitat fragile de la Woodwardia.
       </p>
-      <h1 class="font-serif text-display text-white mb-6 leading-tight">
-        Vallée des Ferriere
-      </h1>
-      <p class="text-xl md:text-2xl font-light text-white/80">
-        Randonnée au Cœur Vert et Sauvage d'Amalfi
-      </p>
-      <div class="mt-6 flex items-center justify-center gap-4 text-white/60 text-sm">
-        <span>{post.date}</span>
-        <span>·</span>
-        <span>{post.readTime} de lecture</span>
+    </div>
+  </div>
+
+  <!-- Histoire des papeteries -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">L'Histoire des Papeteries Médiévales</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Le nom "Ferriere" rappelle les anciennes forges médiévales qui exploitaient la force hydraulique du torrent Canneto. Mais c'est surtout pour ses <strong>papeteries</strong> que la vallée est entrée dans l'histoire. À partir du XIIe siècle, Amalfi était le principal producteur de papier d'Europe : la "Carta di Amalfi" était exportée dans toute la Méditerranée et jusqu'en Orient.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Aujourd'hui, le long du sentier, on peut admirer les ruines de ces papeteries : les roues hydrauliques en pierre, les bassins de macération et les canaux d'irrigation qui alimentaient les moulins. Certaines ont été partiellement restaurées et témoignent d'une industrie qui a précédé Gutenberg de plusieurs siècles.
+    </p>
+  </div>
+
+  <!-- Le sentier -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Le Sentier : Informations Pratiques</h2>
+    <div class="space-y-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">1</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">Départ depuis Pontone (recommandé)</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">On commence à Pontone et on descend vers Amalfi en suivant le torrent. C'est l'option la moins fatigante et la plus panoramique. Pontone est accessible depuis Ravello ou par sentier depuis Amalfi.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">2</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">Départ depuis Amalfi</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">On part du centre d'Amalfi et on monte vers Pontone en suivant les panneaux. Plus exigeant physiquement (montée) mais accessible directement depuis le village sans organisation préalable.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">3</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">Équipement obligatoire</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Chaussures de randonnée imperméables (le sentier peut être glissant et humide), eau en abondance, protection solaire pour les zones dégagées et un imperméable léger même par beau temps.</p>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Contenu + Sidebar -->
-  <section class="bg-med-cream py-24 px-6">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
-
-      <article class="lg:col-span-8 space-y-12">
-
-        <!-- Key Takeaways -->
-        <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
-          <div class="flex items-center gap-3 mb-6">
-            <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Points Clés</h2>
-          </div>
-          <ul class="space-y-4">
-            {keyTakeaways.map((point) => (
-              <li class="flex items-start gap-3">
-                <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
-                <span class="text-white/80 text-sm leading-relaxed">{point}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <!-- Intro -->
-        <div>
-          <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
-            À quelques minutes à pied du centre d'Amalfi se cache l'un des secrets les mieux gardés de toute la Côte : la Vallée des Ferriere. Une gorge verdoyante et sauvage où le temps s'est arrêté, où poussent des fougères géantes survivantes du Tertiaire, où cascadent des eaux limpides sur les ruines d'anciennes papeteries médiévales. Un autre monde, à deux pas du chaos touristique.
-          </p>
-        </div>
-
-        <!-- La Woodwardia -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Woodwardia Radicans : Un Fossile Vivant</h2>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            La star absolue de la Vallée des Ferriere est la <strong>Woodwardia radicans</strong>, une fougère géante qui existait déjà à l'ère tertiaire — il y a environ 65 millions d'années. Ses frondes peuvent atteindre 2 mètres de longueur, et la vallée en abrite l'une des populations les plus importantes d'Europe.
-          </p>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Sa survie dans cette vallée est due à un <strong>microclimat exceptionnel</strong> : l'humidité constante du torrent Canneto, la protection des parois rocheuses et une température qui reste fraîche même en plein été ont créé une sorte de sanctuaire naturel où cette espèce préhistorique a traversé les glaciations sans évoluer.
-          </p>
-
-          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
-            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Zone de Réserve Intégrale</h3>
-            <p class="text-slate-600 leading-relaxed">
-              La zone des cascades et des fougères rares est une réserve naturelle intégrale protégée. L'accès nécessite une <strong>réservation préalable</strong> et le versement d'une contribution d'environ 5 € par personne, gérée par des associations locales agréées. Cette mesure permet de préserver l'habitat fragile de la Woodwardia.
-            </p>
-          </div>
-        </div>
-
-        <!-- Histoire des papeteries -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">L'Histoire des Papeteries Médiévales</h2>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Le nom "Ferriere" rappelle les anciennes forges médiévales qui exploitaient la force hydraulique du torrent Canneto. Mais c'est surtout pour ses <strong>papeteries</strong> que la vallée est entrée dans l'histoire. À partir du XIIe siècle, Amalfi était le principal producteur de papier d'Europe : la "Carta di Amalfi" était exportée dans toute la Méditerranée et jusqu'en Orient.
-          </p>
-          <p class="text-slate-600 text-lg leading-relaxed">
-            Aujourd'hui, le long du sentier, on peut admirer les ruines de ces papeteries : les roues hydrauliques en pierre, les bassins de macération et les canaux d'irrigation qui alimentaient les moulins. Certaines ont été partiellement restaurées et témoignent d'une industrie qui a précédé Gutenberg de plusieurs siècles.
-          </p>
-        </div>
-
-        <!-- Le sentier -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Le Sentier : Informations Pratiques</h2>
-          <div class="space-y-4">
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">1</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">Départ depuis Pontone (recommandé)</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">On commence à Pontone et on descend vers Amalfi en suivant le torrent. C'est l'option la moins fatigante et la plus panoramique. Pontone est accessible depuis Ravello ou par sentier depuis Amalfi.</p>
-              </div>
-            </div>
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">2</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">Départ depuis Amalfi</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">On part du centre d'Amalfi et on monte vers Pontone en suivant les panneaux. Plus exigeant physiquement (montée) mais accessible directement depuis le village sans organisation préalable.</p>
-              </div>
-            </div>
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">3</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">Équipement obligatoire</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Chaussures de randonnée imperméables (le sentier peut être glissant et humide), eau en abondance, protection solaire pour les zones dégagées et un imperméable léger même par beau temps.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- FAQ -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Questions Fréquentes</h2>
-          <div class="space-y-4">
-            {faq.map((item) => (
-              <div class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
-                <details class="group">
-                  <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
-                    <span class="font-bold text-slate-900">{item.q}</span>
-                    <svg class="w-5 h-5 text-med-gold flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                  </summary>
-                  <div class="px-6 pb-6 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
-                    {item.a}
-                  </div>
-                </details>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Auteur -->
-        <div class="flex items-center gap-5 pt-8 border-t border-slate-100">
-          <div class="w-14 h-14 rounded-full bg-med-gold/15 flex items-center justify-center flex-shrink-0">
-            <span class="text-med-gold font-serif font-bold text-xl">AC</span>
-          </div>
-          <div>
-            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Écrit par</p>
-            <p class="font-bold text-slate-900">Amalfi Coast Travel</p>
-            <p class="text-slate-500 text-sm">Spécialiste Côte Amalfitaine</p>
-          </div>
-        </div>
-
-        <div class="pt-4">
-          <a href="/fr-fr/blog/" class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-slate-900 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-            Retour au Blog
-          </a>
-        </div>
-
-      </article>
-
-      <!-- Sidebar -->
-      <aside class="lg:col-span-4">
-        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
-          <h3 class="font-serif text-2xl font-bold mb-8 text-med-gold">Infos Pratiques</h3>
-          <div class="space-y-5">
-            {quickInfo.map((item) => (
-              <div class="border-b border-white/5 pb-4 last:border-0">
-                <span class="text-white/40 text-[10px] uppercase tracking-wider font-light block mb-1">{item.label}</span>
-                <span class="text-white font-medium text-sm">{item.value}</span>
-              </div>
-            ))}
-          </div>
-
-          <div class="mt-10 pt-8 border-t border-white/10 space-y-3">
-            <a href="/fr-fr/blog/grotte-emeraude/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              Grotte Émeraude
-            </a>
-            <a href="/fr-fr/blog/atrani/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              Atrani
-            </a>
-          </div>
-        </div>
-      </aside>
-
-    </div>
-  </section>
-
-</BaseLayout>
+</BlogPostLayout>

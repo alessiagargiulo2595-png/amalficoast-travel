@@ -1,122 +1,26 @@
 ---
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import { blogPosts } from '../../../../data/blog';
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
 
 const lang = 'it-it';
-const post = blogPosts.find(p => p.slug === 'delizia-al-limone')!;
+const post = {
+  title: 'Delizia al Limone',
+  subtitle: 'Storia e Segreti della Cupola più Amata della Costiera',
+  category: 'FOOD',
+  date: '22 Aprile 2026',
+  readTime: '7 min',
+  image: '/images/delizia-limone-hero.jpg',
+  imageAlt: 'Delizia al Limone - dolce simbolo della Costiera Amalfitana',
+  path: '/it-it/blog/delizia-al-limone/',
+};
+
+const metaTitle = 'Delizia al Limone: Storia, Ricetta e Dove Mangiarla | Costiera Amalfitana 2026';
+const metaDescription = "La storia della Delizia al Limone inventata da Carmine Marzuillo nel 1978, i segreti della ricetta originale con limoni IGP e i tre indirizzi imperdibili sulla Costiera Amalfitana.";
 
 const breadcrumbs = [
   { name: 'Home', url: '/it-it/' },
   { name: 'Food', url: '/it-it/blog/' },
   { name: 'Delizia al Limone', url: '/it-it/blog/delizia-al-limone/' },
 ];
-
-const faq = [
-  {
-    q: 'Qual è la differenza tra la Delizia al Limone e un normale Pan di Spagna al limone?',
-    a: 'La struttura della Delizia è molto più complessa: prevede una doppia crema (pasticcera e chantilly al limone) e una glassatura esterna che la mantiene umida e soffice, a differenza di una classica torta che tende ad asciugarsi.',
-  },
-  {
-    q: 'Posso usare limoni comuni del supermercato?',
-    a: 'Puoi, ma il risultato non sarà lo stesso. Il segreto della Delizia è negli oli essenziali della buccia dei limoni IGP di Sorrento o Amalfi, che non sono trattati e hanno un profumo infinitamente più persistente.',
-  },
-  {
-    q: 'Esiste una versione della Delizia per celiaci?',
-    a: 'Molte pasticcerie artigianali in Costiera ora offrono versioni gluten-free utilizzando farine di riso o amidi, mantenendo intatta la magia della crema al limone.',
-  },
-  {
-    q: 'Chi ha inventato la Delizia al Limone?',
-    a: 'Il maestro pasticciere sorrentino Carmine Marzuillo, che la presentò per la prima volta nel 1978 a un concorso gastronomico a Formia. In pochi anni divenne il dolce simbolo dell\'intera Costiera Amalfitana.',
-  },
-  {
-    q: 'Dove si mangia la migliore Delizia al Limone della Costiera?',
-    a: 'I luoghi più celebri sono: la Pasticceria Sal De Riso a Minori (probabilmente la più famosa al mondo), la Pasticceria Pansa accanto al Duomo di Amalfi e l\'Antico Francischiello a Massa Lubrense, luogo d\'origine della ricetta.',
-  },
-];
-
-const schemaArticle = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": post.title,
-  "description": "La storia della Delizia al Limone: inventata nel 1978 da Carmine Marzuillo, dove mangiarla nella Costiera Amalfitana e i segreti per rifarla a casa con limoni IGP.",
-  "image": `https://amalficoast-travel.com${post.image}`,
-  "datePublished": "2026-04-22",
-  "dateModified": "2026-04-22",
-  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
-  "publisher": { "@type": "Organization", "name": "Amalfi Coast Travel", "url": "https://amalficoast-travel.com" },
-  "url": "https://amalficoast-travel.com/it-it/blog/delizia-al-limone/",
-  "inLanguage": "it-IT",
-  "keywords": "Delizia al Limone, dolci Costiera Amalfitana, Sal De Riso, limone Sorrento IGP, pasticceria campana, ricetta Delizia al Limone",
-};
-
-const schemaRecipe = {
-  "@context": "https://schema.org",
-  "@type": "Recipe",
-  "name": "Delizia al Limone",
-  "description": "La cupola morbida di pan di spagna, intrisa di bagna al limoncello e ricoperta da una nuvola di crema al limone. Il dolce simbolo della Costiera Amalfitana.",
-  "image": `https://amalficoast-travel.com${post.image}`,
-  "author": { "@type": "Person", "name": "Carmine Marzuillo" },
-  "datePublished": "2026-04-22",
-  "url": "https://amalficoast-travel.com/it-it/blog/delizia-al-limone/",
-  "prepTime": "PT45M",
-  "cookTime": "PT20M",
-  "totalTime": "PT3H",
-  "recipeYield": "8 porzioni",
-  "recipeCategory": "Dessert",
-  "recipeCuisine": "Italiana",
-  "keywords": "delizia al limone, dolce campano, limone IGP, limoncello",
-  "recipeIngredient": [
-    "4 uova fresche",
-    "120 g zucchero",
-    "120 g farina 00",
-    "500 ml latte intero",
-    "4 tuorli",
-    "150 g zucchero (per la crema)",
-    "50 g amido di mais",
-    "scorza di 2 limoni IGP non trattati",
-    "300 ml panna fresca da montare",
-    "100 ml Limoncello di Sorrento",
-    "50 ml acqua",
-    "30 g zucchero (per la bagna)",
-  ],
-  "recipeInstructions": [
-    {
-      "@type": "HowToStep",
-      "name": "Preparare il pan di spagna",
-      "text": "Montare le uova con lo zucchero a lungo fino a ottenere un composto gonfio e spumoso. Incorporare la farina setacciata con movimenti delicati dal basso verso l'alto. Versare negli stampini a semisfera imburrati e cuocere a 180°C per 18-20 minuti. Lasciare raffreddare.",
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Preparare la crema al limone",
-      "text": "Scaldare il latte con la scorza di limone. A parte, sbattere i tuorli con lo zucchero e l'amido. Versare il latte caldo a filo mescolando, poi cuocere a fuoco dolce fino ad addensamento. Coprire con pellicola a contatto e far raffreddare completamente.",
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Montare la chantilly al limone",
-      "text": "Montare la panna a neve ferma. Unire la crema pasticcera fredda alla panna montata con movimenti delicati. La crema finale deve essere soffice e profumata.",
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Preparare la bagna al limoncello",
-      "text": "Sciogliere lo zucchero nell'acqua calda. Aggiungere il Limoncello a temperatura ambiente. Lasciare raffreddare prima di usarla.",
-    },
-    {
-      "@type": "HowToStep",
-      "name": "Assemblare e glassare",
-      "text": "Tagliare le cupole di pan di spagna a metà. Inzuppare con la bagna al limoncello. Farcire con la crema al limone. Richiudere la cupola, ricoprire completamente con la crema allungata con un cucchiaio di latte. Riporre in frigo per almeno 2 ore prima di servire.",
-    },
-  ],
-};
-
-const schemaFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faq.map(item => ({
-    "@type": "Question",
-    "name": item.q,
-    "acceptedAnswer": { "@type": "Answer", "text": item.a },
-  })),
-};
 
 const quickInfo = [
   { label: 'Creatore', value: 'Carmine Marzuillo (1978)' },
@@ -128,293 +32,225 @@ const quickInfo = [
   { label: 'Abbinamento', value: 'Limoncello ghiacciato o passito di Tramonti' },
   { label: 'Dove mangiarla', value: 'Sal De Riso (Minori) · Pansa (Amalfi)' },
 ];
+
+const faq = [
+  {
+    q: 'Qual è la differenza tra la Delizia al Limone e un normale Pan di Spagna al limone?',
+    a: 'La struttura della Delizia è molto più complessa: prevede una doppia crema (pasticcera e chantilly al limone) e una glassatura esterna che la mantiene umida e soffice, a differenza di una classica torta che tende ad asciugarsi.',
+  },
+  {
+    q: 'Posso usare limoni comuni del supermercato?',
+    a: "Puoi, ma il risultato non sarà lo stesso. Il segreto della Delizia è negli oli essenziali della buccia dei limoni IGP di Sorrento o Amalfi, che non sono trattati e hanno un profumo infinitamente più persistente.",
+  },
+  {
+    q: 'Esiste una versione della Delizia per celiaci?',
+    a: 'Molte pasticcerie artigianali in Costiera ora offrono versioni gluten-free utilizzando farine di riso o amidi, mantenendo intatta la magia della crema al limone.',
+  },
+  {
+    q: 'Chi ha inventato la Delizia al Limone?',
+    a: "Il maestro pasticciere sorrentino Carmine Marzuillo, che la presentò per la prima volta nel 1978 a un concorso gastronomico a Formia. In pochi anni divenne il dolce simbolo dell'intera Costiera Amalfitana.",
+  },
+  {
+    q: 'Dove si mangia la migliore Delizia al Limone della Costiera?',
+    a: 'I luoghi più celebri sono: la Pasticceria Sal De Riso a Minori (probabilmente la più famosa al mondo), la Pasticceria Pansa accanto al Duomo di Amalfi e l\'Antico Francischiello a Massa Lubrense, luogo d\'origine della ricetta.',
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Limoncello Tour', href: '/it-it/esperienze/limoncello-tour/' },
+  { label: 'Cooking Class', href: '/it-it/esperienze/cooking-class/' },
+  { label: 'Alici di Cetara', href: '/it-it/blog/alici-di-cetara/' },
+];
+
+const authorRole = 'Food Critic & Local Expert · Costiera Amalfitana';
+
+const schemaRecipe = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Delizia al Limone",
+  "description": "La cupola morbida di pan di spagna, intrisa di bagna al limoncello e ricoperta da una nuvola di crema al limone. Il dolce simbolo della Costiera Amalfitana.",
+  "image": "https://amalficoast-travel.com/images/delizia-limone-hero.jpg",
+  "author": { "@type": "Person", "name": "Carmine Marzuillo" },
+  "datePublished": "2026-04-22",
+  "url": "https://amalficoast-travel.com/it-it/blog/delizia-al-limone/",
+  "prepTime": "PT45M",
+  "cookTime": "PT20M",
+  "totalTime": "PT3H",
+  "recipeYield": "8 porzioni",
+  "recipeCategory": "Dessert",
+  "recipeCuisine": "Italiana",
+  "keywords": "delizia al limone, dolce campano, limone IGP, limoncello",
+  "recipeIngredient": [
+    "4 uova fresche", "120 g zucchero", "120 g farina 00",
+    "500 ml latte intero", "4 tuorli", "150 g zucchero (per la crema)",
+    "50 g amido di mais", "scorza di 2 limoni IGP non trattati",
+    "300 ml panna fresca da montare", "100 ml Limoncello di Sorrento",
+    "50 ml acqua", "30 g zucchero (per la bagna)",
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Preparare il pan di spagna", "text": "Montare le uova con lo zucchero a lungo fino a ottenere un composto gonfio e spumoso. Incorporare la farina setacciata con movimenti delicati. Versare negli stampini a semisfera e cuocere a 180°C per 18-20 minuti." },
+    { "@type": "HowToStep", "name": "Preparare la crema al limone", "text": "Scaldare il latte con la scorza di limone. Sbattere i tuorli con zucchero e amido, versare il latte caldo a filo e cuocere fino ad addensamento. Far raffreddare completamente." },
+    { "@type": "HowToStep", "name": "Montare la chantilly al limone", "text": "Montare la panna a neve ferma. Unire la crema pasticcera fredda alla panna montata con movimenti delicati." },
+    { "@type": "HowToStep", "name": "Preparare la bagna al limoncello", "text": "Sciogliere lo zucchero nell'acqua calda. Aggiungere il Limoncello a temperatura ambiente. Lasciare raffreddare." },
+    { "@type": "HowToStep", "name": "Assemblare e glassare", "text": "Tagliare le cupole di pan di spagna a metà. Inzuppare con la bagna al limoncello. Farcire con la crema al limone. Ricoprire completamente con la crema allungata con un cucchiaio di latte. Riporre in frigo per almeno 2 ore." },
+  ],
+};
 ---
 
-<BaseLayout
-  title="Delizia al Limone: Storia, Ricetta e Dove Mangiarla | Costiera Amalfitana 2026"
-  description="La storia della Delizia al Limone inventata da Carmine Marzuillo nel 1978, i segreti della ricetta originale con limoni IGP e i tre indirizzi imperdibili sulla Costiera Amalfitana."
+<BlogPostLayout
   lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
   breadcrumbs={breadcrumbs}
-  schema={[schemaArticle, schemaRecipe, schemaFaq]}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  extraSchema={[schemaRecipe]}
 >
 
-  <!-- Hero -->
-  <section class="relative h-[75vh] overflow-hidden flex items-center justify-center">
-    <img
-      src={post.image}
-      alt="Delizia al Limone - dolce simbolo della Costiera Amalfitana"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/80"></div>
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      Se la Costiera Amalfitana avesse un sapore, sarebbe senza dubbio quello della Delizia al Limone. Questa morbida cupola di pan di spagna, intrisa di sciroppo profumato e ricoperta da una nuvola di crema al limone, è molto più di un dolce: è l'essenza del sole di Sorrento e Amalfi racchiusa in un morso.
+    </p>
+  </div>
 
-    <!-- Breadcrumb visibile: Home > Food > Articolo -->
-    <nav aria-label="breadcrumb" class="absolute bottom-8 left-0 right-0 z-10 max-w-7xl mx-auto px-6">
-      <ol class="flex items-center gap-1.5 text-white/60 text-xs" itemscope itemtype="https://schema.org/BreadcrumbList">
-        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/it-it/" class="hover:text-white transition-colors" itemprop="item">
-            <span itemprop="name">Home</span>
-          </a>
-          <meta itemprop="position" content="1" />
-        </li>
-        <li aria-hidden="true"><span class="mx-0.5">/</span></li>
-        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="/it-it/blog/" class="hover:text-white transition-colors" itemprop="item">
-            <span itemprop="name">Food</span>
-          </a>
-          <meta itemprop="position" content="2" />
-        </li>
-        <li aria-hidden="true"><span class="mx-0.5">/</span></li>
-        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="text-white">
-          <span itemprop="name">Delizia al Limone</span>
-          <meta itemprop="position" content="3" />
-        </li>
-      </ol>
-    </nav>
+  <!-- La Storia -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Storia: L'Invenzione di un Maestro</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      A differenza di molti dolci della tradizione campana che affondano le radici nei secoli scorsi, la Delizia al Limone ha una data di nascita precisa: <strong>1978</strong>.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Il suo creatore è il maestro pasticciere sorrentino <strong>Carmine Marzuillo</strong>, che la presentò per la prima volta a un concorso gastronomico a Formia. L'idea era semplice ma rivoluzionaria: utilizzare lo Sfusato Amalfitano e il Femminiello Sorrentino per creare un dolce che fosse leggero, fresco ed estremamente profumato. Il successo fu immediato, e in pochi anni la Delizia è passata dai laboratori di Sorrento alle tavole di tutto il mondo.
+    </p>
 
-    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-4">
-        {post.category} · {post.date}
+    <blockquote class="border-l-4 border-med-gold pl-6 my-8">
+      <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+        "Un equilibrio perfetto tra l'acidità dell'agrume e la dolcezza della crema: la Delizia è il bacio del sole sulla tavola."
       </p>
-      <h1 class="font-serif text-display text-white mb-6 leading-tight">
-        Delizia al Limone
-      </h1>
-      <p class="text-xl md:text-2xl font-light text-white/80">
-        Storia e Segreti della Cupola più Amata della Costiera
-      </p>
-      <div class="mt-6 flex items-center justify-center gap-4 text-white/60 text-sm">
-        <span>{post.date}</span>
-        <span>·</span>
-        <span>{post.readTime} di lettura</span>
+    </blockquote>
+  </div>
+
+  <!-- Dove mangiare -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Dove Mangiare la Migliore Delizia al Limone</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Sebbene oggi si trovi in ogni pasticceria della regione, ci sono dei luoghi "sacri" dove la degustazione diventa un'esperienza mistica.
+    </p>
+
+    <div class="space-y-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">1</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">Pasticceria Sal De Riso — Minori</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Probabilmente la più famosa al mondo. La versione di Salvatore De Riso è celebre per l'equilibrio della bagnatura e la qualità della materia prima. Irrinunciabile.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">2</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">Pasticceria Pansa — Amalfi</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Situata proprio accanto al Duomo, qui la Delizia si mangia circondati dalla storia, con una ricetta che rispetta rigorosamente i canoni classici.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">3</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">Antico Francischiello — Massa Lubrense</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Il luogo dove la famiglia Marzuillo ha reso questo dolce una leggenda. È qui che è nata la ricetta originale.</p>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Contenuto + Sidebar -->
-  <section class="bg-med-cream py-24 px-6">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+  <!-- La Ricetta -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Ricetta: Come Rifarla a Casa</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Preparare una vera Delizia richiede pazienza e, soprattutto, limoni di qualità IGP. Ecco gli ingredienti e i passaggi fondamentali.
+    </p>
 
-      <!-- Articolo -->
-      <article class="lg:col-span-8 space-y-12">
-
-        <!-- Intro -->
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-6">Gli Ingredienti (per 8 cupoline)</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
         <div>
-          <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
-            Se la Costiera Amalfitana avesse un sapore, sarebbe senza dubbio quello della Delizia al Limone. Questa morbida cupola di pan di spagna, intrisa di sciroppo profumato e ricoperta da una nuvola di crema al limone, è molto più di un dolce: è l'essenza del sole di Sorrento e Amalfi racchiusa in un morso.
-          </p>
+          <p class="text-med-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Pan di Spagna</p>
+          <ul class="space-y-2 text-slate-600 text-sm">
+            <li>4 uova fresche</li>
+            <li>120 g zucchero</li>
+            <li>120 g farina 00</li>
+          </ul>
         </div>
-
-        <!-- La Storia -->
         <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Storia: L'Invenzione di un Maestro</h2>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            A differenza di molti dolci della tradizione campana che affondano le radici nei secoli scorsi, la Delizia al Limone ha una data di nascita precisa: <strong>1978</strong>.
-          </p>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Il suo creatore è il maestro pasticciere sorrentino <strong>Carmine Marzuillo</strong>, che la presentò per la prima volta a un concorso gastronomico a Formia. L'idea era semplice ma rivoluzionaria: utilizzare lo Sfusato Amalfitano e il Femminiello Sorrentino per creare un dolce che fosse leggero, fresco ed estremamente profumato. Il successo fu immediato, e in pochi anni la Delizia è passata dai laboratori di Sorrento alle tavole di tutto il mondo.
-          </p>
-
-          <blockquote class="border-l-4 border-med-gold pl-6 my-8">
-            <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
-              "Un equilibrio perfetto tra l'acidità dell'agrume e la dolcezza della crema: la Delizia è il bacio del sole sulla tavola."
-            </p>
-          </blockquote>
+          <p class="text-med-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Crema al Limone</p>
+          <ul class="space-y-2 text-slate-600 text-sm">
+            <li>500 ml latte intero</li>
+            <li>4 tuorli</li>
+            <li>150 g zucchero</li>
+            <li>50 g amido di mais</li>
+            <li>Scorza 2 limoni IGP</li>
+            <li>300 ml panna fresca</li>
+          </ul>
         </div>
-
-        <!-- Dove mangiare -->
         <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Dove Mangiare la Migliore Delizia al Limone</h2>
-          <p class="text-slate-600 text-lg leading-relaxed mb-8">
-            Sebbene oggi si trovi in ogni pasticceria della regione, ci sono dei luoghi "sacri" dove la degustazione diventa un'esperienza mistica.
-          </p>
-
-          <div class="space-y-4">
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">1</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">Pasticceria Sal De Riso — Minori</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Probabilmente la più famosa al mondo. La versione di Salvatore De Riso è celebre per l'equilibrio della bagnatura e la qualità della materia prima. Irrinunciabile.</p>
-              </div>
-            </div>
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">2</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">Pasticceria Pansa — Amalfi</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Situata proprio accanto al Duomo, qui la Delizia si mangia circondati dalla storia, con una ricetta che rispetta rigorosamente i canoni classici.</p>
-              </div>
-            </div>
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">3</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">Antico Francischiello — Massa Lubrense</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Il luogo dove la famiglia Marzuillo ha reso questo dolce una leggenda. È qui che è nata la ricetta originale.</p>
-              </div>
-            </div>
-          </div>
+          <p class="text-med-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Bagna</p>
+          <ul class="space-y-2 text-slate-600 text-sm">
+            <li>100 ml Limoncello</li>
+            <li>50 ml acqua</li>
+            <li>30 g zucchero</li>
+          </ul>
         </div>
-
-        <!-- La Ricetta -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Ricetta: Come Rifarla a Casa</h2>
-          <p class="text-slate-600 text-lg leading-relaxed mb-8">
-            Preparare una vera Delizia richiede pazienza e, soprattutto, limoni di qualità IGP. Ecco gli ingredienti e i passaggi fondamentali.
-          </p>
-
-          <!-- Ingredienti -->
-          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
-            <h3 class="font-serif text-xl font-bold text-slate-900 mb-6">Gli Ingredienti (per 8 cupoline)</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <div>
-                <p class="text-med-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Pan di Spagna</p>
-                <ul class="space-y-2 text-slate-600 text-sm">
-                  <li>4 uova fresche</li>
-                  <li>120 g zucchero</li>
-                  <li>120 g farina 00</li>
-                </ul>
-              </div>
-              <div>
-                <p class="text-med-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Crema al Limone</p>
-                <ul class="space-y-2 text-slate-600 text-sm">
-                  <li>500 ml latte intero</li>
-                  <li>4 tuorli</li>
-                  <li>150 g zucchero</li>
-                  <li>50 g amido di mais</li>
-                  <li>Scorza 2 limoni IGP</li>
-                  <li>300 ml panna fresca</li>
-                </ul>
-              </div>
-              <div>
-                <p class="text-med-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Bagna</p>
-                <ul class="space-y-2 text-slate-600 text-sm">
-                  <li>100 ml Limoncello</li>
-                  <li>50 ml acqua</li>
-                  <li>30 g zucchero</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!-- Procedimento -->
-          <div class="space-y-4">
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-8 h-8 rounded-full bg-slate-900 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">Il Pan di Spagna</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Montare le uova con lo zucchero a lungo fino a ottenere un composto gonfio e spumoso. Incorporare la farina setacciata con movimenti delicati dal basso verso l'alto. Cuocere negli stampini a semisfera a 180°C per 18-20 minuti.</p>
-              </div>
-            </div>
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-8 h-8 rounded-full bg-slate-900 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">La Crema al Limone</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Scaldare il latte con la scorza di limone. Sbattere i tuorli con zucchero e amido, versare il latte caldo a filo e cuocere fino ad addensamento. Far raffreddare completamente, poi alleggerire con la panna montata a neve ferma.</p>
-              </div>
-            </div>
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-8 h-8 rounded-full bg-slate-900 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">Il Segreto del Maestro: il Montaggio</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">La Delizia va montata "al contrario": si farcisce la cupolina, si spruzza con la bagna al limoncello, si ricopre con la crema allungata e si lascia riposare in frigo per almeno 2 ore. Il riposo è fondamentale affinché i sapori si fondano perfettamente.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Local Tips -->
-        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-          <div class="flex items-center gap-4 mb-6">
-            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
-            <h3 class="text-xl font-bold text-slate-900">I Consigli dell'Esperto</h3>
-          </div>
-          <div class="space-y-6">
-            <div>
-              <p class="font-bold text-slate-900 mb-1">La Temperatura</p>
-              <p class="text-slate-600 text-sm leading-relaxed">Non mangiatela mai troppo fredda di frigo. Lasciatela fuori per 10-15 minuti prima di servirla: la crema deve essere setosa e il pan di spagna deve sciogliersi in bocca.</p>
-            </div>
-            <div>
-              <p class="font-bold text-slate-900 mb-1">Il Colore</p>
-              <p class="text-slate-600 text-sm leading-relaxed">Diffidate dalle Delizie di un giallo troppo acceso. La vera crema al limone artigianale ha un colore giallo paglierino delicato. Il giallo "evidenziatore" è spesso sinonimo di coloranti artificiali.</p>
-            </div>
-            <div>
-              <p class="font-bold text-slate-900 mb-1">Abbinamento</p>
-              <p class="text-slate-600 text-sm leading-relaxed">Accompagnatela con un bicchierino di Limoncello ghiacciato o, se volete osare, con un calice di vino bianco passito della zona di Tramonti.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- FAQ -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
-          <div class="space-y-4">
-            {faq.map((item) => (
-              <div class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
-                <details class="group">
-                  <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
-                    <span class="font-bold text-slate-900">{item.q}</span>
-                    <svg class="w-5 h-5 text-med-gold flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                  </summary>
-                  <div class="px-6 pb-6 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
-                    {item.a}
-                  </div>
-                </details>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Author box -->
-        <div class="flex items-center gap-5 pt-8 border-t border-slate-100">
-          <div class="w-14 h-14 rounded-full bg-med-gold/15 flex items-center justify-center flex-shrink-0">
-            <span class="text-med-gold font-serif font-bold text-xl">AC</span>
-          </div>
-          <div>
-            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Scritto da</p>
-            <p class="font-bold text-slate-900">Redazione Discovery</p>
-            <p class="text-slate-500 text-sm">Food Critic & Local Expert · Costiera Amalfitana</p>
-          </div>
-        </div>
-
-        <!-- Back link -->
-        <div class="pt-4">
-          <a href="/it-it/blog/" class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-slate-900 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-            Torna al Blog
-          </a>
-        </div>
-
-      </article>
-
-      <!-- Sidebar -->
-      <aside class="lg:col-span-4">
-        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
-          <h3 class="font-serif text-2xl font-bold mb-8 text-med-gold">Info Rapide</h3>
-          <div class="space-y-5">
-            {quickInfo.map((item) => (
-              <div class="border-b border-white/5 pb-4 last:border-0">
-                <span class="text-white/40 text-[10px] uppercase tracking-wider font-light block mb-1">{item.label}</span>
-                <span class="text-white font-medium text-sm">{item.value}</span>
-              </div>
-            ))}
-          </div>
-
-          <div class="mt-10 pt-8 border-t border-white/10 space-y-3">
-            <a href="/it-it/esperienze/limoncello-tour/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              Limoncello Tour
-            </a>
-            <a href="/it-it/esperienze/cooking-class/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              Cooking Class
-            </a>
-            <a href="/it-it/blog/alici-di-cetara/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              Alici di Cetara
-            </a>
-          </div>
-        </div>
-      </aside>
-
+      </div>
     </div>
-  </section>
 
-</BaseLayout>
+    <div class="space-y-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-8 h-8 rounded-full bg-slate-900 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">Il Pan di Spagna</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Montare le uova con lo zucchero a lungo fino a ottenere un composto gonfio e spumoso. Incorporare la farina setacciata con movimenti delicati dal basso verso l'alto. Cuocere negli stampini a semisfera a 180°C per 18-20 minuti.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-8 h-8 rounded-full bg-slate-900 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">La Crema al Limone</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Scaldare il latte con la scorza di limone. Sbattere i tuorli con zucchero e amido, versare il latte caldo a filo e cuocere fino ad addensamento. Far raffreddare completamente, poi alleggerire con la panna montata a neve ferma.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-8 h-8 rounded-full bg-slate-900 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">Il Segreto del Maestro: il Montaggio</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">La Delizia va montata "al contrario": si farcisce la cupolina, si spruzza con la bagna al limoncello, si ricopre con la crema allungata e si lascia riposare in frigo per almeno 2 ore. Il riposo è fondamentale affinché i sapori si fondano perfettamente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Local Tips -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold text-slate-900">I Consigli dell'Esperto</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">La Temperatura</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Non mangiatela mai troppo fredda di frigo. Lasciatela fuori per 10-15 minuti prima di servirla: la crema deve essere setosa e il pan di spagna deve sciogliersi in bocca.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Il Colore</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Diffidate dalle Delizie di un giallo troppo acceso. La vera crema al limone artigianale ha un colore giallo paglierino delicato. Il giallo "evidenziatore" è spesso sinonimo di coloranti artificiali.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Abbinamento</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Accompagnatela con un bicchierino di Limoncello ghiacciato o, se volete osare, con un calice di vino bianco passito della zona di Tramonti.</p>
+      </div>
+    </div>
+  </div>
+
+</BlogPostLayout>

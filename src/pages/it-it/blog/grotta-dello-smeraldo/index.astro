@@ -1,80 +1,26 @@
 ---
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import { blogPosts } from '../../../../data/blog';
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
 
 const lang = 'it-it';
-const post = blogPosts.find(p => p.slug === 'grotta-dello-smeraldo')!;
+const post = {
+  title: 'Grotta dello Smeraldo',
+  subtitle: 'Guida Completa alla Perla di Conca dei Marini',
+  category: 'SCOPERTE',
+  date: '22 Aprile 2026',
+  readTime: '6 min',
+  image: '/images/grotta-smeraldo-hero.webp',
+  imageAlt: 'Grotta dello Smeraldo - Conca dei Marini, Costiera Amalfitana',
+  path: '/it-it/blog/grotta-dello-smeraldo/',
+};
+
+const metaTitle = 'Grotta dello Smeraldo: Guida Completa 2026 | Conca dei Marini';
+const metaDescription = 'Guida alla Grotta dello Smeraldo di Conca dei Marini: come arrivare, orari, prezzi, il presepe sommerso e il segreto del colore smeraldo. Tutto quello che devi sapere.';
 
 const breadcrumbs = [
   { name: 'Home', url: '/it-it/' },
-  { name: 'Blog', url: '/it-it/blog/' },
+  { name: 'Scoperte', url: '/it-it/blog/' },
   { name: 'Grotta dello Smeraldo', url: '/it-it/blog/grotta-dello-smeraldo/' },
 ];
-
-const faq = [
-  {
-    q: 'Come si arriva alla Grotta dello Smeraldo?',
-    a: 'Ci sono due modi: via mare con i taxi-boat da Amalfi (circa 10 minuti, partenze frequenti in alta stagione), oppure via terra lungo la Statale Amalfitana - a Conca dei Marini si imbocca un ascensore panoramico che scende direttamente all\'imbarcadero della grotta.',
-  },
-  {
-    q: 'Quando e il periodo migliore per visitarla?',
-    a: 'Le ore mattutine tra le 10 e le 12 sono le piu magiche: la luce del sole filtra piu direttamente attraverso l\'apertura subacquea, amplificando l\'effetto smeraldo. Evitate le giornate di mare mosso: in caso di onde la grotta puo essere inaccessibile.',
-  },
-  {
-    q: 'Quanto costa il biglietto d\'ingresso?',
-    a: 'Il biglietto d\'ingresso alla grotta e di circa 7 euro a persona (2026). Il costo del taxi-boat da Amalfi si aggiunge separatamente (circa 10-12 euro a/r). Se si arriva via terra, il costo dell\'ascensore e incluso nel biglietto della grotta.',
-  },
-  {
-    q: 'Cos\'e il Presepe Sommerso?',
-    a: 'E un presepe in ceramica posizionato sul fondale della grotta nel 1956 a circa 4 metri di profondita, opera dell\'artista Attilio Pentone. Le figure di terracotta smaltata raffigurano la Natività e sono perfettamente visibili attraverso le acque limpide. Ogni anno il 24 dicembre i sub aggiungono nuove statuine al presepe.',
-  },
-  {
-    q: 'Perche l\'acqua e di colore smeraldo?',
-    a: 'La grotta ha un\'apertura subacquea a circa 8 metri di profondita. La luce solare penetra attraverso questa fessura, viene rifratta dall\'acqua e illumina la caverna dal basso verso l\'alto, creando un\'intensa luminescenza verde-smeraldo. L\'effetto e totalmente naturale e varia con l\'angolazione del sole.',
-  },
-  {
-    q: 'Quanto dura la visita?',
-    a: 'La visita in barca all\'interno della grotta dura mediamente 20-30 minuti. Tenendo conto dei trasferimenti via mare da Amalfi, e consigliabile prevedere circa 1,5-2 ore totali per l\'esperienza completa.',
-  },
-  {
-    q: 'Si puo fare snorkeling o immersioni nella grotta?',
-    a: 'Le immersioni subacquee guidate sono possibili con dive center autorizzati della zona (Amalfi e Praiano). L\'accesso in snorkeling autonomo non e consentito ai visitatori normali per motivi di sicurezza e tutela del sito. Le immersioni organizzate permettono di avvicinarsi al presepe sommerso.',
-  },
-];
-
-const schemaArticle = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": post.title,
-  "description": "Guida completa alla Grotta dello Smeraldo di Conca dei Marini: storia, come arrivare, orari, prezzi, il presepe sommerso e il fenomeno del colore smeraldo spiegato.",
-  "image": post.image,
-  "datePublished": "2026-04-22",
-  "dateModified": "2026-04-22",
-  "author": {
-    "@type": "Organization",
-    "name": "Amalfi Coast Travel"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Amalfi Coast Travel",
-    "url": "https://amalficoast-travel.com"
-  },
-  "url": "https://amalficoast-travel.com/it-it/blog/grotta-dello-smeraldo/",
-  "inLanguage": "it-IT",
-};
-
-const schemaFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faq.map(item => ({
-    "@type": "Question",
-    "name": item.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": item.a,
-    },
-  })),
-};
 
 const quickInfo = [
   { label: 'Scoperta', value: '1932 - Luigi Buonocore' },
@@ -86,280 +32,179 @@ const quickInfo = [
   { label: 'Durata visita', value: '20-30 minuti' },
   { label: 'Periodo migliore', value: 'Mattina (10-12)' },
 ];
+
+const faq = [
+  { q: 'Come si arriva alla Grotta dello Smeraldo?', a: 'Ci sono due modi: via mare con i taxi-boat da Amalfi (circa 10 minuti, partenze frequenti in alta stagione), oppure via terra lungo la Statale Amalfitana - a Conca dei Marini si imbocca un ascensore panoramico che scende direttamente all\'imbarcadero della grotta.' },
+  { q: 'Quando e il periodo migliore per visitarla?', a: 'Le ore mattutine tra le 10 e le 12 sono le piu magiche: la luce del sole filtra piu direttamente attraverso l\'apertura subacquea, amplificando l\'effetto smeraldo. Evitate le giornate di mare mosso: in caso di onde la grotta puo essere inaccessibile.' },
+  { q: 'Quanto costa il biglietto d\'ingresso?', a: 'Il biglietto d\'ingresso alla grotta e di circa 7 euro a persona (2026). Il costo del taxi-boat da Amalfi si aggiunge separatamente (circa 10-12 euro a/r). Se si arriva via terra, il costo dell\'ascensore e incluso nel biglietto della grotta.' },
+  { q: 'Cos\'e il Presepe Sommerso?', a: 'E un presepe in ceramica posizionato sul fondale della grotta nel 1956 a circa 4 metri di profondita, opera dell\'artista Attilio Pentone. Le figure di terracotta smaltata raffigurano la Nativita e sono perfettamente visibili attraverso le acque limpide. Ogni anno il 24 dicembre i sub aggiungono nuove statuine al presepe.' },
+  { q: 'Perche l\'acqua e di colore smeraldo?', a: 'La grotta ha un\'apertura subacquea a circa 8 metri di profondita. La luce solare penetra attraverso questa fessura, viene rifratta dall\'acqua e illumina la caverna dal basso verso l\'alto, creando un\'intensa luminescenza verde-smeraldo. L\'effetto e totalmente naturale e varia con l\'angolazione del sole.' },
+  { q: 'Quanto dura la visita?', a: 'La visita in barca all\'interno della grotta dura mediamente 20-30 minuti. Tenendo conto dei trasferimenti via mare da Amalfi, e consigliabile prevedere circa 1,5-2 ore totali per l\'esperienza completa.' },
+  { q: 'Si puo fare snorkeling o immersioni nella grotta?', a: 'Le immersioni subacquee guidate sono possibili con dive center autorizzati della zona (Amalfi e Praiano). L\'accesso in snorkeling autonomo non e consentito ai visitatori normali per motivi di sicurezza e tutela del sito. Le immersioni organizzate permettono di avvicinarsi al presepe sommerso.' },
+];
+
+const sidebarLinks = [
+  { label: 'Tour in Barca', href: '/it-it/esperienze/tour-barca/' },
+  { label: 'Traghetti e Aliscafi', href: '/it-it/guida/traghetti/' },
+  { label: 'Bus SITA', href: '/it-it/guida/bus-sita/' },
+];
+
+const authorRole = 'Guide locali · Costiera Amalfitana';
 ---
 
-<BaseLayout
-  title="Grotta dello Smeraldo: Guida Completa 2026 | Conca dei Marini"
-  description="Guida alla Grotta dello Smeraldo di Conca dei Marini: come arrivare, orari, prezzi, il presepe sommerso e il segreto del colore smeraldo. Tutto quello che devi sapere."
+<BlogPostLayout
   lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
   breadcrumbs={breadcrumbs}
-  schema={[schemaArticle, schemaFaq]}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
 >
 
-  <!-- Hero -->
-  <section class="relative h-[75vh] overflow-hidden flex items-center justify-center">
-    <img
-      src={post.image}
-      alt="Grotta dello Smeraldo - Conca dei Marini, Costiera Amalfitana"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/80"></div>
-    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-4">
-        {post.category} · {post.date}
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      C'e un momento preciso in cui la barca s'infila nell'oscurita della caverna e poi, all'improvviso, tutto si trasforma. L'acqua non e piu blu: diventa verde. Un verde intenso, irreale, come se qualcuno avesse sciolto un'enorme smeraldo nell'acqua del Tirreno. Benvenuti alla Grotta dello Smeraldo, uno dei piu straordinari fenomeni naturali della Costiera Amalfitana.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Situata a Conca dei Marini, un piccolo comune di meno di 800 abitanti incastonato tra Positano e Amalfi, la grotta e raggiungibile sia via mare che via terra ed e una delle mete piu affascinanti - e meno frenetiche - dell'intera Costiera.
+    </p>
+  </div>
+
+  <!-- Storia geologica -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Scoperta e la Storia Geologica</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Era il 1932 quando il pescatore locale Luigi Buonocore, aggirandosi con la sua barca in cerca di approdi ripiegati lungo la costa, s'imbatte in una piccola apertura nella roccia calcarea. Infilandosi curioso all'interno, si trova davanti a uno spettacolo che non aveva mai visto: una caverna gigantesca illuminata da una luce verde soprannaturale. Cosi viene scoperta ufficialmente la Grotta dello Smeraldo.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Ma la vera storia geologica della grotta e molto piu antica. Si tratta di una caverna carsica formatasi milioni di anni fa all'interno dei calcari mesozoici che costituiscono la dorsale dei Monti Lattari. Originariamente era una grotta terrestre, con le classiche formazioni di stalattiti e stalagmiti tipiche delle caverne calcaree.
+    </p>
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm my-8">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Il Bradisismo: Quando la Terra Sprofonda</h3>
+      <p class="text-slate-600 leading-relaxed mb-4">
+        Il fenomeno che ha trasformato questa grotta terrestre in una caverna marina si chiama <strong>bradisismo</strong>: un lento ma inesorabile abbassamento del suolo causato dall'attivita vulcanica sottostante. Nel corso dei secoli, tutta questa sezione di costa e "sprofonda ta" di diversi metri, portando il pavimento della grotta sotto il livello del mare.
       </p>
-      <h1 class="font-serif text-display text-white mb-6 leading-tight">
-        Grotta dello Smeraldo
-      </h1>
-      <p class="text-xl md:text-2xl font-light text-white/80">
-        Guida Completa alla Perla di Conca dei Marini
+      <p class="text-slate-600 leading-relaxed">
+        Il risultato e una caverna per meta terrestre (con le stalattiti che pendono dal soffitto) e per meta marina, con l'acqua del Tirreno che occupa la parte bassa. Le stalagmiti originarie sono ora sommerse a circa 4 metri di profondita, visibili dall'alto attraverso le acque cristalline.
       </p>
-      <div class="mt-6 flex items-center justify-center gap-4 text-white/60 text-sm">
-        <span>{post.date}</span>
-        <span>·</span>
-        <span>{post.readTime} di lettura</span>
+    </div>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      La grotta si estende per circa 60 metri di larghezza e raggiunge un'altezza massima di 24 metri. Il soffitto e decorato da concrezioni calcaree millenarie, alcune delle quali formano suggestive colonne dove le stalattiti si sono quasi congiunte con le ex-stalagmiti ora sommerse.
+    </p>
+  </div>
+
+  <!-- Il fenomeno smeraldo -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Il Segreto del Colore Smeraldo</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Il fenomeno che rende questa grotta unica al mondo e puramente ottico-fisico, ma non per questo meno meraviglioso. Sul fondo della grotta, a circa 8 metri di profondita, si apre una grande fessura nel calcare che comunica direttamente con il mare aperto.
+    </p>
+    <div class="space-y-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">1</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">La luce entra dal basso</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">La luce solare penetra dall'esterno attraverso questa apertura subacquea. Invece di illuminare la caverna dall'alto come accade normalmente, la illumina dal basso verso l'alto.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">2</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">L'acqua filtra le lunghezze d'onda rosse</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">L'acqua marina assorbe le lunghezze d'onda piu lunghe dello spettro (i rossi e gli arancioni) mentre lascia passare le frequenze verdi e blu-verdi. Il risultato e una luce che arriva alla superficie della caverna gia fortemente virata verso il verde.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">3</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">La rifrazione amplifica l'effetto</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Quando questa luce verde-filtrata emerge in superficie, illumina la caverna dal basso creando un bagliore che si riflette sulle pareti calcaree e sul soffitto. Il risultato e quell'atmosfera magica, quasi subacquea, che ti avvolge non appena entri.</p>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Contenuto + Sidebar -->
-  <section class="bg-med-cream py-24 px-6">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+  <!-- Il Presepe Sommerso -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Il Presepe Sommerso: Una Tradizione dal 1956</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      A circa 4 metri di profondita, sul fondo della grotta, riposano le figure di un presepe in ceramica smaltata. E il Presepe Sommerso, una delle tradizioni piu suggestive dell'intera Costiera Amalfitana.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      La storia inizia nel 1956, quando il proprietario dell'imbarcadero Donato Carotenuto decide di collocare alcune figure in ceramica sul fondo della grotta. L'opera fu realizzata dall'artista sorrentino <strong>Attilio Pentone</strong>, specializzato nella ceramica tradizionale campana. Le figure rappresentano la classica Nativita: la Sacra Famiglia, i Re Magi, i pastori e gli animali del presepe napoletano.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Nel corso degli anni le figure sono aumentate: ogni 24 dicembre, un gruppo di sommozzatori locali scende sul fondo per aggiungere nuovi personaggi o restaurare quelli esistenti, mantenendo viva una tradizione che oggi conta oltre 30 statuine.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Viste dall'alto delle barchette che girano nella grotta, le figure del presepe appaiono in modo nitidissimo attraverso le acque trasparenti, illuminate dalla luce smeraldo che le avvolge come fosse una scena incantata.
+    </p>
+  </div>
 
-      <!-- Articolo principale -->
-      <article class="lg:col-span-8 space-y-12">
-
-        <!-- Intro -->
-        <div>
-          <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
-            C'e un momento preciso in cui la barca s'infila nell'oscurita della caverna e poi, all'improvviso, tutto si trasforma. L'acqua non e piu blu: diventa verde. Un verde intenso, irreale, come se qualcuno avesse sciolto un'enorme smeraldo nell'acqua del Tirreno. Benvenuti alla Grotta dello Smeraldo, uno dei piu straordinari fenomeni naturali della Costiera Amalfitana.
-          </p>
-          <p class="text-slate-600 text-lg leading-relaxed">
-            Situata a Conca dei Marini, un piccolo comune di meno di 800 abitanti incastonato tra Positano e Amalfi, la grotta e raggiungibile sia via mare che via terra ed e una delle mete piu affascinanti - e meno frenetiche - dell'intera Costiera.
-          </p>
-        </div>
-
-        <!-- Storia geologica -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Scoperta e la Storia Geologica</h2>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Era il 1932 quando il pescatore locale Luigi Buonocore, aggirandosi con la sua barca in cerca di approdi ripiegati lungo la costa, s'imbatte in una piccola apertura nella roccia calcarea. Infilandosi curioso all'interno, si trova davanti a uno spettacolo che non aveva mai visto: una caverna gigantesca illuminata da una luce verde soprannaturale. Cosi viene scoperta ufficialmente la Grotta dello Smeraldo.
-          </p>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Ma la vera storia geologica della grotta e molto piu antica. Si tratta di una caverna carsica formatasi milioni di anni fa all'interno dei calcari mesozoici che costituiscono la dorsale dei Monti Lattari. Originariamente era una grotta terrestre, con le classiche formazioni di stalattiti e stalagmiti tipiche delle caverne calcaree.
-          </p>
-
-          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm my-8">
-            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Il Bradisismo: Quando la Terra Sprofonda</h3>
-            <p class="text-slate-600 leading-relaxed mb-4">
-              Il fenomeno che ha trasformato questa grotta terrestre in una caverna marina si chiama <strong>bradisismo</strong>: un lento ma inesorabile abbassamento del suolo causato dall'attivita vulcanica sottostante. Nel corso dei secoli, tutta questa sezione di costa e "sprofonda ta" di diversi metri, portando il pavimento della grotta sotto il livello del mare.
-            </p>
-            <p class="text-slate-600 leading-relaxed">
-              Il risultato e una caverna per meta terrestre (con le stalattiti che pendono dal soffitto) e per meta marina, con l'acqua del Tirreno che occupa la parte bassa. Le stalagmiti originarie sono ora sommerse a circa 4 metri di profondita, visibili dall'alto attraverso le acque cristalline.
-            </p>
-          </div>
-
-          <p class="text-slate-600 text-lg leading-relaxed">
-            La grotta si estende per circa 60 metri di larghezza e raggiunge un'altezza massima di 24 metri. Il soffitto e decorato da concrezioni calcaree millenarie, alcune delle quali formano suggestive colonne dove le stalattiti si sono quasi congiunte con le ex-stalagmiti ora sommerse.
-          </p>
-        </div>
-
-        <!-- Il fenomeno smeraldo -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Il Segreto del Colore Smeraldo</h2>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Il fenomeno che rende questa grotta unica al mondo e puramente ottico-fisico, ma non per questo meno meraviglioso. Sul fondo della grotta, a circa 8 metri di profondita, si apre una grande fessura nel calcare che comunica direttamente con il mare aperto.
-          </p>
-
-          <div class="space-y-4">
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">1</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">La luce entra dal basso</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">La luce solare penetra dall'esterno attraverso questa apertura subacquea. Invece di illuminare la caverna dall'alto come accade normalmente, la illumina dal basso verso l'alto.</p>
-              </div>
-            </div>
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">2</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">L'acqua filtra le lunghezze d'onda rosse</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">L'acqua marina assorbe le lunghezze d'onda piu lunghe dello spettro (i rossi e gli arancioni) mentre lascia passare le frequenze verdi e blu-verdi. Il risultato e una luce che arriva alla superficie della caverna gia fortemente virata verso il verde.</p>
-              </div>
-            </div>
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">3</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">La rifrazione amplifica l'effetto</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Quando questa luce verde-filtrata emerge in superficie, illumina la caverna dal basso creando un bagliore che si riflette sulle pareti calcaree e sul soffitto. Il risultato e quell'atmosfera magica, quasi subacquea, che ti avvolge non appena entri.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Il Presepe Sommerso -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Il Presepe Sommerso: Una Tradizione dal 1956</h2>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            A circa 4 metri di profondita, sul fondo della grotta, riposano le figure di un presepe in ceramica smaltata. E il Presepe Sommerso, una delle tradizioni piu suggestive dell'intera Costiera Amalfitana.
-          </p>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            La storia inizia nel 1956, quando il proprietario dell'imbarcadero Donato Carotenuto decide di collocare alcune figure in ceramica sul fondo della grotta. L'opera fu realizzata dall'artista sorrentino <strong>Attilio Pentone</strong>, specializzato nella ceramica tradizionale campana. Le figure rappresentano la classica Nativita: la Sacra Famiglia, i Re Magi, i pastori e gli animali del presepe napoletano.
-          </p>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Nel corso degli anni le figure sono aumentate: ogni 24 dicembre, un gruppo di sommozzatori locali scende sul fondo per aggiungere nuovi personaggi o restaurare quelli esistenti, mantenendo viva una tradizione che oggi conta oltre 30 statuine.
-          </p>
-          <p class="text-slate-600 text-lg leading-relaxed">
-            Viste dall'alto delle barchette che girano nella grotta, le figure del presepe appaiono in modo nitidissimo attraverso le acque trasparenti, illuminate dalla luce smeraldo che le avvolge come fosse una scena incantata.
-          </p>
-        </div>
-
-        <!-- Come arrivare - tabella -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Arrivare: Tutte le Opzioni</h2>
-          <p class="text-slate-600 text-lg leading-relaxed mb-8">
-            La Grotta dello Smeraldo si trova sulla Statale Amalfitana tra Amalfi (5 km) e Positano (15 km). Ci sono tre modi per raggiungerla.
-          </p>
-
-          <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
-            <table class="w-full text-sm">
-              <thead class="bg-slate-900 text-white">
-                <tr>
-                  <th class="text-left p-5 font-serif font-bold text-med-gold">Mezzo</th>
-                  <th class="text-left p-5 font-serif font-bold text-med-gold">Partenza</th>
-                  <th class="text-left p-5 font-serif font-bold text-med-gold">Durata</th>
-                  <th class="text-left p-5 font-serif font-bold text-med-gold">Note</th>
-                </tr>
-              </thead>
-              <tbody class="bg-white">
-                <tr class="border-b border-slate-100">
-                  <td class="p-5 font-bold text-slate-900">Via mare (consigliato)</td>
-                  <td class="p-5 text-slate-600">Porto di Amalfi</td>
-                  <td class="p-5 text-slate-600">~10 min</td>
-                  <td class="p-5 text-slate-500">Taxi-boat con partenze frequenti (aprile-ottobre). Prezzo ca. €10-12 a/r. Si sale direttamente sulla barca che entra in grotta.</td>
-                </tr>
-                <tr class="border-b border-slate-100">
-                  <td class="p-5 font-bold text-slate-900">Via terra (ascensore)</td>
-                  <td class="p-5 text-slate-600">SS163 - Conca dei Marini</td>
-                  <td class="p-5 text-slate-600">2 min in ascensore</td>
-                  <td class="p-5 text-slate-500">Parcheggio sulla Statale, poi ascensore panoramico fino all'imbarcadero. Ideale se si viene in auto. Incluso nel biglietto.</td>
-                </tr>
-                <tr>
-                  <td class="p-5 font-bold text-slate-900">Bus SITA</td>
-                  <td class="p-5 text-slate-600">Amalfi / Positano</td>
-                  <td class="p-5 text-slate-600">15-25 min</td>
-                  <td class="p-5 text-slate-500">Scendere alla fermata "Grotta dello Smeraldo" sulla SS163. Poi ascensore. Soluzione piu economica ma dipendente dagli orari SITA.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Local Tips -->
-        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-          <div class="flex items-center gap-4 mb-6">
-            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
-            <h3 class="text-xl font-bold text-slate-900">3 Consigli dei Locali</h3>
-          </div>
-          <div class="space-y-6">
-            <div>
-              <p class="font-bold text-slate-900 mb-1">1. Vai di mattina, tra le 10 e le 12</p>
-              <p class="text-slate-600 leading-relaxed text-sm">E il momento in cui il sole illumina l'apertura subacquea con la migliore angolazione, massimizzando l'effetto smeraldo. Nel pomeriggio la luce cala e i toni si spengono notevolmente.</p>
-            </div>
-            <div>
-              <p class="font-bold text-slate-900 mb-1">2. Controlla le condizioni del mare prima di partire</p>
-              <p class="text-slate-600 leading-relaxed text-sm">Con mare forza 3 o superiore l'accesso alla grotta via mare viene sospeso. Se c'e vento di Libeccio, meglio verificare l'operativita dei taxi-boat direttamente al porto di Amalfi. Il maltempo puo chiudere la grotta anche in piena estate.</p>
-            </div>
-            <div>
-              <p class="font-bold text-slate-900 mb-1">3. Abbinala alla passeggiata di Conca dei Marini</p>
-              <p class="text-slate-600 leading-relaxed text-sm">Dopo la grotta, sali a Conca dei Marini centro: e uno dei borghi piu integri e meno turistici della Costiera. La sfogliatella originale (la "sfogliatella di Conca") si mangia solo qui. Poi scendi a piedi verso Amalfi lungo la sentiero costiero.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- FAQ -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
-          <div class="space-y-4">
-            {faq.map((item) => (
-              <div class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
-                <details class="group">
-                  <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
-                    <span class="font-bold text-slate-900">{item.q}</span>
-                    <svg class="w-5 h-5 text-med-gold flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                  </summary>
-                  <div class="px-6 pb-6 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
-                    {item.a}
-                  </div>
-                </details>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Author box -->
-        <div class="flex items-center gap-5 pt-8 border-t border-slate-100">
-          <div class="w-14 h-14 rounded-full bg-med-gold/15 flex items-center justify-center flex-shrink-0">
-            <span class="text-med-gold font-serif font-bold text-xl">AC</span>
-          </div>
-          <div>
-            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Scritto da</p>
-            <p class="font-bold text-slate-900">Amalfi Coast Travel</p>
-            <p class="text-slate-500 text-sm">Guide locali · Costiera Amalfitana</p>
-          </div>
-        </div>
-
-        <!-- Back link -->
-        <div class="pt-4">
-          <a href="/it-it/blog/" class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-slate-900 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-            Torna al Blog
-          </a>
-        </div>
-
-      </article>
-
-      <!-- Sidebar -->
-      <aside class="lg:col-span-4">
-        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
-          <h3 class="font-serif text-2xl font-bold mb-8 text-med-gold">Info Rapide</h3>
-          <div class="space-y-5">
-            {quickInfo.map((item) => (
-              <div class="border-b border-white/5 pb-4 last:border-0">
-                <span class="text-white/40 text-[10px] uppercase tracking-wider font-light block mb-1">{item.label}</span>
-                <span class="text-white font-medium text-sm">{item.value}</span>
-              </div>
-            ))}
-          </div>
-
-          <!-- CTA link -->
-          <div class="mt-10 pt-8 border-t border-white/10 space-y-3">
-            <a
-              href="/it-it/esperienze/tour-barca/"
-              class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              Tour in Barca
-            </a>
-            <a
-              href="/it-it/guida/traghetti/"
-              class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              Traghetti e Aliscafi
-            </a>
-            <a
-              href="/it-it/guida/bus-sita/"
-              class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              Bus SITA
-            </a>
-          </div>
-        </div>
-      </aside>
-
+  <!-- Come arrivare -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Arrivare: Tutte le Opzioni</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      La Grotta dello Smeraldo si trova sulla Statale Amalfitana tra Amalfi (5 km) e Positano (15 km). Ci sono tre modi per raggiungerla.
+    </p>
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Mezzo</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Partenza</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Durata</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Note</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold text-slate-900">Via mare (consigliato)</td>
+            <td class="p-5 text-slate-600">Porto di Amalfi</td>
+            <td class="p-5 text-slate-600">~10 min</td>
+            <td class="p-5 text-slate-500">Taxi-boat con partenze frequenti (aprile-ottobre). Prezzo ca. €10-12 a/r. Si sale direttamente sulla barca che entra in grotta.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold text-slate-900">Via terra (ascensore)</td>
+            <td class="p-5 text-slate-600">SS163 - Conca dei Marini</td>
+            <td class="p-5 text-slate-600">2 min in ascensore</td>
+            <td class="p-5 text-slate-500">Parcheggio sulla Statale, poi ascensore panoramico fino all'imbarcadero. Ideale se si viene in auto. Incluso nel biglietto.</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold text-slate-900">Bus SITA</td>
+            <td class="p-5 text-slate-600">Amalfi / Positano</td>
+            <td class="p-5 text-slate-600">15-25 min</td>
+            <td class="p-5 text-slate-500">Scendere alla fermata "Grotta dello Smeraldo" sulla SS163. Poi ascensore. Soluzione piu economica ma dipendente dagli orari SITA.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </section>
+  </div>
 
-</BaseLayout>
+  <!-- Local Tips -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold text-slate-900">3 Consigli dei Locali</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">1. Vai di mattina, tra le 10 e le 12</p>
+        <p class="text-slate-600 leading-relaxed text-sm">E il momento in cui il sole illumina l'apertura subacquea con la migliore angolazione, massimizzando l'effetto smeraldo. Nel pomeriggio la luce cala e i toni si spengono notevolmente.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">2. Controlla le condizioni del mare prima di partire</p>
+        <p class="text-slate-600 leading-relaxed text-sm">Con mare forza 3 o superiore l'accesso alla grotta via mare viene sospeso. Se c'e vento di Libeccio, meglio verificare l'operativita dei taxi-boat direttamente al porto di Amalfi. Il maltempo puo chiudere la grotta anche in piena estate.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">3. Abbinala alla passeggiata di Conca dei Marini</p>
+        <p class="text-slate-600 leading-relaxed text-sm">Dopo la grotta, sali a Conca dei Marini centro: e uno dei borghi piu integri e meno turistici della Costiera. La sfogliatella originale (la "sfogliatella di Conca") si mangia solo qui. Poi scendi a piedi verso Amalfi lungo la sentiero costiero.</p>
+      </div>
+    </div>
+  </div>
+
+</BlogPostLayout>

@@ -1,14 +1,36 @@
 ---
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import { blogPosts } from '../../../../data/blog';
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
 
 const lang = 'it-it';
-const post = blogPosts.find(p => p.slug === 'atrani')!;
+const post = {
+  title: 'Atrani',
+  subtitle: "Il Borgo Più Piccolo d'Italia Dove il Tempo si è Fermato",
+  category: 'SCOPERTE',
+  date: '22 Aprile 2026',
+  readTime: '6 min',
+  image: '/images/atrani-hero.jpg',
+  imageAlt: "Atrani - il borgo più piccolo d'Italia sulla Costiera Amalfitana",
+  path: '/it-it/blog/atrani/',
+};
+
+const metaTitle = "Atrani: Il Borgo Più Piccolo d'Italia sulla Costiera Amalfitana | Guida 2026";
+const metaDescription = "Guida ad Atrani, comune più piccolo d'Italia: storia dei Dogi della Repubblica di Amalfi, la leggenda di Masaniello, set di Ripley su Netflix e consigli pratici per visitarlo.";
 
 const breadcrumbs = [
   { name: 'Home', url: '/it-it/' },
   { name: 'Blog', url: '/it-it/blog/' },
   { name: 'Atrani', url: '/it-it/blog/atrani/' },
+];
+
+const quickInfo = [
+  { label: 'Record', value: "Comune più piccolo d'Italia (0,12 km²)" },
+  { label: 'Distanza da Amalfi', value: '700 m · 10-15 min a piedi' },
+  { label: 'Accesso', value: 'Piedi da Amalfi · Bus SITA' },
+  { label: 'Parcheggio', value: 'Quasi assente — usare Amalfi' },
+  { label: 'Evento cult', value: 'Festa S. Maria Maddalena (22 luglio)' },
+  { label: 'Piatto tipico', value: 'Sarchiapone' },
+  { label: 'Set cinematografico', value: 'Ripley (Netflix, 2024)' },
+  { label: 'Atmosfera', value: 'Autentica, medievale, silenziosa' },
 ];
 
 const faq = [
@@ -26,257 +48,126 @@ const faq = [
   },
   {
     q: 'Perché Atrani è stata scelta come set di Ripley?',
-    a: 'La serie Netflix Ripley (2024) ha scelto Atrani per la sua capacità di evocare un\'Italia sospesa nel tempo, con i suoi archi sulla statale, i vicoli medievali e una piazza a pochi metri dal mare. Il borgo è rimasto quasi invariato rispetto ai decenni scorsi, cosa rarissima sulla Costiera.',
+    a: "La serie Netflix Ripley (2024) ha scelto Atrani per la sua capacità di evocare un'Italia sospesa nel tempo, con i suoi archi sulla statale, i vicoli medievali e una piazza a pochi metri dal mare. Il borgo è rimasto quasi invariato rispetto ai decenni scorsi, cosa rarissima sulla Costiera.",
   },
   {
-    q: 'Cos\'è il Sarchiapone di Atrani?',
+    q: "Cos'è il Sarchiapone di Atrani?",
     a: 'È la specialità gastronomica locale, preparata tradizionalmente per la festa di Santa Maria Maddalena il 22 luglio: una zucca lunga farcita con carne, formaggi e uova, poi fritta e ripassata al forno. Un piatto povero della tradizione contadina costiera.',
   },
   {
     q: 'Cosa si intende per "birecto" e perché è legato ad Atrani?',
-    a: 'Il birecto era il copricapo ducale dei Dogi della Repubblica Marinara di Amalfi. Ad Atrani, nella Chiesa di San Salvatore de\' Birecto, avveniva l\'investitura solenne dei Dogi: il borgo era il centro del potere aristocratico della Repubblica, non la più turistica Amalfi.',
+    a: "Il birecto era il copricapo ducale dei Dogi della Repubblica Marinara di Amalfi. Ad Atrani, nella Chiesa di San Salvatore de' Birecto, avveniva l'investitura solenne dei Dogi: il borgo era il centro del potere aristocratico della Repubblica, non la più turistica Amalfi.",
   },
 ];
 
-const schemaArticle = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": post.title,
-  "description": "Guida ad Atrani, il comune più piccolo d'Italia sulla Costiera Amalfitana: cosa vedere, storia dei Dogi, la leggenda di Masaniello, set di Ripley su Netflix e consigli pratici.",
-  "image": `https://amalficoast-travel.com${post.image}`,
-  "datePublished": "2026-04-22",
-  "dateModified": "2026-04-22",
-  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
-  "publisher": { "@type": "Organization", "name": "Amalfi Coast Travel", "url": "https://amalficoast-travel.com" },
-  "url": "https://amalficoast-travel.com/it-it/blog/atrani/",
-  "inLanguage": "it-IT",
-  "keywords": "Atrani, borgo più piccolo d'Italia, Costiera Amalfitana, Ripley Netflix, Repubblica di Amalfi, cosa vedere Atrani",
-};
-
-const schemaFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faq.map(item => ({
-    "@type": "Question",
-    "name": item.q,
-    "acceptedAnswer": { "@type": "Answer", "text": item.a },
-  })),
-};
-
-const quickInfo = [
-  { label: 'Record', value: 'Comune più piccolo d\'Italia (0,12 km²)' },
-  { label: 'Distanza da Amalfi', value: '700 m · 10-15 min a piedi' },
-  { label: 'Accesso', value: 'Piedi da Amalfi · Bus SITA' },
-  { label: 'Parcheggio', value: 'Quasi assente — usare Amalfi' },
-  { label: 'Evento cult', value: 'Festa S. Maria Maddalena (22 luglio)' },
-  { label: 'Piatto tipico', value: 'Sarchiapone' },
-  { label: 'Set cinematografico', value: 'Ripley (Netflix, 2024)' },
-  { label: 'Atmosfera', value: 'Autentica, medievale, silenziosa' },
+const sidebarLinks = [
+  { label: 'Scopri Amalfi', href: '/it-it/costiera-amalfitana/amalfi/' },
+  { label: 'Bus SITA', href: '/it-it/guida/bus-sita/' },
+  { label: 'Grotta dello Smeraldo', href: '/it-it/blog/grotta-dello-smeraldo/' },
 ];
+
+const authorRole = 'Amalfi Coast Specialist · Costiera Amalfitana';
 ---
 
-<BaseLayout
-  title="Atrani: Il Borgo Più Piccolo d'Italia sulla Costiera Amalfitana | Guida 2026"
-  description="Guida ad Atrani, comune più piccolo d'Italia: storia dei Dogi della Repubblica di Amalfi, la leggenda di Masaniello, set di Ripley su Netflix e consigli pratici per visitarlo."
+<BlogPostLayout
   lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
   breadcrumbs={breadcrumbs}
-  schema={[schemaArticle, schemaFaq]}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
 >
 
-  <!-- Hero -->
-  <section class="relative h-[75vh] overflow-hidden flex items-center justify-center">
-    <img
-      src={post.image}
-      alt="Atrani - il borgo più piccolo d'Italia sulla Costiera Amalfitana"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/80"></div>
-    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-4">
-        {post.category} · {post.date}
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      A pochi passi dalla celebre e affollata Amalfi, separata solo da un breve sperone di roccia, sorge Atrani. Con i suoi 0,12 km² di estensione, è il comune più piccolo d'Italia, ma ciò che gli manca in dimensioni lo recupera ampiamente in fascino, storia e autenticità. Atrani non è solo un borgo: è un anfiteatro naturale affacciato sul mare, un labirinto di "scalinatielle" e un rifugio per chi cerca la Costiera Amalfitana più vera.
+    </p>
+  </div>
+
+  <!-- Architettura -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Un'Architettura da Cinema</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Appena si arriva ad Atrani, lo sguardo viene catturato dai celebri archi che sorreggono la Statale 163, trasformando il passaggio delle auto in un elemento scenografico che incornicia la spiaggia e il borgo. Atrani ha mantenuto intatta la sua struttura medievale: un groviglio di vicoli stretti, case bianche sovrapposte e piccoli cortili che si aprono all'improvviso, rendendolo uno dei <strong>Borghi più Belli d'Italia</strong>.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Il Set di Ripley</h3>
+      <p class="text-slate-600 leading-relaxed">
+        Non a caso, Atrani è stata scelta come set per la serie <strong>Netflix Ripley (2024)</strong>, grazie alla sua capacità di evocare un'atmosfera sospesa nel tempo, lontana dal turismo di massa. I vicoli, la piazza e gli archi sulla statale sono rimasti quasi identici a decenni fa — una rarità assoluta sulla Costiera.
       </p>
-      <h1 class="font-serif text-display text-white mb-6 leading-tight">Atrani</h1>
-      <p class="text-xl md:text-2xl font-light text-white/80">
-        Il Borgo Più Piccolo d'Italia Dove il Tempo si è Fermato
+    </div>
+  </div>
+
+  <!-- Storia -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Storia e Leggende: Il Cuore della Repubblica</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Nonostante la vicinanza ad Amalfi, Atrani ha sempre avuto un'identità forte e aristocratica. In epoca ducale, era qui che risiedevano le famiglie più nobili e dove, nella <strong>Chiesa di San Salvatore de' Birecto</strong>, avveniva l'investitura solenne dei Dogi della Repubblica Marinara di Amalfi con l'imposizione del "birecto" (il copricapo ducale).
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Una delle leggende più affascinanti riguarda la <strong>Grotta di Masaniello</strong>: si dice che il celebre rivoluzionario napoletano, la cui madre era originaria di Atrani, si rifugiò proprio qui tra i vicoli del borgo per sfuggire alle guardie del viceré.
+    </p>
+
+    <blockquote class="border-l-4 border-med-gold pl-6 my-8">
+      <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+        "Atrani è un segreto sussurrato tra le rocce, un luogo dove il respiro del mare entra fin dentro le case."
       </p>
-      <div class="mt-6 flex items-center justify-center gap-4 text-white/60 text-sm">
-        <span>{post.date}</span>
-        <span>·</span>
-        <span>{post.readTime} di lettura</span>
+    </blockquote>
+  </div>
+
+  <!-- Cosa vedere -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Cosa Vedere ad Atrani</h2>
+    <div class="space-y-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">1</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">Piazza Umberto I</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Il cuore pulsante del borgo. Una piazzetta intima, a pochi metri dalla sabbia, perfetta per un caffè o un aperitivo circondati dalla vita quotidiana dei residenti. Niente souvenir, niente code: solo Atrani vera.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">2</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">Collegiata di Santa Maria Maddalena</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Con la sua cupola in maiolica che domina il profilo del borgo, è uno dei punti più fotografati della Costiera. La facciata barocca e la posizione a picco sul mare la rendono unica.</p>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+        <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">3</div>
+        <div>
+          <h4 class="font-bold text-slate-900 mb-1">Le "Scalinatielle"</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">Perdetevi tra le scalinate che salgono verso la parte alta del borgo. Ogni gradino offre uno scorcio nuovo, tra panni stesi al sole e profumo di cucina locale. Il vero Atrani vive qui, non sulla statale.</p>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Contenuto + Sidebar -->
-  <section class="bg-med-cream py-24 px-6">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
-
-      <!-- Articolo -->
-      <article class="lg:col-span-8 space-y-12">
-
-        <!-- Intro -->
-        <div>
-          <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
-            A pochi passi dalla celebre e affollata Amalfi, separata solo da un breve sperone di roccia, sorge Atrani. Con i suoi 0,12 km² di estensione, è il comune più piccolo d'Italia, ma ciò che gli manca in dimensioni lo recupera ampiamente in fascino, storia e autenticità. Atrani non è solo un borgo: è un anfiteatro naturale affacciato sul mare, un labirinto di "scalinatielle" e un rifugio per chi cerca la Costiera Amalfitana più vera.
-          </p>
-        </div>
-
-        <!-- Architettura -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Un'Architettura da Cinema</h2>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Appena si arriva ad Atrani, lo sguardo viene catturato dai celebri archi che sorreggono la Statale 163, trasformando il passaggio delle auto in un elemento scenografico che incornicia la spiaggia e il borgo. Atrani ha mantenuto intatta la sua struttura medievale: un groviglio di vicoli stretti, case bianche sovrapposte e piccoli cortili che si aprono all'improvviso, rendendolo uno dei <strong>Borghi più Belli d'Italia</strong>.
-          </p>
-
-          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
-            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Il Set di Ripley</h3>
-            <p class="text-slate-600 leading-relaxed">
-              Non a caso, Atrani è stata scelta come set per la serie <strong>Netflix Ripley (2024)</strong>, grazie alla sua capacità di evocare un'atmosfera sospesa nel tempo, lontana dal turismo di massa. I vicoli, la piazza e gli archi sulla statale sono rimasti quasi identici a decenni fa — una rarità assoluta sulla Costiera.
-            </p>
-          </div>
-        </div>
-
-        <!-- Storia -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Storia e Leggende: Il Cuore della Repubblica</h2>
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Nonostante la vicinanza ad Amalfi, Atrani ha sempre avuto un'identità forte e aristocratica. In epoca ducale, era qui che risiedevano le famiglie più nobili e dove, nella <strong>Chiesa di San Salvatore de' Birecto</strong>, avveniva l'investitura solenne dei Dogi della Repubblica Marinara di Amalfi con l'imposizione del "birecto" (il copricapo ducale).
-          </p>
-          <p class="text-slate-600 text-lg leading-relaxed mb-8">
-            Una delle leggende più affascinanti riguarda la <strong>Grotta di Masaniello</strong>: si dice che il celebre rivoluzionario napoletano, la cui madre era originaria di Atrani, si rifugiò proprio qui tra i vicoli del borgo per sfuggire alle guardie del viceré.
-          </p>
-
-          <blockquote class="border-l-4 border-med-gold pl-6 my-8">
-            <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
-              "Atrani è un segreto sussurrato tra le rocce, un luogo dove il respiro del mare entra fin dentro le case."
-            </p>
-          </blockquote>
-        </div>
-
-        <!-- Cosa vedere -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Cosa Vedere ad Atrani</h2>
-          <div class="space-y-4">
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">1</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">Piazza Umberto I</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Il cuore pulsante del borgo. Una piazzetta intima, a pochi metri dalla sabbia, perfetta per un caffè o un aperitivo circondati dalla vita quotidiana dei residenti. Niente souvenir, niente code: solo Atrani vera.</p>
-              </div>
-            </div>
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">2</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">Collegiata di Santa Maria Maddalena</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Con la sua cupola in maiolica che domina il profilo del borgo, è uno dei punti più fotografati della Costiera. La facciata barocca e la posizione a picco sul mare la rendono unica.</p>
-              </div>
-            </div>
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
-              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">3</div>
-              <div>
-                <h4 class="font-bold text-slate-900 mb-1">Le "Scalinatielle"</h4>
-                <p class="text-slate-600 text-sm leading-relaxed">Perdetevi tra le scalinate che salgono verso la parte alta del borgo. Ogni gradino offre uno scorcio nuovo, tra panni stesi al sole e profumo di cucina locale. Il vero Atrani vive qui, non sulla statale.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Local Tips -->
-        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-          <div class="flex items-center gap-4 mb-6">
-            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
-            <h3 class="text-xl font-bold text-slate-900">I Consigli dell'Esperto</h3>
-          </div>
-          <div class="space-y-6">
-            <div>
-              <p class="font-bold text-slate-900 mb-1">Arrivare a piedi da Amalfi</p>
-              <p class="text-slate-600 text-sm leading-relaxed">Invece di usare il bus o l'auto, percorrete il sentiero pedonale che parte dalla zona alta di Amalfi. In meno di 15 minuti di passeggiata panoramica vi ritroverete nel cuore di Atrani, evitando il traffico della statale.</p>
-            </div>
-            <div>
-              <p class="font-bold text-slate-900 mb-1">La Spiaggia</p>
-              <p class="text-slate-600 text-sm leading-relaxed">La spiaggia di Atrani è molto raccolta e protetta, ideale per chi viaggia con bambini o per chi vuole godersi il sole in un contesto più intimo rispetto alla vicina Amalfi. Meno affollata, più silenziosa.</p>
-            </div>
-            <div>
-              <p class="font-bold text-slate-900 mb-1">Il Piatto Tipico: il Sarchiapone</p>
-              <p class="text-slate-600 text-sm leading-relaxed">Non ripartite senza aver assaggiato il Sarchiapone, specialità locale preparata tradizionalmente per Santa Maria Maddalena (22 luglio): una zucca lunga farcita con carne, formaggi e uova, poi fritta e ripassata al forno.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- FAQ -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
-          <div class="space-y-4">
-            {faq.map((item) => (
-              <div class="bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden">
-                <details class="group">
-                  <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
-                    <span class="font-bold text-slate-900">{item.q}</span>
-                    <svg class="w-5 h-5 text-med-gold flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                  </summary>
-                  <div class="px-6 pb-6 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
-                    {item.a}
-                  </div>
-                </details>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Author box -->
-        <div class="flex items-center gap-5 pt-8 border-t border-slate-100">
-          <div class="w-14 h-14 rounded-full bg-med-gold/15 flex items-center justify-center flex-shrink-0">
-            <span class="text-med-gold font-serif font-bold text-xl">AC</span>
-          </div>
-          <div>
-            <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">Scritto da</p>
-            <p class="font-bold text-slate-900">Redazione Discovery</p>
-            <p class="text-slate-500 text-sm">Amalfi Coast Specialist · Costiera Amalfitana</p>
-          </div>
-        </div>
-
-        <!-- Back link -->
-        <div class="pt-4">
-          <a href="/it-it/blog/" class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-slate-900 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-            Torna al Blog
-          </a>
-        </div>
-
-      </article>
-
-      <!-- Sidebar -->
-      <aside class="lg:col-span-4">
-        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
-          <h3 class="font-serif text-2xl font-bold mb-8 text-med-gold">Info Rapide</h3>
-          <div class="space-y-5">
-            {quickInfo.map((item) => (
-              <div class="border-b border-white/5 pb-4 last:border-0">
-                <span class="text-white/40 text-[10px] uppercase tracking-wider font-light block mb-1">{item.label}</span>
-                <span class="text-white font-medium text-sm">{item.value}</span>
-              </div>
-            ))}
-          </div>
-
-          <div class="mt-10 pt-8 border-t border-white/10 space-y-3">
-            <a href="/it-it/costiera-amalfitana/amalfi/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              Scopri Amalfi
-            </a>
-            <a href="/it-it/guida/bus-sita/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              Bus SITA
-            </a>
-            <a href="/it-it/blog/grotta-dello-smeraldo/" class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-              Grotta dello Smeraldo
-            </a>
-          </div>
-        </div>
-      </aside>
-
+  <!-- Local Tips -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold text-slate-900">I Consigli dell'Esperto</h3>
     </div>
-  </section>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Arrivare a piedi da Amalfi</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Invece di usare il bus o l'auto, percorrete il sentiero pedonale che parte dalla zona alta di Amalfi. In meno di 15 minuti di passeggiata panoramica vi ritroverete nel cuore di Atrani, evitando il traffico della statale.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">La Spiaggia</p>
+        <p class="text-slate-600 text-sm leading-relaxed">La spiaggia di Atrani è molto raccolta e protetta, ideale per chi viaggia con bambini o per chi vuole godersi il sole in un contesto più intimo rispetto alla vicina Amalfi. Meno affollata, più silenziosa.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Il Piatto Tipico: il Sarchiapone</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Non ripartite senza aver assaggiato il Sarchiapone, specialità locale preparata tradizionalmente per Santa Maria Maddalena (22 luglio): una zucca lunga farcita con carne, formaggi e uova, poi fritta e ripassata al forno.</p>
+      </div>
+    </div>
+  </div>
 
-</BaseLayout>
+</BlogPostLayout>
