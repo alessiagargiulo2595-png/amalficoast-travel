@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { experiencias } from '../../../data/experiences-es';
+
+const lang = 'es-es';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Experiencias', url: '/es-es/experiencias/' },
+];
+
+const schemaItemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Experiencias en la Costa Amalfitana",
+  "description": "Las mejores experiencias auténticas en la Costa Amalfitana y la Península Sorrentina: senderismo, tours en barco, cocina local y artesanía.",
+  "url": "https://amalficoast-travel.com/es-es/experiencias/",
+  "numberOfItems": experiencias.length,
+  "itemListElement": experiencias.map((exp, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": exp.title,
+    "url": `https://amalficoast-travel.com${exp.path}`,
+  })),
+};
+---
+
+<BaseLayout
+  title="Experiencias Costa Amalfitana 2026 | Senderismo, Barco, Cocina"
+  description="Las experiencias auténticas imprescindibles en la Costa Amalfitana: Senda de los Dioses, tours en barco a las grutas, clases de cocina campana y mucho más."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaItemList]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[70vh] flex items-end bg-charcoal overflow-hidden">
+    <img
+      src="/images/esperienze-hero.jpg"
+      alt="Experiencias auténticas en la Costa Amalfitana"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+      referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pb-16 pt-32">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/es-es/" class="hover:text-white transition-colors">Inicio</a>
+        <span>/</span>
+        <span class="text-white">Experiencias</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Guía 2026</p>
+        <h1 class="font-serif text-display text-white mb-4">Experiencias</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Más allá de las playas y los miradores. Descubre la Costa Amalfitana a través de las manos de sus artesanos, sus senderos y su mar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cuadrícula de experiencias -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {experiencias.map((exp) => (
+          <a href={exp.path} class="group block">
+            <div class="relative aspect-[4/5] rounded-[3rem] overflow-hidden mb-6 shadow-2xl">
+              <img
+                src={exp.image}
+                alt={exp.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                <span class="text-med-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-2">{exp.category}</span>
+                <h2 class="font-serif text-2xl font-bold text-white mb-2 leading-tight">{exp.title}</h2>
+                <p class="text-white/70 text-sm leading-relaxed">{exp.description}</p>
+              </div>
+            </div>
+            <p class="text-slate-500 text-sm leading-relaxed px-2">{exp.subtitle}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Introducción editorial -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Por qué vivir una experiencia local</h2>
+      <p class="text-slate-600 text-lg leading-relaxed mb-6">
+        La Costa Amalfitana es uno de los lugares más fotografiados del mundo. Pero el verdadero alma de este territorio se encuentra en las queserías de la Península Sorrentina, los senderos sobre Positano, las grutas marinas accesibles solo en barco. Estas experiencias no se reservan en un catálogo turístico: se encuentran conociendo a las personas adecuadas.
+      </p>
+      <p class="text-slate-600 text-lg leading-relaxed">
+        Las experiencias que contamos se seleccionan por autenticidad, no por popularidad.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
