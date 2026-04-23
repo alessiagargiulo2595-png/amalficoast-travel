@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { experiences } from '../../../data/experiences-en';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Experiences', url: '/en-us/experiences/' },
+];
+
+const schemaItemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Experiences on the Amalfi Coast",
+  "description": "The best authentic experiences on the Amalfi Coast and Sorrentine Peninsula: trekking, boat tours, local cooking and crafts.",
+  "url": "https://amalficoast-travel.com/en-us/experiences/",
+  "numberOfItems": experiences.length,
+  "itemListElement": experiences.map((exp, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": exp.title,
+    "url": `https://amalficoast-travel.com${exp.path}`,
+  })),
+};
+---
+
+<BaseLayout
+  title="Amalfi Coast Experiences 2026 | Trekking, Boat Tours, Cooking"
+  description="The authentic must-do experiences on the Amalfi Coast: Path of the Gods, boat tours to the grottos, Campanian cooking classes and much more."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaItemList]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[70vh] flex items-end bg-charcoal overflow-hidden">
+    <img
+      src="/images/esperienze-hero.jpg"
+      alt="Authentic experiences on the Amalfi Coast"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+      referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pb-16 pt-32">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/en-us/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-white">Experiences</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Guide 2026</p>
+        <h1 class="font-serif text-display text-white mb-4">Experiences</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Beyond beaches and viewpoints. Discover the Amalfi Coast through the hands of its artisans, its trails and its sea.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experiences grid -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {experiences.map((exp) => (
+          <a href={exp.path} class="group block">
+            <div class="relative aspect-[4/5] rounded-[3rem] overflow-hidden mb-6 shadow-2xl">
+              <img
+                src={exp.image}
+                alt={exp.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                <span class="text-med-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-2">{exp.category}</span>
+                <h2 class="font-serif text-2xl font-bold text-white mb-2 leading-tight">{exp.title}</h2>
+                <p class="text-white/70 text-sm leading-relaxed">{exp.description}</p>
+              </div>
+            </div>
+            <p class="text-slate-500 text-sm leading-relaxed px-2">{exp.subtitle}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Editorial intro -->
+  <section class="bg-white py-20 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Why live a local experience</h2>
+      <p class="text-slate-600 text-lg leading-relaxed mb-6">
+        The Amalfi Coast is one of the most photographed places in the world. But the true soul of this territory is found in the dairies of the Sorrentine Peninsula, the trails above Positano, the sea grottos accessible only by boat. These experiences are not booked from a tourist catalogue: they are found by knowing the right people.
+      </p>
+      <p class="text-slate-600 text-lg leading-relaxed">
+        The experiences we write about are selected for authenticity, not popularity.
+      </p>
+    </div>
+  </section>
+
+</BaseLayout>
