@@ -1,0 +1,204 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { erlebnisse } from '../../../../data/experiences-de';
+
+const lang = 'de-de';
+
+const breadcrumbs = [
+  { name: 'Startseite', url: '/de-de/' },
+  { name: 'Erlebnisse', url: '/de-de/erlebnisse/' },
+  { name: 'Kochkurs', url: '/de-de/erlebnisse/kochkurs/' },
+];
+
+const facts = [
+  { label: 'Dauer', value: '4–5 Stunden' },
+  { label: 'Region', value: 'Sorrentiner Halbinsel · Amalfiküste' },
+  { label: 'Sprache', value: 'Italienisch, Englisch' },
+  { label: 'Inbegriffen', value: 'Marktbesuch, Kochstunde, Mahlzeit, Rezepte' },
+  { label: 'Richtpreis', value: 'ab €75 pro Person' },
+  { label: 'Ideal für', value: 'Paare, Gruppen, Genießer' },
+];
+
+const otherExperiences = erlebnisse.filter(e => e.id !== 'kochkurs');
+
+const schemaEvent = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Kochkurs: Die Geheimnisse der Küstenküche",
+  "description": "Kampanische Kochmeisterklasse auf der Sorrentiner Halbinsel und der Amalfiküste. Ravioli alla Caprese, Gnocchi alla Sorrentina, Delizia al Limone und vieles mehr.",
+  "location": {
+    "@type": "Place",
+    "name": "Sorrentiner Halbinsel und Amalfiküste",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "NA",
+      "addressCountry": "IT"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": "Amalfi Coast Travel"
+  }
+};
+---
+
+<BaseLayout
+  title="Kochkurs Amalfiküste 2026 | Authentische Kampanische Küche"
+  description="Kochstunden auf der Sorrentiner Halbinsel und der Amalfiküste: Ravioli alla Caprese, Totani e Patate, Delizia al Limone. Vom Markt an den Herd."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaEvent]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[70vh] overflow-hidden flex items-center justify-center">
+    <img
+      src="/images/cooking-class-hero.jpg"
+      alt="Kochkurs, kampanische Tomatensauce - Sorrentiner Halbinsel"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+      referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/75"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Kulinarik · Sorrentiner Halbinsel</p>
+      <h1 class="font-serif text-display text-white mb-6">Kochkurs</h1>
+      <p class="text-lg md:text-xl font-light text-white/80">Die Geheimnisse der Küstenküche.</p>
+    </div>
+  </section>
+
+  <!-- Inhalt + Sidebar -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+
+      <!-- Haupttext -->
+      <div class="lg:col-span-2 space-y-12">
+
+        <div>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Ein Eintauchen in die mediterrane Kultur</h2>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Kochstunden auf der Sorrentiner Halbinsel und der Amalfiküste sind keine gewöhnlichen Kurse — sie sind echte Eintauchbäder in die mediterrane Kultur. Viele dieser Erlebnisse beginnen lange bevor der Herd eingeschaltet wird: Das Ritual beginnt zwischen den Marktständen oder in den Terrassengärten hoch über dem Meer, wo man lernt, die perfekte Tomate auszuwählen und den Duft des breitblättrigen "neapolitanischen" Basilikums zu erkennen.
+          </p>
+        </div>
+
+        <!-- Das traditionelle Menü -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Das traditionelle Menü: Die Säulen des Geschmacks</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            Bei diesen Meisterkursen haben die Teilnehmer die Möglichkeit, Rezepte auszuprobieren, die die Seele Kampaniens verkörpern.
+          </p>
+
+          <div class="space-y-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">1</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Vorspeise — Impepata di Cozze</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Ein zeitloser Klassiker, der die Frische des Meeres feiert. Wenige Zutaten — Muscheln, schwarzer Pfeffer, Petersilie und Sorrentiner Zitrone — liefern den vollen Geschmack des Golfs.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">2</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Erster Gang — Ravioli alla Caprese</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Das Symbol des Sonntagsmittags. Eine frische Pasta aus einem einfachen Teig (Wasser und Mehl), gefüllt mit lokalem Caciotta-Käse und einer Prise frischem Majoran, serviert mit einer leichten Tomatensauce.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">3</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Hauptgang — Totani e Patate alla Praianese</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Ein Fischerklassiker von der Amalfiküste. Die Süße des Tintenfischs verbindet sich mit der Cremigkeit der lokalen Kartoffeln, alles mit Weißwein abgelöscht und mit Knoblauch und Chili aromatisiert.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-sm">4</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Dessert — Delizia al Limone</h4>
+                <p class="text-slate-600 text-sm leading-relaxed">Die Königin der lokalen Konditorei. Ein weicher kuppelförmiger Biskuit, gefüllt und überzogen mit einer seidigen Creme, parfümiert mit Amalfi-Sfusato oder Sorrenter g.g.A.-Zitrone.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Redaktionsbild -->
+        <div class="rounded-[2rem] overflow-hidden shadow-xl">
+          <img
+            src="/images/cooking-class-pasta.jpg"
+            alt="Frische Pasta-Zubereitung während eines Kochkurses an der Amalfiküste"
+            class="w-full h-72 object-cover"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+        </div>
+
+        <!-- Die Kunst des Machens -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-4">Die Kunst des Machens</h2>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Ziel dieser Meisterkurse ist es, die Geheimnisse der mediterranen Ernährung zu enthüllen. Sie beginnen oft mit der Zubereitung frischer Pasta: Man lernt, Wasser und Mehl für die ikonischen Ravioli alla Caprese oder Gnocchi alla Sorrentina abzuwiegen, die eine besondere Technik — und schnelle Finger! — erfordern, um die richtige poröse Konsistenz zu erreichen, die Tomatensauce und zähflüssiges lokales Fior di Latte aufnimmt. Die Geheimnisse der lokalen Konditorei fehlen nie, wo Präzision auf den Duft von im Morgengrauen geernteten Zitrusfrüchten trifft.
+          </p>
+        </div>
+
+        <!-- Insider-Tipp -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+            <h3 class="text-xl font-bold text-slate-900">Insider-Tipp</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Für ein authentisches Erlebnis wählen Sie Kurse in alten Bauernhäusern oder direkt in den Zitrusgärten im Schatten der "Pagliarelle"-Strohgeflechte.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            Ein Geheimtipp der Einheimischen für perfekte Gnocchi? Verwenden Sie immer alte Kartoffeln: Sie enthalten weniger Wasser und brauchen beim Kneten daher weniger Mehl. Das Ergebnis? Ein unglaublich leichter Gnocco, der einem buchstäblich auf der Zunge zergeht.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="lg:col-span-1">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3 text-med-gold">
+            Auf einen Blick
+          </h3>
+          <div class="space-y-6">
+            {facts.map((item) => (
+              <div class="border-b border-white/5 pb-4 last:border-0">
+                <span class="text-white/40 text-[10px] uppercase tracking-wider font-light block mb-1">{item.label}</span>
+                <span class="text-white font-medium text-sm">{item.value}</span>
+              </div>
+            ))}
+          </div>
+          <div class="mt-10 pt-8 border-t border-white/10">
+            <a href="/de-de/erlebnisse/" class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+              ← Alle Erlebnisse
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- Weitere Erlebnisse -->
+  <section class="bg-white py-20 px-6 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mb-12">Weitere Erlebnisse</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        {otherExperiences.map((exp) => (
+          <a href={exp.path} class="group flex gap-6 items-start">
+            <div class="w-28 h-28 rounded-[1.5rem] overflow-hidden flex-shrink-0 shadow-md">
+              <img src={exp.image} alt={exp.title} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" referrerpolicy="no-referrer" />
+            </div>
+            <div class="pt-1">
+              <span class="text-med-gold text-[10px] font-bold uppercase tracking-[0.3em]">{exp.category}</span>
+              <h3 class="font-serif text-xl font-bold text-slate-900 mt-1 mb-2 group-hover:text-med-blue transition-colors">{exp.title}</h3>
+              <p class="text-slate-500 text-sm leading-relaxed">{exp.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
