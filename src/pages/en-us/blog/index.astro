@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { blogPostsEn } from '../../../data/blog-en';
+
+const lang = 'en-us';
+const sortedPosts = [...blogPostsEn].sort((a, b) => Number(b.id) - Number(a.id));
+const categories = ['All', ...new Set(sortedPosts.map(p => p.category))];
+---
+
+<BaseLayout
+  title="Blog | Amalfi Coast Travel"
+  description="Stories, guides and curiosities about the Amalfi Coast: sea caves, hidden villages, local cuisine and tips to travel like a local."
+  lang={lang}
+>
+
+  <section class="relative h-[60vh] flex items-end bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-slate-900"></div>
+    <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('/images/blog-hub-hero.jpg')"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/80"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pb-16 pt-32 w-full">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/en-us/" class="hover:text-white transition-colors">Home</a>
+        <span>/</span>
+        <span class="text-white">Blog</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Amalfi Coast</p>
+        <h1 class="font-serif text-display text-white mb-4">Blog</h1>
+        <p class="text-xl text-white/80 leading-relaxed mb-8">Real stories, hidden caves, authentic flavors. The Coast beyond the postcards.</p>
+        <div class="flex flex-wrap gap-3">
+          {categories.map((cat) => (
+            <button data-filter={cat} data-active={cat === 'All' ? 'true' : undefined} class="filter-btn">{cat}</button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex justify-end mb-10">
+        <p id="blog-counter" class="text-slate-400 text-sm hidden sm:block">{sortedPosts.length} articles</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="blog-grid">
+        {sortedPosts.map((post) => (
+          <div data-category={post.category} class="blog-card">
+            <a href={post.path} class="group block">
+              <div class="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-5 shadow-lg">
+                <img src={post.image} alt={post.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+                <div class="absolute top-5 left-5">
+                  <span class="bg-med-gold text-slate-900 text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-full">{post.category}</span>
+                </div>
+              </div>
+              <div class="px-1">
+                <div class="flex items-center gap-3 text-slate-400 text-xs mb-3">
+                  <span>{post.date}</span><span>·</span><span>{post.readTime} read</span>
+                </div>
+                <h2 class="font-serif text-xl font-bold text-slate-900 mb-3 leading-tight group-hover:text-med-blue transition-colors">{post.title}</h2>
+                <p class="text-slate-500 text-sm leading-relaxed">{post.excerpt}</p>
+                <div class="mt-4 flex items-center gap-1 text-med-gold text-sm font-medium">
+                  Read article
+                  <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+      <div id="blog-empty" class="hidden text-center py-20">
+        <p class="text-slate-400 text-lg mb-6">No articles found in this category.</p>
+        <button data-filter="All" class="filter-btn" id="reset-btn">Show all</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20 px-6 border-t border-slate-100">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Why a Blog about the Amalfi Coast?</h2>
+      <p class="text-slate-600 text-lg leading-relaxed mb-6">
+        There are thousands of tourist guides about the Coast. This blog was born to tell what the guides don't say: the caves discovered by chance, the authentic flavors far from tourist menus, the trails that locals still walk every morning.
+      </p>
+      <p class="text-slate-600 text-lg leading-relaxed">Each article is written as if told to a friend.</p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .filter-btn {
+    @apply px-5 py-2 rounded-full text-sm font-medium transition-colors cursor-pointer;
+    background-color: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+  }
+  .filter-btn[data-active="true"] { background-color: #D4AF37; border-color: #D4AF37; color: #0f172a; }
+  .blog-card[data-hidden] { display: none; }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const cards   = document.querySelectorAll<HTMLElement>('[data-category]');
+  const emptyMsg = document.getElementById('blog-empty');
+  const counter  = document.getElementById('blog-counter');
+  function applyFilter(filter: string) {
+    buttons.forEach(b => b.dataset.filter === filter ? b.setAttribute('data-active','true') : b.removeAttribute('data-active'));
+    let v = 0;
+    cards.forEach(c => { const m = filter === 'All' || c.dataset.category === filter; m ? (c.removeAttribute('data-hidden'), v++) : c.setAttribute('data-hidden',''); });
+    if (counter) counter.textContent = `${v} article${v === 1 ? '' : 's'}`;
+    if (emptyMsg) emptyMsg.classList.toggle('hidden', v > 0);
+  }
+  buttons.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter ?? 'All')));
+</script>
