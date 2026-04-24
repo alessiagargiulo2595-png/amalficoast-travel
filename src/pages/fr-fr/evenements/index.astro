@@ -1,0 +1,162 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { events } from '../../../data/events-fr';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Événements', url: '/fr-fr/evenements/' },
+];
+
+const coteAmalfitaineEvents = events.filter(e => e.area === 'cote-amalfitaine');
+const ilesEvents = events.filter(e => e.area === 'iles');
+const peninsuleEvents = events.filter(e => e.area === 'peninsule-sorrentine');
+
+const schemaItemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Événements 2026 – Côte Amalfitaine et Péninsule Sorrentine",
+  "description": "Les meilleurs festivals et événements 2026 sur la Côte Amalfitaine et la Péninsule Sorrentine : Festival de Ravello, feux de la Ferragosto, fêtes du poisson et célébrations gastronomiques.",
+  "url": "https://amalficoast-travel.com/fr-fr/evenements/",
+  "numberOfItems": events.length,
+  "itemListElement": events.map((ev, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": ev.title,
+    "url": `https://amalficoast-travel.com${ev.path}`,
+  })),
+};
+---
+
+<BaseLayout
+  title="Événements 2026 Côte Amalfitaine | Festival de Ravello, Feux & Fêtes Locales"
+  description="Les meilleurs événements 2026 sur la Côte Amalfitaine et la Péninsule Sorrentine : Festival de Ravello, feux de la Ferragosto, la Fête du Poisson à Positano et des célébrations locales authentiques."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaItemList]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[70vh] flex items-end bg-charcoal overflow-hidden">
+    <img
+      src="/images/ravello-hero.jpg"
+      alt="Événements sur la Côte Amalfitaine 2026"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+      referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pb-16 pt-32">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        <a href="/fr-fr/" class="hover:text-white transition-colors">Accueil</a>
+        <span>/</span>
+        <span class="text-white">Événements 2026</span>
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Calendrier 2026</p>
+        <h1 class="font-serif text-display text-white mb-4">Événements</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Du Festival de Ravello aux feux de la Ferragosto sur la mer. Le calendrier 2026 de la Côte Amalfitaine et de la Péninsule Sorrentine.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Côte Amalfitaine -->
+  <section class="bg-med-cream py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-12">
+        <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Côte Amalfitaine</p>
+        <h2 class="font-serif text-3xl font-bold text-slate-900">Événements sur la Côte Amalfitaine</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {coteAmalfitaineEvents.map((ev) => (
+          <a href={ev.path} class="group block">
+            <div class="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-4 shadow-xl">
+              <img
+                src={ev.image}
+                alt={ev.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                <span class="text-med-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-1">{ev.category}</span>
+                <h3 class="font-serif text-xl font-bold text-white mb-1 leading-tight">{ev.title}</h3>
+                <p class="text-white/70 text-xs">{ev.date} · {ev.location}</p>
+              </div>
+            </div>
+            <p class="text-slate-500 text-sm leading-relaxed px-1">{ev.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Îles -->
+  <section class="bg-white py-20 px-6 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-12">
+        <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Îles</p>
+        <h2 class="font-serif text-3xl font-bold text-slate-900">Événements sur les Îles</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {ilesEvents.map((ev) => (
+          <a href={ev.path} class="group block">
+            <div class="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-4 shadow-xl">
+              <img
+                src={ev.image}
+                alt={ev.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                <span class="text-med-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-1">{ev.category}</span>
+                <h3 class="font-serif text-xl font-bold text-white mb-1 leading-tight">{ev.title}</h3>
+                <p class="text-white/70 text-xs">{ev.date} · {ev.location}</p>
+              </div>
+            </div>
+            <p class="text-slate-500 text-sm leading-relaxed px-1">{ev.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Péninsule Sorrentine -->
+  <section class="bg-med-cream py-20 px-6 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-12">
+        <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Péninsule Sorrentine</p>
+        <h2 class="font-serif text-3xl font-bold text-slate-900">Événements sur la Péninsule Sorrentine</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {peninsuleEvents.map((ev) => (
+          <a href={ev.path} class="group block">
+            <div class="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-4 shadow-xl">
+              <img
+                src={ev.image}
+                alt={ev.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                <span class="text-med-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-1">{ev.category}</span>
+                <h3 class="font-serif text-xl font-bold text-white mb-1 leading-tight">{ev.title}</h3>
+                <p class="text-white/70 text-xs">{ev.date} · {ev.location}</p>
+              </div>
+            </div>
+            <p class="text-slate-500 text-sm leading-relaxed px-1">{ev.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
