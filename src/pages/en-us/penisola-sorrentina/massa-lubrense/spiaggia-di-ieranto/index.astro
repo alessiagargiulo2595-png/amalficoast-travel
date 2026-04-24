@@ -1,0 +1,388 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../../components/CorrelationSlider.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Sorrentine Peninsula', url: '/en-us/penisola-sorrentina/' },
+  { name: 'Spiaggia di Ieranto', url: '/en-us/penisola-sorrentina/massa-lubrense/spiaggia-di-ieranto/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Spiaggia di Ieranto",
+  "description": "Ieranto Bay is a wild cove on the Sorrentine Peninsula in Massa Lubrense, surrounded by cliffs and marine reserve. One of the most pristine spots on the peninsula, accessible only on foot or by boat.",
+  "url": "https://amalficoast-travel.com/en-us/penisola-sorrentina/massa-lubrense/spiaggia-di-ieranto/",
+  "image": "https://amalficoast-travel.com/images/ieranto-hero.jpg",
+  "touristType": ["Nature", "Trekking", "Snorkeling", "Photography"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Massa Lubrense",
+    "addressRegion": "Naples",
+    "addressCountry": "IT",
+    "postalCode": "80061"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.5805,
+    "longitude": 14.3795
+  }
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Spiaggia di Ieranto, Sorrentine Peninsula",
+  "description": "Wild cove on the Sorrentine Peninsula in Massa Lubrense, part of the Punta Campanella Marine Protected Area. Accessible only via trekking or boat.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.5805,
+    "longitude": 14.3795
+  },
+  "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Sorrentine Peninsula"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where is Spiaggia di Ieranto located?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ieranto Bay is located in the Nerano area, Municipality of Massa Lubrense on the Sorrentine Peninsula. It sits within the Punta Campanella Marine Protected Area, between Punta Campanella and Marina del Cantone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you access Ieranto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Via trekking: from Nerano, approximately 45-60 minutes of well-marked but steep hiking. Via boat: excursions from Nerano, Sorrento or Capri (~20 min from Capri). The trail descends steeply to the beach and requires sturdy hiking shoes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it a equipped beach?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, Ieranto is a completely wild and protected beach. There are no sun loungers, bars or services. Fires are prohibited and it's strictly forbidden to leave garbage. Bring water, snacks and respect the marine ecosystem."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the best time to visit Ieranto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "May–September for swimming. Shoulder months (April, October) are ideal for trekking with milder temperatures and fewer crowds. Underwater visibility is best from June to September (excellent snorkeling). Avoid November–March when cliffs and trails are damp and slippery."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it a good snorkeling spot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Ieranto Bay is excellent for snorkeling as part of the Marine Protected Area with outstanding biodiversity. You'll see barracuda, grouper, sea urchins, starfish and colourful sponges. Depth starts at 2-3 metres from shore. Bring an underwater camera."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Spiaggia di Ieranto 2026: Wild Cove of the Sorrentine Peninsula"
+  description="Guide to Ieranto (Ieranto Bay): the wild beach of Massa Lubrense, Marine Protected Area, trekking from Nerano, snorkeling and boat access."
+  lang={lang}
+  pageKey="ieranto"
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, placeSchema, faqSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div>
+    <img src="/images/ieranto-hero.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager"  referrerpolicy="no-referrer"/>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrentine Peninsula · Protected Nature</p>
+        <h1 class="font-serif text-display text-white mb-4">Spiaggia di Ieranto</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Ieranto Bay is the most jealously guarded secret of the Sorrentine Peninsula. A wild cove enclosed by cliffs, surrounded by marine reserve, accessible only on foot or by boat. Here, time flows differently.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">
+            Fast Facts
+          </a>
+          <a href="#cosa-fare" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            What to do
+          </a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            FAQ
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Grid -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <!-- Main Content -->
+      <div class="space-y-16">
+
+        <!-- Intro -->
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Ieranto Bay has remained wild because it's difficult to reach. There's no paved road to get there, no parking, no beach bars with umbrellas. To reach it you either hike 45 minutes down a trail carved into the rock, or arrive by boat. And precisely for this reason it remains one of the most pure and unspoilt places on the Sorrentine Peninsula.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            The bay is protected by the Punta Campanella Marine Protected Area, established in 1997. This means you'll swim over seagrass meadows, you'll see fish that have disappeared elsewhere, you'll snorkel without seeing plastic. It's paradise for those who love authentic nature.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Did you know?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">45 min</p>
+              <p class="text-white/60 text-xs italic mt-1">trekking from Nerano</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1,172 ha</p>
+              <p class="text-white/60 text-xs italic mt-1">Marine Protected Area</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1997</p>
+              <p class="text-white/60 text-xs italic mt-1">year established</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Ieranto Bay is one of the few beaches in Italy where fires are prohibited and beach cleanup is done by volunteers. It's a symbol of conscious tourism.
+          </p>
+        </div>
+
+        <!-- What to Do -->
+        <div id="cosa-fare">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">What to do at Ieranto</h2>
+          <div class="space-y-8">
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">1</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Snorkeling in a Marine Reserve</h3>
+                <p class="text-slate-600 leading-relaxed">The water is crystal clear and biodiversity is exceptional. You can swim over seagrass meadows (posidonia), see barracuda, grouper and sea urchins, observe colourful sponges. Depth starts at 2-3 metres from shore and gradually increases. Visibility is best from June to September.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">2</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Trekking from Nerano</h3>
+                <p class="text-slate-600 leading-relaxed">The trail down to Ieranto is well-marked but steep: 45-60 minutes downhill, same time back up. Start early in the morning to avoid the heat and have more time on the beach. Bring sturdy hiking shoes - it won't be comfortable climbing back up with wet feet.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">3</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Visit by Boat</h3>
+                <p class="text-slate-600 leading-relaxed">Boat excursions from Nerano (Massa Lubrense), Sorrento and even from Capri (~20 min). It's the most comfortable way if you don't enjoy trekking. Book in advance during summer - places are limited to preserve the ecosystem.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">4</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Photography and Contemplation</h3>
+                <p class="text-slate-600 leading-relaxed">The cliffs reflected in the crystal clear water, the rocks and the light at sunset create extraordinary photographic compositions. Sit on a rock and watch the silence. This is the kind of place where time becomes irrelevant.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- How to Get There -->
+        <div class="bg-charcoal rounded-[3rem] p-10 md:p-14 text-white relative overflow-hidden">
+          <div class="relative z-10">
+            <h2 class="font-serif text-3xl font-bold text-white tracking-tight mb-6">How to reach Ieranto</h2>
+            <p class="text-white/60 mb-10 leading-relaxed">Ieranto is only accessible on foot via trekking or by boat. There is no road that reaches the beach directly. This is why it remains wild and unspoilt.</p>
+            <div class="grid sm:grid-cols-2 gap-8 mb-10">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0"><svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg></div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Trekking from Nerano</h3><p class="text-white/50 text-sm leading-relaxed">Via SS145 to Massa Lubrense, Nerano area. Parking in the centre, then 45 min downhill on the trail to the bay. Sturdy hiking shoes essential.</p></div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0"><svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 20c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm14 0c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM3.5 6.5C3.5 5.12 4.62 4 6 4h12c1.38 0 2.5 1.12 2.5 2.5v2M3.5 8.5h17"/></svg></div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Boat from Nerano/Sorrento/Capri</h3><p class="text-white/50 text-sm leading-relaxed">Regular excursions from Nerano and Sorrento. From Capri ~20 min. Book ahead, especially in summer to protect the ecosystem.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Where is Spiaggia di Ieranto?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Ieranto Bay is located in the Nerano area, Municipality of Massa Lubrense on the Sorrentine Peninsula. It sits within the Punta Campanella Marine Protected Area, between Punta Campanella and Marina del Cantone, about 4.9 km from Capri.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                How do you access Ieranto?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Via trekking: from Nerano, approximately 45-60 minutes of well-marked but steep hiking. Via boat: daily excursions from Nerano, Sorrento or Capri (approximately 20 minutes from Capri). The trail descends steeply to the beach and requires sturdy hiking shoes.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Is it an equipped beach?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                No, Ieranto is a completely wild and protected beach. There are no sun loungers, parasols, bars or services. Fires are prohibited and leaving rubbish is strictly forbidden. Bring water, snacks, a camera and a beach towel. Respect the marine ecosystem.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                What's the best time to visit Ieranto?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                May–September for swimming. Shoulder months (April, October) are ideal for trekking with milder temperatures and fewer crowds. Underwater visibility is best from June to September (excellent snorkelling). Avoid November–March when cliffs and trails are damp and slippery.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Is it good for snorkelling?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Yes, Ieranto Bay is excellent for snorkelling as part of the Marine Protected Area with outstanding biodiversity. You'll see barracuda, grouper, sea urchins, starfish, colourful sponges. Depth starts at 2-3 metres from shore and increases gradually. Bring an underwater camera.
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+
+        <!-- Fast Facts -->
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts - Ieranto</p>
+          <dl class="space-y-3">
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Municipality</dt>
+              <dd class="text-white font-medium text-sm text-right">Massa Lubrense, NA</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">District</dt>
+              <dd class="text-white font-medium text-sm text-right">Nerano</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Access</dt>
+              <dd class="text-white font-medium text-sm text-right">Trekking or boat</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Hiking distance</dt>
+              <dd class="text-white font-medium text-sm text-right">45–60 min</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Beach type</dt>
+              <dd class="text-white font-medium text-sm text-right">Sand and rock</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Protection</dt>
+              <dd class="text-white font-medium text-sm text-right">Campanella MPA</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Services</dt>
+              <dd class="text-white font-medium text-sm text-right">None</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Best time</dt>
+              <dd class="text-white font-medium text-sm text-right">May–Sep</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Sorrentine Peninsula</p>
+          <nav class="space-y-1">
+            <a href="/en-us/penisola-sorrentina/sorrento/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Sorrento
+            </a>
+            <a href="/en-us/penisola-sorrentina/massa-lubrense/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Massa Lubrense
+            </a>
+            <a href="/en-us/penisola-sorrentina/vico-equense/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Vico Equense
+            </a>
+            <a href="/en-us/penisola-sorrentina/sant-agnello/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Sant'Agnello
+            </a>
+          </nav>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explore the Sorrentine Peninsula"
+    items={[
+      { name: 'Massa Lubrense', href: '/en-us/penisola-sorrentina/massa-lubrense/', tag: 'Marine Reserve', desc: 'Punta Campanella, Marina del Cantone and the famous Nerano pasta.' },
+      { name: 'Sorrento',        href: '/en-us/penisola-sorrentina/sorrento/',        tag: 'Perfect Base', desc: 'Gateway to Capri, limoncello and Piazza Tasso.' },
+      { name: 'Capri',           href: '/en-us/isole/capri/',                         tag: 'Most Iconic', desc: '5 km away: Blue Grotto and Faraglioni.' },
+      { name: 'Positano',        href: '/en-us/amalfi-coast/positano/',               tag: 'Fashion & Views', desc: 'The colourful houses of the Amalfi Coast.' },
+      { name: 'Ravello',         href: '/en-us/amalfi-coast/ravello/',                tag: 'Music & Gardens', desc: 'Villa Rufolo and Villa Cimbrone at 350 m.' },
+      { name: 'Marina di Praia',  href: '/en-us/amalfi-coast/marina-di-praia/',       tag: 'Wild Beach', desc: 'The wild secret beach of Praiano.' },
+    ]}
+  />
+
+</BaseLayout>
