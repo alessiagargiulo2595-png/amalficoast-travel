@@ -1,0 +1,388 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../../components/CorrelationSlider.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Péninsule de Sorrente', url: '/fr-fr/peninsule-sorrentine/' },
+  { name: 'Spiaggia di Ieranto', url: '/fr-fr/peninsule-sorrentine/massa-lubrense/spiaggia-di-ieranto/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Spiaggia di Ieranto",
+  "description": "La Baie d'Ieranto est une crique sauvage de la Péninsule de Sorrente à Massa Lubrense, entourée de falaises et de réserve marine. L'un des endroits les plus préservés de la péninsule, accessible uniquement à pied ou en bateau.",
+  "url": "https://amalficoast-travel.com/fr-fr/peninsule-sorrentine/massa-lubrense/spiaggia-di-ieranto/",
+  "image": "https://amalficoast-travel.com/images/ieranto-hero.jpg",
+  "touristType": ["Nature", "Randonnée", "Plongée libre", "Photographie"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Massa Lubrense",
+    "addressRegion": "Naples",
+    "addressCountry": "IT",
+    "postalCode": "80061"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.5805,
+    "longitude": 14.3795
+  }
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Spiaggia di Ieranto, Péninsule de Sorrente",
+  "description": "Crique sauvage de la Péninsule de Sorrente à Massa Lubrense, faisant partie de l'aire marine protégée de Punta Campanella. Accessible uniquement par la randonnée ou en bateau.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.5805,
+    "longitude": 14.3795
+  },
+  "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Péninsule de Sorrente"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Où se trouve Spiaggia di Ieranto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La Baie d'Ieranto est située à Nerano, municipalité de Massa Lubrense, sur la Péninsule de Sorrente. Elle se trouve dans l'aire marine protégée de Punta Campanella, entre Punta Campanella et Marina del Cantone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment accéder à Ieranto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "À pied: de Nerano, environ 45–60 minutes de randonnée sur un sentier bien balisé mais raide. En bateau: excursions régulières depuis Nerano, Sorrente ou Capri (~20 min de Capri). Le sentier descend abruptement vers la plage et nécessite des chaussures de randonnée robustes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Est-ce une plage aménagée?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non, Ieranto est une plage complètement sauvage et protégée. Il n'y a pas de transats, de bars ou de services. Les feux sont interdits et il est strictement interdit de laisser des déchets. Apportez de l'eau, des en-cas et respectez l'écosystème marin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelle est la meilleure période pour visiter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mai–septembre pour la baignade. Les mois de transition (avril, octobre) sont idéaux pour la randonnée avec des températures plus douces et moins de foule. La visibilité sous-marine est meilleure de juin à septembre (excellente plongée libre). Évitez novembre–mars quand les falaises et sentiers sont humides et glissants."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Est-ce un bon endroit pour la plongée libre?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, la Baie d'Ieranto est excellente pour la plongée libre en tant que partie de l'aire marine protégée avec une biodiversité remarquable. Vous verrez des barracudas, des mérous, des oursins, des étoiles de mer et des éponges colorées. La profondeur commence à 2–3 mètres du rivage. Apportez un appareil photo étanche."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Spiaggia di Ieranto 2026: Crique Sauvage de la Péninsule de Sorrente"
+  description="Guide d'Ieranto (Baie d'Ieranto): la plage sauvage de Massa Lubrense, aire marine protégée, randonnée depuis Nerano, plongée libre et accès en bateau."
+  lang={lang}
+  pageKey="ieranto"
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, placeSchema, faqSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div>
+    <img src="/images/ieranto-hero.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager"  referrerpolicy="no-referrer"/>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Péninsule de Sorrente · Nature Protégée</p>
+        <h1 class="font-serif text-display text-white mb-4">Spiaggia di Ieranto</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La Baie d'Ieranto est le secret le mieux gardé de la Péninsule de Sorrente. Une crique sauvage encadrée par des falaises, entourée d'aire marine protégée, accessible uniquement à pied ou en bateau. Ici, le temps s'écoule différemment.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">
+            Fiche rapide
+          </a>
+          <a href="#cosa-fare" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            À faire
+          </a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            FAQ
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Grid -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <!-- Main Content -->
+      <div class="space-y-16">
+
+        <!-- Intro -->
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            La Baie d'Ieranto est restée sauvage parce qu'elle est difficile d'accès. Il n'y a pas de route goudronnée, pas de parking, pas de bar de plage avec parasols. Pour y arriver, vous devez soit marcher 45 minutes sur un sentier creusé dans la roche, soit venir en bateau. Et c'est précisément pour cette raison qu'elle reste l'un des endroits les plus purs et incontaminés de la Péninsule de Sorrente.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            La baie est protégée par l'aire marine protégée de Punta Campanella, créée en 1997. Cela signifie que vous nagerez au-dessus de prairies sous-marines, que vous verrez des poissons disparus ailleurs, que vous ferez de la plongée libre sans voir de plastique. C'est le paradis pour ceux qui aiment la nature authentique.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Le saviez-vous?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">45 min</p>
+              <p class="text-white/60 text-xs italic mt-1">randonnée depuis Nerano</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1.172 ha</p>
+              <p class="text-white/60 text-xs italic mt-1">aire marine protégée</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1997</p>
+              <p class="text-white/60 text-xs italic mt-1">année de création</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            La Baie d'Ieranto est l'une des rares plages d'Italie où les feux sont interdits et où le nettoyage est fait par des bénévoles. C'est un symbole du tourisme responsable.
+          </p>
+        </div>
+
+        <!-- À faire -->
+        <div id="cosa-fare">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">À faire à Ieranto</h2>
+          <div class="space-y-8">
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">1</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Plongée libre en aire marine protégée</h3>
+                <p class="text-slate-600 leading-relaxed">L'eau est cristalline et la biodiversité est exceptionnelle. Vous pouvez nager au-dessus de prairies sous-marines (posidonie), voir des barracudas, mérous et oursins, observer des éponges colorées. La profondeur commence à 2–3 mètres du rivage et augmente graduellement. La visibilité est meilleure de juin à septembre.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">2</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Randonnée depuis Nerano</h3>
+                <p class="text-slate-600 leading-relaxed">Le sentier qui descend à Ieranto est bien balisé mais raide: 45–60 minutes de descente, autant pour la remontée. Partez tôt le matin pour éviter la chaleur et avoir plus de temps à la plage. Portez des chaussures de randonnée robustes - ce ne sera pas confortable de remonter avec les pieds mouillés.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">3</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Visite en bateau</h3>
+                <p class="text-slate-600 leading-relaxed">Excursions en bateau depuis Nerano (Massa Lubrense), Sorrente et même depuis Capri (~20 min). C'est le moyen le plus confortable si vous n'aimez pas la randonnée. Réservez à l'avance pendant l'été - les places sont limitées pour préserver l'écosystème.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">4</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Photographie et contemplation</h3>
+                <p class="text-slate-600 leading-relaxed">Les falaises reflétées dans l'eau cristalline, les rochers et la lumière au coucher du soleil créent des compositions photographiques extraordinaires. Asseyez-vous sur un rocher et observez le silence. C'est un endroit où le temps devient sans importance.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Comment y arriver -->
+        <div class="bg-charcoal rounded-[3rem] p-10 md:p-14 text-white relative overflow-hidden">
+          <div class="relative z-10">
+            <h2 class="font-serif text-3xl font-bold text-white tracking-tight mb-6">Comment accéder à Ieranto</h2>
+            <p class="text-white/60 mb-10 leading-relaxed">Ieranto n'est accessible que par la randonnée ou en bateau. Il n'y a pas de route qui mène directement à la plage. C'est pour cela qu'elle reste sauvage et incontaminée.</p>
+            <div class="grid sm:grid-cols-2 gap-8 mb-10">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0"><svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg></div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Randonnée depuis Nerano</h3><p class="text-white/50 text-sm leading-relaxed">Via SS145 à Massa Lubrense, secteur Nerano. Parking au centre, puis 45 min de descente sur le sentier vers la baie. Chaussures de randonnée robustes essentielles.</p></div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0"><svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 20c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm14 0c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM3.5 6.5C3.5 5.12 4.62 4 6 4h12c1.38 0 2.5 1.12 2.5 2.5v2M3.5 8.5h17"/></svg></div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Bateau depuis Nerano/Sorrente/Capri</h3><p class="text-white/50 text-sm leading-relaxed">Excursions régulières depuis Nerano et Sorrente. De Capri ~20 min. Réservez à l'avance, surtout en été pour préserver l'écosystème.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Questions fréquemment posées</h2>
+          <div class="space-y-4">
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Où se trouve Spiaggia di Ieranto?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                La Baie d'Ieranto est située à Nerano, municipalité de Massa Lubrense, sur la Péninsule de Sorrente. Elle se trouve dans l'aire marine protégée de Punta Campanella, entre Punta Campanella et Marina del Cantone, à environ 4,9 km de Capri.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Comment accéder à Ieranto?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                À pied: depuis Nerano, environ 45–60 minutes de randonnée sur un sentier bien balisé mais raide. En bateau: excursions quotidiennes depuis Nerano, Sorrente ou Capri (environ 20 minutes de Capri). Le sentier descend abruptement vers la plage et nécessite des chaussures de randonnée robustes.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Est-ce une plage aménagée?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Non, Ieranto est une plage complètement sauvage et protégée. Il n'y a pas de transats, de parasols, de bars ou de services. Les feux sont interdits et il est strictement interdit de laisser des déchets. Apportez de l'eau, des en-cas, un appareil photo et une serviette de plage. Respectez l'écosystème marin.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Quelle est la meilleure période pour visiter?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Mai–septembre pour la baignade. Les mois de transition (avril, octobre) sont idéaux pour la randonnée avec des températures plus douces et moins de foule. La visibilité sous-marine est meilleure de juin à septembre (excellente plongée libre). Évitez novembre–mars quand les falaises et sentiers sont humides et glissants.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Est-ce bon pour la plongée libre?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Oui, la Baie d'Ieranto est excellente pour la plongée libre comme partie de l'aire marine protégée avec une biodiversité remarquable. Vous verrez des barracudas, mérous, oursins, étoiles de mer, éponges colorées. La profondeur commence à 2–3 mètres du rivage et augmente graduellement. Apportez un appareil photo étanche.
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+
+        <!-- Fiche rapide -->
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fiche rapide - Ieranto</p>
+          <dl class="space-y-3">
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Municipalité</dt>
+              <dd class="text-white font-medium text-sm text-right">Massa Lubrense, NA</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Secteur</dt>
+              <dd class="text-white font-medium text-sm text-right">Nerano</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Accès</dt>
+              <dd class="text-white font-medium text-sm text-right">Randonnée ou bateau</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Distance randonnée</dt>
+              <dd class="text-white font-medium text-sm text-right">45–60 min</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Type de plage</dt>
+              <dd class="text-white font-medium text-sm text-right">Sable et rochers</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Protection</dt>
+              <dd class="text-white font-medium text-sm text-right">AMP Campanella</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Services</dt>
+              <dd class="text-white font-medium text-sm text-right">Aucun</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Meilleure période</dt>
+              <dd class="text-white font-medium text-sm text-right">Mai–Sep</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Péninsule de Sorrente</p>
+          <nav class="space-y-1">
+            <a href="/fr-fr/peninsule-sorrentine/sorrente/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Sorrente
+            </a>
+            <a href="/fr-fr/peninsule-sorrentine/massa-lubrense/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Massa Lubrense
+            </a>
+            <a href="/fr-fr/peninsule-sorrentine/vico-equense/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Vico Equense
+            </a>
+            <a href="/fr-fr/peninsule-sorrentine/sant-agnello/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Sant'Agnello
+            </a>
+          </nav>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explorez aussi la Péninsule de Sorrente"
+    items={[
+      { name: 'Massa Lubrense', href: '/fr-fr/peninsule-sorrentine/massa-lubrense/', tag: 'Réserve marine', desc: 'Punta Campanella, Marina del Cantone et les pâtes à Nerano.' },
+      { name: 'Sorrente',        href: '/fr-fr/peninsule-sorrentine/sorrente/',        tag: 'Base idéale', desc: 'Porte vers Capri, limoncello et Piazza Tasso.' },
+      { name: 'Capri',           href: '/fr-fr/iles/capri/',                         tag: 'La plus icônique', desc: 'À 5 km: Grotte Bleue et Faraglioni.' },
+      { name: 'Positano',        href: '/fr-fr/cote-amalfitaine/positano/',           tag: 'Mode & Vue', desc: 'Les maisons colorées de la Côte Amalfitaine.' },
+      { name: 'Ravello',         href: '/fr-fr/cote-amalfitaine/ravello/',            tag: 'Musique & Jardins', desc: 'Villa Rufolo et Villa Cimbrone à 350 m.' },
+      { name: 'Marina di Praia',  href: '/fr-fr/cote-amalfitaine/marina-di-praia/',  tag: 'Plage sauvage', desc: 'La plage secrète sauvage de Praiano.' },
+    ]}
+  />
+
+</BaseLayout>
