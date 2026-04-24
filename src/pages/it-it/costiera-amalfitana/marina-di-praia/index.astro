@@ -1,0 +1,391 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Costiera Amalfitana', url: '/it-it/costiera-amalfitana/' },
+  { name: 'Marina di Praia', url: '/it-it/costiera-amalfitana/marina-di-praia/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Marina di Praia",
+  "description": "Marina di Praia è una spiaggia selvaggia e nascosta della Costiera Amalfitana, raggiungibile da Praiano via scalini nella roccia. Uno dei posti più autentici e tranquilli della costiera, perfetto per chi cerca il contatto diretto con la natura.",
+  "url": "https://amalficoast-travel.com/it-it/costiera-amalfitana/marina-di-praia/",
+  "image": "https://amalficoast-travel.com/images/praia-hero.jpg",
+  "touristType": ["Natura", "Spiaggia", "Escursionismo", "Fotografia"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Praiano",
+    "addressRegion": "Salerno",
+    "addressCountry": "IT",
+    "postalCode": "84010"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6207,
+    "longitude": 14.6015
+  }
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Marina di Praia, Costiera Amalfitana",
+  "description": "Spiaggia selvaggia della Costiera Amalfitana nel comune di Praiano. Accessibile tramite una scalinata nella roccia, è uno dei posti più autentici e meno affollati della costiera.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6207,
+    "longitude": 14.6015
+  },
+  "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Costiera Amalfitana"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Dove si trova Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Marina di Praia si trova nel comune di Praiano, sulla Costiera Amalfitana. È raggiungibile scendendo una scalinata di circa 70-80 gradini scavata nella roccia, che parte dalla strada principale (SS163) nel centro di Praiano."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Come si accede a Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Da Praiano centro, prendere la via che scende verso il mare. Troverete la scalinata (ben segnalata) che scende direttamente nella roccia. La discesa è facile, ma la risalita richiede un po' di fiato. Portate scarpe comode."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "È una spiaggia attrezzata?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, Marina di Praia è una spiaggia selvaggia e completamente libera. Non ci sono lettini, ombrelloni o bar direttamente sulla spiaggia. È il luogo ideale per chi cerca l'autenticità e il contatto diretto con la natura. Portate acqua e snack da bere e mangiare."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual è il miglior periodo per visitare Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Maggio–settembre è il periodo ideale per balneazione. Gli ultimi 30 minuti prima del tramonto (da metà giugno a fine agosto intorno alle 20:00-20:30) sono magici: la luce illumina le scogliere e il mare si colora di rosa. Aprile e ottobre sono tranquilli e ancora gradevoli."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ci sono servizi a Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I servizi diretti sulla spiaggia sono assenti. Tuttavia, risalendo a Praiano centro (5 minuti a piedi), troverete bar, ristoranti e negozi. Consiglio di portare con sé acqua, snack e una macchina fotografica per il tramonto."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Marina di Praia 2026: Spiaggia Selvaggia della Costiera | Guida"
+  description="Marina di Praia: la spiaggia più selvaggia e autentica della Costiera Amalfitana. Raggiungibile da Praiano via scalini nella roccia, perfetta per tramonti e contatto con la natura."
+  lang={lang}
+  pageKey="marina-di-praia"
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, placeSchema, faqSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div>
+    <img src="/images/praia-hero.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager"  referrerpolicy="no-referrer"/>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Natura · Autenticità</p>
+        <h1 class="font-serif text-display text-white mb-4">Marina di Praia</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La spiaggia selvaggia di Praiano, nascosta dietro una scalinata nella roccia. Un posto dove il turismo non ha ancora arrivato, dove l'unico suono è il mare e il traffico è una memoria lontana.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">
+            Fast Facts
+          </a>
+          <a href="#cosa-vedere" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            Cosa fare
+          </a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            FAQ
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Grid -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <!-- Main Content -->
+      <div class="space-y-16">
+
+        <!-- Intro -->
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Marina di Praia è ciò che rimane quando il turismo di massa non è ancora arrivato. È una spiaggia di sassi e roccia, raggiungibile solo tramite una scalinata nella roccia che scende direttamente dal centro di Praiano. Qui non troverete lettini, non troverete baristi insistenti, non troverete selfie stick. Troverete il suono del mare, il cielo senza fretta e l'aria di libertà che tutti sognano quando decidono di scappare in Costiera Amalfitana.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            È il posto preferito dai fotografi al tramonto, dai nuotatori che cercano l'autenticità e da chi ha capito che la Costiera non è solo Positano e boutique di lusso. È la prova vivente che ci sono ancora angoli dove la magia è gratuita.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Lo sapevi?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">70–80</p>
+              <p class="text-white/60 text-xs italic mt-1">gradini nella roccia</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">0</p>
+              <p class="text-white/60 text-xs italic mt-1">servizi e bar</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">100%</p>
+              <p class="text-white/60 text-xs italic mt-1">autentica e libera</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Marina di Praia non è segnalata su Google Maps da nessuna spiaggia commerciale. È una scoperta che si tramanda di bocca in bocca tra chi conosce veramente la Costiera.
+          </p>
+        </div>
+
+        <!-- Cosa Fare -->
+        <div id="cosa-vedere">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Cosa fare a Marina di Praia</h2>
+          <div class="space-y-8">
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">1</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Nuotare nel Silenzio</h3>
+                <p class="text-slate-600 leading-relaxed">Qui l'acqua è pulita, il cielo è più grande e il silenzio è quasi ipnotico. Nuotare a Marina di Praia è un'esperienza meditativa. La profondità aumenta gradualmente, perfetto sia per bambini che per nuotatori esperti. L'acqua è trasparente: potete vedere il fondo fino a 10-15 metri di profondità.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">2</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Tramonto Spettacolare</h3>
+                <p class="text-slate-600 leading-relaxed">Da metà giugno a fine agosto, il sole tramonta esattamente di fronte a voi. Gli ultimi 30 minuti prima del tramonto illuminano le scogliere di arancione e rosso. È uno dei tramonti più belli della Costiera, senza la folla di Positano o della Gavitella. Portate una macchina fotografica.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">3</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Esplorare le Rocce</h3>
+                <p class="text-slate-600 leading-relaxed">La spiaggia è circondata da formazioni rocciose affascinanti. Potete arrampicarvi sulle rocce (con attenzione), scoprire piccole caverne e angoli nascosti. Non è come una grotta vera, ma è il genere di esplorazione che piace ai bambini e ai fotografi che cercano composizioni uniche.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">4</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Picnic Minimalista</h3>
+                <p class="text-slate-600 leading-relaxed">Portatevi dell'acqua fredda, un panino da un bar di Praiano e la solitudine. Sedervi sui sassi con le gambe in acqua mentre mangiate, sentendo il mare sotto di voi e il silenzio intorno, è una forma di meditazione che il resto della Costiera non offre più.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Come Arrivare -->
+        <div class="bg-charcoal rounded-[3rem] p-10 md:p-14 text-white relative overflow-hidden">
+          <div class="relative z-10">
+            <h2 class="font-serif text-3xl font-bold text-white tracking-tight mb-6">Come arrivare a Marina di Praia</h2>
+            <p class="text-white/60 mb-10 leading-relaxed">Marina di Praia non è su Google Maps come attrazione principale. È praticamente nascosta, raggiungibile solo da Praiano centro. La chiave è arrivare a Praiano e poi cercare la scalinata che scende verso il mare.</p>
+            <div class="grid sm:grid-cols-2 gap-8 mb-10">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0"><svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18M8 11V7a4 4 0 018 0v4"/></svg></div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">In Auto a Praiano</h3><p class="text-white/50 text-sm leading-relaxed">SS163 da Amalfi (~15 min). Parcheggiate nel centro di Praiano (zona municipio). Poi a piedi fino alla scalinata.</p></div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0"><svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="M3 10h18M8 19v2M16 19v2"/></svg></div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Bus SITA</h3><p class="text-white/50 text-sm leading-relaxed">Dalla Costiera fino a Praiano centro. Poi scendete gli 70-80 gradini verso il mare.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Domande frequenti su Marina di Praia</h2>
+          <div class="space-y-4">
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Dove si trova Marina di Praia?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Marina di Praia si trova nel comune di Praiano, sulla Costiera Amalfitana, tra Positano e Amalfi. È raggiungibile scendendo una scalinata di circa 70-80 gradini scavata nella roccia, che parte dalla strada principale (SS163) nel centro di Praiano, vicino all'area del municipio.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Come si accede a Marina di Praia?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Da Praiano centro, trovate la via che scende verso il mare (ben indicata da segnali). Scendete 70-80 gradini di una scalinata scavata nella roccia. La discesa è facile e richiede circa 5-10 minuti. La risalita è più faticosa, specialmente al caldo. Portate scarpe comode con buona aderenza.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                È una spiaggia attrezzata?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                No, Marina di Praia è una spiaggia completamente selvaggia e libera. Non ci sono lettini, ombrelloni, bar o servizi sulla spiaggia. È esattamente così che piace a chi la frequenta: autentica, silenziosa, senza commercio. Portate con voi acqua, snack, una macchina fotografica e un telo da spiaggia.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Qual è il miglior periodo per visitare Marina di Praia?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Maggio–settembre per il bagno. Il tramonto è spettacolare da metà giugno a fine agosto, quando il sole cala direttamente di fronte alla spiaggia. Aprile e ottobre sono tranquilli, meno affollati e il mare è ancora piacevole. Novembre–marzo è quieto, ma l'acqua è fredda e il meteo è meno prevedibile.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Ci sono servizi a Marina di Praia?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                No servizi diretti sulla spiaggia. Tuttavia, risalendo a Praiano centro (5 minuti a piedi), troverete bar, ristoranti, negozi e farmacie. Consiglio di portare acqua, snack, macchina fotografica e un telo da spiaggia. Se dimenticate qualcosa, risalite e comprate a Praiano.
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+
+        <!-- Fast Facts -->
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts - Marina di Praia</p>
+          <dl class="space-y-3">
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Comune</dt>
+              <dd class="text-white font-medium text-sm text-right">Praiano, SA</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Altitudine</dt>
+              <dd class="text-white font-medium text-sm text-right">0 m slm</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Accesso</dt>
+              <dd class="text-white font-medium text-sm text-right">70–80 scalini</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Tipo spiaggia</dt>
+              <dd class="text-white font-medium text-sm text-right">Sassi e roccia</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Servizi</dt>
+              <dd class="text-white font-medium text-sm text-right">Nessuno</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Affollamento</dt>
+              <dd class="text-white font-medium text-sm text-right">Molto basso</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Miglior periodo</dt>
+              <dd class="text-white font-medium text-sm text-right">Mag–Set</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Valuta</dt>
+              <dd class="text-white font-medium text-sm text-right">Euro (€)</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Esplora la Costiera</p>
+          <nav class="space-y-1">
+            <a href="/it-it/costiera-amalfitana/positano/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Positano
+            </a>
+            <a href="/it-it/costiera-amalfitana/praiano/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Praiano
+            </a>
+            <a href="/it-it/costiera-amalfitana/amalfi/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Amalfi
+            </a>
+            <a href="/it-it/costiera-amalfitana/ravello/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Ravello
+            </a>
+            <a href="/it-it/costiera-amalfitana/maiori/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Maiori
+            </a>
+          </nav>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Esplora anche sulla Costiera"
+    items={[
+      { name: 'Praiano',    href: '/it-it/costiera-amalfitana/praiano/', tag: 'Tranquillità',     desc: 'Il segreto meglio custodito della costiera con tramonti spettacolari e marina tranquilla.' },
+      { name: 'Positano',   href: '/it-it/costiera-amalfitana/positano/', tag: 'Fashion & Vista', desc: 'Le case colorate a picco sul mare, boutique di lusso e la spiaggia Fornillo.' },
+      { name: 'Amalfi',     href: '/it-it/costiera-amalfitana/amalfi/',  tag: 'Storia & Cultura', desc: 'Duomo di Sant\'Andrea, Museo della Carta e capitale della Costiera.' },
+      { name: 'Ravello',    href: '/it-it/costiera-amalfitana/ravello/', tag: 'Musica & Giardini', desc: 'Villa Rufolo, Villa Cimbrone e il Festival Musicale a 350 m sul mare.' },
+      { name: 'Maiori',     href: '/it-it/costiera-amalfitana/maiori/',  tag: 'Spiaggia & Relax', desc: 'La spiaggia di sabbia più lunga della costiera: 300 m di lungomare.' },
+      { name: 'Minori',     href: '/it-it/costiera-amalfitana/minori/',  tag: 'Sapori & Cultura', desc: 'Villa romana del I sec., scialatielli freschi e pasticcerie artigianali.' },
+    ]}
+  />
+
+</BaseLayout>
