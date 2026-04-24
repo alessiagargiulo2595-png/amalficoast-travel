@@ -1,0 +1,391 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Costiera Amalfitana', url: '/it-it/costiera-amalfitana/' },
+  { name: 'Vietri sul Mare', url: '/it-it/costiera-amalfitana/vietri-sul-mare/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Vietri sul Mare",
+  "description": "Vietri sul Mare è la porta orientale della Costiera Amalfitana, celebre per le sue ceramiche dipinte a mano che decorano chiese e terrazze di tutto il Sud Italia. Affacciata sul mare con vedute spettacolari sulla Costiera.",
+  "url": "https://amalficoast-travel.com/it-it/costiera-amalfitana/vietri-sul-mare/",
+  "image": "https://amalficoast-travel.com/images/vietri-hero.jpg",
+  "touristType": ["Artigianato", "Cultura", "Mare", "Gastronomia"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Vietri sul Mare",
+    "addressRegion": "Salerno",
+    "addressCountry": "IT",
+    "postalCode": "84019"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6819,
+    "longitude": 14.6945
+  }
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Vietri sul Mare, Costiera Amalfitana",
+  "description": "Comune costiero della Costiera Amalfitana in provincia di Salerno, Campania. Celebre per le ceramiche artistiche dipinte a mano.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6819,
+    "longitude": 14.6945
+  },
+  "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Costiera Amalfitana"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Per cosa è famosa Vietri sul Mare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vietri sul Mare è la capitale italiana della ceramica. Le sue ceramiche dipinte a mano, con motivi geometrici e floreali caratteristici, decorano chiese e terrazze di tutto il Sud Italia e sono esportate in tutto il mondo. La tradizione ceramica risale al XIV secolo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Come si raggiunge Vietri dal Mare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vietri sul Mare è collegata alla Costiera via SS163 (distante ~15 km da Amalfi). In auto circa 20-30 minuti da Amalfi. Anche in autobus con il servizio SITA da Salerno o da altri comuni della costiera."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa vedere a Vietri sul Mare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La Chiesa di San Giovanni Battista con la sua cupola maiolica caratteristica, il lungomare panoramico, le botteghe artigianali di ceramica, il Museo Provinciale della Ceramica e le terrazze che affacciano sulla costiera intera."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ci sono spiagge a Vietri sul Mare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, Vietri ha spiagge di ciottoli e sabbia scura raggiungibili dal centro. Il lungomare è pianeggiante e facilmente accessibile, con una vista spettacolare sulla Costiera verso ovest."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual è il periodo migliore per visitare Vietri?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aprile–giugno e settembre–ottobre sono ideali per clima e minore affollamento. Luglio e agosto sono caldi e affollati. In inverno molte botteghe possono avere orari ridotti, ma la città rimane vivibile."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Vietri sul Mare 2026: Ceramiche e Costiera | Guida Completa"
+  description="Guida a Vietri sul Mare: la capitale della ceramica italiana, la Chiesa di San Giovanni, botteghe artigianali, lungomare panoramico, come arrivare. La porta orientale della Costiera Amalfitana."
+  lang={lang}
+  pageKey="vietri-sul-mare"
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, placeSchema, faqSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div>
+    <img src="/images/vietri-hero.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager"  referrerpolicy="no-referrer"/>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Ceramica · Patrimonio Artigianale</p>
+        <h1 class="font-serif text-display text-white mb-4">Vietri sul Mare</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La porta orientale della Costiera Amalfitana. La capitale italiana della ceramica, dove le maioliche dipinte a mano colorano il cielo di terracotta. Una vista che abbraccia tutta la costiera da qui fino a Capri.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">
+            Fast Facts
+          </a>
+          <a href="#cosa-vedere" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            Cosa vedere
+          </a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            FAQ
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Grid -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <!-- Main Content -->
+      <div class="space-y-16">
+
+        <!-- Intro -->
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Vietri sul Mare è il punto dove la Costiera Amalfitana incontra il Golfo di Salerno. Non è una città sconosciuta - chiunque abbia visitato chiese e piazze del Sud Italia ha visto le sue ceramiche - eppure rimane il posto meno turistico della costiera, nonostante le magnifiche vedute e una tradizione artigianale che risale al XIV secolo.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Qui tutto parla di ceramica: i tetti, i balconi, le decorazioni dei negozi, persino le panchine del lungomare. È il luogo dove l'arte popolare non è turistica perché è ancora radicata nella comunità. Le mani che dipingono le maioliche sono le stesse che lo hanno fatto per generazioni.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Lo sapevi?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">XIV sec.</p>
+              <p class="text-white/60 text-xs italic mt-1">inizio della tradizione ceramica</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">50+</p>
+              <p class="text-white/60 text-xs italic mt-1">botteghe di ceramica attive</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">3.000+</p>
+              <p class="text-white/60 text-xs italic mt-1">abitanti</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            La <em>Chiesa di San Giovanni Battista</em> ha una cupola di maioliche blu e gialle che si vede da tutta la costiera - un simbolo della maestria locale.
+          </p>
+        </div>
+
+        <!-- Cosa Vedere -->
+        <div id="cosa-vedere">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Cosa vedere a Vietri sul Mare</h2>
+          <div class="space-y-8">
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">1</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Chiesa di San Giovanni Battista</h3>
+                <p class="text-slate-600 leading-relaxed">Il simbolo di Vietri: una cupola in maiolica blu e gialla che domina il lungomare. Costruita nel XVII secolo con un interno riccamente decorato. La vista da qui è tra le più belle della costiera - da qui si vede l'arco della costiera che va da Positano fino quasi a Napoli.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">2</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Botteghe di Ceramica e Museo</h3>
+                <p class="text-slate-600 leading-relaxed">Il Museo Provinciale della Ceramica racconta la storia dell'arte ceramica locale con reperti dal XIV secolo fino ai giorni nostri. Vicino al museo, decine di botteghe artigianali dove gli artisti dipingono le maioliche davanti ai tuoi occhi. I prezzi sono onesti e la qualità è autentica.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">3</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Lungomare Panoramico</h3>
+                <p class="text-slate-600 leading-relaxed">Una passeggiata pianeggiante che corre lungo la costa, con panchine decorate in ceramica e una vista che abbraccia da Praiano fino alle isole del golfo. Perfetto al tramonto, quando la luce dora la ceramica dei tetti e il mare si colora di rosa.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">4</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Spiagge e Mare</h3>
+                <p class="text-slate-600 leading-relaxed">Spiagge di ciottoli e sabbia scura raggiungibili comodamente dal centro. Meno affollate della altre spiagge della costiera, con servizi bar e ristoranti sul lungomare. L'acqua è particolarmente limpida qui, alla porta del golfo di Salerno.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Come Arrivare -->
+        <div class="bg-charcoal rounded-[3rem] p-10 md:p-14 text-white relative overflow-hidden">
+          <div class="relative z-10">
+            <h2 class="font-serif text-3xl font-bold text-white tracking-tight mb-6">Come arrivare a Vietri sul Mare</h2>
+            <p class="text-white/60 mb-10 leading-relaxed">Vietri è la porta orientale della costiera, raggiungibile facilmente da Salerno o dalla costiera stessa. Non ha porto per i traghetti come Amalfi o Positano, ma è ben collegata con auto, bus e persino motocicli.</p>
+            <div class="grid sm:grid-cols-2 gap-8 mb-10">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0"><svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18M8 11V7a4 4 0 018 0v4"/></svg></div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">In Auto</h3><p class="text-white/50 text-sm leading-relaxed">SS163 da Amalfi (~20 min), uscita per Vietri. Accesso diretto dalla costiera.</p></div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0"><svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="M3 10h18M8 19v2M16 19v2"/></svg></div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Bus SITA</h3><p class="text-white/50 text-sm leading-relaxed">Da Salerno o dalla Costiera. Circa €2-3 tutto anno.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Domande frequenti su Vietri sul Mare</h2>
+          <div class="space-y-4">
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Per cosa è famosa Vietri sul Mare?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Vietri sul Mare è celebre per la sua ceramica dipinta a mano, una tradizione che risale al XIV secolo. Le maioliche di Vietri, con i loro colori vivaci e motivi floreali o geometrici, decorano chiese, conventi e piazze di tutto il Sud Italia. È la capitale italiana della ceramica artistica, dove ancora oggi decine di artigiani mantengono viva questa tradizione.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Come si raggiunge Vietri dal Mare?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Vietri è la porta orientale della costiera. Dall'interno della costiera (Amalfi, Positano) ci vogliono circa 20-30 minuti per auto via SS163. Da Salerno distano circa 15 km (~20 min in auto). Il bus SITA collega Vietri a Salerno e ai paesi della costiera con corse frequenti.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Cosa vedere a Vietri sul Mare?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                La Chiesa di San Giovanni Battista con la sua cupola di maiolica blu e gialla, il Museo Provinciale della Ceramica, le botteghe artigianali di ceramica lungo il lungomare, il lungomare panoramico stesso con le vedute sulla costiera e il Golfo di Salerno, e le spiagge tranquille di ciottoli e sabbia scura.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Ci sono spiagge a Vietri sul Mare?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Sì, Vietri ha spiagge di ciottoli misti a sabbia scura, molto meno affollate rispetto ad Amalfi, Positano o Maiori. Il lungomare è pianeggiante e facilmente raggiungibile dal centro paese. Ci sono bar e ristoranti sul lungomare, ma senza lo stress turistico dei posti più celebri.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Qual è il periodo migliore per visitare Vietri?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Aprile–giugno e settembre–ottobre sono ideali: clima piacevole, affollamento moderato e tutti i servizi aperti. Luglio e agosto sono caldi e affollati, ma comunque meno del resto della costiera. Novembre–marzo è tranquillo, anche se alcune botteghe potrebbero avere orari ridotti.
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+
+        <!-- Fast Facts -->
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts - Vietri sul Mare</p>
+          <dl class="space-y-3">
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Posizione</dt>
+              <dd class="text-white font-medium text-sm text-right">Costiera Amalfitana, SA</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Altitudine</dt>
+              <dd class="text-white font-medium text-sm text-right">0–150 m slm</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Popolazione</dt>
+              <dd class="text-white font-medium text-sm text-right">~3.000 abitanti</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Specialità</dt>
+              <dd class="text-white font-medium text-sm text-right">Ceramica dipinta</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Mezzi</dt>
+              <dd class="text-white font-medium text-sm text-right">Auto, Bus SITA</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Spiaggia</dt>
+              <dd class="text-white font-medium text-sm text-right">Ciottoli e sabbia</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Miglior periodo</dt>
+              <dd class="text-white font-medium text-sm text-right">Apr–Giu / Set–Ott</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Valuta</dt>
+              <dd class="text-white font-medium text-sm text-right">Euro (€)</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Esplora la Costiera</p>
+          <nav class="space-y-1">
+            <a href="/it-it/costiera-amalfitana/positano/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Positano
+            </a>
+            <a href="/it-it/costiera-amalfitana/amalfi/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Amalfi
+            </a>
+            <a href="/it-it/costiera-amalfitana/ravello/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Ravello
+            </a>
+            <a href="/it-it/costiera-amalfitana/praiano/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Praiano
+            </a>
+            <a href="/it-it/costiera-amalfitana/maiori/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Maiori
+            </a>
+          </nav>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Esplora anche sulla Costiera"
+    items={[
+      { name: 'Positano',  href: '/it-it/costiera-amalfitana/positano/', tag: 'Fashion & Vista',  desc: 'Le case colorate a picco sul mare, boutique di lusso e la spiaggia Fornillo.' },
+      { name: 'Amalfi',    href: '/it-it/costiera-amalfitana/amalfi/',  tag: 'Storia & Cultura', desc: 'Duomo di Sant\'Andrea, Museo della Carta e capitale della Costiera.' },
+      { name: 'Ravello',   href: '/it-it/costiera-amalfitana/ravello/',  tag: 'Musica & Giardini', desc: 'Villa Rufolo, Villa Cimbrone e il Festival Musicale a 350 m sul mare.' },
+      { name: 'Praiano',   href: '/it-it/costiera-amalfitana/praiano/', tag: 'Tramonto & Quiete', desc: 'Il tramonto da San Gennaro, la spiaggia Gavitella e la silenziosa Marina di Praia.' },
+      { name: 'Maiori',    href: '/it-it/costiera-amalfitana/maiori/',  tag: 'Spiaggia & Relax',  desc: 'La spiaggia di sabbia più lunga della costiera: 300 m di lungomare.' },
+      { name: 'Minori',    href: '/it-it/costiera-amalfitana/minori/',  tag: 'Sapori & Cultura',  desc: 'Villa romana del I sec., scialatielli freschi e pasticcerie artigianali.' },
+    ]}
+  />
+
+</BaseLayout>
