@@ -1,13 +1,72 @@
 ---
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
 
 const lang = 'it-it';
+const post = {
+  title: 'Oasi Selvagge',
+  subtitle: 'Le Spiagge Raggiungibili Solo via Mare',
+  category: 'GUIDES',
+  date: '28 Aprile 2026',
+  readTime: '9 min',
+  image: '/images/spiagge-selvagge.jpg',
+  imageAlt: 'Oasi Selvagge: spiagge selvagge raggiungibili solo via mare sulla Costiera Amalfitana',
+  path: '/it-it/blog/oasi-selvagge-spiagge-mare/',
+};
+
+const metaTitle = "Oasi Selvagge: Spiagge via Mare della Costiera Amalfitana | Guida 2026";
+const metaDescription = "Scopri le spiagge più remote della Costiera Amalfitana, accessibili solo via mare. Santa Croce ad Amalfi, Cavallo Morto a Maiori, La Vite: le oasi autentiche.";
 
 const breadcrumbs = [
   { name: 'Home', url: '/it-it/' },
   { name: 'Blog', url: '/it-it/blog/' },
-  { name: 'Oasi Selvagge: Le Spiagge Raggiungibili Solo via Mare', url: '/it-it/blog/oasi-selvagge-spiagge-mare/' },
+  { name: 'Oasi Selvagge', url: '/it-it/blog/oasi-selvagge-spiagge-mare/' },
 ];
+
+const quickInfo = [
+  { label: 'Spiagge raggiunte', value: 'Solo via mare · Barca privata o tour' },
+  { label: 'Tipo di accesso', value: 'Calette nascoste tra scogliere' },
+  { label: 'Servizi', value: 'Assenti o mini-bar/ristorante' },
+  { label: 'Specialità', value: 'Acqua cristallina, sorgenti sottomarine' },
+  { label: 'Ideale per', value: 'Chi cerca isolamento e autenticità' },
+  { label: 'Periodo migliore', value: 'Maggio-settembre, mare calmo' },
+  { label: 'Attrezzatura consigliata', value: 'Snorkel, macchina fotografica subacquea' },
+  { label: 'Atmosfera', value: 'Selvaggia, silenziosa, primordiale' },
+];
+
+const faq = [
+  {
+    q: 'Come si raggiungono queste spiagge?',
+    a: 'Esclusivamente via mare. La soluzione più autentica è noleggiare un tradizionale gozzo sorrentino con un marinaio del posto da Amalfi o dai piccoli porti della Costiera. In alternativa, esistono escursioni organizzate dalle principali città costiere.',
+  },
+  {
+    q: 'Sono veramente difficili da raggiungere?',
+    a: 'No, se avete una barca o partecipate a un\'escursione. Difficili da raggiungere a piedi: le pareti rocciose sono insormontabili. Ma una volta in barca, la navigazione è semplice e il mare è generalmente calmo da maggio a settembre.',
+  },
+  {
+    q: 'Ci sono servizi sulla spiaggia?',
+    a: 'Dipende. Santa Croce ha due ristoranti con servizio lido. Cavallo Morto è completamente selvaggia, senza servizi. La Vite ha un piccolo lido-ristorante. Consigliamo di portare acqua e cibo abbondante per le spiagge libere.',
+  },
+  {
+    q: 'Qual è il periodo migliore per visitarle?',
+    a: 'Maggio-settembre, quando il mare è calmo e la navigazione sicura. Evitate i mesi invernali per il rischio di onde forti. Giugno e settembre sono ideali: meno affollate di agosto, ma con ottimo meteo.',
+  },
+  {
+    q: 'Posso nuotare e fare snorkeling?',
+    a: 'Assolutamente sì. L\'acqua è cristallina e la visibilità sottomarina è eccellente. Portate una maschera da snorkeling: vedrete fondali rocciosi e flora marina intatta. Perfetto per subacquei principianti.',
+  },
+  {
+    q: 'È pericoloso andare con bambini?',
+    a: 'Se il mare è calmo (controllate le previsioni), è relativamente sicuro con bambini a bordo della barca. Una volta sulla spiaggia, le calette sono riparate e l\'acqua è tranquilla. Sconsigliato solo in caso di onde.',
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Spiagge comode e attrezzate', href: '/it-it/blog/spiagge-comode-attrezzate/' },
+  { label: 'Dove vedere il tramonto', href: '/it-it/blog/tramonto-spiaggia-costiera/' },
+  { label: 'Tutte le spiagge della Costiera', href: '/it-it/spiagge/' },
+];
+
+const authorRole = 'Beach & Adventure Guide · Costiera Amalfitana';
 
 const blogSchema = {
   "@context": "https://schema.org",
@@ -23,77 +82,95 @@ const blogSchema = {
   "description": "Scopri le spiagge più remote e selvagge della Costiera Amalfitana, accessibili solo via mare. Santa Croce, Cavallo Morto, La Vite: le oasi autentiche del Tirreno."
 };
 
-const readingTime = 9;
-const category = 'GUIDES';
-const publishDate = '28 Aprile 2026';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+};
 ---
 
-<BaseLayout
-  title="Oasi Selvagge: Le Spiagge Raggiungibili Solo via Mare – Costiera Amalfitana"
-  description="Scopri le spiagge più remote e selvagge della Costiera Amalfitana, accessibili solo via mare. Santa Croce, Cavallo Morto, La Vite: le oasi autentiche del Tirreno."
+<BlogPostLayout
   lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
   breadcrumbs={breadcrumbs}
-  schema={[blogSchema]}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
 >
 
-  <!-- Hero -->
-  <section class="relative h-[60vh] overflow-hidden flex items-center justify-center">
-    <img
-      src="/images/spiagge-selvagge.jpg"
-      alt="Oasi Selvagge: Spiagge via Mare"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-      referrerpolicy="no-referrer"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/70"></div>
-    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <div class="flex flex-wrap justify-center items-center gap-3 mb-4 text-sm">
-        <span class="bg-med-gold text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">{category}</span>
-        <span class="text-white/70">{publishDate}</span>
-        <span class="text-white/70">{readingTime} min lettura</span>
-      </div>
-      <h1 class="font-serif text-4xl md:text-5xl font-bold text-white leading-tight">Oasi Selvagge: Le Spiagge Raggiungibili Solo via Mare</h1>
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      Il vero lusso, in un territorio celebre e frequentato come la Costiera Amalfitana, non risiede nei beach club più esclusivi o nelle terrazze dei resort a cinque stelle, ma nel silenzio quasi surreale di una caletta nascosta che non conosce il rumore delle auto né il passaggio frenetico del turismo di massa. Lungo la frastagliata linea di costa che si snoda tra Amalfi e il promontorio di Capo d'Orso, la natura ha scolpito piccoli capolavori di roccia e ciottoli protetti da pareti verticali insormontabili, accessibili esclusivamente solcando le acque cristalline del Tirreno.
+    </p>
+  </div>
+
+  <!-- Santa Croce -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Santa Croce: La Perla Più Celebre</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      La spiaggia di Santa Croce, situata a pochi minuti di navigazione dal molo di Amalfi, è senza dubbio la più celebre tra queste perle segrete. Prende il nome dai resti di un'antica cappella medievale dedicata alla Santa Croce, di cui si possono ancora scorgere le tracce tra la macchia mediterranea. È un paradiso di ciottoli chiari che riflettono la luce solare rendendo l'acqua limpidissima, ideale per chi ama nuotare al largo o praticare snorkeling lungo i bordi della scogliera.
+    </p>
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Perché è Speciale</h3>
+      <p class="text-slate-600 leading-relaxed">
+        Sebbene la maggior parte del litorale sia occupata da due storici ristoranti che offrono servizio lido e cucina locale d'eccellenza, esiste una piccola porzione di spiaggia libera per chi preferisce un contatto più rustico e autonomo con la natura.
+      </p>
     </div>
-  </section>
+  </div>
 
-  <!-- Contenuto Blog -->
-  <section class="py-20 px-6 max-w-4xl mx-auto">
-    <article class="prose prose-lg max-w-none">
-      <p class="text-lg text-slate-700 leading-relaxed mb-8">
-        Il vero lusso, in un territorio celebre e frequentato come la Costiera Amalfitana, non risiede nei beach club più esclusivi o nelle terrazze dei resort a cinque stelle, ma nel silenzio quasi surreale di una caletta nascosta che non conosce il rumore delle auto né il passaggio frenetico del turismo di massa. Lungo la frastagliata linea di costa che si snoda tra Amalfi e il promontorio di Capo d'Orso, la natura ha scolpito piccoli capolavori di roccia e ciottoli protetti da pareti verticali insormontabili, accessibili esclusivamente solcando le acque cristalline del Tirreno. Queste spiagge rappresentano l'ultima frontiera dell'autenticità mediterranea: qui l'acqua assume sfumature smeraldo e turchese talmente intense da sembrare irreali, grazie alla purezza delle sorgenti sottomarine che sgorgano direttamente dalla roccia calcarea.
+  <!-- Cavallo Morto -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Cavallo Morto: Remota e Spettacolare</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Ancora più remota e selvaggia è la spiaggia di Cavallo Morto, nota anche come Bellavaia, situata nel territorio di Maiori. Nonostante il nome sinistro, legato a vecchie leggende locali, è una delle spiagge più spettacolari dell'intera regione. Essendo orientata verso sud-est, è la prima a ricevere i raggi del sole già all'alba, offrendo uno spettacolo cromatico unico mentre il mare digrada verso un blu cobalto profondo.
+    </p>
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Esperienza Pura</h3>
+      <p class="text-slate-600 leading-relaxed">
+        Questa spiaggia è completamente libera e priva di qualsiasi servizio: non ci sono bar, non ci sono ombrelloni a noleggio. È la meta definitiva per chi cerca l'isolamento totale e vuole immergersi in un contesto primordiale.
       </p>
+    </div>
+  </div>
 
-      <h2 class="text-2xl font-serif font-bold text-slate-900 mt-10 mb-6">Santa Croce: La Perla Più Celebre</h2>
+  <!-- La Vite -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Vite: Natura Incontaminata</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Infine, merita una menzione La Vite, una baia riparata nel comune di Conca dei Marini. Una lingua di ciottoli incastonata tra rocce altissime dove la natura regna sovrana. Qui troverete un mix armonioso: una parte è gestita da un piccolo lido-ristorante che sembra sospeso sulle onde, ma esiste un'area di spiaggia libera dove stendere l'asciugamano e godersi il mare in totale tranquillità.
+    </p>
+  </div>
 
-      <p class="text-slate-700 leading-relaxed mb-6">
-        La spiaggia di Santa Croce, situata a pochi minuti di navigazione dal molo di Amalfi, è senza dubbio la più celebre tra queste perle segrete. Prende il nome dai resti di un'antica cappella medievale dedicata alla Santa Croce, di cui si possono ancora scorgere le tracce tra la macchia mediterranea. È un paradiso di ciottoli chiari che riflettono la luce solare rendendo l'acqua limpidissima, ideale per chi ama nuotare al largo o praticare snorkeling lungo i bordi della scogliera. Sebbene la maggior parte del litorale sia occupata da due storici ristoranti che offrono servizio lido e cucina locale d'eccellenza, esiste una piccola porzione di spiaggia libera per chi preferisce un contatto più rustico e autonomo con la natura.
-      </p>
-
-      <h2 class="text-2xl font-serif font-bold text-slate-900 mt-10 mb-6">Cavallo Morto: Remota e Spettacolare</h2>
-
-      <p class="text-slate-700 leading-relaxed mb-6">
-        Ancora più remota e selvaggia è la spiaggia di Cavallo Morto, nota anche come Bellavaia, situata nel territorio di Maiori. Nonostante il nome sinistro, legato a vecchie leggende locali, è una delle spiagge più spettacolari dell'intera regione. Essendo orientata verso sud-est, è la prima a ricevere i raggi del sole già all'alba, offrendo uno spettacolo cromatico unico mentre il mare digrada verso un blu cobalto profondo. Questa spiaggia è completamente libera e priva di qualsiasi servizio: non ci sono bar, non ci sono ombrelloni a noleggio. È la meta definitiva per chi cerca l'isolamento totale e vuole immergersi in un contesto primordiale.
-      </p>
-
-      <h2 class="text-2xl font-serif font-bold text-slate-900 mt-10 mb-6">La Vite: Natura Incontaminata</h2>
-
-      <p class="text-slate-700 leading-relaxed mb-8">
-        Infine, merita una menzione La Vite, una baia riparata nel comune di Conca dei Marini. Una lingua di ciottoli incastonata tra rocce altissime dove la natura regna sovrana. Qui troverete un mix armonioso: una parte è gestita da un piccolo lido-ristorante che sembra sospeso sulle onde, ma esiste un'area di spiaggia libera dove stendere l'asciugamano.
-      </p>
-
-      <div class="bg-amber-50 border-l-4 border-med-gold p-6 my-10">
-        <h3 class="font-bold text-slate-900 mb-3 flex items-center gap-2">
-          <span class="text-xl">💡</span> Local Tip
-        </h3>
-        <p class="text-slate-700 text-sm leading-relaxed">
-          Se puntate alla spiaggia libera via mare, la logistica è fondamentale. Portate con voi abbondante acqua e cibo, poiché molte di queste calette non hanno punti ristoro e il riverbero del sole sulle rocce bianche alza drasticamente la temperatura percepita. Il modo più autentico per viverle è noleggiare un gozzo tradizionale sorrentino con un marinaio del posto. Non limitatevi a farvi lasciare sulla riva: chiedete di mostrarvi le grotte marine adiacenti, come l'Arco degli Innamorati, un arco naturale sotto il quale, per tradizione, bisogna scambiarsi un bacio per assicurarsi amore eterno.
-        </p>
+  <!-- Consigli -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold text-slate-900">Consigli Pratici</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Logistica Fondamentale</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Portate con voi abbondante acqua e cibo, poiché molte di queste calette non hanno punti ristoro e il riverbero del sole sulle rocce bianche alza drasticamente la temperatura percepita.</p>
       </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">L'Esperienza Autentica</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Il modo più autentico per viverle è noleggiare un gozzo tradizionale sorrentino con un marinaio del posto. Non limitatevi a farvi lasciare sulla riva: chiedete di mostrarvi le grotte marine adiacenti, come l'Arco degli Innamorati.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Attrezzatura Consigliata</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Snorkel e macchera da subacquea sono essenziali. L'acqua è talmente cristallina che vedrete fondali rocciosi a profondità sorprendente. Portate anche una macchina fotografica subacquea per catturare la flora marina.</p>
+      </div>
+    </div>
+  </div>
 
-      <p class="text-slate-600 italic text-sm mt-12 pt-6 border-t border-slate-200">
-        Pubblicato il 28 Aprile 2026 • Tempo di lettura: {readingTime} minuti • Categoria: {category}
-      </p>
-    </article>
-  </section>
-
-</BaseLayout>
+</BlogPostLayout>

@@ -1,13 +1,72 @@
 ---
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
 
 const lang = 'it-it';
+const post = {
+  title: 'Comodità e Relax',
+  subtitle: 'Le Spiagge Accessibili e Attrezzate della Costiera',
+  category: 'GUIDES',
+  date: '28 Aprile 2026',
+  readTime: '8 min',
+  image: '/images/spiagge-bambini.jpg',
+  imageAlt: 'Comodità e Relax: Spiagge accessibili e attrezzate della Costiera Amalfitana',
+  path: '/it-it/blog/spiagge-comode-attrezzate/',
+};
+
+const metaTitle = "Spiagge Accessibili e Attrezzate della Costiera Amalfitana | Guida 2026";
+const metaDescription = "Scopri le spiagge più comode e attrezzate della Costiera Amalfitana: Maiori con il suo chilometro di sabbia, Minori nel cuore del paese, Atrani il segreto meglio custodito. Accesso facile, servizi completi.";
 
 const breadcrumbs = [
   { name: 'Home', url: '/it-it/' },
   { name: 'Blog', url: '/it-it/blog/' },
-  { name: 'Comodità e Relax: Le Spiagge Accessibili e Attrezzate', url: '/it-it/blog/spiagge-comode-attrezzate/' },
+  { name: 'Comodità e Relax', url: '/it-it/blog/spiagge-comode-attrezzate/' },
 ];
+
+const quickInfo = [
+  { label: 'Spiagge principali', value: 'Maiori, Minori, Atrani' },
+  { label: 'Tipo di accesso', value: 'Pianeggiante, senza scalini o rampe' },
+  { label: 'Servizi', value: 'Bar, ristoranti, cabine, ombrelloni a noleggio' },
+  { label: 'Spiaggia libera', value: 'Disponibile in tutti i comuni' },
+  { label: 'Ideale per', value: 'Famiglie, anziani, persone con disabilità' },
+  { label: 'Tipo di fondale', value: 'Sabbia scura vulcanica e ciottoli medi' },
+  { label: 'Parcheggio', value: 'Disponibile vicino alle spiagge' },
+  { label: 'Atmosfera', value: 'Rilassata, accogliente, consigliata per il riposo' },
+];
+
+const faq = [
+  {
+    q: 'Quale spiaggia è la più comoda e spaziosa?',
+    a: 'Maiori detiene il primato: con il suo chilometro di estensione è l\'unica spiaggia della Costiera dove gli spazi non sono angusti. La spiaggia è composta da sabbia scura vulcanica mescolata a piccoli sassolini, completamente pianeggiante. Offre ampi tratti di spiaggia libera alternati a lidi moderni con bar, ristoranti e cabine.',
+  },
+  {
+    q: 'Sono spiagge adatte alle famiglie con bambini?',
+    a: 'Assolutamente sì. Tutte e tre le spiagge sono perfette per le famiglie. Maiori e Minori hanno accesso immediato senza scalini. Atrani, per quanto piccola, è una piscina naturale riparata dai moli, ideale per i bambini. L\'atmosfera è rilassata e accogliente ovunque.',
+  },
+  {
+    q: 'Quali servizi trovate sulla spiaggia?',
+    a: 'Maiori: lidi moderni con bar, ristoranti e cabine. Minori: zona libera centrale con accesso immediato ai negozi e servizi del paese (farmacie, supermercati, bar). Atrani: servizi concentrati a pochi passi dalla spiaggia grazie alle dimensioni ridotte del comune.',
+  },
+  {
+    q: 'Posso trovare spiaggia libera (gratuita)?',
+    a: 'Sì, in tutti e tre i comuni. Maiori offre ampi tratti di spiaggia libera ben tenuta. Minori ha una zona libera centrale proprio davanti al paese. Atrani ha circa metà della spiaggia libera, con una delle visuali più pittoresche della costa.',
+  },
+  {
+    q: 'Sono spiagge accessibili per persone con disabilità?',
+    a: 'Sì, tutte offrono ottimo accesso. Maiori e Minori sono completamente pianeggianti. Atrani è raggiungibile tramite una comoda rampa dalla Statale 163 oppure attraverso i vicoli medievali del paese (non sconsigliato per disabilità). L\'accesso è il migliore di tutta la Costiera.',
+  },
+  {
+    q: 'Quale spiaggia scegliere se voglio tranquillità?',
+    a: 'Se cercate comodità ma volete evitare la folla di agosto, Atrani è il vostro segreto. Dista solo 10 minuti a piedi dal centro di Amalfi tramite un tunnel pedonale, ma l\'atmosfera è infinitamente più silenziosa e autentica. È il luogo perfetto per chi vuole relax senza sacrificare la logistica.',
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Spiagge selvagge e remote', href: '/it-it/blog/oasi-selvagge-spiagge-mare/' },
+  { label: 'Dove vedere il tramonto', href: '/it-it/blog/tramonto-spiaggia-costiera/' },
+  { label: 'Tutte le spiagge della Costiera', href: '/it-it/spiagge/' },
+];
+
+const authorRole = 'Beach & Family Travel Guide · Costiera Amalfitana';
 
 const blogSchema = {
   "@context": "https://schema.org",
@@ -23,77 +82,101 @@ const blogSchema = {
   "description": "Scopri le spiagge più comode e attrezzate della Costiera Amalfitana: Maiori, Minori, Atrani. Accesso facile, servizi e relax totale."
 };
 
-const readingTime = 8;
-const category = 'GUIDES';
-const publishDate = '28 Aprile 2026';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+};
 ---
 
-<BaseLayout
-  title="Comodità e Relax: Le Spiagge Accessibili e Attrezzate – Costiera Amalfitana"
-  description="Scopri le spiagge più comode e attrezzate della Costiera Amalfitana: Maiori, Minori, Atrani. Accesso facile, servizi e relax totale."
+<BlogPostLayout
   lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
   breadcrumbs={breadcrumbs}
-  schema={[blogSchema]}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
 >
 
-  <!-- Hero -->
-  <section class="relative h-[60vh] overflow-hidden flex items-center justify-center">
-    <img
-      src="/images/spiagge-bambini.jpg"
-      alt="Comodità e Relax: Spiagge Accessibili"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-      referrerpolicy="no-referrer"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/70"></div>
-    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <div class="flex flex-wrap justify-center items-center gap-3 mb-4 text-sm">
-        <span class="bg-med-gold text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">{category}</span>
-        <span class="text-white/70">{publishDate}</span>
-        <span class="text-white/70">{readingTime} min lettura</span>
-      </div>
-      <h1 class="font-serif text-4xl md:text-5xl font-bold text-white leading-tight">Comodità e Relax: Le Spiagge Accessibili e Attrezzate</h1>
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      Non tutti i viaggiatori che arrivano in Costiera hanno voglia di affrontare centinaia di scalini o complessi trasbordi via mare. Esistono borghi fortunati dove la geografia è stata più clemente, regalando spiagge ampie e pianeggianti dove la sabbia è a pochi passi dal parcheggio o dalla fermata del bus. Queste località offrono una logistica impeccabile per chi cerca una giornata di puro relax, per chi viaggia con molto bagaglio o semplicemente per chi desidera godersi il mare con ogni comfort a portata di mano, senza rinunciare alla bellezza mozzafiato dei dintorni.
+    </p>
+  </div>
+
+  <!-- Maiori -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Maiori: La Regina delle Spiagge Comode</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      La spiaggia di Maiori detiene ufficialmente il primato come la più comoda e spaziosa dell'intera Costiera. Con il suo chilometro di estensione, è l'unica spiaggia della zona dove gli spazi non sono angusti. Qui la spiaggia è composta da sabbia scura di origine vulcanica mescolata a piccoli sassolini e il lungomare è completamente pianeggiante, una rarità assoluta in questo territorio verticale. Maiori offre ampi tratti di spiaggia libera ben tenuta, alternati a lidi moderni dotati di bar, ristoranti e cabine.
+    </p>
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Perché Sceglierla</h3>
+      <p class="text-slate-600 leading-relaxed">
+        È la scelta perfetta per chi vuole distanziamento e comodità: a differenza delle strette calette di Amalfi o Positano, qui l'organizzazione degli ombrelloni permette di respirare e godersi il sole in totale tranquillità. Ideale per famiglie con bambini e per chi preferisce spazi ampi senza sacrificare i servizi.
+      </p>
     </div>
-  </section>
+  </div>
 
-  <!-- Contenuto Blog -->
-  <section class="py-20 px-6 max-w-4xl mx-auto">
-    <article class="prose prose-lg max-w-none">
-      <p class="text-lg text-slate-700 leading-relaxed mb-8">
-        Non tutti i viaggiatori che arrivano in Costiera hanno voglia di affrontare centinaia di scalini o complessi trasbordi via mare. Esistono borghi fortunati dove la geografia è stata più clemente, regalando spiagge ampie e pianeggianti dove la sabbia è a pochi passi dal parcheggio o dalla fermata del bus. Queste località offrono una logistica impeccabile per chi cerca una giornata di puro relax, per chi viaggia con molto bagaglio o semplicemente per chi desidera godersi il mare con ogni comfort a portata di mano, senza rinunciare alla bellezza mozzafiato dei dintorni.
+  <!-- Minori -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Minori: Il Cuore Funzionale</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      A brevissima distanza si trova Minori, più raccolta rispetto alla vicina Maiori ma altrettanto funzionale. La spiaggia si trova proprio al centro del paese, rendendo l'accesso immediato. Esiste una zona libera centrale che permette di godersi il mare a costo zero, circondati dal fascino di un borgo che profuma di pasticceria e salsedine. Minori è la scelta ideale per chi vuole alternare i tuffi in mare a una passeggiata tra le botteghe del corso, senza dover salire nemmeno uno scalino.
+    </p>
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Versatilità Perfetta</h3>
+      <p class="text-slate-600 leading-relaxed">
+        La vicinanza tra la sabbia e i servizi essenziali (farmacie, supermercati e bar) la rende la meta più rilassante di tutto il litorale. È il compromesso ideale tra spiaggia comoda e atmosfera autentica di un piccolo paese costiero.
       </p>
+    </div>
+  </div>
 
-      <h2 class="text-2xl font-serif font-bold text-slate-900 mt-10 mb-6">Maiori: La Regina delle Spiagge Comode</h2>
-
-      <p class="text-slate-700 leading-relaxed mb-6">
-        La spiaggia di Maiori detiene ufficialmente il primato come la più comoda e spaziosa dell'intera Costiera. Con il suo chilometro di estensione, è l'unica spiaggia della zona dove gli spazi non sono angusti. Qui la spiaggia è composta da sabbia scura di origine vulcanica mescolata a piccoli sassolini e il lungomare è completamente pianeggiante, una rarità assoluta in questo territorio verticale. Maiori offre ampi tratti di spiaggia libera ben tenuta, alternati a lidi moderni dotati di bar, ristoranti e cabine. È la scelta perfetta per chi vuole distanziamento e comodità: a differenza delle strette calette di Amalfi o Positano, qui l'organizzazione degli ombrelloni permette di respirare e godersi il sole in totale tranquillità.
+  <!-- Atrani -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Atrani: Il Segreto Meglio Custodito</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Non si può poi dimenticare Atrani, che offre una soluzione altrettanto valida e straordinariamente suggestiva. Essendo il comune più piccolo d'Italia, tutto ad Atrani è a portata di mano. La spiaggia è divisa in due dai moli che la proteggono dalle correnti e dalle onde più forti, creando una sorta di piscina naturale proprio di fronte alle case bianche sovrapposte del borgo. L'accesso è immediato dalla Statale 163 tramite una rampa o passando per i vicoli medievali del paese.
+    </p>
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">L'Autenticità Senza Compromessi</h3>
+      <p class="text-slate-600 leading-relaxed">
+        Circa metà della spiaggia è libera, offrendo una delle visuali più pittoresche della costa. Se cercate comodità ma volete evitare la folla oceanica che spesso invade Amalfi durante l'alta stagione, Atrani è il vostro segreto. Dista solo 10 minuti a piedi dal centro di Amalfi tramite un comodo tunnel pedonale, ma l'atmosfera è infinitamente più silenziosa e autentica.
       </p>
+    </div>
+  </div>
 
-      <h2 class="text-2xl font-serif font-bold text-slate-900 mt-10 mb-6">Minori: Il Cuore Funzionale</h2>
-
-      <p class="text-slate-700 leading-relaxed mb-6">
-        A brevissima distanza si trova Minori, più raccolta rispetto alla vicina Maiori ma altrettanto funzionale. La spiaggia si trova proprio al centro del paese, rendendo l'accesso immediato. Esiste una zona libera centrale che permette di godersi il mare a costo zero, circondati dal fascino di un borgo che profuma di pasticceria e salsedine. Minori è la scelta ideale per chi vuole alternare i tuffi in mare a una passeggiata tra le botteghe del corso, senza dover salire nemmeno uno scalino. La vicinanza tra la sabbia e i servizi essenziali (farmacie, supermercati e bar) la rende la meta più rilassante di tutto il litorale.
-      </p>
-
-      <h2 class="text-2xl font-serif font-bold text-slate-900 mt-10 mb-6">Atrani: Il Segreto Meglio Custodito</h2>
-
-      <p class="text-slate-700 leading-relaxed mb-8">
-        Non si può poi dimenticare Atrani, che offre una soluzione altrettanto valida e straordinariamente suggestiva. Essendo il comune più piccolo d'Italia, tutto ad Atrani è a portata di mano. La spiaggia è divisa in due dai moli che la proteggono dalle correnti e dalle onde più forti, creando una sorta di piscina naturale proprio di fronte alle case bianche sovrapposte del borgo. L'accesso è immediato dalla Statale 163 tramite una rampa o passando per i vicoli medievali del paese. Circa metà della spiaggia è libera, offrendo una delle visuali più pittoresche della costa.
-      </p>
-
-      <div class="bg-amber-50 border-l-4 border-med-gold p-6 my-10">
-        <h3 class="font-bold text-slate-900 mb-3 flex items-center gap-2">
-          <span class="text-xl">💡</span> Local Tip
-        </h3>
-        <p class="text-slate-700 text-sm leading-relaxed">
-          Se cercate la comodità ma volete evitare la folla oceanica che spesso invade Amalfi durante l'alta stagione, Atrani è il vostro segreto. Dista solo 10 minuti a piedi dal centro di Amalfi tramite un comodo tunnel pedonale o una passeggiata panoramica, ma l'atmosfera è infinitamente più silenziosa e autentica. È il luogo perfetto per un aperitivo in piazzetta subito dopo l'ultimo bagno, sentendosi parte di una comunità locale che resiste ai ritmi del turismo di massa.
-        </p>
+  <!-- Tips -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold text-slate-900">Consigli Pratici</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Quando Visitare</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Maggio-settembre per il miglior meteo. Evitate agosto se volete tranquillità, a meno che non decidiate di arrivare molto presto al mattino. Giugno e settembre offrono il miglior compromesso tra meteo e affollamento.</p>
       </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Come Raggiungerle</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Maiori e Minori sono facilmente raggiungibili in auto (parcheggio disponibile) o con i pullman SITA che percorrono la Statale 163. Atrani è raggiungibile a piedi da Amalfi (10 minuti) oppure in auto tramite la Statale 163.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Attrezzatura Essenziale</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Portate sempre crema solare ad alta protezione, un cappello e una borraccia d'acqua. Il riverbero del sole sulla sabbia vulcanica è intenso. Un telo da mare e infradito completano l'equipaggiamento ideale.</p>
+      </div>
+    </div>
+  </div>
 
-      <p class="text-slate-600 italic text-sm mt-12 pt-6 border-t border-slate-200">
-        Pubblicato il 28 Aprile 2026 • Tempo di lettura: {readingTime} minuti • Categoria: {category}
-      </p>
-    </article>
-  </section>
-
-</BaseLayout>
+</BlogPostLayout>

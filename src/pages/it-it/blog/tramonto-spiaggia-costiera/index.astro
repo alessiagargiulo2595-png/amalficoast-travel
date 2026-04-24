@@ -1,13 +1,72 @@
 ---
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
 
 const lang = 'it-it';
+const post = {
+  title: 'L\'Ora d\'Oro',
+  subtitle: 'Dove Ammirare il Tramonto in Spiaggia',
+  category: 'GUIDES',
+  date: '28 Aprile 2026',
+  readTime: '8 min',
+  image: '/images/tramonto-costiera.jpg',
+  imageAlt: 'L\'Ora d\'Oro: Tramonto sulla Costiera Amalfitana con riflessi dorati sul mare',
+  path: '/it-it/blog/tramonto-spiaggia-costiera/',
+};
+
+const metaTitle = "L'Ora d'Oro: Migliori Tramonti della Costiera Amalfitana | Guida 2026";
+const metaDescription = "Scopri i migliori punti per ammirare il tramonto sulla Costiera Amalfitana. La Gavitella a Praiano, Bagni della Regina Giovanna, Positano Fornillo, Marina di Cassano: spettacoli di luce e colore.";
 
 const breadcrumbs = [
   { name: 'Home', url: '/it-it/' },
   { name: 'Blog', url: '/it-it/blog/' },
-  { name: 'L\'Ora d\'Oro: Dove Ammirare il Tramonto in Spiaggia', url: '/it-it/blog/tramonto-spiaggia-costiera/' },
+  { name: 'L\'Ora d\'Oro', url: '/it-it/blog/tramonto-spiaggia-costiera/' },
 ];
+
+const quickInfo = [
+  { label: 'Migliori spiagge per tramonto', value: 'Gavitella, Regina Giovanna, Fornillo, Marina di Cassano' },
+  { label: 'Ora migliore di osservazione', value: 'Ultimi 30-45 minuti prima del tramonto' },
+  { label: 'Stagione migliore', value: 'Marzo-settembre (sole a ovest fino a tardi)' },
+  { label: 'Difficoltà di accesso', value: 'Variabile da facile a moderato' },
+  { label: 'Servizi disponibili', value: 'Variano per ogni spiaggia' },
+  { label: 'Attrezzatura consigliata', value: 'Macchina fotografica, telo da spiaggia, bevande' },
+  { label: 'Tipo di esperienza', value: 'Romantica, contemplativa, spirituale' },
+  { label: 'Affollamento al tramonto', value: 'Alto nelle mete più celebri, basso nelle alternative' },
+];
+
+const faq = [
+  {
+    q: 'Quale è il miglior punto della Costiera per vedere il tramonto?',
+    a: 'La Gavitella a Praiano rimane leggendaria: situata su un promontorio naturale, è l\'unico punto dove il sole sembra non voler mai andare via. Da qui vedete le isole Li Galli, Positano e i Faraglioni di Capri illuminati da una luce infuocata. Alternative eccellenti sono i Bagni della Regina Giovanna a Capo di Sorrento (vista libera su Ischia e Procida) e la Marina di Cassano a Piano di Sorrento (ascensore, zero fatica).',
+  },
+  {
+    q: 'A che ora devo arrivare per vedere il tramonto?',
+    a: 'Arrivate almeno 45-60 minuti prima del tramonto per assicurarvi un buon posto e godere dell\'intera transizione del cielo. Il "golden hour" inizia circa 90 minuti prima del tramonto. In estate (giugno-agosto) il sole tramonta intorno alle 20:30, in primavera e autunno intorno alle 19:00-19:30.',
+  },
+  {
+    q: 'Devo portare qualcosa di particolare?',
+    a: 'Una macchina fotografica o smartphone per immortalare il momento. Una borraccia d\'acqua è essenziale, soprattutto nelle spiagge selvagge. Un telo da spiaggia e magari una felpa leggera per il fresco serale. Evitate di portare troppo bagaglio: dovrete risalire gli scalini al tramonto!',
+  },
+  {
+    q: 'Quali spiagge hanno accesso facile al tramonto?',
+    a: 'Marina di Cassano a Piano di Sorrento è ideale: un ascensore scende direttamente dalla città alla spiaggia. Minori offre accesso pianeggiante dal centro paese. Fornillo a Positano è raggiungibile con una passeggiata di 15 minuti dalla Spiaggia Grande. La Gavitella richiede 400 scalini di risalita, affrontabili ma faticosi al tramonto.',
+  },
+  {
+    q: 'Il tramonto è visibile da tutte le spiagge della Costiera?',
+    a: 'No. A causa dei Monti Lattari, la maggior parte delle spiagge entra in ombra nel primo pomeriggio. Solo i punti esposti a ovest mantengono la luce dorata fino al tramonto: Gavitella, Praiano, Regina Giovanna, Positano Fornillo e Marina di Cassano. Le spiagge di Amalfi, Conca dei Marini e Ravello vanno in ombra presto.',
+  },
+  {
+    q: 'Posso nuotare fino al tramonto?',
+    a: 'Assolutamente sì, è il momento migliore! L\'acqua è calma al tramonto, la temperatura è ancora gradevole e la luce che filtra sott\'acqua è spettacolare. Consiglio di entrare in acqua una decina di minuti prima del tramonto e rimanere in prossimità della riva per nuotare durante lo spettacolo cromatico. Uscite prima di buio completo.',
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Spiagge comode e attrezzate', href: '/it-it/blog/spiagge-comode-attrezzate/' },
+  { label: 'Spiagge selvagge e remote', href: '/it-it/blog/oasi-selvagge-spiagge-mare/' },
+  { label: 'Tutte le spiagge della Costiera', href: '/it-it/spiagge/' },
+];
+
+const authorRole = 'Sunset & Landscape Photographer · Costiera Amalfitana';
 
 const blogSchema = {
   "@context": "https://schema.org",
@@ -23,77 +82,95 @@ const blogSchema = {
   "description": "Scopri i migliori punti per ammirare il tramonto sulla Costiera Amalfitana. La Gavitella, Regina Giovanna, Positano, Marina di Cassano: spettacoli di luce e colore."
 };
 
-const readingTime = 8;
-const category = 'GUIDES';
-const publishDate = '28 Aprile 2026';
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+};
 ---
 
-<BaseLayout
-  title="L'Ora d'Oro: Dove Ammirare il Tramonto in Spiaggia – Costiera Amalfitana"
-  description="Scopri i migliori punti per ammirare il tramonto sulla Costiera Amalfitana. La Gavitella, Regina Giovanna, Positano, Marina di Cassano: spettacoli di luce."
+<BlogPostLayout
   lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
   breadcrumbs={breadcrumbs}
-  schema={[blogSchema]}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
 >
 
-  <!-- Hero -->
-  <section class="relative h-[60vh] overflow-hidden flex items-center justify-center">
-    <img
-      src="/images/tramonto-costiera.jpg"
-      alt="L'Ora d'Oro: Tramonto in Spiaggia"
-      class="absolute inset-0 w-full h-full object-cover"
-      loading="eager"
-      referrerpolicy="no-referrer"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/70"></div>
-    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <div class="flex flex-wrap justify-center items-center gap-3 mb-4 text-sm">
-        <span class="bg-med-gold text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">{category}</span>
-        <span class="text-white/70">{publishDate}</span>
-        <span class="text-white/70">{readingTime} min lettura</span>
-      </div>
-      <h1 class="font-serif text-4xl md:text-5xl font-bold text-white leading-tight">L'Ora d'Oro: Dove Ammirare il Tramonto in Spiaggia</h1>
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      In Costiera Amalfitana il tramonto è un lusso che va pianificato con cura. A causa dell'imponente barriera dei Monti Lattari, orientati prevalentemente a sud-est, la maggior parte delle spiagge entra in ombra già nel primo pomeriggio, lasciando i bagnanti al fresco proprio quando la luce diventa più calda e suggestiva. Se siete tra coloro che amano restare in acqua fino all'ultimo raggio e vogliono vedere il cielo trasformarsi in una tavolozza di fuoco, dovete puntare verso i rari punti esposti a ovest o verso la punta estrema della penisola, dove la linea dell'orizzonte rimane libera più a lungo.
+    </p>
+  </div>
+
+  <!-- Gavitella -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Gavitella a Praiano: Il Trono del Sole</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Il luogo leggendario per eccellenza è la spiaggia della Gavitella a Praiano. Situata su un promontorio naturale che si protende verso il mare, è l'unico punto della Costiera propriamente detta dove il sole sembra non voler mai andare via. Da questa piattaforma di roccia e cemento incastonata nella scogliera, la vista è un'esperienza mistica: le isole de Li Galli in primo piano e, sullo sfondo, l'intero profilo di Positano e i Faraglioni di Capri che vengono avvolti da una luce infuocata.
+    </p>
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Lo Spettacolo Sublime</h3>
+      <p class="text-slate-600 leading-relaxed">
+        Sebbene lo spazio per la spiaggia libera sia ridotto a poche piazzole di cemento sulla scogliera, restare qui fino al tramonto è un rito imperdibile. La risalita dei famosi 400 gradini alla fine della giornata sarà ampiamente ricompensata dalla bellezza dello spettacolo a cui avrete assistito.
+      </p>
     </div>
-  </section>
+  </div>
 
-  <!-- Contenuto Blog -->
-  <section class="py-20 px-6 max-w-4xl mx-auto">
-    <article class="prose prose-lg max-w-none">
-      <p class="text-lg text-slate-700 leading-relaxed mb-8">
-        In Costiera Amalfitana il tramonto è un lusso che va pianificato con cura. A causa dell'imponente barriera dei Monti Lattari, orientati prevalentemente a sud-est, la maggior parte delle spiagge entra in ombra già nel primo pomeriggio, lasciando i bagnanti al fresco proprio quando la luce diventa più calda e suggestiva. Se siete tra coloro che amano restare in acqua fino all'ultimo raggio e vogliono vedere il cielo trasformarsi in una tavolozza di fuoco, dovete puntare verso i rari punti esposti a ovest o verso la punta estrema della penisola, dove la linea dell'orizzonte rimane libera più a lungo.
+  <!-- Regina Giovanna -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Bagni della Regina Giovanna: Testimone del Tramonto Romano</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Spostandosi verso il versante sorrentino, il vero "trono" del tramonto è rappresentato dai Bagni della Regina Giovanna a Capo di Sorrento. Qui la costa curva decisamente verso nord-ovest, offrendo una visuale completamente libera sull'orizzonte marino. È una scogliera calcarea completamente libera e selvaggia, sede dei resti di una maestosa villa romana. Vedere il sole che cala lentamente dietro le sagome di Ischia e Procida, mentre la piscina naturale racchiusa dall'arco di roccia si tinge d'oro, è uno dei momenti più potenti che la Campania possa offrire.
+    </p>
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">L'Essenza Primordiale</h3>
+      <p class="text-slate-600 leading-relaxed">
+        Non ci sono lidi, non ci sono comodità, solo il suono delle onde e il colore del cielo che si fonde con il mare. È l'esperienza più autentica e contemplativa per chi cerca il contatto diretto con la natura al suo momento più spettacolare.
       </p>
+    </div>
+  </div>
 
-      <h2 class="text-2xl font-serif font-bold text-slate-900 mt-10 mb-6">La Gavitella a Praiano: Il Trono del Sole</h2>
+  <!-- Positano Fornillo -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Positano Fornillo: Romanticismo Assoluto</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Anche Positano riserva angoli magici per l'ora d'oro, in particolare se ci si sposta sulla Spiaggia del Fornillo. Raggiungibile con una piacevole passeggiata panoramica dal molo principale, Fornillo è più aperta e riceve la luce dorata del tardo pomeriggio molto più a lungo rispetto alla Spiaggia Grande. Ha una zona libera dignitosa e un'atmosfera decisamente più intima e romantica. È il luogo perfetto per chiudere la giornata guardando il riverbero del sole sulle pareti rocciose e sulle case color pastello del borgo, mentre sorseggi una bevanda fresca con i piedi ancora nella sabbia.
+    </p>
+  </div>
 
-      <p class="text-slate-700 leading-relaxed mb-6">
-        Il luogo leggendario per eccellenza è la spiaggia della Gavitella a Praiano. Situata su un promontorio naturale che si protende verso il mare, è l'unico punto della Costiera propriamente detta dove il sole sembra non voler mai andare via. Da questa piattaforma di roccia e cemento incastonata nella scogliera, la vista è un'esperienza mistica: le isole de Li Galli in primo piano e, sullo sfondo, l'intero profilo di Positano e i Faraglioni di Capri che vengono avvolti da una luce infuocata. Sebbene lo spazio per la spiaggia libera sia ridotto a poche piazzole di cemento sulla scogliera, restare qui fino al tramonto è un rito imperdibile. La risalita dei famosi 400 gradini alla fine della giornata sarà ampiamente ricompensata dalla bellezza dello spettacolo a cui avrete assistito.
-      </p>
-
-      <h2 class="text-2xl font-serif font-bold text-slate-900 mt-10 mb-6">Bagni della Regina Giovanna: Testimone del Tramonto Romano</h2>
-
-      <p class="text-slate-700 leading-relaxed mb-6">
-        Spostandosi verso il versante sorrentino, il vero "trono" del tramonto è rappresentato dai Bagni della Regina Giovanna a Capo di Sorrento. Qui la costa curva decisamente verso nord-ovest, offrendo una visuale completamente libera sull'orizzonte marino. È una scogliera calcarea completamente libera e selvaggia, sede dei resti di una maestosa villa romana. Vedere il sole che cala lentamente dietro le sagome di Ischia e Procida, mentre la piscina naturale racchiusa dall'arco di roccia si tinge d'oro, è uno dei momenti più potenti che la Campania possa offrire. Non ci sono lidi, non ci sono comodità, solo il suono delle onde e il colore del cielo che si fonde con il mare.
-      </p>
-
-      <h2 class="text-2xl font-serif font-bold text-slate-900 mt-10 mb-6">Positano e il Fornillo: Romanticismo Assoluto</h2>
-
-      <p class="text-slate-700 leading-relaxed mb-8">
-        Anche Positano riserva angoli magici per l'ora d'oro, in particolare se ci si sposta sulla Spiaggia del Fornillo. Raggiungibile con una piacevole passeggiata panoramica dal molo principale, Fornillo è più aperta e riceve la luce dorata del tardo pomeriggio molto più a lungo rispetto alla Spiaggia Grande. Ha una zona libera dignitosa e un'atmosfera decisamente più intima e romantica. È il luogo perfetto per chiudere la giornata guardando il riverbero del sole sulle pareti rocciose e sulle case color pastello del borgo.
-      </p>
-
-      <div class="bg-amber-50 border-l-4 border-med-gold p-6 my-10">
-        <h3 class="font-bold text-slate-900 mb-3 flex items-center gap-2">
-          <span class="text-xl">💡</span> Local Tip
-        </h3>
-        <p class="text-slate-700 text-sm leading-relaxed">
-          Il segreto per un tramonto "comodo" e lunghissimo, lontano dalle folle, è la Marina di Cassano a Piano di Sorrento. Grazie a un moderno ascensore comunale che scende dal centro città, potrete raggiungere la spiaggia di sabbia scura (con ampie zone libere) senza fare un solo gradino. Qui il sole tramonta esattamente di fronte a voi, oltre la punta del Capo di Sorrento. È il posto preferito dai residenti per un bagno serale e un aperitivo sul molo: zero fatica, massima resa cromatica e un senso di pace che difficilmente troverete altrove durante l'estate.
-        </p>
+  <!-- Consigli -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold text-slate-900">Consigli Pratici</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">La Scelta del Luogo</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Se cercate la comodità ma volete evitare la folla oceanica, scegliere Marina di Cassano a Piano di Sorrento. Grazie a un moderno ascensore comunale che scende dal centro città, raggiungete la spiaggia di sabbia scura (con ampie zone libere) senza fare un solo gradino. Il sole tramonta esattamente di fronte a voi.</p>
       </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Fotografia al Tramonto</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Portate una macchina fotografica o uno smartphone con batteria carica. Regolate l'esposizione manualmente: il sole è molto luminoso, rischiate di far diventare il cielo troppo scuro. Provate sia la controluce che i contorni illuminati. Scattate molte foto: ogni secondo cambia il colore del cielo.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Uscita Sicura Prima del Buio</p>
+        <p class="text-slate-600 text-sm leading-relaxed">Pianificate l'uscita dall'acqua almeno 10-15 minuti prima del tramonto completo. Il buio cala rapidamente sulla Costiera. Se scegliete la Gavitella, iniziate la salita dei 400 scalini mentre c'è ancora luce crepuscolare. Non affidatevi al solo cellulare per illuminare i gradini.</p>
+      </div>
+    </div>
+  </div>
 
-      <p class="text-slate-600 italic text-sm mt-12 pt-6 border-t border-slate-200">
-        Pubblicato il 28 Aprile 2026 • Tempo di lettura: {readingTime} minuti • Categoria: {category}
-      </p>
-    </article>
-  </section>
-
-</BaseLayout>
+</BlogPostLayout>
