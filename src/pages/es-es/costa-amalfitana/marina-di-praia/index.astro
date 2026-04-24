@@ -1,0 +1,336 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'es-es';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Costa Amalfitana', url: '/es-es/costa-amalfitana/' },
+  { name: 'Marina di Praia', url: '/es-es/costa-amalfitana/marina-di-praia/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Marina di Praia",
+  "description": "Marina di Praia es la playa salvaje y secreta de Praiano, accesible únicamente por 70-80 escalones tallados en la roca. Sin servicios, 100 % autenticidad, y los mejores atardeceres de toda la costa.",
+  "url": "https://amalficoast-travel.com/es-es/costa-amalfitana/marina-di-praia/",
+  "image": "https://amalficoast-travel.com/images/praia-hero.jpg",
+  "touristType": ["Naturaleza salvaje", "Mar", "Autenticidad", "Baño"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Praiano",
+    "addressRegion": "Salerno",
+    "addressCountry": "IT",
+    "postalCode": "84010"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6053,
+    "longitude": 14.5393
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Dónde exactamente está Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Marina di Praia es un pequeño puerto natural encajado entre dos acantilados en la parte baja de Praiano, a unos 15-20 minutos a pie desde el centro del pueblo. Se accede por 70-80 escalones tallados directamente en la roca."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo se accede a Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Desde el centro de Praiano, baja los escalones que llevan hacia el mar. Están bien señalizados pero son muy pronunciados: forman parte del encanto del lugar. La bajada toma unos 15 minutos, la subida unos 20 minutos (mucho más dura). No hay carretera hasta abajo, solo los escalones."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hay servicios en Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Ningún restaurante, ningún bar, ningún chiringuito. Eso es exactamente lo que la hace especial: autenticidad absoluta. En lo alto hay un restaurante rústico, pero en Marina di Praia misma no hay nada más que roca, mar y silencio."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuándo es la mejor época para visitar Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mayo a septiembre para bañarse, cuando el agua es cálida. Junio y septiembre son ideales: el agua está caliente pero sin las masas de julio-agosto. Los atardeceres son espectaculares todo el año, pero los días sin nubes (frecuentes en mayo y septiembre) son los mejores."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es segura Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Marina di Praia es un lugar muy seguro. Los únicos desafíos son los escalones escarpados (cuidado si viaja con niños o tiene problemas de movilidad) y el hecho de que no hay emergencias médicas cercanas. El agua es tan tranquila como una piscina la mayoría del tiempo gracias a su posición encajada."
+      }
+    }
+  ]
+};
+
+const fastFacts = [
+  { dt: 'Ubicación', dd: 'Praiano, Costa Amalfitana' },
+  { dt: 'Acceso', dd: '70-80 escalones tallados' },
+  { dt: 'Desde Positano', dd: '~25 min (a pie)' },
+  { dt: 'Desde Amalfi', dd: '~45 min (a pie)' },
+  { dt: 'Servicios', dd: 'Ninguno - 100 % salvaje' },
+  { dt: 'Lo mejor', dd: 'Atardeceres & Autenticidad' },
+  { dt: 'Mejor época', dd: 'May–Sept' },
+  { dt: 'Moneda', dd: 'Euro (€)' },
+];
+---
+
+<BaseLayout
+  title="Marina di Praia 2026: La Playa Salvaje de Praiano | Costa Amalfitana"
+  description="Marina di Praia: la playa secreta y salvaje de la Costa Amalfitana. Accesible por 70 escalones tallados en la roca, 100 % auténtica, sin servicios. Atardeceres espectaculares."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, faqSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div>
+    <img src="/images/praia-hero.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Costa Amalfitana · Autenticidad Salvaje</p>
+        <h1 class="font-serif text-display text-white mb-4">Marina di Praia</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La playa secreta de Praiano, accesible únicamente por 70-80 escalones tallados en la roca. Sin servicios, sin turistas, sin ruido. Solo la roca, el mar turquesa y los mejores atardeceres de toda la costa.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-sm font-semibold rounded-full hover:scale-105 transition-all duration-300">Datos Rápidos</a>
+          <a href="#how-to-get-here" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">Cómo Llegar</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Grid -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+      <div class="space-y-12">
+
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Marina di Praia no es una destinación turística: es un lugar secreto, reservado para los lugareños y para viajeros que se atreven a bajar 80 escalones para llegar. Es una de las pocas playas de la Costa Amalfitana completamente exenta de infraestructura, de vendedores de helados o de "retoque digital".
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Este minúsculo puerto encajado entre dos acantilados es territorio de pescadores y aventureros que valoran la autenticidad por encima de todo. Los escalones que la conectan con Praiano son en sí mismos una aventura: peldaños estrechos, a veces expuestos, pero con vistas que te dejan sin aliento en cada curva.
+          </p>
+        </div>
+
+        <!-- ¿Sabías que? -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">¿Sabías que?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">70-80</p>
+              <p class="text-white/60 text-xs italic mt-1">escalones tallados en la roca, sin ascensor</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">0</p>
+              <p class="text-white/60 text-xs italic mt-1">servicios: ningún restaurante, bar o tienda</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">100 %</p>
+              <p class="text-white/60 text-xs italic mt-1">autenticidad: el único lugar sin artificios</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Marina di Praia es uno de los pocos lugares de la Costa Amalfitana donde ningún desarrollo turístico ha sobrevivido. Es a propósito: los lugareños prefieren mantenerla en secreto.
+          </p>
+        </div>
+
+        <!-- Actividades -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Qué hacer en Marina di Praia</h2>
+          <div class="space-y-8">
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">1</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Baño en el silencio</h3>
+                <p class="text-slate-600 leading-relaxed">El agua en Marina di Praia es cristalina y tranquila, encajada entre dos acantilados que la protegen del viento. Sin olas, sin turistas, solo tú y el mar. Los niños adoran porque es seguro; los adultos adoran porque es silencioso.</p>
+              </div>
+            </div>
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">2</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Atardeceres espectaculares</h3>
+                <p class="text-slate-600 leading-relaxed">Los acantilados que rodean Marina di Praia crean el marco perfecto para los atardeceres: el sol desaparece lentamente entre las rocas, tiñendo el cielo de rojo y naranja. Llega una hora antes del atardecer y trae un libro.</p>
+              </div>
+            </div>
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">3</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Exploración submarina</h3>
+                <p class="text-slate-600 leading-relaxed">Los acantilados que enmarcan Marina di Praia están salpicados de pequeñas cuevas y grietas. Con gafas de buceo y tubo, explora la vida submarina: peces de colores, pulpos, estrellas de mar. El mundo submarino está intacto porque casi nunca vienen turistas aquí.</p>
+              </div>
+            </div>
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">4</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Picnic minimalista</h3>
+                <p class="text-slate-600 leading-relaxed">Trae pan, queso, frutas y una botella de vino blanco frío. Siéntate en las rocas planas, observa a los pescadores volver con su captura del día, y come en silencio. Es el picnic ideal: sin interrupciones, sin vendedores, sin ruido.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cómo llegar -->
+        <div id="how-to-get-here" class="bg-charcoal rounded-[3rem] p-10 md:p-14 text-white relative overflow-hidden">
+          <div class="relative z-10">
+            <h2 class="font-serif text-3xl font-bold text-white mb-3 tracking-tight">Cómo llegar a Marina di Praia</h2>
+            <p class="text-white/60 mb-10 leading-relaxed">Marina di Praia solo es accesible a pie: no hay carretera, no hay ferris directo. El acceso tiene dos pasos: primero llegar a Praiano (en autobús o coche), luego bajar los 80 escalones.</p>
+            <div class="grid sm:grid-cols-2 gap-8 mb-10">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="M3 10h18M8 19v2M16 19v2"/></svg>
+                </div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Autobús SITA</h3><p class="text-white/50 text-sm leading-relaxed">Praiano está en la SS163. ~15 min desde Positano, ~30 min desde Amalfi. Una vez en Praiano, busca los escalones que bajan hacia el mar (bien señalizados). ~€2,50.</p></div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18M8 11V7a4 4 0 018 0v4"/></svg>
+                </div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Coche</h3><p class="text-white/50 text-sm leading-relaxed">Estaciona en Praiano (pequeños aparcamientos en la SS163). Después, el acceso es únicamente a pie por los escalones. Útil si quieres un coche para explorar toda la costa.</p></div>
+              </div>
+            </div>
+            <a href="/es-es/como-llegar/" class="inline-flex items-center gap-2 text-med-gold font-bold text-xs uppercase tracking-[0.3em] hover:underline">
+              Guía completa de transportes
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- Consejo local -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20">
+              <svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+            </div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Consejo local</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">Trae todo contigo</h3>
+              <p class="text-white/70 leading-relaxed">Marina di Praia no tiene servicios. Trae agua embotellada (la bajada es difícil), toalla, protector solar y, si planeas quedarte mucho tiempo, comida y bebidas. Tampoco hay baños: planifica en consecuencia.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Preguntas frecuentes sobre Marina di Praia</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Datos Rápidos - Marina di Praia</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <!-- Tips de viajero -->
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Tips de Viajero</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+              <span>Baja temprano por la mañana (antes de las 9h) para tener el lugar casi completamente para ti.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+              <span>Los escalones son escarpados y estrechos: calzado deportivo obligatorio, tacones prohibidos.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+              <span>Trae 2 litros de agua mínimo: la bajada es difícil y hace mucho calor en verano.</span>
+            </li>
+            <li class="flex items-start gap-2 text-sm text-charcoal">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+              <span>Visita en mayo, junio o septiembre: julio-agosto son demasiado calurosos y el sol pega fuerte.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Explorar la costa</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/es-es/costa-amalfitana/praiano/', label: 'Praiano' },
+              { href: '/es-es/costa-amalfitana/positano/', label: 'Positano' },
+              { href: '/es-es/costa-amalfitana/amalfi/', label: 'Amalfi' },
+              { href: '/es-es/costa-amalfitana/ravello/', label: 'Ravello' },
+              { href: '/es-es/costa-amalfitana/maiori/', label: 'Maiori' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Descubre también la costa"
+    items={[
+      { name: 'Praiano',  href: '/es-es/costa-amalfitana/praiano/',  tag: 'Auténtica',       desc: 'El secreto mejor guardado entre Positano y Amalfi con atardeceres espectaculares.' },
+      { name: 'Positano',  href: '/es-es/costa-amalfitana/positano/',  tag: 'Icónica',         desc: 'Casas de colores sobre el mar y la playa más famosa de la costa.' },
+      { name: 'Amalfi',    href: '/es-es/costa-amalfitana/amalfi/',    tag: 'Arte e Historia', desc: 'La Catedral, el Claustro del Paraíso y las calles de la república marítima.' },
+      { name: 'Ravello',   href: '/es-es/costa-amalfitana/ravello/',   tag: 'Panorámica',      desc: 'A 365m sobre el mar con villas históricas y vistas espectaculares.' },
+    ]}
+  />
+
+</BaseLayout>
