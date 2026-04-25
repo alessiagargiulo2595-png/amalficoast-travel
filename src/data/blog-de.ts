@@ -20,7 +20,7 @@ export const blogPostsDe: BlogPostDe[] = [
     date: '28. April 2026',
     readTime: '8 min',
     image: '/images/tramonto-costiera.jpg',
-    path: '/de-de/blog/goldene-stunde-sonnenuntergang/',
+    path: '/de-de/blog/sonnenuntergang-strande/',
   },
   {
     id: '08',
@@ -31,7 +31,7 @@ export const blogPostsDe: BlogPostDe[] = [
     date: '28. April 2026',
     readTime: '8 min',
     image: '/images/spiagge-bambini.jpg',
-    path: '/de-de/blog/zugaengliche-ausgestattete-straende/',
+    path: '/de-de/blog/komfortable-ausgestattete-strande/',
   },
   {
     id: '07',
@@ -42,7 +42,7 @@ export const blogPostsDe: BlogPostDe[] = [
     date: '28. April 2026',
     readTime: '9 min',
     image: '/images/spiagge-selvagge.jpg',
-    path: '/de-de/blog/wilde-oasen-seeweg/',
+    path: '/de-de/blog/wilde-abgelegene-strande/',
   },
   {
     id: '01',
