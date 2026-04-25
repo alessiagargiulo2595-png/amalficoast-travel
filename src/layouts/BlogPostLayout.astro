@@ -48,13 +48,13 @@ const blogBase: Record<Locale, string> = {
   'de-de': '/de-de/blog/', 'es-es': '/es-es/blog/',
 };
 
-const ui: Record<Locale, { faqTitle: string; quickInfoTitle: string; writtenBy: string; backBlog: string; readTime: string; relatedArticles: string }> = {
-  'it-it': { faqTitle: 'Domande Frequenti',          quickInfoTitle: 'Info Rapide',    writtenBy: 'Scritto da',       backBlog: 'Torna al Blog',    readTime: 'di lettura', relatedArticles: 'Articoli Correlati' },
-  'fr-fr': { faqTitle: 'Questions Fréquentes',        quickInfoTitle: 'Infos Pratiques', writtenBy: 'Écrit par',       backBlog: 'Retour au Blog',   readTime: 'de lecture', relatedArticles: 'Articles Connexes' },
-  'en-us': { faqTitle: 'Frequently Asked Questions',  quickInfoTitle: 'Quick Info',      writtenBy: 'Written by',      backBlog: 'Back to Blog',     readTime: 'read', relatedArticles: 'Related Articles' },
-  'en-gb': { faqTitle: 'Frequently Asked Questions',  quickInfoTitle: 'Quick Info',      writtenBy: 'Written by',      backBlog: 'Back to Blog',     readTime: 'read', relatedArticles: 'Related Articles' },
-  'de-de': { faqTitle: 'Häufige Fragen',              quickInfoTitle: 'Kurzinfos',       writtenBy: 'Geschrieben von', backBlog: 'Zurück zum Blog',  readTime: 'Lesezeit', relatedArticles: 'Verwandte Artikel' },
-  'es-es': { faqTitle: 'Preguntas Frecuentes',        quickInfoTitle: 'Info Rápida',     writtenBy: 'Escrito por',     backBlog: 'Volver al Blog',   readTime: 'de lectura', relatedArticles: 'Artículos Relacionados' },
+const ui: Record<Locale, { faqTitle: string; quickInfoTitle: string; writtenBy: string; backBlog: string; readTime: string; relatedArticles: string; readAlso: string }> = {
+  'it-it': { faqTitle: 'Domande Frequenti',          quickInfoTitle: 'Info Rapide',    writtenBy: 'Scritto da',       backBlog: 'Torna al Blog',    readTime: 'di lettura', relatedArticles: 'Articoli Correlati', readAlso: 'Leggi anche' },
+  'fr-fr': { faqTitle: 'Questions Fréquentes',        quickInfoTitle: 'Infos Pratiques', writtenBy: 'Écrit par',       backBlog: 'Retour au Blog',   readTime: 'de lecture', relatedArticles: 'Articles Connexes', readAlso: 'Lire aussi' },
+  'en-us': { faqTitle: 'Frequently Asked Questions',  quickInfoTitle: 'Quick Info',      writtenBy: 'Written by',      backBlog: 'Back to Blog',     readTime: 'read', relatedArticles: 'Related Articles', readAlso: 'Read also' },
+  'en-gb': { faqTitle: 'Frequently Asked Questions',  quickInfoTitle: 'Quick Info',      writtenBy: 'Written by',      backBlog: 'Back to Blog',     readTime: 'read', relatedArticles: 'Related Articles', readAlso: 'Read also' },
+  'de-de': { faqTitle: 'Häufige Fragen',              quickInfoTitle: 'Kurzinfos',       writtenBy: 'Geschrieben von', backBlog: 'Zurück zum Blog',  readTime: 'Lesezeit', relatedArticles: 'Verwandte Artikel', readAlso: 'Lesen Sie auch' },
+  'es-es': { faqTitle: 'Preguntas Frecuentes',        quickInfoTitle: 'Info Rápida',     writtenBy: 'Escrito por',     backBlog: 'Volver al Blog',   readTime: 'de lectura', relatedArticles: 'Artículos Relacionados', readAlso: 'Lee también' },
 };
 const t = ui[lang];
 
@@ -244,13 +244,16 @@ const allSchema = [schemaArticle, ...(schemaFaq ? [schemaFaq] : []), ...extraSch
             ))}
           </div>
           {sidebarLinks.length > 0 && (
-            <div class="mt-10 pt-8 border-t border-white/10 space-y-3">
-              {sidebarLinks.map(link => (
-                <a href={link.href} class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                  {link.label}
-                </a>
-              ))}
+            <div class="mt-10 pt-8 border-t border-white/10">
+              <h4 class="text-med-gold font-serif font-bold text-lg mb-4">{t.readAlso}</h4>
+              <div class="space-y-3">
+                {sidebarLinks.map(link => (
+                  <a href={link.href} class="flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                    {link.label}
+                  </a>
+                ))}
+              </div>
             </div>
           )}
         </div>
