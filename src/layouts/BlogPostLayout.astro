@@ -195,22 +195,14 @@ const allSchema = [schemaArticle, ...(schemaFaq ? [schemaFaq] : []), ...extraSch
           </div>
         </div>
 
-        <!-- Back link -->
-        <div class="pt-4">
-          <a href={blogBase[lang]} class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-slate-900 transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-            {t.backBlog}
-          </a>
-        </div>
-
         <!-- Related Articles -->
         {relatedArticles && relatedArticles.length > 0 && (
           <div class="pt-12 border-t border-slate-100">
             <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">{t.relatedArticles}</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
               {relatedArticles.slice(0, 2).map((article) => (
-                <a href={article.path} class="group">
-                  <div class="overflow-hidden rounded-[2rem] mb-4 h-48 bg-slate-200">
+                <a href={article.path} class="group bg-white rounded-[2rem] border border-slate-100 shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
+                  <div class="overflow-hidden h-48 bg-slate-200">
                     <img
                       src={article.image}
                       alt={article.imageAlt}
@@ -219,13 +211,23 @@ const allSchema = [schemaArticle, ...(schemaFaq ? [schemaFaq] : []), ...extraSch
                       decoding="async"
                     />
                   </div>
-                  <p class="text-med-gold text-sm font-medium uppercase tracking-wide mb-2">{article.category} · {article.date}</p>
-                  <h3 class="font-serif text-xl font-bold text-slate-900 group-hover:text-med-gold transition-colors">{article.title}</h3>
+                  <div class="p-6">
+                    <p class="text-med-gold text-sm font-medium uppercase tracking-wide mb-3">{article.category} · {article.date}</p>
+                    <h3 class="font-serif text-xl font-bold text-slate-900 group-hover:text-med-gold transition-colors">{article.title}</h3>
+                  </div>
                 </a>
               ))}
             </div>
           </div>
         )}
+
+        <!-- Back link -->
+        <div class="pt-8">
+          <a href={blogBase[lang]} class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-slate-900 transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            {t.backBlog}
+          </a>
+        </div>
 
       </article>
 
