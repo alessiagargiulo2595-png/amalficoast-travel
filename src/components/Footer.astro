@@ -1,5 +1,5 @@
 ---
-import { getTranslations } from '../i18n/translations';
+import { getTranslations, getLocalePath } from '../i18n/translations';
 import type { Locale } from '../i18n/translations';
 
 interface Props {
@@ -93,43 +93,91 @@ const esperienzeLinks: Record<Locale, Record<EsperienzeKeys, { label: string; hr
 
 /* ── Itinerari links per locale ── */
 type ItinerariKeys = 'amalfi-naples' | 'capri-sorrento' | 'sorrento-pompeii' | 'slow-travel';
+type ItinerariDurations = '1-day' | '3-days' | '7-days';
+type ItinerariSlugs = 'amalfi-coast-from-naples' | 'capri-from-sorrento' | 'sorrento-pompeii-history' | 'slow-travel-villages-food';
+
+const itinerariData: Record<ItinerariKeys, { duration: ItinerariDurations; slug: ItinerariSlugs; labels: Record<Locale, string> }> = {
+  'amalfi-naples': {
+    duration: '1-day',
+    slug: 'amalfi-coast-from-naples',
+    labels: {
+      'it-it': 'Costa Amalfitana da Napoli',
+      'en-us': 'Amalfi Coast from Naples',
+      'en-gb': 'Amalfi Coast from Naples',
+      'de-de': 'Amalfiküste von Neapel',
+      'fr-fr': 'Côte Amalfitaine de Naples',
+      'es-es': 'Costa Amalfitana desde Nápoles',
+    },
+  },
+  'capri-sorrento': {
+    duration: '1-day',
+    slug: 'capri-from-sorrento',
+    labels: {
+      'it-it': 'Capri da Sorrento',
+      'en-us': 'Capri from Sorrento',
+      'en-gb': 'Capri from Sorrento',
+      'de-de': 'Capri von Sorrento',
+      'fr-fr': 'Capri depuis Sorrente',
+      'es-es': 'Capri desde Sorrento',
+    },
+  },
+  'sorrento-pompeii': {
+    duration: '3-days',
+    slug: 'sorrento-pompeii-history',
+    labels: {
+      'it-it': 'Sorrento, Pompei e Storia',
+      'en-us': 'Sorrento, Pompeii & History',
+      'en-gb': 'Sorrento, Pompeii & History',
+      'de-de': 'Sorrento, Pompeji & Geschichte',
+      'fr-fr': 'Sorrente, Pompéi & Histoire',
+      'es-es': 'Sorrento, Pompeya & Historia',
+    },
+  },
+  'slow-travel': {
+    duration: '7-days',
+    slug: 'slow-travel-villages-food',
+    labels: {
+      'it-it': 'Viaggio Lento e Gastronomia',
+      'en-us': 'Slow Travel & Villages Food',
+      'en-gb': 'Slow Travel & Villages Food',
+      'de-de': 'Langsame Reisen & Dörfer Essen',
+      'fr-fr': 'Voyage Lent & Villages Food',
+      'es-es': 'Viaje Lento & Villages Food',
+    },
+  },
+};
+
 const itinerariLinks: Record<Locale, Record<ItinerariKeys, { label: string; href: string }>> = {
-  'it-it': {
-    'amalfi-naples':    { label: 'Costa Amalfitana da Napoli',     href: '/it-it/itinerari/1-day/amalfi-coast-from-naples/' },
-    'capri-sorrento':   { label: 'Capri da Sorrento',             href: '/it-it/itinerari/1-day/capri-from-sorrento/' },
-    'sorrento-pompeii': { label: 'Sorrento, Pompei e Storia',     href: '/it-it/itinerari/3-days/sorrento-pompeii-history/' },
-    'slow-travel':      { label: 'Viaggio Lento e Gastronomia',   href: '/it-it/itinerari/7-days/slow-travel-villages-food/' },
-  },
-  'en-us': {
-    'amalfi-naples':    { label: 'Amalfi Coast from Naples',      href: '/en-us/itineraries/1-day/amalfi-coast-from-naples/' },
-    'capri-sorrento':   { label: 'Capri from Sorrento',           href: '/en-us/itineraries/1-day/capri-from-sorrento/' },
-    'sorrento-pompeii': { label: 'Sorrento, Pompeii & History',   href: '/en-us/itineraries/3-days/sorrento-pompeii-history/' },
-    'slow-travel':      { label: 'Slow Travel & Villages Food',   href: '/en-us/itineraries/7-days/slow-travel-villages-food/' },
-  },
-  'en-gb': {
-    'amalfi-naples':    { label: 'Amalfi Coast from Naples',      href: '/en-gb/itineraries/1-day/amalfi-coast-from-naples/' },
-    'capri-sorrento':   { label: 'Capri from Sorrento',           href: '/en-gb/itineraries/1-day/capri-from-sorrento/' },
-    'sorrento-pompeii': { label: 'Sorrento, Pompeii & History',   href: '/en-gb/itineraries/3-days/sorrento-pompeii-history/' },
-    'slow-travel':      { label: 'Slow Travel & Villages Food',   href: '/en-gb/itineraries/7-days/slow-travel-villages-food/' },
-  },
-  'de-de': {
-    'amalfi-naples':    { label: 'Amalfiküste von Neapel',        href: '/de-de/reiserouten/1-day/amalfi-coast-from-naples/' },
-    'capri-sorrento':   { label: 'Capri von Sorrento',            href: '/de-de/reiserouten/1-day/capri-from-sorrento/' },
-    'sorrento-pompeii': { label: 'Sorrento, Pompeji & Geschichte', href: '/de-de/reiserouten/3-days/sorrento-pompeii-history/' },
-    'slow-travel':      { label: 'Langsame Reisen & Dörfer Essen', href: '/de-de/reiserouten/7-days/slow-travel-villages-food/' },
-  },
-  'fr-fr': {
-    'amalfi-naples':    { label: 'Côte Amalfitaine de Naples',    href: '/fr-fr/itineraires/1-day/amalfi-coast-from-naples/' },
-    'capri-sorrento':   { label: 'Capri depuis Sorrente',         href: '/fr-fr/itineraires/1-day/capri-from-sorrento/' },
-    'sorrento-pompeii': { label: 'Sorrente, Pompéi & Histoire',   href: '/fr-fr/itineraires/3-days/sorrento-pompeii-history/' },
-    'slow-travel':      { label: 'Voyage Lent & Villages Food',   href: '/fr-fr/itineraires/7-days/slow-travel-villages-food/' },
-  },
-  'es-es': {
-    'amalfi-naples':    { label: 'Costa Amalfitana desde Nápoles', href: '/es-es/itinerarios/1-day/amalfi-coast-from-naples/' },
-    'capri-sorrento':   { label: 'Capri desde Sorrento',          href: '/es-es/itinerarios/1-day/capri-from-sorrento/' },
-    'sorrento-pompeii': { label: 'Sorrento, Pompeya & Historia',   href: '/es-es/itinerarios/3-days/sorrento-pompeii-history/' },
-    'slow-travel':      { label: 'Viaje Lento & Villages Food',   href: '/es-es/itinerarios/7-days/slow-travel-villages-food/' },
-  },
+  'it-it': Object.entries(itinerariData).reduce((acc, [key, data]) => {
+    const basePath = getLocalePath('it-it', 'itineraries');
+    acc[key as ItinerariKeys] = { label: data.labels['it-it'], href: `${basePath}${data.duration}/${data.slug}/` };
+    return acc;
+  }, {} as Record<ItinerariKeys, { label: string; href: string }>),
+  'en-us': Object.entries(itinerariData).reduce((acc, [key, data]) => {
+    const basePath = getLocalePath('en-us', 'itineraries');
+    acc[key as ItinerariKeys] = { label: data.labels['en-us'], href: `${basePath}${data.duration}/${data.slug}/` };
+    return acc;
+  }, {} as Record<ItinerariKeys, { label: string; href: string }>),
+  'en-gb': Object.entries(itinerariData).reduce((acc, [key, data]) => {
+    const basePath = getLocalePath('en-gb', 'itineraries');
+    acc[key as ItinerariKeys] = { label: data.labels['en-gb'], href: `${basePath}${data.duration}/${data.slug}/` };
+    return acc;
+  }, {} as Record<ItinerariKeys, { label: string; href: string }>),
+  'de-de': Object.entries(itinerariData).reduce((acc, [key, data]) => {
+    const basePath = getLocalePath('de-de', 'itineraries');
+    acc[key as ItinerariKeys] = { label: data.labels['de-de'], href: `${basePath}${data.duration}/${data.slug}/` };
+    return acc;
+  }, {} as Record<ItinerariKeys, { label: string; href: string }>),
+  'fr-fr': Object.entries(itinerariData).reduce((acc, [key, data]) => {
+    const basePath = getLocalePath('fr-fr', 'itineraries');
+    acc[key as ItinerariKeys] = { label: data.labels['fr-fr'], href: `${basePath}${data.duration}/${data.slug}/` };
+    return acc;
+  }, {} as Record<ItinerariKeys, { label: string; href: string }>),
+  'es-es': Object.entries(itinerariData).reduce((acc, [key, data]) => {
+    const basePath = getLocalePath('es-es', 'itineraries');
+    acc[key as ItinerariKeys] = { label: data.labels['es-es'], href: `${basePath}${data.duration}/${data.slug}/` };
+    return acc;
+  }, {} as Record<ItinerariKeys, { label: string; href: string }>),
 };
 
 const h = sectionHeadings[lang];
