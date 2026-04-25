@@ -1,9 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getLocaleFromUrl } from '../i18n/translations';
 
-const currentUrl = Astro.url.pathname;
-const lang = getLocaleFromUrl(new URL(currentUrl, Astro.site)) || 'en-us';
+// Rileva la lingua dall'URL
+const pathname = Astro.url.pathname;
+let lang: 'en-us' | 'it-it' | 'en-gb' | 'de-de' | 'fr-fr' | 'es-es' = 'en-us';
+
+if (pathname.startsWith('/it-it')) lang = 'it-it';
+else if (pathname.startsWith('/en-us')) lang = 'en-us';
+else if (pathname.startsWith('/en-gb')) lang = 'en-gb';
+else if (pathname.startsWith('/de-de')) lang = 'de-de';
+else if (pathname.startsWith('/fr-fr')) lang = 'fr-fr';
+else if (pathname.startsWith('/es-es')) lang = 'es-es';
 
 const translations = {
   'en-us': {
