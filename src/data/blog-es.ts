@@ -20,7 +20,7 @@ export const blogPostsEs: BlogPostEs[] = [
     date: '28 de abril de 2026',
     readTime: '8 min',
     image: '/images/tramonto-costiera.jpg',
-    path: '/es-es/blog/hora-dorada-puesta-sol/',
+    path: '/es-es/blog/puesta-de-sol-playas/',
   },
   {
     id: '08',
@@ -31,7 +31,7 @@ export const blogPostsEs: BlogPostEs[] = [
     date: '28 de abril de 2026',
     readTime: '8 min',
     image: '/images/spiagge-bambini.jpg',
-    path: '/es-es/blog/playas-accesibles-equipadas/',
+    path: '/es-es/blog/playas-comodas-equipadas/',
   },
   {
     id: '07',
@@ -42,7 +42,7 @@ export const blogPostsEs: BlogPostEs[] = [
     date: '28 de abril de 2026',
     readTime: '9 min',
     image: '/images/spiagge-selvagge.jpg',
-    path: '/es-es/blog/oasis-playas-mar/',
+    path: '/es-es/blog/oasis-salvajes-playas/',
   },
   {
     id: '01',
