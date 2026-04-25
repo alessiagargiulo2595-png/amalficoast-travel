@@ -1,7 +1,16 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-const lang = 'en-us';
+// Rileva la lingua dall'URL
+const pathname = Astro.url.pathname;
+let lang: 'en-us' | 'it-it' | 'en-gb' | 'de-de' | 'fr-fr' | 'es-es' = 'en-us';
+
+if (pathname.startsWith('/it-it')) lang = 'it-it';
+else if (pathname.startsWith('/en-us')) lang = 'en-us';
+else if (pathname.startsWith('/en-gb')) lang = 'en-gb';
+else if (pathname.startsWith('/de-de')) lang = 'de-de';
+else if (pathname.startsWith('/fr-fr')) lang = 'fr-fr';
+else if (pathname.startsWith('/es-es')) lang = 'es-es';
 
 const translations = {
   'en-us': {
@@ -18,9 +27,79 @@ const translations = {
     transport: 'Transport',
     discover: 'Discover',
   },
+  'it-it': {
+    title: 'Pagina Non Trovata',
+    heading: '404',
+    message: 'Ops! La pagina che stai cercando sembra essere precipitata dalle scogliere di Positano.',
+    description: 'Torniamo a scoprire la Costiera Amalfitana.',
+    backHome: 'Torna a Casa',
+    otherLanguages: 'Visita in altre lingue:',
+    browseGuides: 'Sfoglia le nostre guide:',
+    locations: 'Destinazioni',
+    beaches: 'Spiagge',
+    itineraries: 'Itinerari',
+    transport: 'Trasporti',
+    discover: 'Scopri',
+  },
+  'de-de': {
+    title: 'Seite nicht gefunden',
+    heading: '404',
+    message: 'Hoppla! Die gesuchte Seite scheint von den Klippen von Positano heruntergefallen zu sein.',
+    description: 'Lassen Sie uns Sie zurück zur Entdeckung der Amalfiküste bringen.',
+    backHome: 'Zurück zur Startseite',
+    otherLanguages: 'In anderen Sprachen besuchen:',
+    browseGuides: 'Unsere Leitfäden durchsuchen:',
+    locations: 'Ziele',
+    beaches: 'Strände',
+    itineraries: 'Reiserouten',
+    transport: 'Verkehr',
+    discover: 'Entdecken',
+  },
+  'fr-fr': {
+    title: 'Page Non Trouvée',
+    heading: '404',
+    message: 'Oups ! La page que vous recherchez semble être tombée des falaises de Positano.',
+    description: 'Revenons à la découverte de la Côte Amalfitaine.',
+    backHome: 'Retour à l\'accueil',
+    otherLanguages: 'Visitez dans d\'autres langues :',
+    browseGuides: 'Parcourez nos guides :',
+    locations: 'Destinations',
+    beaches: 'Plages',
+    itineraries: 'Itinéraires',
+    transport: 'Transport',
+    discover: 'Découvrir',
+  },
+  'es-es': {
+    title: 'Página No Encontrada',
+    heading: '404',
+    message: 'Oops! La página que buscas parece haber caído de los acantilados de Positano.',
+    description: 'Volvamos a descubrir la Costa Amalfitana.',
+    backHome: 'Volver al Inicio',
+    otherLanguages: 'Visita en otros idiomas:',
+    browseGuides: 'Explora nuestras guías:',
+    locations: 'Destinos',
+    beaches: 'Playas',
+    itineraries: 'Itinerarios',
+    transport: 'Transporte',
+    discover: 'Descubre',
+  },
+  'en-gb': {
+    title: 'Page Not Found',
+    heading: '404',
+    message: 'Oops! The page you\'re looking for seems to have rolled off the cliffs of Positano.',
+    description: 'Let\'s get you back to discovering the Amalfi Coast.',
+    backHome: 'Back to Home',
+    otherLanguages: 'Visit in other languages:',
+    browseGuides: 'Browse Our Guides:',
+    locations: 'Destinations',
+    beaches: 'Beaches',
+    itineraries: 'Itineraries',
+    transport: 'Transport',
+    discover: 'Discover',
+  },
 };
 
-const t = translations['en-us'];
+const t = translations[lang as keyof typeof translations] || translations['en-us'];
 
 const langHomepages = [
   { code: 'it-it', name: 'Italiano', url: '/it-it/' },
@@ -32,10 +111,10 @@ const langHomepages = [
 ];
 
 const guides = [
-  { label: t.locations, url: '/en-us/cote-amalfitaine/' },
-  { label: t.beaches, url: '/en-us/beaches/' },
-  { label: t.itineraries, url: '/en-us/itineraries/' },
-  { label: t.transport, url: '/en-us/how-to-get-there/' },
+  { label: t.locations, url: lang === 'en-us' ? '/en-us/cote-amalfitaine/' : lang === 'it-it' ? '/it-it/cote-amalfitaine/' : lang === 'de-de' ? '/de-de/amalfikueste/' : lang === 'fr-fr' ? '/fr-fr/cote-amalfitaine/' : lang === 'es-es' ? '/es-es/costa-amalfitana/' : '/en-us/cote-amalfitaine/' },
+  { label: t.beaches, url: lang === 'en-us' ? '/en-us/beaches/' : lang === 'it-it' ? '/it-it/spiagge/' : lang === 'de-de' ? '/de-de/straende/' : lang === 'fr-fr' ? '/fr-fr/plages/' : lang === 'es-es' ? '/es-es/playas/' : '/en-us/beaches/' },
+  { label: t.itineraries, url: lang === 'en-us' ? '/en-us/itineraries/' : lang === 'it-it' ? '/it-it/itinerari/' : lang === 'de-de' ? '/de-de/reiserouten/' : lang === 'fr-fr' ? '/fr-fr/itineraires/' : lang === 'es-es' ? '/es-es/itinerarios/' : '/en-us/itineraries/' },
+  { label: t.transport, url: lang === 'en-us' ? '/en-us/how-to-get-there/' : lang === 'it-it' ? '/it-it/come-arrivare/' : lang === 'de-de' ? '/de-de/anfahrt/' : lang === 'fr-fr' ? '/fr-fr/comment-venir/' : lang === 'es-es' ? '/es-es/como-llegar/' : '/en-us/how-to-get-there/' },
 ];
 ---
 
@@ -74,7 +153,7 @@ const guides = [
       </p>
 
       <!-- Back to home button -->
-      <a href="/en-us/"
+      <a href={lang === 'it-it' ? '/it-it/' : lang === 'en-us' ? '/en-us/' : lang === 'de-de' ? '/de-de/' : lang === 'fr-fr' ? '/fr-fr/' : lang === 'es-es' ? '/es-es/' : '/en-us/'}
          class="inline-block bg-amber-600 text-white font-semibold px-10 py-4 rounded-full hover:bg-amber-700 hover:scale-105 transition-all duration-300 text-lg mb-20 shadow-lg hover:shadow-xl">
         🏠 {t.backHome}
       </a>
