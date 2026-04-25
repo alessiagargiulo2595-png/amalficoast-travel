@@ -23,6 +23,7 @@ interface Props {
   author?: string;
   authorRole?: string;
   extraSchema?: object[];
+  relatedArticles?: { title: string; category: string; date: string; image: string; imageAlt: string; path: string }[];
 }
 
 const {
@@ -31,6 +32,7 @@ const {
   author = 'Amalfi Coast Travel',
   authorRole,
   extraSchema = [],
+  relatedArticles = [],
 } = Astro.props;
 
 const site = 'https://amalficoast-travel.com';
@@ -46,13 +48,13 @@ const blogBase: Record<Locale, string> = {
   'de-de': '/de-de/blog/', 'es-es': '/es-es/blog/',
 };
 
-const ui: Record<Locale, { faqTitle: string; quickInfoTitle: string; writtenBy: string; backBlog: string; readTime: string }> = {
-  'it-it': { faqTitle: 'Domande Frequenti',          quickInfoTitle: 'Info Rapide',    writtenBy: 'Scritto da',       backBlog: 'Torna al Blog',    readTime: 'di lettura' },
-  'fr-fr': { faqTitle: 'Questions Fréquentes',        quickInfoTitle: 'Infos Pratiques', writtenBy: 'Écrit par',       backBlog: 'Retour au Blog',   readTime: 'de lecture' },
-  'en-us': { faqTitle: 'Frequently Asked Questions',  quickInfoTitle: 'Quick Info',      writtenBy: 'Written by',      backBlog: 'Back to Blog',     readTime: 'read' },
-  'en-gb': { faqTitle: 'Frequently Asked Questions',  quickInfoTitle: 'Quick Info',      writtenBy: 'Written by',      backBlog: 'Back to Blog',     readTime: 'read' },
-  'de-de': { faqTitle: 'Häufige Fragen',              quickInfoTitle: 'Kurzinfos',       writtenBy: 'Geschrieben von', backBlog: 'Zurück zum Blog',  readTime: 'Lesezeit' },
-  'es-es': { faqTitle: 'Preguntas Frecuentes',        quickInfoTitle: 'Info Rápida',     writtenBy: 'Escrito por',     backBlog: 'Volver al Blog',   readTime: 'de lectura' },
+const ui: Record<Locale, { faqTitle: string; quickInfoTitle: string; writtenBy: string; backBlog: string; readTime: string; relatedArticles: string }> = {
+  'it-it': { faqTitle: 'Domande Frequenti',          quickInfoTitle: 'Info Rapide',    writtenBy: 'Scritto da',       backBlog: 'Torna al Blog',    readTime: 'di lettura', relatedArticles: 'Articoli Correlati' },
+  'fr-fr': { faqTitle: 'Questions Fréquentes',        quickInfoTitle: 'Infos Pratiques', writtenBy: 'Écrit par',       backBlog: 'Retour au Blog',   readTime: 'de lecture', relatedArticles: 'Articles Connexes' },
+  'en-us': { faqTitle: 'Frequently Asked Questions',  quickInfoTitle: 'Quick Info',      writtenBy: 'Written by',      backBlog: 'Back to Blog',     readTime: 'read', relatedArticles: 'Related Articles' },
+  'en-gb': { faqTitle: 'Frequently Asked Questions',  quickInfoTitle: 'Quick Info',      writtenBy: 'Written by',      backBlog: 'Back to Blog',     readTime: 'read', relatedArticles: 'Related Articles' },
+  'de-de': { faqTitle: 'Häufige Fragen',              quickInfoTitle: 'Kurzinfos',       writtenBy: 'Geschrieben von', backBlog: 'Zurück zum Blog',  readTime: 'Lesezeit', relatedArticles: 'Verwandte Artikel' },
+  'es-es': { faqTitle: 'Preguntas Frecuentes',        quickInfoTitle: 'Info Rápida',     writtenBy: 'Escrito por',     backBlog: 'Volver al Blog',   readTime: 'de lectura', relatedArticles: 'Artículos Relacionados' },
 };
 const t = ui[lang];
 
@@ -200,6 +202,30 @@ const allSchema = [schemaArticle, ...(schemaFaq ? [schemaFaq] : []), ...extraSch
             {t.backBlog}
           </a>
         </div>
+
+        <!-- Related Articles -->
+        {relatedArticles && relatedArticles.length > 0 && (
+          <div class="pt-12 border-t border-slate-100">
+            <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">{t.relatedArticles}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {relatedArticles.slice(0, 2).map((article) => (
+                <a href={article.path} class="group">
+                  <div class="overflow-hidden rounded-[2rem] mb-4 h-48 bg-slate-200">
+                    <img
+                      src={article.image}
+                      alt={article.imageAlt}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <p class="text-med-gold text-sm font-medium uppercase tracking-wide mb-2">{article.category} · {article.date}</p>
+                  <h3 class="font-serif text-xl font-bold text-slate-900 group-hover:text-med-gold transition-colors">{article.title}</h3>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
 
       </article>
 
