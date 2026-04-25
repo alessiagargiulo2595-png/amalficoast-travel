@@ -20,7 +20,7 @@ export const blogPostsEn: BlogPostEn[] = [
     date: 'April 28, 2026',
     readTime: '8 min',
     image: '/images/tramonto-costiera.jpg',
-    path: '/en-us/blog/golden-hour-sunset/',
+    path: '/en-us/blog/sunset-beaches/',
   },
   {
     id: '08',
@@ -31,7 +31,7 @@ export const blogPostsEn: BlogPostEn[] = [
     date: 'April 28, 2026',
     readTime: '8 min',
     image: '/images/spiagge-bambini.jpg',
-    path: '/en-us/blog/accessible-equipped-beaches/',
+    path: '/en-us/blog/comfortable-beaches/',
   },
   {
     id: '07',
@@ -42,7 +42,7 @@ export const blogPostsEn: BlogPostEn[] = [
     date: 'April 28, 2026',
     readTime: '9 min',
     image: '/images/spiagge-selvagge.jpg',
-    path: '/en-us/blog/wild-beaches-sea/',
+    path: '/en-us/blog/wild-remote-beaches/',
   },
   {
     id: '01',
