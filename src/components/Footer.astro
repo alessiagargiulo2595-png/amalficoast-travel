@@ -92,98 +92,106 @@ const esperienzeLinks: Record<Locale, Record<EsperienzeKeys, { label: string; hr
 };
 
 /* ── Itinerari links per locale ── */
-type ItinerariKeys = 'amalfi-naples' | 'capri-sorrento' | 'sorrento-pompeii' | 'slow-travel';
-type ItinerariDurations = '1-day' | '3-days' | '7-days';
-type ItinerariSlugs = 'amalfi-coast-from-naples' | 'capri-from-sorrento' | 'sorrento-pompeii-history' | 'slow-travel-villages-food';
+const itPeriods = ({ 'en-us': { d1: '1 day', d3: '3 days', d7: '7 days' }, 'en-gb': { d1: '1 day', d3: '3 days', d7: '7 days' }, 'de-de': { d1: '1 Tag', d3: '3 Tage', d7: '7 Tage' }, 'fr-fr': { d1: '1 jour', d3: '3 jours', d7: '7 jours' }, 'es-es': { d1: '1 día', d3: '3 días', d7: '7 días' }, 'it-it': { d1: '1 giorno', d3: '3 giorni', d7: '7 giorni' } } as const)[lang];
 
-const itinerariData: Record<ItinerariKeys, { duration: ItinerariDurations; slug: ItinerariSlugs; labels: Record<Locale, string> }> = {
-  'amalfi-naples': {
-    duration: '1-day',
-    slug: 'amalfi-coast-from-naples',
-    labels: {
-      'it-it': 'Costa Amalfitana da Napoli',
-      'en-us': 'Amalfi Coast from Naples',
-      'en-gb': 'Amalfi Coast from Naples',
-      'de-de': 'Amalfiküste von Neapel',
-      'fr-fr': 'Côte Amalfitaine de Naples',
-      'es-es': 'Costa Amalfitana desde Nápoles',
-    },
-  },
-  'capri-sorrento': {
-    duration: '1-day',
-    slug: 'capri-from-sorrento',
-    labels: {
-      'it-it': 'Capri da Sorrento',
-      'en-us': 'Capri from Sorrento',
-      'en-gb': 'Capri from Sorrento',
-      'de-de': 'Capri von Sorrento',
-      'fr-fr': 'Capri depuis Sorrente',
-      'es-es': 'Capri desde Sorrento',
-    },
-  },
-  'sorrento-pompeii': {
-    duration: '3-days',
-    slug: 'sorrento-pompeii-history',
-    labels: {
-      'it-it': 'Sorrento, Pompei e Storia',
-      'en-us': 'Sorrento, Pompeii & History',
-      'en-gb': 'Sorrento, Pompeii & History',
-      'de-de': 'Sorrento, Pompeji & Geschichte',
-      'fr-fr': 'Sorrente, Pompéi & Histoire',
-      'es-es': 'Sorrento, Pompeya & Historia',
-    },
-  },
-  'slow-travel': {
-    duration: '7-days',
-    slug: 'slow-travel-villages-food',
-    labels: {
-      'it-it': 'Viaggio Lento e Gastronomia',
-      'en-us': 'Slow Travel & Villages Food',
-      'en-gb': 'Slow Travel & Villages Food',
-      'de-de': 'Langsame Reisen & Dörfer Essen',
-      'fr-fr': 'Voyage Lent & Villages Food',
-      'es-es': 'Viaje Lento & Villages Food',
-    },
-  },
-};
+const itinerari1g = ({
+  'en-us': [
+    { name: 'Amalfi Coast from Naples',  href: '/en-us/itineraries/1-day/amalfi-coast-from-naples/' },
+    { name: 'Amalfi Coast from Salerno', href: '/en-us/itineraries/1-day/amalfi-coast-from-salerno/' },
+    { name: 'Sorrentine Peninsula',      href: '/en-us/itineraries/1-day/sorrentine-peninsula-from-naples/' },
+    { name: 'Path of the Gods Trek',     href: '/en-us/itineraries/1-day/path-of-the-gods-trek/' },
+    { name: 'Capri from Sorrento',       href: '/en-us/itineraries/1-day/capri-from-sorrento/' },
+  ],
+  'en-gb': [
+    { name: 'Amalfi Coast from Naples', href: '#' }, { name: 'Amalfi Coast from Salerno', href: '#' },
+    { name: 'Sorrentine Peninsula', href: '#' }, { name: 'Path of the Gods Trek', href: '#' }, { name: 'Capri from Sorrento', href: '#' },
+  ],
+  'de-de': [
+    { name: 'Amalfiküste von Neapel',          href: '/de-de/reiserouten/1-tag/amalfikueste-von-neapel/' },
+    { name: 'Amalfiküste von Salerno',          href: '/de-de/reiserouten/1-tag/amalfikueste-von-salerno/' },
+    { name: 'Sorrentinische Halbinsel',         href: '/de-de/reiserouten/1-tag/sorrentinische-halbinsel-von-neapel/' },
+    { name: 'Weg der Götter',                   href: '/de-de/reiserouten/1-tag/weg-der-goetter-trekking/' },
+    { name: 'Capri von Sorrent',                href: '/de-de/reiserouten/1-tag/capri-von-sorrent/' },
+  ],
+  'fr-fr': [
+    { name: 'Côte Amalfitaine depuis Naples',  href: '/fr-fr/itineraires/1-jour/cote-amalfitaine-depuis-naples/' },
+    { name: 'Côte Amalfitaine depuis Salerne', href: '/fr-fr/itineraires/1-jour/cote-amalfitaine-depuis-salerne/' },
+    { name: 'Péninsule Sorrentine',            href: '/fr-fr/itineraires/1-jour/peninsule-sorrentine-depuis-naples/' },
+    { name: 'Sentier des Dieux',               href: '/fr-fr/itineraires/1-jour/sentier-des-dieux-trek/' },
+    { name: 'Capri depuis Sorrente',           href: '/fr-fr/itineraires/1-jour/capri-depuis-sorrente/' },
+  ],
+  'es-es': [
+    { name: 'Costa Amalfitana desde Nápoles', href: '/es-es/itinerarios/1-dia/costa-amalfitana-desde-napoles/' },
+    { name: 'Costa Amalfitana desde Salerno', href: '/es-es/itinerarios/1-dia/costa-amalfitana-desde-salerno/' },
+    { name: 'Península Sorrentina',           href: '/es-es/itinerarios/1-dia/peninsula-sorrentina-desde-napoles/' },
+    { name: 'Sendero de los Dioses',          href: '/es-es/itinerarios/1-dia/sendero-de-los-dioses-trek/' },
+    { name: 'Capri desde Sorrento',           href: '/es-es/itinerarios/1-dia/capri-desde-sorrento/' },
+  ],
+  'it-it': [
+    { name: 'Costiera da Napoli',   href: '/it-it/itinerari/1-giorno/costiera-amalfitana-da-napoli/' },
+    { name: 'Costiera da Salerno',  href: '/it-it/itinerari/1-giorno/costiera-amalfitana-da-salerno/' },
+    { name: 'Penisola Sorrentina',  href: '/it-it/itinerari/1-giorno/penisola-sorrentina-da-napoli/' },
+    { name: 'Sentiero degli Dei',   href: '/it-it/itinerari/1-giorno/trekking-sentiero-degli-dei/' },
+    { name: 'Capri da Sorrento',    href: '/it-it/itinerari/1-giorno/capri-da-sorrento/' },
+  ],
+} as const)[lang];
 
-const itinerariLinks: Record<Locale, Record<ItinerariKeys, { label: string; href: string }>> = {
-  'it-it': Object.entries(itinerariData).reduce((acc, [key, data]) => {
-    const basePath = getLocalePath('it-it', 'itineraries');
-    acc[key as ItinerariKeys] = { label: data.labels['it-it'], href: `${basePath}${data.duration}/${data.slug}/` };
-    return acc;
-  }, {} as Record<ItinerariKeys, { label: string; href: string }>),
-  'en-us': Object.entries(itinerariData).reduce((acc, [key, data]) => {
-    const basePath = getLocalePath('en-us', 'itineraries');
-    acc[key as ItinerariKeys] = { label: data.labels['en-us'], href: `${basePath}${data.duration}/${data.slug}/` };
-    return acc;
-  }, {} as Record<ItinerariKeys, { label: string; href: string }>),
-  'en-gb': Object.entries(itinerariData).reduce((acc, [key, data]) => {
-    const basePath = getLocalePath('en-gb', 'itineraries');
-    acc[key as ItinerariKeys] = { label: data.labels['en-gb'], href: `${basePath}${data.duration}/${data.slug}/` };
-    return acc;
-  }, {} as Record<ItinerariKeys, { label: string; href: string }>),
-  'de-de': Object.entries(itinerariData).reduce((acc, [key, data]) => {
-    const basePath = getLocalePath('de-de', 'itineraries');
-    acc[key as ItinerariKeys] = { label: data.labels['de-de'], href: `${basePath}${data.duration}/${data.slug}/` };
-    return acc;
-  }, {} as Record<ItinerariKeys, { label: string; href: string }>),
-  'fr-fr': Object.entries(itinerariData).reduce((acc, [key, data]) => {
-    const basePath = getLocalePath('fr-fr', 'itineraries');
-    acc[key as ItinerariKeys] = { label: data.labels['fr-fr'], href: `${basePath}${data.duration}/${data.slug}/` };
-    return acc;
-  }, {} as Record<ItinerariKeys, { label: string; href: string }>),
-  'es-es': Object.entries(itinerariData).reduce((acc, [key, data]) => {
-    const basePath = getLocalePath('es-es', 'itineraries');
-    acc[key as ItinerariKeys] = { label: data.labels['es-es'], href: `${basePath}${data.duration}/${data.slug}/` };
-    return acc;
-  }, {} as Record<ItinerariKeys, { label: string; href: string }>),
-};
+const itinerari3g = ({
+  'en-us': [
+    { name: 'Classic Amalfi Coast',       href: '/en-us/itineraries/3-days/classic-amalfi-coast/' },
+    { name: 'Sorrento, Pompeii & History',href: '/en-us/itineraries/3-days/sorrento-pompeii-history/' },
+    { name: 'Islands: Ischia & Procida',  href: '/en-us/itineraries/3-days/islands-ischia-procida/' },
+  ],
+  'en-gb': [{ name: 'Classic Amalfi Coast', href: '#' }, { name: 'Sorrento, Pompeii & History', href: '#' }, { name: 'Islands: Ischia & Procida', href: '#' }],
+  'de-de': [
+    { name: 'Klassische Amalfiküste',      href: '/de-de/reiserouten/3-tage/klassische-amalfikueste/' },
+    { name: 'Sorrent, Pompeji & Geschichte',href: '/de-de/reiserouten/3-tage/sorrent-pompeji-geschichte/' },
+    { name: 'Inseln: Ischia & Procida',    href: '/de-de/reiserouten/3-tage/inseln-ischia-procida/' },
+  ],
+  'fr-fr': [
+    { name: 'Côte Amalfitaine Classique',  href: '/fr-fr/itineraires/3-jours/cote-amalfitaine-classique/' },
+    { name: 'Sorrente, Pompéi & Histoire', href: '/fr-fr/itineraires/3-jours/sorrente-pompei-histoire/' },
+    { name: 'Îles : Ischia & Procida',     href: '/fr-fr/itineraires/3-jours/iles-ischia-procida/' },
+  ],
+  'es-es': [
+    { name: 'Costa Amalfitana Clásica',    href: '/es-es/itinerarios/3-dias/costa-amalfitana-clasica/' },
+    { name: 'Sorrento, Pompeya e Historia',href: '/es-es/itinerarios/3-dias/sorrento-pompeya-historia/' },
+    { name: 'Islas: Ischia y Procida',     href: '/es-es/itinerarios/3-dias/islas-ischia-procida/' },
+  ],
+  'it-it': [
+    { name: 'Classico Costiera',        href: '/it-it/itinerari/3-giorni/classico-costiera-amalfitana/' },
+    { name: 'Sorrento, Pompei e Storia',href: '/it-it/itinerari/3-giorni/sorrento-pompei-storia/' },
+    { name: 'Isole: Ischia e Procida',  href: '/it-it/itinerari/3-giorni/isole-ischia-procida/' },
+  ],
+} as const)[lang];
+
+const itinerari7g = ({
+  'en-us': [
+    { name: 'Grand Tour Coast & Peninsula', href: '/en-us/itineraries/7-days/grand-tour-coast-peninsula/' },
+    { name: 'Slow Travel: Villages & Food', href: '/en-us/itineraries/7-days/slow-travel-villages-food/' },
+  ],
+  'en-gb': [{ name: 'Grand Tour Coast & Peninsula', href: '#' }, { name: 'Slow Travel: Villages & Food', href: '#' }],
+  'de-de': [
+    { name: 'Grand Tour Küste & Halbinsel',  href: '/de-de/reiserouten/7-tage/grand-tour-kueste-halbinsel/' },
+    { name: 'Slow Travel: Dörfer & Kulinarik',href: '/de-de/reiserouten/7-tage/slow-travel-doerfer-kulinarik/' },
+  ],
+  'fr-fr': [
+    { name: 'Grand Tour Côte & Péninsule',   href: '/fr-fr/itineraires/7-jours/grand-tour-cote-peninsule/' },
+    { name: 'Slow Travel : Villages & Gastronomie', href: '/fr-fr/itineraires/7-jours/slow-travel-villages-gastronomie/' },
+  ],
+  'es-es': [
+    { name: 'Gran Tour Costa & Península',   href: '/es-es/itinerarios/7-dias/gran-tour-costa-peninsula/' },
+    { name: 'Slow Travel: Pueblos & Gastronomía', href: '/es-es/itinerarios/7-dias/slow-travel-pueblos-gastronomia/' },
+  ],
+  'it-it': [
+    { name: 'Grand Tour Costiera',       href: '/it-it/itinerari/7-giorni/grand-tour-costiera-penisola/' },
+    { name: 'Slow Travel Borghi & Cibo', href: '/it-it/itinerari/7-giorni/slow-travel-borghi-cibo/' },
+  ],
+} as const)[lang];
 
 const h = sectionHeadings[lang];
 const guida = Object.values(guidaLinks[lang]);
 const esperienze = Object.values(esperienzeLinks[lang]);
-const itinerari = Object.values(itinerariLinks[lang]);
 const base = townBase[lang];
 ---
 
@@ -282,11 +290,25 @@ const base = townBase[lang];
       <!-- Itinerari -->
       <div>
         <h3 class="font-serif font-bold text-med-gold text-sm uppercase tracking-[0.15em] mb-5">{h.itinerari}</h3>
-        <ul class="space-y-2.5">
-          {itinerari.map(link => (
+        <ul class="space-y-2">
+          {itinerari1g.map(link => (
             <li>
               <a href={link.href} class="text-white/45 hover:text-med-gold text-sm transition-colors">
-                {link.label}
+                {link.name}
+              </a>
+            </li>
+          ))}
+          {itinerari3g.map(link => (
+            <li>
+              <a href={link.href} class="text-white/45 hover:text-med-gold text-sm transition-colors">
+                {link.name}
+              </a>
+            </li>
+          ))}
+          {itinerari7g.map(link => (
+            <li>
+              <a href={link.href} class="text-white/45 hover:text-med-gold text-sm transition-colors">
+                {link.name}
               </a>
             </li>
           ))}
