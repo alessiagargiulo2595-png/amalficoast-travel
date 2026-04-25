@@ -2,16 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Rileva la lingua dall'URL
-const url = new URL(Astro.request.url);
-const pathname = url.pathname;
+const fullUrl = Astro.request.url;
+const urlObj = new URL(fullUrl);
+const pathname = urlObj.pathname;
+
+// Debug: log the pathname
+console.log('404 pathname:', pathname);
+console.log('404 fullUrl:', fullUrl);
+
 let lang: 'en-us' | 'it-it' | 'en-gb' | 'de-de' | 'fr-fr' | 'es-es' = 'en-us';
 
-if (pathname.startsWith('/it-it')) lang = 'it-it';
-else if (pathname.startsWith('/en-us')) lang = 'en-us';
-else if (pathname.startsWith('/en-gb')) lang = 'en-gb';
-else if (pathname.startsWith('/de-de')) lang = 'de-de';
-else if (pathname.startsWith('/fr-fr')) lang = 'fr-fr';
-else if (pathname.startsWith('/es-es')) lang = 'es-es';
+if (pathname.includes('/it-it')) lang = 'it-it';
+else if (pathname.includes('/en-gb')) lang = 'en-gb';
+else if (pathname.includes('/de-de')) lang = 'de-de';
+else if (pathname.includes('/fr-fr')) lang = 'fr-fr';
+else if (pathname.includes('/es-es')) lang = 'es-es';
 
 const translations = {
   'en-us': {
