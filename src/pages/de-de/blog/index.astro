@@ -3,21 +3,45 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { blogPostsDe } from '../../../data/blog-de';
 
 const lang = 'de-de';
+
+const breadcrumbs = [
+  { name: 'Startseite', url: '/de-de/' },
+  { name: 'Blog', url: '/de-de/blog/' },
+];
+
 const sortedPosts = [...blogPostsDe].sort((a, b) => Number(b.id) - Number(a.id));
 const categories = ['Alle', ...new Set(sortedPosts.map(p => p.category))];
+
+const schemaBlog = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Blog - Amalfi Coast Travel",
+  "description": "Geschichten, Reiseführer und Kuriositäten über die Amalfiküste: Meereshöhlen, versteckte Dörfer, lokale Küche und Tipps zum Reisen wie ein Einheimischer.",
+  "url": "https://amalficoast-travel.com/de-de/blog/",
+  "inLanguage": "de-DE",
+  "blogPost": sortedPosts.map(post => ({
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "url": `https://amalficoast-travel.com${post.path}`,
+    "datePublished": post.date,
+    "image": post.image,
+  })),
+};
 ---
 
 <BaseLayout
   title="Blog | Amalfiküste Reiseführer"
   description="Geschichten, Reiseführer und Kuriositäten über die Amalfiküste: Meereshöhlen, versteckte Dörfer, lokale Küche und Tipps zum Reisen wie ein Einheimischer."
   lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[schemaBlog]}
 >
 
   <section class="relative h-[60vh] flex items-end bg-charcoal overflow-hidden">
     <div class="absolute inset-0 bg-slate-900"></div>
     <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('/images/blog-hub-hero.jpg')"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/80"></div>
-    <div class="relative z-10 max-w-7xl mx-auto px-6 pb-16 pt-32 w-full">
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pb-12 pt-32 w-full">
       <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
         <a href="/de-de/" class="hover:text-white transition-colors">Startseite</a>
         <span>/</span>
@@ -26,7 +50,7 @@ const categories = ['Alle', ...new Set(sortedPosts.map(p => p.category))];
       <div class="max-w-3xl">
         <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Amalfiküste</p>
         <h1 class="font-serif text-display text-white mb-4">Blog</h1>
-        <p class="text-xl text-white/80 leading-relaxed mb-8">Echte Geschichten, versteckte Höhlen, authentische Aromen. Die Küste jenseits der Postkarten.</p>
+        <p class="text-xl text-white/80 leading-relaxed mb-4">Echte Geschichten, versteckte Höhlen, authentische Aromen. Die Küste jenseits der Postkarten.</p>
         <div class="flex flex-wrap gap-3">
           {categories.map((cat) => (
             <button data-filter={cat} data-active={cat === 'Alle' ? 'true' : undefined} class="filter-btn">{cat}</button>
