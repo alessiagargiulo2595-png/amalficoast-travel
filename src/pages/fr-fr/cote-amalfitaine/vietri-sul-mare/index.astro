@@ -1,0 +1,391 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Côte Amalfitaine', url: '/fr-fr/cote-amalfitaine/' },
+  { name: 'Vietri sul Mare', url: '/fr-fr/cote-amalfitaine/vietri-sul-mare/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Vietri sul Mare",
+  "description": "Vietri sul Mare est la porte orientale de la Côte Amalfitaine, célèbre pour ses céramiques peintes à la main qui ornent les églises et les terrasses de toute l'Italie du Sud. Surplombant la mer avec des vues spectaculaires sur toute la côte.",
+  "url": "https://amalficoast-travel.com/fr-fr/cote-amalfitaine/vietri-sul-mare/",
+  "image": "https://amalficoast-travel.com/images/vietri-hero.jpg",
+  "touristType": ["Artisanat", "Culture", "Mer", "Gastronomie"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Vietri sul Mare",
+    "addressRegion": "Salerno",
+    "addressCountry": "IT",
+    "postalCode": "84019"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6819,
+    "longitude": 14.6945
+  }
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Vietri sul Mare, Côte Amalfitaine",
+  "description": "Commune côtière de la Côte Amalfitaine dans la province de Salerno, Campanie. Célèbre pour ses céramiques artistiques peintes à la main.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6819,
+    "longitude": 14.6945
+  },
+  "containedInPlace": {
+    "@type": "AdministrativeArea",
+    "name": "Côte Amalfitaine"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Pour quoi Vietri sul Mare est-elle célèbre?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vietri sul Mare est la capitale italienne de la céramique. Ses céramiques peintes à la main, avec des motifs géométriques et floraux caractéristiques, ornent les églises et les terrasses de toute l'Italie du Sud et sont exportées dans le monde entier. La tradition céramique remonte au XIVe siècle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment se rendre à Vietri sul Mare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vietri sul Mare est reliée à la Côte Amalfitaine via la SS163 (~15 km d'Amalfi). En voiture environ 20-30 minutes d'Amalfi. Aussi accessible en bus avec le service SITA de Salerne ou d'autres communes côtières."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qu'y a-t-il à voir à Vietri sul Mare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'église de San Giovanni Battista avec sa coupole de majolique distinctive, la promenade côtière panoramique, les ateliers de céramique artisanale, le Musée Provincial de la Céramique et les terrasses surplombant toute la côte."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Y a-t-il des plages à Vietri sul Mare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, Vietri a des plages de galets et de sable noir facilement accessibles du centre-ville. La promenade est plate et facilement accessible, avec des vues spectaculaires sur la Côte Amalfitaine s'étendant vers l'ouest."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelle est la meilleure période pour visiter Vietri?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Avril–juin et septembre–octobre sont idéales pour le climat et moins de foule. Juillet et août sont chauds et bondés. En hiver, certains magasins peuvent avoir des horaires réduits, mais la ville reste agréable."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Vietri sul Mare 2026 : Céramiques et Côte | Guide Complet"
+  description="Guide de Vietri sul Mare : la capitale de la céramique italienne, l'église de San Giovanni, ateliers artisanaux, promenade panoramique, comment y arriver. La porte orientale de la Côte Amalfitaine."
+  lang={lang}
+  pageKey="vietri-sul-mare"
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, placeSchema, faqSchema]}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[80vh] flex items-center bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div>
+    <img src="/images/vietri-hero.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager"  referrerpolicy="no-referrer"/>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Céramique · Patrimoine Artisanal</p>
+        <h1 class="font-serif text-display text-white mb-4">Vietri sul Mare</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La porte orientale de la Côte Amalfitaine. La capitale italienne de la céramique, où la majolique peinte à la main colore le ciel de terre cuite. Une vue qui embrasse toute la côte d'ici jusqu'à Capri.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">
+            Fiches Rapides
+          </a>
+          <a href="#cosa-vedere" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            À voir
+          </a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            FAQ
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Grid -->
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <!-- Main Content -->
+      <div class="space-y-16">
+
+        <!-- Intro -->
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Vietri sul Mare est le point où la Côte Amalfitaine rencontre le Golfe de Salerne. Ce n'est pas une ville inconnue – quiconque a visité des églises et des places en Italie du Sud a vu ses céramiques – et pourtant, elle reste l'endroit le moins touristique de la côte, malgré les vues magnifiques et une tradition artisanale qui remonte au XIVe siècle.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Ici, tout parle de céramique : les toits, les balcons, les décorations des boutiques, même les bancs de la promenade. C'est le lieu où l'art populaire n'est pas touristique parce qu'il est encore enraciné dans la communauté. Les mains qui peignent les majoliques sont les mêmes qui le font depuis des générations.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Le saviez-vous?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">XIVe s.</p>
+              <p class="text-white/60 text-xs italic mt-1">début de la tradition céramique</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">50+</p>
+              <p class="text-white/60 text-xs italic mt-1">ateliers de céramique actifs</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">3.000+</p>
+              <p class="text-white/60 text-xs italic mt-1">habitants</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            L'<em>église de San Giovanni Battista</em> a une coupole de majolique bleue et jaune visible de toute la côte – un symbole de la maîtrise locale.
+          </p>
+        </div>
+
+        <!-- What to See -->
+        <div id="cosa-vedere">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">À voir à Vietri sul Mare</h2>
+          <div class="space-y-8">
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">1</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Église de San Giovanni Battista</h3>
+                <p class="text-slate-600 leading-relaxed">Le symbole de Vietri : une coupole en majolique bleue et jaune qui domine la promenade. Construite au XVIIe siècle avec un intérieur richement décoré. La vue d'ici est parmi les plus belles de la côte – d'ici on voit l'arc de la côte de Positano presque jusqu'à Naples.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">2</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Ateliers de Céramique et Musée</h3>
+                <p class="text-slate-600 leading-relaxed">Le Musée Provincial de la Céramique raconte l'histoire de l'art céramique local avec des artefacts du XIVe siècle à nos jours. Près du musée, des dizaines d'ateliers artisanaux où les artistes peignent les majoliques devant vos yeux. Les prix sont justes et la qualité est authentique.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">3</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Promenade Côtière Panoramique</h3>
+                <p class="text-slate-600 leading-relaxed">Une promenade plate qui court le long de la côte, avec des bancs décorés en céramique et des vues s'étendant de Praiano jusqu'aux îles du golfe. Parfait au coucher de soleil, quand la lumière dore la céramique des toits et la mer devient rose.</p>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+              <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">4</div>
+              <div>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">Plages et Mer</h3>
+                <p class="text-slate-600 leading-relaxed">Des plages de galets et de sable noir facilement accessibles depuis le centre-ville. Moins bondées que les autres plages de la côte, avec des bars et des restaurants en bord de mer. L'eau est particulièrement claire ici, à la porte du golfe de Salerne.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- How to Get There -->
+        <div class="bg-charcoal rounded-[3rem] p-10 md:p-14 text-white relative overflow-hidden">
+          <div class="relative z-10">
+            <h2 class="font-serif text-3xl font-bold text-white tracking-tight mb-6">Comment se rendre à Vietri sul Mare</h2>
+            <p class="text-white/60 mb-10 leading-relaxed">Vietri est la porte orientale de la côte, facilement accessible de Salerne ou de la côte elle-même. Elle n'a pas de port de ferry comme Amalfi ou Positano, mais est bien reliée par voiture, bus et même scooter.</p>
+            <div class="grid sm:grid-cols-2 gap-8 mb-10">
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0"><svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18M8 11V7a4 4 0 018 0v4"/></svg></div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">En Voiture</h3><p class="text-white/50 text-sm leading-relaxed">SS163 d'Amalfi (~20 min), sortie pour Vietri. Accès direct de la côte.</p></div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center flex-shrink-0"><svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="M3 10h18M8 19v2M16 19v2"/></svg></div>
+                <div><h3 class="font-serif text-xl font-bold text-white mb-2">Bus SITA</h3><p class="text-white/50 text-sm leading-relaxed">De Salerne ou de la Côte. Environ €2-3 toute l'année.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute top-0 right-0 -translate-y-1/3 translate-x-1/3 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Questions Fréquemment Posées sur Vietri sul Mare</h2>
+          <div class="space-y-4">
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Pour quoi Vietri sul Mare est-elle célèbre?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Vietri sul Mare est célèbre pour ses céramiques peintes à la main, une tradition remontant au XIVe siècle. Les majoliques de Vietri, avec leurs couleurs vives et motifs floraux ou géométriques, ornent les églises, couvents et places de toute l'Italie du Sud. C'est la capitale italienne de la céramique artistique, où des dizaines d'artisans maintiennent encore cette tradition vivante aujourd'hui.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Comment se rendre à Vietri sul Mare?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Vietri est la porte orientale de la côte. Du cœur de la côte (Amalfi, Positano) il faut environ 20-30 minutes en voiture via la SS163. De Salerne, elle est à environ 15 km (~20 min en voiture). Le bus SITA relie Vietri à Salerne et aux communes côtières avec des services fréquents.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Qu'y a-t-il à voir à Vietri sul Mare?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                L'église de San Giovanni Battista avec sa coupole de majolique bleue et jaune, le Musée Provincial de la Céramique, les ateliers artisanaux de céramique le long de la promenade, la promenade elle-même avec les vues sur la côte et le Golfe de Salerne, et les plages tranquilles de galets et sable noir.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Y a-t-il des plages à Vietri sul Mare?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Oui, Vietri a des plages de galets et sable noir, beaucoup moins bondées qu'Amalfi, Positano ou Maiori. La promenade est plate et facilement accessible du centre-ville. Il y a des bars et restaurants en bord de mer, mais sans le stress touristique des endroits plus célèbres.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Quelle est la meilleure période pour visiter Vietri?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+                Avril–juin et septembre–octobre sont idéales : climat agréable, foule modérée et tous les services ouverts. Juillet et août sont chauds et bondés, mais toujours moins que le reste de la côte. Novembre–mars est tranquille, bien que certains magasins puissent avoir des horaires réduits.
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+
+        <!-- Fast Facts -->
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fiches Rapides - Vietri sul Mare</p>
+          <dl class="space-y-3">
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Localisation</dt>
+              <dd class="text-white font-medium text-sm text-right">Côte Amalfitaine, SA</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Altitude</dt>
+              <dd class="text-white font-medium text-sm text-right">0–150 m</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Population</dt>
+              <dd class="text-white font-medium text-sm text-right">~3.000 habitants</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Spécialité</dt>
+              <dd class="text-white font-medium text-sm text-right">Céramique peinte</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Transports</dt>
+              <dd class="text-white font-medium text-sm text-right">Voiture, Bus SITA</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Plage</dt>
+              <dd class="text-white font-medium text-sm text-right">Galets et sable</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Meilleure période</dt>
+              <dd class="text-white font-medium text-sm text-right">Avr–Juin / Sep–Oct</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-sm font-light flex-shrink-0">Monnaie</dt>
+              <dd class="text-white font-medium text-sm text-right">Euro (€)</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Explorez la Côte</p>
+          <nav class="space-y-1">
+            <a href="/fr-fr/cote-amalfitaine/positano/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Positano
+            </a>
+            <a href="/fr-fr/cote-amalfitaine/amalfi/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Amalfi
+            </a>
+            <a href="/fr-fr/cote-amalfitaine/ravello/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Ravello
+            </a>
+            <a href="/fr-fr/cote-amalfitaine/praiano/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Praiano
+            </a>
+            <a href="/fr-fr/cote-amalfitaine/maiori/" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> Maiori
+            </a>
+          </nav>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Découvrez aussi la Côte Amalfitaine"
+    items={[
+      { name: 'Positano',  href: '/fr-fr/cote-amalfitaine/positano/', tag: 'Mode & Vue',  desc: 'Les maisons colorées à pic sur la mer, les boutiques de luxe et la plage Fornillo.' },
+      { name: 'Amalfi',    href: '/fr-fr/cote-amalfitaine/amalfi/',  tag: 'Histoire & Culture', desc: 'La cathédrale de Sant\'Andrea, le Musée du Papier et la capitale de la Côte.' },
+      { name: 'Ravello',   href: '/fr-fr/cote-amalfitaine/ravello/',  tag: 'Musique & Jardins', desc: 'La Villa Rufolo, la Villa Cimbrone et le Festival de Musique à 350 m sur la mer.' },
+      { name: 'Praiano',   href: '/fr-fr/cote-amalfitaine/praiano/', tag: 'Coucher de soleil & Calme', desc: 'Le coucher de soleil de San Gennaro, la plage Gavitella et la tranquille Marina di Praia.' },
+      { name: 'Maiori',    href: '/fr-fr/cote-amalfitaine/maiori/',  tag: 'Plage & Détente',  desc: 'La plus longue plage de sable de la côte : 300 m de promenade.' },
+      { name: 'Minori',    href: '/fr-fr/cote-amalfitaine/minori/',  tag: 'Saveurs & Culture',  desc: 'Villa romaine du Ier siècle, scialatielli frais et pâtisseries artisanales.' },
+    ]}
+  />
+
+</BaseLayout>
