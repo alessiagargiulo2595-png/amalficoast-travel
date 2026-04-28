@@ -31,23 +31,31 @@ const faqSchema = {
   ]
 };
 
+const destinations = [
+  { name: 'Amalfi', url: '/it-it/costiera-amalfitana/amalfi/' },
+  { name: 'Ravello', url: '/it-it/costiera-amalfitana/ravello/' },
+  { name: 'Positano', url: '/it-it/costiera-amalfitana/positano/' },
+  { name: 'Salerno', url: '/it-it/costiera-amalfitana/salerno/' },
+  { name: 'Sorrento', url: '/it-it/penisola-sorrentina/sorrento/' },
+];
+
 const schedule = [
-  { time: '07:45', place: 'Napoli Centrale', action: 'Treno per Salerno (Trenitalia/Italo, 40 min, ~€5-12)', transport: 'train' },
-  { time: '09:00', place: 'Salerno', action: 'Traghetto Travelmar per Amalfi (45 min, ~€8, stagionale apr-ott)', transport: 'ferry' },
+  { time: '07:45', place: 'Napoli Centrale', action: 'Treno per <a href="/it-it/costiera-amalfitana/salerno/" class="text-med-blue hover:underline font-medium">Salerno</a> (Trenitalia/Italo, 40 min, ~€5-12)', transport: 'train' },
+  { time: '09:00', place: 'Salerno', action: 'Traghetto Travelmar per <a href="/it-it/costiera-amalfitana/amalfi/" class="text-med-blue hover:underline font-medium">Amalfi</a> (45 min, ~€8, stagionale apr-ott)', transport: 'ferry' },
   { time: '09:45', place: 'Amalfi', action: 'Duomo di Sant\'Andrea, Chiostro del Paradiso, corso e centro storico (2h)', transport: 'visit' },
-  { time: '12:00', place: 'Amalfi → Ravello', action: 'Bus SITA locale per Ravello (25 min, ~€1.50). Pranzo in piazza.', transport: 'bus' },
+  { time: '12:00', place: 'Amalfi → Ravello', action: 'Bus SITA locale per <a href="/it-it/costiera-amalfitana/ravello/" class="text-med-blue hover:underline font-medium">Ravello</a> (25 min, ~€1.50). Pranzo in piazza.', transport: 'bus' },
   { time: '13:30', place: 'Ravello', action: 'Villa Rufolo, belvedere, Villa Cimbrone (1.5h)', transport: 'visit' },
-  { time: '15:15', place: 'Ravello → Amalfi → Positano', action: 'Bus per Amalfi (25 min), poi bus SITA per Positano (45 min)', transport: 'bus' },
+  { time: '15:15', place: 'Ravello → Amalfi → Positano', action: 'Bus per <a href="/it-it/costiera-amalfitana/amalfi/" class="text-med-blue hover:underline font-medium">Amalfi</a> (25 min), poi bus SITA per <a href="/it-it/costiera-amalfitana/positano/" class="text-med-blue hover:underline font-medium">Positano</a> (45 min)', transport: 'bus' },
   { time: '16:30', place: 'Positano', action: 'Passeggiata via Cristoforo Colombo, Spiaggia Grande, aperitivo (1.5h)', transport: 'visit' },
-  { time: '18:30', place: 'Positano → Napoli', action: 'Bus SITA per Sorrento (50 min), poi Circumvesuviana per Napoli (70 min)', transport: 'bus' },
+  { time: '18:30', place: 'Positano → Napoli', action: 'Bus SITA per <a href="/it-it/penisola-sorrentina/sorrento/" class="text-med-blue hover:underline font-medium">Sorrento</a> (50 min), poi Circumvesuviana per Napoli (70 min)', transport: 'bus' },
 ];
 
 const tips = [
-  'Il traghetto Travelmar da Salerno è stagionale (apr-ott): in inverno usa il bus SITA da Salerno.',
+  'Il traghetto Travelmar da <a href="/it-it/costiera-amalfitana/salerno/" class="text-med-gold hover:underline font-medium">Salerno</a> è stagionale (apr-ott): in inverno usa il bus SITA da <a href="/it-it/costiera-amalfitana/salerno/" class="text-med-gold hover:underline font-medium">Salerno</a>.',
   'Compra il biglietto del bus SITA in tabaccheria prima di salire - non si vende a bordo.',
-  'In luglio-agosto il bus Amalfi→Positano può impiegare 1.5h invece di 45 min: calcola il margine.',
-  'Ravello vale il detour: Villa Rufolo (€7) è uno dei belvedere più belli della Costiera.',
-  'Il rientro da Positano in bus SITA è più lento (curve + traffico) - calcola almeno 1h per Sorrento.',
+  'In luglio-agosto il bus Amalfi→<a href="/it-it/costiera-amalfitana/positano/" class="text-med-gold hover:underline font-medium">Positano</a> può impiegare 1.5h invece di 45 min: calcola il margine.',
+  '<a href="/it-it/costiera-amalfitana/ravello/" class="text-med-gold hover:underline font-medium">Ravello</a> vale il detour: Villa Rufolo (€7) è uno dei belvedere più belli della Costiera.',
+  'Il rientro da <a href="/it-it/costiera-amalfitana/positano/" class="text-med-gold hover:underline font-medium">Positano</a> in bus SITA è più lento (curve + traffico) - calcola almeno 1h per <a href="/it-it/penisola-sorrentina/sorrento/" class="text-med-gold hover:underline font-medium">Sorrento</a>.',
 ];
 
 const transportBadge: Record<string, { label: string; cls: string }> = {
@@ -84,7 +92,7 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
         <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Itinerario · 1 giorno</p>
         <h1 class="font-serif text-display text-white mb-4">Costiera Amalfitana da Napoli</h1>
         <p class="text-xl text-white/80 leading-relaxed">
-          Amalfi, Ravello e Positano in una giornata senza auto. Treno fino a Salerno, traghetto fino ad Amalfi, poi bus SITA lungo la Costiera. Fattibile, spettacolare, economico.
+          <a href="/it-it/costiera-amalfitana/amalfi/" class="text-med-gold hover:underline">Amalfi</a>, <a href="/it-it/costiera-amalfitana/ravello/" class="text-med-gold hover:underline">Ravello</a> e <a href="/it-it/costiera-amalfitana/positano/" class="text-med-gold hover:underline">Positano</a> in una giornata senza auto. Treno fino a <a href="/it-it/costiera-amalfitana/salerno/" class="text-med-gold hover:underline">Salerno</a>, traghetto fino ad Amalfi, poi bus SITA lungo la Costiera. Fattibile, spettacolare, economico.
         </p>
       </div>
     </div>
@@ -145,7 +153,7 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
                     )}
                   </div>
                   <p class="font-semibold text-charcoal text-base leading-snug">{s.place}</p>
-                  <p class="text-slate-600 text-sm mt-1 leading-relaxed">{s.action}</p>
+                  <p class="text-slate-600 text-sm mt-1 leading-relaxed" set:html={s.action}></p>
                 </div>
               );
             })}
@@ -169,7 +177,7 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
               {tips.map(tip => (
                 <li class="flex gap-2.5 text-sm text-charcoal">
                   <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span>
-                  <span>{tip}</span>
+                  <span set:html={tip}></span>
                 </li>
               ))}
             </ul>
