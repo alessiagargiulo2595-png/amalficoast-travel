@@ -3,19 +3,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getLocalePath } from '../i18n/translations';
 import type { Locale } from '../i18n/translations';
 
-// Get locale from Astro's i18n routing
-let locale: Locale = (Astro.currentLocale || 'en-us') as Locale;
+// Detect locale from URL pathname
+const pathname = Astro.url.pathname;
+const pathSegments = pathname.split('/').filter(Boolean);
+const validLocales = ['en-us', 'en-gb', 'de-de', 'fr-fr', 'es-es', 'it-it'];
 
-// Fallback to extract from URL if currentLocale is not available
-if (!Astro.currentLocale) {
-  const url = Astro.url.pathname;
-  const localeMatch = url.match(/^\/([a-z]{2}-[a-z]{2})\//);
-  if (localeMatch) {
-    const detectedLocale = localeMatch[1];
-    if (['en-us', 'en-gb', 'de-de', 'fr-fr', 'es-es', 'it-it'].includes(detectedLocale)) {
-      locale = detectedLocale as Locale;
-    }
-  }
+let locale: Locale = 'en-us';
+if (pathSegments.length > 0 && validLocales.includes(pathSegments[0])) {
+  locale = pathSegments[0] as Locale;
 }
 
 // Map locales to their translations
