@@ -1,14 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getLocalePath } from '../i18n/translations';
+import type { Locale } from '../i18n/translations';
 
 // Get the requested URL to determine the locale
 const url = Astro.url.pathname;
 
 // Extract locale from URL if present
-let locale = 'en-us';
+let locale: Locale = 'en-us';
 const localeMatch = url.match(/^\/([a-z]{2}-[a-z]{2})\//);
 if (localeMatch) {
-  locale = localeMatch[1];
+  const detectedLocale = localeMatch[1];
+  if (['en-us', 'en-gb', 'de-de', 'fr-fr', 'es-es', 'it-it'].includes(detectedLocale)) {
+    locale = detectedLocale as Locale;
+  }
 }
 
 // Map locales to their translations
@@ -111,10 +116,10 @@ const langHomepages = [
 ];
 
 const guides = [
-  { label: t.locations, url: `/${locale}/destinations/` },
-  { label: t.beaches, url: `/${locale}/beaches/` },
-  { label: t.itineraries, url: `/${locale}/itineraries/` },
-  { label: t.transport, url: `/${locale}/getting-here/` },
+  { label: t.locations, url: getLocalePath(locale, 'destinations') },
+  { label: t.beaches, url: getLocalePath(locale, 'beaches') },
+  { label: t.itineraries, url: getLocalePath(locale, 'itineraries') },
+  { label: t.transport, url: getLocalePath(locale, 'getting-here') },
 ];
 
 Astro.response.status = 404;
