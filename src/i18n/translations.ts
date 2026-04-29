@@ -401,6 +401,10 @@ export const translations: Record<Locale, Translations> = {
   },
 };
 
+export function getDefaultLocale(): Locale {
+  return 'en-us';
+}
+
 export function getTranslations(locale: Locale): Translations {
   return translations[locale] ?? translations['en-us'];
 }
