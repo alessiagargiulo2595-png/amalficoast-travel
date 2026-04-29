@@ -1,0 +1,14 @@
+---
+// Get the requested URL to determine the locale
+const url = Astro.url.pathname;
+
+// Extract locale from URL if present
+let locale = 'en-us';
+const localeMatch = url.match(/^\/([a-z]{2}-[a-z]{2})\//);
+if (localeMatch) {
+  locale = localeMatch[1];
+}
+
+// Redirect to the appropriate locale's 404 page
+return Astro.redirect(`/${locale}/404`, 302);
+---
