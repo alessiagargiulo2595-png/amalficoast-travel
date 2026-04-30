@@ -1,5 +1,5 @@
 ---
-import { getTranslations, getLocalePath } from '../i18n/translations';
+import { getTranslations, getLocalePath, translatePath } from '../i18n/translations';
 import type { Locale } from '../i18n/translations';
 
 interface Props {
@@ -644,7 +644,7 @@ const eventiGastronomia = ({
           <div class="absolute right-0 top-full mt-2 w-40 bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden opacity-0 invisible group-hover/lang:opacity-100 group-hover/lang:visible transition-all duration-200 z-50 py-1">
             {locales.map(l => {
               const pageExists = pageKey && existingPages[l].includes(pageKey);
-              const href = pageExists ? getLocalePath(l, pageKey!) : `/${l}/`;
+              const href = pageExists ? getLocalePath(l, pageKey!) : translatePath(Astro.url.pathname, lang, l);
               return (
                 <a href={href} class={`flex items-center justify-center w-full py-1.5 text-lg transition-colors ${l === lang ? 'bg-med-blue/10 ring-2 ring-med-blue/30 rounded-lg' : 'hover:bg-slate-50 rounded-lg'}`} title={countryCodeMap[l]}>
                   {flagMap[l]}
@@ -799,7 +799,7 @@ const eventiGastronomia = ({
       <!-- Lingua -->
       <div class="pt-3 pb-3 px-3 flex gap-2 flex-wrap">
         {locales.map(l => (
-          <a href={pageKey && existingPages[l]?.includes(pageKey) ? getLocalePath(l, pageKey) : `/${l}/`} class={`text-2xl px-3 py-2 rounded-lg transition-colors ${l === lang ? 'bg-med-gold/20 ring-2 ring-med-gold/50' : 'hover:bg-slate-100'}`} title={countryCodeMap[l]}>
+          <a href={pageKey && existingPages[l]?.includes(pageKey) ? getLocalePath(l, pageKey) : translatePath(Astro.url.pathname, lang, l)} class={`text-2xl px-3 py-2 rounded-lg transition-colors ${l === lang ? 'bg-med-gold/20 ring-2 ring-med-gold/50' : 'hover:bg-slate-100'}`} title={countryCodeMap[l]}>
             {flagMap[l]}
           </a>
         ))}
