@@ -92,14 +92,25 @@ const allSchemas = [websiteSchema, ...(schema || []), ...(breadcrumbSchema ? [br
       <script type="application/ld+json" set:html={JSON.stringify(s)} />
     ))}
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C9MBPN3GKX"></script>
-    <script>
+    <!-- Google Analytics with Consent Mode -->
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
       gtag('js', new Date());
-      gtag('config', 'G-C9MBPN3GKX');
+      gtag('config', 'G-C9MBPN3GKX', {
+        'anonymize_ip': true,
+        'allow_google_signals': false,
+        'allow_ad_personalization_signals': false
+      });
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C9MBPN3GKX"></script>
 
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
@@ -112,6 +123,32 @@ const allSchemas = [websiteSchema, ...(schema || []), ...(breadcrumbSchema ? [br
 
     <!-- Iubenda Cookie Consent -->
     <script type="text/javascript" src="https://embeds.iubenda.com/widgets/8e3fe260-5b84-4417-b3b5-1195b72552ba.js"></script>
+
+    <!-- Listen for Iubenda consent changes -->
+    <script>
+      window._iub = window._iub || {};
+      window._iub.csConfiguration = window._iub.csConfiguration || {};
+
+      // Store original callback
+      const originalCallback = window._iub.csConfiguration.callback;
+
+      window._iub.csConfiguration.callback = {
+        onConsentChange: function(preference, service) {
+          if (preference.purposes && preference.purposes['analytics']) {
+            gtag('consent', 'update', {
+              'analytics_storage': 'granted'
+            });
+          }
+        },
+        onPurposesConsent: function(purposes) {
+          if (purposes && purposes['analytics']) {
+            gtag('consent', 'update', {
+              'analytics_storage': 'granted'
+            });
+          }
+        }
+      };
+    </script>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
