@@ -473,7 +473,7 @@ export const pathSegments: Array<Record<Locale, string>> = [
   // Guide hub
   { 'en-us': 'guide',                'en-gb': 'guide',                'de-de': 'ratgeber',            'fr-fr': 'guide',                'es-es': 'guia',                 'it-it': 'guida'                },
   // Events hub
-  { 'en-us': 'events',               'en-gb': 'events',               'de-de': 'events',              'fr-fr': 'events',               'es-es': 'events',               'it-it': 'eventi'               },
+  { 'en-us': 'events',               'en-gb': 'events',               'de-de': 'veranstaltungen',     'fr-fr': 'evenements',           'es-es': 'eventos',              'it-it': 'eventi'               },
   // Experiences hub (updated with correct translations)
   { 'en-us': 'experiences',          'en-gb': 'experiences',          'de-de': 'erlebnisse',          'fr-fr': 'experiences',          'es-es': 'experiencias',         'it-it': 'esperienze'           },
   // Experience detail slugs
@@ -501,10 +501,9 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': '3-days',               'en-gb': '3-days',               'de-de': '3-tage',              'fr-fr': '3-jours',              'es-es': '3-dias',               'it-it': '3-giorni'             },
   { 'en-us': '7-days',               'en-gb': '7-days',               'de-de': '7-tage',              'fr-fr': '7-jours',              'es-es': '7-dias',               'it-it': '7-giorni'             },
   // Events sub-area slugs
+  { 'en-us': 'amalfi-coast',         'en-gb': 'amalfi-coast',         'de-de': 'amalfikueste',        'fr-fr': 'cote-amalfitaine',     'es-es': 'costa-amalfitana',     'it-it': 'costiera-amalfitana'  },
   { 'en-us': 'islands',              'en-gb': 'islands',              'de-de': 'inseln',              'fr-fr': 'iles',                 'es-es': 'islas',                'it-it': 'isole'                },
-  { 'en-us': 'sorrentine-peninsula', 'en-gb': 'sorrentine-peninsula', 'de-de': 'penisola-sorrentina', 'fr-fr': 'penisola-sorrentina',  'es-es': 'penisola-sorrentina',  'it-it': 'penisola-sorrentina'  },
-  // Experiences sub-pages
-  { 'en-us': 'boat-tours',                        'en-gb': 'boat-tours',                        'de-de': 'boat-tours',                       'fr-fr': 'boat-tours',                        'es-es': 'boat-tours',                        'it-it': 'tour-barca'                        },
+  { 'en-us': 'sorrentine-peninsula', 'en-gb': 'sorrentine-peninsula', 'de-de': 'sorrentinische-halbinsel', 'fr-fr': 'peninsule-sorrentine',  'es-es': 'peninsula-sorrentina',  'it-it': 'penisola-sorrentina'  },
   // Itinerary detail slugs - 1 day
   { 'en-us': 'amalfi-coast-from-naples',          'en-gb': 'amalfi-coast-from-naples',          'de-de': 'amalfikueste-von-neapel',           'fr-fr': 'cote-amalfitaine-depuis-naples',    'es-es': 'costa-amalfitana-desde-napoles',    'it-it': 'costiera-amalfitana-da-napoli'     },
   { 'en-us': 'amalfi-coast-from-salerno',         'en-gb': 'amalfi-coast-from-salerno',         'de-de': 'amalfikueste-von-salerno',           'fr-fr': 'cote-amalfitaine-depuis-salerne',   'es-es': 'costa-amalfitana-desde-salerno',    'it-it': 'costiera-amalfitana-da-salerno'    },
