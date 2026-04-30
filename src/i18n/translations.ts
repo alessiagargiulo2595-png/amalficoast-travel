@@ -415,7 +415,7 @@ export const slugMap: Record<string, SlugMap> = {
   destinations: {
     'en-us': 'destinations',
     'en-gb': 'destinations',
-    'de-de': 'destinations',
+    'de-de': 'reiseziele',
     'fr-fr': 'destinations',
     'es-es': 'destinos',
     'it-it': 'destinazioni',
@@ -491,7 +491,7 @@ export const pathSegments: Array<Record<Locale, string>> = [
   // When to visit
   { 'en-us': 'when-to-visit',        'en-gb': 'when-to-visit',        'de-de': 'reisezeit',           'fr-fr': 'quand-visiter',        'es-es': 'cuando-visitar',       'it-it': 'quando-visitare'      },
   // Destinations page
-  { 'en-us': 'destinations',         'en-gb': 'destinations',         'de-de': 'destinations',        'fr-fr': 'destinations',         'es-es': 'destinos',             'it-it': 'destinazioni'         },
+  { 'en-us': 'destinations',         'en-gb': 'destinations',         'de-de': 'reiseziele',          'fr-fr': 'destinations',         'es-es': 'destinos',             'it-it': 'destinazioni'         },
   // Guide sub-pages
   { 'en-us': 'ferries',              'en-gb': 'ferries',              'de-de': 'faehren',             'fr-fr': 'ferries',              'es-es': 'ferries',              'it-it': 'traghetti'            },
   { 'en-us': 'sita-bus',             'en-gb': 'sita-bus',             'de-de': 'sita-bus',            'fr-fr': 'bus-sita',             'es-es': 'bus-sita',             'it-it': 'bus-sita'             },
