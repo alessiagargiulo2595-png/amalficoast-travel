@@ -7,7 +7,11 @@
       "Bash(git push:*)",
       "Bash(echo \"=== Pages that exist ===\" &&\necho \"it-it/costiera-amalfitana:\" && ls dist/it-it/costiera-amalfitana/ &&\necho \"\" &&\necho \"de-de/strande:\" && ls dist/de-de/strande/ 2>/dev/null | head -5)",
       "Bash(echo \"=== Checking de-de Sorrentine Peninsula folder ===\" &&\necho \"\" &&\necho \"sorrentiner-halbinsel:\" && ls dist/de-de/strande/sorrentiner-halbinsel/ &&\necho \"\" &&\necho \"sorrentinische-halbinsel:\" && ls dist/de-de/strande/sorrentinische-halbinsel/ &&\necho \"\" &&\necho \"=== Source files ===\" &&\nls src/pages/de-de/strande/)",
-      "Bash(echo \"=== Verify spiaggia-di-ieranto location ===\" &&\nls dist/de-de/strande/sorrentiner-halbinsel/ && \necho \"\" &&\necho \"Checking hreflang in the page:\" &&\ngrep \"de-de/strande/sorrentiner-halbinsel/spiaggia\" dist/de-de/strande/sorrentiner-halbinsel/spiaggia-di-ieranto/index.html | head -1 && echo \"✓ Correct path in hreflang\")"
+      "Bash(echo \"=== Verify spiaggia-di-ieranto location ===\" &&\nls dist/de-de/strande/sorrentiner-halbinsel/ && \necho \"\" &&\necho \"Checking hreflang in the page:\" &&\ngrep \"de-de/strande/sorrentiner-halbinsel/spiaggia\" dist/de-de/strande/sorrentiner-halbinsel/spiaggia-di-ieranto/index.html | head -1 && echo \"✓ Correct path in hreflang\")",
+      "Bash(echo \"=== Finding German URL typos ===\" &&\ngrep -n \"de-de.*anfahrt\\\\|de-de.*straende\\\\|de-de.*spiagge\\\\|de-de.*quando\\\\|de-de/amalfikueste/capri\\\\|de-de/amalfikueste/sorrento\" src/components/Header.astro src/components/Footer.astro | head -20)",
+      "Bash(echo \"=== Searching all de-de pages for wrong URLs ===\" &&\ngrep -r \"anfahrt\\\\|straende\\\\|quando-visitare\\\\|/it-it/positano\" src/pages/de-de --include=\"*.astro\" | grep href | head -15)",
+      "Bash(echo \"=== All wrong URLs in de-de pages ===\" &&\ngrep -r \"/de-de/quando-visitare\\\\|/de-de/anfahrt\\\\|/de-de/straende\\\\|/de-de/amalfikueste/capri\\\\|/de-de/amalfikueste/sorrento\\\\|/it-it/positano\" src/pages/de-de --include=\"*.astro\" | grep -o \"href=\\\\\"[^\\\\\"]*\\\\\"\" | sort -u)",
+      "Bash(echo \"=== Searching for capri, sorrento, positano links ===\" &&\ngrep -rn \"amalfikueste/capri\\\\|amalfikueste/sorrento\\\\|it-it/positano\" src/pages/de-de --include=\"*.astro\" | grep href | head -10)"
     ]
   }
 }
