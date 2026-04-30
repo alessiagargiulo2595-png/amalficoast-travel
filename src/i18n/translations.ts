@@ -509,6 +509,16 @@ export const pathSegments: Array<Record<Locale, string>> = [
   // Itinerary detail slugs - 7 days
   { 'en-us': 'grand-tour-coast-peninsula',        'en-gb': 'grand-tour-coast-peninsula',        'de-de': 'grand-tour-kueste-halbinsel',        'fr-fr': 'grand-tour-cote-peninsule',         'es-es': 'gran-tour-costa-peninsula',         'it-it': 'grand-tour-costiera-penisola'      },
   { 'en-us': 'slow-travel-villages-food',         'en-gb': 'slow-travel-villages-food',         'de-de': 'slow-travel-doerfer-kulinarik',      'fr-fr': 'slow-travel-villages-gastronomie',  'es-es': 'slow-travel-pueblos-gastronomia',   'it-it': 'slow-travel-borghi-cibo'           },
+  // Blog post slugs
+  { 'en-us': 'amalfi-coast-wines',                'en-gb': 'amalfi-coast-wines',                'de-de': 'amalfi-weine',                       'fr-fr': 'vins-cote-amalfi',                  'es-es': 'vinos-costa-amalfi',                'it-it': 'vini-costa-amalfi'                 },
+  { 'en-us': 'cetara-anchovies',                  'en-gb': 'cetara-anchovies',                  'de-de': 'cetara-sardellen',                   'fr-fr': 'anchois-cetara',                    'es-es': 'anchoas-cetara',                    'it-it': 'alici-di-cetara'                   },
+  { 'en-us': 'comfortable-beaches',               'en-gb': 'comfortable-beaches',               'de-de': 'komfortable-ausgestattete-strande',  'fr-fr': 'plages-confortables-equipees',      'es-es': 'playas-comodas-equipadas',          'it-it': 'spiagge-comode-attrezzate'         },
+  { 'en-us': 'emerald-grotto',                    'en-gb': 'emerald-grotto',                    'de-de': 'smaragd-grotte',                     'fr-fr': 'grotte-emeraude',                   'es-es': 'gruta-esmeralda',                   'it-it': 'grotta-dello-smeraldo'             },
+  { 'en-us': 'ferriere-valley',                   'en-gb': 'ferriere-valley',                   'de-de': 'ferriere-tal',                       'fr-fr': 'vallee-des-ferriere',               'es-es': 'valle-ferriere',                    'it-it': 'valle-delle-ferriere'              },
+  { 'en-us': 'sunset-beaches',                    'en-gb': 'sunset-beaches',                    'de-de': 'sonnenuntergang-strande',             'fr-fr': 'coucher-soleil-plages',             'es-es': 'puesta-de-sol-playas',              'it-it': 'tramonto-spiaggia-costiera'        },
+  { 'en-us': 'wild-remote-beaches',               'en-gb': 'wild-remote-beaches',               'de-de': 'wilde-abgelegene-strande',            'fr-fr': 'oasis-sauvages-plages',             'es-es': 'oasis-salvajes-playas',             'it-it': 'oasi-selvagge-spiagge-mare'        },
+  { 'en-us': 'lemon-delight',                     'en-gb': 'lemon-delight',                     'de-de': 'zitronen-koestlichkeit',              'fr-fr': 'delice-citron',                     'es-es': 'delizia-limon',                     'it-it': 'delizia-al-limone'                 },
+  { 'en-us': 'atrani',                            'en-gb': 'atrani',                            'de-de': 'atrani',                             'fr-fr': 'atrani',                            'es-es': 'atrani',                            'it-it': 'atrani'                            },
 ];
 
 /**

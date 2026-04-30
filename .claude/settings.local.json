@@ -15,7 +15,17 @@
       "Bash(echo \"=== Checking all 404 pages for typo URLs ===\" &&\nfor lang in it-it en-us en-gb fr-fr es-es de-de; do\n  echo \"\" &&\n  echo \"=== $lang ===\" &&\n  grep -A 5 \"const guides\" src/pages/$lang/404.astro 2>/dev/null | grep \"url:\" | sed \"s/.*url: '//;s/'.*//\";\ndone)",
       "Bash(node verify-links.js 2>&1 | head -100)",
       "Bash(python3 << 'EOF'\nimport re\n\nwith open\\('dist/de-de/404/index.html', 'r'\\) as f:\n    html = f.read\\(\\)\n\n# Find the capri link and its context\nmatch = re.search\\(r'.{500}amalfikueste/capri/.{500}', html\\)\nif match:\n    text = match.group\\(\\)\n    # Find the opening tag before capri\n    opening = re.search\\(r'<[^>]*>\\\\s*\\(?:.*\\\\n\\)*.*amalfikueste/capri', text\\)\n    print\\(\"Context around capri link:\"\\)\n    print\\(text[max\\(0, text.rfind\\('<', 0, text.find\\('amalfikueste/capri'\\)\\)-100\\):text.find\\('amalfikueste/capri'\\)+150]\\)\nEOF)",
-      "Bash(python3 << 'EOF'\nimport re\n\nwith open\\('dist/de-de/404/index.html', 'r', encoding='utf-8'\\) as f:\n    html = f.read\\(\\)\n\n# Find position of capri\npos = html.find\\('amalfikueste/capri/'\\)\nif pos > -1:\n    # Get 500 chars before and 500 after\n    start = max\\(0, pos - 500\\)\n    end = min\\(len\\(html\\), pos + 500\\)\n    snippet = html[start:end]\n    print\\(snippet\\)\nEOF)"
+      "Bash(python3 << 'EOF'\nimport re\n\nwith open\\('dist/de-de/404/index.html', 'r', encoding='utf-8'\\) as f:\n    html = f.read\\(\\)\n\n# Find position of capri\npos = html.find\\('amalfikueste/capri/'\\)\nif pos > -1:\n    # Get 500 chars before and 500 after\n    start = max\\(0, pos - 500\\)\n    end = min\\(len\\(html\\), pos + 500\\)\n    snippet = html[start:end]\n    print\\(snippet\\)\nEOF)",
+      "Bash(git commit:*)",
+      "Bash(for lang:*)",
+      "Bash(python3 check-all-links.py)",
+      "Bash(echo \"=== CHECKING FOR KNOWN BROKEN LINKS ===\"\necho \"\"\necho \"1. German amalfikuste typo \\(should not find any\\):\"\ngrep -r \"amalfikuste\" dist/de-de --include=\"*.html\" | grep href | wc -l\n\necho \"\"\necho \"2. De-de links in other languages \\(checking en-us\\):\"\ngrep -o 'href=\"/de-de/' dist/en-us/index.html | wc -l\n\necho \"\"\necho \"3. German-specific pages in de-de:\"\nls dist/de-de/strande/amalfikueste/ 2>/dev/null && echo \"✅ German beaches folder exists\"\n\necho \"\"\necho \"4. Check correct German links exist:\"\ngrep -o 'href=\"/de-de/amalfikueste/' dist/de-de/index.html | head -1)",
+      "Bash(echo \"=== FINAL VERIFICATION AFTER CLEAN REBUILD ===\"\necho \"\"\necho \"1. German amalfikuste typo \\(should be 0\\):\"\ngrep -r \"amalfikuste\" dist/de-de --include=\"*.html\" | grep href | wc -l\n\necho \"\"\necho \"2. Correct German links \\(should have results\\):\"\ngrep -o 'href=\"/de-de/amalfikueste/' dist/de-de/index.html | wc -l\n\necho \"\"\necho \"3. Check strande beaches folder exists:\"\nls dist/de-de/strande/amalfikueste/ 2>&1 | head -1\n\necho \"\"\necho \"✅ ALL LANGUAGES VERIFIED!\")",
+      "Bash(echo \"=== FINAL CHECK ===\"\ngrep -r \"amalfikuste\" dist/ --include=\"*.html\" | wc -l)",
+      "Bash(sort -k2)",
+      "Bash(pip install:*)",
+      "Bash(python3 compress-images.py 2>&1)",
+      "Bash(python3 aggressive-compress.py 2>&1)"
     ]
   }
 }
