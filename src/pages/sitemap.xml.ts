@@ -325,9 +325,9 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/es-es/playas/islas/cala-del-pozzo-vecchio/', priority: '0.7', changefreq: 'yearly' },
 
   // Strände individuell - de-de
-  { loc: '/de-de/strande/amalfikuste/fiordo-di-furore/', priority: '0.8', changefreq: 'yearly' },
-  { loc: '/de-de/strande/amalfikuste/spiaggia-grande-positano/', priority: '0.8', changefreq: 'yearly' },
-  { loc: '/de-de/strande/amalfikuste/santa-croce-amalfi/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/strande/amalfikueste/fiordo-di-furore/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/de-de/strande/amalfikueste/spiaggia-grande-positano/', priority: '0.8', changefreq: 'yearly' },
+  { loc: '/de-de/strande/amalfikueste/santa-croce-amalfi/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/de-de/strande/sorrentiner-halbinsel/regina-giovanna/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/de-de/strande/sorrentiner-halbinsel/marina-del-cantone/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/de-de/strande/sorrentiner-halbinsel/cala-mitigliano/', priority: '0.7', changefreq: 'yearly' },
