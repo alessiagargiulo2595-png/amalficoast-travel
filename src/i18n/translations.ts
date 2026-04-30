@@ -462,6 +462,7 @@ export function getLocalePath(locale: Locale, pageKey: string): string {
 }
 
 // Path-segment translation table for automatic hreflang computation on deep pages
+// Updated 2026-04-30: Added experience hub and experience slug translations
 export const pathSegments: Array<Record<Locale, string>> = [
   // Coast hub + sub-paths (beaches/events/…)
   { 'en-us': 'amalfi-coast',         'en-gb': 'amalfi-coast',         'de-de': 'amalfikueste',       'fr-fr': 'cote-amalfitaine',     'es-es': 'costa-amalfitana',     'it-it': 'costiera-amalfitana'  },
@@ -473,8 +474,16 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'guide',                'en-gb': 'guide',                'de-de': 'ratgeber',            'fr-fr': 'guide',                'es-es': 'guia',                 'it-it': 'guida'                },
   // Events hub
   { 'en-us': 'events',               'en-gb': 'events',               'de-de': 'events',              'fr-fr': 'events',               'es-es': 'events',               'it-it': 'eventi'               },
-  // Experiences hub
-  { 'en-us': 'experiences',          'en-gb': 'experiences',          'de-de': 'experiences',         'fr-fr': 'experiences',          'es-es': 'experiences',          'it-it': 'esperienze'           },
+  // Experiences hub (updated with correct translations)
+  { 'en-us': 'experiences',          'en-gb': 'experiences',          'de-de': 'erlebnisse',          'fr-fr': 'experiences',          'es-es': 'experiencias',         'it-it': 'esperienze'           },
+  // Experience detail slugs
+  { 'en-us': 'boat-tours',                       'en-gb': 'boat-tours',                       'de-de': 'bootstouren',                        'fr-fr': 'tours-en-bateau',                   'es-es': 'tours-en-barco',                    'it-it': 'tour-barca'                        },
+  { 'en-us': 'cooking-class',                    'en-gb': 'cooking-class',                    'de-de': 'kochkurs',                           'fr-fr': 'cours-de-cuisine',                  'es-es': 'clase-cocina',                      'it-it': 'cooking-class'                     },
+  { 'en-us': 'weddings',                         'en-gb': 'weddings',                         'de-de': 'hochzeiten',                         'fr-fr': 'mariages',                          'es-es': 'bodas',                             'it-it': 'matrimoni'                         },
+  { 'en-us': 'starred-restaurants',              'en-gb': 'starred-restaurants',              'de-de': 'sterne-restaurants',                  'fr-fr': 'restaurants-etoiles',               'es-es': 'restaurantes-estrella',             'it-it': 'ristoranti-stellati'               },
+  { 'en-us': 'limoncello-tour',                  'en-gb': 'limoncello-tour',                  'de-de': 'limoncello-tour',                    'fr-fr': 'tour-limoncello',                   'es-es': 'tour-limoncello',                   'it-it': 'limoncello-tour'                   },
+  { 'en-us': 'mozzarella-experience',            'en-gb': 'mozzarella-experience',            'de-de': 'mozzarella-erlebnis',                 'fr-fr': 'experience-mozzarella',             'es-es': 'experiencia-mozzarella',            'it-it': 'mozzarella-experience'             },
+  { 'en-us': 'trekking',                         'en-gb': 'trekking',                         'de-de': 'trekking',                           'fr-fr': 'trekking',                          'es-es': 'trekking',                          'it-it': 'trekking'                          },
   // Itineraries hub
   { 'en-us': 'itineraries',          'en-gb': 'itineraries',          'de-de': 'reiserouten',         'fr-fr': 'itineraires',          'es-es': 'itinerarios',          'it-it': 'itinerari'            },
   // Getting here
@@ -509,16 +518,6 @@ export const pathSegments: Array<Record<Locale, string>> = [
   // Itinerary detail slugs - 7 days
   { 'en-us': 'grand-tour-coast-peninsula',        'en-gb': 'grand-tour-coast-peninsula',        'de-de': 'grand-tour-kueste-halbinsel',        'fr-fr': 'grand-tour-cote-peninsule',         'es-es': 'gran-tour-costa-peninsula',         'it-it': 'grand-tour-costiera-penisola'      },
   { 'en-us': 'slow-travel-villages-food',         'en-gb': 'slow-travel-villages-food',         'de-de': 'slow-travel-doerfer-kulinarik',      'fr-fr': 'slow-travel-villages-gastronomie',  'es-es': 'slow-travel-pueblos-gastronomia',   'it-it': 'slow-travel-borghi-cibo'           },
-  // Experience hub
-  { 'en-us': 'experiences',                      'en-gb': 'experiences',                      'de-de': 'erlebnisse',                         'fr-fr': 'experiences',                       'es-es': 'experiencias',                       'it-it': 'esperienze'                        },
-  // Experience slugs
-  { 'en-us': 'boat-tours',                       'en-gb': 'boat-tours',                       'de-de': 'bootstouren',                        'fr-fr': 'tours-en-bateau',                   'es-es': 'tours-en-barco',                    'it-it': 'tour-barca'                        },
-  { 'en-us': 'cooking-class',                    'en-gb': 'cooking-class',                    'de-de': 'kochkurs',                           'fr-fr': 'cours-de-cuisine',                  'es-es': 'clase-cocina',                      'it-it': 'cooking-class'                     },
-  { 'en-us': 'weddings',                         'en-gb': 'weddings',                         'de-de': 'hochzeiten',                         'fr-fr': 'mariages',                          'es-es': 'bodas',                             'it-it': 'matrimoni'                         },
-  { 'en-us': 'starred-restaurants',              'en-gb': 'starred-restaurants',              'de-de': 'sterne-restaurants',                  'fr-fr': 'restaurants-etoiles',               'es-es': 'restaurantes-estrella',             'it-it': 'ristoranti-stellati'               },
-  { 'en-us': 'limoncello-tour',                  'en-gb': 'limoncello-tour',                  'de-de': 'limoncello-tour',                    'fr-fr': 'tour-limoncello',                   'es-es': 'tour-limoncello',                   'it-it': 'limoncello-tour'                   },
-  { 'en-us': 'mozzarella-experience',            'en-gb': 'mozzarella-experience',            'de-de': 'mozzarella-erlebnis',                 'fr-fr': 'experience-mozzarella',             'es-es': 'experiencia-mozzarella',            'it-it': 'mozzarella-experience'             },
-  { 'en-us': 'trekking',                         'en-gb': 'trekking',                         'de-de': 'trekking',                           'fr-fr': 'trekking',                          'es-es': 'trekking',                          'it-it': 'trekking'                          },
   // Blog post slugs
   { 'en-us': 'amalfi-coast-wines',                'en-gb': 'amalfi-coast-wines',                'de-de': 'amalfi-weine',                       'fr-fr': 'vins-cote-amalfi',                  'es-es': 'vinos-costa-amalfi',                'it-it': 'vini-costa-amalfi'                 },
   { 'en-us': 'cetara-anchovies',                  'en-gb': 'cetara-anchovies',                  'de-de': 'cetara-sardellen',                   'fr-fr': 'anchois-cetara',                    'es-es': 'anchoas-cetara',                    'it-it': 'alici-di-cetara'                   },
@@ -535,6 +534,9 @@ export const pathSegments: Array<Record<Locale, string>> = [
  * Translates a URL pathname from one locale to another by mapping
  * locale-specific path segments using pathSegments table.
  * Segments not found in the table (e.g. town slugs) are kept as-is.
+ *
+ * Includes translations for: experiences, boat-tours, cooking-class, weddings,
+ * starred-restaurants, limoncello-tour, mozzarella-experience, trekking, and blog posts.
  */
 export function translatePath(pathname: string, source: Locale, target: Locale): string {
   if (source === target) return pathname;
