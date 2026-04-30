@@ -29,7 +29,10 @@
       "Bash(find src/pages -path \"*/events/*\" -name \"index.astro\" | head -20 | xargs -I {} basename {} -d)",
       "Bash(node -e \"\nconst ts = require\\('./src/i18n/translations.ts'\\);\n// Load the module differently since it has exports\n\" 2>&1 || echo \"Testing with direct code...\")",
       "Bash(find src/pages/en-us/experiences -name \"index.astro\" | grep -v \"experiences/$\")",
-      "Bash(grep -l \"pageKey=\" src/pages/en-us/experiences/*/index.astro)"
+      "Bash(grep -l \"pageKey=\" src/pages/en-us/experiences/*/index.astro)",
+      "Bash(grep -n \"'amalfi-coast'\" src/i18n/translations.ts | grep -v \"//\")",
+      "Bash(find src/pages -path \"*/amalfi-coast/*\" -o -path \"*/sorrento-peninsula/*\" -o -path \"*/isole/*\" | grep \"index.astro\" | while read f; do\n  sed -i '/^  pageKey=/d' \"$f\"\ndone\nfind src/pages -name \"destinations.astro\" -o -name \"isole.astro\" -o -name \"penisola-sorrentina.astro\" -o -name \"sorrento-peninsula.astro\" | while read f; do\n  [ -f \"$f\" ] && sed -i '/^  pageKey=/d' \"$f\"\ndone\necho \"Done removing pageKey from destination pages\")",
+      "Bash(find src/pages -path \"*/events/*\" | grep \"index.astro\" | while read f; do\n  sed -i '/^  pageKey=/d' \"$f\"\ndone\necho \"Done removing pageKey from event pages\")"
     ]
   }
 }
