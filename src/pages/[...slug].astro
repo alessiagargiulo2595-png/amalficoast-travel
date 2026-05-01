@@ -3,10 +3,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getLocalePath } from '../i18n/translations';
 import type { Locale } from '../i18n/translations';
 
-// Detect locale from pathname
-const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const { slug } = Astro.params;
 const validLocales = ['en-us', 'de-de', 'fr-fr', 'es-es', 'it-it'];
-const locale: Locale = (pathSegments.length > 0 && validLocales.includes(pathSegments[0])) ? (pathSegments[0] as Locale) : 'en-us';
+
+// Extract locale from slug path
+let locale: Locale = 'en-us';
+if (slug && typeof slug === 'string') {
+  const firstSegment = slug.split('/')[0];
+  if (validLocales.includes(firstSegment)) {
+    locale = firstSegment as Locale;
+  }
+}
 
 // Map locales to their translations
 const allTranslations: Record<Locale, any> = {
