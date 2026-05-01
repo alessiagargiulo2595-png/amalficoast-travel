@@ -1,0 +1,288 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getLocalePath } from '../i18n/translations';
+import type { Locale } from '../i18n/translations';
+
+// Always use en-us for server-side rendering (the page will be dynamically switched on client)
+const locale: Locale = 'en-us';
+
+// Translations for all locales
+const allTranslations: Record<Locale, any> = {
+  'en-us': {
+    title: 'Page Not Found',
+    heading: '404',
+    message: 'Oops! The page you\'re looking for seems to have rolled off the cliffs of Positano.',
+    description: 'Let\'s get you back to discovering the Amalfi Coast.',
+    backHome: 'Back to Home',
+    otherLanguages: 'Visit in other languages:',
+    browseGuides: 'Browse Our Guides:',
+    locations: 'Destinations',
+    beaches: 'Beaches',
+    itineraries: 'Itineraries',
+    transport: 'Transport',
+    discover: 'Discover',
+  },
+  'it-it': {
+    title: 'Pagina Non Trovata',
+    heading: '404',
+    message: 'Oops! La pagina che stai cercando sembra essere caduta giù dalle scogliere di Positano.',
+    description: 'Torniamo a scoprire la Costiera Amalfitana.',
+    backHome: 'Torna alla Home',
+    otherLanguages: 'Visita in altre lingue:',
+    browseGuides: 'Sfoglia le nostre guide:',
+    locations: 'Destinazioni',
+    beaches: 'Spiagge',
+    itineraries: 'Itinerari',
+    transport: 'Trasporti',
+    discover: 'Scopri',
+  },
+  'de-de': {
+    title: 'Seite nicht gefunden',
+    heading: '404',
+    message: 'Oops! Die Seite, die Sie suchen, scheint von den Klippen von Positano heruntergefallen zu sein.',
+    description: 'Lassen Sie uns Sie zurück zur Erkundung der Amalfiküste bringen.',
+    backHome: 'Zur Startseite',
+    otherLanguages: 'Besuchen Sie in anderen Sprachen:',
+    browseGuides: 'Unsere Guides durchsuchen:',
+    locations: 'Reiseziele',
+    beaches: 'Strände',
+    itineraries: 'Reiserouten',
+    transport: 'Verkehr',
+    discover: 'Entdecken',
+  },
+  'fr-fr': {
+    title: 'Page Non Trouvée',
+    heading: '404',
+    message: 'Oups ! La page que vous recherchez semble avoir roulé des falaises de Positano.',
+    description: 'Permettez-nous de vous ramener à la découverte de la Côte Amalfitaine.',
+    backHome: 'Retour à l\'accueil',
+    otherLanguages: 'Visitez dans d\'autres langues:',
+    browseGuides: 'Parcourir nos guides:',
+    locations: 'Destinations',
+    beaches: 'Plages',
+    itineraries: 'Itinéraires',
+    transport: 'Transport',
+    discover: 'Découvrir',
+  },
+  'es-es': {
+    title: 'Página No Encontrada',
+    heading: '404',
+    message: 'Oops! La página que buscas parece haber caído de los acantilados de Positano.',
+    description: 'Déjanos llevarte de vuelta al descubrimiento de la Costa Amalfitana.',
+    backHome: 'Volver a Inicio',
+    otherLanguages: 'Visita en otros idiomas:',
+    browseGuides: 'Navega nuestras guías:',
+    locations: 'Destinos',
+    beaches: 'Playas',
+    itineraries: 'Itinerarios',
+    transport: 'Transporte',
+    discover: 'Descubrir',
+  },
+};
+
+// Get paths for each locale
+const localeGuides: Record<Locale, Array<{label: string; url: string}>> = {};
+const validLocales: Locale[] = ['en-us', 'de-de', 'fr-fr', 'es-es', 'it-it'];
+
+for (const loc of validLocales) {
+  localeGuides[loc] = [
+    { label: allTranslations[loc].locations, url: getLocalePath(loc, 'destinations') },
+    { label: allTranslations[loc].beaches, url: getLocalePath(loc, 'beaches') },
+    { label: allTranslations[loc].itineraries, url: getLocalePath(loc, 'itineraries') },
+    { label: allTranslations[loc].transport, url: getLocalePath(loc, 'getting-here') },
+  ];
+}
+
+const langHomepages = [
+  { code: 'it-it', name: 'Italiano', url: '/it-it/' },
+  { code: 'en-us', name: 'English', url: '/en-us/' },
+  { code: 'de-de', name: 'Deutsch', url: '/de-de/' },
+  { code: 'fr-fr', name: 'Français', url: '/fr-fr/' },
+  { code: 'es-es', name: 'Español', url: '/es-es/' },
+];
+
+Astro.response.status = 404;
+
+const translationsJSON = JSON.stringify(allTranslations);
+const guidesJSON = JSON.stringify(localeGuides);
+---
+
+<script is:inline define:vars={{translationsJSON, guidesJSON}}>
+  // Detect locale from current URL
+  const pathname = window.location.pathname;
+  const locales = ['en-us', 'de-de', 'fr-fr', 'es-es', 'it-it'];
+  const pathParts = pathname.split('/').filter(Boolean);
+  const detectedLocale = locales.includes(pathParts[0]) ? pathParts[0] : 'en-us';
+
+  const translations = JSON.parse(translationsJSON);
+  const localeGuides = JSON.parse(guidesJSON);
+  const t = translations[detectedLocale];
+  const guides = localeGuides[detectedLocale];
+
+  // Update page title
+  document.title = t.title;
+
+  // Update heading
+  const heading = document.querySelector('h1');
+  if (heading) heading.textContent = t.heading;
+
+  // Update message
+  const message = document.querySelector('.text-xl.md\\:text-2xl');
+  if (message) message.textContent = t.message;
+
+  // Update description
+  const desc = document.querySelector('.text-lg.text-amber-700');
+  if (desc) desc.textContent = t.description;
+
+  // Update back home button
+  const backBtn = document.querySelector('.inline-block.bg-amber-600');
+  if (backBtn) {
+    backBtn.href = `/${detectedLocale}/`;
+    backBtn.textContent = `🏠 ${t.backHome}`;
+  }
+
+  // Update "Browse Our Guides" title
+  const browseTitle = document.querySelectorAll('.font-serif.text-4xl')[1];
+  if (browseTitle) browseTitle.textContent = t.browseGuides;
+
+  // Update guide cards
+  const guideCards = document.querySelectorAll('.group.bg-gradient-to-br');
+  guideCards.forEach((card, index) => {
+    if (guides[index]) {
+      const h3 = card.querySelector('h3');
+      const link = card;
+      if (h3) h3.textContent = guides[index].label;
+      if (link) link.href = guides[index].url;
+    }
+  });
+
+  // Update "Discover" text in guide cards
+  const discoverTexts = document.querySelectorAll('.text-sm.font-medium.text-amber-700');
+  discoverTexts.forEach(el => {
+    if (el.querySelector('svg')) {
+      el.textContent = t.discover + ' ';
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('class', 'w-3.5 h-3.5 group-hover:translate-x-1 transition-transform');
+      svg.setAttribute('fill', 'none');
+      svg.setAttribute('stroke', 'currentColor');
+      svg.setAttribute('stroke-width', '2.5');
+      svg.setAttribute('viewBox', '0 0 24 24');
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('stroke-linecap', 'round');
+      path.setAttribute('stroke-linejoin', 'round');
+      path.setAttribute('d', 'M9 5l7 7-7 7');
+      svg.appendChild(path);
+      el.appendChild(svg);
+    }
+  });
+
+  // Update "Visit in other languages" title
+  const otherLangTitle = document.querySelectorAll('.font-serif.text-4xl')[2];
+  if (otherLangTitle) otherLangTitle.textContent = t.otherLanguages;
+
+  // Update language buttons
+  const langButtons = document.querySelectorAll('.group.p-6.rounded');
+  const langHomepages = [
+    { code: 'it-it', name: 'Italiano', url: '/it-it/' },
+    { code: 'en-us', name: 'English', url: '/en-us/' },
+    { code: 'de-de', name: 'Deutsch', url: '/de-de/' },
+    { code: 'fr-fr', name: 'Français', url: '/fr-fr/' },
+    { code: 'es-es', name: 'Español', url: '/es-es/' },
+  ];
+
+  langButtons.forEach((btn, index) => {
+    if (langHomepages[index]) {
+      btn.href = langHomepages[index].url;
+      btn.textContent = langHomepages[index].name;
+
+      // Update active state
+      if (langHomepages[index].code === detectedLocale) {
+        btn.className = 'group p-6 rounded-[2rem] text-center font-medium transition-all duration-300 hover:scale-[1.05] border-2 bg-amber-600 text-white border-amber-600';
+      } else {
+        btn.className = 'group p-6 rounded-[2rem] text-center font-medium transition-all duration-300 hover:scale-[1.05] border-2 bg-white text-amber-900 border-amber-200 hover:border-amber-600 hover:bg-amber-50';
+      }
+    }
+  });
+</script>
+
+<BaseLayout
+  title={allTranslations[locale].title}
+  description={allTranslations[locale].description}
+  lang={locale}
+>
+  <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 overflow-hidden">
+    <div class="absolute top-10 left-10 text-6xl opacity-20 animate-pulse">🍋</div>
+    <div class="absolute top-32 right-20 text-8xl opacity-15 animate-bounce">🍋</div>
+    <div class="absolute bottom-32 left-20 text-7xl opacity-15 animate-pulse">🍋</div>
+    <div class="absolute bottom-10 right-10 text-6xl opacity-20 animate-bounce" style="animation-delay: 0.5s"></div>
+
+    <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <div class="mb-8">
+        <span class="text-9xl md:text-[150px] font-serif font-bold text-amber-900 tracking-tight" style="text-shadow: 2px 2px 4px rgba(180,83,9,0.1);">404</span>
+      </div>
+
+      <h1 class="font-serif text-4xl md:text-5xl text-amber-900 leading-tight mb-6 tracking-tight">
+        {allTranslations[locale].heading}
+      </h1>
+
+      <p class="text-xl md:text-2xl text-amber-800 mb-6 font-light max-w-2xl mx-auto leading-relaxed">
+        {allTranslations[locale].message}
+      </p>
+
+      <p class="text-lg text-amber-700 mb-12 font-light max-w-xl mx-auto">
+        {allTranslations[locale].description}
+      </p>
+
+      <a href={`/${locale}/`}
+         class="inline-block bg-amber-600 text-white font-semibold px-10 py-4 rounded-full hover:bg-amber-700 hover:scale-105 transition-all duration-300 text-lg mb-20 shadow-lg hover:shadow-xl">
+        🏠 {allTranslations[locale].backHome}
+      </a>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="mb-16">
+        <h2 class="font-serif text-4xl md:text-5xl text-slate-900 tracking-tight mb-4">{allTranslations[locale].browseGuides}</h2>
+        <div class="w-20 h-1 bg-amber-600 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {localeGuides[locale].map(guide => (
+          <a href={guide.url} class="group bg-gradient-to-br from-amber-50 to-yellow-50 p-8 rounded-[2rem] border border-amber-200 hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+            <div class="text-4xl mb-4">🍋</div>
+            <h3 class="font-serif text-xl text-amber-900 font-bold mb-2">{guide.label}</h3>
+            <span class="text-sm font-medium text-amber-700 flex items-center gap-1 group-hover:text-amber-600 transition-colors">
+              {allTranslations[locale].discover}
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-amber-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="mb-16">
+        <h2 class="font-serif text-4xl md:text-5xl text-slate-900 tracking-tight mb-4">{allTranslations[locale].otherLanguages}</h2>
+        <div class="w-20 h-1 bg-amber-600 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {langHomepages.map(lang_option => (
+          <a href={lang_option.url} class={`group p-6 rounded-[2rem] text-center font-medium transition-all duration-300 hover:scale-[1.05] border-2 ${
+            lang_option.code === locale
+              ? 'bg-amber-600 text-white border-amber-600'
+              : 'bg-white text-amber-900 border-amber-200 hover:border-amber-600 hover:bg-amber-50'
+          }`}>
+            {lang_option.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
