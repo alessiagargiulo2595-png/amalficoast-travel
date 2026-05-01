@@ -1,23 +1,85 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getLocalePath } from '../../i18n/translations';
+import type { Locale } from '../../i18n/translations';
 
-const lang = 'de-de';
+const { locale } = Astro.params;
+const lang = (locale || 'en-us') as Locale;
 
-const t = {
-  title: 'Seite nicht gefunden',
-  heading: '404',
-  message: 'Oops! Die Seite, die Sie suchen, scheint von den Klippen von Positano heruntergefallen zu sein.',
-  description: 'Lassen Sie uns Sie zurück zur Erkundung der Amalfiküste bringen.',
-  backHome: 'Zur Startseite',
-  otherLanguages: 'Besuchen Sie in anderen Sprachen:',
-  browseGuides: 'Unsere Guides durchsuchen:',
-  locations: 'Reiseziele',
-  beaches: 'Strände',
-  itineraries: 'Reiserouten',
-  transport: 'Verkehr',
-  discover: 'Entdecken',
+const translations: Record<Locale, any> = {
+  'en-us': {
+    title: 'Page Not Found',
+    heading: '404',
+    message: 'Oops! The page you\'re looking for seems to have rolled off the cliffs of Positano.',
+    description: 'Let\'s get you back to discovering the Amalfi Coast.',
+    backHome: 'Back to Home',
+    otherLanguages: 'Visit in other languages:',
+    browseGuides: 'Browse Our Guides:',
+    locations: 'Destinations',
+    beaches: 'Beaches',
+    itineraries: 'Itineraries',
+    transport: 'Transport',
+    discover: 'Discover',
+  },
+  'it-it': {
+    title: 'Pagina Non Trovata',
+    heading: '404',
+    message: 'Oops! La pagina che stai cercando sembra essere caduta giù dalle scogliere di Positano.',
+    description: 'Torniamo a scoprire la Costiera Amalfitana.',
+    backHome: 'Torna alla Home',
+    otherLanguages: 'Visita in altre lingue:',
+    browseGuides: 'Sfoglia le nostre guide:',
+    locations: 'Destinazioni',
+    beaches: 'Spiagge',
+    itineraries: 'Itinerari',
+    transport: 'Trasporti',
+    discover: 'Scopri',
+  },
+  'de-de': {
+    title: 'Seite nicht gefunden',
+    heading: '404',
+    message: 'Oops! Die Seite, die Sie suchen, scheint von den Klippen von Positano heruntergefallen zu sein.',
+    description: 'Lassen Sie uns Sie zurück zur Erkundung der Amalfiküste bringen.',
+    backHome: 'Zur Startseite',
+    otherLanguages: 'Besuchen Sie in anderen Sprachen:',
+    browseGuides: 'Unsere Guides durchsuchen:',
+    locations: 'Reiseziele',
+    beaches: 'Strände',
+    itineraries: 'Reiserouten',
+    transport: 'Verkehr',
+    discover: 'Entdecken',
+  },
+  'fr-fr': {
+    title: 'Page Non Trouvée',
+    heading: '404',
+    message: 'Oups ! La page que vous recherchez semble avoir roulé des falaises de Positano.',
+    description: 'Permettez-nous de vous ramener à la découverte de la Côte Amalfitaine.',
+    backHome: 'Retour à l\'accueil',
+    otherLanguages: 'Visitez dans d\'autres langues:',
+    browseGuides: 'Parcourir nos guides:',
+    locations: 'Destinations',
+    beaches: 'Plages',
+    itineraries: 'Itinéraires',
+    transport: 'Transport',
+    discover: 'Découvrir',
+  },
+  'es-es': {
+    title: 'Página No Encontrada',
+    heading: '404',
+    message: 'Oops! La página que buscas parece haber caído de los acantilados de Positano.',
+    description: 'Déjanos llevarte de vuelta al descubrimiento de la Costa Amalfitana.',
+    backHome: 'Volver a Inicio',
+    otherLanguages: 'Visita en otros idiomas:',
+    browseGuides: 'Navega nuestras guías:',
+    locations: 'Destinos',
+    beaches: 'Playas',
+    itineraries: 'Itinerarios',
+    transport: 'Transporte',
+    discover: 'Descubrir',
+  },
 };
+
+const t = translations[lang] || translations['en-us'];
 
 const langHomepages = [
   { code: 'it-it', name: 'Italiano', url: '/it-it/' },
