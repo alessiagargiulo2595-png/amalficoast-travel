@@ -10,12 +10,8 @@ interface Props {
 const { lang, pageKey } = Astro.props;
 const t = getTranslations(lang);
 const locales: Locale[] = ['en-us', 'de-de', 'fr-fr', 'es-es', 'it-it'];
-// Note: en-gb is supported for home page via Astro i18n but has no content pages
-
-
 const existingPages: Record<Locale, string[]> = {
   'en-us': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit'],
-  'en-gb': [],
   'de-de': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit'],
   'fr-fr': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit'],
   'es-es': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit'],
@@ -25,7 +21,6 @@ const existingPages: Record<Locale, string[]> = {
 const flagMap: Record<Locale, string> = {
   'it-it': '🇮🇹',
   'en-us': '🇺🇸',
-  'en-gb': '🇬🇧',
   'de-de': '🇩🇪',
   'fr-fr': '🇫🇷',
   'es-es': '🇪🇸',
@@ -34,7 +29,6 @@ const flagMap: Record<Locale, string> = {
 const countryCodeMap: Record<Locale, string> = {
   'it-it': 'IT',
   'en-us': 'en',
-  'en-gb': 'GB',
   'de-de': 'DE',
   'fr-fr': 'FR',
   'es-es': 'ES',
@@ -43,7 +37,6 @@ const countryCodeMap: Record<Locale, string> = {
 /* ── Nav labels ── */
 const nav = ({
   'en-us': { dest: 'Destinations', spiagge: 'Beaches',  guida: 'Travel Guide',   esp: 'Experiences',  ev: 'Events' },
-  'en-gb': { dest: 'Destinations', spiagge: 'Beaches',  guida: 'Travel Guide',   esp: 'Experiences',  ev: 'Events' },
   'de-de': { dest: 'Reiseziele',   spiagge: 'Strände',  guida: 'Ratgeber',       esp: 'Erlebnisse',   ev: 'Veranstaltungen' },
   'fr-fr': { dest: 'Destinations', spiagge: 'Plages',   guida: 'Guide Pratique', esp: 'Expériences',  ev: 'Événements' },
   'es-es': { dest: 'Destinos',     spiagge: 'Playas',   guida: 'Guía Práctica',  esp: 'Experiencias', ev: 'Eventos' },
@@ -53,7 +46,6 @@ const nav = ({
 /* ── Destinazioni section headings ── */
 const dh = ({
   'en-us': { costiera: 'Amalfi Coast',       sorrentina: 'Sorrentine Peninsula',      isole: 'Gulf Islands' },
-  'en-gb': { costiera: 'Amalfi Coast',       sorrentina: 'Sorrentine Peninsula',      isole: 'Gulf Islands' },
   'de-de': { costiera: 'Amalfiküste',        sorrentina: 'Sorrentinische Halbinsel',  isole: 'Golfinseln' },
   'fr-fr': { costiera: 'Côte Amalfitaine',   sorrentina: 'Péninsule Sorrentine',      isole: 'Îles du Golfe' },
   'es-es': { costiera: 'Costa Amalfitana',   sorrentina: 'Península Sorrentina',      isole: 'Islas del Golfo' },
@@ -61,15 +53,15 @@ const dh = ({
 } as const)[lang];
 
 /* ── Base paths ── */
-const costieraBase = ({ 'en-us': '/en-us/amalfi-coast', 'en-gb': '/en-gb/amalfi-coast', 'de-de': '/de-de/amalfikueste', 'fr-fr': '/fr-fr/cote-amalfitaine', 'es-es': '/es-es/costa-amalfitana', 'it-it': '/it-it/costiera-amalfitana' } as const)[lang];
+const costieraBase = ({ 'en-us': '/en-us/amalfi-coast', 'de-de': '/de-de/amalfikueste', 'fr-fr': '/fr-fr/cote-amalfitaine', 'es-es': '/es-es/costa-amalfitana', 'it-it': '/it-it/costiera-amalfitana' } as const)[lang];
 const sorrentineHref = lang === 'it-it' ? '/it-it/penisola-sorrentina/' : lang === 'en-us' ? '/en-us/sorrento-peninsula/' : lang === 'es-es' ? '/es-es/peninsula-sorrentina/' : lang === 'fr-fr' ? '/fr-fr/peninsule-sorrentine/' : lang === 'de-de' ? '/de-de/sorrentinische-halbinsel/' : '#';
-const isoleHref      = ({ 'en-us': '/en-us/isole/', 'en-gb': '#', 'de-de': '/de-de/inseln/', 'fr-fr': '/fr-fr/iles/', 'es-es': '/es-es/islas/', 'it-it': '/it-it/isole/' } as const)[lang];
-const spiaggeHref    = ({ 'en-us': '/en-us/beaches/', 'en-gb': '#', 'de-de': '/de-de/strande/', 'fr-fr': '/fr-fr/plages/', 'es-es': '/es-es/playas/', 'it-it': '/it-it/spiagge/' } as const)[lang];
-const tutteBeachLabel = ({ 'en-us': 'All Beaches', 'en-gb': 'All Beaches', 'de-de': 'Alle Strände', 'fr-fr': 'Toutes les Plages', 'es-es': 'Todas las Playas', 'it-it': 'Tutte le Spiagge' } as const)[lang];
+const isoleHref      = ({ 'en-us': '/en-us/isole/', 'de-de': '/de-de/inseln/', 'fr-fr': '/fr-fr/iles/', 'es-es': '/es-es/islas/', 'it-it': '/it-it/isole/' } as const)[lang];
+const spiaggeHref    = ({ 'en-us': '/en-us/beaches/', 'de-de': '/de-de/strande/', 'fr-fr': '/fr-fr/plages/', 'es-es': '/es-es/playas/', 'it-it': '/it-it/spiagge/' } as const)[lang];
+const tutteBeachLabel = ({ 'en-us': 'All Beaches', 'de-de': 'Alle Strände', 'fr-fr': 'Toutes les Plages', 'es-es': 'Todas las Playas', 'it-it': 'Tutte le Spiagge' } as const)[lang];
 const esperienzeHref  = lang === 'it-it' ? '/it-it/esperienze/' : lang === 'en-us' ? '/en-us/experiences/' : lang === 'de-de' ? '/de-de/erlebnisse/' : lang === 'fr-fr' ? '/fr-fr/experiences/' : lang === 'es-es' ? '/es-es/experiencias/' : '#';
-const itinerariLabel  = ({ 'en-us': 'Itineraries', 'en-gb': 'Itineraries', 'de-de': 'Reiserouten', 'fr-fr': 'Itinéraires', 'es-es': 'Itinerarios', 'it-it': 'Itinerari' } as const)[lang];
-const itinerariHref   = ({ 'en-us': '/en-us/itineraries/', 'en-gb': '#', 'de-de': '/de-de/reiserouten/', 'fr-fr': '/fr-fr/itineraires/', 'es-es': '/es-es/itinerarios/', 'it-it': '/it-it/itinerari/' } as const)[lang];
-const tuttiEvLabel    = ({ 'en-us': 'All events →', 'en-gb': 'All events →', 'de-de': 'Alle Veranstaltungen →', 'fr-fr': 'Tous les événements →', 'es-es': 'Todos los eventos →', 'it-it': 'Tutti gli eventi →' } as const)[lang];
+const itinerariLabel  = ({ 'en-us': 'Itineraries', 'de-de': 'Reiserouten', 'fr-fr': 'Itinéraires', 'es-es': 'Itinerarios', 'it-it': 'Itinerari' } as const)[lang];
+const itinerariHref   = ({ 'en-us': '/en-us/itineraries/', 'de-de': '/de-de/reiserouten/', 'fr-fr': '/fr-fr/itineraires/', 'es-es': '/es-es/itinerarios/', 'it-it': '/it-it/itinerari/' } as const)[lang];
+const tuttiEvLabel    = ({ 'en-us': 'All events →', 'de-de': 'Alle Veranstaltungen →', 'fr-fr': 'Tous les événements →', 'es-es': 'Todos los eventos →', 'it-it': 'Tutti gli eventi →' } as const)[lang];
 const tuttiEvHref     = lang === 'it-it' ? '/it-it/eventi/' : lang === 'en-us' ? '/en-us/events/' : lang === 'de-de' ? '/de-de/veranstaltungen/' : lang === 'es-es' ? '/es-es/eventos/' : lang === 'fr-fr' ? '/fr-fr/evenements/' : '#';
 
 /* ── Destinazioni: Costiera borghi ── */
@@ -119,7 +111,6 @@ const sorrentinaBorghi =
 /* ── Destinazioni: Isole ── */
 const isoleLinks = ({
   'en-us': [{ name: 'Capri', href: '/en-us/isole/capri/' },  { name: 'Ischia', href: '/en-us/isole/ischia/' },  { name: 'Procida', href: '/en-us/isole/procida/' }],
-  'en-gb': [{ name: 'Capri', href: '#' },                    { name: 'Ischia', href: '#' },                    { name: 'Procida', href: '#' }],
   'de-de': [{ name: 'Capri', href: '/de-de/inseln/capri/' }, { name: 'Ischia', href: '/de-de/inseln/ischia/' }, { name: 'Procida', href: '/de-de/inseln/procida/' }],
   'fr-fr': [{ name: 'Capri', href: '/fr-fr/iles/capri/' },   { name: 'Ischia', href: '/fr-fr/iles/ischia/' },   { name: 'Procida', href: '/fr-fr/iles/procida/' }],
   'es-es': [{ name: 'Capri', href: '/es-es/islas/capri/' },  { name: 'Ischia', href: '/es-es/islas/ischia/' },  { name: 'Procida', href: '/es-es/islas/procida/' }],
@@ -129,7 +120,7 @@ const isoleLinks = ({
 /* ── Spiagge areas ── */
 const spiaggeAree = [
   {
-    area: ({ 'it-it': 'Costiera Amalfitana', 'en-us': 'Amalfi Coast', 'fr-fr': 'Côte Amalfitaine', 'de-de': 'Amalfiküste', 'es-es': 'Costa Amalfitana', 'en-gb': 'Amalfi Coast' } as const)[lang],
+    area: ({ 'it-it': 'Costiera Amalfitana', 'en-us': 'Amalfi Coast', 'fr-fr': 'Côte Amalfitaine', 'de-de': 'Amalfiküste', 'es-es': 'Costa Amalfitana' } as const)[lang],
     href: spiaggeHref === '#' ? '#' : `${spiaggeHref}`,
     beaches: [
       { name: 'Fiordo di Furore',  href: lang === 'it-it' ? '/it-it/spiagge/costiera-amalfitana/fiordo-di-furore/' : lang === 'en-us' ? '/en-us/beaches/amalfi-coast/fiordo-di-furore/' : lang === 'fr-fr' ? '/fr-fr/plages/cote-amalfitaine/fiordo-di-furore/' : lang === 'de-de' ? '/de-de/strande/amalfikueste/fiordo-di-furore/' : lang === 'es-es' ? '/es-es/playas/costa-amalfitana/fiordo-di-furore/' : '#' },
@@ -139,7 +130,7 @@ const spiaggeAree = [
     ],
   },
   {
-    area: ({ 'it-it': 'Penisola Sorrentina', 'en-us': 'Sorrentine Peninsula', 'fr-fr': 'Péninsule Sorrentine', 'de-de': 'Sorrentinische Halbinsel', 'es-es': 'Península Sorrentina', 'en-gb': 'Sorrentine Peninsula' } as const)[lang],
+    area: ({ 'it-it': 'Penisola Sorrentina', 'en-us': 'Sorrentine Peninsula', 'fr-fr': 'Péninsule Sorrentine', 'de-de': 'Sorrentinische Halbinsel', 'es-es': 'Península Sorrentina' } as const)[lang],
     href: spiaggeHref === '#' ? '#' : `${spiaggeHref}`,
     beaches: [
       { name: 'Regina Giovanna',    href: lang === 'it-it' ? '/it-it/spiagge/penisola-sorrentina/regina-giovanna/' : lang === 'en-us' ? '/en-us/beaches/sorrentine-peninsula/regina-giovanna/' : lang === 'fr-fr' ? '/fr-fr/plages/peninsule-sorrentine/regina-giovanna/' : lang === 'de-de' ? '/de-de/strande/sorrentiner-halbinsel/regina-giovanna/' : lang === 'es-es' ? '/es-es/playas/peninsula-sorrentina/regina-giovanna/' : '#' },
@@ -149,7 +140,7 @@ const spiaggeAree = [
     ],
   },
   {
-    area: ({ 'it-it': 'Isole del Golfo', 'en-us': 'Gulf Islands', 'fr-fr': 'Îles du Golfe', 'de-de': 'Golfinseln', 'es-es': 'Islas del Golfo', 'en-gb': 'Gulf Islands' } as const)[lang],
+    area: ({ 'it-it': 'Isole del Golfo', 'en-us': 'Gulf Islands', 'fr-fr': 'Îles du Golfe', 'de-de': 'Golfinseln', 'es-es': 'Islas del Golfo' } as const)[lang],
     href: spiaggeHref === '#' ? '#' : `${spiaggeHref}`,
     beaches: [
       { name: 'Marina Piccola',     href: lang === 'it-it' ? '/it-it/spiagge/isole/marina-piccola-capri/' : lang === 'en-us' ? '/en-us/beaches/islands/marina-piccola-capri/' : lang === 'fr-fr' ? '/fr-fr/plages/iles/marina-piccola-capri/' : lang === 'de-de' ? '/de-de/strande/inseln/marina-piccola-capri/' : lang === 'es-es' ? '/es-es/playas/islas/marina-piccola-capri/' : '#' },
@@ -168,13 +159,6 @@ const guidaLinks = ({
     { name: 'SITA Bus',             href: '/en-us/guide/sita-bus/' },
     { name: 'Parking & ZTL',        href: '/en-us/guide/parking-ztl/' },
     { name: 'When to Visit',        href: '/en-us/when-to-visit/' },
-  ],
-  'en-gb': [
-    { name: 'Getting Here',         href: '#' },
-    { name: 'Ferries & Hydrofoils', href: '#' },
-    { name: 'SITA Bus',             href: '#' },
-    { name: 'Parking & ZTL',        href: '#' },
-    { name: 'When to Visit',        href: '#' },
   ],
   'de-de': [
     { name: 'Anreise',                 href: '/de-de/anreise/' },
@@ -227,10 +211,6 @@ const itinerari1g = ({
     { name: 'Path of the Gods Trek',     href: '/en-us/itineraries/1-day/path-of-the-gods-trek/' },
     { name: 'Capri from Sorrento',       href: '/en-us/itineraries/1-day/capri-from-sorrento/' },
   ],
-  'en-gb': [
-    { name: 'Amalfi Coast from Naples', href: '#' }, { name: 'Amalfi Coast from Salerno', href: '#' },
-    { name: 'Sorrentine Peninsula', href: '#' }, { name: 'Path of the Gods Trek', href: '#' }, { name: 'Capri from Sorrento', href: '#' },
-  ],
   'de-de': [
     { name: 'Amalfiküste von Neapel',          href: '/de-de/reiserouten/1-tag/amalfikueste-von-neapel/' },
     { name: 'Amalfiküste von Salerno',          href: '/de-de/reiserouten/1-tag/amalfikueste-von-salerno/' },
@@ -267,7 +247,6 @@ const itinerari3g = ({
     { name: 'Sorrento, Pompeii & History',href: '/en-us/itineraries/3-days/sorrento-pompeii-history/' },
     { name: 'Islands: Ischia & Procida',  href: '/en-us/itineraries/3-days/islands-ischia-procida/' },
   ],
-  'en-gb': [{ name: 'Classic Amalfi Coast', href: '#' }, { name: 'Sorrento, Pompeii & History', href: '#' }, { name: 'Islands: Ischia & Procida', href: '#' }],
   'de-de': [
     { name: 'Klassische Amalfiküste',      href: '/de-de/reiserouten/3-tage/klassische-amalfikueste/' },
     { name: 'Sorrent, Pompeji & Geschichte',href: '/de-de/reiserouten/3-tage/sorrent-pompeji-geschichte/' },
@@ -295,7 +274,6 @@ const itinerari7g = ({
     { name: 'Grand Tour Coast & Peninsula', href: '/en-us/itineraries/7-days/grand-tour-coast-peninsula/' },
     { name: 'Slow Travel: Villages & Food', href: '/en-us/itineraries/7-days/slow-travel-villages-food/' },
   ],
-  'en-gb': [{ name: 'Grand Tour Coast & Peninsula', href: '#' }, { name: 'Slow Travel: Villages & Food', href: '#' }],
   'de-de': [
     { name: 'Grand Tour Küste & Halbinsel',  href: '/de-de/reiserouten/7-tage/grand-tour-kueste-halbinsel/' },
     { name: 'Slow Travel: Dörfer & Kulinarik',href: '/de-de/reiserouten/7-tage/slow-travel-doerfer-kulinarik/' },
@@ -315,11 +293,10 @@ const itinerari7g = ({
 } as const)[lang];
 
 /* ── Eventi section headings ── */
-const evSec = ({ 'en-us': { cultura: 'Culture', tradizioni: 'Traditions', gastro: 'Gastronomy' }, 'en-gb': { cultura: 'Culture', tradizioni: 'Traditions', gastro: 'Gastronomy' }, 'de-de': { cultura: 'Kultur', tradizioni: 'Traditionen', gastro: 'Gastronomie' }, 'fr-fr': { cultura: 'Culture', tradizioni: 'Traditions', gastro: 'Gastronomie' }, 'es-es': { cultura: 'Cultura', tradizioni: 'Tradiciones', gastro: 'Gastronomía' }, 'it-it': { cultura: 'Cultura', tradizioni: 'Tradizioni', gastro: 'Gastronomia' } } as const)[lang];
+const evSec = ({ 'en-us': { cultura: 'Culture', tradizioni: 'Traditions', gastro: 'Gastronomy' }, 'de-de': { cultura: 'Kultur', tradizioni: 'Traditionen', gastro: 'Gastronomie' }, 'fr-fr': { cultura: 'Culture', tradizioni: 'Traditions', gastro: 'Gastronomie' }, 'es-es': { cultura: 'Cultura', tradizioni: 'Tradiciones', gastro: 'Gastronomía' }, 'it-it': { cultura: 'Cultura', tradizioni: 'Tradizioni', gastro: 'Gastronomia' } } as const)[lang];
 
 const eventiCultura = ({
   'en-us': [{ name: 'Ravello Festival', href: '/en-us/events/amalfi-coast/ravello-festival/' }, { name: 'Historic Regatta', href: '#' }, { name: 'Byzantine New Year', href: '#' }, { name: 'Positano Arts & Culture', href: '#' }, { name: 'Ischia Film Festival', href: '/en-us/events/islands/ischia-global-film-festival/' }],
-  'en-gb': [{ name: 'Ravello Festival', href: '#' }, { name: 'Historic Regatta', href: '#' }, { name: 'Byzantine New Year', href: '#' }, { name: 'Positano Arts & Culture', href: '#' }, { name: 'Ischia Film Festival', href: '#' }],
   'de-de': [{ name: 'Ravello Festival', href: '/de-de/veranstaltungen/amalfikueste/ravello-festival/' }, { name: 'Historische Regatta', href: '#' }, { name: 'Byzantinisches Neujahr', href: '#' }, { name: 'Positano Kunst & Kultur', href: '#' }, { name: 'Ischia Filmfestival', href: '/de-de/veranstaltungen/inseln/ischia-global-film-festival/' }],
   'fr-fr': [{ name: 'Festival de Ravello', href: '/fr-fr/evenements/cote-amalfitaine/ravello-festival/' }, { name: 'Régate Historique', href: '#' }, { name: 'Nouvel An Byzantin', href: '#' }, { name: 'Positano Arts & Culture', href: '#' }, { name: "Festival du Film d'Ischia", href: '/fr-fr/evenements/iles/ischia-global-film-festival/' }],
   'es-es': [{ name: 'Festival de Ravello', href: '/es-es/eventos/costa-amalfitana/ravello-festival/' }, { name: 'Regata Histórica', href: '#' }, { name: 'Año Nuevo Bizantino', href: '#' }, { name: 'Positano Arte y Cultura', href: '#' }, { name: 'Festival de Cine de Ischia', href: '/es-es/eventos/islas/ischia-global-film-festival/' }],
@@ -334,7 +311,6 @@ const eventiCultura = ({
 
 const eventiTradizioni = ({
   'en-us': [{ name: 'Luminaria di San Domenico', href: '/en-us/events/amalfi-coast/luminaria-san-domenico-praiano/' }, { name: 'Ferragosto Fireworks', href: '/en-us/events/amalfi-coast/fuochi-ferragosto-positano-maiori/' }, { name: "Feast of Sant'Andrea", href: '/en-us/events/amalfi-coast/festa-sant-andrea-amalfi/' }, { name: "Feast of Sant'Antonino", href: '#' }, { name: 'Sea Festival (Procida)', href: '/en-us/events/islands/sagra-del-mare-graziella-procida/' }],
-  'en-gb': [{ name: 'Luminaria di San Domenico', href: '#' }, { name: 'Ferragosto Fireworks', href: '#' }, { name: "Feast of Sant'Andrea", href: '#' }, { name: "Feast of Sant'Antonino", href: '#' }, { name: 'Sea Festival (Procida)', href: '#' }],
   'de-de': [{ name: 'Luminaria di San Domenico', href: '/de-de/veranstaltungen/amalfikueste/luminaria-san-domenico-praiano/' }, { name: 'Ferragosto Feuerwerk', href: '/de-de/veranstaltungen/amalfikueste/fuochi-ferragosto-positano-maiori/' }, { name: 'Fest des hl. Andreas', href: '/de-de/veranstaltungen/amalfikueste/festa-sant-andrea-amalfi/' }, { name: 'Fest des hl. Antonino', href: '#' }, { name: 'Meeresfest (Procida)', href: '/de-de/veranstaltungen/inseln/sagra-del-mare-graziella-procida/' }],
   'fr-fr': [{ name: 'Luminaria di San Domenico', href: '/fr-fr/evenements/cote-amalfitaine/luminaria-san-domenico-praiano/' }, { name: 'Feux de la Ferragosto', href: '/fr-fr/evenements/cote-amalfitaine/fuochi-ferragosto-positano-maiori/' }, { name: "Fête de Sant'Andrea", href: '/fr-fr/evenements/cote-amalfitaine/festa-sant-andrea-amalfi/' }, { name: "Fête de Sant'Antonino", href: '#' }, { name: 'Fête de la Mer (Procida)', href: '/fr-fr/evenements/iles/sagra-del-mare-graziella-procida/' }],
   'es-es': [{ name: 'Luminaria di San Domenico', href: '/es-es/eventos/costa-amalfitana/luminaria-san-domenico-praiano/' }, { name: 'Fuegos de Ferragosto', href: '/es-es/eventos/costa-amalfitana/fuochi-ferragosto-positano-maiori/' }, { name: "Fiesta de Sant'Andrea", href: '/es-es/eventos/costa-amalfitana/festa-sant-andrea-amalfi/' }, { name: "Fiesta de Sant'Antonino", href: '#' }, { name: 'Sagra del Mare (Procida)', href: '/es-es/eventos/islas/sagra-del-mare-graziella-procida/' }],
@@ -349,7 +325,6 @@ const eventiTradizioni = ({
 
 const eventiGastronomia = ({
   'en-us': [{ name: 'Lemon Festival (Massa)', href: '/en-us/events/sorrentine-peninsula/sagra-limone-massa-lubrense/' }, { name: 'Aubergine Festival', href: '/en-us/events/sorrentine-peninsula/sagra-melanzana-preazzano/' }, { name: 'Fish Festival (Positano)', href: '/en-us/events/amalfi-coast/sagra-del-pesce-positano/' }, { name: 'Lemon Festival (Minori)', href: '#' }, { name: 'Gustamincanto', href: '/en-us/events/sorrentine-peninsula/gustamincanto-vico-equense/' }],
-  'en-gb': [{ name: 'Lemon Festival (Massa)', href: '#' }, { name: 'Aubergine Festival', href: '#' }, { name: 'Fish Festival (Positano)', href: '#' }, { name: 'Lemon Festival (Minori)', href: '#' }, { name: 'Gustamincanto', href: '#' }],
   'de-de': [{ name: 'Zitronenfest (Massa)', href: '/de-de/veranstaltungen/sorrentinische-halbinsel/sagra-limone-massa-lubrense/' }, { name: 'Auberginenfest', href: '/de-de/veranstaltungen/sorrentinische-halbinsel/sagra-melanzana-preazzano/' }, { name: 'Fischfest (Positano)', href: '/de-de/veranstaltungen/amalfikueste/sagra-del-pesce-positano/' }, { name: 'Zitronenfest (Minori)', href: '#' }, { name: 'Gustamincanto', href: '/de-de/veranstaltungen/sorrentinische-halbinsel/gustamincanto-vico-equense/' }],
   'fr-fr': [{ name: 'Fête du Citron (Massa)', href: '/fr-fr/evenements/peninsule-sorrentine/sagra-limone-massa-lubrense/' }, { name: "Fête de l'Aubergine", href: '/fr-fr/evenements/peninsule-sorrentine/sagra-melanzana-preazzano/' }, { name: 'Fête du Poisson (Positano)', href: '/fr-fr/evenements/cote-amalfitaine/sagra-del-pesce-positano/' }, { name: 'Fête du Citron (Minori)', href: '#' }, { name: 'Gustamincanto', href: '/fr-fr/evenements/peninsule-sorrentine/gustamincanto-vico-equense/' }],
   'es-es': [{ name: 'Festival del Limón (Massa)', href: '/es-es/eventos/peninsula-sorrentina/sagra-limone-massa-lubrense/' }, { name: 'Festival de la Berenjena', href: '/es-es/eventos/peninsula-sorrentina/sagra-melanzana-preazzano/' }, { name: 'Fiesta del Pescado (Positano)', href: '/es-es/eventos/costa-amalfitana/sagra-del-pesce-positano/' }, { name: 'Festival del Limón (Minori)', href: '#' }, { name: 'Gustamincanto', href: '/es-es/eventos/peninsula-sorrentina/gustamincanto-vico-equense/' }],
