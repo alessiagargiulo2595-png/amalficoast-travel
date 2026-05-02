@@ -977,19 +977,31 @@ const eventiGastronomia = ({
 
     function showMenu(menuId) {
       // Hide all menu sections
-      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
+      document.querySelectorAll('[data-menu-id]').forEach(m => {
+        m.classList.add('hidden');
+        m.style.display = 'none';
+      });
       // Show target menu
-      document.querySelector(`[data-menu-id="${menuId}"]`)?.classList.remove('hidden');
+      const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
+      if (menu) {
+        menu.classList.remove('hidden');
+        menu.style.display = 'flex';
+      }
       // Show mega menu container
       megaMenu.classList.remove('hidden');
+      megaMenu.style.display = 'block';
       activeMenu = menuId;
     }
 
     function hideMenu() {
       // Hide all menu sections
-      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
+      document.querySelectorAll('[data-menu-id]').forEach(m => {
+        m.classList.add('hidden');
+        m.style.display = 'none';
+      });
       // Hide mega menu container
       megaMenu.classList.add('hidden');
+      megaMenu.style.display = 'none';
       activeMenu = null;
     }
 
