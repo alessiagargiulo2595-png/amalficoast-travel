@@ -81,33 +81,63 @@
     }
   });
 
-  // Menu visibility
-  let activeMenu = null;
+  // Menu visibility (DESKTOP ONLY - mega-menu doesn't exist on mobile)
+  if (megaMenu) {
+    let activeMenu = null;
 
-  function showMenu(menuId) {
-    // Hide all menus first
-    document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-    // Show selected menu
-    const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
-    if (menu) {
-      menu.classList.remove('hidden');
-      megaMenu?.classList.remove('hidden');
-      activeMenu = menuId;
+    function showMenu(menuId) {
+      console.log('showMenu:', menuId);
+      // Hide all menu content divs
+      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
+      // Show selected menu
+      const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
+      if (menu) {
+        menu.classList.remove('hidden');
+        megaMenu.classList.remove('hidden');
+        activeMenu = menuId;
+        console.log('Menu opened:', menuId);
+      }
     }
+
+    function hideMenu() {
+      console.log('hideMenu');
+      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
+      megaMenu.classList.add('hidden');
+      activeMenu = null;
+    }
+
+    // Menu button listeners - both click and hover (desktop only)
+    const menuButtons = document.querySelectorAll('[data-menu]');
+    console.log('Found menu buttons:', menuButtons.length);
+
+    menuButtons.forEach(btn => {
+      console.log('Adding listener to button:', btn.dataset.menu);
+      btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('Button clicked:', btn.dataset.menu, 'Active:', activeMenu);
+        if (activeMenu === btn.dataset.menu) {
+          hideMenu();
+        } else {
+          showMenu(btn.dataset.menu);
+        }
+      });
+    });
+
+    // Hide menu on mouseleave from header
+    nav?.addEventListener('mouseleave', hideMenu);
+
+    // Also hide menu on click outside
+    document.addEventListener('click', (e) => {
+      if (activeMenu && !nav?.contains(e.target) && !megaMenu.contains(e.target)) {
+        hideMenu();
+      }
+    });
+
+    console.log('Menu system initialized');
+  } else {
+    console.log('mega-menu not found - mobile device');
   }
-
-  function hideMenu() {
-    megaMenu?.classList.add('hidden');
-    activeMenu = null;
-  }
-
-  // Menu button listeners
-  document.querySelectorAll('[data-menu]').forEach(btn => {
-    btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
-  });
-
-  // Hide menu on mouseleave from header
-  nav?.addEventListener('mouseleave', hideMenu);
 </script> <main>  <section class="relative bg-charcoal overflow-hidden"> <img src="/images/trekking-hero.jpg" alt="Sentiero degli Dei, Costiera Amalfitana" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"> <div class="absolute inset-0 bg-gradient-to-br from-[#001a33]/80 via-med-blue/60 to-[#0077cc]/50"></div> <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70"></div> <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20"> <nav class="flex items-center gap-2 text-white/60 text-xs mb-6"> <a href="/it-it/" class="hover:text-white transition-colors">Home</a> <span>/</span> <a href="/it-it/itinerari/" class="hover:text-white transition-colors">Itinerari</a> <span>/</span> <span class="text-white">Sentiero degli Dei - 1 giorno</span> </nav> <div class="max-w-2xl"> <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Itinerario · Trekking · 1 giorno</p> <h1 class="font-serif text-display text-white mb-4">Trekking Sentiero degli Dei</h1> <p class="text-xl text-white/80 leading-relaxed">
 8 km da Agerola a Nocelle/Positano con la Costiera Amalfitana sotto i piedi. Il sentiero più spettacolare del Sud Italia - fattibile in giornata da Napoli con i mezzi pubblici.
 </p> </div> </div> </section> <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16"> <section class="max-w-4xl mx-auto"> <div class="grid grid-cols-4 gap-5"> <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm flex flex-col items-center gap-2"> <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 12h18M3 12l4-4M3 12l4 4"></path></svg> <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Distanza</p><p class="font-bold text-charcoal">8 km</p></div> </div> <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm flex flex-col items-center gap-2"> <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Dislivello</p><p class="font-bold text-charcoal">~500 m ↓</p></div> </div> <div class="bg-white border border-red-100 rounded-2xl p-5 text-center shadow-sm flex flex-col items-center gap-2"> <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Difficoltà</p><p class="font-bold text-red-600">EE</p></div> </div> <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm flex flex-col items-center gap-2"> <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg> <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Trasporti</p><p class="font-bold text-charcoal">~€12–18</p></div> </div> </div> <div class="mt-5 bg-red-50 border border-red-200 rounded-2xl px-5 py-4"> <p class="font-semibold text-red-800 text-xs sm:text-sm">Prenotazione obbligatoria luglio-agosto - Parco dei Monti Lattari (~€5)</p> </div> </section> <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-start"> <section class="lg:col-span-8"> <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Il programma ora per ora</h2> <div class="relative"> <div class="space-y-12 border-l-2 border-slate-200 pl-8 ml-3"> <div class="relative"> <div class="absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full bg-med-blue ring-4 ring-white shadow-sm"></div> <div class="flex items-center gap-2 mb-1"> <span class="font-mono text-med-blue font-bold text-xs sm:text-sm">07:00</span> <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-orange-100 text-orange-700">TRENO</span> </div> <p class="font-semibold text-charcoal text-base leading-snug">Napoli</p> <p class="text-slate-600 text-xs sm:text-sm mt-1 leading-relaxed">Circumvesuviana per Sorrento (70 min, ~€3.90)</p> </div><div class="relative"> <div class="absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full bg-med-blue ring-4 ring-white shadow-sm"></div> <div class="flex items-center gap-2 mb-1"> <span class="font-mono text-med-blue font-bold text-xs sm:text-sm">08:15</span> <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-green-100 text-green-700">BUS</span> </div> <p class="font-semibold text-charcoal text-base leading-snug">Sorrento</p> <p class="text-slate-600 text-xs sm:text-sm mt-1 leading-relaxed">Bus SITA per Amalfi (90 min, ~€3.50) - corsa delle 8:30</p> </div><div class="relative"> <div class="absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full bg-med-blue ring-4 ring-white shadow-sm"></div> <div class="flex items-center gap-2 mb-1"> <span class="font-mono text-med-blue font-bold text-xs sm:text-sm">10:00</span> <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-green-100 text-green-700">BUS</span> </div> <p class="font-semibold text-charcoal text-base leading-snug">Amalfi</p> <p class="text-slate-600 text-xs sm:text-sm mt-1 leading-relaxed">Bus locale per Agerola, fraz. San Lazzaro (45 min, ~€1.50). Inizio sentiero.</p> </div><div class="relative"> <div class="absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full bg-med-blue ring-4 ring-white shadow-sm"></div> <div class="flex items-center gap-2 mb-1"> <span class="font-mono text-med-blue font-bold text-xs sm:text-sm">11:00</span> <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-red-100 text-red-700">TREKKING</span> </div> <p class="font-semibold text-charcoal text-base leading-snug">Agerola (618 m)</p> <p class="text-slate-600 text-xs sm:text-sm mt-1 leading-relaxed">Partenza Sentiero degli Dei. 8 km, ~500 m discesa, EE. Paesaggi mozzafiato.</p> </div><div class="relative"> <div class="absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full bg-med-blue ring-4 ring-white shadow-sm"></div> <div class="flex items-center gap-2 mb-1"> <span class="font-mono text-med-blue font-bold text-xs sm:text-sm">14:30</span>  </div> <p class="font-semibold text-charcoal text-base leading-snug">Nocelle</p> <p class="text-slate-600 text-xs sm:text-sm mt-1 leading-relaxed">Arrivo Nocelle. Pausa e pranzo in uno dei rifugi/bar locali.</p> </div><div class="relative"> <div class="absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full bg-med-blue ring-4 ring-white shadow-sm"></div> <div class="flex items-center gap-2 mb-1"> <span class="font-mono text-med-blue font-bold text-xs sm:text-sm">15:15</span> <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-green-100 text-green-700">BUS</span> </div> <p class="font-semibold text-charcoal text-base leading-snug">Nocelle → Positano</p> <p class="text-slate-600 text-xs sm:text-sm mt-1 leading-relaxed">Bus locale per Positano centro (15 min, ~€1.50) o a piedi (~1.000 gradini, 45 min)</p> </div><div class="relative"> <div class="absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full bg-med-blue ring-4 ring-white shadow-sm"></div> <div class="flex items-center gap-2 mb-1"> <span class="font-mono text-med-blue font-bold text-xs sm:text-sm">16:00</span>  </div> <p class="font-semibold text-charcoal text-base leading-snug">Positano</p> <p class="text-slate-600 text-xs sm:text-sm mt-1 leading-relaxed">Passeggiata, gelato, spiaggia (1h libera)</p> </div><div class="relative"> <div class="absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full bg-med-blue ring-4 ring-white shadow-sm"></div> <div class="flex items-center gap-2 mb-1"> <span class="font-mono text-med-blue font-bold text-xs sm:text-sm">17:15</span> <span class="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-green-100 text-green-700">BUS</span> </div> <p class="font-semibold text-charcoal text-base leading-snug">Positano → Napoli</p> <p class="text-slate-600 text-xs sm:text-sm mt-1 leading-relaxed">Bus SITA per Sorrento (~50 min), poi Circumvesuviana per Napoli (70 min)</p> </div> </div> </div> </section> <aside class="lg:col-span-4 mt-12 lg:mt-0"> <div class="lg:sticky lg:top-24 space-y-6"> <div class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6"> <p class="font-semibold text-charcoal mb-4 flex items-center gap-2"> <svg class="w-4 h-4 text-med-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 3-1.7 5.2-4 6.4V17a1 1 0 0 1-1 1H10a1 1 0 0 1-1-1v-1.6C6.7 14.2 5 12 5 9a7 7 0 0 1 7-7z"></path><path d="M10 21h4M12 17v4"></path></svg>

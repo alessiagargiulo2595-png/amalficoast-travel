@@ -81,33 +81,63 @@
     }
   });
 
-  // Menu visibility
-  let activeMenu = null;
+  // Menu visibility (DESKTOP ONLY - mega-menu doesn't exist on mobile)
+  if (megaMenu) {
+    let activeMenu = null;
 
-  function showMenu(menuId) {
-    // Hide all menus first
-    document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-    // Show selected menu
-    const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
-    if (menu) {
-      menu.classList.remove('hidden');
-      megaMenu?.classList.remove('hidden');
-      activeMenu = menuId;
+    function showMenu(menuId) {
+      console.log('showMenu:', menuId);
+      // Hide all menu content divs
+      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
+      // Show selected menu
+      const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
+      if (menu) {
+        menu.classList.remove('hidden');
+        megaMenu.classList.remove('hidden');
+        activeMenu = menuId;
+        console.log('Menu opened:', menuId);
+      }
     }
+
+    function hideMenu() {
+      console.log('hideMenu');
+      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
+      megaMenu.classList.add('hidden');
+      activeMenu = null;
+    }
+
+    // Menu button listeners - both click and hover (desktop only)
+    const menuButtons = document.querySelectorAll('[data-menu]');
+    console.log('Found menu buttons:', menuButtons.length);
+
+    menuButtons.forEach(btn => {
+      console.log('Adding listener to button:', btn.dataset.menu);
+      btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('Button clicked:', btn.dataset.menu, 'Active:', activeMenu);
+        if (activeMenu === btn.dataset.menu) {
+          hideMenu();
+        } else {
+          showMenu(btn.dataset.menu);
+        }
+      });
+    });
+
+    // Hide menu on mouseleave from header
+    nav?.addEventListener('mouseleave', hideMenu);
+
+    // Also hide menu on click outside
+    document.addEventListener('click', (e) => {
+      if (activeMenu && !nav?.contains(e.target) && !megaMenu.contains(e.target)) {
+        hideMenu();
+      }
+    });
+
+    console.log('Menu system initialized');
+  } else {
+    console.log('mega-menu not found - mobile device');
   }
-
-  function hideMenu() {
-    megaMenu?.classList.add('hidden');
-    activeMenu = null;
-  }
-
-  // Menu button listeners
-  document.querySelectorAll('[data-menu]').forEach(btn => {
-    btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
-  });
-
-  // Hide menu on mouseleave from header
-  nav?.addEventListener('mouseleave', hideMenu);
 </script> <main>   <section class="relative bg-charcoal text-white py-20 overflow-hidden"> <img src="/images/itinerari-hero.jpg" alt="Côte Amalfitaine itinéraires" class="absolute inset-0 w-full h-full object-cover opacity-20" loading="eager" referrerpolicy="no-referrer"> <div class="absolute inset-0 bg-charcoal/80"></div> <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"> <p class="text-white/80 text-xs sm:text-sm uppercase tracking-[0.3em] mb-3">Planifier le voyage</p> <h1 class="text-4xl md:text-5xl font-bold font-serif mb-4">Itinéraires Côte Amalfitaine</h1> <p class="text-white/80 text-lg max-w-2xl mx-auto">1 jour, 3 jours ou 1 semaine : des itinéraires détaillés pour profiter au mieux de la Côte Amalfitaine selon le temps dont vous disposez.</p> </div> </section> <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> <p class="text-lg text-slate-600 leading-relaxed">
 La Côte Amalfitaine peut se visiter en une journée (intense) ou se savourer pendant des semaines. La différence est énorme : celui qui n'a qu'une journée verra les lieux emblématiques mais rarement ce qui se cache derrière la carte postale ; celui qui a une semaine peut découvrir les villages plus calmes, randonner sur les sentiers, manger dans les restaurants locaux, s'arrêter regarder le coucher de soleil. Ces itinéraires ont été conçus pour optimiser chaque heure, quelle que soit votre disponibilité.
 </p> </section>  <section class="pb-16"> <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden mb-12"> <div class="bg-med-blue text-white p-6 sm:p-8"> <div class="flex items-center gap-3 mb-2"> <span class="bg-white/20 text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-full">1 jour</span> </div> <h2 class="text-2xl font-bold font-serif">Le meilleur de la côte en une journée</h2> <p class="text-white/80 mt-2">Pour ceux qui arrivent de Naples ou Salerne pour la journée. Intense mais mémorable.</p> </div> <div class="p-8"> <div class="space-y-4 sm:space-y-6"> <div class="flex gap-4"> <div class="flex-shrink-0 w-16 text-center"> <span class="text-med-blue font-bold text-xs sm:text-sm">08:00</span> </div> <div> <h3 class="font-semibold text-slate-900">Arrivée à Amalfi en ferry</h3> <p class="text-slate-600 text-xs sm:text-sm mt-1">Prenez le ferry matinal depuis Naples ou Salerne. L'arrivée par mer à Amalfi est l'un des moments les plus émouvants du voyage. Déposez vos bagages et explorez la place de la Cathédrale.</p> </div> </div> <div class="flex gap-4"> <div class="flex-shrink-0 w-16 text-center"> <span class="text-med-blue font-bold text-xs sm:text-sm">09:30</span> </div> <div> <h3 class="font-semibold text-slate-900">Cathédrale Sant'Andrea & Valle dei Mulini</h3> <p class="text-slate-600 text-xs sm:text-sm mt-1">Visitez la magnifique Cathédrale (accès libre à la place, musée payant). Puis parcourez la Valle dei Mulini pour voir les anciennes papeteries. 1h30 au total.</p> </div> </div> <div class="flex gap-4"> <div class="flex-shrink-0 w-16 text-center"> <span class="text-med-blue font-bold text-xs sm:text-sm">11:30</span> </div> <div> <h3 class="font-semibold text-slate-900">Ferry pour Positano</h3> <p class="text-slate-600 text-xs sm:text-sm mt-1">25 minutes de ferry avec des vues spectaculaires. À Positano, montez vers l'église Santa Maria Assunta et profitez du panorama sur les toits colorés.</p> </div> </div> <div class="flex gap-4"> <div class="flex-shrink-0 w-16 text-center"> <span class="text-med-blue font-bold text-xs sm:text-sm">13:30</span> </div> <div> <h3 class="font-semibold text-slate-900">Déjeuner à Positano</h3> <p class="text-slate-600 text-xs sm:text-sm mt-1">Cherchez une trattoria sur la Via dei Mulini ou le long du front de mer. Spaghetti alle vongole ou linguine al limone sont incontournables.</p> </div> </div> <div class="flex gap-4"> <div class="flex-shrink-0 w-16 text-center"> <span class="text-med-blue font-bold text-xs sm:text-sm">15:00</span> </div> <div> <h3 class="font-semibold text-slate-900">Spiaggia Grande</h3> <p class="text-slate-600 text-xs sm:text-sm mt-1">2 heures de mer à Positano. L'eau est magnifique même l'après-midi. Un établissement de bains pour la chaise longue et le parasol.</p> </div> </div> <div class="flex gap-4"> <div class="flex-shrink-0 w-16 text-center"> <span class="text-med-blue font-bold text-xs sm:text-sm">18:00</span> </div> <div> <h3 class="font-semibold text-slate-900">Apéritif et coucher de soleil</h3> <p class="text-slate-600 text-xs sm:text-sm mt-1">Positano possède quelques-uns des bars-terrasses les plus beaux d'Italie. Un Campari Spritz en regardant le soleil descendre sur la mer vaut à lui seul le voyage.</p> </div> </div> <div class="flex gap-4"> <div class="flex-shrink-0 w-16 text-center"> <span class="text-med-blue font-bold text-xs sm:text-sm">19:30</span> </div> <div> <h3 class="font-semibold text-slate-900">Retour en bus ou en ferry</h3> <p class="text-slate-600 text-xs sm:text-sm mt-1">Bus SITA pour Sorrente (puis Circumvesuviana pour Naples) ou ferry du soir vers Salerne ou Naples, selon votre destination.</p> </div> </div> </div> </div> </div> <!-- 3 jours --> <div class="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden mb-12"> <div class="bg-teal-700 text-white p-6 sm:p-8"> <div class="flex items-center gap-3 mb-2"> <span class="bg-white/20 text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-full">3 jours</span> </div> <h2 class="text-2xl font-bold font-serif">Trois jours sur la côte</h2> <p class="text-teal-100 mt-2">Base idéale : Amalfi ou Praiano. Équilibre parfait entre sites emblématiques et découvertes.</p> </div> <div class="p-8"> <div class="space-y-6 sm:space-y-8"> <div> <h3 class="font-bold text-slate-900 text-lg mb-4 flex items-center gap-2"> <span class="w-7 h-7 bg-teal-100 rounded-full flex items-center justify-center text-teal-700 text-xs sm:text-sm font-bold">1</span>

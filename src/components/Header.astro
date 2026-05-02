@@ -976,7 +976,8 @@ const eventiGastronomia = ({
     let activeMenu = null;
 
     function showMenu(menuId) {
-      // Hide all menus first
+      console.log('showMenu:', menuId);
+      // Hide all menu content divs
       document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
       // Show selected menu
       const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
@@ -984,20 +985,27 @@ const eventiGastronomia = ({
         menu.classList.remove('hidden');
         megaMenu.classList.remove('hidden');
         activeMenu = menuId;
+        console.log('Menu opened:', menuId);
       }
     }
 
     function hideMenu() {
+      console.log('hideMenu');
       document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
       megaMenu.classList.add('hidden');
       activeMenu = null;
     }
 
     // Menu button listeners - both click and hover (desktop only)
-    document.querySelectorAll('[data-menu]').forEach(btn => {
+    const menuButtons = document.querySelectorAll('[data-menu]');
+    console.log('Found menu buttons:', menuButtons.length);
+
+    menuButtons.forEach(btn => {
+      console.log('Adding listener to button:', btn.dataset.menu);
       btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
       btn.addEventListener('click', (e) => {
         e.preventDefault();
+        console.log('Button clicked:', btn.dataset.menu, 'Active:', activeMenu);
         if (activeMenu === btn.dataset.menu) {
           hideMenu();
         } else {
@@ -1015,5 +1023,9 @@ const eventiGastronomia = ({
         hideMenu();
       }
     });
+
+    console.log('Menu system initialized');
+  } else {
+    console.log('mega-menu not found - mobile device');
   }
 </script>
