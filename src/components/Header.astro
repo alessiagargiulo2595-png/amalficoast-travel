@@ -976,7 +976,6 @@ const eventiGastronomia = ({
     let activeMenu = null;
 
     function showMenu(menuId) {
-      console.log('showMenu:', menuId);
       // Hide all menu content divs
       document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
       // Show selected menu
@@ -985,27 +984,22 @@ const eventiGastronomia = ({
         menu.classList.remove('hidden');
         megaMenu.classList.remove('hidden');
         activeMenu = menuId;
-        console.log('Menu opened:', menuId);
       }
     }
 
     function hideMenu() {
-      console.log('hideMenu');
       document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
       megaMenu.classList.add('hidden');
       activeMenu = null;
     }
 
-    // Menu button listeners - both click and hover (desktop only)
-    const menuButtons = document.querySelectorAll('[data-menu]');
-    console.log('Found menu buttons:', menuButtons.length);
-
-    menuButtons.forEach(btn => {
-      console.log('Adding listener to button:', btn.dataset.menu);
+    // Menu button listeners
+    document.querySelectorAll('[data-menu]').forEach(btn => {
+      // Show on hover (desktop)
       btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
+      // Toggle on click
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log('Button clicked:', btn.dataset.menu, 'Active:', activeMenu);
         if (activeMenu === btn.dataset.menu) {
           hideMenu();
         } else {
@@ -1017,15 +1011,11 @@ const eventiGastronomia = ({
     // Hide menu on mouseleave from header
     nav?.addEventListener('mouseleave', hideMenu);
 
-    // Also hide menu on click outside
+    // Hide menu on click outside
     document.addEventListener('click', (e) => {
       if (activeMenu && !nav?.contains(e.target) && !megaMenu.contains(e.target)) {
         hideMenu();
       }
     });
-
-    console.log('Menu system initialized');
-  } else {
-    console.log('mega-menu not found - mobile device');
   }
 </script>
