@@ -81,33 +81,63 @@
     }
   });
 
-  // Menu visibility
-  let activeMenu = null;
+  // Menu visibility (DESKTOP ONLY - mega-menu doesn't exist on mobile)
+  if (megaMenu) {
+    let activeMenu = null;
 
-  function showMenu(menuId) {
-    // Hide all menus first
-    document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-    // Show selected menu
-    const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
-    if (menu) {
-      menu.classList.remove('hidden');
-      megaMenu?.classList.remove('hidden');
-      activeMenu = menuId;
+    function showMenu(menuId) {
+      console.log('showMenu:', menuId);
+      // Hide all menu content divs
+      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
+      // Show selected menu
+      const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
+      if (menu) {
+        menu.classList.remove('hidden');
+        megaMenu.classList.remove('hidden');
+        activeMenu = menuId;
+        console.log('Menu opened:', menuId);
+      }
     }
+
+    function hideMenu() {
+      console.log('hideMenu');
+      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
+      megaMenu.classList.add('hidden');
+      activeMenu = null;
+    }
+
+    // Menu button listeners - both click and hover (desktop only)
+    const menuButtons = document.querySelectorAll('[data-menu]');
+    console.log('Found menu buttons:', menuButtons.length);
+
+    menuButtons.forEach(btn => {
+      console.log('Adding listener to button:', btn.dataset.menu);
+      btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('Button clicked:', btn.dataset.menu, 'Active:', activeMenu);
+        if (activeMenu === btn.dataset.menu) {
+          hideMenu();
+        } else {
+          showMenu(btn.dataset.menu);
+        }
+      });
+    });
+
+    // Hide menu on mouseleave from header
+    nav?.addEventListener('mouseleave', hideMenu);
+
+    // Also hide menu on click outside
+    document.addEventListener('click', (e) => {
+      if (activeMenu && !nav?.contains(e.target) && !megaMenu.contains(e.target)) {
+        hideMenu();
+      }
+    });
+
+    console.log('Menu system initialized');
+  } else {
+    console.log('mega-menu not found - mobile device');
   }
-
-  function hideMenu() {
-    megaMenu?.classList.add('hidden');
-    activeMenu = null;
-  }
-
-  // Menu button listeners
-  document.querySelectorAll('[data-menu]').forEach(btn => {
-    btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
-  });
-
-  // Hide menu on mouseleave from header
-  nav?.addEventListener('mouseleave', hideMenu);
 </script> <main>   <section class="relative bg-charcoal py-24 md:py-32 overflow-hidden"> <img src="/images/isole-hero.jpg" alt="Islands of the Gulf of Naples" class="absolute inset-0 w-full h-full object-cover opacity-40" loading="eager" referrerpolicy="no-referrer"> <div class="absolute inset-0 bg-gradient-to-br from-charcoal/90 via-charcoal/75 to-charcoal/60"></div> <div class="relative z-10 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8"> <nav class="flex items-center gap-2 text-white/50 text-xs mb-8"> <a href="/en-us/" class="hover:text-white transition-colors">Home</a><span>/</span><span class="text-white/80">Islands</span> </nav> <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-4">Gulf of Naples</p> <h1 class="font-serif text-display text-white mb-6 max-w-3xl">The Islands of the Gulf of Naples</h1> <p class="text-xl text-white/70 leading-relaxed max-w-2xl">
 Three islands, three completely different characters. Capri for glamour and iconic views. Ischia for volcanic spas and wild nature. Procida for authenticity and the Italy that tourists rarely find. All reachable by ferry or hydrofoil in less than an hour.
 </p> </div> <div class="absolute top-0 right-0 w-96 h-96 bg-med-gold/5 rounded-full blur-3xl pointer-events-none"></div> </section>  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20"> <div class="grid grid-cols-1 md:grid-cols-3 gap-8"> <a href="/en-us/isole/capri/" class="group block bg-white rounded-[3rem] border border-slate-100 p-8 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"> <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">The most iconic</p> <h2 class="font-serif text-3xl font-bold text-charcoal mb-3 group-hover:text-med-blue transition-colors">Capri</h2> <p class="text-slate-600 leading-relaxed text-xs sm:text-sm mb-6">The Blue Grotto, the Faraglioni sea stacks and the glamorous Piazzetta: the most iconic island in the Gulf of Naples.</p> <ul class="space-y-2 mb-6"> <li class="flex items-center gap-2 text-xs text-slate-500"> <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span> 40 min from Naples </li><li class="flex items-center gap-2 text-xs text-slate-500"> <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span> No private cars </li><li class="flex items-center gap-2 text-xs text-slate-500"> <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span> Blue Grotto </li> </ul> <span class="inline-flex items-center gap-1.5 text-med-blue text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-2.5 transition-all">
