@@ -393,8 +393,8 @@ const eventiGastronomia = ({
       <!-- Right: Language + CTA -->
       <div class="flex items-center gap-2">
 
-        <!-- Language Switcher -->
-        <div class="hidden lg:block relative group/lang z-[52]">
+        <!-- Language Switcher (hidden - now integrated in mega menu) -->
+        <div class="hidden">
           <button class="flex items-center gap-1 px-3 py-1.5 text-base text-slate-600 hover:text-med-blue transition-colors border border-slate-200 rounded-full hover:border-med-blue/30" title={countryCodeMap[lang]}>
             {flagMap[lang]}
             <svg class="w-3 h-3 opacity-40 group-hover/lang:opacity-70 group-hover/lang:rotate-180 transition-all duration-200" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -434,7 +434,22 @@ const eventiGastronomia = ({
   <!-- Mega Menu (hidden, shown via JS) -->
   <div id="mega-menu" class="hidden fixed left-0 right-0 top-20 z-[51] rounded-b-2xl overflow-hidden">
     <div class="bg-white w-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-b border-slate-100">
-      <div class="max-w-7xl mx-auto flex min-h-[280px]">
+      <div class="max-w-7xl mx-auto flex min-h-[280px] relative">
+        <!-- Language Switcher (right side) -->
+        <div class="absolute right-0 top-0 bottom-0 flex flex-col items-center justify-start pt-8 pr-6 gap-2">
+          {locales.map(l => {
+            const pageExists = pageKey && existingPages[l].includes(pageKey);
+            const fullPathname = Astro.url.pathname.startsWith('/') && !Astro.url.pathname.split('/')[1]?.match(/[a-z]{2}-[a-z]{2}/)
+              ? `/${lang}${Astro.url.pathname}`
+              : Astro.url.pathname;
+            const href = pageExists ? getLocalePath(l, pageKey!) : translatePath(fullPathname, lang, l);
+            return (
+              <a href={href} class={`text-lg w-8 h-8 flex items-center justify-center rounded-lg transition-colors ${l === lang ? 'bg-med-blue/10 ring-2 ring-med-blue/30' : 'hover:bg-slate-100'}`} title={countryCodeMap[l]}>
+                {flagMap[l]}
+              </a>
+            );
+          })}
+        </div>
 
         <!-- Data menu containers - rendered hidden, shown via JS -->
 
