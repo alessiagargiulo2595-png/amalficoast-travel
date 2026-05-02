@@ -84,9 +84,10 @@
   // Menu visibility (DESKTOP ONLY - mega-menu doesn't exist on mobile)
   if (megaMenu) {
     let activeMenu = null;
+    alert('Menu system loaded'); // TEMP DEBUG
 
     function showMenu(menuId) {
-      console.log('showMenu:', menuId);
+      alert('Opening menu: ' + menuId); // TEMP DEBUG
       // Hide all menu content divs
       document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
       // Show selected menu
@@ -95,27 +96,22 @@
         menu.classList.remove('hidden');
         megaMenu.classList.remove('hidden');
         activeMenu = menuId;
-        console.log('Menu opened:', menuId);
       }
     }
 
     function hideMenu() {
-      console.log('hideMenu');
       document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
       megaMenu.classList.add('hidden');
       activeMenu = null;
     }
 
-    // Menu button listeners - both click and hover (desktop only)
-    const menuButtons = document.querySelectorAll('[data-menu]');
-    console.log('Found menu buttons:', menuButtons.length);
-
-    menuButtons.forEach(btn => {
-      console.log('Adding listener to button:', btn.dataset.menu);
+    // Menu button listeners
+    document.querySelectorAll('[data-menu]').forEach(btn => {
+      // Show on hover (desktop)
       btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
+      // Toggle on click
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log('Button clicked:', btn.dataset.menu, 'Active:', activeMenu);
         if (activeMenu === btn.dataset.menu) {
           hideMenu();
         } else {
@@ -127,16 +123,12 @@
     // Hide menu on mouseleave from header
     nav?.addEventListener('mouseleave', hideMenu);
 
-    // Also hide menu on click outside
+    // Hide menu on click outside
     document.addEventListener('click', (e) => {
       if (activeMenu && !nav?.contains(e.target) && !megaMenu.contains(e.target)) {
         hideMenu();
       }
     });
-
-    console.log('Menu system initialized');
-  } else {
-    console.log('mega-menu not found - mobile device');
   }
 </script> <main>   <section class="relative bg-charcoal text-white py-20 overflow-hidden"> <img src="/images/itinerari-hero.jpg" alt="Amalfiküste Reiserouten" class="absolute inset-0 w-full h-full object-cover opacity-20" loading="eager" referrerpolicy="no-referrer"> <div class="absolute inset-0 bg-charcoal/80"></div> <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"> <p class="text-white/80 text-xs sm:text-sm uppercase tracking-[0.3em] mb-3">Reise planen</p> <h1 class="text-4xl md:text-5xl font-bold font-serif mb-4">Amalfiküste Reiserouten</h1> <p class="text-white/80 text-lg max-w-2xl mx-auto">1 Tag, 3 Tage oder 1 Woche: ausführliche Reiserouten, um das Beste aus der Amalfiküste herauszuholen, egal wie viel Zeit Sie haben.</p> </div> </section> <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> <p class="text-lg text-slate-600 leading-relaxed">
 Die Amalfiküste kann an einem (intensiven) Tag besucht oder wochenlang genossen werden. Der Unterschied ist enorm: Wer nur einen Tag hat, sieht die ikonischen Sehenswürdigkeiten, selten aber das, was hinter der Postkarte steckt; wer eine Woche hat, kann die ruhigeren Dörfer entdecken, auf Wanderwegen wandern, in lokalen Restaurants essen und den Sonnenuntergang beobachten. Diese Reiserouten wurden entwickelt, um jede Stunde zu optimieren, welche Zeit auch immer zur Verfügung steht.

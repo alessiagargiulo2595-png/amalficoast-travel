@@ -84,9 +84,10 @@
   // Menu visibility (DESKTOP ONLY - mega-menu doesn't exist on mobile)
   if (megaMenu) {
     let activeMenu = null;
+    alert('Menu system loaded'); // TEMP DEBUG
 
     function showMenu(menuId) {
-      console.log('showMenu:', menuId);
+      alert('Opening menu: ' + menuId); // TEMP DEBUG
       // Hide all menu content divs
       document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
       // Show selected menu
@@ -95,27 +96,22 @@
         menu.classList.remove('hidden');
         megaMenu.classList.remove('hidden');
         activeMenu = menuId;
-        console.log('Menu opened:', menuId);
       }
     }
 
     function hideMenu() {
-      console.log('hideMenu');
       document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
       megaMenu.classList.add('hidden');
       activeMenu = null;
     }
 
-    // Menu button listeners - both click and hover (desktop only)
-    const menuButtons = document.querySelectorAll('[data-menu]');
-    console.log('Found menu buttons:', menuButtons.length);
-
-    menuButtons.forEach(btn => {
-      console.log('Adding listener to button:', btn.dataset.menu);
+    // Menu button listeners
+    document.querySelectorAll('[data-menu]').forEach(btn => {
+      // Show on hover (desktop)
       btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
+      // Toggle on click
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log('Button clicked:', btn.dataset.menu, 'Active:', activeMenu);
         if (activeMenu === btn.dataset.menu) {
           hideMenu();
         } else {
@@ -127,16 +123,12 @@
     // Hide menu on mouseleave from header
     nav?.addEventListener('mouseleave', hideMenu);
 
-    // Also hide menu on click outside
+    // Hide menu on click outside
     document.addEventListener('click', (e) => {
       if (activeMenu && !nav?.contains(e.target) && !megaMenu.contains(e.target)) {
         hideMenu();
       }
     });
-
-    console.log('Menu system initialized');
-  } else {
-    console.log('mega-menu not found - mobile device');
   }
 </script> <main>   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center"> <img src="/images/spiaggia-grande-positano.jpg" alt="Spiaggia Grande di Positano" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"> <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div> <div class="relative z-10 text-center px-6 max-w-4xl text-white"> <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3"><a href="/it-it/costiera-amalfitana/positano/" class="text-med-gold hover:underline">Positano</a> · Costiera Amalfitana</p> <h1 class="font-serif text-display text-white mb-6">Spiaggia Grande</h1> <p class="text-lg md:text-xl font-light text-white/80">Il cuore mondano della Costiera Amalfitana.</p> </div> </section>  <section class="bg-med-cream py-24 px-6"> <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16"> <!-- Testo principale --> <div class="lg:col-span-2 space-y-12"> <div> <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Il Glamour della Costiera</h2> <p class="text-slate-600 text-lg leading-relaxed mb-6">
 La Spiaggia Grande di <a href="/it-it/costiera-amalfitana/positano/" class="text-med-blue hover:underline">Positano</a> è il centro della vita mondana della costiera. Con la città verticale alle spalle - case color pastello che si arrampicano fino alla chiesa di Santa Maria Assunta - offre uno scenario unico al mondo. Nel 2026, i Beach Club richiedono prenotazioni con settimane di anticipo in alta stagione.

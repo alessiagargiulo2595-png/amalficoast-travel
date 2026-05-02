@@ -84,9 +84,10 @@
   // Menu visibility (DESKTOP ONLY - mega-menu doesn't exist on mobile)
   if (megaMenu) {
     let activeMenu = null;
+    alert('Menu system loaded'); // TEMP DEBUG
 
     function showMenu(menuId) {
-      console.log('showMenu:', menuId);
+      alert('Opening menu: ' + menuId); // TEMP DEBUG
       // Hide all menu content divs
       document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
       // Show selected menu
@@ -95,27 +96,22 @@
         menu.classList.remove('hidden');
         megaMenu.classList.remove('hidden');
         activeMenu = menuId;
-        console.log('Menu opened:', menuId);
       }
     }
 
     function hideMenu() {
-      console.log('hideMenu');
       document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
       megaMenu.classList.add('hidden');
       activeMenu = null;
     }
 
-    // Menu button listeners - both click and hover (desktop only)
-    const menuButtons = document.querySelectorAll('[data-menu]');
-    console.log('Found menu buttons:', menuButtons.length);
-
-    menuButtons.forEach(btn => {
-      console.log('Adding listener to button:', btn.dataset.menu);
+    // Menu button listeners
+    document.querySelectorAll('[data-menu]').forEach(btn => {
+      // Show on hover (desktop)
       btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
+      // Toggle on click
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log('Button clicked:', btn.dataset.menu, 'Active:', activeMenu);
         if (activeMenu === btn.dataset.menu) {
           hideMenu();
         } else {
@@ -127,16 +123,12 @@
     // Hide menu on mouseleave from header
     nav?.addEventListener('mouseleave', hideMenu);
 
-    // Also hide menu on click outside
+    // Hide menu on click outside
     document.addEventListener('click', (e) => {
       if (activeMenu && !nav?.contains(e.target) && !megaMenu.contains(e.target)) {
         hideMenu();
       }
     });
-
-    console.log('Menu system initialized');
-  } else {
-    console.log('mega-menu not found - mobile device');
   }
 </script> <main>   <section class="relative h-[60vh] sm:h-[80vh] flex items-center bg-charcoal overflow-hidden"> <img src="/images/quando-visitare-hero.jpg" alt="Villa Cimbrone, Ravello" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"> <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div> <div class="relative z-10 max-w-7xl mx-auto px-6 text-center"> <p class="text-med-gold text-xs sm:text-sm uppercase tracking-[0.3em] mb-3 font-medium">Guide saisonnier</p> <h1 class="font-serif text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Quand visiter la Côte Amalfitaine</h1> <p class="text-white/80 text-lg max-w-2xl mx-auto font-light">Chaque mois a ses avantages et inconvénients. Guide complet mois par mois sur le climat, l'affluence et les prix.</p> </div> </section>  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> <p class="text-lg text-slate-600 leading-relaxed">
 La question la plus fréquente de ceux qui planifient un voyage sur la Côte Amalfitaine est : quand y aller ? La réponse honnête est qu'il n'existe pas de moment parfait absolu - tout dépend de ce que vous recherchez. En juillet et août la mer est magnifique mais la côte est surpeuplée ; au printemps et en automne le paysage est superbe et la foule minimale, mais certains services sont réduits. Ce guide mois par mois vous aidera à choisir la bonne période pour vous.

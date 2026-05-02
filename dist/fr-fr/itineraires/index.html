@@ -84,9 +84,10 @@
   // Menu visibility (DESKTOP ONLY - mega-menu doesn't exist on mobile)
   if (megaMenu) {
     let activeMenu = null;
+    alert('Menu system loaded'); // TEMP DEBUG
 
     function showMenu(menuId) {
-      console.log('showMenu:', menuId);
+      alert('Opening menu: ' + menuId); // TEMP DEBUG
       // Hide all menu content divs
       document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
       // Show selected menu
@@ -95,27 +96,22 @@
         menu.classList.remove('hidden');
         megaMenu.classList.remove('hidden');
         activeMenu = menuId;
-        console.log('Menu opened:', menuId);
       }
     }
 
     function hideMenu() {
-      console.log('hideMenu');
       document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
       megaMenu.classList.add('hidden');
       activeMenu = null;
     }
 
-    // Menu button listeners - both click and hover (desktop only)
-    const menuButtons = document.querySelectorAll('[data-menu]');
-    console.log('Found menu buttons:', menuButtons.length);
-
-    menuButtons.forEach(btn => {
-      console.log('Adding listener to button:', btn.dataset.menu);
+    // Menu button listeners
+    document.querySelectorAll('[data-menu]').forEach(btn => {
+      // Show on hover (desktop)
       btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
+      // Toggle on click
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log('Button clicked:', btn.dataset.menu, 'Active:', activeMenu);
         if (activeMenu === btn.dataset.menu) {
           hideMenu();
         } else {
@@ -127,16 +123,12 @@
     // Hide menu on mouseleave from header
     nav?.addEventListener('mouseleave', hideMenu);
 
-    // Also hide menu on click outside
+    // Hide menu on click outside
     document.addEventListener('click', (e) => {
       if (activeMenu && !nav?.contains(e.target) && !megaMenu.contains(e.target)) {
         hideMenu();
       }
     });
-
-    console.log('Menu system initialized');
-  } else {
-    console.log('mega-menu not found - mobile device');
   }
 </script> <main>   <section class="relative bg-charcoal text-white py-20 overflow-hidden"> <img src="/images/itinerari-hero.jpg" alt="Côte Amalfitaine itinéraires" class="absolute inset-0 w-full h-full object-cover opacity-20" loading="eager" referrerpolicy="no-referrer"> <div class="absolute inset-0 bg-charcoal/80"></div> <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"> <p class="text-white/80 text-xs sm:text-sm uppercase tracking-[0.3em] mb-3">Planifier le voyage</p> <h1 class="text-4xl md:text-5xl font-bold font-serif mb-4">Itinéraires Côte Amalfitaine</h1> <p class="text-white/80 text-lg max-w-2xl mx-auto">1 jour, 3 jours ou 1 semaine : des itinéraires détaillés pour profiter au mieux de la Côte Amalfitaine selon le temps dont vous disposez.</p> </div> </section> <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> <p class="text-lg text-slate-600 leading-relaxed">
 La Côte Amalfitaine peut se visiter en une journée (intense) ou se savourer pendant des semaines. La différence est énorme : celui qui n'a qu'une journée verra les lieux emblématiques mais rarement ce qui se cache derrière la carte postale ; celui qui a une semaine peut découvrir les villages plus calmes, randonner sur les sentiers, manger dans les restaurants locaux, s'arrêter regarder le coucher de soleil. Ces itinéraires ont été conçus pour optimiser chaque heure, quelle que soit votre disponibilité.
