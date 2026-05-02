@@ -971,51 +971,58 @@ const eventiGastronomia = ({
     }
   });
 
-  // Menu visibility (DESKTOP ONLY - mega-menu doesn't exist on mobile)
+  // Menu visibility (DESKTOP ONLY)
   if (megaMenu) {
     let activeMenu = null;
-    alert('Menu system loaded'); // TEMP DEBUG
 
     function showMenu(menuId) {
-      alert('Opening menu: ' + menuId); // TEMP DEBUG
-      // Hide all menu content divs
+      // Hide all menu sections
       document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-      // Show selected menu
-      const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
-      if (menu) {
-        menu.classList.remove('hidden');
-        megaMenu.classList.remove('hidden');
-        activeMenu = menuId;
-      }
+      // Show target menu
+      document.querySelector(`[data-menu-id="${menuId}"]`)?.classList.remove('hidden');
+      // Show mega menu container
+      megaMenu.classList.remove('hidden');
+      activeMenu = menuId;
     }
 
     function hideMenu() {
+      // Hide all menu sections
       document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
+      // Hide mega menu container
       megaMenu.classList.add('hidden');
       activeMenu = null;
     }
 
-    // Menu button listeners
-    document.querySelectorAll('[data-menu]').forEach(btn => {
-      // Show on hover (desktop)
-      btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
-      // Toggle on click
+    // Attach listeners to all menu buttons
+    const menuButtons = document.querySelectorAll('[data-menu]');
+    menuButtons.forEach(btn => {
+      // Mouseenter: show menu on hover
+      btn.addEventListener('mouseenter', () => {
+        const menuId = btn.getAttribute('data-menu');
+        if (menuId) showMenu(menuId);
+      });
+
+      // Click: toggle menu
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (activeMenu === btn.dataset.menu) {
+        e.stopPropagation();
+        const menuId = btn.getAttribute('data-menu');
+        if (menuId && activeMenu === menuId) {
           hideMenu();
-        } else {
-          showMenu(btn.dataset.menu);
+        } else if (menuId) {
+          showMenu(menuId);
         }
       });
     });
 
-    // Hide menu on mouseleave from header
-    nav?.addEventListener('mouseleave', hideMenu);
+    // Hide menu when mouse leaves header + menu area
+    nav?.addEventListener('mouseleave', () => {
+      hideMenu();
+    });
 
-    // Hide menu on click outside
-    document.addEventListener('click', (e) => {
-      if (activeMenu && !nav?.contains(e.target) && !megaMenu.contains(e.target)) {
+    // Hide menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && activeMenu) {
         hideMenu();
       }
     });
