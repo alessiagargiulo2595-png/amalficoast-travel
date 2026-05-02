@@ -81,63 +81,33 @@
     }
   });
 
-  // Menu visibility (DESKTOP ONLY - mega-menu doesn't exist on mobile)
-  if (megaMenu) {
-    let activeMenu = null;
+  // Menu visibility
+  let activeMenu = null;
 
-    function showMenu(menuId) {
-      console.log('showMenu:', menuId);
-      // Hide all menu content divs
-      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-      // Show selected menu
-      const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
-      if (menu) {
-        menu.classList.remove('hidden');
-        megaMenu.classList.remove('hidden');
-        activeMenu = menuId;
-        console.log('Menu opened:', menuId);
-      }
+  function showMenu(menuId) {
+    // Hide all menus first
+    document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
+    // Show selected menu
+    const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
+    if (menu) {
+      menu.classList.remove('hidden');
+      megaMenu?.classList.remove('hidden');
+      activeMenu = menuId;
     }
-
-    function hideMenu() {
-      console.log('hideMenu');
-      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-      megaMenu.classList.add('hidden');
-      activeMenu = null;
-    }
-
-    // Menu button listeners - both click and hover (desktop only)
-    const menuButtons = document.querySelectorAll('[data-menu]');
-    console.log('Found menu buttons:', menuButtons.length);
-
-    menuButtons.forEach(btn => {
-      console.log('Adding listener to button:', btn.dataset.menu);
-      btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log('Button clicked:', btn.dataset.menu, 'Active:', activeMenu);
-        if (activeMenu === btn.dataset.menu) {
-          hideMenu();
-        } else {
-          showMenu(btn.dataset.menu);
-        }
-      });
-    });
-
-    // Hide menu on mouseleave from header
-    nav?.addEventListener('mouseleave', hideMenu);
-
-    // Also hide menu on click outside
-    document.addEventListener('click', (e) => {
-      if (activeMenu && !nav?.contains(e.target) && !megaMenu.contains(e.target)) {
-        hideMenu();
-      }
-    });
-
-    console.log('Menu system initialized');
-  } else {
-    console.log('mega-menu not found - mobile device');
   }
+
+  function hideMenu() {
+    megaMenu?.classList.add('hidden');
+    activeMenu = null;
+  }
+
+  // Menu button listeners
+  document.querySelectorAll('[data-menu]').forEach(btn => {
+    btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
+  });
+
+  // Hide menu on mouseleave from header
+  nav?.addEventListener('mouseleave', hideMenu);
 </script> <main>   <section class="relative h-[60vh] sm:h-[80vh] flex items-center bg-charcoal overflow-hidden"> <img src="/images/come-arrivare-hero.jpg" alt="Porto di Sorrento, Costiera Amalfitana" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"> <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div> <div class="relative z-10 max-w-7xl mx-auto px-6 text-center"> <p class="text-med-gold text-xs sm:text-sm uppercase tracking-[0.3em] mb-3 font-medium">Guida pratica</p> <h1 class="font-serif text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Come arrivare alla Costiera Amalfitana</h1> <p class="text-white/80 text-lg max-w-2xl mx-auto font-light">Treno, aereo, traghetto o auto: tutte le opzioni per raggiungere la costiera dall'Italia e dall'estero.</p> </div> </section> <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
 La Costiera Amalfitana non ha un aeroporto proprio né una stazione ferroviaria sul tratto principale. Il modo più comodo per arrivarci è passare per Napoli (aeroporto internazionale e stazione ad alta velocità) o per Salerno (raggiungibile in treno da tutta Italia). Da lì ci sono traghetti, bus e transfer privati.
 </p> </section>  <section class="pb-16"> <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12"> <!-- Da Napoli --> <div class="bg-white rounded-[2rem] shadow-sm border border-slate-100 p-6 sm:p-8"> <div class="flex items-center gap-4 mb-6"> <div class="w-12 h-12 bg-med-gold rounded-2xl flex items-center justify-center"> <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg> </div> <div> <h2 class="text-2xl font-bold font-serif text-slate-900">Da Napoli</h2> <p class="text-med-gold text-xs sm:text-sm">Aeroporto di Capodichino · Stazione Centrale</p> </div> </div> <p class="text-slate-600 leading-relaxed mb-6">

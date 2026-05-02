@@ -81,63 +81,33 @@
     }
   });
 
-  // Menu visibility (DESKTOP ONLY - mega-menu doesn't exist on mobile)
-  if (megaMenu) {
-    let activeMenu = null;
+  // Menu visibility
+  let activeMenu = null;
 
-    function showMenu(menuId) {
-      console.log('showMenu:', menuId);
-      // Hide all menu content divs
-      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-      // Show selected menu
-      const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
-      if (menu) {
-        menu.classList.remove('hidden');
-        megaMenu.classList.remove('hidden');
-        activeMenu = menuId;
-        console.log('Menu opened:', menuId);
-      }
+  function showMenu(menuId) {
+    // Hide all menus first
+    document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
+    // Show selected menu
+    const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
+    if (menu) {
+      menu.classList.remove('hidden');
+      megaMenu?.classList.remove('hidden');
+      activeMenu = menuId;
     }
-
-    function hideMenu() {
-      console.log('hideMenu');
-      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-      megaMenu.classList.add('hidden');
-      activeMenu = null;
-    }
-
-    // Menu button listeners - both click and hover (desktop only)
-    const menuButtons = document.querySelectorAll('[data-menu]');
-    console.log('Found menu buttons:', menuButtons.length);
-
-    menuButtons.forEach(btn => {
-      console.log('Adding listener to button:', btn.dataset.menu);
-      btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log('Button clicked:', btn.dataset.menu, 'Active:', activeMenu);
-        if (activeMenu === btn.dataset.menu) {
-          hideMenu();
-        } else {
-          showMenu(btn.dataset.menu);
-        }
-      });
-    });
-
-    // Hide menu on mouseleave from header
-    nav?.addEventListener('mouseleave', hideMenu);
-
-    // Also hide menu on click outside
-    document.addEventListener('click', (e) => {
-      if (activeMenu && !nav?.contains(e.target) && !megaMenu.contains(e.target)) {
-        hideMenu();
-      }
-    });
-
-    console.log('Menu system initialized');
-  } else {
-    console.log('mega-menu not found - mobile device');
   }
+
+  function hideMenu() {
+    megaMenu?.classList.add('hidden');
+    activeMenu = null;
+  }
+
+  // Menu button listeners
+  document.querySelectorAll('[data-menu]').forEach(btn => {
+    btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
+  });
+
+  // Hide menu on mouseleave from header
+  nav?.addEventListener('mouseleave', hideMenu);
 </script> <main>   <section class="relative h-[60vh] sm:h-[80vh] flex items-center bg-charcoal overflow-hidden"> <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div> <img src="/images/praiano-hero.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"> <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8"> <nav class="flex items-center gap-2 text-white/60 text-xs mb-6"> <a href="/fr-fr/" class="hover:text-white transition-colors">Accueil</a><span>/</span><a href="/fr-fr/cote-amalfitaine/" class="hover:text-white transition-colors">Côte Amalfitaine</a><span>/</span><span class="text-white">Praiano</span> </nav> <div class="max-w-3xl"> <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Côte Amalfitaine · Coucher de soleil & Authenticité</p> <h1 class="font-serif text-display text-white mb-4">Praiano</h1> <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
 Le secret le mieux gardé entre <a href="/fr-fr/cote-amalfitaine/positano/" class="text-med-gold hover:underline">Positano</a> et <a href="/fr-fr/cote-amalfitaine/amalfi/" class="text-med-gold hover:underline">Amalfi</a>. Praiano offre des couchers de soleil à couper le souffle depuis San Gennaro, une plage aux eaux cristallines et une atmosphère authentiquement locale - sans la foule ni les prix exorbitants de ses célèbres voisins.
 </p> <div class="flex flex-wrap gap-3 mt-8"> <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 transition-all duration-300">Infos pratiques</a> <a href="#how-to-get-here" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">Comment y arriver</a> <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a> </div> </div> </div> </section>  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16"> <div class="grid lg:grid-cols-[1fr_300px] gap-12"> <div class="space-y-12"> <div class="prose-editorial"> <p class="text-xl leading-relaxed text-charcoal">

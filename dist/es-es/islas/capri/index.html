@@ -81,63 +81,33 @@
     }
   });
 
-  // Menu visibility (DESKTOP ONLY - mega-menu doesn't exist on mobile)
-  if (megaMenu) {
-    let activeMenu = null;
+  // Menu visibility
+  let activeMenu = null;
 
-    function showMenu(menuId) {
-      console.log('showMenu:', menuId);
-      // Hide all menu content divs
-      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-      // Show selected menu
-      const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
-      if (menu) {
-        menu.classList.remove('hidden');
-        megaMenu.classList.remove('hidden');
-        activeMenu = menuId;
-        console.log('Menu opened:', menuId);
-      }
+  function showMenu(menuId) {
+    // Hide all menus first
+    document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
+    // Show selected menu
+    const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
+    if (menu) {
+      menu.classList.remove('hidden');
+      megaMenu?.classList.remove('hidden');
+      activeMenu = menuId;
     }
-
-    function hideMenu() {
-      console.log('hideMenu');
-      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-      megaMenu.classList.add('hidden');
-      activeMenu = null;
-    }
-
-    // Menu button listeners - both click and hover (desktop only)
-    const menuButtons = document.querySelectorAll('[data-menu]');
-    console.log('Found menu buttons:', menuButtons.length);
-
-    menuButtons.forEach(btn => {
-      console.log('Adding listener to button:', btn.dataset.menu);
-      btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log('Button clicked:', btn.dataset.menu, 'Active:', activeMenu);
-        if (activeMenu === btn.dataset.menu) {
-          hideMenu();
-        } else {
-          showMenu(btn.dataset.menu);
-        }
-      });
-    });
-
-    // Hide menu on mouseleave from header
-    nav?.addEventListener('mouseleave', hideMenu);
-
-    // Also hide menu on click outside
-    document.addEventListener('click', (e) => {
-      if (activeMenu && !nav?.contains(e.target) && !megaMenu.contains(e.target)) {
-        hideMenu();
-      }
-    });
-
-    console.log('Menu system initialized');
-  } else {
-    console.log('mega-menu not found - mobile device');
   }
+
+  function hideMenu() {
+    megaMenu?.classList.add('hidden');
+    activeMenu = null;
+  }
+
+  // Menu button listeners
+  document.querySelectorAll('[data-menu]').forEach(btn => {
+    btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
+  });
+
+  // Hide menu on mouseleave from header
+  nav?.addEventListener('mouseleave', hideMenu);
 </script> <main>   <section class="relative h-[60vh] sm:h-[80vh] flex items-center bg-charcoal overflow-hidden"> <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80 z-10"></div> <img src="/images/capri-hero.jpg" alt="Capri, golfo de Nápoles" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"> <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8"> <nav class="flex items-center gap-2 text-white/60 text-xs mb-6"> <a href="/es-es/" class="hover:text-white transition-colors">Inicio</a><span>/</span><a href="/es-es/islas/" class="hover:text-white transition-colors">Islas</a><span>/</span><span class="text-white">Capri</span> </nav> <div class="max-w-3xl"> <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Isla · Golfo de Nápoles · Sin coches privados</p> <h1 class="font-serif text-display text-white mb-4">Capri</h1> <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
 Una isla calcárea que emerge del Tirreno con una fuerza visual sin igual. La Gruta Azul que ilumina el agua en azul eléctrico, los Faraglioni que se alzan desde el mar, la Piazzetta donde el mundo tiene su cita desde hace un siglo. Capri nunca decepciona.
 </p> <div class="flex flex-wrap gap-3 mt-8"> <a href="#datos-rapidos" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">

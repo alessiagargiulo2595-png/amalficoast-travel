@@ -81,63 +81,33 @@
     }
   });
 
-  // Menu visibility (DESKTOP ONLY - mega-menu doesn't exist on mobile)
-  if (megaMenu) {
-    let activeMenu = null;
+  // Menu visibility
+  let activeMenu = null;
 
-    function showMenu(menuId) {
-      console.log('showMenu:', menuId);
-      // Hide all menu content divs
-      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-      // Show selected menu
-      const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
-      if (menu) {
-        menu.classList.remove('hidden');
-        megaMenu.classList.remove('hidden');
-        activeMenu = menuId;
-        console.log('Menu opened:', menuId);
-      }
+  function showMenu(menuId) {
+    // Hide all menus first
+    document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
+    // Show selected menu
+    const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
+    if (menu) {
+      menu.classList.remove('hidden');
+      megaMenu?.classList.remove('hidden');
+      activeMenu = menuId;
     }
-
-    function hideMenu() {
-      console.log('hideMenu');
-      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-      megaMenu.classList.add('hidden');
-      activeMenu = null;
-    }
-
-    // Menu button listeners - both click and hover (desktop only)
-    const menuButtons = document.querySelectorAll('[data-menu]');
-    console.log('Found menu buttons:', menuButtons.length);
-
-    menuButtons.forEach(btn => {
-      console.log('Adding listener to button:', btn.dataset.menu);
-      btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log('Button clicked:', btn.dataset.menu, 'Active:', activeMenu);
-        if (activeMenu === btn.dataset.menu) {
-          hideMenu();
-        } else {
-          showMenu(btn.dataset.menu);
-        }
-      });
-    });
-
-    // Hide menu on mouseleave from header
-    nav?.addEventListener('mouseleave', hideMenu);
-
-    // Also hide menu on click outside
-    document.addEventListener('click', (e) => {
-      if (activeMenu && !nav?.contains(e.target) && !megaMenu.contains(e.target)) {
-        hideMenu();
-      }
-    });
-
-    console.log('Menu system initialized');
-  } else {
-    console.log('mega-menu not found - mobile device');
   }
+
+  function hideMenu() {
+    megaMenu?.classList.add('hidden');
+    activeMenu = null;
+  }
+
+  // Menu button listeners
+  document.querySelectorAll('[data-menu]').forEach(btn => {
+    btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
+  });
+
+  // Hide menu on mouseleave from header
+  nav?.addEventListener('mouseleave', hideMenu);
 </script> <main>  <section class="relative bg-charcoal overflow-hidden"> <img src="/images/sorrento-hero.jpg" alt="Sorrento e Pompei" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"> <div class="absolute inset-0 bg-gradient-to-br from-[#001a33]/80 via-med-blue/60 to-[#0077cc]/50"></div> <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70"></div> <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20"> <nav class="flex items-center gap-2 text-white/60 text-xs mb-6"> <a href="/it-it/" class="hover:text-white transition-colors">Home</a> <span>/</span> <a href="/it-it/itinerari/" class="hover:text-white transition-colors">Itinerari</a> <span>/</span> <span class="text-white">Sorrento, Pompei e Storia</span> </nav> <div class="max-w-3xl"> <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Itinerario · 3 giorni</p> <h1 class="font-serif text-display text-white mb-4">Sorrento, Pompei e Storia</h1> <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
 Tre giorni tra archeologia e Golfo di Napoli: Sorrento come base, Ercolano e il Vesuvio nel secondo giorno, Pompei nel terzo. Tutto in treno, senza auto.
 </p> </div> </div> </section> <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16"> <section class="max-w-text"> <div class="grid sm:grid-cols-3 gap-4"> <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100"> <p class="text-xs text-slate-400 mb-1">Durata</p> <p class="font-semibold text-charcoal">3 giorni / 2 notti</p> </div> <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100"> <p class="text-xs text-slate-400 mb-1">Base consigliata</p> <p class="font-semibold text-charcoal">Sorrento</p> </div> <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100"> <p class="text-xs text-slate-400 mb-1">Trasporto chiave</p> <p class="font-semibold text-charcoal">Circumvesuviana</p> </div> </div> </section> <section> <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Il programma giorno per giorno</h2> <div class="space-y-8"> <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden"> <div class="bg-med-blue/5 px-6 py-4 flex items-center gap-3"> <span class="text-[10px] uppercase tracking-wide bg-med-blue text-white px-2 py-1 rounded-full font-medium">Giorno 1</span> <h3 class="font-semibold text-charcoal">Sorrento</h3> </div> <ul class="px-6 py-4 space-y-2"> <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span> <span>Arrivo a Sorrento con Circumvesuviana da Napoli (70 min, ~€3.90).</span> </li><li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span> <span>Centro storico: Piazza Tasso, Cattedrale, Vallone dei Mulini (vallata vulcanica nel centro città).</span> </li><li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span> <span>Museo Correale: reperti romani, vedute di Sorrento nel XVIII sec.</span> </li><li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span> <span>Marina Grande: il porto dei pescatori, cena con vista.</span> </li> </ul> </div><div class="bg-white border border-slate-200 rounded-2xl overflow-hidden"> <div class="bg-med-blue/5 px-6 py-4 flex items-center gap-3"> <span class="text-[10px] uppercase tracking-wide bg-med-blue text-white px-2 py-1 rounded-full font-medium">Giorno 2</span> <h3 class="font-semibold text-charcoal">Ercolano e Vesuvio</h3> </div> <ul class="px-6 py-4 space-y-2"> <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span> <span>Circumvesuviana fino a Ercolano Scavi (20 min da Napoli, 50 min da Sorrento).</span> </li><li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span> <span>Sito archeologico di Ercolano: conservazione straordinaria, 2-3 ore.</span> </li><li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span> <span>Pomeriggio: bus/navetta per il Vesuvio (cratere a 1.281 m, ~€12 ingresso + guida obbligatoria). Vista sul Golfo di Napoli.</span> </li><li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span> <span>Rientro a Sorrento in Circumvesuviana.</span> </li> </ul> </div><div class="bg-white border border-slate-200 rounded-2xl overflow-hidden"> <div class="bg-med-blue/5 px-6 py-4 flex items-center gap-3"> <span class="text-[10px] uppercase tracking-wide bg-med-blue text-white px-2 py-1 rounded-full font-medium">Giorno 3</span> <h3 class="font-semibold text-charcoal">Pompei</h3> </div> <ul class="px-6 py-4 space-y-2"> <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span> <span>Circumvesuviana fino a Pompei Scavi - Villa dei Misteri (35 min da Napoli, 45 min da Sorrento).</span> </li><li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span> <span>Scavi di Pompei: Forum, Terme, anfiteatro, case patrizie. Almeno 3h.</span> </li><li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span> <span>Pranzo a Pompei moderna, poi visita al Museo del Tesoro di San Gennaro (facoltativo).</span> </li><li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span> <span>Rientro verso Napoli o Sorrento nel pomeriggio.</span> </li> </ul> </div> </div> </section> <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-8"> <p class="font-semibold text-charcoal text-lg mb-3">Consigli pratici</p> <ul class="space-y-2"> <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span> <span>Pompei ed Ercolano: arriva all&#39;apertura (9:00). Il caldo pomeridiano e le code rendono la visita difficile.</span> </li><li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span> <span>Biglietto combinato Pompei + Ercolano: vale la pena se visiti entrambi nello stesso giorno o in giorni consecutivi.</span> </li><li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span> <span>La Circumvesuviana è frequente ma lenta: da Sorrento a Pompei Scavi ~45 min, da Napoli ~35 min.</span> </li><li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span> <span>Il Vesuvio: il bus navetta parte da Ercolano e da Pompei (controlla gli orari stagionali). La guida è obbligatoria per legge.</span> </li><li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal"> <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span> <span>Sorrento di sera è magnifica: aperitivo a Marina Grande, cena sul corso principale.</span> </li> </ul> </section> <section id="faq"> <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Domande frequenti</h2> <div class="space-y-4"> <details class="group border border-slate-200 rounded-2xl overflow-hidden"> <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors"> Quanto tempo serve per visitare Pompei? <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg> </summary> <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4"> Per una visita completa di Pompei servono almeno 3-4 ore. Una visita essenziale (Forum, Via dell&#39;Abbondanza, Casa del Fauno, Anfiteatro) può farsi in 2-2.5 ore. Si consiglia di arrivare all&#39;apertura (9:00) per evitare il caldo pomeridiano e le code. Biglietto ~€18-20, gratuito under 18. </div> </details><details class="group border border-slate-200 rounded-2xl overflow-hidden"> <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors"> Vale la pena visitare anche Ercolano oltre a Pompei? <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg> </summary> <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4"> Sì, Ercolano è spesso preferita dai visitatori esperti: più piccola di Pompei (2h sufficienti) ma con reperti meglio conservati perché seppellita da fango (non cenere). Il biglietto combinato Pompei+Ercolano esiste. Con 3 giorni, visita Ercolano nel pomeriggio del giorno 2 e Pompei al mattino del giorno 3. </div> </details> </div> </section> </div>  </main> <footer class="bg-slate-900 border-t border-white/5 text-white"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"> <!-- Top grid: brand + 4 link columns --> <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-8"> <!-- Brand --> <div class="col-span-2 md:col-span-3 lg:col-span-1"> <div class="mb-5"> <img src="/logo-footer.svg" alt="Amalfi Coast Travel Guide" class="h-9 w-auto"> </div> <p class="text-white/40 text-sm leading-relaxed">Amalfi Coast Travel aiuta i viaggiatori di tutto il mondo a pianificare il loro viaggio in Costiera Amalfitana attraverso guide, consigli di viaggio e molto altro. L&#39;intero progetto è curato con ❤ da Alessia, direttamente da Massa Lubrense.</p> <p class="mt-4 text-white/20 text-xs italic">La Costiera Amalfitana - Un patrimonio dell&#39;umanità UNESCO</p> </div> <!-- Territori --> <div> <h3 class="font-serif font-bold text-med-gold text-sm uppercase tracking-[0.15em] mb-5">Territori</h3> <ul class="space-y-2.5"> <li> <a href="/it-it/costiera-amalfitana/positano/" class="text-white/45 hover:text-med-gold text-sm transition-colors"> Positano </a> </li><li> <a href="/it-it/costiera-amalfitana/amalfi/" class="text-white/45 hover:text-med-gold text-sm transition-colors"> Amalfi </a> </li><li> <a href="/it-it/costiera-amalfitana/ravello/" class="text-white/45 hover:text-med-gold text-sm transition-colors"> Ravello </a> </li><li> <a href="/it-it/costiera-amalfitana/praiano/" class="text-white/45 hover:text-med-gold text-sm transition-colors"> Praiano </a> </li><li> <a href="/it-it/costiera-amalfitana/marina-di-praia/" class="text-white/45 hover:text-med-gold text-sm transition-colors"> Marina di Praia </a> </li><li> <a href="/it-it/costiera-amalfitana/maiori/" class="text-white/45 hover:text-med-gold text-sm transition-colors"> Maiori </a> </li><li> <a href="/it-it/costiera-amalfitana/minori/" class="text-white/45 hover:text-med-gold text-sm transition-colors"> Minori </a> </li><li> <a href="/it-it/costiera-amalfitana/vietri-sul-mare/" class="text-white/45 hover:text-med-gold text-sm transition-colors"> Vietri sul Mare </a> </li> </ul> </div> <!-- Guida Pratica --> <div> <h3 class="font-serif font-bold text-med-gold text-sm uppercase tracking-[0.15em] mb-5">Guida Pratica</h3> <ul class="space-y-2.5"> <li> <a href="/it-it/guida/traghetti/" class="text-white/45 hover:text-med-gold text-sm transition-colors"> Traghetti 2026 </a> </li><li> <a href="/it-it/guida/bus-sita/" class="text-white/45 hover:text-med-gold text-sm transition-colors"> Bus SITA </a> </li><li> <a href="/it-it/guida/parcheggi-ztl/" class="text-white/45 hover:text-med-gold text-sm transition-colors"> Parcheggi </a> </li><li> <a href="/it-it/spiagge/" class="text-white/45 hover:text-med-gold text-sm transition-colors"> Spiagge Libere </a> </li><li> <a href="/it-it/esperienze/trekking/" class="text-white/45 hover:text-med-gold text-sm transition-colors"> Sentieri Trekking </a> </li> <li> <a href="/it-it/blog/" class="text-white/45 hover:text-med-gold text-sm transition-colors">

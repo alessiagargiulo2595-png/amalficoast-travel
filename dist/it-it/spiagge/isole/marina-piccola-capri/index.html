@@ -81,63 +81,33 @@
     }
   });
 
-  // Menu visibility (DESKTOP ONLY - mega-menu doesn't exist on mobile)
-  if (megaMenu) {
-    let activeMenu = null;
+  // Menu visibility
+  let activeMenu = null;
 
-    function showMenu(menuId) {
-      console.log('showMenu:', menuId);
-      // Hide all menu content divs
-      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-      // Show selected menu
-      const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
-      if (menu) {
-        menu.classList.remove('hidden');
-        megaMenu.classList.remove('hidden');
-        activeMenu = menuId;
-        console.log('Menu opened:', menuId);
-      }
+  function showMenu(menuId) {
+    // Hide all menus first
+    document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
+    // Show selected menu
+    const menu = document.querySelector(`[data-menu-id="${menuId}"]`);
+    if (menu) {
+      menu.classList.remove('hidden');
+      megaMenu?.classList.remove('hidden');
+      activeMenu = menuId;
     }
-
-    function hideMenu() {
-      console.log('hideMenu');
-      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-      megaMenu.classList.add('hidden');
-      activeMenu = null;
-    }
-
-    // Menu button listeners - both click and hover (desktop only)
-    const menuButtons = document.querySelectorAll('[data-menu]');
-    console.log('Found menu buttons:', menuButtons.length);
-
-    menuButtons.forEach(btn => {
-      console.log('Adding listener to button:', btn.dataset.menu);
-      btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log('Button clicked:', btn.dataset.menu, 'Active:', activeMenu);
-        if (activeMenu === btn.dataset.menu) {
-          hideMenu();
-        } else {
-          showMenu(btn.dataset.menu);
-        }
-      });
-    });
-
-    // Hide menu on mouseleave from header
-    nav?.addEventListener('mouseleave', hideMenu);
-
-    // Also hide menu on click outside
-    document.addEventListener('click', (e) => {
-      if (activeMenu && !nav?.contains(e.target) && !megaMenu.contains(e.target)) {
-        hideMenu();
-      }
-    });
-
-    console.log('Menu system initialized');
-  } else {
-    console.log('mega-menu not found - mobile device');
   }
+
+  function hideMenu() {
+    megaMenu?.classList.add('hidden');
+    activeMenu = null;
+  }
+
+  // Menu button listeners
+  document.querySelectorAll('[data-menu]').forEach(btn => {
+    btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
+  });
+
+  // Hide menu on mouseleave from header
+  nav?.addEventListener('mouseleave', hideMenu);
 </script> <main>   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center"> <img src="/images/marina-piccola-capri.jpg" alt="Marina Piccola, Capri, con i Faraglioni sullo sfondo" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"> <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div> <div class="relative z-10 text-center px-6 max-w-4xl text-white"> <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Capri · Isole del Golfo</p> <h1 class="font-serif text-display text-white mb-6">Marina Piccola</h1> <p class="text-lg md:text-xl font-light text-white/80">I Faraglioni sembrano toccabili con mano.</p> </div> </section>  <section class="bg-med-cream py-24 px-6"> <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16"> <!-- Testo principale --> <div class="lg:col-span-2 space-y-12"> <div> <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Il Mito di Capri</h2> <p class="text-slate-600 text-lg leading-relaxed mb-6">
 Marina Piccola è la baia riparata dal vento dove si trovano i lidi più famosi di Capri. Da qui i Faraglioni - le tre rocce iconiche emergenti dal mare - sembrano toccabili con mano: è la vista più drammatica e più fotografata dell'isola.
 </p> <p class="text-slate-600 text-lg leading-relaxed">
