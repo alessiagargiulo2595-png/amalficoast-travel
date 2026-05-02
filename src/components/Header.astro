@@ -359,53 +359,94 @@ const eventiGastronomia = ({
             </svg>
           </button>
           <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover/dest:opacity-100 group-hover/dest:visible transition-all duration-200 z-50">
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 grid grid-cols-3 gap-6 w-[580px]">
+            <div class="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-100 overflow-hidden flex w-[900px]">
 
-              <!-- Costiera -->
-              <div>
-                <a href={`${costieraBase}/`} class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
-                  {dh.costiera}
-                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
-                </a>
-                <div class="space-y-0.5 mt-2">
-                  {costieraBorghi.map(b => (
-                    <a href={b.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                      <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
-                      {b.name}
-                    </a>
-                  ))}
+              <!-- Sidebar sinistra -->
+              <div class="w-[280px] bg-slate-50 p-8 flex flex-col justify-between border-r border-slate-100">
+                <div>
+                  <h3 class="font-serif text-3xl mb-3 text-med-gold">{nav.dest}</h3>
+                  <p class="text-slate-400 text-[10px] leading-relaxed uppercase tracking-[0.2em] font-medium">
+                    Scopri l'essenza<br />del Mediterraneo
+                  </p>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="text-4xl">🍋</span>
+                  <span class="text-[9px] font-bold text-med-gold uppercase tracking-widest leading-tight">
+                    Luxury Travel<br />Collection
+                  </span>
                 </div>
               </div>
 
-              <!-- Penisola -->
-              <div>
-                <a href={sorrentineHref} class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
-                  {dh.sorrentina}
-                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
-                </a>
-                <div class="space-y-0.5 mt-2">
-                  {sorrentinaBorghi.map(b => (
-                    <a href={b.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                      <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
-                      {b.name}
-                    </a>
-                  ))}
-                </div>
-              </div>
+              <!-- Area contenuti (destra) -->
+              <div class="flex-grow p-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-8">
 
-              <!-- Isole -->
-              <div>
-                <a href={isoleHref} class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
-                  {dh.isole}
-                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
-                </a>
-                <div class="space-y-0.5 mt-2">
-                  {isoleLinks.map(b => (
-                    <a href={b.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                      <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
-                      {b.name}
+                  <!-- Costiera -->
+                  <div class="flex flex-col">
+                    <a href={`${costieraBase}/`} class="text-slate-900 text-[10px] font-bold uppercase tracking-[0.3em] mb-4 pb-2 border-b border-slate-100 hover:text-med-gold transition-colors">
+                      {dh.costiera}
                     </a>
-                  ))}
+                    <ul class="space-y-3">
+                      {costieraBorghi.map(b => (
+                        <li>
+                          <a href={b.href} class="group flex items-center gap-2 text-slate-500 hover:text-med-gold transition-all font-sans text-[11px] uppercase tracking-widest">
+                            <div class="w-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0">
+                              <span>🍋</span>
+                            </div>
+                            {b.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Penisola -->
+                  <div class="flex flex-col">
+                    <a href={sorrentineHref} class="text-slate-900 text-[10px] font-bold uppercase tracking-[0.3em] mb-4 pb-2 border-b border-slate-100 hover:text-med-gold transition-colors">
+                      {dh.sorrentina}
+                    </a>
+                    <ul class="space-y-3">
+                      {sorrentinaBorghi.map(b => (
+                        <li>
+                          <a href={b.href} class="group flex items-center gap-2 text-slate-500 hover:text-med-gold transition-all font-sans text-[11px] uppercase tracking-widest">
+                            <div class="w-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0">
+                              <span>🍋</span>
+                            </div>
+                            {b.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Isole -->
+                  <div class="flex flex-col">
+                    <a href={isoleHref} class="text-slate-900 text-[10px] font-bold uppercase tracking-[0.3em] mb-4 pb-2 border-b border-slate-100 hover:text-med-gold transition-colors">
+                      {dh.isole}
+                    </a>
+                    <ul class="space-y-3">
+                      {isoleLinks.map(b => (
+                        <li>
+                          <a href={b.href} class="group flex items-center gap-2 text-slate-500 hover:text-med-gold transition-all font-sans text-[11px] uppercase tracking-widest">
+                            <div class="w-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0">
+                              <span>🍋</span>
+                            </div>
+                            {b.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                </div>
+
+                <!-- Footer menu -->
+                <div class="mt-8 pt-6 border-t border-slate-50 flex justify-between items-center">
+                  <p class="text-[10px] text-slate-300 italic">Prepara il tuo viaggio esclusivo 2026</p>
+                  <a href={`/${lang}/destinations/`} class="text-slate-900 font-bold text-[10px] uppercase tracking-widest flex items-center gap-2 hover:gap-3 transition-all group">
+                    Vedi Tutto
+                    <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                  </a>
                 </div>
               </div>
 
@@ -422,28 +463,58 @@ const eventiGastronomia = ({
             </svg>
           </button>
           <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover/spiagge:opacity-100 group-hover/spiagge:visible transition-all duration-200 z-50">
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 grid grid-cols-3 gap-6 w-[560px]">
-              <div class="col-span-3 mb-1">
-                <a href={spiaggeHref} class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold flex items-center gap-1">
-                  {tutteBeachLabel}
-                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
-                </a>
-              </div>
-              {spiaggeAree.map(area => (
+            <div class="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-100 overflow-hidden flex w-[900px]">
+
+              <!-- Sidebar sinistra -->
+              <div class="w-[280px] bg-slate-50 p-8 flex flex-col justify-between border-r border-slate-100">
                 <div>
-                  <a href={area.href} class="text-[10px] uppercase tracking-[0.3em] text-slate-400 hover:text-med-blue font-semibold mb-3 block">
-                    {area.area}
-                  </a>
-                  <div class="space-y-0.5">
-                    {area.beaches.map(b => (
-                      <a href={b.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                        <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
-                        {b.name}
-                      </a>
-                    ))}
-                  </div>
+                  <h3 class="font-serif text-3xl mb-3 text-med-gold">{nav.spiagge}</h3>
+                  <p class="text-slate-400 text-[10px] leading-relaxed uppercase tracking-[0.2em] font-medium">
+                    Scopri le coste<br />più affascinanti
+                  </p>
                 </div>
-              ))}
+                <div class="flex items-center gap-3">
+                  <span class="text-4xl">🏖️</span>
+                  <span class="text-[9px] font-bold text-med-gold uppercase tracking-widest leading-tight">
+                    Beach<br />Paradise
+                  </span>
+                </div>
+              </div>
+
+              <!-- Area contenuti (destra) -->
+              <div class="flex-grow p-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-8">
+                  {spiaggeAree.map(area => (
+                    <div class="flex flex-col">
+                      <a href={area.href} class="text-slate-900 text-[10px] font-bold uppercase tracking-[0.3em] mb-4 pb-2 border-b border-slate-100 hover:text-med-gold transition-colors">
+                        {area.area}
+                      </a>
+                      <ul class="space-y-3">
+                        {area.beaches.map(b => (
+                          <li>
+                            <a href={b.href} class="group flex items-center gap-2 text-slate-500 hover:text-med-gold transition-all font-sans text-[11px] uppercase tracking-widest">
+                              <div class="w-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0">
+                                <span>🏖️</span>
+                              </div>
+                              {b.name}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+
+                <!-- Footer menu -->
+                <div class="mt-8 pt-6 border-t border-slate-50 flex justify-between items-center">
+                  <p class="text-[10px] text-slate-300 italic">Scopri tutte le spiagge della costiera</p>
+                  <a href={spiaggeHref} class="text-slate-900 font-bold text-[10px] uppercase tracking-widest flex items-center gap-2 hover:gap-3 transition-all group">
+                    Vedi Tutto
+                    <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                  </a>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -457,15 +528,49 @@ const eventiGastronomia = ({
             </svg>
           </button>
           <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover/guida:opacity-100 group-hover/guida:visible transition-all duration-200 z-50">
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-4 w-52">
-              <div class="space-y-0.5">
-                {guidaLinks.map(l => (
-                  <a href={l.href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                    <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
-                    {l.name}
-                  </a>
-                ))}
+            <div class="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-100 overflow-hidden flex w-[850px]">
+
+              <!-- Sidebar sinistra -->
+              <div class="w-[280px] bg-slate-50 p-8 flex flex-col justify-between border-r border-slate-100">
+                <div>
+                  <h3 class="font-serif text-3xl mb-3 text-med-gold">{nav.guida}</h3>
+                  <p class="text-slate-400 text-[10px] leading-relaxed uppercase tracking-[0.2em] font-medium">
+                    Consigli pratici<br />per il viaggio
+                  </p>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="text-4xl">📚</span>
+                  <span class="text-[9px] font-bold text-med-gold uppercase tracking-widest leading-tight">
+                    Travel<br />Guide
+                  </span>
+                </div>
               </div>
+
+              <!-- Area contenuti (destra) -->
+              <div class="flex-grow p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                  {guidaLinks.map(l => (
+                    <div class="flex flex-col">
+                      <a href={l.href} class="group flex items-center gap-2 text-slate-500 hover:text-med-gold transition-all font-sans text-[11px] uppercase tracking-widest">
+                        <div class="w-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0">
+                          <span>📚</span>
+                        </div>
+                        {l.name}
+                      </a>
+                    </div>
+                  ))}
+                </div>
+
+                <!-- Footer menu -->
+                <div class="mt-8 pt-6 border-t border-slate-50 flex justify-between items-center">
+                  <p class="text-[10px] text-slate-300 italic">Tutto quello che devi sapere</p>
+                  <a href={lang === 'it-it' ? '/it-it/ratgeber/' : lang === 'en-us' ? '/en-us/guide/' : lang === 'de-de' ? '/de-de/ratgeber/' : lang === 'fr-fr' ? '/fr-fr/guide/' : lang === 'es-es' ? '/es-es/guia/' : '#'} class="text-slate-900 font-bold text-[10px] uppercase tracking-widest flex items-center gap-2 hover:gap-3 transition-all group">
+                    Vedi Tutto
+                    <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                  </a>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -479,62 +584,95 @@ const eventiGastronomia = ({
             </svg>
           </button>
           <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover/esp:opacity-100 group-hover/esp:visible transition-all duration-200 z-50">
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-5 grid grid-cols-2 gap-5 w-[480px]">
+            <div class="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-100 overflow-hidden flex w-[920px]">
 
-              <!-- Esperienze -->
-              <div>
-                <a href={esperienzeHref} class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
-                  {nav.esp}
-                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
-                </a>
-                <div class="space-y-0.5 mt-2">
-                  {esperienze.map(l => (
-                    <a href={l.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                      <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30 flex-shrink-0"></span>
-                      {l.name}
-                    </a>
-                  ))}
+              <!-- Sidebar sinistra -->
+              <div class="w-[280px] bg-slate-50 p-8 flex flex-col justify-between border-r border-slate-100">
+                <div>
+                  <h3 class="font-serif text-3xl mb-3 text-med-gold">{nav.esp}</h3>
+                  <p class="text-slate-400 text-[10px] leading-relaxed uppercase tracking-[0.2em] font-medium">
+                    Vivi momenti<br />indimenticabili
+                  </p>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="text-4xl">🎭</span>
+                  <span class="text-[9px] font-bold text-med-gold uppercase tracking-widest leading-tight">
+                    Experiences<br />Collection
+                  </span>
                 </div>
               </div>
 
-              <!-- Itinerari -->
-              <div>
-                <a href={itinerariHref} class="text-[10px] uppercase tracking-[0.3em] text-med-blue hover:text-med-blue/70 font-semibold mb-3 flex items-center gap-1">
-                  {itinerariLabel}
-                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
-                </a>
-                <div class="mt-2">
-                  <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em] px-2 mb-1">{itPeriods.d1}</p>
-                  <div class="space-y-0.5 mb-2">
-                    {itinerari1g.map(l => (
-                      <a href={l.href} class="flex items-center gap-2 px-2 py-1 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                        <span class="w-1.5 h-1.5 rounded-full bg-med-blue/20 flex-shrink-0"></span>
-                        {l.name}
-                      </a>
-                    ))}
-                  </div>
-                  <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em] px-2 mb-1">{itPeriods.d3}</p>
-                  <div class="space-y-0.5 mb-2">
-                    {itinerari3g.map(l => (
-                      <a href={l.href} class="flex items-center gap-2 px-2 py-1 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                        <span class="w-1.5 h-1.5 rounded-full bg-med-blue/20 flex-shrink-0"></span>
-                        {l.name}
-                      </a>
-                    ))}
-                  </div>
-                  {itinerari7g.length > 0 && (
-                    <>
-                      <p class="text-[10px] text-slate-400 uppercase tracking-[0.2em] px-2 mb-1">{itPeriods.d7}</p>
-                      <div class="space-y-0.5">
-                        {itinerari7g.map(l => (
-                          <a href={l.href} class="flex items-center gap-2 px-2 py-1 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                            <span class="w-1.5 h-1.5 rounded-full bg-med-blue/20 flex-shrink-0"></span>
-                            {l.name}
+              <!-- Area contenuti (destra) -->
+              <div class="flex-grow p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+
+                  <!-- Esperienze -->
+                  <div class="flex flex-col">
+                    <a href={esperienzeHref} class="text-slate-900 text-[10px] font-bold uppercase tracking-[0.3em] mb-4 pb-2 border-b border-slate-100 hover:text-med-gold transition-colors">
+                      {nav.esp}
+                    </a>
+                    <ul class="space-y-3">
+                      {esperienze.map(e => (
+                        <li>
+                          <a href={e.href} class="group flex items-center gap-2 text-slate-500 hover:text-med-gold transition-all font-sans text-[11px] uppercase tracking-widest">
+                            <div class="w-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0">
+                              <span>🎭</span>
+                            </div>
+                            {e.name}
                           </a>
-                        ))}
-                      </div>
-                    </>
-                  )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Itinerari -->
+                  <div class="flex flex-col">
+                    <a href={itinerariHref} class="text-slate-900 text-[10px] font-bold uppercase tracking-[0.3em] mb-4 pb-2 border-b border-slate-100 hover:text-med-gold transition-colors">
+                      {itinerariLabel}
+                    </a>
+                    <ul class="space-y-3">
+                      {itinerari1g.map(i => (
+                        <li>
+                          <a href={i.href} class="group flex items-center gap-2 text-slate-500 hover:text-med-gold transition-all font-sans text-[11px] uppercase tracking-widest">
+                            <div class="w-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0">
+                              <span>🗺️</span>
+                            </div>
+                            {i.name}
+                          </a>
+                        </li>
+                      ))}
+                      {itinerari3g.length > 0 && itinerari3g.map(i => (
+                        <li>
+                          <a href={i.href} class="group flex items-center gap-2 text-slate-500 hover:text-med-gold transition-all font-sans text-[11px] uppercase tracking-widest">
+                            <div class="w-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0">
+                              <span>🗺️</span>
+                            </div>
+                            {i.name}
+                          </a>
+                        </li>
+                      ))}
+                      {itinerari7g.length > 0 && itinerari7g.map(i => (
+                        <li>
+                          <a href={i.href} class="group flex items-center gap-2 text-slate-500 hover:text-med-gold transition-all font-sans text-[11px] uppercase tracking-widest">
+                            <div class="w-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0">
+                              <span>🗺️</span>
+                            </div>
+                            {i.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                </div>
+
+                <!-- Footer menu -->
+                <div class="mt-8 pt-6 border-t border-slate-50 flex justify-between items-center">
+                  <p class="text-[10px] text-slate-300 italic">Pianifica esperienze memorabili</p>
+                  <a href={esperienzeHref} class="text-slate-900 font-bold text-[10px] uppercase tracking-widest flex items-center gap-2 hover:gap-3 transition-all group">
+                    Vedi Tutto
+                    <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                  </a>
                 </div>
               </div>
 
@@ -550,55 +688,96 @@ const eventiGastronomia = ({
               <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
             </svg>
           </button>
-          <div class="absolute right-0 top-full pt-2 opacity-0 invisible group-hover/ev:opacity-100 group-hover/ev:visible transition-all duration-200 z-50">
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-100 p-5 grid grid-cols-3 gap-5 w-[580px]">
+          <div class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover/ev:opacity-100 group-hover/ev:visible transition-all duration-200 z-50">
+            <div class="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-100 overflow-hidden flex w-[900px]">
 
-              <!-- Cultura -->
-              <div>
-                <p class="text-[10px] uppercase tracking-[0.3em] text-med-terracotta font-semibold mb-3 flex items-center gap-1">
-                  <span class="w-2 h-2 rounded-full bg-med-terracotta/60"></span> {evSec.cultura}
-                </p>
-                <div class="space-y-0.5">
-                  {eventiCultura.map(l => (
-                    <a href={l.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-terracotta/5 hover:text-med-terracotta transition-colors">
-                      <span class="w-1.5 h-1.5 rounded-full bg-med-terracotta/30 flex-shrink-0"></span>
-                      {l.name}
-                    </a>
-                  ))}
+              <!-- Sidebar sinistra -->
+              <div class="w-[280px] bg-slate-50 p-8 flex flex-col justify-between border-r border-slate-100">
+                <div>
+                  <h3 class="font-serif text-3xl mb-3 text-med-gold">{nav.ev}</h3>
+                  <p class="text-slate-400 text-[10px] leading-relaxed uppercase tracking-[0.2em] font-medium">
+                    Scopri le<br />celebrazioni locali
+                  </p>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="text-4xl">🎪</span>
+                  <span class="text-[9px] font-bold text-med-gold uppercase tracking-widest leading-tight">
+                    Festival<br />Calendar
+                  </span>
                 </div>
               </div>
 
-              <!-- Tradizioni -->
-              <div>
-                <p class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold mb-3 flex items-center gap-1">
-                  <span class="w-2 h-2 rounded-full bg-med-blue/40"></span> {evSec.tradizioni}
-                </p>
-                <div class="space-y-0.5">
-                  {eventiTradizioni.map(l => (
-                    <a href={l.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">
-                      <span class="w-1.5 h-1.5 rounded-full bg-med-blue/20 flex-shrink-0"></span>
-                      {l.name}
-                    </a>
-                  ))}
-                </div>
-              </div>
+              <!-- Area contenuti (destra) -->
+              <div class="flex-grow p-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-8">
 
-              <!-- Gastronomia -->
-              <div>
-                <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-semibold mb-3 flex items-center gap-1">
-                  <span class="w-2 h-2 rounded-full bg-med-gold/60"></span> {evSec.gastro}
-                </p>
-                <div class="space-y-0.5">
-                  {eventiGastronomia.map(l => (
-                    <a href={l.href} class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-slate-700 hover:bg-med-gold/5 hover:text-med-gold transition-colors">
-                      <span class="w-1.5 h-1.5 rounded-full bg-med-gold/30 flex-shrink-0"></span>
-                      {l.name}
+                  <!-- Cultura -->
+                  <div class="flex flex-col">
+                    <a href={tuttiEvHref} class="text-slate-900 text-[10px] font-bold uppercase tracking-[0.3em] mb-4 pb-2 border-b border-slate-100 hover:text-med-gold transition-colors">
+                      {evSec.cultura}
                     </a>
-                  ))}
+                    <ul class="space-y-3">
+                      {eventiCultura.map(e => (
+                        <li>
+                          <a href={e.href} class="group flex items-center gap-2 text-slate-500 hover:text-med-gold transition-all font-sans text-[11px] uppercase tracking-widest">
+                            <div class="w-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0">
+                              <span>🎪</span>
+                            </div>
+                            {e.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Tradizioni -->
+                  <div class="flex flex-col">
+                    <a href={tuttiEvHref} class="text-slate-900 text-[10px] font-bold uppercase tracking-[0.3em] mb-4 pb-2 border-b border-slate-100 hover:text-med-gold transition-colors">
+                      {evSec.tradizioni}
+                    </a>
+                    <ul class="space-y-3">
+                      {eventiTradizioni.map(e => (
+                        <li>
+                          <a href={e.href} class="group flex items-center gap-2 text-slate-500 hover:text-med-gold transition-all font-sans text-[11px] uppercase tracking-widest">
+                            <div class="w-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0">
+                              <span>🎪</span>
+                            </div>
+                            {e.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Gastronomia -->
+                  <div class="flex flex-col">
+                    <a href={tuttiEvHref} class="text-slate-900 text-[10px] font-bold uppercase tracking-[0.3em] mb-4 pb-2 border-b border-slate-100 hover:text-med-gold transition-colors">
+                      {evSec.gastro}
+                    </a>
+                    <ul class="space-y-3">
+                      {eventiGastronomia.map(e => (
+                        <li>
+                          <a href={e.href} class="group flex items-center gap-2 text-slate-500 hover:text-med-gold transition-all font-sans text-[11px] uppercase tracking-widest">
+                            <div class="w-4 flex justify-center opacity-0 group-hover:opacity-100 transition-all -ml-4 group-hover:ml-0">
+                              <span>🎪</span>
+                            </div>
+                            {e.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
                 </div>
-                <a href={tuttiEvHref} class="mt-3 flex items-center gap-1 px-2 py-1.5 text-xs text-med-blue hover:text-med-blue/70 font-medium transition-colors">
-                  {tuttiEvLabel}
-                </a>
+
+                <!-- Footer menu -->
+                <div class="mt-8 pt-6 border-t border-slate-50 flex justify-between items-center">
+                  <p class="text-[10px] text-slate-300 italic">Scopri il calendario degli eventi</p>
+                  <a href={tuttiEvHref} class="text-slate-900 font-bold text-[10px] uppercase tracking-widest flex items-center gap-2 hover:gap-3 transition-all group">
+                    Vedi Tutto
+                    <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                  </a>
+                </div>
               </div>
 
             </div>
