@@ -12,6 +12,17 @@ export interface BlogPostFr {
 
 export const blogPostsFr: BlogPostFr[] = [
   {
+    id: '10',
+    title: 'Sorrente vs Praiano : Le guide complet pour choisir votre base',
+    slug: 'sorrento-vs-praiano',
+    excerpt: 'Le débat Sorrente vs Praiano : découvrez les différences logistiques, contrastes atmosphériques et nuances géographiques.',
+    category: 'GUIDES',
+    date: '2 mai 2026',
+    readTime: '10 min',
+    image: '/images/sorrento-vs-praiano-hero.jpg',
+    path: '/fr-fr/blog/sorrento-vs-praiano/',
+  },
+  {
     id: '09',
     title: 'L\'Heure d\'Or : Où Admirer le Coucher de Soleil sur la Plage',
     slug: 'heure-or-coucher-soleil',

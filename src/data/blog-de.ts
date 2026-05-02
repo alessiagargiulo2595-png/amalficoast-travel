@@ -12,6 +12,17 @@ export interface BlogPostDe {
 
 export const blogPostsDe: BlogPostDe[] = [
   {
+    id: '10',
+    title: 'Sorrent vs. Praiano: Der komplette Guide für Ihr Basislager',
+    slug: 'sorrento-vs-praiano',
+    excerpt: 'Die Sorrent vs. Praiano Debatte: Entdecken Sie die logistischen Unterschiede, atmosphärischen Kontraste und geografischen Nuancen.',
+    category: 'REISEFÜHRER',
+    date: '2. Mai 2026',
+    readTime: '10 min',
+    image: '/images/sorrento-vs-praiano-hero.jpg',
+    path: '/de-de/blog/sorrento-vs-praiano/',
+  },
+  {
     id: '09',
     title: 'Die Goldene Stunde: Wo Man den Sonnenuntergang am Strand Bewundern Kann',
     slug: 'goldene-stunde-sonnenuntergang',

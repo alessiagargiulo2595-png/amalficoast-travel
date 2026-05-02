@@ -12,6 +12,17 @@ export interface BlogPostEs {
 
 export const blogPostsEs: BlogPostEs[] = [
   {
+    id: '10',
+    title: 'Sorrento vs Praiano: Guía Completa para Elegir tu Base Ideal',
+    slug: 'sorrento-vs-praiano',
+    excerpt: 'El desafío Sorrento vs Praiano: descubre las diferencias logísticas, contrastes atmosféricos y matices geográficos para elegir tu base ideal.',
+    category: 'GUÍAS',
+    date: '2 de mayo de 2026',
+    readTime: '10 min',
+    image: '/images/sorrento-vs-praiano-hero.jpg',
+    path: '/es-es/blog/sorrento-vs-praiano/',
+  },
+  {
     id: '09',
     title: 'La Hora Dorada: Dónde Admirar la Puesta de Sol en la Playa',
     slug: 'hora-dorada-puesta-sol',

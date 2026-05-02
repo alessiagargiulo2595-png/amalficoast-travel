@@ -12,6 +12,17 @@ export interface BlogPostEn {
 
 export const blogPostsEn: BlogPostEn[] = [
   {
+    id: '10',
+    title: 'Sorrento vs Praiano: The Complete Guide to Your Home Base',
+    slug: 'sorrento-vs-praiano',
+    excerpt: 'The Sorrento vs Praiano debate: discover the logistical differences, atmospheric contrasts, and geographic nuances to choose your ideal base.',
+    category: 'GUIDES',
+    date: 'May 2, 2026',
+    readTime: '10 min',
+    image: '/images/sorrento-vs-praiano-hero.jpg',
+    path: '/en-us/blog/sorrento-vs-praiano/',
+  },
+  {
     id: '09',
     title: 'The Golden Hour: Where to Admire the Sunset on the Beach',
     slug: 'golden-hour-sunset',
