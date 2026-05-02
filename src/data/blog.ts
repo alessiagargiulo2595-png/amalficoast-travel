@@ -12,6 +12,17 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '10',
+    title: 'Sorrento vs Praiano: Quale Base Scegliere per la Penisola Sorrentina',
+    slug: 'sorrento-vs-praiano',
+    excerpt: 'Due filosofie di vacanza a confronto: l\'eleganza strategica e la porta dei trasporti di Sorrento, o l\'autenticità silenziosa e il tramonto leggendario di Praiano.',
+    category: 'GUIDE',
+    date: '2 Maggio 2026',
+    readTime: '10 min',
+    image: '/images/sorrento-vs-praiano-hero.jpg',
+    path: '/it-it/blog/sorrento-vs-praiano/',
+  },
+  {
     id: '09',
     title: 'L\'Ora d\'Oro: Dove Ammirare il Tramonto in Spiaggia',
     slug: 'tramonto-spiaggia-costiera',
