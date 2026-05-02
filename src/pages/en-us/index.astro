@@ -148,7 +148,7 @@ const editorial = [
   </section>
 
   <!-- INTRO EDITORIALE -->
-  <section class="py-24">
+  <section class="py-16">
     <div class="max-w-7xl mx-auto px-6">
       <div class="max-w-3xl mx-auto text-center">
         <p class="text-med-gold text-xs uppercase tracking-[0.3em] font-medium mb-4">Why this place is different</p>
@@ -163,7 +163,7 @@ const editorial = [
   </section>
 
   <!-- BORGHI INCANTATI -->
-  <section id="villages" class="py-24 bg-med-cream">
+  <section id="villages" class="py-16 bg-med-cream">
     <div class="max-w-7xl mx-auto px-6">
 
       <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
@@ -178,7 +178,42 @@ const editorial = [
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <!-- MOBILE: Swiper slider -->
+      <div class="swiper swiper-borghi md:hidden">
+        <div class="swiper-wrapper pb-12">
+          {borghi.map((b) => (
+            <div class="swiper-slide">
+              <a href={b.href} class="group cursor-pointer flex flex-col h-full">
+                <div class="relative aspect-[4/5] overflow-hidden rounded-[3rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                  <img
+                    src={b.img}
+                    alt={b.name}
+                    referrerpolicy="no-referrer"
+                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                  <div class="absolute bottom-8 left-8 right-8">
+                    <span class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2 block">{b.subtitle}</span>
+                    <h3 class="font-serif text-3xl font-bold text-white tracking-tight">{b.name}</h3>
+                  </div>
+                </div>
+                <p class="text-slate-500 text-sm leading-relaxed font-light mb-4">{b.description}</p>
+                <div class="flex flex-wrap gap-2">
+                  {b.tags.map(tag => (
+                    <span class="text-[10px] uppercase tracking-wider font-bold text-med-blue bg-med-blue/5 px-3 py-1 rounded-full">{tag}</span>
+                  ))}
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <!-- DESKTOP: Griglia borghi -->
+      <div class="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         {borghi.map((b, i) => (
           <a href={b.href} class="group cursor-pointer fade-in-card" style={`animation-delay: ${i * 0.1}s`}>
             <div class="relative aspect-[4/5] overflow-hidden rounded-[3rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
@@ -212,7 +247,24 @@ const editorial = [
           <h2 class="font-serif text-4xl font-bold text-slate-900 tracking-tight mb-4">The Most Beautiful Beaches</h2>
           <div class="w-20 h-1 bg-med-gold mx-auto rounded-full"></div>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+        <!-- MOBILE: Swiper slider -->
+        <div class="swiper swiper-spiagge md:hidden">
+          <div class="swiper-wrapper pb-12">
+            {topBeaches.map((beach) => (
+              <div class="swiper-slide">
+                <a href={beach.href} class="bg-med-cream p-8 rounded-[2rem] shadow-sm border border-slate-100 text-center hover:shadow-xl transition-all duration-500 hover:scale-105 block h-full flex flex-col justify-center">
+                  <h4 class="font-serif font-bold text-slate-900 mb-1">{beach.name}</h4>
+                  <p class="text-med-gold text-[10px] font-bold uppercase tracking-[0.3em]">{beach.location}</p>
+                </a>
+              </div>
+            ))}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- DESKTOP: Griglia spiagge -->
+        <div class="hidden md:grid grid-cols-2 md:grid-cols-4 gap-6">
           {topBeaches.map((beach) => (
             <a href={beach.href} class="bg-med-cream p-8 rounded-[2rem] shadow-sm border border-slate-100 text-center hover:shadow-xl transition-all duration-500 hover:scale-105 block">
               <h4 class="font-serif font-bold text-slate-900 mb-1">{beach.name}</h4>
@@ -225,14 +277,47 @@ const editorial = [
     </div>
   </section>
 
-  <!-- 3 SILOS -->
-  <section class="bg-charcoal py-24">
+  <!-- 3 SILOS - Image Cards con Overlay -->
+  <section class="bg-charcoal py-16">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-14">
         <p class="text-med-gold text-xs uppercase tracking-[0.3em] font-medium mb-3">Explore by area</p>
         <h2 class="font-serif text-3xl md:text-4xl text-white tracking-tight">Three territories, endless stories</h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- MOBILE: Swiper slider -->
+      <div class="swiper swiper-silos md:hidden">
+        <div class="swiper-wrapper pb-12">
+          {silos.map(silo => (
+            <div class="swiper-slide">
+              <a href={silo.href} class="group relative aspect-[4/5] overflow-hidden rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] block hover:scale-[1.02] transition-transform duration-500">
+                <img
+                  src={silo.img}
+                  alt={silo.title}
+                  referrerpolicy="no-referrer"
+                  class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                <div class="absolute bottom-8 left-8 right-8">
+                  <span class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2 block">{silo.subtitle}</span>
+                  <h3 class="font-serif text-3xl font-bold text-white tracking-tight mb-3">{silo.title}</h3>
+                  <div class="flex flex-wrap gap-2">
+                    {silo.borghi.slice(0, 3).map(b => (
+                      <span class="text-[10px] text-white/70 bg-white/10 px-2 py-0.5 rounded-full">{b}</span>
+                    ))}
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <!-- DESKTOP: Griglia silos -->
+      <div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
         {silos.map(silo => (
           <a href={silo.href} class="group relative aspect-[4/5] overflow-hidden rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] block hover:scale-[1.02] transition-transform duration-500">
             <img
@@ -260,7 +345,7 @@ const editorial = [
   </section>
 
   <!-- GRID EDITORIALE -->
-  <section class="py-24">
+  <section class="py-16">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex items-end justify-between mb-12">
         <div>
@@ -269,7 +354,70 @@ const editorial = [
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- MOBILE: Swiper slider -->
+      <div class="swiper swiper-editoriale md:hidden">
+        <div class="swiper-wrapper pb-12">
+          <div class="swiper-slide">
+            <a href={editorial[0].href} class="group bg-med-gold/8 rounded-[2rem] p-8 shadow-sm border-2 border-med-gold/20 hover:shadow-xl transition-all duration-500 flex flex-col md:justify-between md:min-h-72 md:p-10">
+              <div>
+                <span class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-bold">{editorial[0].label}</span>
+                <h3 class="font-serif text-lg md:text-3xl lg:text-4xl text-slate-900 tracking-tight mt-2 md:mt-3 mb-2 md:mb-3 group-hover:text-med-gold transition-colors leading-tight">{editorial[0].title}</h3>
+                <p class="text-slate-400 text-sm md:text-base font-light">{editorial[0].subtitle}</p>
+              </div>
+              <span class="text-sm font-medium text-med-gold flex items-center gap-1 mt-4 md:mt-8">
+                Read the guide
+                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a href={editorial[1].href} class="group bg-med-blue/8 rounded-[2rem] p-8 shadow-sm border-2 border-med-blue/20 hover:shadow-xl transition-all duration-500 hover:scale-[1.02] flex flex-col">
+              <span class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-bold">{editorial[1].label}</span>
+              <h3 class="font-serif text-xl text-slate-900 tracking-tight mt-2 mb-2 group-hover:text-med-blue transition-colors">{editorial[1].title}</h3>
+              <p class="text-slate-400 text-sm mb-6 font-light flex-grow">{editorial[1].subtitle}</p>
+              <span class="text-sm font-medium text-med-blue flex items-center gap-1">
+                Read
+                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a href={editorial[2].href} class="group bg-med-water/8 rounded-[2rem] p-8 shadow-sm border-2 border-med-water/20 hover:shadow-xl transition-all duration-500 hover:scale-[1.02] flex flex-col">
+              <span class="text-[10px] uppercase tracking-[0.3em] text-med-water font-bold">{editorial[2].label}</span>
+              <h3 class="font-serif text-xl text-slate-900 tracking-tight mt-2 mb-2 group-hover:text-med-water transition-colors">{editorial[2].title}</h3>
+              <p class="text-slate-400 text-sm mb-6 font-light flex-grow">{editorial[2].subtitle}</p>
+              <span class="text-sm font-medium text-med-water flex items-center gap-1">
+                Read
+                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+          <div class="swiper-slide">
+            <a href={editorial[3].href} class="group bg-med-terracotta/8 rounded-[2rem] p-8 shadow-sm border-2 border-med-terracotta/20 hover:shadow-xl transition-all duration-500 hover:scale-[1.02] flex flex-col">
+              <span class="text-[10px] uppercase tracking-[0.3em] text-med-terracotta font-bold">{editorial[3].label}</span>
+              <h3 class="font-serif text-xl text-slate-900 tracking-tight mt-2 mb-2 group-hover:text-med-terracotta transition-colors">{editorial[3].title}</h3>
+              <p class="text-slate-400 text-sm mb-6 font-light flex-grow">{editorial[3].subtitle}</p>
+              <span class="text-sm font-medium text-med-terracotta flex items-center gap-1">
+                Read
+                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <!-- DESKTOP: Grid asimmetrica -->
+      <div class="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card grande -->
         <a href={editorial[0].href} class="group lg:col-span-2 lg:row-span-2 bg-med-gold/8 rounded-[2rem] p-10 shadow-sm border-2 border-med-gold/20 hover:shadow-xl transition-all duration-500 flex flex-col justify-between min-h-72">
           <div>
             <span class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-bold">{editorial[0].label}</span>
@@ -323,11 +471,50 @@ const editorial = [
     </div>
   </section>
 
-  <!-- DID YOU KNOW -->
-  <section class="bg-charcoal py-24">
+  <!-- DID YOU KNOW - Icon Boxes -->
+  <section class="bg-charcoal py-16">
     <div class="max-w-7xl mx-auto px-6">
       <p class="text-med-gold text-xs uppercase tracking-[0.3em] font-medium text-center mb-12">Did you know</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- MOBILE: Swiper slider -->
+      <div class="swiper swiper-curiosita md:hidden">
+        <div class="swiper-wrapper pb-12">
+          <div class="swiper-slide">
+            <div class="group bg-white/5 p-8 rounded-[2rem] border border-white/10 hover:bg-white/10 transition-all duration-300 h-full flex flex-col">
+              <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center mb-6 group-hover:scale-110 transition-transform flex-shrink-0">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503-10.498 4.875 2.812M6.497 9.252 1.622 12.064m19.88 0-4.875 2.812M1.622 12.064l4.875 2.812m0 0 4.498 2.598a.75.75 0 0 0 .75 0l4.498-2.598m-9.746 0V17.25"/></svg>
+              </div>
+              <div class="font-serif text-5xl font-bold text-white mb-3 tracking-tight">50 km</div>
+              <p class="text-white/70 font-medium mb-2">of coastline</p>
+              <p class="text-white/50 text-sm leading-relaxed font-light">From Positano to Vietri sul Mare, declared a UNESCO World Heritage Site in 1997.</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="group bg-white/5 p-8 rounded-[2rem] border border-white/10 hover:bg-white/10 transition-all duration-300 h-full flex flex-col">
+              <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center mb-6 group-hover:scale-110 transition-transform flex-shrink-0">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253"/></svg>
+              </div>
+              <div class="font-serif text-5xl font-bold text-white mb-3 tracking-tight">9th c.</div>
+              <p class="text-white/70 font-medium mb-2">birth of Amalfi</p>
+              <p class="text-white/50 text-sm leading-relaxed font-light">First maritime power in Europe, with trade routes reaching Constantinople.</p>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="group bg-white/5 p-8 rounded-[2rem] border border-white/10 hover:bg-white/10 transition-all duration-300 h-full flex flex-col">
+              <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center mb-6 group-hover:scale-110 transition-transform flex-shrink-0">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+              </div>
+              <div class="font-serif text-5xl font-bold text-white mb-3 tracking-tight">350 m</div>
+              <p class="text-white/70 font-medium mb-2">the altitude of Ravello</p>
+              <p class="text-white/50 text-sm leading-relaxed font-light">Wagner wrote Parsifal here. Gore Vidal lived in Ravello for thirty years.</p>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <!-- DESKTOP: Griglia curiosità -->
+      <div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="group bg-white/5 p-8 rounded-[2rem] border border-white/10 hover:bg-white/10 transition-all duration-300">
           <div class="w-14 h-14 rounded-2xl bg-med-gold/10 text-med-gold flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503-10.498 4.875 2.812M6.497 9.252 1.622 12.064m19.88 0-4.875 2.812M1.622 12.064l4.875 2.812m0 0 4.498 2.598a.75.75 0 0 0 .75 0l4.498-2.598m-9.746 0V17.25"/></svg>
@@ -357,7 +544,7 @@ const editorial = [
   </section>
 
   <!-- POSITANO SPOTLIGHT -->
-  <section class="py-24">
+  <section class="py-16">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div>
@@ -407,5 +594,68 @@ const editorial = [
   );
   document.querySelectorAll('.fade-in-card').forEach(el => observer.observe(el));
 </script>
+
+<script>
+  import Swiper from 'swiper';
+  import { Pagination } from 'swiper/modules';
+
+  // Borghi slider
+  new Swiper('.swiper-borghi', {
+    modules: [Pagination],
+    slidesPerView: 1.2,
+    spaceBetween: 16,
+    pagination: { el: '.swiper-borghi .swiper-pagination', clickable: true },
+  });
+
+  // Spiagge slider
+  new Swiper('.swiper-spiagge', {
+    modules: [Pagination],
+    slidesPerView: 2,
+    spaceBetween: 16,
+    pagination: { el: '.swiper-spiagge .swiper-pagination', clickable: true },
+  });
+
+  // Silos slider
+  new Swiper('.swiper-silos', {
+    modules: [Pagination],
+    slidesPerView: 1.1,
+    spaceBetween: 16,
+    pagination: { el: '.swiper-silos .swiper-pagination', clickable: true },
+  });
+
+  // Curiosità slider
+  new Swiper('.swiper-curiosita', {
+    modules: [Pagination],
+    slidesPerView: 1.1,
+    spaceBetween: 16,
+    pagination: { el: '.swiper-curiosita .swiper-pagination', clickable: true },
+  });
+
+  // Editoriale slider
+  new Swiper('.swiper-editoriale', {
+    modules: [Pagination],
+    slidesPerView: 1.1,
+    spaceBetween: 16,
+    pagination: { el: '.swiper-editoriale .swiper-pagination', clickable: true },
+  });
+</script>
+
+<style is:global>
+  @import 'swiper/css';
+  @import 'swiper/css/pagination';
+
+  :root {
+    --swiper-pagination-color: #D4AF37;
+  }
+
+  .swiper-pagination-bullet {
+    background-color: var(--swiper-pagination-color);
+    opacity: 0.5;
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
+</style>
 
 </BaseLayout>
