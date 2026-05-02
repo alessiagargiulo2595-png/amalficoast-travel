@@ -987,35 +987,15 @@ const eventiGastronomia = ({
   }
 
   function hideMenu() {
-    if (megaMenu) {
-      document.querySelectorAll('[data-menu-id]').forEach(m => m.classList.add('hidden'));
-      megaMenu.classList.add('hidden');
-    }
+    megaMenu?.classList.add('hidden');
     activeMenu = null;
   }
 
-  // Menu button listeners - both click and hover
+  // Menu button listeners
   document.querySelectorAll('[data-menu]').forEach(btn => {
     btn.addEventListener('mouseenter', () => showMenu(btn.dataset.menu));
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (activeMenu === btn.dataset.menu) {
-        hideMenu();
-      } else {
-        showMenu(btn.dataset.menu);
-      }
-    });
   });
 
   // Hide menu on mouseleave from header
-  if (nav) {
-    nav.addEventListener('mouseleave', hideMenu);
-  }
-
-  // Also hide menu on click outside
-  document.addEventListener('click', (e) => {
-    if (activeMenu && !nav?.contains(e.target) && !megaMenu?.contains(e.target)) {
-      hideMenu();
-    }
-  });
+  nav?.addEventListener('mouseleave', hideMenu);
 </script>
