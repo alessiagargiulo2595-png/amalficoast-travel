@@ -106,11 +106,34 @@ const topBeaches = [
   { name: 'Fiordo di Furore', location: 'Praiano', href: '/it-it/spiagge/costiera-amalfitana/fiordo-di-furore/' },
 ];
 
-const editorial = [
-  { label: 'Guida', title: 'Quando visitare la Costiera Amalfitana', subtitle: 'Mese per mese: clima, folla e prezzi', href: '/it-it/quando-visitare/' },
-  { label: 'Itinerari', title: 'Da 1 giorno a 1 settimana', subtitle: 'I migliori percorsi pronti da seguire', href: '/it-it/itinerari/' },
-  { label: 'Spiagge', title: 'Le 8 spiagge più belle', subtitle: 'Da Positano a Cetara', href: '/it-it/spiagge/' },
-  { label: 'Trasporti', title: 'Come arrivare e spostarsi', subtitle: 'Traghetti, bus SITA, auto', href: '/it-it/come-arrivare/' },
+const guidePratiche = [
+  {
+    section: 'Pianificazione',
+    color: 'med-gold',
+    items: [
+      { label: 'Come arrivare', href: '/it-it/come-arrivare/' },
+      { label: 'Quando andare', href: '/it-it/quando-visitare/' },
+    ]
+  },
+  {
+    section: 'Guide pratiche',
+    color: 'med-blue',
+    items: [
+      { label: 'Traghetti & Aliscafi', href: '/it-it/guida/traghetti/' },
+      { label: 'Bus SITA', href: '/it-it/guida/bus-sita/' },
+      { label: 'Parcheggi e ZTL', href: '/it-it/guida/parcheggi-ztl/' },
+      { label: 'Sorrento vs Praiano', href: '/it-it/blog/sorrento-vs-praiano/' },
+    ]
+  },
+  {
+    section: 'Blog & Local tips',
+    color: 'med-water',
+    items: [
+      { label: 'Vini della Costiera Amalfitana', href: '/it-it/blog/vini-costa-amalfi/' },
+      { label: 'Atrani: il borgo più piccolo', href: '/it-it/blog/atrani/' },
+      { label: 'Delizia al limone', href: '/it-it/blog/delizia-al-limone/' },
+    ]
+  }
 ];
 ---
 
@@ -359,124 +382,56 @@ const editorial = [
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex items-end justify-between mb-12">
         <div>
-          <p class="text-med-gold text-xs uppercase tracking-[0.3em] font-medium mb-3">Guide pratiche</p>
-          <h2 class="font-serif text-3xl md:text-4xl text-slate-900 tracking-tight">Tutto quello che ti serve</h2>
+          <p class="text-med-gold text-xs uppercase tracking-[0.3em] font-medium mb-3">Essenziale</p>
+          <h2 class="font-serif text-3xl md:text-4xl text-slate-900 tracking-tight">Guida pratica con 3 sezioni</h2>
         </div>
       </div>
 
-      <!-- MOBILE: Swiper slider -->
+      <!-- MOBILE: Swiper slider con card -->
       <div class="swiper swiper-editoriale md:hidden">
         <div class="swiper-wrapper pb-12">
-          <div class="swiper-slide">
-            <a href={editorial[0].href} class="group bg-med-gold/8 rounded-[2rem] p-8 shadow-sm border-2 border-med-gold/20 hover:shadow-xl transition-all duration-500 flex flex-col md:justify-between md:min-h-72 md:p-10">
-              <div>
-                <span class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-bold">{editorial[0].label}</span>
-                <h3 class="font-serif text-lg md:text-3xl lg:text-4xl text-slate-900 tracking-tight mt-2 md:mt-3 mb-2 md:mb-3 group-hover:text-med-gold transition-colors leading-tight">{editorial[0].title}</h3>
-                <p class="text-slate-400 text-sm md:text-base font-light">{editorial[0].subtitle}</p>
+          {guidePratiche.map(section => {
+            const colorClass = section.color === 'med-gold' ? 'text-med-gold' : section.color === 'med-blue' ? 'text-med-blue' : 'text-med-water';
+            return (
+              <div class="swiper-slide">
+                <div class="bg-slate-50 rounded-[2rem] p-8 shadow-sm border border-slate-100 h-full">
+                  <h3 class="font-serif text-xl font-bold text-slate-900 mb-6">{section.section}</h3>
+                  <ul class="space-y-3">
+                    {section.items.map(item => (
+                      <li>
+                        <a href={item.href} class={`${colorClass} hover:opacity-70 transition-opacity font-medium`}>
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <span class="text-xs sm:text-sm font-medium text-med-gold flex items-center gap-1 mt-4 md:mt-8">
-                Leggi la guida
-                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-                </svg>
-              </span>
-            </a>
-          </div>
-          <div class="swiper-slide">
-            <a href={editorial[1].href} class="group bg-med-blue/8 rounded-[2rem] p-8 shadow-sm border-2 border-med-blue/20 hover:shadow-xl transition-all duration-500 hover:scale-[1.02] flex flex-col">
-              <span class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-bold">{editorial[1].label}</span>
-              <h3 class="font-serif text-xl text-slate-900 tracking-tight mt-2 mb-2 group-hover:text-med-blue transition-colors">{editorial[1].title}</h3>
-              <p class="text-slate-400 text-xs sm:text-sm mb-6 font-light flex-grow">{editorial[1].subtitle}</p>
-              <span class="text-xs sm:text-sm font-medium text-med-blue flex items-center gap-1">
-                Leggi
-                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-                </svg>
-              </span>
-            </a>
-          </div>
-          <div class="swiper-slide">
-            <a href={editorial[2].href} class="group bg-med-water/8 rounded-[2rem] p-8 shadow-sm border-2 border-med-water/20 hover:shadow-xl transition-all duration-500 hover:scale-[1.02] flex flex-col">
-              <span class="text-[10px] uppercase tracking-[0.3em] text-med-water font-bold">{editorial[2].label}</span>
-              <h3 class="font-serif text-xl text-slate-900 tracking-tight mt-2 mb-2 group-hover:text-med-water transition-colors">{editorial[2].title}</h3>
-              <p class="text-slate-400 text-xs sm:text-sm mb-6 font-light flex-grow">{editorial[2].subtitle}</p>
-              <span class="text-xs sm:text-sm font-medium text-med-water flex items-center gap-1">
-                Leggi
-                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-                </svg>
-              </span>
-            </a>
-          </div>
-          <div class="swiper-slide">
-            <a href={editorial[3].href} class="group bg-med-terracotta/8 rounded-[2rem] p-8 shadow-sm border-2 border-med-terracotta/20 hover:shadow-xl transition-all duration-500 hover:scale-[1.02] flex flex-col">
-              <span class="text-[10px] uppercase tracking-[0.3em] text-med-terracotta font-bold">{editorial[3].label}</span>
-              <h3 class="font-serif text-xl text-slate-900 tracking-tight mt-2 mb-2 group-hover:text-med-terracotta transition-colors">{editorial[3].title}</h3>
-              <p class="text-slate-400 text-xs sm:text-sm mb-6 font-light flex-grow">{editorial[3].subtitle}</p>
-              <span class="text-xs sm:text-sm font-medium text-med-terracotta flex items-center gap-1">
-                Leggi
-                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-                </svg>
-              </span>
-            </a>
-          </div>
+            );
+          })}
         </div>
         <div class="swiper-pagination"></div>
       </div>
 
-      <!-- DESKTOP: Grid asimmetrica -->
-      <div class="hidden md:grid grid-cols-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Card grande -->
-        <a href={editorial[0].href} class="group lg:col-span-2 lg:row-span-2 bg-med-gold/8 rounded-[2rem] p-10 shadow-sm border-2 border-med-gold/20 hover:shadow-xl transition-all duration-500 flex flex-col justify-between min-h-72">
-          <div>
-            <span class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-bold">{editorial[0].label}</span>
-            <h3 class="font-serif text-3xl md:text-4xl text-slate-900 tracking-tight mt-3 mb-3 group-hover:text-med-gold transition-colors leading-tight">{editorial[0].title}</h3>
-            <p class="text-slate-400 font-light">{editorial[0].subtitle}</p>
-          </div>
-          <span class="text-xs sm:text-sm font-medium text-med-gold flex items-center gap-1 mt-8">
-            Leggi la guida
-            <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-            </svg>
-          </span>
-        </a>
-
-        <a href={editorial[1].href} class="group bg-med-blue/8 rounded-[2rem] p-8 shadow-sm border-2 border-med-blue/20 hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
-          <span class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-bold">{editorial[1].label}</span>
-          <h3 class="font-serif text-xl text-slate-900 tracking-tight mt-2 mb-2 group-hover:text-med-blue transition-colors">{editorial[1].title}</h3>
-          <p class="text-slate-400 text-xs sm:text-sm mb-6 font-light">{editorial[1].subtitle}</p>
-          <span class="text-xs sm:text-sm font-medium text-med-blue flex items-center gap-1">
-            Leggi
-            <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-            </svg>
-          </span>
-        </a>
-
-        <a href={editorial[2].href} class="group bg-med-water/8 rounded-[2rem] p-8 shadow-sm border-2 border-med-water/20 hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
-          <span class="text-[10px] uppercase tracking-[0.3em] text-med-water font-bold">{editorial[2].label}</span>
-          <h3 class="font-serif text-xl text-slate-900 tracking-tight mt-2 mb-2 group-hover:text-med-water transition-colors">{editorial[2].title}</h3>
-          <p class="text-slate-400 text-xs sm:text-sm mb-6 font-light">{editorial[2].subtitle}</p>
-          <span class="text-xs sm:text-sm font-medium text-med-water flex items-center gap-1">
-            Leggi
-            <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-            </svg>
-          </span>
-        </a>
-
-        <a href={editorial[3].href} class="group bg-med-terracotta/8 rounded-[2rem] p-8 shadow-sm border-2 border-med-terracotta/20 hover:shadow-xl transition-all duration-500 hover:scale-[1.02]">
-          <span class="text-[10px] uppercase tracking-[0.3em] text-med-terracotta font-bold">{editorial[3].label}</span>
-          <h3 class="font-serif text-xl text-slate-900 tracking-tight mt-2 mb-2 group-hover:text-med-terracotta transition-colors">{editorial[3].title}</h3>
-          <p class="text-slate-400 text-xs sm:text-sm mb-6 font-light">{editorial[3].subtitle}</p>
-          <span class="text-xs sm:text-sm font-medium text-med-terracotta flex items-center gap-1">
-            Leggi
-            <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-            </svg>
-          </span>
-        </a>
+      <!-- DESKTOP: 3 colonne separate -->
+      <div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-12">
+        {guidePratiche.map(section => {
+          const colorClass = section.color === 'med-gold' ? 'text-med-gold' : section.color === 'med-blue' ? 'text-med-blue' : 'text-med-water';
+          return (
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-slate-900 mb-8 pb-4 border-b-2 border-slate-200">{section.section}</h3>
+              <ul class="space-y-4">
+                {section.items.map((item, idx) => (
+                  <li key={idx}>
+                    <a href={item.href} class={`${colorClass} hover:text-slate-900 transition-colors font-medium text-base`}>
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
     </div>
   </section>
