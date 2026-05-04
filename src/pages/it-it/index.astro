@@ -245,48 +245,37 @@ const blogHighlights = [
     </div>
   </section>
 
-  <!-- 3 SILOS - Image Cards con Overlay -->
-  <section class="bg-charcoal py-24">
+  <!-- 3 SILOS - TERRITORIES SECTION -->
+  <section class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-6">
-
-      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-        <div class="max-w-2xl">
-          <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">Esplora la Costiera</p>
-          <h2 class="font-serif text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">I Borghi Incantati</h2>
-          <p class="text-slate-500 text-lg font-light">Esplora le perle della costiera, ognuna con la sua anima e le sue tradizioni secolari.</p>
-        </div>
-        <a href="/it-it/costiera-amalfitana/" class="group flex items-center gap-2 text-med-blue font-semibold hover:text-med-gold transition-colors flex-shrink-0">
-          Tutte le destinazioni
-          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-        </a>
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-4xl md:text-5xl font-bold text-slate-900 mb-4">Tre territori, infinite storie</h2>
+        <div class="w-20 h-1 bg-med-gold mx-auto rounded-full"></div>
       </div>
 
       <!-- MOBILE: Swiper slider -->
-      <div class="swiper swiper-borghi">
+      <div class="swiper swiper-silos md:hidden">
         <div class="swiper-wrapper pb-12">
-          {borghi.map((b) => (
+          {silos.map(silo => (
             <div class="swiper-slide">
-              <a href={b.href} class="group cursor-pointer flex flex-col h-full">
-                <div class="relative aspect-[4/5] overflow-hidden rounded-[3rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
-                  <img
-                    src={b.img}
-                    alt={b.name}
-                    referrerpolicy="no-referrer"
-                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                  <div class="absolute bottom-8 left-8 right-8">
-                    <span class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2 block">{b.subtitle}</span>
-                    <h3 class="font-serif text-3xl font-bold text-white tracking-tight">{b.name}</h3>
+              <a href={silo.href} class="group relative aspect-[4/5] overflow-hidden rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] block hover:scale-[1.02] transition-transform duration-500">
+                <img
+                  src={silo.img}
+                  alt={silo.title}
+                  referrerpolicy="no-referrer"
+                  class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                <div class="absolute bottom-8 left-8 right-8">
+                  <span class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2 block">{silo.subtitle}</span>
+                  <h3 class="font-serif text-3xl font-bold text-white tracking-tight mb-3">{silo.title}</h3>
+                  <div class="flex flex-wrap gap-2">
+                    {silo.borghi.slice(0, 3).map(b => (
+                      <span class="text-[10px] text-white/70 bg-white/10 px-2 py-0.5 rounded-full">{b}</span>
+                    ))}
                   </div>
-                </div>
-                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed font-light mb-4">{b.description}</p>
-                <div class="flex flex-wrap gap-2">
-                  {b.tags.map(tag => (
-                    <span class="text-[10px] uppercase tracking-wider font-bold text-med-blue bg-med-blue/5 px-3 py-1 rounded-full">{tag}</span>
-                  ))}
                 </div>
               </a>
             </div>
@@ -295,35 +284,31 @@ const blogHighlights = [
         <div class="swiper-pagination"></div>
       </div>
 
-      <!-- DESKTOP: Griglia borghi -->
-      <div class="hidden md:grid grid-cols-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-        {borghi.map((b, i) => (
-          <a href={b.href} class="group cursor-pointer fade-in-card" style={`animation-delay: ${i * 0.1}s`}>
-            <div class="relative aspect-[4/5] overflow-hidden rounded-[3rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
-              <img
-                src={b.img}
-                alt={b.name}
-                referrerpolicy="no-referrer"
-                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                loading="lazy"
-                decoding="async"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-              <div class="absolute bottom-8 left-8 right-8">
-                <span class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2 block">{b.subtitle}</span>
-                <h3 class="font-serif text-3xl font-bold text-white tracking-tight">{b.name}</h3>
+      <!-- DESKTOP: Grid -->
+      <div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
+        {silos.map(silo => (
+          <a href={silo.href} class="group relative aspect-[4/5] overflow-hidden rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] block hover:scale-[1.02] transition-transform duration-500">
+            <img
+              src={silo.img}
+              alt={silo.title}
+              referrerpolicy="no-referrer"
+              class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+            <div class="absolute bottom-8 left-8 right-8">
+              <span class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2 block">{silo.subtitle}</span>
+              <h3 class="font-serif text-3xl font-bold text-white tracking-tight mb-3">{silo.title}</h3>
+              <div class="flex flex-wrap gap-2">
+                {silo.borghi.slice(0, 3).map(b => (
+                  <span class="text-[10px] text-white/70 bg-white/10 px-2 py-0.5 rounded-full">{b}</span>
+                ))}
               </div>
-            </div>
-            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed font-light mb-4">{b.description}</p>
-            <div class="flex flex-wrap gap-2">
-              {b.tags.map(tag => (
-                <span class="text-[10px] uppercase tracking-wider font-bold text-med-blue bg-med-blue/5 px-3 py-1 rounded-full">{tag}</span>
-              ))}
             </div>
           </a>
         ))}
       </div>
-
     </div>
   </section>
 
