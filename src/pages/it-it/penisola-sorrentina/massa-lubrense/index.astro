@@ -57,3 +57,137 @@ const fastFacts = [
     <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
     <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
       <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
+        {breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span>/</span>}
+            {i < breadcrumbs.length - 1
+              ? <a href={b.url} class="hover:text-white transition-colors">{b.name}</a>
+              : <span class="text-white">{b.name}</span>
+            }
+          </>
+        ))}
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Penisola Sorrentina · Natura & Cucina</p>
+        <h1 class="font-serif text-display text-white mb-4">Massa Lubrense</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La punta più meridionale della Penisola Sorrentina guarda Capri da meno di 5 km di distanza. Riserva marina, trekking, la spiaggia di Marina del Cantone e gli spaghetti alla Nerano: il paradiso del turismo lento.
+        </p>
+      </div>
+    </div>
+  
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+      <div class="space-y-12">
+
+        <p class="text-xl leading-relaxed text-charcoal">
+          Massa Lubrense non è un paese ma un comune con 15 frazioni disperse tra ulivi e limoneti sul versante che guarda Capri. Ogni frazione ha il suo carattere: Nerano è la gastronomia, Sant\'Agata sui Due Golfi è il panorama (vedi il Golfo di Napoli da un lato e quello di Salerno dall\'altro), Marina del Cantone è la spiaggia migliore della penisola.
+        </p>
+
+        <!-- Lo Sapevi -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Lo sapevi?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">15</p>
+              <p class="text-white/60 text-xs italic mt-1">frazioni che compongono il comune</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">4,9 km</p>
+              <p class="text-white/60 text-xs italic mt-1">distanza da Punta Campanella a Capri</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1997</p>
+              <p class="text-white/60 text-xs italic mt-1">anno di istituzione dell'Area Marina Protetta</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            La riserva marina di Punta Campanella fu tra le prime istituite in Italia. Oggi protegge 1.172 ettari di fondale con praterie di posidonia, coralligeno e specie protette come la tartaruga caretta.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Da non perdere</h2>
+          <div class="space-y-6">
+            {[
+              { title: 'Marina del Cantone', text: 'La baia con i ciottoli chiari e l\'acqua più cristallina della penisola, protetta dall\'Area Marina Protetta di Punta Campanella. Ottima per lo snorkeling. Raggiungibile in bus da Sorrento o in barca da Capri.' },
+              { title: 'Spaghetti alla Nerano', text: 'Il piatto più famoso della zona: spaghetti con zucchine fritte in abbondante olio, provolone del Monaco fuso, basilico fresco e un pizzico di pecorino. Inventati dalla trattoria da Maria Grazia a Nerano negli anni \'50. Da provare al ristorante Conca del Sogno o da Maria Grazia stessa.' },
+              { title: 'Punta Campanella', text: 'La punta rocciosa con le rovine di un tempio di Atena e una torre angioina del \'300. Si raggiunge a piedi da Termini in 45 min di sentiero. Vista su Capri a 4,9 km. Area marina protetta tra le prime istituite in Italia.' },
+              { title: 'Sant\'Agata sui Due Golfi', text: 'Il belvedere più spettacolare della penisola: da questa frazione si vedono contemporaneamente il Golfo di Napoli a nord (con Vesuvio e Capri) e il Golfo di Salerno a sud (con la Costiera Amalfitana). Gratuito, parcheggio disponibile.' },
+            ].map(({ title, text }) => (
+              <div class="border-l-2 border-med-blue/20 pl-5">
+                <h3 class="font-semibold text-charcoal mb-1">{title}</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Domande frequenti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts - Massa Lubrense</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-xs sm:text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Penisola Sorrentina</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/it-it/penisola-sorrentina/sorrento/', label: 'Sorrento' },
+              { href: '/it-it/penisola-sorrentina/vico-equense/', label: 'Vico Equense' },
+              { href: '/it-it/penisola-sorrentina/sant-agnello/', label: 'Sant\'Agnello' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs sm:text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Esplora anche"
+    items={[
+      { name: 'Sorrento',    href: '/it-it/penisola-sorrentina/sorrento/',    tag: 'Base ideale',  desc: 'Hub per Capri, Napoli e la Costiera. Limoncello e Piazza Tasso.' },
+      { name: 'Capri',       href: '/it-it/isole/capri/',                     tag: 'La più iconica', desc: 'A 5 km da Punta Campanella: Grotta Azzurra e Faraglioni.' },
+      { name: 'Positano',    href: '/it-it/costiera-amalfitana/positano/',    tag: 'Fashion & Vista', desc: 'Le case colorate a picco sul mare della Costiera.' },
+      { name: 'Praiano',     href: '/it-it/costiera-amalfitana/praiano/',     tag: 'Tramonto',     desc: 'Il tramonto da San Gennaro e la Marina di Praia.' },
+    ]}
+  />
+
+</BaseLayout>
