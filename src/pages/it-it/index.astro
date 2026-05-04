@@ -135,6 +135,72 @@ const guidePratiche = [
     ]
   }
 ];
+
+const reasonsToVisit = [
+  {
+    title: 'Scenari Ineguagliabili',
+    description: 'Scogliere a picco sul mare e panorami che tolgono il fiato ad ogni curva della Statale 163.'
+  },
+  {
+    title: 'Storia Millenaria',
+    description: 'Dalle antiche Repubbliche Marinare ai fasti delle ville nobiliari e dei monasteri medievali.'
+  },
+  {
+    title: 'Sapori Autentici',
+    description: 'Dalla pasta fresca ai limoni sfusati, un viaggio nel gusto mediterraneo più genuino.'
+  },
+  {
+    title: 'Esperienze Uniche',
+    description: 'Sentieri tra i monti, gite in barca tra le grotte e tradizioni artigiane secolari.'
+  }
+];
+
+const experiences = [
+  {
+    title: 'Cooking Class',
+    href: '/it-it/esperienze/cooking-class-costiera-amalfitana/',
+    img: '/images/cooking-class.webp',
+  },
+  {
+    title: 'Limoncello Tour',
+    href: '/it-it/esperienze/limoncello-tour-costiera-amalfitana/',
+    img: '/images/limoncello-tour.webp',
+  },
+  {
+    title: 'Mozzarella Experience',
+    href: '/it-it/esperienze/mozzarella-experience-agerola-tramonti/',
+    img: '/images/mozzarella-experience.webp',
+  },
+  {
+    title: 'Ristoranti Stellati',
+    href: '/it-it/esperienze/ristoranti-stellati-costiera-amalfitana/',
+    img: '/images/ristoranti-stellati.webp',
+  }
+];
+
+const blogHighlights = [
+  {
+    title: 'Grotta dello Smeraldo: Guida alla Perla di Conca dei Marini',
+    category: 'Dalla Redazione',
+    href: '/it-it/blog/grotta-dello-smeraldo/',
+    img: '/images/grotta-smeraldo.webp',
+  },
+  {
+    title: 'Sentieri meno battuti: Valle delle Ferriere',
+    category: 'Trekking',
+    href: '/it-it/blog/sentieri-valle-ferriere/',
+  },
+  {
+    title: 'Cetara e la colatura: l\'oro degli abissi',
+    category: 'Food',
+    href: '/it-it/blog/cetara-colatura/',
+  },
+  {
+    title: 'Ravello: guida alle ville più panoramiche',
+    category: 'Luxury',
+    href: '/it-it/blog/ravello-ville/',
+  }
+];
 ---
 
 <BaseLayout
@@ -333,6 +399,24 @@ const guidePratiche = [
     </div>
   </section>
 
+  <!-- PERCHÉ VISITARE -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <h2 class="font-serif text-4xl md:text-5xl text-slate-900 mb-6">Perché Visitare la Costiera</h2>
+        <div class="w-20 h-1 bg-med-gold mx-auto rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        {reasonsToVisit.map((reason, i) => (
+          <div class="text-center" style={`animation: fadeIn 0.8s ease-in-out ${i * 0.1}s both`}>
+            <h3 class="text-xl font-serif font-bold text-med-blue mb-4">{reason.title}</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">{reason.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- ESSENZIALE GUIDA PRATICA CON 3 SEZIONI -->
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-6">
@@ -393,60 +477,145 @@ const guidePratiche = [
   </section>
 
   <!-- BORGHI INCANTATI -->
-  <section class="py-16">
+  <section id="borghi" class="py-24 bg-med-cream">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="flex items-end justify-between mb-12">
-        <div>
-          <p class="text-med-gold text-xs uppercase tracking-[0.3em] font-medium mb-3">Essenziale</p>
-          <h2 class="font-serif text-3xl md:text-4xl text-slate-900 tracking-tight">Guida pratica con 3 sezioni</h2>
+      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <div class="max-w-2xl">
+          <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-3">Esplora la Costiera</p>
+          <h2 class="font-serif text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">I Borghi Incantati</h2>
+          <p class="text-slate-500 text-lg font-light">Esplora le perle della costiera, ognuna con la sua anima e le sue tradizioni secolari.</p>
         </div>
+        <a href="/it-it/costiera-amalfitana/" class="group flex items-center gap-2 text-med-blue font-semibold hover:text-med-gold transition-colors flex-shrink-0">
+          Tutte le destinazioni
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </a>
       </div>
 
-      <!-- MOBILE: Swiper slider con card -->
-      <div class="swiper swiper-editoriale md:hidden">
+      <!-- MOBILE: Swiper slider -->
+      <div class="swiper swiper-borghi md:hidden">
         <div class="swiper-wrapper pb-12">
-          {guidePratiche.map(section => {
-            const colorClass = section.color === 'med-gold' ? 'text-med-gold' : section.color === 'med-blue' ? 'text-med-blue' : 'text-med-water';
-            return (
-              <div class="swiper-slide">
-                <div class="bg-slate-50 rounded-[2rem] p-8 shadow-sm border border-slate-100 h-full">
-                  <h3 class="font-serif text-xl font-bold text-slate-900 mb-6">{section.section}</h3>
-                  <ul class="space-y-3">
-                    {section.items.map(item => (
-                      <li>
-                        <a href={item.href} class={`${colorClass} hover:opacity-70 transition-opacity font-medium`}>
-                          {item.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+          {borghi.map((b) => (
+            <div class="swiper-slide">
+              <a href={b.href} class="group cursor-pointer flex flex-col h-full">
+                <div class="relative aspect-[4/5] overflow-hidden rounded-[3rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                  <img
+                    src={b.img}
+                    alt={b.name}
+                    referrerpolicy="no-referrer"
+                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                  <div class="absolute bottom-8 left-8 right-8">
+                    <span class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2 block">{b.subtitle}</span>
+                    <h3 class="font-serif text-3xl font-bold text-white tracking-tight">{b.name}</h3>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed font-light mb-4">{b.description}</p>
+                <div class="flex flex-wrap gap-2">
+                  {b.tags.map(tag => (
+                    <span class="text-[10px] uppercase tracking-wider font-bold text-med-blue bg-med-blue/5 px-3 py-1 rounded-full">{tag}</span>
+                  ))}
+                </div>
+              </a>
+            </div>
+          ))}
         </div>
         <div class="swiper-pagination"></div>
       </div>
 
-      <!-- DESKTOP: 3 colonne separate -->
-      <div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-12">
-        {guidePratiche.map(section => {
-          const colorClass = section.color === 'med-gold' ? 'text-med-gold' : section.color === 'med-blue' ? 'text-med-blue' : 'text-med-water';
-          return (
-            <div>
-              <h3 class="font-serif text-2xl font-bold text-slate-900 mb-8 pb-4 border-b-2 border-slate-200">{section.section}</h3>
-              <ul class="space-y-4">
-                {section.items.map((item, idx) => (
-                  <li key={idx}>
-                    <a href={item.href} class={`${colorClass} hover:text-slate-900 transition-colors font-medium text-base`}>
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+      <!-- DESKTOP: Griglia borghi -->
+      <div class="hidden md:grid grid-cols-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        {borghi.map((b, i) => (
+          <a href={b.href} class="group cursor-pointer fade-in-card" style={`animation-delay: ${i * 0.1}s`}>
+            <div class="relative aspect-[4/5] overflow-hidden rounded-[3rem] mb-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+              <img
+                src={b.img}
+                alt={b.name}
+                referrerpolicy="no-referrer"
+                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+              <div class="absolute bottom-8 left-8 right-8">
+                <span class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2 block">{b.subtitle}</span>
+                <h3 class="font-serif text-3xl font-bold text-white tracking-tight">{b.name}</h3>
+              </div>
             </div>
-          );
-        })}
+            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed font-light mb-4">{b.description}</p>
+            <div class="flex flex-wrap gap-2">
+              {b.tags.map(tag => (
+                <span class="text-[10px] uppercase tracking-wider font-bold text-med-blue bg-med-blue/5 px-3 py-1 rounded-full">{tag}</span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ESPERIENZE AUTENTICHE -->
+  <section class="py-24 bg-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <div class="max-w-2xl">
+          <span class="text-med-gold font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Vivi il Territorio</span>
+          <h2 class="font-serif text-4xl md:text-5xl font-bold text-slate-900 mb-6">Esperienze Autentiche</h2>
+          <p class="text-slate-600 text-lg">Dalla cucina tradizionale ai tour nei limoneti, scopri l'anima vera della Costiera.</p>
+        </div>
+        <a href="/it-it/esperienze/" class="group flex items-center gap-2 text-med-blue font-semibold hover:text-med-gold transition-colors">
+          Tutte le Esperienze
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- MOBILE: Swiper slider -->
+      <div class="swiper swiper-experiences md:hidden">
+        <div class="swiper-wrapper pb-12">
+          {experiences.map((exp) => (
+            <div class="swiper-slide">
+              <a href={exp.href} class="group block">
+                <div class="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-6 shadow-lg">
+                  <img
+                    src={exp.img}
+                    alt={exp.title}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div class="absolute bottom-6 left-6">
+                    <h3 class="text-2xl font-serif font-bold text-white">{exp.title}</h3>
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <!-- DESKTOP: Grid -->
+      <div class="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {experiences.map((exp, i) => (
+          <a href={exp.href} class="group block" style={`animation: fadeIn 0.8s ease-in-out ${i * 0.1}s both`}>
+            <div class="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-6 shadow-lg">
+              <img
+                src={exp.img}
+                alt={exp.title}
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div class="absolute bottom-6 left-6">
+                <h3 class="text-2xl font-serif font-bold text-white">{exp.title}</h3>
+              </div>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -483,6 +652,82 @@ const guidePratiche = [
             <p class="text-med-gold text-[10px] font-bold uppercase tracking-[0.3em]">{beach.location}</p>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG HIGHLIGHTS SECTION -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        <div class="max-w-2xl">
+          <span class="text-med-gold font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Il Nostro Journal</span>
+          <h2 class="font-serif text-4xl md:text-5xl font-bold text-slate-900 mb-6">Storie di Costa</h2>
+          <p class="text-slate-600 text-lg">Approfondimenti e consigli curati per vivere al meglio ogni angolo del territorio.</p>
+        </div>
+        <a href="/it-it/blog/" class="group flex items-center gap-2 text-med-blue font-semibold hover:text-med-gold transition-colors">
+          Vai al Blog
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- MOBILE: Swiper slider -->
+      <div class="swiper swiper-blog md:hidden">
+        <div class="swiper-wrapper pb-12">
+          {blogHighlights.map((post) => (
+            <div class="swiper-slide">
+              <a href={post.href} class="block">
+                <div class="relative aspect-[16/9] rounded-[2rem] overflow-hidden mb-6 shadow-lg">
+                  <img
+                    src={post.img}
+                    alt={post.title}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="absolute inset-0 bg-black/20 hover:bg-black/40 transition-colors" />
+                  <div class="absolute bottom-6 left-6 text-white">
+                    <span class="text-med-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block">{post.category}</span>
+                    <h3 class="text-xl font-serif font-bold leading-tight">{post.title}</h3>
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <!-- DESKTOP: Grid 2 colonne -->
+      <div class="hidden md:grid grid-cols-1 md:grid-cols-2 gap-12">
+        <a href={blogHighlights[0].href} class="group block">
+          <div class="relative aspect-[16/9] rounded-[3rem] overflow-hidden mb-8 shadow-xl">
+            <img
+              src={blogHighlights[0].img}
+              alt={blogHighlights[0].title}
+              class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
+            <div class="absolute bottom-10 left-10 text-white">
+              <span class="text-med-gold text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block">Dalla Redazione</span>
+              <h3 class="text-3xl font-serif font-bold leading-tight">{blogHighlights[0].title}</h3>
+            </div>
+          </div>
+        </a>
+
+        <div class="flex flex-col gap-8 justify-center">
+          {blogHighlights.slice(1).map((post, i) => (
+            <a href={post.href} class="group cursor-pointer p-6 rounded-3xl hover:bg-slate-50 transition-colors flex justify-between items-center border-b border-slate-100 last:border-0">
+              <div>
+                <span class="text-med-gold text-[10px] font-bold uppercase tracking-widest mb-1 block">{post.category}</span>
+                <h4 class="text-xl font-serif font-bold text-slate-900 group-hover:text-med-blue transition-colors">{post.title}</h4>
+              </div>
+              <svg class="w-5 h-5 text-slate-300 group-hover:text-med-gold group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   </section>
@@ -575,12 +820,20 @@ const guidePratiche = [
     pagination: { el: '.swiper-curiosita .swiper-pagination', clickable: true },
   });
 
-  // Editoriale slider
-  new Swiper('.swiper-editoriale', {
+  // Experiences slider
+  new Swiper('.swiper-experiences', {
+    modules: [Pagination],
+    slidesPerView: 1.2,
+    spaceBetween: 16,
+    pagination: { el: '.swiper-experiences .swiper-pagination', clickable: true },
+  });
+
+  // Blog slider
+  new Swiper('.swiper-blog', {
     modules: [Pagination],
     slidesPerView: 1.1,
     spaceBetween: 16,
-    pagination: { el: '.swiper-editoriale .swiper-pagination', clickable: true },
+    pagination: { el: '.swiper-blog .swiper-pagination', clickable: true },
   });
 </script>
 
@@ -605,6 +858,17 @@ const guidePratiche = [
   @media (min-width: 768px) {
     .swiper {
       display: none !important;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 </style>
