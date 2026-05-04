@@ -502,7 +502,7 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': '7-days',               'en-gb': '7-days',               'de-de': '7-tage',              'fr-fr': '7-jours',              'es-es': '7-dias',               'it-it': '7-giorni'             },
   // Events sub-area slugs (amalfi-coast already defined above)
   { 'en-us': 'islands',              'en-gb': 'islands',              'de-de': 'inseln',              'fr-fr': 'iles',                 'es-es': 'islas',                'it-it': 'isole'                },
-  { 'en-us': 'sorrentine-peninsula', 'en-gb': 'sorrentine-peninsula', 'de-de': 'sorrentinische-halbinsel', 'fr-fr': 'peninsule-sorrentine',  'es-es': 'peninsula-sorrentina',  'it-it': 'penisola-sorrentina'  },
+  { 'en-us': 'sorrento-peninsula', 'en-gb': 'sorrento-peninsula', 'de-de': 'sorrentinische-halbinsel', 'fr-fr': 'peninsule-sorrentine',  'es-es': 'peninsula-sorrentina',  'it-it': 'penisola-sorrentina'  },
   // Itinerary detail slugs - 1 day
   { 'en-us': 'amalfi-coast-from-naples',          'en-gb': 'amalfi-coast-from-naples',          'de-de': 'amalfikueste-von-neapel',           'fr-fr': 'cote-amalfitaine-depuis-naples',    'es-es': 'costa-amalfitana-desde-napoles',    'it-it': 'costiera-amalfitana-da-napoli'     },
   { 'en-us': 'amalfi-coast-from-salerno',         'en-gb': 'amalfi-coast-from-salerno',         'de-de': 'amalfikueste-von-salerno',           'fr-fr': 'cote-amalfitaine-depuis-salerne',   'es-es': 'costa-amalfitana-desde-salerno',    'it-it': 'costiera-amalfitana-da-salerno'    },
