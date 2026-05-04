@@ -1092,6 +1092,7 @@ const eventiGastronomia = ({
   // Menu visibility (DESKTOP ONLY)
   if (megaMenu) {
     let activeMenu = null;
+    let hoverTimer = null;
 
     function showMenu(menuId) {
       // Hide all menu sections
@@ -1126,16 +1127,27 @@ const eventiGastronomia = ({
     // Attach listeners to all menu buttons
     const menuButtons = document.querySelectorAll('[data-menu]');
     menuButtons.forEach(btn => {
-      // Mouseenter: show menu on hover
+      // Mouseenter: show menu on hover with delay to prevent accidental switching
       btn.addEventListener('mouseenter', () => {
+        clearTimeout(hoverTimer);
         const menuId = btn.getAttribute('data-menu');
-        if (menuId) showMenu(menuId);
+        if (menuId) {
+          hoverTimer = setTimeout(() => {
+            showMenu(menuId);
+          }, 200);
+        }
+      });
+
+      // Mouseleave: cancel timer if mouse leaves before delay completes
+      btn.addEventListener('mouseleave', () => {
+        clearTimeout(hoverTimer);
       });
 
       // Click: toggle menu
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        clearTimeout(hoverTimer);
         const menuId = btn.getAttribute('data-menu');
         if (menuId && activeMenu === menuId) {
           hideMenu();
@@ -1147,12 +1159,14 @@ const eventiGastronomia = ({
 
     // Hide menu when mouse leaves header + menu area
     nav?.addEventListener('mouseleave', () => {
+      clearTimeout(hoverTimer);
       hideMenu();
     });
 
     // Hide menu on escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && activeMenu) {
+        clearTimeout(hoverTimer);
         hideMenu();
       }
     });
