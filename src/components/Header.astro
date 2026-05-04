@@ -882,8 +882,22 @@ const eventiGastronomia = ({
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white max-h-[80vh] overflow-y-auto">
-    <div class="px-3 py-3 divide-y divide-slate-100">
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white">
+    <!-- Language Selector -->
+    <div class="border-b border-slate-100 px-3 py-3 flex gap-2 flex-wrap">
+      {locales.map(l => {
+        const fullPathname = Astro.url.pathname.startsWith('/') && !Astro.url.pathname.split('/')[1]?.match(/[a-z]{2}-[a-z]{2}/)
+          ? `/${lang}${Astro.url.pathname}`
+          : Astro.url.pathname;
+        return (
+          <a href={pageKey && existingPages[l]?.includes(pageKey) ? getLocalePath(l, pageKey) : translatePath(fullPathname, lang, l)} class={`text-2xl px-3 py-2 rounded-lg transition-colors ${l === lang ? 'bg-med-gold/20 ring-2 ring-med-gold/50' : 'hover:bg-slate-100'}`} title={countryCodeMap[l]}>
+            {flagMap[l]}
+          </a>
+        );
+      })}
+    </div>
+
+    <div class="px-3 py-3 divide-y divide-slate-100 max-h-[calc(80vh-80px)] overflow-y-auto">
 
       <!-- Destinazioni -->
       <details class="group/mob-dest">
@@ -1034,20 +1048,6 @@ const eventiGastronomia = ({
           </div>
         </div>
       </details>
-
-      <!-- Lingua -->
-      <div class="pt-3 pb-3 px-3 flex gap-2 flex-wrap">
-        {locales.map(l => {
-          const fullPathname = Astro.url.pathname.startsWith('/') && !Astro.url.pathname.split('/')[1]?.match(/[a-z]{2}-[a-z]{2}/)
-            ? `/${lang}${Astro.url.pathname}`
-            : Astro.url.pathname;
-          return (
-            <a href={pageKey && existingPages[l]?.includes(pageKey) ? getLocalePath(l, pageKey) : translatePath(fullPathname, lang, l)} class={`text-2xl px-3 py-2 rounded-lg transition-colors ${l === lang ? 'bg-med-gold/20 ring-2 ring-med-gold/50' : 'hover:bg-slate-100'}`} title={countryCodeMap[l]}>
-              {flagMap[l]}
-            </a>
-          );
-        })}
-      </div>
 
     </div>
   </div>
