@@ -36,6 +36,12 @@ const days = [
   { day: 'Giorno 6', title: 'Positano e Tour in Barca', items: ['Bus SITA per Positano (45 min da Amalfi). Mattina libera in spiaggia.', 'Tour in barca da Positano (Grotta Smeraldo, cale, ~€50-80, 4h).', 'Rientro ad Amalfi o Positano. Cena sul porto.'] },
   { day: 'Giorno 7', title: 'Ischia o Procida e Partenza', items: ['Traghetto Amalfi/Napoli→Ischia o Procida (escursione mezza giornata).', 'Procida: Marina Corricella, Terra Murata, spiaggia del Pozzo Vecchio.', 'Rientro a Napoli per la partenza.'] },
 ];
+
+const seasons = [
+  { season: 'Primavera', months: 'Aprile-Maggio', climate: '18-22°C', highlights: 'Fiori in blossom, isole aperte, meno folla', considerations: 'Ideale per trekking e fotografia. Traghetti da aprile.' },
+  { season: 'Estate', months: 'Giugno-Agosto', climate: '25-30°C', highlights: 'Spiagge piene, Grotta Azzurra ottimale, cene tardive', considerations: 'Luglio-agosto: prenotare tutto in anticipo. Autostrade congestionate.' },
+  { season: 'Autunno', months: 'Settembre-Ottobre', climate: '20-25°C', highlights: 'Mare ancora caldo, meno turisti, colori dell\'autunno', considerations: 'Miglior rapporto clima-folla. Traghetti fino a ottobre.' },
+];
 ---
 
 <BaseLayout
@@ -107,6 +113,65 @@ const days = [
       </div>
     </section>
 
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Quando andare</h2>
+
+      <!-- Desktop Grid -->
+      <div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6">
+        {seasons.map(s => (
+          <div class="bg-white border border-slate-200 rounded-2xl p-6">
+            <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Periodo</p>
+            <h3 class="font-semibold text-charcoal text-lg mb-1">{s.season}</h3>
+            <p class="text-med-gold text-sm font-medium mb-4">{s.months}</p>
+            <div class="space-y-3 text-sm">
+              <div>
+                <p class="text-xs text-slate-500 uppercase tracking-wide">Clima</p>
+                <p class="text-charcoal">{s.climate}</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-500 uppercase tracking-wide">Highlights</p>
+                <p class="text-charcoal">{s.highlights}</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-500 uppercase tracking-wide">Note</p>
+                <p class="text-charcoal">{s.considerations}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Mobile Swiper Carousel -->
+      <div class="swiper swiper-quando-andare md:hidden">
+        <div class="swiper-wrapper pb-12">
+          {seasons.map(s => (
+            <div class="swiper-slide">
+              <div class="bg-white border border-slate-200 rounded-2xl p-6 h-full">
+                <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Periodo</p>
+                <h3 class="font-semibold text-charcoal text-lg mb-1">{s.season}</h3>
+                <p class="text-med-gold text-sm font-medium mb-4">{s.months}</p>
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <p class="text-xs text-slate-500 uppercase tracking-wide">Clima</p>
+                    <p class="text-charcoal">{s.climate}</p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-slate-500 uppercase tracking-wide">Highlights</p>
+                    <p class="text-charcoal">{s.highlights}</p>
+                  </div>
+                  <div>
+                    <p class="text-xs text-slate-500 uppercase tracking-wide">Note</p>
+                    <p class="text-charcoal">{s.considerations}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
     <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-8">
       <p class="font-semibold text-charcoal text-lg mb-3">Consigli per il Grand Tour</p>
       <ul class="space-y-2">
@@ -145,3 +210,15 @@ const days = [
   </div>
 
 </BaseLayout>
+
+<script>
+  import Swiper from 'swiper';
+  import { Pagination } from 'swiper/modules';
+
+  new Swiper('.swiper-quando-andare', {
+    modules: [Pagination],
+    slidesPerView: 1.1,
+    spaceBetween: 16,
+    pagination: { el: '.swiper-quando-andare .swiper-pagination', clickable: true },
+  });
+</script>
