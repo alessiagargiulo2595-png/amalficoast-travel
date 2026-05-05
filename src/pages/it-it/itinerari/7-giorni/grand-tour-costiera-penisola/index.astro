@@ -1,8 +1,6 @@
 ---
 import BaseLayout from '../../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
-import 'swiper/css';
-import 'swiper/css/pagination';
 
 const lang = 'it-it';
 
@@ -37,12 +35,6 @@ const days = [
   { day: 'Giorno 5', title: 'Amalfi e Ravello', items: ['Bus SITA Sorrento→Amalfi (90 min) o traghetto Sorrento→Amalfi.', 'Duomo, Chiostro del Paradiso, Museo della Carta.', 'Bus per Ravello (25 min): Villa Rufolo, Villa Cimbrone. Cena ad Amalfi.'] },
   { day: 'Giorno 6', title: 'Positano e Tour in Barca', items: ['Bus SITA per Positano (45 min da Amalfi). Mattina libera in spiaggia.', 'Tour in barca da Positano (Grotta Smeraldo, cale, ~€50-80, 4h).', 'Rientro ad Amalfi o Positano. Cena sul porto.'] },
   { day: 'Giorno 7', title: 'Ischia o Procida e Partenza', items: ['Traghetto Amalfi/Napoli→Ischia o Procida (escursione mezza giornata).', 'Procida: Marina Corricella, Terra Murata, spiaggia del Pozzo Vecchio.', 'Rientro a Napoli per la partenza.'] },
-];
-
-const seasons = [
-  { season: 'Primavera', months: 'Aprile-Maggio', climate: '18-22°C', highlights: 'Fiori in blossom, isole aperte, meno folla', considerations: 'Ideale per trekking e fotografia. Traghetti da aprile.' },
-  { season: 'Estate', months: 'Giugno-Agosto', climate: '25-30°C', highlights: 'Spiagge piene, Grotta Azzurra ottimale, cene tardive', considerations: 'Luglio-agosto: prenotare tutto in anticipo. Autostrade congestionate.' },
-  { season: 'Autunno', months: 'Settembre-Ottobre', climate: '20-25°C', highlights: 'Mare ancora caldo, meno turisti, colori dell\'autunno', considerations: 'Miglior rapporto clima-folla. Traghetti fino a ottobre.' },
 ];
 ---
 
@@ -115,68 +107,6 @@ const seasons = [
       </div>
     </section>
 
-    <section>
-      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Quando andare</h2>
-
-      <!-- Contenitore per grid desktop -->
-      <div id="quando-grid-container" style="display: none;">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {seasons.map(s => (
-            <div class="bg-white border border-slate-200 rounded-2xl p-6">
-              <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Periodo</p>
-              <h3 class="font-semibold text-charcoal text-lg mb-1">{s.season}</h3>
-              <p class="text-med-gold text-sm font-medium mb-4">{s.months}</p>
-              <div class="space-y-3 text-sm">
-                <div>
-                  <p class="text-xs text-slate-500 uppercase tracking-wide">Clima</p>
-                  <p class="text-charcoal">{s.climate}</p>
-                </div>
-                <div>
-                  <p class="text-xs text-slate-500 uppercase tracking-wide">Highlights</p>
-                  <p class="text-charcoal">{s.highlights}</p>
-                </div>
-                <div>
-                  <p class="text-xs text-slate-500 uppercase tracking-wide">Note</p>
-                  <p class="text-charcoal">{s.considerations}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <!-- Contenitore per carosello mobile -->
-      <div id="quando-swiper-container">
-        <div class="swiper swiper-quando-andare">
-          <div class="swiper-wrapper pb-12">
-            {seasons.map(s => (
-              <div class="swiper-slide">
-                <div class="bg-white border border-slate-200 rounded-2xl p-6 h-full">
-                  <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Periodo</p>
-                  <h3 class="font-semibold text-charcoal text-lg mb-1">{s.season}</h3>
-                  <p class="text-med-gold text-sm font-medium mb-4">{s.months}</p>
-                  <div class="space-y-3 text-sm">
-                    <div>
-                      <p class="text-xs text-slate-500 uppercase tracking-wide">Clima</p>
-                      <p class="text-charcoal">{s.climate}</p>
-                    </div>
-                    <div>
-                      <p class="text-xs text-slate-500 uppercase tracking-wide">Highlights</p>
-                      <p class="text-charcoal">{s.highlights}</p>
-                    </div>
-                    <div>
-                      <p class="text-xs text-slate-500 uppercase tracking-wide">Note</p>
-                      <p class="text-charcoal">{s.considerations}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
-    </section>
 
     <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-8">
       <p class="font-semibold text-charcoal text-lg mb-3">Consigli per il Grand Tour</p>
@@ -217,52 +147,3 @@ const seasons = [
 
 </BaseLayout>
 
-<script>
-  import Swiper from 'swiper';
-  import { Pagination } from 'swiper/modules';
-
-  let swiperInstance = null;
-
-  function initializeQuandoAndare() {
-    const gridContainer = document.getElementById('quando-grid-container');
-    const swiperContainer = document.getElementById('quando-swiper-container');
-
-    if (!gridContainer || !swiperContainer) return;
-
-    const isDesktop = window.innerWidth >= 768;
-
-    if (isDesktop) {
-      // Mostra grid, nascondi carosello
-      gridContainer.style.display = 'block';
-      swiperContainer.style.display = 'none';
-
-      // Distruggi Swiper se esiste
-      if (swiperInstance) {
-        swiperInstance.destroy();
-        swiperInstance = null;
-      }
-    } else {
-      // Mostra carosello, nascondi grid
-      gridContainer.style.display = 'none';
-      swiperContainer.style.display = 'block';
-
-      // Inizializza Swiper se non esiste
-      if (!swiperInstance) {
-        swiperInstance = new Swiper('.swiper-quando-andare', {
-          modules: [Pagination],
-          slidesPerView: 1.1,
-          spaceBetween: 16,
-          pagination: { el: '.swiper-quando-andare .swiper-pagination', clickable: true },
-        });
-      }
-    }
-  }
-
-  // Inizializza al caricamento
-  initializeQuandoAndare();
-
-  // Reinizializza al resize
-  window.addEventListener('resize', () => {
-    initializeQuandoAndare();
-  });
-</script>
