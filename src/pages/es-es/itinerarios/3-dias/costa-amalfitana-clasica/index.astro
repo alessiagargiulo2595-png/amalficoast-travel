@@ -27,6 +27,13 @@ const faqSchema = {
   ]
 };
 
+const destinationHighlights = [
+  { name: 'Positano', desc: 'Pueblo colorido en la costa', url: '/es-es/costa-amalfitana/positano/' },
+  { name: 'Amalfi', desc: 'Catedral y centro histórico', url: '/es-es/costa-amalfitana/amalfi/' },
+  { name: 'Ravello', desc: 'Pueblos y panoramas', url: '/es-es/costa-amalfitana/ravello/' },
+  { name: 'Praiano', desc: 'Playas y grutas', url: '/es-es/costa-amalfitana/praiano/' },
+];
+
 const days = [
   {
     day: 'Día 1',
@@ -69,15 +76,15 @@ const days = [
   schema={[faqSchema]}
 >
 
-  <section class="relative bg-charcoal overflow-hidden">
+  <!-- Hero Section -->
+  <section class="relative bg-charcoal overflow-hidden min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center">
     <img src="/images/costiera-hero.jpg" alt="Costa Amalfitana clásica" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
-
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
-    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <div class="max-w-3xl">
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-3xl mx-auto">
         <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Itinerario · 3 días</p>
         <h1 class="font-serif text-display text-white mb-4">Costa Amalfitana Clásica</h1>
-        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
           Tres días en la Costa Amalfitana: Positano, Amalfi, Ravello y Gruta Esmeralda sin coche.
         </p>
       </div>
@@ -85,65 +92,86 @@ const days = [
     <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
-  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 space-y-10">
 
-    <section class="max-w-text">
-      <div class="grid sm:grid-cols-3 gap-4">
-        <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100">
-          <p class="text-xs text-slate-400 mb-1">Duración</p>
-          <p class="font-semibold text-charcoal">3 días / 2 noches</p>
-        </div>
-        <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100">
-          <p class="text-xs text-slate-400 mb-1">Base recomendada</p>
-          <p class="font-semibold text-charcoal">Amalfi o Positano</p>
-        </div>
-        <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100">
-          <p class="text-xs text-slate-400 mb-1">Transporte</p>
-          <p class="font-semibold text-charcoal">Autobús SITA + ferries</p>
-        </div>
-      </div>
-    </section>
-
+    <!-- Day by Day Itinerary -->
     <section>
       <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Programa día a día</h2>
-      <div class="space-y-8">
-        {days.map(d => (
-          <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
-            <div class="bg-med-blue/5 px-6 py-4 flex items-center gap-3">
-              <span class="text-[10px] uppercase tracking-wide bg-med-blue text-white px-2 py-1 rounded-full font-medium">{d.day}</span>
-              <h3 class="font-semibold text-charcoal">{d.title}</h3>
+      <div class="space-y-6">
+        {days.map((d, idx) => (
+          <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-slate-900 px-6 py-6 flex items-start gap-4 sm:items-center sm:gap-3">
+              <span class="text-[10px] uppercase tracking-wide bg-white/15 text-white px-3 py-1.5 rounded-full font-bold flex-shrink-0">{d.day}</span>
+              <h3 class="font-serif font-semibold text-white text-lg">{d.title}</h3>
             </div>
-            <ul class="px-6 py-4 space-y-2">
-              {d.items.map(item => (
-                <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
-                  <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span>
-                  <span>{item}</span>
-                </li>
-              ))}
+            <ul class="px-6 py-5 space-y-3">
+              {d.items.map((item, itemIdx) => {
+                const isLocalTip = item.includes('Local tip:');
+                const displayText = item.replace('Local tip: ', '');
+                const isLastItem = itemIdx === d.items.length - 1;
+                return (
+                  <li key={itemIdx} class={`flex gap-3 text-sm relative ${isLocalTip ? 'bg-med-gold/10 p-3 rounded-lg border border-med-gold/20' : ''}`}>
+                    <div class="flex flex-col items-center">
+                      {isLocalTip ? (
+                        <svg class="w-5 h-5 text-med-gold flex-shrink-0 self-center" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                          <circle cx="12" cy="8" r="5"/>
+                          <path d="M12 13v2"/>
+                          <rect x="10" y="15" width="4" height="3" rx="0.5"/>
+                        </svg>
+                      ) : (
+                        <span class="w-2 h-2 rounded-full bg-med-blue flex-shrink-0"></span>
+                      )}
+                      {!isLastItem && <div class="w-0.5 h-6 bg-med-blue/30 mt-1"></div>}
+                    </div>
+                    <span class={`leading-relaxed ${isLocalTip ? 'font-semibold text-slate-800' : 'text-slate-700'}`}>
+                      {isLocalTip && <strong>Local tip: </strong>}
+                      {displayText}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ))}
       </div>
     </section>
 
-    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-8">
-      <p class="font-semibold text-charcoal text-lg mb-3">Consejos para 3 días en la Costa</p>
-      <ul class="space-y-2">
+    <!-- Destinations Highlighted -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Puntos destacados del itinerario</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        {destinationHighlights.map((dest) => (
+          <a href={dest.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
+            <h3 class="font-semibold text-charcoal mb-2 group-hover:text-med-blue transition-colors">{dest.name}</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-3">{dest.desc}</p>
+            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+              Descubrir →
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Planning Tips -->
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+      <h2 class="font-serif text-xl font-semibold text-charcoal mb-6">Consejos prácticos</h2>
+      <ul class="space-y-4">
         {[
-          'Base en Amalfi: posición central, más barata que Positano, excelentes conexiones en autobús y ferry.',
-          'Comprar los billetes SITA en lote (estanco) a la llegada: ahorra tiempo cada mañana.',
-          'Ravello no tiene playas pero ofrece el mejor mirador de la Costa: prever al menos medio día.',
-          'El tour en barco del día 3 es opcional pero transforma la jornada: reservar la víspera.',
-          'En verano: desplazarse antes de las 9h para evitar los autobuses llenos y las colas.',
-        ].map(tip => (
-          <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
-            <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span>
-            <span>{tip}</span>
+          { num: '❶', text: 'Base en Amalfi: posición central, más barata que Positano, excelentes conexiones en autobús y ferry.' },
+          { num: '❷', text: 'Comprar los billetes SITA en lote (estanco) a la llegada: ahorra tiempo cada mañana.' },
+          { num: '❸', text: 'Ravello no tiene playas pero ofrece el mejor mirador de la Costa: prever al menos medio día.' },
+          { num: '❹', text: 'El tour en barco del día 3 es opcional pero transforma la jornada: reservar la víspera.' },
+          { num: '❺', text: 'En verano: desplazarse antes de las 9h para evitar los autobuses llenos y las colas.' },
+        ].map(({ num, text }) => (
+          <li class="flex items-start gap-4 text-sm text-charcoal">
+            <span class="text-2xl font-bold text-white flex-shrink-0 leading-none mt-0.5 bg-[#E2725B] w-9 h-9 flex items-center justify-center rounded-full">{num}</span>
+            <span class="leading-relaxed">{text}</span>
           </li>
         ))}
       </ul>
     </section>
 
+    <!-- FAQ -->
     <section id="faq">
       <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Preguntas frecuentes</h2>
       <div class="space-y-4">
@@ -153,12 +181,23 @@ const days = [
               {q.name}
               <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
             </summary>
-            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
               {q.acceptedAnswer.text}
             </div>
           </details>
         ))}
       </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-gradient-to-r from-med-blue to-med-blue/80 rounded-2xl p-10 text-center text-white">
+      <h2 class="font-serif text-3xl font-bold mb-3">¿Listo para partir?</h2>
+      <p class="text-white/90 mb-6 max-w-2xl mx-auto">
+        Lee la guía completa de transporte público en la Costa: cómo llegar, horarios, billetes y estrategias para ahorrar.
+      </p>
+      <a href="/es-es/guia/como-llegar/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">
+        Guía de transporte →
+      </a>
     </section>
 
   </div>
