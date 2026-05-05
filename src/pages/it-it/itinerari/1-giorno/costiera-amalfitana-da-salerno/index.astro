@@ -3,6 +3,7 @@ import BaseLayout from '../../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
 
 const lang = 'it-it';
+const mapUrl = 'https://maps.google.com/?q=Salerno+porto+traghetto';
 
 const breadcrumbs = [
   { name: 'Home', url: '/it-it/' },
@@ -85,7 +86,10 @@ const destinationHighlights = [
     <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
-  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 space-y-10">
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <!-- Main Content -->
+      <div class="lg:col-span-2 space-y-10">
 
     <!-- Intro & Stats Section - Featured -->
     <section class="text-center mb-2">
@@ -225,7 +229,29 @@ const destinationHighlights = [
         Guida ai traghetti →
       </a>
     </section>
+      </div>
 
+      <!-- Sidebar - Insider Tips -->
+      <div class="lg:col-span-1">
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 sticky top-24 h-fit">
+          <!-- Map Button -->
+          <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="block w-full bg-med-blue hover:bg-med-blue/90 text-white font-semibold py-3 rounded-lg text-center mb-6 transition-colors">
+            📍 Vedi mappa di partenza
+          </a>
+
+          <!-- Insider Tips -->
+          <h3 class="font-serif text-lg font-semibold text-slate-900 mb-4">💡 Insider Tips</h3>
+          <ul class="space-y-3">
+            {tips.map((text) => (
+              <li class="flex gap-2 text-sm text-slate-700 leading-relaxed">
+                <span class="text-med-blue font-bold flex-shrink-0 mt-0.5">✓</span>
+                <span>{text}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 
 </BaseLayout>
