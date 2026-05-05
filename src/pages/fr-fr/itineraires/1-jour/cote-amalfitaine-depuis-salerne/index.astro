@@ -3,45 +3,44 @@ import BaseLayout from '../../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
 
 const lang = 'fr-fr';
-
 const breadcrumbs = [
   { name: 'Home', url: '/fr-fr/' },
   { name: 'Itinéraires', url: '/fr-fr/itineraires/' },
-  { name: '1 Jour depuis Salerne', url: '/fr-fr/itineraires/1-jour/cote-amalfitaine-depuis-salerne/' },
+  { name: 'Côte Amalfitaine depuis Salerne', url: '/fr-fr/itineraires/1-jour/cote-amalfitaine-depuis-salerne/' },
 ];
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Comment rejoindre la Côte Amalfitaine depuis Salerne ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Depuis Salerne, vous avez deux options : le ferry Travelmar pour Amalfi (45 min, ~8€, saisonnier avr-oct) ou le bus SITA depuis la gare de Salerne (direction Amalfi via SS163, ~60 min, ~2,80€). Le ferry est plus panoramique et rapide ; le bus fonctionne toute l'année." }
-    },
-    {
-      "@type": "Question",
-      "name": "Vaut-il la peine de partir par la porte est de la Côte (Vietri, Maiori) ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Oui, surtout en basse saison lorsque les villages sont moins bondés. Vietri sul Mare est célèbre pour ses céramiques, Maiori possède le front de mer le plus long de la Côte et une atmosphère détendue. Minori mérite un arrêt pour les ruines de la Villa Romaine." }
-    }
+    { "@type": "Question", "name": "Comment rejoindre la Côte Amalfitaine depuis Salerne ?", "acceptedAnswer": { "@type": "Answer", "text": "Depuis Salerne, vous avez deux options : le ferry Travelmar pour Amalfi (45 min, ~8€, saisonnier avr-oct) ou le bus SITA depuis la gare de Salerne (direction Amalfi via SS163, ~60 min, ~2,80€). Le ferry est plus panoramique et rapide ; le bus fonctionne toute l'année." } },
+    { "@type": "Question", "name": "Vaut-il la peine de partir par la porte est de la Côte (Vietri, Maiori) ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, surtout en basse saison lorsque les villages sont moins bondés. Vietri sul Mare est célèbre pour ses céramiques, Maiori possède le front de mer le plus long de la Côte et une atmosphère détendue. Minori mérite un arrêt pour les ruines de la Villa Romaine." } }
   ]
 };
 
+const destinations = [
+  { name: 'Amalfi', url: '/fr-fr/cote-amalfitaine/amalfi/' },
+  { name: 'Maiori', url: '/fr-fr/cote-amalfitaine/maiori/' },
+  { name: 'Minori', url: '/fr-fr/cote-amalfitaine/minori/' },
+  { name: 'Vietri sul Mare', url: '/fr-fr/cote-amalfitaine/vietri-sul-mare/' },
+];
+
+const destinationHighlights = destinations.map(d => ({ name: d.name, desc: '', url: d.url }));
 const schedule = [
-  { time: '08:30', place: 'Salerne', action: 'Ferry Travelmar pour Amalfi (avr-oct, 45 min, ~8€) ou bus SITA (60 min, ~2,80€)', transport: 'ferry' },
+  { time: '08:30', place: 'Salerne', action: 'Ferry Travelmar pour <a href="/fr-fr/cote-amalfitaine/amalfi/" class="text-med-blue hover:underline font-medium">Amalfi</a> (avr-oct, 45 min, ~€8) ou bus SITA (60 min, ~€2,80)', transport: 'ferry' },
   { time: '09:30', place: 'Amalfi', action: 'Cathédrale Sant\'Andrea, Cloître du Paradis, Musée du Papier (2h30)', transport: 'visit' },
   { time: '12:00', place: 'Amalfi', action: 'Déjeuner en centre-ville (trattorias sur le corso ou sur le port)', transport: 'visit' },
-  { time: '13:30', place: 'Amalfi → Maiori', action: 'Bus SITA est pour Maiori (20 min, ~1,50€). Front de mer et plage.', transport: 'bus' },
-  { time: '15:00', place: 'Maiori → Minori', action: 'À pied le long du front de mer (20 min) ou en bus. Villa Romaine de Minori (gratuit).', transport: 'walk' },
-  { time: '16:00', place: 'Minori → Vietri sul Mare', action: 'Bus SITA pour Vietri (~30 min). Céramiques, Musée de la Céramique, promenade.', transport: 'bus' },
+  { time: '13:30', place: 'Amalfi → Maiori', action: 'Bus SITA est pour <a href="/fr-fr/cote-amalfitaine/maiori/" class="text-med-blue hover:underline font-medium">Maiori</a> (20 min, ~€1,50). Front de mer et plage.', transport: 'bus' },
+  { time: '15:00', place: 'Maiori → Minori', action: 'À pied le long du front de mer (20 min) ou en bus. Villa Romaine de <a href="/fr-fr/cote-amalfitaine/minori/" class="text-med-blue hover:underline font-medium">Minori</a> (gratuit).', transport: 'walk' },
+  { time: '16:00', place: 'Minori → Vietri sul Mare', action: 'Bus SITA pour <a href="/fr-fr/cote-amalfitaine/vietri-sul-mare/" class="text-med-blue hover:underline font-medium">Vietri</a> (~30 min). Céramiques, Musée de la Céramique, promenade.', transport: 'bus' },
   { time: '17:30', place: 'Vietri → Salerne', action: 'Bus pour Salerne (15 min) ou à pied le long de la côte (45 min panoramiques)', transport: 'bus' },
 ];
 
 const tips = [
-  'Salerne est reliée à Naples et Rome par train à grande vitesse : excellent point de départ.',
-  'Le ferry Travelmar depuis Salerne est panoramique et arrive à Amalfi sans emprunter la SS163.',
-  'La partie est de la Côte (Maiori, Minori, Vietri) est bien moins fréquentée que Positano.',
-  'Vietri sul Mare est la capitale italienne de la céramique : idéal pour des souvenirs de qualité.',
+  '<span class="text-med-gold font-medium">Salerne</span> est reliée à Naples et Rome par train à grande vitesse : excellent point de départ.',
+  'Le ferry Travelmar depuis <span class="text-med-gold font-medium">Salerne</span> est panoramique et arrive à <a href="/fr-fr/cote-amalfitaine/amalfi/" class="text-med-gold hover:underline font-medium">Amalfi</a> sans emprunter la SS163.',
+  'La partie est de la Côte (<a href="/fr-fr/cote-amalfitaine/maiori/" class="text-med-gold hover:underline font-medium">Maiori</a>, <a href="/fr-fr/cote-amalfitaine/minori/" class="text-med-gold hover:underline font-medium">Minori</a>, <a href="/fr-fr/cote-amalfitaine/vietri-sul-mare/" class="text-med-gold hover:underline font-medium">Vietri</a>) est bien moins fréquentée que Positano.',
+  '<a href="/fr-fr/cote-amalfitaine/vietri-sul-mare/" class="text-med-gold hover:underline font-medium">Vietri sul Mare</a> est la capitale italienne de la céramique : idéal pour des souvenirs de qualité.',
   'En basse saison, le bus SITA est la seule option (ferry suspendu) : il part de la Piazza della Concordia.',
 ];
 
@@ -55,115 +54,127 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
 ---
 
 <BaseLayout
-  title="Côte Amalfitaine depuis Salerne en 1 Jour 2026 | Itinéraire Est"
-  description="Itinéraire d'1 jour par la porte est de la Côte Amalfitaine : Amalfi, Maiori, Minori et Vietri sul Mare au départ de Salerne. Horaires ferries et bus SITA."
+  title="Côte Amalfitaine depuis Salerne en 1 Jour 2026 | Porte Est"
+  description="Itinéraire d'une journée depuis la porte est de la Côte Amalfitaine : Amalfi, Maiori, Minori et Vietri sul Mare depuis Salerne. Ferry et bus SITA."
   lang={lang}
   breadcrumbs={breadcrumbs}
   schema={[faqSchema]}
 >
 
-  <section class="relative bg-charcoal overflow-hidden">
+  <section class="relative bg-charcoal overflow-hidden min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center">
     <img src="/images/costiera-hero.jpg" alt="Côte Amalfitaine depuis Salerne" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
-
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
-    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <div class="max-w-2xl pt-8">
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-3xl mx-auto">
         <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Itinéraire · 1 jour</p>
         <h1 class="font-serif text-display text-white mb-4">Côte Amalfitaine depuis Salerne</h1>
-        <p class="text-xl text-white/80 leading-relaxed">
-          Côte Amalfitaine de Salerne: moins de foule, mêmes vues, départ plus tardif.
-        </p>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">La porte est : Amalfi, Maiori, Minori et Vietri sul Mare. Ferry, céramiques, front de mer tranquille et moins fréquenté.</p>
       </div>
     </div>
     <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
-  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 space-y-10">
 
-    <section class="max-w-4xl mx-auto">
-      <div class="grid grid-cols-3 gap-6">
-        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 text-center shadow-sm flex flex-col items-center gap-3">
-          <svg class="w-7 h-7 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Durée</p><p class="font-bold text-charcoal text-lg">1 Jour</p></div>
+    <section class="text-center mb-2">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-6 overflow-x-auto snap-x snap-mandatory sm:overflow-visible pb-2 sm:pb-0">
+        <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Durée</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">1 jour</p>
         </div>
-        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 text-center shadow-sm flex flex-col items-center gap-3">
-          <svg class="w-7 h-7 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-          <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Coût transport</p><p class="font-bold text-charcoal text-lg">~12–18€</p></div>
+        <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Point de départ</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">Salerne</p>
         </div>
-        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 text-center shadow-sm flex flex-col items-center gap-3">
-          <svg class="w-7 h-7 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Difficulté</p><p class="font-bold text-charcoal text-lg">Facile</p></div>
+        <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 9l6-6 6 6M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9M9 14h6"/></svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Transports</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">Ferry ou bus<br/>+ bus local</p>
+        </div>
+        <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Budget transports</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">€15–20<br/><span class="text-xs">p.p.</span></p>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-lg text-slate-700 leading-relaxed">Explorez la porte est de la <strong>Côte Amalfitaine</strong> depuis <strong>Salerne</strong> : prenez le scenic <strong>ferry Travelmar</strong> vers <strong>Amalfi</strong>, puis explorez les villages plus à l'est. Visitez <strong>Maiori</strong> pour son long front de mer, <strong>Minori</strong> pour les ruines de la Villa Romaine, et <strong>Vietri sul Mare</strong> pour ses célèbres céramiques. Moins fréquenté que Positano, plus authentique. <strong>Budget transports : €15–20</strong>.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Programme de la journée</h2>
+      <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+        <div class="px-6 py-8 space-y-6">
+          {schedule.map((item, idx) => {
+            const badge = transportBadge[item.transport];
+            const isLastItem = idx === schedule.length - 1;
+            return (
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center flex-shrink-0">
+                  <div class="w-16 bg-slate-900 text-med-gold rounded-full px-2 py-1 text-center text-sm font-semibold flex items-center justify-center">{item.time}</div>
+                  {!isLastItem && <div class="w-0.5 h-12 bg-med-blue/30 mt-2"></div>}
+                </div>
+                <div class="pb-4 flex-1">
+                  <p class="font-semibold text-slate-900 mb-1">{item.place}</p>
+                  <p class="text-slate-700 text-sm mb-2" set:html={item.action} />
+                  {badge.label && <span class={`text-xs font-semibold px-2 py-1 rounded-full ${badge.cls}`}>{badge.label}</span>}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
 
-    <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
-      <section class="lg:col-span-8">
-        <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Programme Heure par Heure</h2>
-        <div class="relative">
-          <div class="space-y-12 border-l-2 border-slate-200 pl-8 ml-3">
-            {schedule.map((s) => {
-              const badge = transportBadge[s.transport] ?? transportBadge.visit;
-              return (
-                <div class="relative">
-                  <div class="absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full bg-med-blue ring-4 ring-white shadow-sm"></div>
-                  <div class="flex items-center gap-2 mb-1">
-                    <span class="font-mono text-med-blue font-bold text-xs sm:text-sm">{s.time}</span>
-                    {badge.label && <span class={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${badge.cls}`}>{badge.label}</span>}
-                  </div>
-                  <p class="font-semibold text-charcoal text-base leading-snug">{s.place}</p>
-                  <p class="text-slate-600 text-xs sm:text-sm mt-1 leading-relaxed">{s.action}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Destinations de l'itinéraire</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        {destinationHighlights.map((dest) => (
+          <a href={dest.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
+            <h3 class="font-semibold text-charcoal mb-2 group-hover:text-med-blue transition-colors">{dest.name}</h3>
+            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">Découvrir →</span>
+          </a>
+        ))}
+      </div>
+    </section>
 
-      <aside class="lg:col-span-4 mt-12 lg:mt-0">
-        <div class="lg:sticky lg:top-24 space-y-6">
-          <div class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
-            <p class="font-semibold text-charcoal mb-4 flex items-center gap-2">
-              <svg class="w-4 h-4 text-med-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 3-1.7 5.2-4 6.4V17a1 1 0 0 1-1 1H10a1 1 0 0 1-1-1v-1.6C6.7 14.2 5 12 5 9a7 7 0 0 1 7-7z"/><path d="M10 21h4M12 17v4"/></svg>
-              Conseils Pratiques
-            </p>
-            <ul class="space-y-3">
-              {tips.map(tip => (
-                <li class="flex gap-2.5 text-xs sm:text-sm text-charcoal">
-                  <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div class="bg-white border border-slate-200 rounded-[2rem] p-6">
-            <p class="font-semibold text-charcoal mb-3 flex items-center gap-2">
-              <svg class="w-4 h-4 text-med-blue" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-              Carte Rapide
-            </p>
-            <a href="https://maps.google.com/maps?q=Amalfi,Italy" target="_blank" rel="noopener" class="flex items-center justify-between bg-slate-50 hover:bg-med-blue/5 rounded-xl px-4 py-3 text-xs sm:text-sm text-med-blue font-medium transition-colors group">
-              Ouvrir l'itinéraire dans Google Maps
-              <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-      </aside>
-    </div>
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+      <h2 class="font-serif text-xl font-semibold text-charcoal mb-6">Conseils pratiques</h2>
+      <ul class="space-y-4">
+        {tips.map((text, idx) => {
+          const nums = ['❶', '❷', '❸', '❹', '❺'];
+          return (
+            <li class="flex items-start gap-4 text-sm text-charcoal">
+              <span class="text-2xl font-bold text-white flex-shrink-0 leading-none mt-0.5 bg-[#E2725B] w-9 h-9 flex items-center justify-center rounded-full">{nums[idx] || '•'}</span>
+              <span class="leading-relaxed" set:html={text} />
+            </li>
+          );
+        })}
+      </ul>
+    </section>
 
     <section id="faq">
-      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Questions Fréquentes</h2>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Questions fréquemment posées</h2>
       <div class="space-y-4">
         {faqSchema.mainEntity.map((q) => (
           <details class="group border border-slate-200 rounded-2xl overflow-hidden">
-            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
-              {q.name}
-              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-            </summary>
-            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">{q.name}<svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
           </details>
         ))}
       </div>
     </section>
 
+    <section class="bg-gradient-to-r from-med-blue to-med-blue/80 rounded-2xl p-10 text-center text-white">
+      <h2 class="font-serif text-3xl font-bold mb-3">Découvrez la Côte Amalfitaine</h2>
+      <p class="text-white/90 mb-6 max-w-2xl mx-auto">Lire le guide complet des transports de la Côte Amalfitaine : ferries, bus SITA, horaires et conseils pour économiser.</p>
+      <a href="/fr-fr/guide/ferries/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">Guide des ferries →</a>
+    </section>
+
   </div>
+
 </BaseLayout>

@@ -7,7 +7,7 @@ const lang = 'de-de';
 const breadcrumbs = [
   { name: 'Home', url: '/de-de/' },
   { name: 'Reiserouten', url: '/de-de/reiserouten/' },
-  { name: 'Trekking Weg der Götter', url: '/de-de/reiserouten/1-tag/weg-der-goetter-trekking/' },
+  { name: 'Weg der Götter Trekking', url: '/de-de/reiserouten/1-tag/weg-der-goetter-trekking/' },
 ];
 
 const faqSchema = {
@@ -32,23 +32,31 @@ const faqSchema = {
   ]
 };
 
+const destinations = [
+  { name: 'Sorrent', url: '/de-de/sorrentinische-halbinsel/sorrent/' },
+  { name: 'Amalfi', url: '/de-de/amalfikueste/amalfi/' },
+  { name: 'Positano', url: '/de-de/amalfikueste/positano/' },
+];
+
+const destinationHighlights = destinations.map(d => ({ name: d.name, desc: '', url: d.url }));
+
 const schedule = [
-  { time: '07:00', place: 'Neapel', action: 'Circumvesuviana nach Sorrent (70 Min., ~€3,90)', transport: 'train' },
-  { time: '08:15', place: 'Sorrent', action: 'SITA-Bus nach Amalfi (90 Min., ~€3,50) - Abfahrt 8:30 Uhr', transport: 'bus' },
+  { time: '07:00', place: 'Neapel', action: 'Circumvesuviana nach <a href="/de-de/sorrentinische-halbinsel/sorrent/" class="text-med-blue hover:underline font-medium">Sorrent</a> (70 Min., ~€3,90)', transport: 'train' },
+  { time: '08:15', place: 'Sorrent', action: 'SITA-Bus nach <a href="/de-de/amalfikueste/amalfi/" class="text-med-blue hover:underline font-medium">Amalfi</a> (90 Min., ~€3,50) - Abfahrt 8:30 Uhr', transport: 'bus' },
   { time: '10:00', place: 'Amalfi', action: 'Lokaler Bus nach Agerola, Ortsteil San Lazzaro (45 Min., ~€1,50). Wanderbeginn.', transport: 'bus' },
   { time: '11:00', place: 'Agerola (618 m)', action: 'Start Weg der Götter. 8 km, ~500 m Abstieg, EE. Atemberaubende Landschaften.', transport: 'walk' },
   { time: '14:30', place: 'Nocelle', action: 'Ankunft Nocelle. Pause und Mittagessen in einem der lokalen Rifugi/Bars.', transport: 'visit' },
-  { time: '15:15', place: 'Nocelle → Positano', action: 'Lokaler Bus nach Positano Zentrum (15 Min., ~€1,50) oder zu Fuß (~1.000 Stufen, 45 Min.)', transport: 'bus' },
+  { time: '15:15', place: 'Nocelle → Positano', action: 'Lokaler Bus nach <a href="/de-de/amalfikueste/positano/" class="text-med-blue hover:underline font-medium">Positano</a> Zentrum (15 Min., ~€1,50) oder zu Fuß (~1.000 Stufen, 45 Min.)', transport: 'bus' },
   { time: '16:00', place: 'Positano', action: 'Spaziergang, Eis, Strand (1h frei)', transport: 'visit' },
-  { time: '17:15', place: 'Positano → Neapel', action: 'SITA-Bus nach Sorrent (~50 Min.), dann Circumvesuviana nach Neapel (70 Min.)', transport: 'bus' },
+  { time: '17:15', place: 'Positano → Neapel', action: 'SITA-Bus nach <a href="/de-de/sorrentinische-halbinsel/sorrent/" class="text-med-blue hover:underline font-medium">Sorrent</a> (~50 Min.), dann Circumvesuviana nach Neapel (70 Min.)', transport: 'bus' },
 ];
 
 const tips = [
-  'Ideale Saison: April–Juni und September–Oktober. Juli–August ist sehr heiß und überfüllt.',
-  'Der Bus von Amalfi nach Agerola fährt selten: Abfahrtzeiten am Vorabend auf eavsrl.it prüfen.',
-  'Immer in Richtung Agerola→Nocelle gehen: fast durchgehend bergab, Beschilderung für diese Richtung.',
+  'Ideale Saison: <span class="text-med-gold font-medium">April–Juni</span> und <span class="text-med-gold font-medium">September–Oktober</span>. Juli–August ist sehr heiß und überfüllt.',
+  'Der Bus von <a href="/de-de/amalfikueste/amalfi/" class="text-med-gold hover:underline font-medium">Amalfi</a> nach Agerola fährt selten: Abfahrtzeiten am Vorabend auf eavsrl.it prüfen.',
+  'Immer in Richtung <span class="text-med-gold font-medium">Agerola→Nocelle</span> gehen: fast durchgehend bergab, Beschilderung für diese Richtung.',
   'Kein Trinkwasser auf dem Weg: mindestens 1,5 L mitbringen. Die letzte Bar ist in Agerola vor dem Start.',
-  'Von Nocelle nach Positano: zu Fuß bergab (~1.000 Stufen, 45 Min.) oder mit Bus (15 Min., ~€1,50).',
+  'Von Nocelle nach <a href="/de-de/amalfikueste/positano/" class="text-med-gold hover:underline font-medium">Positano</a>: zu Fuß bergab (~1.000 Stufen, 45 Min.) oder mit Bus (15 Min., ~€1,50).',
 ];
 
 const transportBadge: Record<string, { label: string; cls: string }> = {
@@ -61,107 +69,113 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
 ---
 
 <BaseLayout
-  title="Weg der Götter in 1 Tag ab Neapel 2026 | Trekking-Reiseroute"
-  description="Der Weg der Götter (Agerola–Nocelle) an einem Tag ab Neapel: Fahrzeiten, Transportmittel, Buchung und Tipps. 8 km Trekking mit Blick auf die Amalfiküste."
+  title="Weg der Götter Trek in 1 Tag von Neapel 2026 | Agerola nach Positano"
+  description="Tagesausflug auf dem Weg der Götter (Sentiero degli Dei): Agerola nach Nocelle bis Positano. Wanderung, Verkehr und Praktische Tipps."
   lang={lang}
   breadcrumbs={breadcrumbs}
   schema={[faqSchema]}
 >
 
-  <section class="relative bg-charcoal overflow-hidden">
-    <img src="/images/trekking-hero.jpg" alt="Weg der Götter, Amalfiküste" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
-
+  <section class="relative bg-charcoal overflow-hidden min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center">
+    <img src="/images/costiera-hero.jpg" alt="Weg der Götter" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
-    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <div class="max-w-2xl pt-8">
-        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Reiseroute · Trekking · 1 Tag</p>
-        <h1 class="font-serif text-display text-white mb-4">Trekking Weg der Götter</h1>
-        <p class="text-xl text-white/80 leading-relaxed">
-          Weg der Götter: dreieinhalb Stunden Trekking zwischen Positano und Praiano.
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-3xl mx-auto">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Reiseroute · 1 Tag Trek</p>
+        <h1 class="font-serif text-display text-white mb-4">Weg der Götter Trek</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
+          Der legendäre Sentiero degli Dei von Agerola nach Positano: 8 km, 3–4 Stunden, atemberaubende Aussichten auf die Amalfiküste von oben.
         </p>
       </div>
     </div>
     <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
-  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 space-y-10">
 
-    <section class="max-w-4xl mx-auto">
-      <div class="grid grid-cols-4 gap-5">
-        <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm flex flex-col items-center gap-2">
-          <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 12h18M3 12l4-4M3 12l4 4"/></svg>
-          <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Distanz</p><p class="font-bold text-charcoal">8 km</p></div>
+    <section class="text-center mb-2">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-6 overflow-x-auto snap-x snap-mandatory sm:overflow-visible pb-2 sm:pb-0">
+        <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Dauer</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">1 Tag</p>
         </div>
-        <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm flex flex-col items-center gap-2">
-          <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Höhenunterschied</p><p class="font-bold text-charcoal">~500 m ↓</p></div>
+        <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Ausgangspunkt</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">Neapel</p>
         </div>
-        <div class="bg-white border border-red-100 rounded-2xl p-5 text-center shadow-sm flex flex-col items-center gap-2">
-          <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Schwierigkeit</p><p class="font-bold text-red-600">EE</p></div>
+        <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 9l6-6 6 6M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9M9 14h6"/></svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Trek</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">8 km<br/>3–4 Stunden</p>
         </div>
-        <div class="bg-white border border-slate-100 rounded-2xl p-5 text-center shadow-sm flex flex-col items-center gap-2">
-          <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-          <div><p class="text-xs text-slate-400 uppercase tracking-wide mb-0.5">Transportmittel</p><p class="font-bold text-charcoal">~€12–18</p></div>
+        <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Verkehrsbudget</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">€20–25<br/><span class="text-xs">p.P.</span></p>
         </div>
       </div>
-      <div class="mt-5 bg-red-50 border border-red-200 rounded-2xl px-5 py-4">
-        <p class="font-semibold text-red-800 text-xs sm:text-sm">Pflichtbuchung Juli–August - Parco dei Monti Lattari (~€5)</p>
+
+      <div>
+        <p class="text-lg text-slate-700 leading-relaxed">
+          Wandere den legendären <strong>Weg der Götter</strong> (Sentiero degli Dei) an einem Tag ab Neapel. Fahre mit der <strong>Circumvesuviana</strong> nach <strong>Sorrent</strong>, dann per Bus zu <strong>Amalfi</strong> und Agerola. Wandere 8 km durch Terrassenweinberge und atemberaubende Küstenlandschaft nach Nocelle und hinab nach <strong>Positano</strong>. EE-Wanderung, keine Wasserquellen, Pflichtbuchung im Sommer. Ein unbeschreiblicher aber anspruchsvoller Tag. <strong>Verkehrsbudget: €20–25</strong>.
+        </p>
       </div>
     </section>
 
-    <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
-      <section class="lg:col-span-8">
-        <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Stunde-für-Stunde-Programm</h2>
-        <div class="relative">
-          <div class="space-y-12 border-l-2 border-slate-200 pl-8 ml-3">
-            {schedule.map((s) => {
-              const badge = transportBadge[s.transport] ?? transportBadge.visit;
-              return (
-                <div class="relative">
-                  <div class="absolute -left-[41px] flex h-5 w-5 items-center justify-center rounded-full bg-med-blue ring-4 ring-white shadow-sm"></div>
-                  <div class="flex items-center gap-2 mb-1">
-                    <span class="font-mono text-med-blue font-bold text-xs sm:text-sm">{s.time}</span>
-                    {badge.label && <span class={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${badge.cls}`}>{badge.label}</span>}
-                  </div>
-                  <p class="font-semibold text-charcoal text-base leading-snug">{s.place}</p>
-                  <p class="text-slate-600 text-xs sm:text-sm mt-1 leading-relaxed">{s.action}</p>
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Tagesablauf</h2>
+      <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+        <div class="px-6 py-8 space-y-6">
+          {schedule.map((item, idx) => {
+            const badge = transportBadge[item.transport];
+            const isLastItem = idx === schedule.length - 1;
+            return (
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center flex-shrink-0">
+                  <div class="w-16 bg-slate-900 text-med-gold rounded-full px-2 py-1 text-center text-sm font-semibold flex items-center justify-center">{item.time}</div>
+                  {!isLastItem && <div class="w-0.5 h-12 bg-med-blue/30 mt-2"></div>}
                 </div>
-              );
-            })}
-          </div>
+                <div class="pb-4 flex-1">
+                  <p class="font-semibold text-slate-900 mb-1">{item.place}</p>
+                  <p class="text-slate-700 text-sm mb-2" set:html={item.action} />
+                  {badge.label && <span class={`text-xs font-semibold px-2 py-1 rounded-full ${badge.cls}`}>{badge.label}</span>}
+                </div>
+              </div>
+            );
+          })}
         </div>
-      </section>
+      </div>
+    </section>
 
-      <aside class="lg:col-span-4 mt-12 lg:mt-0">
-        <div class="lg:sticky lg:top-24 space-y-6">
-          <div class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
-            <p class="font-semibold text-charcoal mb-4 flex items-center gap-2">
-              <svg class="w-4 h-4 text-med-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 3-1.7 5.2-4 6.4V17a1 1 0 0 1-1 1H10a1 1 0 0 1-1-1v-1.6C6.7 14.2 5 12 5 9a7 7 0 0 1 7-7z"/><path d="M10 21h4M12 17v4"/></svg>
-              Insider-Tipps
-            </p>
-            <ul class="space-y-3">
-              {tips.map(tip => (
-                <li class="flex gap-2.5 text-xs sm:text-sm text-charcoal">
-                  <span class="w-1.5 h-1.5 rounded-full bg-med-cream0 mt-1.5 flex-shrink-0"></span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div class="bg-white border border-slate-200 rounded-[2rem] p-6">
-            <p class="font-semibold text-charcoal mb-3 flex items-center gap-2">
-              <svg class="w-4 h-4 text-med-blue" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-              Schnellkarte
-            </p>
-            <a href="https://maps.google.com/maps?q=Sentiero+degli+Dei+Agerola" target="_blank" rel="noopener" class="flex items-center justify-between bg-slate-50 hover:bg-med-blue/5 rounded-xl px-4 py-3 text-xs sm:text-sm text-med-blue font-medium transition-colors group">
-              Route in Google Maps öffnen
-              <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-      </aside>
-    </div>
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Trek-Hubs</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        {destinationHighlights.map((dest) => (
+          <a href={dest.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
+            <h3 class="font-semibold text-charcoal mb-2 group-hover:text-med-blue transition-colors">{dest.name}</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-3">{dest.desc}</p>
+            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">Entdecken →</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+      <h2 class="font-serif text-xl font-semibold text-charcoal mb-6">Praktische Tipps</h2>
+      <ul class="space-y-4">
+        {tips.map((text, idx) => {
+          const nums = ['❶', '❷', '❸', '❹', '❺'];
+          return (
+            <li class="flex items-start gap-4 text-sm text-charcoal">
+              <span class="text-2xl font-bold text-white flex-shrink-0 leading-none mt-0.5 bg-[#E2725B] w-9 h-9 flex items-center justify-center rounded-full">{nums[idx] || '•'}</span>
+              <span class="leading-relaxed" set:html={text} />
+            </li>
+          );
+        })}
+      </ul>
+    </section>
 
     <section id="faq">
       <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Häufig gestellte Fragen</h2>
@@ -172,11 +186,18 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
               {q.name}
               <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
             </summary>
-            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
           </details>
         ))}
       </div>
     </section>
 
+    <section class="bg-gradient-to-r from-med-blue to-med-blue/80 rounded-2xl p-10 text-center text-white">
+      <h2 class="font-serif text-3xl font-bold mb-3">Planen Sie Ihren Weg der Götter</h2>
+      <p class="text-white/90 mb-6 max-w-2xl mx-auto">Erfahren Sie mehr über Wanderungen an der Amalfiküste, Bedingungen, beste Jahreszeit und Buchungsanforderungen für den legendären Sentiero degli Dei.</p>
+      <a href="/de-de/reiseführer/faehren/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">Reiseführer →</a>
+    </section>
+
   </div>
+
 </BaseLayout>
