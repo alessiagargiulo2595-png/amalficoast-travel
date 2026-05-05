@@ -3,7 +3,6 @@ import BaseLayout from '../../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
 
 const lang = 'fr-fr';
-
 const breadcrumbs = [
   { name: 'Home', url: '/fr-fr/' },
   { name: 'Itinéraires', url: '/fr-fr/itineraires/' },
@@ -14,36 +13,35 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Comment aller à Sorrente depuis Naples ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Le moyen le plus simple est la Circumvésuvienne : train depuis Naples Porta Nolana ou Piazza Garibaldi jusqu'à Sorrente (70 min, ~€3,90). Départs toutes les 30-40 min. Autre option : hydroglisseur depuis Naples Beverello (Alilauro/NLG, ~60 min, ~€15) mais le prix est plus élevé." }
-    },
-    {
-      "@type": "Question",
-      "name": "Que voir dans la Péninsule Sorrentine en une journée ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Depuis Sorrente : le centre historique et le Vallone dei Mulini (30 min), puis bus pour Massa Lubrense (20 min) avec vue sur Capri et le Golfe. Sant'Agata sui Due Golfi offre l'un des plus beaux panoramas de la région. La Punta Campanella est accessible à pied (sentier 6 km A/R, 2h30)." }
-    }
+    { "@type": "Question", "name": "Comment aller à Sorrente depuis Naples ?", "acceptedAnswer": { "@type": "Answer", "text": "Le moyen le plus simple est la Circumvésuvienne : train depuis Naples Porta Nolana ou Piazza Garibaldi jusqu'à Sorrente (70 min, ~€3,90). Départs toutes les 30-40 min. Autre option : hydroglisseur depuis Naples Beverello (Alilauro/NLG, ~60 min, ~€15) mais le prix est plus élevé." } },
+    { "@type": "Question", "name": "Que voir dans la Péninsule Sorrentine en une journée ?", "acceptedAnswer": { "@type": "Answer", "text": "Depuis Sorrente : le centre historique et le Vallone dei Mulini (30 min), puis bus pour Massa Lubrense (20 min) avec vue sur Capri et le Golfe. Sant'Agata sui Due Golfi offre l'un des plus beaux panoramas de la région. La Punta Campanella est accessible à pied (sentier 6 km A/R, 2h30)." } }
   ]
 };
 
+const destinations = [
+  { name: 'Sorrente', url: '/fr-fr/peninsule-sorrentine/sorrento/' },
+  { name: 'Massa Lubrense', url: '/fr-fr/peninsule-sorrentine/massa-lubrense/' },
+  { name: 'Sant\'Agnello', url: '/fr-fr/peninsule-sorrentine/sant-agnello/' },
+];
+
+const destinationHighlights = destinations.map(d => ({ name: d.name, desc: '', url: d.url }));
 const schedule = [
-  { time: '08:00', place: 'Naples Porta Nolana', action: 'Circumvésuvienne pour Sorrente (70 min, ~€3,90)', transport: 'train' },
+  { time: '08:00', place: 'Naples Porta Nolana', action: 'Circumvésuvienne pour <a href="/fr-fr/peninsule-sorrentine/sorrento/" class="text-med-blue hover:underline font-medium">Sorrente</a> (70 min, ~€3,90)', transport: 'train' },
   { time: '09:15', place: 'Sorrente', action: 'Centre historique, Piazza Tasso, Vallone dei Mulini, boutiques de limoncello (1h30)', transport: 'visit' },
-  { time: '11:00', place: 'Sorrente → Massa Lubrense', action: 'Bus SITA pour Massa Lubrense (20 min, ~€1,50). Panorama sur Capri.', transport: 'bus' },
+  { time: '11:00', place: 'Sorrente → Massa Lubrense', action: 'Bus SITA pour <a href="/fr-fr/peninsule-sorrentine/massa-lubrense/" class="text-med-blue hover:underline font-medium">Massa Lubrense</a> (20 min, ~€1,50). Panorama sur Capri.', transport: 'bus' },
   { time: '12:00', place: 'Massa Lubrense', action: 'Déjeuner en trattoria locale. Vue sur le double golfe depuis la Punta Campanella.', transport: 'visit' },
-  { time: '13:30', place: 'Sant\'Agata sui Due Golfi', action: 'Bus ou taxi (15 min). Belvédère du Désert (panorama Golfe de Naples + Salerne).', transport: 'bus' },
-  { time: '15:00', place: 'Sant\'Agata → Sorrente', action: 'Bus de retour pour Sorrente (30 min). Temps libre sur le port.', transport: 'bus' },
+  { time: '13:30', place: "Sant'Agata sui Due Golfi", action: 'Bus ou taxi (15 min). Belvédère du Désert (panorama Golfe de Naples + Salerne).', transport: 'bus' },
+  { time: '15:00', place: "Sant'Agata → Sorrente", action: 'Bus de retour pour <a href="/fr-fr/peninsule-sorrentine/sorrento/" class="text-med-blue hover:underline font-medium">Sorrente</a> (30 min). Temps libre sur le port.', transport: 'bus' },
   { time: '16:30', place: 'Sorrente', action: 'Marina Piccola, promenade, apéritif avec vue sur le Vésuve', transport: 'visit' },
   { time: '18:00', place: 'Sorrente → Naples', action: 'Circumvésuvienne pour Naples (70 min)', transport: 'train' },
 ];
 
 const tips = [
-  'La Circumvésuvienne est économique mais lente et souvent bondée en été : surveillez vos affaires.',
-  'Sant\'Agata sui Due Golfi : depuis le belvédère on voit à la fois le Golfe de Naples et celui de Salerne.',
-  'Massa Lubrense est idéale pour un déjeuner abordable avec poisson du jour : moins touristique que Sorrente.',
-  'Pour faire le sentier de la Punta Campanella (6 km A/R), partez de Massa Lubrense avant 10h00.',
-  'Le limoncello de Sorrente est produit avec les citrons IGP de la région : achetez-le dans les boutiques locales.',
+  'La <span class="text-med-gold font-medium">Circumvésuvienne</span> est économique mais lente et souvent bondée en été : surveillez vos affaires.',
+  "Sant'Agata sui Due Golfi : depuis le belvédère on voit à la fois le <span class="text-med-gold font-medium">Golfe de Naples</span> et celui de <span class="text-med-gold font-medium">Salerne</span>.",
+  '<a href="/fr-fr/peninsule-sorrentine/massa-lubrense/" class="text-med-gold hover:underline font-medium">Massa Lubrense</a> est idéale pour un déjeuner abordable avec poisson du jour : moins touristique que <a href="/fr-fr/peninsule-sorrentine/sorrento/" class="text-med-gold hover:underline font-medium">Sorrente</a>.',
+  'Pour faire le sentier de la Punta Campanella (6 km A/R), partez de <a href="/fr-fr/peninsule-sorrentine/massa-lubrense/" class="text-med-gold hover:underline font-medium">Massa Lubrense</a> avant 10h00.',
+  'Le limoncello de <a href="/fr-fr/peninsule-sorrentine/sorrento/" class="text-med-gold hover:underline font-medium">Sorrente</a> est produit avec les citrons IGP de la région : achetez-le dans les boutiques locales.',
 ];
 
 const transportBadge: Record<string, { label: string; cls: string }> = {
@@ -53,32 +51,24 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   walk:  { label: 'À PIED', cls: 'bg-gray-100 text-slate-500' },
   visit: { label: '', cls: '' },
 };
-
-const destinationHighlights = [
-  { name: 'Sorrente', desc: 'Centre historique avec port, vue sur le Golfe et limoncello', url: '/fr-fr/peninsule-sorrentine/sorrento/' },
-  { name: 'Massa Lubrense', desc: 'Petit village bord de mer avec panorama sur Capri et tradition halieutique', url: '/fr-fr/peninsule-sorrentine/massa-lubrense/' },
-];
 ---
 
 <BaseLayout
-  title="Péninsule Sorrentine en 1 Jour depuis Naples 2026 | Sorrente, Massa Lubrense"
-  description="Itinéraire d'1 jour dans la Péninsule Sorrentine depuis Naples : Sorrente, Massa Lubrense, Sant'Agata sui Due Golfi. Circumvésuvienne, bus SITA et panoramas sur le Golfe."
+  title="Péninsule Sorrentine en 1 Jour depuis Naples 2026"
+  description="Excursion d'une journée sur la Péninsule Sorrentine depuis Naples : Sorrente, Massa Lubrense, Sant'Agata. Double golfe, Circumvésuvienne, bus SITA."
   lang={lang}
   breadcrumbs={breadcrumbs}
   schema={[faqSchema]}
 >
 
-  <!-- Hero Section -->
   <section class="relative bg-charcoal overflow-hidden min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center">
-    <img src="/images/sorrento-hero.jpg" alt="Péninsule Sorrentine depuis Naples" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
+    <img src="/images/costiera-hero.jpg" alt="Péninsule Sorrentine" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
     <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <div class="max-w-3xl mx-auto">
         <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Itinéraire · 1 jour</p>
         <h1 class="font-serif text-display text-white mb-4">Péninsule Sorrentine depuis Naples</h1>
-        <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
-          Péninsule Sorrentine depuis Naples : Sorrente, Vico Equense et villages montagneux cachés.
-        </p>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">Sorrente, Massa Lubrense et Sant'Agata sui Due Golfi en une journée. Double golfe, limoncello et Circumvésuvienne.</p>
       </div>
     </div>
     <Breadcrumbs breadcrumbs={breadcrumbs} />
@@ -86,53 +76,35 @@ const destinationHighlights = [
 
   <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 space-y-10">
 
-    <!-- Intro & Stats Section - Featured -->
     <section class="text-center mb-2">
-      <!-- Quick Stats Grid - Scrollable on Mobile -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-6 overflow-x-auto snap-x snap-mandatory sm:overflow-visible pb-2 sm:pb-0">
         <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
-          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <rect x="3" y="4" width="18" height="18" rx="2"/>
-            <path d="M16 2v4M8 2v4M3 10h18"/>
-          </svg>
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
           <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Durée</p>
           <p class="font-serif text-lg font-semibold text-med-gold">1 jour</p>
         </div>
         <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
-          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Point de départ</p>
           <p class="font-serif text-lg font-semibold text-med-gold">Naples</p>
         </div>
         <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
-          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <path d="M6 9l6-6 6 6M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9M9 14h6"/>
-          </svg>
-          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Transport</p>
-          <p class="font-serif text-lg font-semibold text-med-gold">Train<br/>+ Bus</p>
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 9l6-6 6 6M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9M9 14h6"/></svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Transports</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">Circumvésuvienne<br/>+ bus local</p>
         </div>
         <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
-          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="1"/>
-            <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/>
-          </svg>
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
           <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Budget transports</p>
           <p class="font-serif text-lg font-semibold text-med-gold">€10–15<br/><span class="text-xs">p.p.</span></p>
         </div>
       </div>
 
-      <!-- SEO Text Below -->
       <div>
-        <p class="text-lg text-slate-700 leading-relaxed">
-          Une <strong>journée complète</strong> dans la <strong>Péninsule Sorrentine</strong> depuis <strong>Naples</strong> : prendre la <strong>Circumvésuvienne bon marché</strong> (€3,90) jusqu'à <strong>Sorrente</strong>, explorer le vieux centre, puis bus vers <strong>Massa Lubrense</strong> et <strong>Sant'Agata sui Due Golfi</strong> – deux panoramas golfen à la fois ! <strong>Budget: €10–15 pour les transports</strong>.
-        </p>
+        <p class="text-lg text-slate-700 leading-relaxed">Une journée sur la <strong>Péninsule Sorrentine</strong> depuis <strong>Naples</strong> : prenez la <strong>Circumvésuvienne</strong> économique jusqu'à <strong>Sorrente</strong>, explorez le centre historique et Vallone dei Mulini, puis montez en bus à <strong>Massa Lubrense</strong> et Sant'Agata pour le légendaire panorama du <strong>double golfe</strong>. Découvrez le limoncello, les fruits de mer frais et le charme plus authentique de la péninsule. <strong>Budget transports : €10–15</strong>.</p>
       </div>
     </section>
 
-
-    <!-- Day by Day Itinerary -->
     <section>
       <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Programme de la journée</h2>
       <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
@@ -143,19 +115,13 @@ const destinationHighlights = [
             return (
               <div class="flex gap-4">
                 <div class="flex flex-col items-center flex-shrink-0">
-                  <div class="w-16 bg-slate-900 text-med-gold rounded-full px-2 py-1 text-center text-sm font-semibold flex items-center justify-center">
-                    {item.time}
-                  </div>
+                  <div class="w-16 bg-slate-900 text-med-gold rounded-full px-2 py-1 text-center text-sm font-semibold flex items-center justify-center">{item.time}</div>
                   {!isLastItem && <div class="w-0.5 h-12 bg-med-blue/30 mt-2"></div>}
                 </div>
                 <div class="pb-4 flex-1">
                   <p class="font-semibold text-slate-900 mb-1">{item.place}</p>
-                  <p class="text-slate-700 text-sm mb-2">{item.action}</p>
-                  {badge.label && (
-                    <span class={`text-xs font-semibold px-2 py-1 rounded-full ${badge.cls}`}>
-                      {badge.label}
-                    </span>
-                  )}
+                  <p class="text-slate-700 text-sm mb-2" set:html={item.action} />
+                  {badge.label && <span class={`text-xs font-semibold px-2 py-1 rounded-full ${badge.cls}`}>{badge.label}</span>}
                 </div>
               </div>
             );
@@ -164,23 +130,18 @@ const destinationHighlights = [
       </div>
     </section>
 
-    <!-- Destinations Highlighted -->
     <section>
       <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Destinations de l'itinéraire</h2>
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {destinationHighlights.map((dest) => (
           <a href={dest.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
             <h3 class="font-semibold text-charcoal mb-2 group-hover:text-med-blue transition-colors">{dest.name}</h3>
-            <p class="text-xs text-slate-500 leading-relaxed mb-3">{dest.desc}</p>
-            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-              Découvrez →
-            </span>
+            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">Découvrir →</span>
           </a>
         ))}
       </div>
     </section>
 
-    <!-- Planning Tips -->
     <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
       <h2 class="font-serif text-xl font-semibold text-charcoal mb-6">Conseils pratiques</h2>
       <ul class="space-y-4">
@@ -189,40 +150,29 @@ const destinationHighlights = [
           return (
             <li class="flex items-start gap-4 text-sm text-charcoal">
               <span class="text-2xl font-bold text-white flex-shrink-0 leading-none mt-0.5 bg-[#E2725B] w-9 h-9 flex items-center justify-center rounded-full">{nums[idx] || '•'}</span>
-              <span class="leading-relaxed">{text}</span>
+              <span class="leading-relaxed" set:html={text} />
             </li>
           );
         })}
       </ul>
     </section>
 
-    <!-- FAQ -->
     <section id="faq">
       <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Questions fréquemment posées</h2>
       <div class="space-y-4">
         {faqSchema.mainEntity.map((q) => (
           <details class="group border border-slate-200 rounded-2xl overflow-hidden">
-            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
-              {q.name}
-              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-            </summary>
-            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
-              {q.acceptedAnswer.text}
-            </div>
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">{q.name}<svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
           </details>
         ))}
       </div>
     </section>
 
-    <!-- CTA -->
     <section class="bg-gradient-to-r from-med-blue to-med-blue/80 rounded-2xl p-10 text-center text-white">
-      <h2 class="font-serif text-3xl font-bold mb-3">Explorez tous les moyens de transport</h2>
-      <p class="text-white/90 mb-6 max-w-2xl mx-auto">
-        Guide complet de la Circumvésuvienne et des bus SITA : comment se rendre de Naples à la Péninsule Sorrentine, horaires et réservations.
-      </p>
-      <a href="/fr-fr/guida/traghetti/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">
-        Guide des transports →
-      </a>
+      <h2 class="font-serif text-3xl font-bold mb-3">Découvrez la Péninsule Sorrentine</h2>
+      <p class="text-white/90 mb-6 max-w-2xl mx-auto">Lire notre guide complet de la Péninsule Sorrentine : sentiers côtiers, panoramas, cuisine locale et conseils de voyage.</p>
+      <a href="/fr-fr/guide/ferries/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">Guide de voyage →</a>
     </section>
 
   </div>
