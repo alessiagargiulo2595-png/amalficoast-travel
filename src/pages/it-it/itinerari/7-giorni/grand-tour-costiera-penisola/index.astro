@@ -242,12 +242,21 @@ const faqSchema = {
               </div>
             </div>
             <ul class="px-6 py-5 space-y-3">
-              {d.items.map((item, itemIdx) => (
-                <li class="flex items-start gap-3 text-sm text-slate-700">
-                  <span class="w-2 h-2 rounded-full bg-med-blue flex-shrink-0 mt-2"></span>
-                  <span class="leading-relaxed">{item}</span>
-                </li>
-              ))}
+              {d.items.map((item, itemIdx) => {
+                const isLocalTip = item.includes('Local tip:');
+                const displayText = item.replace('Local tip: ', '');
+                return (
+                  <li class={`flex items-start gap-3 text-sm ${isLocalTip ? 'bg-med-gold/10 p-3 rounded-lg border border-med-gold/20' : ''}`}>
+                    <span class={`flex-shrink-0 mt-1 ${isLocalTip ? 'text-lg' : 'w-2 h-2 rounded-full bg-med-blue mt-1'}`}>
+                      {isLocalTip ? '💡' : ''}
+                    </span>
+                    <span class={`leading-relaxed ${isLocalTip ? 'font-semibold text-slate-800' : 'text-slate-700'}`}>
+                      {isLocalTip && <strong>Local tip: </strong>}
+                      {displayText}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ))}
