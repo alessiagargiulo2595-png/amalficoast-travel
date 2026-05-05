@@ -10,6 +10,17 @@ const breadcrumbs = [
   { name: 'Slow Travel - 7 giorni', url: '/it-it/itinerari/7-giorni/slow-travel-borghi-cibo/' },
 ];
 
+const destinationHighlights = [
+  { name: 'Praiano', url: '/it-it/costiera-amalfitana/praiano/', desc: 'Base ideale dello slow travel: senza ZTL, tranquilla, prezzi ragionevoli' },
+  { name: 'Amalfi', url: '/it-it/costiera-amalfitana/amalfi/', desc: 'Duomo, Chiostro del Paradiso, Museo della Carta, mercati autentici' },
+  { name: 'Ravello', url: '/it-it/costiera-amalfitana/ravello/', desc: 'Vigneti, degustazioni, Villa Rufolo e Cimbrone, belvedere sul golfo' },
+  { name: 'Cetara', url: '/it-it/costiera-amalfitana/maiori/', desc: 'Colatura di alici DOP, tradizione peschereccia, porto autentico' },
+  { name: 'Vietri sul Mare', url: '/it-it/costiera-amalfitana/vietri-sul-mare/', desc: 'Ceramiche artigianali, Museo della Ceramica, lungomare rilassato' },
+  { name: 'Furore', url: '/it-it/costiera-amalfitana/praiano/', desc: 'Il Fiordo nascosto, accesso in bus, il borgo che non c\'è' },
+  { name: 'Scala', url: '/it-it/costiera-amalfitana/ravello/', desc: 'Sentieri tra oliveti e vigneti, colline tranquille, pranzi locali' },
+  { name: 'Guida Pratica', url: '/it-it/guida/traghetti/', desc: 'Trasporti, bus SITA, sentieri e consigli per organizzare i giorni' },
+];
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -23,18 +34,110 @@ const faqSchema = {
       "@type": "Question",
       "name": "Quali sono i borghi meno turistici della Costiera Amalfitana?",
       "acceptedAnswer": { "@type": "Answer", "text": "I borghi meno visitati sono: Praiano (tra Positano e Amalfi, niente ZTL, spiaggia tranquilla), Cetara (famosa per la colatura di alici, autentica), Furore (il borgo che non c'è, costruito nella forra), Conca dei Marini (300 abitanti, vicino alla Grotta dello Smeraldo). Tutti raggiungibili in bus SITA dalla SS163." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanti giorni servono per fare slow travel sulla Costiera?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Minimo 5-7 giorni. Con 7 giorni puoi restare 2-3 notti nella stessa base (es. Praiano), fare escursioni senza fretta, participare ai mercati locali, mangiare quando e dove vuoi. Il ritmo lento è il punto: 1-2 attività al giorno, non l'itinerario classico con 10 mete in fretta." }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual è la stagione migliore per lo slow travel?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Maggio-giugno e settembre-ottobre offrono il mix ideale: meno folla di luglio-agosto, mare ancora caldo, ristoranti ancora pieni di locali, prezzi ragionevoli. Evita ferragosto e Pasqua. Aprile e novembre vanno bene per chi vuole totale tranquillità." }
     }
   ]
 };
 
 const days = [
-  { day: 'Giorno 1', title: 'Arrivo a Praiano', items: ['Praiano: il borgo centrale senza ZTL. Meno turisti di Positano, prezzi più bassi.', 'Spiaggia della Gavitella: piccola, bellissima, accessibile a piedi.', 'Cena in una delle trattorie sul porto: pesce del giorno.'] },
-  { day: 'Giorno 2', title: 'Sentiero degli Dei', items: ['Bus SITA per Amalfi, poi per Agerola (partenza sentiero).', 'Sentiero degli Dei (Agerola→Nocelle, 8 km, 3-4h, EE).', 'Rientro a Praiano via Positano in bus SITA.'] },
-  { day: 'Giorno 3', title: 'Amalfi e Furore', items: ['Bus SITA per Amalfi. Mattina: mercato del giovedì (prodotti locali, mozzarella, limoni).', 'Furore: il Fiordo di Furore, fermata a richiesta sul bus SITA. Il borgo nella forra.', 'Museo della Carta di Amalfi: la carta artigianale prodotta dal XIII secolo.'] },
-  { day: 'Giorno 4', title: 'Ravello e Scala', items: ['Bus per Ravello (25 min). Mattina tranquilla senza folla alle 9:00.', 'Sentiero Ravello→Scala: 4 km tra oliveti e vigneti, vista sul golfo. Pranzo a Scala.', 'Pomeriggio: aperitivo con vista, degustazione vino rosso Ravello.'] },
-  { day: 'Giorno 5', title: 'Cetara e Vietri', items: ['Bus SITA est per Cetara (famosa per la colatura di alici DOP). Mercato del pesce.', 'Visita al Museo della Colatura di Alici e acquisto diretto dai produttori.', 'Vietri sul Mare: ceramiche, Museo della Ceramica. Passeggiata sul lungomare.'] },
-  { day: 'Giorno 6', title: 'Valle delle Ferriere', items: ['Mattina: escursione Valle delle Ferriere da Amalfi (7 km A/R, 3h, E). Cascate e felci tropicali.', 'Pomeriggio: bagno nelle cale isolate vicino ad Amalfi o tour in kayak.', 'Cena di pesce fresco ad Amalfi.'] },
-  { day: 'Giorno 7', title: 'Mercato e Partenza', items: ['Mattina libera al mercato locale. Acquisto prodotti tipici: limoncello artigianale, alici, ceramiche.', 'Pranzo lento in trattoria. Saluti.', 'Bus SITA per Salerno (60 min) o Sorrento (90 min) per raggiungere treni o aeroporto.'] },
+  {
+    day: 'Giorno 1',
+    title: 'Arrivo a Praiano',
+    highlight: 'Il borgo ideale per lo slow travel',
+    items: [
+      'Praiano: il borgo centrale senza ZTL, meno turisti di Positano, prezzi più bassi. Base ideale per 2-3 notti.',
+      'Check-in e riposo dal viaggio. Passeggiata sul lungomare al tramonto.',
+      'Spiaggia della Gavitella: piccola, bellissima, accessibile a piedi dalla piazza centrale.',
+      'Cena in una delle trattorie sul porto: pesce del giorno, linguine alle vongole, vista sulla Costiera.',
+      'Local tip: cammina per i violi stretti tra le case, scopri piccoli negozietti artigianali locali.'
+    ]
+  },
+  {
+    day: 'Giorno 2',
+    title: 'Sentiero degli Dei',
+    highlight: 'Trek tra i borghi più belli',
+    items: [
+      'Colazione presto. Bus SITA da Praiano per Amalfi (45 min, ~€2.50), poi per Agerola (partenza sentiero).',
+      'Sentiero degli Dei (Agerola→Nocelle, 8 km, 3-4h, EE): uno dei sentieri più belli d\'Europa. Viste sulla Costiera infiniti.',
+      'Arrivatianocelle, pranzo in una terrazza con vista golfo. Specialità: caciocavallo fresco e vino locale.',
+      'Rientro a Praiano via Positano in bus SITA. Aperitivo a Positano se hai tempo (caro ma incantevole).',
+      'Local tip: porta almeno 2L d\'acqua, il sentiero non ha sorgenti. Scarpe da trekking robuste, il sentiero è in buone condizioni ma esposto.'
+    ]
+  },
+  {
+    day: 'Giorno 3',
+    title: 'Amalfi e Furore',
+    highlight: 'Tradizione artigianale e fiordo segreto',
+    items: [
+      'Bus SITA per Amalfi (45 min). Mattina: mercato del giovedì se è giovedì (prodotti locali, mozzarella fresca, limoni enormi).',
+      'Piazza del Duomo: Cattedrale Romanica (IX sec), Chiostro del Paradiso con colonnati arabi unici. Museo della Carta: la tradizione delle carte decorative dal XIII secolo.',
+      'Furore: il Fiordo di Furore, fermata a richiesta sul bus SITA (sulla SS163, strada spettacolare). Il borgo che scompare nella forra: case bianche tra le rocce.',
+      'Pomeriggio libero: gelato Pansa (marchio storico dal 1852), passeggiata lungo il porto, shopping ceramiche artigianali.',
+      'Cena ad Amalfi: scialatielli ai frutti di mare, alici marinate, limoncello fatto da loro.',
+      'Local tip: il Fiordo di Furore è perfetto per tuffarsi da giugno a settembre. Il bus fa fermata a richiesta: avvisa il conducente.'
+    ]
+  },
+  {
+    day: 'Giorno 4',
+    title: 'Ravello e Scala',
+    highlight: 'Vigneti, ville e degustazioni',
+    items: [
+      'Bus SITA per Ravello da Amalfi (25 min, +500 m di altura). Mattina tranquilla alle 9:00, la folla arriva alle 11.',
+      'Piazza Duomo: a differenza di Positano, qui è serena. Villa Rufolo (XIV sec, giardini straordinari) e Villa Cimbrone (XIX sec, "Terrazza dell\'Infinito"). Entrambe visitabili.',
+      'Sentiero Ravello→Scala: 4 km tra oliveti e vigneti terrazzati, viste sulla costiera. 90 min tranquilli. Pranzo a Scala in una trattoria semplice: pasta fatta in casa, vino di casa.',
+      'Pomeriggio: degustazione vino rosso di Ravello in una cantina locale (€10-15 pp). I vigneti ad alta quota producono un rosso leggero e profumato unico.',
+      'Tramonto da Villa Cimbrone (ingresso €7, resta aperto fino al tramonto). Miglior punto panoramico di tutta la Costiera.',
+      'Cena: ristorante in Piazza Duomo oppure scendi ad Amalfi per una cena più economica.',
+      'Local tip: Ravello in luglio-agosto ospita concerti del Festival Ravello (verificare il programma). Via di Ravello = main street con negozi ceramiche artigianali.'
+    ]
+  },
+  {
+    day: 'Giorno 5',
+    title: 'Cetara e Vietri',
+    highlight: 'Colatura di alici DOP e ceramiche',
+    items: [
+      'Bus SITA verso est per Cetara (piccolo porto autentico, famoso per la colatura di alici DOP). Mercato del pesce fresco al mattino.',
+      'Visita al Museo della Colatura di Alici e acquisto diretto dai produttori locali (bottiglie da 200ml = €8-15, vere DOP). È il garum moderno: liquido ambrato di alici fermentate.',
+      'Pranzo a Cetara: spaghetti alla colatura di alici (piatto semplice, incredibile). Vino bianco Fiano di Avellino.',
+      'Vietri sul Mare: bus SITA continua per Vietri (capitale italiana della ceramica). Museo della Ceramica, laboratori artigianali, negozi.',
+      'Passeggiata sul lungomare: meno caotico di Positano, meno costoso, autentico. Shopping ceramiche: scegli laboratori piccoli locali, non i negozi turistici.',
+      'Cena a Vietri: ristorante sul porto oppure risalita per ristorantino locale, meno caro.',
+      'Local tip: le ceramiche migliori sono nei laboratori artigianali piccoli, non nei negozi grande. Chiedi al ristorante quale laboratorio visitare.'
+    ]
+  },
+  {
+    day: 'Giorno 6',
+    title: 'Valle delle Ferriere',
+    highlight: 'Trekking tra cascate e felci tropicali',
+    items: [
+      'Rientro a Praiano o Amalfi. Escursione Valle delle Ferriere da Amalfi (7 km A/R, 3-4h, E). Cascate, ruscelli, felci tropicali: uno spazio magico.',
+      'Partenza dalle Paper Mills Museum, discesa nel canyon verde. La Valle è fresca e umida anche in agosto (perfetto se caldo).',
+      'Pomeriggio: bagno nelle cale isolate vicino ad Amalfi (raggiungibili a piedi da Praiano in 30 min, piccole spiagge tranquille) oppure tour in kayak privato (€50-80 pp).',
+      'Rientro per aperitivo. Cena di pesce fresco ad Amalfi o Praiano.',
+      'Local tip: la Valle è via Atrani (piccolo borgo colorato, molto fotografico). Porta scarpe d\'acqua, il sentiero ha corsi d\'acqua.'
+    ]
+  },
+  {
+    day: 'Giorno 7',
+    title: 'Mercato e Partenza',
+    highlight: 'Ultimi acquisti e ritorno',
+    items: [
+      'Mattina libera al mercato locale di Praiano o Amalfi (giovedì il più grande). Prodotti tipici: limoncello artigianale (non la Luxardo turistica), alici secche, mozzarella, limoni.',
+      'Pranzo lento in trattoria: niente fretta, ultimi scialatielli ai frutti di mare, vino bianco, caffè.',
+      'Pomeriggio: saluti, passeggiata finale per i violi di Praiano. Ultimi ricordi fotografici.',
+      'Bus SITA per Salerno (90 min via Amalfi) oppure per Sorrento (90 min) per raggiungere treni o aeroporto. Aliscafo per Napoli se decidi di fare una tappa in città.',
+      'Local tip: il mercato del giovedì è enorme, arriva verso le 8:00. I mercati in estate sono meno affollati delle 11:00.'
+    ]
+  },
 ];
 ---
 
@@ -46,89 +149,150 @@ const days = [
   schema={[faqSchema]}
 >
 
-  <section class="relative bg-charcoal overflow-hidden">
+  <!-- Hero Section -->
+  <section class="relative bg-charcoal overflow-hidden min-h-[65vh] sm:min-h-[75vh] flex items-center justify-center">
     <img src="/images/costiera-hero.jpg" alt="Slow travel Costiera Amalfitana" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
-
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
-    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <div class="max-w-3xl">
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-3xl mx-auto">
         <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Itinerario · 7 giorni</p>
         <h1 class="font-serif text-display text-white mb-4">Slow Travel: Borghi e Cibo</h1>
-        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
-          Sette giorni di slow travel: borghi, cibo locale, vini della Costiera e notti tranquille.
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
+          Sette giorni di slow travel autentico: restare più giorni nello stesso borgo, mercati locali, cibo tradizionale e vini della Costiera. L'opposto dell'itinerario frettoloso.
         </p>
       </div>
     </div>
     <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
-  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 space-y-10">
 
-    <section class="max-w-text">
-      <div class="grid sm:grid-cols-4 gap-4">
-        <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100">
-          <p class="text-xs text-slate-400 mb-1">Durata</p>
-          <p class="font-semibold text-charcoal">7 giorni / 6 notti</p>
+    <!-- Intro & Stats Section -->
+    <section class="text-center mb-2">
+      <!-- Quick Stats Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+        <div class="bg-slate-900 rounded-2xl p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Durata</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">7 giorni<br/>6 notti</p>
         </div>
-        <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100">
-          <p class="text-xs text-slate-400 mb-1">Base</p>
-          <p class="font-semibold text-charcoal">Praiano o Amalfi</p>
+        <div class="bg-slate-900 rounded-2xl p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Base</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">Praiano o<br/>Amalfi</p>
         </div>
-        <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100">
-          <p class="text-xs text-slate-400 mb-1">Stagione ideale</p>
-          <p class="font-semibold text-charcoal">Maggio–Giugno / Set–Ott</p>
+        <div class="bg-slate-900 rounded-2xl p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/>
+          </svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Stagione</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">Maggio–Ott<br/>(off: Nov–Apr)</p>
         </div>
-        <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100">
-          <p class="text-xs text-slate-400 mb-1">Ritmo</p>
-          <p class="font-semibold text-charcoal">Lento</p>
+        <div class="bg-slate-900 rounded-2xl p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M9 12l2 2 4-4"/>
+            <circle cx="12" cy="12" r="9"/>
+          </svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Ritmo</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">Lento &<br/>autentico</p>
         </div>
+      </div>
+
+      <!-- SEO Text Below -->
+      <div>
+        <p class="text-lg text-slate-700 leading-relaxed">
+          Lo <strong>slow travel di 7 giorni</strong> è il percorso ideale per chi vuole fuggire dal turismo di massa sulla Costiera Amalfitana. Base fissa a <strong>Praiano</strong> (tranquilla, senza ZTL) o <strong>Amalfi</strong> (centrale), con gite giornaliere a borghi autentici, mercati locali, sentieri minori e degustazioni di vini e prodotti tipici. Niente auto, niente fretta: solo bus SITA, cibo buono e gente vera.
+        </p>
       </div>
     </section>
 
+    <!-- Day by Day Itinerary -->
     <section>
       <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Il programma giorno per giorno</h2>
       <div class="space-y-6">
-        {days.map(d => (
-          <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
-            <div class="bg-med-blue/5 px-6 py-4 flex items-center gap-3">
-              <span class="text-[10px] uppercase tracking-wide bg-med-blue text-white px-2 py-1 rounded-full font-medium">{d.day}</span>
-              <h3 class="font-semibold text-charcoal">{d.title}</h3>
+        {days.map((d, idx) => (
+          <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-slate-900 px-6 py-6 flex items-start gap-4 sm:items-center sm:gap-3">
+              <span class="text-[10px] uppercase tracking-wide bg-white/15 text-white px-3 py-1.5 rounded-full font-bold flex-shrink-0">{d.day}</span>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-serif font-semibold text-white text-lg">{d.title}</h3>
+                <p class="text-xs text-med-gold mt-1 font-medium">{d.highlight}</p>
+              </div>
             </div>
-            <ul class="px-6 py-4 space-y-2">
-              {d.items.map(item => (
-                <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
-                  <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span>
-                  <span>{item}</span>
-                </li>
-              ))}
+            <ul class="px-6 py-5 space-y-3">
+              {d.items.map((item, itemIdx) => {
+                const isLocalTip = item.includes('Local tip:');
+                const displayText = item.replace('Local tip: ', '');
+                const isLastItem = itemIdx === d.items.length - 1;
+                return (
+                  <li key={itemIdx} class={`flex gap-3 text-sm relative ${isLocalTip ? 'bg-med-gold/10 p-3 rounded-lg border border-med-gold/20' : ''}`}>
+                    <div class="flex flex-col items-center">
+                      {isLocalTip ? (
+                        <svg class="w-5 h-5 text-med-gold flex-shrink-0 self-center" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                          <circle cx="12" cy="8" r="5"/>
+                          <path d="M12 13v2"/>
+                          <rect x="10" y="15" width="4" height="3" rx="0.5"/>
+                        </svg>
+                      ) : (
+                        <span class="w-2 h-2 rounded-full bg-med-blue flex-shrink-0"></span>
+                      )}
+                      {!isLastItem && <div class="w-0.5 h-6 bg-med-blue/30 mt-1"></div>}
+                    </div>
+                    <span class={`leading-relaxed ${isLocalTip ? 'font-semibold text-slate-800' : 'text-slate-700'}`}>
+                      {isLocalTip && <strong>Local tip: </strong>}
+                      {displayText}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ))}
       </div>
     </section>
 
-    <section class="bg-charcoal text-white rounded-[2rem] p-8">
-      <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Prodotti da non perdere</p>
-      <div class="grid sm:grid-cols-2 gap-6 text-xs sm:text-sm">
-        <div>
-          <p class="font-semibold mb-1">Limone sfusato amalfitano IGP</p>
-          <p class="text-white/70">I limoni enormi della Costiera: aroma unico, scorza spessa. Comprarli direttamente dai coltivatori ad Amalfi o Minori.</p>
-        </div>
-        <div>
-          <p class="font-semibold mb-1">Colatura di alici di Cetara DOP</p>
-          <p class="text-white/70">Il garum moderno: liquido ambrato di alici fermentate. Cetara ne produce la versione DOP migliore d'Italia.</p>
-        </div>
-        <div>
-          <p class="font-semibold mb-1">Vino di Ravello</p>
-          <p class="text-white/70">I vigneti ad alta quota producono un rosso leggero e profumato. Degustazione nelle cantine di Ravello.</p>
-        </div>
-        <div>
-          <p class="font-semibold mb-1">Ceramiche di Vietri sul Mare</p>
-          <p class="text-white/70">La capitale italiana della ceramica: piastrelle, piatti e oggetti d'arte dipinti a mano. Scegli i laboratori artigianali locali.</p>
-        </div>
+    <!-- Destinations Highlighted -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Le destinazioni dell'itinerario</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        {destinationHighlights.map((dest) => (
+          <a href={dest.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
+            <h3 class="font-semibold text-charcoal mb-2 group-hover:text-med-blue transition-colors">{dest.name}</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-3">{dest.desc}</p>
+            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+              Scopri →
+            </span>
+          </a>
+        ))}
       </div>
     </section>
 
+    <!-- Practical Tips -->
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+      <h2 class="font-serif text-xl font-semibold text-charcoal mb-6">Consigli pratici</h2>
+      <ul class="space-y-4">
+        {[
+          { num: '❶', text: 'Scegli una base fissa: Praiano (tranquilla, senza ZTL) o Amalfi (centrale, più scelta ristoranti). Stare 2-3 notti nello stesso hotel riduce lo stress.' },
+          { num: '❷', text: 'Bus SITA: biglietto giornaliero Costiera ~€3. In bassa stagione (gen-mar, nov) le corse sono ridotte: verifica orari.' },
+          { num: '❸', text: 'Ritmo: 1-2 attività max al giorno. Lo scopo è capire come vivono i locali, non raccogliere destinazioni.' },
+          { num: '❹', text: 'Cibo: mangia dove mangiano i locali, non dove ci sono le foto di Instagram. Piazza del Duomo = caro e mediocre. Violi stretti = oro.' },
+          { num: '❺', text: 'Mercati: giovedì è il giorno principale. Compra limoni freschi, mozzarella locale, non souvenirs turistici.' },
+        ].map(({ num, text }) => (
+          <li class="flex items-start gap-4 text-sm text-charcoal">
+            <span class="text-2xl font-bold text-white flex-shrink-0 leading-none mt-0.5 bg-[#E2725B] w-9 h-9 flex items-center justify-center rounded-full">{num}</span>
+            <span class="leading-relaxed">{text}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- FAQ -->
     <section id="faq">
       <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Domande frequenti</h2>
       <div class="space-y-4">
@@ -138,12 +302,23 @@ const days = [
               {q.name}
               <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
             </summary>
-            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
               {q.acceptedAnswer.text}
             </div>
           </details>
         ))}
       </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-gradient-to-r from-med-blue to-med-blue/80 rounded-2xl p-10 text-center text-white">
+      <h2 class="font-serif text-3xl font-bold mb-3">Pronto a partire lentamente?</h2>
+      <p class="text-white/90 mb-6 max-w-2xl mx-auto">
+        Leggi la guida completa ai trasporti sulla Costiera: come arrivare con bus SITA, orari reali, abbonamenti e strategie per non stressarsi nel viaggio.
+      </p>
+      <a href="/it-it/guida/traghetti/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">
+        Guida ai trasporti →
+      </a>
     </section>
 
   </div>
