@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { getTranslations, getLocalePath } from '../../../i18n/translations';
+
+const lang = 'it-it';
+const t = getTranslations(lang);
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Pianificazione', url: '/it-it/pianificazione/' },
+];
+
+// Guide articles data
+const guides = [
+  {
+    title: 'Come arrivare',
+    desc: 'Treno, aereo, traghetto o auto: tutte le opzioni per raggiungere la Costiera Amalfitana.',
+    img: '/images/come-arrivare-hero.jpg',
+    href: '/it-it/guida/come-arrivare/',
+    tag: 'Trasporti'
+  },
+  {
+    title: 'Bus SITA',
+    desc: 'La guida completa ai bus locali: orari, tariffe, biglietti e percorsi sulla costiera.',
+    img: '/images/bus-hero.jpg',
+    href: '/it-it/guida/bus-sita/',
+    tag: 'Trasporti'
+  },
+  {
+    title: 'Traghetti e Aliscafi',
+    desc: 'Dalle traghettiline locali alle rotte estive da Napoli e Salerno: come raggiungere ogni pueblo.',
+    img: '/images/ferry-hero.jpg',
+    href: '/it-it/guida/traghetti/',
+    tag: 'Trasporti'
+  },
+  {
+    title: 'Parcheggi e ZTL',
+    desc: 'Dove parcheggiare, orari e costi. Come evitare le zone a traffico limitato e le multe.',
+    img: '/images/parking-hero.jpg',
+    href: '/it-it/guida/parcheggi-ztl/',
+    tag: 'Pratico'
+  },
+  {
+    title: 'Quando visitare',
+    desc: 'Stagioni, meteo, festività e folle. Quando è il momento migliore per la tua visita.',
+    img: '/images/quando-visitare-hero.jpg',
+    href: '/it-it/guida/quando-visitare/',
+    tag: 'Pianificazione'
+  },
+];
+---
+
+<BaseLayout
+  title={t.meta.itineraries_title}
+  description={t.meta.itineraries_description}
+  lang={lang}
+  pageKey="planning"
+>
+  <!-- Hero -->
+  <section class="relative bg-charcoal text-white py-20 overflow-hidden">
+    <img src="/images/itinerari-hero.jpg" alt="Pianificazione Costiera Amalfitana" class="absolute inset-0 w-full h-full object-cover opacity-20" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-charcoal/80"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-white/80 text-xs sm:text-sm uppercase tracking-[0.3em] mb-3">Pianifica il viaggio</p>
+      <h1 class="text-4xl md:text-5xl font-bold font-serif mb-4">Guida Pratica</h1>
+      <p class="text-white/80 text-lg max-w-2xl mx-auto">Come arrivare, muoversi, quando andare e dove parcheggiare sulla Costiera Amalfitana. Tutto quello che ti serve per un viaggio perfetto.</p>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <!-- Intro -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <p class="text-lg text-slate-600 leading-relaxed">
+      La Costiera Amalfitana è facile da esplorare una volta che conosci come arrivarci, come spostarti e le migliori stagioni per visitarla. Qui troverai tutte le informazioni pratiche che ti servono: dalle opzioni di trasporto ai prezzi dei parcheggi, dai bus locali ai traghetti estivi.
+    </p>
+  </section>
+
+  <!-- Guides Grid -->
+  <section class="py-12 border-t border-slate-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {guides.map((guide) => (
+          <a href={guide.href} class="group block bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-lg hover:border-med-blue/20 transition-all duration-300">
+            <!-- Image with overlay -->
+            <div class="relative h-44 overflow-hidden">
+              <img src={guide.img} alt={guide.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <!-- Category badge -->
+              <span class="absolute bottom-3 left-3 text-[10px] font-bold uppercase tracking-wider text-white bg-med-blue/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                {guide.tag}
+              </span>
+            </div>
+            <!-- Text section -->
+            <div class="p-5">
+              <h3 class="font-semibold text-charcoal text-sm mb-1.5 group-hover:text-med-blue transition-colors">{guide.title}</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">{guide.desc}</p>
+              <span class="mt-3 inline-flex items-center text-xs font-semibold text-med-blue gap-1 group-hover:gap-2 transition-all">
+                Leggi la guida →
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Itineraries CTA -->
+  <section class="bg-med-blue py-16 text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-white mb-4">Pronto a scoprire la costiera?</h2>
+      <p class="text-white mb-6">Scegli tra 1 giorno, 3 giorni o 1 settimana di itinerari consigliati.</p>
+      <a href={getLocalePath(lang, 'itineraries')}
+        class="inline-block bg-white text-med-blue text-white font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">
+        Vedi gli itinerari
+      </a>
+    </div>
+  </section>
+</BaseLayout>
