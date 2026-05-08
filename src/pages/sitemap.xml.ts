@@ -355,6 +355,73 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/it-it/eventi/isole/ischia-global-film-festival/', priority: '0.6', changefreq: 'yearly' },
   { loc: '/it-it/eventi/isole/sagra-del-mare-graziella-procida/', priority: '0.6', changefreq: 'yearly' },
   { loc: '/it-it/eventi/isole/anacapri-settembre-borgo/', priority: '0.6', changefreq: 'yearly' },
+
+  // Blog - en-us
+  { loc: '/en-us/blog/', priority: '0.8', changefreq: 'weekly' },
+  { loc: '/en-us/blog/atrani/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/blog/lemon-delight/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/blog/ferriere-valley/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/blog/emerald-grotto/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/blog/cetara-anchovies/', priority: '0.7', changefreq: 'monthly' },
+
+  // Blog - de-de
+  { loc: '/de-de/blog/', priority: '0.8', changefreq: 'weekly' },
+  { loc: '/de-de/blog/ferriere-tal/', priority: '0.7', changefreq: 'monthly' },
+
+  // Events - en-us
+  { loc: '/en-us/events/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/en-us/events/amalfi-coast/notte-blu-vietri/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/amalfi-coast/sagra-del-pesce-positano/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/islands/anacapri-settembre-borgo/', priority: '0.6', changefreq: 'yearly' },
+
+  // Events - de-de
+  { loc: '/de-de/veranstaltungen/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/de-de/veranstaltungen/amalfikueste/notte-blu-vietri/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/amalfikueste/sagra-del-pesce-positano/', priority: '0.6', changefreq: 'yearly' },
+
+  // Events - es-es
+  { loc: '/es-es/eventos/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/es-es/eventos/islas/anacapri-settembre-borgo/', priority: '0.6', changefreq: 'yearly' },
+
+  // Events - fr-fr
+  { loc: '/fr-fr/evenements/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/fr-fr/evenements/iles/anacapri-settembre-borgo/', priority: '0.6', changefreq: 'yearly' },
+
+  // Experiences hub pages
+  { loc: '/en-us/experiences/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/en-us/experiences/cooking-class/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/erlebnisse/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/de-de/erlebnisse/mozzarella-erlebnis/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/experiencias/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/es-es/experiencias/clase-cocina/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/experiences/', priority: '0.8', changefreq: 'monthly' },
+
+  // Additional guide pages
+  { loc: '/en-us/guide/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/en-us/guide/when-to-visit/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/ratgeber/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/fr-fr/guide/', priority: '0.8', changefreq: 'monthly' },
+
+  // Beaches hub pages
+  { loc: '/en-us/beaches/', priority: '0.9', changefreq: 'monthly' },
+  { loc: '/en-us/beaches/amalfi-coast/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/en-us/beaches/sorrentine-peninsula/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/en-us/beaches/islands/', priority: '0.8', changefreq: 'monthly' },
+
+  // Additional individual beach pages
+  { loc: '/en-us/beaches/amalfi-coast/marina-di-praia/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/beaches/sorrentine-peninsula/cala-mitigliano/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/beaches/sorrentine-peninsula/marina-del-cantone/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/beaches/islands/marina-piccola-capri/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/beaches/islands/faraglioni-capri/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/beaches/islands/spiaggia-maronti/', priority: '0.7', changefreq: 'yearly' },
+
+  // Additional destination pages
+  { loc: '/en-us/islands/', priority: '0.9', changefreq: 'monthly' },
+  { loc: '/en-us/islands/capri/', priority: '0.8', changefreq: 'monthly' },
+
+  // Blog hub pages
+  { loc: '/it-it/blog/', priority: '0.8', changefreq: 'weekly' },
 ];
 
 export const GET: APIRoute = () => {
