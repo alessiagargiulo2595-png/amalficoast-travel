@@ -12,15 +12,8 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/es-es/', priority: '0.9', changefreq: 'weekly' },
 
   // Hub principali - en-us
-  { loc: '/en-us/destinations/', priority: '0.9', changefreq: 'monthly' },
   { loc: '/en-us/beaches/', priority: '0.9', changefreq: 'monthly' },
   { loc: '/en-us/itineraries/', priority: '0.9', changefreq: 'monthly' },
-  { loc: '/en-us/isole/', priority: '0.9', changefreq: 'monthly' },
-
-  // Islands - en-us
-  { loc: '/en-us/isole/capri/', priority: '0.8', changefreq: 'monthly' },
-  { loc: '/en-us/isole/ischia/', priority: '0.8', changefreq: 'monthly' },
-  { loc: '/en-us/isole/procida/', priority: '0.8', changefreq: 'monthly' },
 
   // Amalfi Coast - en-us
   { loc: '/en-us/amalfi-coast/', priority: '0.9', changefreq: 'monthly' },
@@ -37,7 +30,6 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/en-us/guide/parking-ztl/', priority: '0.7', changefreq: 'monthly' },
 
   // Hub principali - de-de
-  { loc: '/de-de/destinations/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/de-de/strande/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/de-de/reiserouten/', priority: '0.8', changefreq: 'monthly' },
 
@@ -62,11 +54,8 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/de-de/amalfikueste/minori/', priority: '0.7', changefreq: 'monthly' },
 
   // Hub principali - fr-fr
-  { loc: '/fr-fr/destinations/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/fr-fr/plages/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/fr-fr/itineraires/', priority: '0.8', changefreq: 'monthly' },
-  { loc: '/fr-fr/comment-venir/', priority: '0.7', changefreq: 'yearly' },
-  { loc: '/fr-fr/quand-visiter/', priority: '0.7', changefreq: 'yearly' },
 
   // Îles - fr-fr
   { loc: '/fr-fr/iles/', priority: '0.9', changefreq: 'monthly' },
@@ -395,15 +384,10 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/fr-fr/experiences/', priority: '0.8', changefreq: 'monthly' },
 
   // Additional guide pages
-  { loc: '/en-us/guide/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/en-us/guide/when-to-visit/', priority: '0.7', changefreq: 'yearly' },
-  { loc: '/de-de/ratgeber/', priority: '0.8', changefreq: 'monthly' },
-  { loc: '/fr-fr/guide/', priority: '0.8', changefreq: 'monthly' },
 
   // Beaches hub pages
   { loc: '/en-us/beaches/', priority: '0.9', changefreq: 'monthly' },
-  { loc: '/en-us/beaches/amalfi-coast/', priority: '0.8', changefreq: 'monthly' },
-  { loc: '/en-us/beaches/islands/', priority: '0.8', changefreq: 'monthly' },
 
   // Additional individual beach pages
   { loc: '/en-us/beaches/amalfi-coast/marina-di-praia/', priority: '0.7', changefreq: 'yearly' },
@@ -516,7 +500,6 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/de-de/strande/inseln/faraglioni-capri/', priority: '0.7', changefreq: 'yearly' },
 
   // Experiences - de-de additional
-  { loc: '/de-de/erlebnisse/mozzarella-tour/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/de-de/erlebnisse/limoncello-tour/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/de-de/erlebnisse/sterne-restaurants/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/de-de/erlebnisse/kochkurs/', priority: '0.7', changefreq: 'yearly' },
@@ -642,7 +625,6 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/es-es/experiencias/tour-limoncello/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/es-es/experiencias/restaurantes-estrella/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/es-es/experiencias/experiencia-mozzarella/', priority: '0.7', changefreq: 'yearly' },
-  { loc: '/es-es/experiencias/clases-de-cocina/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/es-es/experiencias/bodas/', priority: '0.7', changefreq: 'yearly' },
 
   // Events - Amalfi Coast - es-es
