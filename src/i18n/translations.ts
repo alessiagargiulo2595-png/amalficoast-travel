@@ -712,6 +712,10 @@ export const slugMap: Record<string, SlugMap> = {
   ferries: { 'en-us': 'guide/ferries', 'de-de': 'ratgeber/faehren', 'fr-fr': 'guide/ferries', 'es-es': 'guia/ferries', 'it-it': 'guida/traghetti' },
   'sita-bus': { 'en-us': 'guide/sita-bus', 'de-de': 'ratgeber/sita-bus', 'fr-fr': 'guide/bus-sita', 'es-es': 'guia/bus-sita', 'it-it': 'guida/bus-sita' },
   'parking-ztl': { 'en-us': 'guide/parking-ztl', 'de-de': 'ratgeber/parken-ztl', 'fr-fr': 'guide/parking-ztl', 'es-es': 'guia/aparcamiento-ztl', 'it-it': 'guida/parcheggi-ztl' },
+  // Event hub pages (with language-specific paths)
+  events: { 'en-us': 'events', 'de-de': 'veranstaltungen', 'fr-fr': 'evenements', 'es-es': 'eventos', 'it-it': 'eventi' },
+  // Marina-di-praia destination page (NOT beach page - different from marina-di-praia-beach)
+  'marina-di-praia-dest': { 'en-us': 'amalfi-coast/marina-di-praia', 'de-de': 'amalfikueste/marina-di-praia', 'fr-fr': 'cote-amalfitaine/marina-di-praia', 'es-es': 'costa-amalfitana/marina-di-praia', 'it-it': 'costiera-amalfitana/marina-di-praia' },
 };
 
 export function getLocalePath(locale: Locale, pageKey: string): string {
