@@ -452,6 +452,14 @@ export const slugMap: Record<string, SlugMap> = {
     'es-es': 'cuando-visitar',
     'it-it': 'quando-visitare',
   },
+  planning: {
+    'en-us': 'planning',
+    'en-gb': 'planning',
+    'de-de': 'planung',
+    'fr-fr': 'planification',
+    'es-es': 'planificacion',
+    'it-it': 'pianificazione',
+  },
 };
 
 export function getLocalePath(locale: Locale, pageKey: string): string {
@@ -502,7 +510,7 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': '7-days',               'en-gb': '7-days',               'de-de': '7-tage',              'fr-fr': '7-jours',              'es-es': '7-dias',               'it-it': '7-giorni'             },
   // Events sub-area slugs (amalfi-coast already defined above)
   { 'en-us': 'islands',              'en-gb': 'islands',              'de-de': 'inseln',              'fr-fr': 'iles',                 'es-es': 'islas',                'it-it': 'isole'                },
-  { 'en-us': 'sorrento-peninsula', 'en-gb': 'sorrento-peninsula', 'de-de': 'sorrentinische-halbinsel', 'fr-fr': 'peninsule-sorrentine',  'es-es': 'peninsula-sorrentina',  'it-it': 'penisola-sorrentina'  },
+  { 'en-us': 'sorrentine-peninsula', 'en-gb': 'sorrentine-peninsula', 'de-de': 'sorrentinische-halbinsel', 'fr-fr': 'peninsule-sorrentine',  'es-es': 'peninsula-sorrentina',  'it-it': 'penisola-sorrentina'  },
   // Beach region names (different from destination hub names)
   { 'en-us': 'sorrentine-peninsula',  'en-gb': 'sorrentine-peninsula', 'de-de': 'sorrentiner-halbinsel',  'fr-fr': 'peninsule-sorrentine',  'es-es': 'peninsula-sorrentina',  'it-it': 'penisola-sorrentina'  },
   // Itinerary detail slugs - 1 day
