@@ -410,6 +410,260 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   // Additional destination pages
   { loc: '/en-us/islands/', priority: '0.9', changefreq: 'monthly' },
   { loc: '/en-us/islands/capri/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/en-us/islands/ischia/', priority: '0.8', changefreq: 'monthly' },
+  { loc: '/en-us/islands/procida/', priority: '0.8', changefreq: 'monthly' },
+
+  // Additional Amalfi Coast pages - en-us
+  { loc: '/en-us/amalfi-coast/vietri-sul-mare/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/amalfi-coast/marina-di-praia/', priority: '0.7', changefreq: 'yearly' },
+
+  // Additional beaches - en-us
+  { loc: '/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/', priority: '0.7', changefreq: 'yearly' },
+
+  // Experiences - en-us
+  { loc: '/en-us/experiences/mozzarella-experience/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/experiences/limoncello-tour/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/experiences/starred-restaurants/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/en-us/experiences/weddings/', priority: '0.7', changefreq: 'yearly' },
+
+  // Events - Amalfi Coast - en-us
+  { loc: '/en-us/events/amalfi-coast/capodanno-bizantino/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/amalfi-coast/festa-sant-andrea-amalfi/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/amalfi-coast/festa-san-gennaro-praiano/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/amalfi-coast/luminaria-san-domenico-praiano/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/amalfi-coast/positano-mare-sole-cultura/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/amalfi-coast/festival-limone-minori/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/amalfi-coast/fuochi-ferragosto-positano-maiori/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/amalfi-coast/ravello-festival/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/amalfi-coast/regata-storica-amalfi/', priority: '0.6', changefreq: 'yearly' },
+
+  // Events - Sorrentine Peninsula - en-us
+  { loc: '/en-us/events/sorrentine-peninsula/festa-sant-antonino/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/sorrentine-peninsula/gustamincanto-vico-equense/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/sorrentine-peninsula/madonna-della-libera/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/sorrentine-peninsula/sagra-limone-massa-lubrense/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/sorrentine-peninsula/sagra-melanzana-preazzano/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/sorrentine-peninsula/sorrento-meeting-cultura/', priority: '0.6', changefreq: 'yearly' },
+
+  // Events - Islands - en-us
+  { loc: '/en-us/events/islands/ischia-global-film-festival/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/en-us/events/islands/sagra-del-mare-graziella-procida/', priority: '0.6', changefreq: 'yearly' },
+
+  // Blog - en-us additional
+  { loc: '/en-us/blog/sorrento-vs-praiano/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/blog/amalfi-coast-wines/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/blog/sunset-beaches/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/blog/comfortable-beaches/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/en-us/blog/wild-remote-beaches/', priority: '0.7', changefreq: 'monthly' },
+
+  // Planning - en-us
+  { loc: '/en-us/planning/', priority: '0.8', changefreq: 'monthly' },
+
+  // Guide - en-us additional
+  { loc: '/en-us/guide/getting-here/', priority: '0.7', changefreq: 'yearly' },
+
+  // Events hub - it-it
+  { loc: '/it-it/eventi/', priority: '0.8', changefreq: 'monthly' },
+
+  // Guide - it-it additional
+  { loc: '/it-it/guida/come-arrivare/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/it-it/guida/quando-visitare/', priority: '0.7', changefreq: 'yearly' },
+
+  // Beaches - it-it additional
+  { loc: '/it-it/penisola-sorrentina/spiaggia-di-ieranto/', priority: '0.7', changefreq: 'yearly' },
+
+  // Amalfi Coast additional - it-it
+  { loc: '/it-it/costiera-amalfitana/vietri-sul-mare/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/it-it/costiera-amalfitana/marina-di-praia/', priority: '0.7', changefreq: 'yearly' },
+
+  // Blog - it-it additional
+  { loc: '/it-it/blog/sorrento-vs-praiano/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/it-it/blog/spiagge-comode-attrezzate/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/it-it/blog/oasi-selvagge-spiagge-mare/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/it-it/blog/tramonto-spiaggia-costiera/', priority: '0.7', changefreq: 'monthly' },
+
+  // Blog - de-de additional
+  { loc: '/de-de/blog/atrani/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/blog/amalfi-weine/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/blog/sorrento-vs-praiano/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/blog/zitronen-koestlichkeit/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/blog/smaragd-grotte/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/blog/cetara-sardellen/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/blog/komfortable-ausgestattete-strande/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/blog/wilde-abgelegene-strande/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/blog/sonnenuntergang-strande/', priority: '0.7', changefreq: 'monthly' },
+
+  // Guide - de-de additional
+  { loc: '/de-de/ratgeber/anreise/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/ratgeber/reisezeit/', priority: '0.7', changefreq: 'yearly' },
+
+  // Amalfi Coast - de-de additional
+  { loc: '/de-de/amalfikueste/vietri-sul-mare/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/de-de/amalfikueste/marina-di-praia/', priority: '0.7', changefreq: 'yearly' },
+
+  // Beaches - de-de additional
+  { loc: '/de-de/strande/sorrentiner-halbinsel/spiaggia-di-ieranto/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/strande/amalfikueste/marina-di-praia/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/strande/inseln/faraglioni-capri/', priority: '0.7', changefreq: 'yearly' },
+
+  // Experiences - de-de additional
+  { loc: '/de-de/erlebnisse/mozzarella-tour/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/erlebnisse/limoncello-tour/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/erlebnisse/sterne-restaurants/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/erlebnisse/kochkurs/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/de-de/erlebnisse/hochzeiten/', priority: '0.7', changefreq: 'yearly' },
+
+  // Events - Amalfi Coast - de-de
+  { loc: '/de-de/veranstaltungen/amalfikueste/capodanno-bizantino/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/amalfikueste/festa-sant-andrea-amalfi/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/amalfikueste/festa-san-gennaro-praiano/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/amalfikueste/luminaria-san-domenico-praiano/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/amalfikueste/positano-mare-sole-cultura/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/amalfikueste/festival-limone-minori/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/amalfikueste/fuochi-ferragosto-positano-maiori/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/amalfikueste/ravello-festival/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/amalfikueste/regata-storica-amalfi/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/amalfikueste/notte-blu-vietri/', priority: '0.6', changefreq: 'yearly' },
+
+  // Events - Sorrentine Peninsula - de-de
+  { loc: '/de-de/veranstaltungen/sorrentinische-halbinsel/festa-sant-antonino/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/sorrentinische-halbinsel/gustamincanto-vico-equense/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/sorrentinische-halbinsel/madonna-della-libera/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/sorrentinische-halbinsel/sagra-limone-massa-lubrense/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/sorrentinische-halbinsel/sagra-melanzana-preazzano/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/sorrentinische-halbinsel/sorrento-meeting-cultura/', priority: '0.6', changefreq: 'yearly' },
+
+  // Events - Islands - de-de
+  { loc: '/de-de/veranstaltungen/inseln/ischia-global-film-festival/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/inseln/sagra-del-mare-graziella-procida/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/de-de/veranstaltungen/inseln/anacapri-settembre-borgo/', priority: '0.6', changefreq: 'yearly' },
+
+  // Planning - de-de
+  { loc: '/de-de/planung/', priority: '0.8', changefreq: 'monthly' },
+
+  // Blog - fr-fr additional
+  { loc: '/fr-fr/blog/', priority: '0.8', changefreq: 'weekly' },
+  { loc: '/fr-fr/blog/atrani/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/blog/grotte-emeraude/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/blog/delice-citron/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/blog/vallee-des-ferriere/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/blog/anchois-cetara/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/blog/vins-cote-amalfi/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/blog/sorrento-vs-praiano/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/blog/coucher-soleil-plages/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/blog/plages-confortables-equipees/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/blog/oasis-sauvages-plages/', priority: '0.7', changefreq: 'monthly' },
+
+  // Guide - fr-fr additional
+  { loc: '/fr-fr/guide/comment-venir/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/guide/quand-visiter/', priority: '0.7', changefreq: 'yearly' },
+
+  // Amalfi Coast - fr-fr additional
+  { loc: '/fr-fr/cote-amalfitaine/vietri-sul-mare/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/fr-fr/cote-amalfitaine/marina-di-praia/', priority: '0.7', changefreq: 'yearly' },
+
+  // Beaches - fr-fr additional
+  { loc: '/fr-fr/plages/cote-amalfitaine/marina-di-praia/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/plages/peninsule-sorrentine/spiaggia-di-ieranto/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/plages/iles/faraglioni-capri/', priority: '0.7', changefreq: 'yearly' },
+
+  // Experiences - fr-fr additional
+  { loc: '/fr-fr/experiences/tour-limoncello/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/experiences/restaurants-etoiles/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/experiences/experience-mozzarella/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/experiences/cours-de-cuisine/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/fr-fr/experiences/mariages/', priority: '0.7', changefreq: 'yearly' },
+
+  // Events - Amalfi Coast - fr-fr
+  { loc: '/fr-fr/evenements/cote-amalfitaine/capodanno-bizantino/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/cote-amalfitaine/festa-sant-andrea-amalfi/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/cote-amalfitaine/festa-san-gennaro-praiano/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/cote-amalfitaine/luminaria-san-domenico-praiano/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/cote-amalfitaine/positano-mare-sole-cultura/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/cote-amalfitaine/festival-limone-minori/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/cote-amalfitaine/fuochi-ferragosto-positano-maiori/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/cote-amalfitaine/ravello-festival/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/cote-amalfitaine/regata-storica-amalfi/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/cote-amalfitaine/notte-blu-vietri/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/cote-amalfitaine/sagra-del-pesce-positano/', priority: '0.6', changefreq: 'yearly' },
+
+  // Events - Sorrentine Peninsula - fr-fr
+  { loc: '/fr-fr/evenements/peninsule-sorrentine/festa-sant-antonino/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/peninsule-sorrentine/gustamincanto-vico-equense/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/peninsule-sorrentine/madonna-della-libera/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/peninsule-sorrentine/sagra-limone-massa-lubrense/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/peninsule-sorrentine/sagra-melanzana-preazzano/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/peninsule-sorrentine/sorrento-meeting-cultura/', priority: '0.6', changefreq: 'yearly' },
+
+  // Events - Islands - fr-fr
+  { loc: '/fr-fr/evenements/iles/ischia-global-film-festival/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/iles/sagra-del-mare-graziella-procida/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/fr-fr/evenements/iles/anacapri-settembre-borgo/', priority: '0.6', changefreq: 'yearly' },
+
+  // Planning - fr-fr
+  { loc: '/fr-fr/planification/', priority: '0.8', changefreq: 'monthly' },
+
+  // Blog - es-es additional
+  { loc: '/es-es/blog/', priority: '0.8', changefreq: 'weekly' },
+  { loc: '/es-es/blog/atrani/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/blog/gruta-esmeralda/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/blog/delizia-limon/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/blog/valle-ferriere/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/blog/anchoas-cetara/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/blog/vinos-costa-amalfi/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/blog/sorrento-vs-praiano/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/blog/oasis-salvajes-playas/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/blog/playas-comodas-equipadas/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/blog/puesta-de-sol-playas/', priority: '0.7', changefreq: 'monthly' },
+
+  // Guide - es-es additional
+  { loc: '/es-es/guia/como-llegar/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/guia/cuando-visitar/', priority: '0.7', changefreq: 'yearly' },
+
+  // Amalfi Coast - es-es additional
+  { loc: '/es-es/costa-amalfitana/vietri-sul-mare/', priority: '0.7', changefreq: 'monthly' },
+  { loc: '/es-es/costa-amalfitana/marina-di-praia/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/costa-amalfitana/come-arrivare/', priority: '0.7', changefreq: 'yearly' },
+
+  // Beaches - es-es additional
+  { loc: '/es-es/playas/peninsula-sorrentina/spiaggia-di-ieranto/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/playas/costa-amalfitana/marina-di-praia/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/playas/islas/faraglioni-capri/', priority: '0.7', changefreq: 'yearly' },
+
+  // Experiences - es-es additional
+  { loc: '/es-es/experiencias/tour-limoncello/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/experiencias/restaurantes-estrella/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/experiencias/experiencia-mozzarella/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/experiencias/clases-de-cocina/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/es-es/experiencias/bodas/', priority: '0.7', changefreq: 'yearly' },
+
+  // Events - Amalfi Coast - es-es
+  { loc: '/es-es/eventos/costa-amalfitana/capodanno-bizantino/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/costa-amalfitana/festa-sant-andrea-amalfi/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/costa-amalfitana/festa-san-gennaro-praiano/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/costa-amalfitana/luminaria-san-domenico-praiano/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/costa-amalfitana/positano-mare-sole-cultura/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/costa-amalfitana/festival-limone-minori/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/costa-amalfitana/fuochi-ferragosto-positano-maiori/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/costa-amalfitana/ravello-festival/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/costa-amalfitana/regata-storica-amalfi/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/costa-amalfitana/notte-blu-vietri/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/costa-amalfitana/sagra-del-pesce-positano/', priority: '0.6', changefreq: 'yearly' },
+
+  // Events - Sorrentine Peninsula - es-es
+  { loc: '/es-es/eventos/peninsula-sorrentina/festa-sant-antonino/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/peninsula-sorrentina/gustamincanto-vico-equense/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/peninsula-sorrentina/madonna-della-libera/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/peninsula-sorrentina/sagra-limone-massa-lubrense/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/peninsula-sorrentina/sagra-melanzana-preazzano/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/peninsula-sorrentina/sorrento-meeting-cultura/', priority: '0.6', changefreq: 'yearly' },
+
+  // Events - Islands - es-es
+  { loc: '/es-es/eventos/islas/ischia-global-film-festival/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/es-es/eventos/islas/sagra-del-mare-graziella-procida/', priority: '0.6', changefreq: 'yearly' },
+
+  // Planning - es-es
+  { loc: '/es-es/planificacion/', priority: '0.8', changefreq: 'monthly' },
 
   // Blog hub pages
   { loc: '/it-it/blog/', priority: '0.8', changefreq: 'weekly' },
