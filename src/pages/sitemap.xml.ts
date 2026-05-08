@@ -623,7 +623,6 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   // Amalfi Coast - es-es additional
   { loc: '/es-es/costa-amalfitana/vietri-sul-mare/', priority: '0.7', changefreq: 'monthly' },
   { loc: '/es-es/costa-amalfitana/marina-di-praia/', priority: '0.7', changefreq: 'yearly' },
-  { loc: '/es-es/costa-amalfitana/come-arrivare/', priority: '0.7', changefreq: 'yearly' },
 
   // Beaches - es-es additional
   { loc: '/es-es/playas/peninsula-sorrentina/spiaggia-di-ieranto/', priority: '0.7', changefreq: 'yearly' },
