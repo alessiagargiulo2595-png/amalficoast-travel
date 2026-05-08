@@ -26,6 +26,7 @@ const hreflangs = locales.map((l) => {
     : translatePath(Astro.url.pathname, lang, l);
   return { locale: l, url: `${site}${path}` };
 });
+const xDefaultUrl = hreflangs.find(h => h.locale === 'en-us')?.url || `${site}/en-us/`;
 
 const schemaLocaleMap: Record<Locale, string> = {
   'en-us': 'en-US', 'de-de': 'de-DE',
@@ -88,7 +89,7 @@ const allSchemas = [websiteSchema, organizationSchema, ...(schema || []), ...(br
     {hreflangs.map(({ locale, url }) => (
       <link rel="alternate" hreflang={schemaLocaleMap[locale as Locale]} href={url} />
     ))}
-    <link rel="alternate" hreflang="x-default" href={`${site}/en-us/`} />
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
