@@ -1,4 +1,4 @@
-export type Locale = 'en-us' | 'en-gb' | 'de-de' | 'fr-fr' | 'es-es' | 'it-it';
+export type Locale = 'en-us' | 'de-de' | 'fr-fr' | 'es-es' | 'it-it';
 
 export interface Translations {
   nav: {
@@ -555,7 +555,7 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'festa-san-gennaro-praiano',         'en-gb': 'festa-san-gennaro-praiano',         'de-de': 'festa-san-gennaro-praiano',          'fr-fr': 'festa-san-gennaro-praiano',         'es-es': 'festa-san-gennaro-praiano',         'it-it': 'festa-san-gennaro-praiano'        },
   { 'en-us': 'festa-sant-andrea-amalfi',          'en-gb': 'festa-sant-andrea-amalfi',          'de-de': 'festa-sant-andrea-amalfi',           'fr-fr': 'festa-sant-andrea-amalfi',          'es-es': 'festa-sant-andrea-amalfi',          'it-it': 'festa-sant-andrea-amalfi'         },
   { 'en-us': 'festival-limone-minori',            'en-gb': 'festival-limone-minori',            'de-de': 'festival-limone-minori',             'fr-fr': 'festival-limone-minori',            'es-es': 'festival-limone-minori',            'it-it': 'festival-limone-minori'           },
-  { 'en-us': 'fuochi-ferragosto-positano-maiori', 'en-gb': 'fuochi-ferragosto-positano-maiori', 'de-de': 'fuochi-ferragosto-positano-maiori',  'fr-fr': 'fuochi-ferragosto-positano-maiori', 'es-es': 'fuochi-ferragosto-positano-maiori', 'it-it': 'fuochi-ferragosto-positano-maiori' },
+  { 'en-us': 'fuochi-ferragosto-positano-maiori', 'de-de': 'fuochi-ferragosto-positano-maiori',  'fr-fr': 'fuochi-ferragosto-positano-maiori', 'es-es': 'fuochi-ferragosto-positano-maiori', 'it-it': 'fuochi-ferragosto-positano-maiori' },
   { 'en-us': 'luminaria-san-domenico-praiano',    'en-gb': 'luminaria-san-domenico-praiano',    'de-de': 'luminaria-san-domenico-praiano',     'fr-fr': 'luminaria-san-domenico-praiano',    'es-es': 'luminaria-san-domenico-praiano',    'it-it': 'luminaria-san-domenico-praiano'   },
   { 'en-us': 'notte-blu-vietri',                  'en-gb': 'notte-blu-vietri',                  'de-de': 'notte-blu-vietri',                   'fr-fr': 'notte-blu-vietri',                  'es-es': 'notte-blu-vietri',                  'it-it': 'notte-blu-vietri'                 },
   { 'en-us': 'positano-mare-sole-cultura',        'en-gb': 'positano-mare-sole-cultura',        'de-de': 'positano-mare-sole-cultura',         'fr-fr': 'positano-mare-sole-cultura',        'es-es': 'positano-mare-sole-cultura',        'it-it': 'positano-mare-sole-cultura'       },
