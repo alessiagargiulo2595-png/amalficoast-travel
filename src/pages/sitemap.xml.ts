@@ -15,8 +15,6 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/en-us/destinations/', priority: '0.9', changefreq: 'monthly' },
   { loc: '/en-us/beaches/', priority: '0.9', changefreq: 'monthly' },
   { loc: '/en-us/itineraries/', priority: '0.9', changefreq: 'monthly' },
-  { loc: '/en-us/getting-here/', priority: '0.7', changefreq: 'yearly' },
-  { loc: '/en-us/when-to-visit/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/en-us/isole/', priority: '0.9', changefreq: 'monthly' },
 
   // Islands - en-us
@@ -42,8 +40,6 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/de-de/destinations/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/de-de/strande/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/de-de/reiserouten/', priority: '0.8', changefreq: 'monthly' },
-  { loc: '/de-de/anreise/', priority: '0.7', changefreq: 'yearly' },
-  { loc: '/de-de/reisezeit/', priority: '0.7', changefreq: 'yearly' },
 
   // Inseln - de-de
   { loc: '/de-de/inseln/', priority: '0.9', changefreq: 'monthly' },
@@ -96,8 +92,6 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/es-es/destinos/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/es-es/playas/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/es-es/itinerarios/', priority: '0.8', changefreq: 'monthly' },
-  { loc: '/es-es/como-llegar/', priority: '0.7', changefreq: 'yearly' },
-  { loc: '/es-es/cuando-visitar/', priority: '0.7', changefreq: 'yearly' },
 
   // Islas - es-es
   { loc: '/es-es/islas/', priority: '0.9', changefreq: 'monthly' },
@@ -126,8 +120,6 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/it-it/spiagge/', priority: '0.9', changefreq: 'monthly' },
   { loc: '/it-it/itinerari/', priority: '0.9', changefreq: 'monthly' },
   { loc: '/it-it/destinazioni/', priority: '0.8', changefreq: 'monthly' },
-  { loc: '/it-it/quando-visitare/', priority: '0.7', changefreq: 'yearly' },
-  { loc: '/it-it/come-arrivare/', priority: '0.7', changefreq: 'yearly' },
 
   // Costiera Amalfitana
   { loc: '/it-it/costiera-amalfitana/positano/', priority: '0.8', changefreq: 'monthly' },
@@ -405,7 +397,6 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   // Beaches hub pages
   { loc: '/en-us/beaches/', priority: '0.9', changefreq: 'monthly' },
   { loc: '/en-us/beaches/amalfi-coast/', priority: '0.8', changefreq: 'monthly' },
-  { loc: '/en-us/beaches/sorrentine-peninsula/', priority: '0.8', changefreq: 'monthly' },
   { loc: '/en-us/beaches/islands/', priority: '0.8', changefreq: 'monthly' },
 
   // Additional individual beach pages
