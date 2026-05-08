@@ -154,6 +154,7 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/it-it/spiagge/isole/marina-piccola-capri/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/it-it/spiagge/isole/spiaggia-maronti/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/it-it/spiagge/isole/cala-del-pozzo-vecchio/', priority: '0.7', changefreq: 'yearly' },
+  { loc: '/it-it/spiagge/isole/faraglioni-capri/', priority: '0.7', changefreq: 'yearly' },
 
   // Itinerari
   { loc: '/it-it/itinerari/1-giorno/costiera-amalfitana-da-napoli/', priority: '0.7', changefreq: 'yearly' },
@@ -328,6 +329,7 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/de-de/strande/inseln/cala-del-pozzo-vecchio/', priority: '0.7', changefreq: 'yearly' },
 
   // Eventi - Costiera Amalfitana
+  { loc: '/it-it/eventi/costiera-amalfitana/capodanno-bizantino/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/it-it/eventi/costiera-amalfitana/ravello-festival/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/it-it/eventi/costiera-amalfitana/festa-sant-andrea-amalfi/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/it-it/eventi/costiera-amalfitana/fuochi-ferragosto-positano-maiori/', priority: '0.7', changefreq: 'yearly' },
@@ -335,8 +337,12 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   { loc: '/it-it/eventi/costiera-amalfitana/festa-san-gennaro-praiano/', priority: '0.6', changefreq: 'yearly' },
   { loc: '/it-it/eventi/costiera-amalfitana/notte-blu-vietri/', priority: '0.6', changefreq: 'yearly' },
   { loc: '/it-it/eventi/costiera-amalfitana/sagra-del-pesce-positano/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/it-it/eventi/costiera-amalfitana/festival-limone-minori/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/it-it/eventi/costiera-amalfitana/regata-storica-amalfi/', priority: '0.6', changefreq: 'yearly' },
+  { loc: '/it-it/eventi/costiera-amalfitana/positano-mare-sole-cultura/', priority: '0.6', changefreq: 'yearly' },
 
   // Eventi - Penisola Sorrentina
+  { loc: '/it-it/eventi/penisola-sorrentina/festa-sant-antonino/', priority: '0.6', changefreq: 'yearly' },
   { loc: '/it-it/eventi/penisola-sorrentina/sagra-limone-massa-lubrense/', priority: '0.6', changefreq: 'yearly' },
   { loc: '/it-it/eventi/penisola-sorrentina/sagra-melanzana-preazzano/', priority: '0.6', changefreq: 'yearly' },
   { loc: '/it-it/eventi/penisola-sorrentina/gustamincanto-vico-equense/', priority: '0.6', changefreq: 'yearly' },
@@ -468,6 +474,9 @@ const urls: { loc: string; priority: string; changefreq: string }[] = [
   // Guide - it-it additional
   { loc: '/it-it/guida/come-arrivare/', priority: '0.7', changefreq: 'yearly' },
   { loc: '/it-it/guida/quando-visitare/', priority: '0.7', changefreq: 'yearly' },
+
+  // Planning - it-it
+  { loc: '/it-it/pianificazione/', priority: '0.8', changefreq: 'monthly' },
 
   // Beaches - it-it additional
   { loc: '/it-it/penisola-sorrentina/spiaggia-di-ieranto/', priority: '0.7', changefreq: 'yearly' },
