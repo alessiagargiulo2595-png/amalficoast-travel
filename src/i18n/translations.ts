@@ -508,11 +508,10 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': '1-day',                'en-gb': '1-day',                'de-de': '1-tag',               'fr-fr': '1-jour',               'es-es': '1-dia',                'it-it': '1-giorno'             },
   { 'en-us': '3-days',               'en-gb': '3-days',               'de-de': '3-tage',              'fr-fr': '3-jours',              'es-es': '3-dias',               'it-it': '3-giorni'             },
   { 'en-us': '7-days',               'en-gb': '7-days',               'de-de': '7-tage',              'fr-fr': '7-jours',              'es-es': '7-dias',               'it-it': '7-giorni'             },
+  // Beach region names (must come before Events sub-area slugs to match correctly in lookup)
+  { 'en-us': 'sorrento-peninsula',    'en-gb': 'sorrento-peninsula',   'de-de': 'sorrentinische-halbinsel', 'fr-fr': 'peninsule-sorrentine',  'es-es': 'peninsula-sorrentina',  'it-it': 'penisola-sorrentina'  },
   // Events sub-area slugs (amalfi-coast already defined above)
   { 'en-us': 'islands',              'en-gb': 'islands',              'de-de': 'inseln',              'fr-fr': 'iles',                 'es-es': 'islas',                'it-it': 'isole'                },
-  { 'en-us': 'sorrentine-peninsula', 'en-gb': 'sorrentine-peninsula', 'de-de': 'sorrentinische-halbinsel', 'fr-fr': 'peninsule-sorrentine',  'es-es': 'peninsula-sorrentina',  'it-it': 'penisola-sorrentina'  },
-  // Beach region names (different from destination hub names)
-  { 'en-us': 'sorrentine-peninsula',  'en-gb': 'sorrentine-peninsula', 'de-de': 'sorrentiner-halbinsel',  'fr-fr': 'peninsule-sorrentine',  'es-es': 'peninsula-sorrentina',  'it-it': 'penisola-sorrentina'  },
   // Itinerary detail slugs - 1 day
   { 'en-us': 'amalfi-coast-from-naples',          'en-gb': 'amalfi-coast-from-naples',          'de-de': 'amalfikueste-von-neapel',           'fr-fr': 'cote-amalfitaine-depuis-naples',    'es-es': 'costa-amalfitana-desde-napoles',    'it-it': 'costiera-amalfitana-da-napoli'     },
   { 'en-us': 'amalfi-coast-from-salerno',         'en-gb': 'amalfi-coast-from-salerno',         'de-de': 'amalfikueste-von-salerno',           'fr-fr': 'cote-amalfitaine-depuis-salerne',   'es-es': 'costa-amalfitana-desde-salerno',    'it-it': 'costiera-amalfitana-da-salerno'    },
@@ -546,6 +545,11 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'maiori',                            'en-gb': 'maiori',                            'de-de': 'maiori',                             'fr-fr': 'maiori',                            'es-es': 'maiori',                            'it-it': 'maiori'                            },
   { 'en-us': 'minori',                            'en-gb': 'minori',                            'de-de': 'minori',                             'fr-fr': 'minori',                            'es-es': 'minori',                            'it-it': 'minori'                            },
   { 'en-us': 'vietri-sul-mare',                   'en-gb': 'vietri-sul-mare',                   'de-de': 'vietri-sul-mare',                    'fr-fr': 'vietri-sul-mare',                   'es-es': 'vietri-sul-mare',                   'it-it': 'vietri-sul-mare'                   },
+  // Peninsula town names (names that differ by language)
+  { 'en-us': 'sorrento',                          'en-gb': 'sorrento',                          'de-de': 'sorrent',                            'fr-fr': 'sorrente',                          'es-es': 'sorrento',                          'it-it': 'sorrento'                          },
+  { 'en-us': 'vico-equense',                       'en-gb': 'vico-equense',                      'de-de': 'vico-equense',                       'fr-fr': 'vico-equense',                      'es-es': 'vico-equense',                      'it-it': 'vico-equense'                      },
+  { 'en-us': 'massa-lubrense',                     'en-gb': 'massa-lubrense',                    'de-de': 'massa-lubrense',                     'fr-fr': 'massa-lubrense',                    'es-es': 'massa-lubrense',                    'it-it': 'massa-lubrense'                    },
+  { 'en-us': 'sant-agnello',                       'en-gb': 'sant-agnello',                      'de-de': 'sant-agnello',                       'fr-fr': 'sant-agnello',                      'es-es': 'sant-agnello',                      'it-it': 'sant-agnello'                      },
   // Event detail slugs (same in all languages)
   { 'en-us': 'capodanno-bizantino',               'en-gb': 'capodanno-bizantino',               'de-de': 'capodanno-bizantino',                'fr-fr': 'capodanno-bizantino',               'es-es': 'capodanno-bizantino',               'it-it': 'capodanno-bizantino'              },
   { 'en-us': 'festa-san-gennaro-praiano',         'en-gb': 'festa-san-gennaro-praiano',         'de-de': 'festa-san-gennaro-praiano',          'fr-fr': 'festa-san-gennaro-praiano',         'es-es': 'festa-san-gennaro-praiano',         'it-it': 'festa-san-gennaro-praiano'        },
@@ -567,6 +571,8 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'sagra-limone-massa-lubrense',       'en-gb': 'sagra-limone-massa-lubrense',       'de-de': 'sagra-limone-massa-lubrense',        'fr-fr': 'sagra-limone-massa-lubrense',       'es-es': 'sagra-limone-massa-lubrense',       'it-it': 'sagra-limone-massa-lubrense'      },
   { 'en-us': 'sagra-melanzana-preazzano',         'en-gb': 'sagra-melanzana-preazzano',         'de-de': 'sagra-melanzana-preazzano',          'fr-fr': 'sagra-melanzana-preazzano',         'es-es': 'sagra-melanzana-preazzano',         'it-it': 'sagra-melanzana-preazzano'        },
   { 'en-us': 'sorrento-meeting-cultura',          'en-gb': 'sorrento-meeting-cultura',          'de-de': 'sorrento-meeting-cultura',           'fr-fr': 'sorrento-meeting-cultura',          'es-es': 'sorrento-meeting-cultura',          'it-it': 'sorrento-meeting-cultura'         },
+  // Beach name translations
+  { 'en-us': 'spiaggia-di-ieranto',               'en-gb': 'spiaggia-di-ieranto',               'de-de': 'spiaggia-di-ieranto',                'fr-fr': 'spiaggia-di-ieranto',               'es-es': 'spiaggia-di-ieranto',               'it-it': 'ieranto'                          },
 ];
 
 /**
