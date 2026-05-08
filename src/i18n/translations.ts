@@ -573,6 +573,10 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'sorrento-meeting-cultura',          'en-gb': 'sorrento-meeting-cultura',          'de-de': 'sorrento-meeting-cultura',           'fr-fr': 'sorrento-meeting-cultura',          'es-es': 'sorrento-meeting-cultura',          'it-it': 'sorrento-meeting-cultura'         },
   // Beach name translations
   { 'en-us': 'spiaggia-di-ieranto',               'en-gb': 'spiaggia-di-ieranto',               'de-de': 'spiaggia-di-ieranto',                'fr-fr': 'spiaggia-di-ieranto',               'es-es': 'spiaggia-di-ieranto',               'it-it': 'ieranto'                          },
+  { 'en-us': 'cala-mitigliano',                   'en-gb': 'cala-mitigliano',                   'de-de': 'cala-mitigliano',                    'fr-fr': 'cala-mitigliano',                  'es-es': 'cala-mitigliano',                  'it-it': 'cala-mitigliano'                 },
+  { 'en-us': 'marina-del-cantone',                'en-gb': 'marina-del-cantone',                'de-de': 'marina-del-cantone',                 'fr-fr': 'marina-del-cantone',               'es-es': 'marina-del-cantone',               'it-it': 'marina-del-cantone'              },
+  { 'en-us': 'regina-giovanna',                   'en-gb': 'regina-giovanna',                   'de-de': 'regina-giovanna',                    'fr-fr': 'regina-giovanna',                  'es-es': 'regina-giovanna',                  'it-it': 'regina-giovanna'                 },
+  { 'en-us': 'marina-di-praia',                   'en-gb': 'marina-di-praia',                   'de-de': 'marina-di-praia',                    'fr-fr': 'marina-di-praia',                  'es-es': 'marina-di-praia',                  'it-it': 'marina-di-praia'                 },
 ];
 
 /**
