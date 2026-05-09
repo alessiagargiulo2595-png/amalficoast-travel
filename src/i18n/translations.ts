@@ -717,6 +717,34 @@ export const slugMap: Record<string, SlugMap> = {
   events: { 'en-us': 'events', 'de-de': 'veranstaltungen', 'fr-fr': 'evenements', 'es-es': 'eventos', 'it-it': 'eventi' },
   // Marina-di-praia destination page (NOT beach page - different from marina-di-praia-beach)
   'marina-di-praia-dest': { 'en-us': 'amalfi-coast/marina-di-praia', 'de-de': 'amalfikueste/marina-di-praia', 'fr-fr': 'cote-amalfitaine/marina-di-praia', 'es-es': 'costa-amalfitana/marina-di-praia', 'it-it': 'costiera-amalfitana/marina-di-praia' },
+  // NOTE: Marina-di-praia beach page does NOT exist in sitemap (not built)
+  // It would be: 'en-us': 'beaches/amalfi-coast/marina-di-praia', but this isn't created
+  // Blog pages (same slug in most languages)
+  'amalfi-coast-wines': { 'en-us': 'blog/amalfi-coast-wines', 'de-de': 'blog/amalfi-weine', 'fr-fr': 'blog/vins-cote-amalfi', 'es-es': 'blog/vinos-costa-amalfi', 'it-it': 'blog/vini-costa-amalfi' },
+  'cetara-anchovies': { 'en-us': 'blog/cetara-anchovies', 'de-de': 'blog/cetara-sardellen', 'fr-fr': 'blog/anchois-cetara', 'es-es': 'blog/anchoas-cetara', 'it-it': 'blog/alici-di-cetara' },
+  'comfortable-beaches': { 'en-us': 'blog/comfortable-beaches', 'de-de': 'blog/komfortable-ausgestattete-strande', 'fr-fr': 'blog/plages-confortables-equipees', 'es-es': 'blog/playas-comodas-equipadas', 'it-it': 'blog/spiagge-comode-attrezzate' },
+  'emerald-grotto': { 'en-us': 'blog/emerald-grotto', 'de-de': 'blog/smaragd-grotte', 'fr-fr': 'blog/grotte-emeraude', 'es-es': 'blog/gruta-esmeralda', 'it-it': 'blog/grotta-dello-smeraldo' },
+  'ferriere-valley': { 'en-us': 'blog/ferriere-valley', 'de-de': 'blog/ferriere-tal', 'fr-fr': 'blog/vallee-des-ferriere', 'es-es': 'blog/valle-ferriere', 'it-it': 'blog/valle-delle-ferriere' },
+  'lemon-delight': { 'en-us': 'blog/lemon-delight', 'de-de': 'blog/zitronen-koestlichkeit', 'fr-fr': 'blog/delice-citron', 'es-es': 'blog/delizia-limon', 'it-it': 'blog/delizia-al-limone' },
+  'sunset-beaches': { 'en-us': 'blog/sunset-beaches', 'de-de': 'blog/sonnenuntergang-strande', 'fr-fr': 'blog/coucher-soleil-plages', 'es-es': 'blog/puesta-de-sol-playas', 'it-it': 'blog/tramonto-spiaggia-costiera' },
+  'wild-remote-beaches': { 'en-us': 'blog/wild-remote-beaches', 'de-de': 'blog/wilde-abgelegene-strande', 'fr-fr': 'blog/oasis-sauvages-plages', 'es-es': 'blog/oasis-salvajes-playas', 'it-it': 'blog/oasi-selvagge-spiagge-mare' },
+  'atrani': { 'en-us': 'blog/atrani', 'de-de': 'blog/atrani', 'fr-fr': 'blog/atrani', 'es-es': 'blog/atrani', 'it-it': 'blog/atrani' },
+  'sorrento-vs-praiano': { 'en-us': 'blog/sorrento-vs-praiano', 'de-de': 'blog/sorrento-vs-praiano', 'fr-fr': 'blog/sorrento-vs-praiano', 'es-es': 'blog/sorrento-vs-praiano', 'it-it': 'blog/sorrento-vs-praiano' },
+  // Experience hub pages
+  'boat-tours-hub': { 'en-us': 'experiences/boat-tours', 'de-de': 'erlebnisse/bootstouren', 'fr-fr': 'experiences/tours-en-bateau', 'es-es': 'experiencias/tours-en-barco', 'it-it': 'esperienze/tour-barca' },
+  'cooking-class-hub': { 'en-us': 'experiences/cooking-class', 'de-de': 'erlebnisse/kochkurs', 'fr-fr': 'experiences/cours-de-cuisine', 'es-es': 'experiencias/clase-cocina', 'it-it': 'esperienze/cooking-class' },
+  'weddings-hub': { 'en-us': 'experiences/weddings', 'de-de': 'erlebnisse/hochzeiten', 'fr-fr': 'experiences/mariages', 'es-es': 'experiencias/bodas', 'it-it': 'esperienze/matrimoni' },
+  'starred-restaurants-hub': { 'en-us': 'experiences/starred-restaurants', 'de-de': 'erlebnisse/sterne-restaurants', 'fr-fr': 'experiences/restaurants-etoiles', 'es-es': 'experiencias/restaurantes-estrella', 'it-it': 'esperienze/ristoranti-stellati' },
+  'limoncello-tour-hub': { 'en-us': 'experiences/limoncello-tour', 'de-de': 'erlebnisse/limoncello-tour', 'fr-fr': 'experiences/tour-limoncello', 'es-es': 'experiencias/tour-limoncello', 'it-it': 'esperienze/limoncello-tour' },
+  'mozzarella-experience-hub': { 'en-us': 'experiences/mozzarella-experience', 'de-de': 'erlebnisse/mozzarella-erlebnis', 'fr-fr': 'experiences/experience-mozzarella', 'es-es': 'experiencias/experiencia-mozzarella', 'it-it': 'esperienze/mozzarella-experience' },
+  'trekking-hub': { 'en-us': 'experiences/trekking', 'de-de': 'erlebnisse/trekking', 'fr-fr': 'experiences/trekking', 'es-es': 'experiencias/trekking', 'it-it': 'esperienze/trekking' },
+  // NOTE: Sorrento peninsula events only exist in non-English locales (de-de, fr-fr, es-es, it-it)
+  // They are handled by pattern-matching in the hreflang generation script
+
+  // NOTE: Some Italian Sorrento beach pages have unique URL structures
+  // /penisola-sorrentina/massa-lubrense/spiaggia-di-ieranto/ (town nesting)
+  // /spiagge/penisola-sorrentina/ieranto/ (beach page variant)
+  // These are handled by pattern-matching in the hreflang generation script
 };
 
 export function getLocalePath(locale: Locale, pageKey: string): string {
