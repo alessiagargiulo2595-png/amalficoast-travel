@@ -44,6 +44,8 @@ export interface Translations {
     getting_here_description: string;
     itineraries_title: string;
     itineraries_description: string;
+    planning_title: string;
+    planning_description: string;
     when_to_visit_title: string;
     when_to_visit_description: string;
   };
@@ -96,6 +98,8 @@ export const translations: Record<Locale, Translations> = {
       getting_here_description: 'Everything you need to know about getting to the Amalfi Coast: from Naples, from Rome, by ferry, by car, and by bus. Practical travel tips.',
       itineraries_title: 'Amalfi Coast Itineraries - 1 Day, 3 Days, 1 Week',
       itineraries_description: 'The best Amalfi Coast itineraries for every trip length. One day, three days, or a full week - make the most of your visit to Italy\'s Costiera Amalfitana.',
+      planning_title: 'Planning - Practical Travel Guides for the Amalfi Coast',
+      planning_description: 'Practical guides to plan your trip: transport, buses, ferries, parking, best seasons and local tips. Everything you need to explore the Amalfi Coast.',
       when_to_visit_title: 'Best Time to Visit the Amalfi Coast - Month by Month',
       when_to_visit_description: 'When is the best time to visit the Amalfi Coast? Month-by-month weather guide, crowd levels, prices, and seasonal highlights.',
     },
@@ -154,6 +158,8 @@ export const translations: Record<Locale, Translations> = {
       getting_here_description: 'Everything you need to know about getting to the Amalfi Coast from the UK: from Naples, from Rome, by ferry, by car, and by bus. Practical travel tips.',
       itineraries_title: 'Amalfi Coast Itineraries - 1 Day, 3 Days, 1 Week',
       itineraries_description: 'The best Amalfi Coast itineraries for every trip length. One day, three days, or a full week - make the most of your holiday on Italy\'s Costiera Amalfitana.',
+      planning_title: 'Planning - Practical Travel Guides for the Amalfi Coast',
+      planning_description: 'Practical guides for your Amalfi Coast trip: how to get there, local transport, ferries, parking, best times to visit and insider tips.',
       when_to_visit_title: 'Best Time to Visit the Amalfi Coast - Month by Month',
       when_to_visit_description: 'When is the best time to visit the Amalfi Coast? Month-by-month weather guide, crowd levels, prices, and what\'s on each season.',
     },
@@ -212,6 +218,8 @@ export const translations: Record<Locale, Translations> = {
       getting_here_description: 'Alles Wichtige zur Anreise an die Amalfiküste: ab Neapel, ab Rom, per Fähre, mit dem Auto und per Bus.',
       itineraries_title: 'Amalfiküste Reiserouten - 1 Tag, 3 Tage, 1 Woche',
       itineraries_description: 'Die besten Reiserouten für die Amalfiküste. Ein Tag, drei Tage oder eine ganze Woche - das Beste aus Ihrem Besuch herausholen.',
+      planning_title: 'Planung - Praktische Reiseführer für die Amalfiküste',
+      planning_description: 'Praktische Reiseführer: Anreise, öffentliche Verkehrsmittel, Fähren, Parkplätze, beste Jahreszeiten und Insider-Tipps für die Amalfiküste.',
       when_to_visit_title: 'Beste Reisezeit für die Amalfiküste - Monat für Monat',
       when_to_visit_description: 'Wann ist die beste Reisezeit für die Amalfiküste? Monatsweiser Wetterführer, Besucherzahlen, Preise und saisonale Highlights.',
     },
@@ -270,6 +278,8 @@ export const translations: Record<Locale, Translations> = {
       getting_here_description: 'Tout sur comment rejoindre la Côte Amalfitaine : depuis Naples, depuis Rome, en ferry, en voiture et en bus.',
       itineraries_title: 'Itinéraires Côte Amalfitaine - 1 jour, 3 jours, 1 semaine',
       itineraries_description: 'Les meilleurs itinéraires pour la Côte Amalfitaine selon la durée de votre séjour. Un jour, trois jours ou une semaine entière.',
+      planning_title: 'Planification - Guides pratiques pour la Côte Amalfitaine',
+      planning_description: 'Guides pratiques : comment vous y rendre, transports locaux, ferries, parking, meilleures saisons et conseils d\'experts.',
       when_to_visit_title: 'Meilleure période pour visiter la Côte Amalfitaine',
       when_to_visit_description: 'Quelle est la meilleure période pour visiter la Côte Amalfitaine ? Guide météo mois par mois, affluence, prix et événements saisonniers.',
     },
@@ -328,6 +338,8 @@ export const translations: Record<Locale, Translations> = {
       getting_here_description: 'Todo lo que necesitas saber para llegar a la Costa Amalfitana: desde Nápoles, desde Roma, en ferry, en coche y en autobús.',
       itineraries_title: 'Itinerarios Costa Amalfitana - 1 día, 3 días, 1 semana',
       itineraries_description: 'Los mejores itinerarios para la Costa Amalfitana según la duración de tu viaje. Un día, tres días o una semana completa.',
+      planning_title: 'Planificación - Guías prácticas para la Costa Amalfitana',
+      planning_description: 'Guías prácticas: cómo llegar, transporte local, ferries, estacionamiento, mejores épocas y consejos de expertos.',
       when_to_visit_title: 'Mejor época para visitar la Costa Amalfitana',
       when_to_visit_description: '¿Cuándo es mejor visitar la Costa Amalfitana? Guía meteorológica mes a mes, nivel de turistas, precios y eventos de temporada.',
     },
@@ -386,6 +398,8 @@ export const translations: Record<Locale, Translations> = {
       getting_here_description: 'Tutto ciò che devi sapere per raggiungere la Costiera Amalfitana: da Napoli, da Roma, in traghetto, in auto e in autobus.',
       itineraries_title: 'Itinerari Costiera Amalfitana - 1 giorno, 3 giorni, 1 settimana',
       itineraries_description: 'I migliori itinerari per la Costiera Amalfitana a seconda della durata del soggiorno. Un giorno, tre giorni o una settimana intera.',
+      planning_title: 'Pianificazione - Guide pratiche per la Costiera Amalfitana',
+      planning_description: 'Guide pratiche: come arrivare, trasporti locali, traghetti, parcheggi, migliori stagioni e consigli esperti.',
       when_to_visit_title: 'Quando visitare la Costiera Amalfitana - Guida mese per mese',
       when_to_visit_description: 'Qual è il momento migliore per visitare la Costiera Amalfitana? Guida meteo mese per mese, affluenza turistica, prezzi e eventi stagionali.',
     },
