@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import StickyBar from '../components/StickyBar.astro';
+import HrefLangTags from '../components/HrefLangTags.astro';
 import { getTranslations, getLocalePath, slugMap, translatePath, extractPageKeyFromPath, resolveCanonicalUrl } from '../i18n/translations';
 import type { Locale } from '../i18n/translations';
 
@@ -92,10 +93,7 @@ const allSchemas = [websiteSchema, organizationSchema, ...(schema || []), ...(br
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Hreflang -->
-    {hreflangs.map(({ locale, url }) => (
-      <link rel="alternate" hreflang={schemaLocaleMap[locale as Locale]} href={url} />
-    ))}
-    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+    <HrefLangTags pathname={Astro.url.pathname} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

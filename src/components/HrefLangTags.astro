@@ -1,0 +1,92 @@
+---
+/**
+ * HrefLangTags Component
+ * Renders hreflang link tags for multi-language SEO
+ *
+ * Usage:
+ * <HrefLangTags pathname={Astro.url.pathname} />
+ *
+ * This component:
+ * - Outputs reciprocal hreflang links for all language variants
+ * - Includes an x-default pointing to English (en-us)
+ * - Each URL points to itself
+ * - Integrates with pre-generated hreflang-map from sitemap
+ */
+
+import { hrefLangMap, type HrefLangEntry } from '../i18n/hreflang-map';
+
+interface Props {
+  pathname: string;
+}
+
+const { pathname } = Astro.props;
+
+// Normalize pathname to match hreflang map keys
+function normalizePathname(path: string): string {
+  // Ensure trailing slash for directory-level pages
+  if (!path.endsWith('/')) {
+    path = path + '/';
+  }
+  return path;
+}
+
+// Get hreflang entry for the current page
+function getHrefLangEntry(): HrefLangEntry | null {
+  const normalized = normalizePathname(pathname);
+  return hrefLangMap[normalized] || null;
+}
+
+const entry = getHrefLangEntry();
+
+// Generate hreflang tag props
+function generateHrefLangTags() {
+  if (!entry) {
+    return [];
+  }
+
+  const tags: Array<{
+    hreflang: string;
+    href: string;
+  }> = [];
+
+  // Add all language variants (sorted for consistent output)
+  const locales = ['de-de', 'en-us', 'es-es', 'fr-fr', 'it-it'];
+
+  for (const locale of locales) {
+    if (entry.alternates[locale]) {
+      tags.push({
+        hreflang: getHrefLangCode(locale),
+        href: entry.alternates[locale],
+      });
+    }
+  }
+
+  // Add x-default (English)
+  tags.push({
+    hreflang: 'x-default',
+    href: entry['x-default'],
+  });
+
+  return tags;
+}
+
+// Convert internal locale code to hreflang code
+function getHrefLangCode(locale: string): string {
+  const mapping: Record<string, string> = {
+    'en-us': 'en-US',
+    'de-de': 'de-DE',
+    'fr-fr': 'fr-FR',
+    'es-es': 'es-ES',
+    'it-it': 'it-IT',
+  };
+  return mapping[locale] || locale;
+}
+
+const hrefLangTags = generateHrefLangTags();
+---
+
+{
+  hrefLangTags.map(({ hreflang, href }) => (
+    <link rel="alternate" hreflang={hreflang} href={href} />
+  ))
+}
