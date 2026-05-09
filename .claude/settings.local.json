@@ -309,7 +309,9 @@
       "Bash(ls -la src/pages/*.astro | head -5)",
       "Bash(find src:*)",
       "Bash(find . -name \"*redirection*\" -o -name \"*redirect*\" 2>/dev/null | grep -v node_modules | grep -v dist | grep -v \".git\")",
-      "Bash(find src/pages -name \"*.astro\" -exec grep -L \"pageKey=\" {} \\\\; | head -1 | xargs basename)"
+      "Bash(find src/pages -name \"*.astro\" -exec grep -L \"pageKey=\" {} \\\\; | head -1 | xargs basename)",
+      "Bash(find src/pages -name \"*.astro\" -type f | while read f; do\n  if grep -q \"pageKey=\" \"$f\"; then\n    echo \"HAS: $f\"\n  fi\ndone | cut -d/ -f4-5 | sort | uniq -c | sort -rn)",
+      "Bash(git log:*)"
     ]
   }
 }
