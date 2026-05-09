@@ -137,8 +137,60 @@ function generateContentKey(path, locale) {
   return key;
 }
 
+// Load manual hreflang mappings
+function loadManualMappings() {
+  const manualMappings = {
+    // Guide: Ferries
+    '/en-us/guide/ferries/': {
+      'en-us': 'https://amalficoast-travel.com/en-us/guide/ferries/',
+      'de-de': 'https://amalficoast-travel.com/de-de/ratgeber/faehren/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/guide/ferries/',
+      'es-es': 'https://amalficoast-travel.com/es-es/guia/ferries/',
+      'it-it': 'https://amalficoast-travel.com/it-it/guida/traghetti/',
+    },
+
+    // Guide: Getting Here
+    '/en-us/guide/getting-here/': {
+      'en-us': 'https://amalficoast-travel.com/en-us/guide/getting-here/',
+      'de-de': 'https://amalficoast-travel.com/de-de/ratgeber/anreise/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/guide/comment-venir/',
+      'es-es': 'https://amalficoast-travel.com/es-es/guia/como-llegar/',
+      'it-it': 'https://amalficoast-travel.com/it-it/guida/come-arrivare/',
+    },
+
+    // Guide: Parking & ZTL
+    '/en-us/guide/parking-ztl/': {
+      'en-us': 'https://amalficoast-travel.com/en-us/guide/parking-ztl/',
+      'de-de': 'https://amalficoast-travel.com/de-de/ratgeber/parken-ztl/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/guide/parking-ztl/',
+      'es-es': 'https://amalficoast-travel.com/es-es/guia/aparcamiento-ztl/',
+      'it-it': 'https://amalficoast-travel.com/it-it/guida/parcheggi-ztl/',
+    },
+
+    // Guide: SITA Bus
+    '/en-us/guide/sita-bus/': {
+      'en-us': 'https://amalficoast-travel.com/en-us/guide/sita-bus/',
+      'de-de': 'https://amalficoast-travel.com/de-de/ratgeber/sita-bus/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/guide/bus-sita/',
+      'es-es': 'https://amalficoast-travel.com/es-es/guia/bus-sita/',
+      'it-it': 'https://amalficoast-travel.com/it-it/guida/bus-sita/',
+    },
+
+    // Guide: When to Visit
+    '/en-us/guide/when-to-visit/': {
+      'en-us': 'https://amalficoast-travel.com/en-us/guide/when-to-visit/',
+      'de-de': 'https://amalficoast-travel.com/de-de/ratgeber/reisezeit/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/guide/quand-visiter/',
+      'es-es': 'https://amalficoast-travel.com/es-es/guia/cuando-visitar/',
+      'it-it': 'https://amalficoast-travel.com/it-it/guida/quando-visitare/',
+    },
+  };
+
+  return manualMappings;
+}
+
 // Generate TypeScript mapping file
-function generateTypeScriptFile(groups) {
+function generateTypeScriptFile(groups, manualMappings) {
   const locales = ['en-us', 'de-de', 'fr-fr', 'es-es', 'it-it'];
   const baseUrl = 'https://amalficoast-travel.com';
 
@@ -146,6 +198,28 @@ function generateTypeScriptFile(groups) {
   const hreflangs = [];
   const hreflangsMap = new Map();
 
+  // First, apply manual mappings
+  console.log(`Applying ${Object.keys(manualMappings).length} manual mappings...`);
+  for (const [canonicalKey, mapping] of Object.entries(manualMappings)) {
+    const alternate = mapping;
+    const primaryUrl = mapping['en-us'];
+
+    // Add all variants from this manual mapping
+    for (const [locale, url] of Object.entries(alternate)) {
+      const key = url.replace(baseUrl, '');
+      if (!hreflangsMap.has(key)) {
+        hreflangsMap.set(key, {
+          url,
+          canonical: primaryUrl,
+          alternates: alternate,
+          'x-default': primaryUrl,
+        });
+      }
+    }
+  }
+
+  // Then, apply auto-generated mappings for remaining URLs
+  console.log(`Processing ${groups.size} auto-generated groups...`);
   for (const [contentKey, variants] of groups) {
     // Build complete hreflang set for this content
     const alternate = {};
@@ -161,6 +235,7 @@ function generateTypeScriptFile(groups) {
     }
 
     // Ensure all variants have the complete alternate set
+    // Only add if not already in map from manual mappings (to avoid duplicates)
     for (const [locale, url] of Object.entries(alternate)) {
       const key = url.replace(baseUrl, '');
       if (!hreflangsMap.has(key)) {
@@ -271,8 +346,12 @@ try {
   const groups = groupByContent(urls);
   console.log(`Created ${groups.size} content groups`);
 
+  console.log('Loading manual hreflang mappings...');
+  const manualMappings = loadManualMappings();
+  console.log(`Loaded ${Object.keys(manualMappings).length} manual mappings`);
+
   console.log('Generating TypeScript file...');
-  const tsContent = generateTypeScriptFile(groups);
+  const tsContent = generateTypeScriptFile(groups, manualMappings);
 
   const outputPath = path.resolve(__dirname, '../i18n/hreflang-map.ts');
   fs.writeFileSync(outputPath, tsContent, 'utf-8');
