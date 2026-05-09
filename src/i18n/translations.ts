@@ -889,3 +889,32 @@ export function extractPageKeyFromPath(pathname: string): string | null {
 
   return null;
 }
+
+/**
+ * Mapa de redirects: mapea URLs que hacen redirect 301 a sus destinos finales (200)
+ * Esto asegura que los hreflang apunten a URLs canonicas, no a URLs que redirigen
+ */
+export const redirectMap: Record<string, string> = {
+  // German beach redirects: sorrentiner-halbinsel → sorrentinische-halbinsel
+  '/de-de/strande/sorrentiner-halbinsel/cala-mitigliano/': '/de-de/strande/sorrentinische-halbinsel/cala-mitigliano/',
+  '/de-de/strande/sorrentiner-halbinsel/marina-del-cantone/': '/de-de/strande/sorrentinische-halbinsel/marina-del-cantone/',
+  '/de-de/strande/sorrentiner-halbinsel/regina-giovanna/': '/de-de/strande/sorrentinische-halbinsel/regina-giovanna/',
+  '/de-de/strande/sorrentiner-halbinsel/spiaggia-di-ieranto/': '/de-de/strande/sorrentinische-halbinsel/spiaggia-di-ieranto/',
+
+  // German event redirects: sorrentiner-halbinsel → sorrentinische-halbinsel
+  '/de-de/veranstaltungen/sorrentiner-halbinsel/festa-sant-antonino/': '/de-de/veranstaltungen/sorrentinische-halbinsel/festa-sant-antonino/',
+  '/de-de/veranstaltungen/sorrentiner-halbinsel/gustamincanto-vico-equense/': '/de-de/veranstaltungen/sorrentinische-halbinsel/gustamincanto-vico-equense/',
+  '/de-de/veranstaltungen/sorrentiner-halbinsel/madonna-della-libera/': '/de-de/veranstaltungen/sorrentinische-halbinsel/madonna-della-libera/',
+  '/de-de/veranstaltungen/sorrentiner-halbinsel/sagra-limone-massa-lubrense/': '/de-de/veranstaltungen/sorrentinische-halbinsel/sagra-limone-massa-lubrense/',
+  '/de-de/veranstaltungen/sorrentiner-halbinsel/sagra-melanzana-preazzano/': '/de-de/veranstaltungen/sorrentinische-halbinsel/sagra-melanzana-preazzano/',
+  '/de-de/veranstaltungen/sorrentiner-halbinsel/sorrento-meeting-cultura/': '/de-de/veranstaltungen/sorrentinische-halbinsel/sorrento-meeting-cultura/',
+};
+
+/**
+ * Sigue los redirects para obtener la URL final canonical (200)
+ * Si la URL está en el mapa de redirects, retorna la destinación
+ * Si no, retorna la URL original
+ */
+export function resolveCanonicalUrl(url: string): string {
+  return redirectMap[url] || url;
+}

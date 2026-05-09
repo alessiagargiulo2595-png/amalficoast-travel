@@ -3,7 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import StickyBar from '../components/StickyBar.astro';
-import { getTranslations, getLocalePath, slugMap, translatePath, extractPageKeyFromPath } from '../i18n/translations';
+import { getTranslations, getLocalePath, slugMap, translatePath, extractPageKeyFromPath, resolveCanonicalUrl } from '../i18n/translations';
 import type { Locale } from '../i18n/translations';
 
 interface Props {
@@ -28,7 +28,9 @@ const hreflangs = locales.map((l) => {
   const path = smartPageKey
     ? getLocalePath(l, smartPageKey)
     : translatePath(Astro.url.pathname, lang, l);
-  return { locale: l, url: `${site}${path}` };
+  // Resolve redirects to ensure hreflang points to canonical URL (200)
+  const canonicalPath = resolveCanonicalUrl(`${path}`);
+  return { locale: l, url: `${site}${canonicalPath}` };
 });
 const xDefaultUrl = hreflangs.find(h => h.locale === 'en-us')?.url || `${site}/en-us/`;
 
