@@ -867,3 +867,25 @@ export function translatePath(pathname: string, source: Locale, target: Locale):
   const joined = '/' + out.join('/');
   return hasTrailingSlash ? joined + '/' : joined;
 }
+
+/**
+ * Intelligently extract pageKey from pathname by checking slugMap
+ * For example: /it-it/spiagge/penisola-sorrentina/cala-mitigliano/ → 'cala-mitigliano'
+ * Returns the pageKey if found in slugMap, otherwise null
+ */
+export function extractPageKeyFromPath(pathname: string): string | null {
+  const parts = pathname.split('/').filter(Boolean);
+  if (parts.length < 2) return null; // Must have at least locale + one more segment
+
+  // Try last segment first (most specific)
+  const lastSegment = parts[parts.length - 1];
+  if (slugMap[lastSegment]) return lastSegment;
+
+  // Try combinations of last 2 segments for nested pages
+  if (parts.length >= 3) {
+    const lastTwo = parts[parts.length - 2] + '-' + lastSegment;
+    if (slugMap[lastTwo]) return lastTwo;
+  }
+
+  return null;
+}
