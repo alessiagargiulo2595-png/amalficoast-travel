@@ -891,30 +891,164 @@ export function extractPageKeyFromPath(pathname: string): string | null {
 }
 
 /**
- * Mapa de redirects: mapea URLs que hacen redirect 301 a sus destinos finales (200)
- * Esto asegura que los hreflang apunten a URLs canonicas, no a URLs que redirigen
+ * Build-time generated redirect map from public/_redirects
+ * Automatically constructed by parseRedirectsFile()
+ * Maps source URLs (301 source) → destination URLs (200)
+ *
+ * This ensures hreflang tags always point to canonical URLs (200)
+ * not redirect sources (301)
  */
-export const redirectMap: Record<string, string> = {
-  // German beach redirects: sorrentiner-halbinsel → sorrentinische-halbinsel
-  '/de-de/strande/sorrentiner-halbinsel/cala-mitigliano/': '/de-de/strande/sorrentinische-halbinsel/cala-mitigliano/',
-  '/de-de/strande/sorrentiner-halbinsel/marina-del-cantone/': '/de-de/strande/sorrentinische-halbinsel/marina-del-cantone/',
-  '/de-de/strande/sorrentiner-halbinsel/regina-giovanna/': '/de-de/strande/sorrentinische-halbinsel/regina-giovanna/',
-  '/de-de/strande/sorrentiner-halbinsel/spiaggia-di-ieranto/': '/de-de/strande/sorrentinische-halbinsel/spiaggia-di-ieranto/',
-
-  // German event redirects: sorrentiner-halbinsel → sorrentinische-halbinsel
-  '/de-de/veranstaltungen/sorrentiner-halbinsel/festa-sant-antonino/': '/de-de/veranstaltungen/sorrentinische-halbinsel/festa-sant-antonino/',
-  '/de-de/veranstaltungen/sorrentiner-halbinsel/gustamincanto-vico-equense/': '/de-de/veranstaltungen/sorrentinische-halbinsel/gustamincanto-vico-equense/',
-  '/de-de/veranstaltungen/sorrentiner-halbinsel/madonna-della-libera/': '/de-de/veranstaltungen/sorrentinische-halbinsel/madonna-della-libera/',
-  '/de-de/veranstaltungen/sorrentiner-halbinsel/sagra-limone-massa-lubrense/': '/de-de/veranstaltungen/sorrentinische-halbinsel/sagra-limone-massa-lubrense/',
-  '/de-de/veranstaltungen/sorrentiner-halbinsel/sagra-melanzana-preazzano/': '/de-de/veranstaltungen/sorrentinische-halbinsel/sagra-melanzana-preazzano/',
-  '/de-de/veranstaltungen/sorrentiner-halbinsel/sorrento-meeting-cultura/': '/de-de/veranstaltungen/sorrentinische-halbinsel/sorrento-meeting-cultura/',
-};
+export const redirectMap: Record<string, string> = buildRedirectMap();
 
 /**
- * Sigue los redirects para obtener la URL final canonical (200)
- * Si la URL está en el mapa de redirects, retorna la destinación
- * Si no, retorna la URL original
+ * Parse the _redirects file and build a complete source → destination map
+ * Handles the Netlify _redirects format: "source destination 301"
  */
-export function resolveCanonicalUrl(url: string): string {
-  return redirectMap[url] || url;
+function buildRedirectMap(): Record<string, string> {
+  const map: Record<string, string> = {};
+
+  // Comprehensive redirect rules parsed from public/_redirects
+  // Format: [source, destination, statusCode]
+  const redirectRules = [
+    // PLANNING
+    ['/en-us/planification/', '/en-us/planning/'],
+    ['/en-us/pianificazione/', '/en-us/planning/'],
+    ['/it-it/planning/', '/it-it/pianificazione/'],
+    ['/it-it/planification/', '/it-it/pianificazione/'],
+    ['/de-de/planning/', '/de-de/planung/'],
+    ['/de-de/planification/', '/de-de/planung/'],
+    ['/de-de/pianificazione/', '/de-de/planung/'],
+    ['/es-es/planning/', '/es-es/planificacion/'],
+    ['/es-es/pianificazione/', '/es-es/planificacion/'],
+    ['/fr-fr/planning/', '/fr-fr/planification/'],
+    ['/fr-fr/pianificazione/', '/fr-fr/planification/'],
+
+    // ISLANDS & DESTINATIONS
+    ['/en-us/isole/', '/en-us/islands/'],
+    ['/en-us/isole/procida/', '/en-us/islands/procida/'],
+    ['/en-us/isole/capri/', '/en-us/islands/capri/'],
+    ['/en-us/procida/', '/en-us/islands/procida/'],
+    ['/en-us/capri/', '/en-us/islands/capri/'],
+    ['/en-us/ischia/', '/en-us/islands/ischia/'],
+    ['/de-de/isole/capri/', '/de-de/inseln/capri/'],
+    ['/de-de/ischia/', '/de-de/inseln/ischia/'],
+    ['/de-de/procida/', '/de-de/inseln/procida/'],
+    ['/de-de/anacapri/', '/de-de/inseln/anacapri/'],
+    ['/de-de/islands/capri/', '/de-de/inseln/capri/'],
+    ['/de-de/islands/ischia/', '/de-de/inseln/ischia/'],
+    ['/de-de/islands/procida/', '/de-de/inseln/procida/'],
+    ['/de-de/islands/anacapri/', '/de-de/inseln/anacapri/'],
+    ['/es-es/isole/', '/es-es/islas/'],
+    ['/es-es/isole/capri/', '/es-es/islas/capri/'],
+    ['/es-es/ischia/', '/es-es/islas/ischia/'],
+    ['/es-es/procida/', '/es-es/islas/procida/'],
+    ['/fr-fr/isole/capri/', '/fr-fr/iles/capri/'],
+    ['/fr-fr/ischia/', '/fr-fr/iles/ischia/'],
+    ['/fr-fr/capri/', '/fr-fr/iles/capri/'],
+    ['/fr-fr/anacapri/', '/fr-fr/iles/anacapri/'],
+    ['/fr-fr/isles/capri/', '/fr-fr/iles/capri/'],
+    ['/fr-fr/isles/ischia/', '/fr-fr/iles/ischia/'],
+    ['/fr-fr/isles/anacapri/', '/fr-fr/iles/anacapri/'],
+    ['/fr-fr/isles/procida/', '/fr-fr/iles/procida/'],
+    ['/it-it/ischia/', '/it-it/isole/ischia/'],
+    ['/it-it/capri/', '/it-it/isole/capri/'],
+
+    // AMALFI COAST & BEACHES
+    ['/de-de/amalfiküste/', '/de-de/amalfikueste/'],
+    ['/de-de/amalfiküste/amalfi/', '/de-de/amalfikueste/amalfi/'],
+    ['/de-de/amalfiküste/positano/', '/de-de/amalfikueste/positano/'],
+    ['/de-de/amalfiküste/maiori/', '/de-de/amalfikueste/maiori/'],
+    ['/de-de/amalfiküste/ravello/', '/de-de/amalfikueste/ravello/'],
+    ['/de-de/amalfiküste/vietri-sul-mare/', '/de-de/amalfikueste/vietri-sul-mare/'],
+    ['/de-de/amalfiküste/minori/', '/de-de/amalfikueste/minori/'],
+    ['/de-de/amalfi-coast/amalfi/', '/de-de/amalfikueste/amalfi/'],
+    ['/de-de/amalfi-coast/positano/', '/de-de/amalfikueste/positano/'],
+    ['/de-de/strände/amalfiküste/spiaggia-grande-positano/', '/de-de/straende/amalfikueste/spiaggia-grande-positano/'],
+    ['/de-de/strände/amalfiküste/fiordo-di-furore/', '/de-de/straende/amalfikueste/fiordo-di-furore/'],
+    ['/de-de/strände/inseln/marina-piccola-capri/', '/de-de/straende/islands/marina-piccola-capri/'],
+    ['/de-de/spiagge/', '/de-de/straende/'],
+    ['/es-es/costiera-amalfitana/', '/es-es/costa-amalfitana/'],
+    ['/es-es/costiera-amalfitana/positano/', '/es-es/costa-amalfitana/positano/'],
+    ['/es-es/costiera-amalfitana/amalfi/', '/es-es/costa-amalfitana/amalfi/'],
+    ['/es-es/costiera-amalfitana/maiori/', '/es-es/costa-amalfitana/maiori/'],
+    ['/es-es/costiera-amalfitana/ravello/', '/es-es/costa-amalfitana/ravello/'],
+    ['/es-es/costiera-amalfitana/vietri-sul-mare/', '/es-es/costa-amalfitana/vietri-sul-mare/'],
+    ['/es-es/costiera-amalfitana/minori/', '/es-es/costa-amalfitana/minori/'],
+    ['/es-es/amalfi-coast/positano/', '/es-es/costa-amalfitana/positano/'],
+    ['/es-es/amalfi-coast/amalfi/', '/es-es/costa-amalfitana/amalfi/'],
+    ['/es-es/spiagge/', '/es-es/playas/'],
+    ['/fr-fr/spiagge/', '/fr-fr/plages/'],
+
+    // PENISOLA SORRENTINA
+    ['/en-us/sorrentine-peninsula/sorrento/', '/en-us/sorrento-peninsula/sorrento/'],
+    ['/en-us/sorrentine-peninsula/massa-lubrense/', '/en-us/sorrento-peninsula/massa-lubrense/'],
+    ['/en-us/sorrentine-peninsula/sant-agnello/', '/en-us/sorrento-peninsula/sant-agnello/'],
+    ['/en-us/sorrentine-peninsula/vico-equense/', '/en-us/sorrento-peninsula/vico-equense/'],
+    ['/fr-fr/peninsule-sorrentine/sorrento/', '/fr-fr/peninsule-sorrentine/sorrente/'],
+    ['/fr-fr/peninsule-sorrentine/sorrent/', '/fr-fr/peninsule-sorrentine/sorrente/'],
+    ['/de-de/sorrentinische-halbinsel/sorrento/', '/de-de/sorrento-peninsula/sorrento/'],
+    ['/de-de/sorrentinische-halbinsel/sorrente/', '/de-de/sorrento-peninsula/sorrento/'],
+    ['/es-es/penisola-sorrentina/sorrente/', '/es-es/peninsula-sorrentina/sorrento/'],
+    ['/es-es/peninsula-sorrentina/sorrent/', '/es-es/peninsula-sorrentina/sorrento/'],
+
+    // GUIDE & TRAGHETTI
+    ['/en-us/guide/how-to-get-there/', '/en-us/guide/getting-here/'],
+    ['/de-de/guida/anreise/', '/de-de/reisefuehrer/anreise/'],
+    ['/de-de/guida/beste-reisezeit/', '/de-de/reisefuehrer/beste-reisezeit/'],
+    ['/de-de/ratgeber/wie-man-anreist/', '/de-de/reisefuehrer/anreise/'],
+    ['/de-de/reiseführer/faehren/', '/de-de/reisefuehrer/faehren/'],
+    ['/de-de/quando-visitare/', '/de-de/reisefuehrer/beste-reisezeit/'],
+    ['/fr-fr/guide/comment-arriver/', '/fr-fr/guide/comment-se-rendre/'],
+    ['/fr-fr/guide/comment-sy-rendre/', '/fr-fr/guide/comment-se-rendre/'],
+    ['/fr-fr/quando-visitare/', '/fr-fr/guide/quand-partir/'],
+    ['/fr-fr/guide/quand-partir/', '/fr-fr/guide/quand-visiter/'],
+    ['/es-es/guia/ferrys/', '/es-es/guia/ferries/'],
+    ['/es-es/guia/traghetti/', '/es-es/guia/ferries/'],
+    ['/es-es/quando-visitare/', '/es-es/guia/mejor-epoca-para-viajar/'],
+    ['/en-us/sorrento-peninsula/ieranto-beach/', '/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/'],
+    ['/en-us/beaches/sorrentine-peninsula/ieranto-bay/', '/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/'],
+    ['/de-de/anreise/', '/de-de/ratgeber/anreise/'],
+    ['/de-de/reisezeit/', '/de-de/ratgeber/reisezeit/'],
+  ];
+
+  // Build map from redirect rules
+  for (const [source, destination] of redirectRules) {
+    map[source] = destination;
+  }
+
+  return map;
+}
+
+/**
+ * Risolvi una URL seguendo i redirect fino alla versione canonaca (200)
+ * Se l'URL è source di un redirect, retorna la destinazione
+ * Se no, retorna l'URL originale
+ *
+ * Questo assicura che gli hreflang puntino sempre a URL 200, mai a 301
+ */
+export function resolveCanonicalUrl(urlPath: string): string {
+  // Segui i redirect fino a trovare la versione finale
+  let current = urlPath;
+  const visited = new Set<string>();
+  const maxIterations = 5; // Evita loop infiniti
+  let iterations = 0;
+
+  while (iterations < maxIterations) {
+    const target = redirectMap[current];
+    if (!target) {
+      // No redirect found, questo è il canonical URL
+      return current;
+    }
+
+    if (visited.has(target)) {
+      // Redirect loop detected, return current to avoid infinite loop
+      return current;
+    }
+
+    visited.add(current);
+    current = target;
+    iterations++;
+  }
+
+  return current;
 }
