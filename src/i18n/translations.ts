@@ -752,6 +752,10 @@ export const slugMap: Record<string, SlugMap> = {
   'limoncello-tour-hub': { 'en-us': 'experiences/limoncello-tour', 'de-de': 'erlebnisse/limoncello-tour', 'fr-fr': 'experiences/tour-limoncello', 'es-es': 'experiencias/tour-limoncello', 'it-it': 'esperienze/limoncello-tour' },
   'mozzarella-experience-hub': { 'en-us': 'experiences/mozzarella-experience', 'de-de': 'erlebnisse/mozzarella-erlebnis', 'fr-fr': 'experiences/experience-mozzarella', 'es-es': 'experiencias/experiencia-mozzarella', 'it-it': 'esperienze/mozzarella-experience' },
   'trekking-hub': { 'en-us': 'experiences/trekking', 'de-de': 'erlebnisse/trekking', 'fr-fr': 'experiences/trekking', 'es-es': 'experiencias/trekking', 'it-it': 'esperienze/trekking' },
+  // Blog articles - recent discoveries
+  'baia-recommone': { 'en-us': 'blog/baia-recommone', 'de-de': 'blog/baia-recommone', 'fr-fr': 'blog/baia-recommone', 'es-es': 'blog/baia-recommone', 'it-it': 'blog/baia-recommone' },
+  'punta-campanella': { 'en-us': 'blog/punta-campanella', 'de-de': 'blog/punta-campanella', 'fr-fr': 'blog/punta-campanella', 'es-es': 'blog/punta-campanella', 'it-it': 'blog/punta-campanella' },
+  'fiordo-di-crapolla': { 'en-us': 'blog/fiordo-di-crapolla', 'de-de': 'blog/fiordo-di-crapolla', 'fr-fr': 'blog/fiordo-di-crapolla', 'es-es': 'blog/fiordo-di-crapolla', 'it-it': 'blog/fiordo-di-crapolla' },
   // NOTE: Sorrento peninsula events only exist in non-English locales (de-de, fr-fr, es-es, it-it)
   // They are handled by pattern-matching in the hreflang generation script
 

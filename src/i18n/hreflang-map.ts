@@ -191,6 +191,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/atrani/',
     source: 'slugMap',
   },
+  '/de-de/blog/baia-recommone/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/baia-recommone/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/baia-recommone/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/baia-recommone/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/baia-recommone/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/baia-recommone/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+    source: 'slugMap',
+  },
   '/de-de/blog/cetara-sardellen/': {
     url: 'https://amalficoast-travel.com/de-de/blog/cetara-sardellen/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/cetara-anchovies/',
@@ -217,6 +230,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/ferriere-valley/',
     source: 'slugMap',
   },
+  '/de-de/blog/fiordo-di-crapolla/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/fiordo-di-crapolla/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/fiordo-di-crapolla/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/fiordo-di-crapolla/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/fiordo-di-crapolla/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/fiordo-di-crapolla/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
+    source: 'slugMap',
+  },
   '/de-de/blog/komfortable-ausgestattete-strande/': {
     url: 'https://amalficoast-travel.com/de-de/blog/komfortable-ausgestattete-strande/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
@@ -228,6 +254,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/spiagge-comode-attrezzate/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
+    source: 'slugMap',
+  },
+  '/de-de/blog/punta-campanella/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/punta-campanella/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/punta-campanella/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/punta-campanella/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/punta-campanella/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/punta-campanella/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
     source: 'slugMap',
   },
   '/de-de/blog/smaragd-grotte/': {
@@ -1520,6 +1559,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/atrani/',
     source: 'slugMap',
   },
+  '/en-us/blog/baia-recommone/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/baia-recommone/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/baia-recommone/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/baia-recommone/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/baia-recommone/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+    source: 'slugMap',
+  },
   '/en-us/blog/cetara-anchovies/': {
     url: 'https://amalficoast-travel.com/en-us/blog/cetara-anchovies/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/cetara-anchovies/',
@@ -1572,6 +1624,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/ferriere-valley/',
     source: 'slugMap',
   },
+  '/en-us/blog/fiordo-di-crapolla/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/fiordo-di-crapolla/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/fiordo-di-crapolla/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/fiordo-di-crapolla/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/fiordo-di-crapolla/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
+    source: 'slugMap',
+  },
   '/en-us/blog/lemon-delight/': {
     url: 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
@@ -1583,6 +1648,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/delizia-al-limone/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/punta-campanella/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/punta-campanella/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/punta-campanella/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/punta-campanella/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/punta-campanella/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
     source: 'slugMap',
   },
   '/en-us/blog/sorrento-vs-praiano/': {
@@ -2313,6 +2391,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/atrani/',
     source: 'slugMap',
   },
+  '/es-es/blog/baia-recommone/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/baia-recommone/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/baia-recommone/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/baia-recommone/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/baia-recommone/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/baia-recommone/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+    source: 'slugMap',
+  },
   '/es-es/blog/delizia-limon/': {
     url: 'https://amalficoast-travel.com/es-es/blog/delizia-limon/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
@@ -2324,6 +2415,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/delizia-al-limone/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/fiordo-di-crapolla/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/fiordo-di-crapolla/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/fiordo-di-crapolla/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/fiordo-di-crapolla/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/fiordo-di-crapolla/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/fiordo-di-crapolla/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
     source: 'slugMap',
   },
   '/es-es/blog/gruta-esmeralda/': {
@@ -2376,6 +2480,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/tramonto-spiaggia-costiera/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/sunset-beaches/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/punta-campanella/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/punta-campanella/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/punta-campanella/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/punta-campanella/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/punta-campanella/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/punta-campanella/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
     source: 'slugMap',
   },
   '/es-es/blog/sorrento-vs-praiano/': {
@@ -3474,6 +3591,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/atrani/',
     source: 'slugMap',
   },
+  '/fr-fr/blog/baia-recommone/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/baia-recommone/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/baia-recommone/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/baia-recommone/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/baia-recommone/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/baia-recommone/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+    source: 'slugMap',
+  },
   '/fr-fr/blog/coucher-soleil-plages/': {
     url: 'https://amalficoast-travel.com/fr-fr/blog/coucher-soleil-plages/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/sunset-beaches/',
@@ -3498,6 +3628,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/delizia-al-limone/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/fiordo-di-crapolla/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/fiordo-di-crapolla/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/fiordo-di-crapolla/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/fiordo-di-crapolla/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/fiordo-di-crapolla/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/fiordo-di-crapolla/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
     source: 'slugMap',
   },
   '/fr-fr/blog/grotte-emeraude/': {
@@ -3537,6 +3680,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/spiagge-comode-attrezzate/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/punta-campanella/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/punta-campanella/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/punta-campanella/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/punta-campanella/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/punta-campanella/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/punta-campanella/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
     source: 'slugMap',
   },
   '/fr-fr/blog/sorrento-vs-praiano/': {
@@ -4635,6 +4791,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/atrani/',
     source: 'slugMap',
   },
+  '/it-it/blog/baia-recommone/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/baia-recommone/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/baia-recommone/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/baia-recommone/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/baia-recommone/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/baia-recommone/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
+    source: 'slugMap',
+  },
   '/it-it/blog/delizia-al-limone/': {
     url: 'https://amalficoast-travel.com/it-it/blog/delizia-al-limone/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
@@ -4646,6 +4815,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/delizia-al-limone/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/fiordo-di-crapolla/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/fiordo-di-crapolla/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/fiordo-di-crapolla/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/fiordo-di-crapolla/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/fiordo-di-crapolla/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/fiordo-di-crapolla/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
     source: 'slugMap',
   },
   '/it-it/blog/grotta-dello-smeraldo/': {
@@ -4672,6 +4854,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/oasi-selvagge-spiagge-mare/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/punta-campanella/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/punta-campanella/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/punta-campanella/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/punta-campanella/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/punta-campanella/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/punta-campanella/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
     source: 'slugMap',
   },
   '/it-it/blog/sorrento-vs-praiano/': {
@@ -5750,7 +5945,7 @@ export function getXDefault(url: string): string | null {
  * Map statistics
  */
 export const hrefLangStats = {
-  totalUrls: 441,
+  totalUrls: 456,
   locales: ["en-us","de-de","fr-fr","es-es","it-it"],
-  generatedAt: '2026-05-09T19:22:09.603Z',
+  generatedAt: '2026-05-10T21:13:40.891Z',
 };
