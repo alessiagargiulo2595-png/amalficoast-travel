@@ -370,7 +370,10 @@
       "Bash(find /c/Users/agarg/amalficoast-travel/src/pages -name \"*.astro\" -type f -exec grep -L \"<h1\" {} \\\\; | head -10)",
       "Bash(ls -la /c/Users/agarg/amalficoast-travel/src/pages/*/strande/sorrentinische-halbinsel/ 2>/dev/null | head -5)",
       "Bash(grep -n \"pageKey=\" /c/Users/agarg/amalficoast-travel/src/pages/en-us/beaches/sorrentine-peninsula/*.astro)",
-      "Bash(find src/pages/fr-fr -name \"*sagra-limone*\" -o -name \"*masa-lubrense*\" 2>/dev/null | head -20)"
+      "Bash(find src/pages/fr-fr -name \"*sagra-limone*\" -o -name \"*masa-lubrense*\" 2>/dev/null | head -20)",
+      "Bash(find src/pages -path \"*/eventi/*\" -o -path \"*/events/*\" -o -path \"*/veranstaltungen/*\" -o -path \"*/eventos/*\" -o -path \"*/evenements/*\" | grep -E \"\\\\.astro$\" | head -5 | xargs -I {} sh -c 'echo \"=== {} ===\" && grep -c \"const breadcrumbs\" {} || echo \"NO BREADCRUMBS\"')",
+      "Bash(grep -l \"const breadcrumbs\" src/pages/it-it/eventi/**/index.astro 2>/dev/null | head -1 | xargs grep -c \"<Breadcrumbs\")",
+      "Bash(find src/pages -path \"*/eventi/index.astro\" -o -path \"*/events/index.astro\" -o -path \"*/veranstaltungen/index.astro\" -o -path \"*/eventos/index.astro\" -o -path \"*/evenements/index.astro\" | head -5 | while read file; do\n  sed -i \"s|import Breadcrumbs from '..\\\\/..\\\\/..\\\\/..\\\\/..\\\\/components\\\\/Breadcrumbs.astro';|import Breadcrumbs from '../../../../components/Breadcrumbs.astro';|g\" \"$file\"\n  echo \"Fixed import in $file\"\ndone)"
     ]
   }
 }
