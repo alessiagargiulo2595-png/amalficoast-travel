@@ -12,6 +12,17 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '12',
+    title: 'Fiordo di Crapolla: I 700 Scalini tra il Mito e la Natura Selvaggia',
+    slug: 'fiordo-di-crapolla',
+    excerpt: 'Sette secoli di storia incisa nella roccia: un antico tempio di Apollo, un\'abbazia benedettina nascosta e una spiaggia di ciottoli bianchi raggiungibili attraverso un selvaggio sentiero di 700 scalini.',
+    category: 'SCOPERTE',
+    date: '15 Maggio 2026',
+    readTime: '12 min',
+    image: '/images/fiordo-crapolla-hero.jpg',
+    path: '/it-it/blog/fiordo-di-crapolla/',
+  },
+  {
     id: '11',
     title: 'Punta Campanella: Dove il Mito Incontra i Due Golfi',
     slug: 'punta-campanella',
