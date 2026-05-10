@@ -1,13 +1,14 @@
 ---
 interface Props {
   breadcrumbs: { name: string; url: string }[];
+  isEvent?: boolean;
 }
 
-const { breadcrumbs } = Astro.props;
+const { breadcrumbs, isEvent = false } = Astro.props;
 ---
 
 <!-- Breadcrumb - positioned absolutely at bottom of hero -->
-<nav aria-label="breadcrumb" class="absolute bottom-8 left-0 right-0 z-10 max-w-7xl mx-auto px-6">
+<nav aria-label="breadcrumb" class={`absolute bottom-8 left-0 right-0 z-10 max-w-7xl mx-auto px-6 ${isEvent ? 'pt-8 sm:pt-0' : ''}`}>
   <ol class="flex items-center flex-wrap gap-1.5 text-white/60 text-xs" itemscope itemtype="https://schema.org/BreadcrumbList">
     {breadcrumbs.map((crumb, i) => (
       <>
