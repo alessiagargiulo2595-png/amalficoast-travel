@@ -12,6 +12,17 @@ export interface BlogPostEn {
 
 export const blogPostsEn: BlogPostEn[] = [
   {
+    id: '11',
+    title: 'Punta Campanella: Where Myth Meets the Two Gulfs',
+    slug: 'punta-campanella',
+    excerpt: 'The most fascinating rocky point of the Sorrentine Peninsula where the Temple of Athena, the bell tower and the myth of Ulysses meet with a breathtaking 360-degree panorama over two gulfs.',
+    category: 'DISCOVERIES',
+    date: 'May 10, 2026',
+    readTime: '8 min',
+    image: '/images/punta-campanella-hero.jpg',
+    path: '/en-us/blog/punta-campanella/',
+  },
+  {
     id: '10',
     title: 'Sorrento vs Praiano: The Complete Guide to Your Home Base',
     slug: 'sorrento-vs-praiano',

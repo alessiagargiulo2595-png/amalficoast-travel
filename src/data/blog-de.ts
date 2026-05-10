@@ -12,6 +12,17 @@ export interface BlogPostDe {
 
 export const blogPostsDe: BlogPostDe[] = [
   {
+    id: '11',
+    title: 'Punta Campanella: Wo Mythos auf zwei Golfe trifft',
+    slug: 'punta-campanella',
+    excerpt: 'Der faszinierendste Felspunkt der Halbinsel von Sorrent, wo der Tempel der Athena, der Glockenturm und der Mythos des Odysseus auf ein atemberaubendes 360-Grad-Panorama treffen.',
+    category: 'ENTDECKUNGEN',
+    date: '10. Mai 2026',
+    readTime: '10 min',
+    image: '/images/punta-campanella-hero.jpg',
+    path: '/de-de/blog/punta-campanella/',
+  },
+  {
     id: '10',
     title: 'Sorrent vs. Praiano: Der komplette Guide für Ihr Basislager',
     slug: 'sorrento-vs-praiano',

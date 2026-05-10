@@ -12,6 +12,17 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '11',
+    title: 'Punta Campanella: Dove il Mito Incontra i Due Golfi',
+    slug: 'punta-campanella',
+    excerpt: 'La punta rocciosa più affascinante della Penisola Sorrentina dove il Tempio di Athena, la torre campanaria e il mito di Ulisse si incontrano con il panorama di 360 gradi su due golfi.',
+    category: 'SCOPERTE',
+    date: '10 Maggio 2026',
+    readTime: '8 min',
+    image: '/images/punta-campanella-hero.jpg',
+    path: '/it-it/blog/punta-campanella/',
+  },
+  {
     id: '10',
     title: 'Sorrento vs Praiano: Quale Base Scegliere per la Penisola Sorrentina',
     slug: 'sorrento-vs-praiano',

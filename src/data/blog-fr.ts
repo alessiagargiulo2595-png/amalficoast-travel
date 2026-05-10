@@ -12,6 +12,17 @@ export interface BlogPostFr {
 
 export const blogPostsFr: BlogPostFr[] = [
   {
+    id: '11',
+    title: 'Punta Campanella : Là où le Mythe Rencontre les Deux Golfes',
+    slug: 'punta-campanella',
+    excerpt: 'Le point rocheux le plus fascinant de la Péninsule de Sorrente où le Temple d\'Athéna, le clocheton et le mythe d\'Ulysse se rencontrent avec un panorama à 360 degrés.',
+    category: 'DÉCOUVERTES',
+    date: '10 mai 2026',
+    readTime: '8 min',
+    image: '/images/punta-campanella-hero.jpg',
+    path: '/fr-fr/blog/punta-campanella/',
+  },
+  {
     id: '10',
     title: 'Sorrente vs Praiano : Le guide complet pour choisir votre base',
     slug: 'sorrento-vs-praiano',

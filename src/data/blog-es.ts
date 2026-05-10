@@ -12,6 +12,17 @@ export interface BlogPostEs {
 
 export const blogPostsEs: BlogPostEs[] = [
   {
+    id: '11',
+    title: 'Punta Campanella: Donde el Mito se Encuentra con los Dos Golfos',
+    slug: 'punta-campanella',
+    excerpt: 'El punto rocoso más fascinante de la Península de Sorrento donde el Templo de Atenea, la torre campanaria y el mito de Ulises se encuentran con un panorama de 360 grados.',
+    category: 'DESCUBRIMIENTOS',
+    date: '10 de mayo de 2026',
+    readTime: '8 min',
+    image: '/images/punta-campanella-hero.jpg',
+    path: '/es-es/blog/punta-campanella/',
+  },
+  {
     id: '10',
     title: 'Sorrento vs Praiano: Guía Completa para Elegir tu Base Ideal',
     slug: 'sorrento-vs-praiano',
