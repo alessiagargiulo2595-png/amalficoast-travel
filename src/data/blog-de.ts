@@ -12,6 +12,17 @@ export interface BlogPostDe {
 
 export const blogPostsDe: BlogPostDe[] = [
   {
+    id: '13',
+    title: 'Baia di Recommone: Der verborgene Zufluchtsort zwischen Nerano und Crapolla',
+    slug: 'baia-recommone',
+    excerpt: 'Eine Mondsichel aus Sand und Felsen, wo das Wasser so transparent ist, dass du die Fische siehst. Aragonischer Turm des 15. Jahrhunderts, kristallklares Wasser und spektakuläres Schnorcheln.',
+    category: 'ENTDECKUNGEN',
+    date: '20. Mai 2026',
+    readTime: '10 min',
+    image: '/images/baia-recommone-hero.jpg',
+    path: '/de-de/blog/baia-recommone/',
+  },
+  {
     id: '12',
     title: 'Crapolla-Fjord: Der verborgene Schatz der 700 Stufen',
     slug: 'fiordo-di-crapolla',

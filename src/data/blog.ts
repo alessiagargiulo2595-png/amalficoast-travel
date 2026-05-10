@@ -12,6 +12,17 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '13',
+    title: 'Baia di Recommone: Il Rifugio Segreto tra Nerano e Crapolla',
+    slug: 'baia-recommone',
+    excerpt: 'Una mezzaluna di sabbia e roccia dove l\'acqua è così trasparente che vedi i pesci come in un acquario. La torre aragonese del XV secolo, acqua cristallina e snorkeling spettacolare.',
+    category: 'SCOPERTE',
+    date: '20 Maggio 2026',
+    readTime: '10 min',
+    image: '/images/baia-recommone-hero.jpg',
+    path: '/it-it/blog/baia-recommone/',
+  },
+  {
     id: '12',
     title: 'Fiordo di Crapolla: I 700 Scalini tra il Mito e la Natura Selvaggia',
     slug: 'fiordo-di-crapolla',

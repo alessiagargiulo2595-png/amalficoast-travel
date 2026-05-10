@@ -12,6 +12,17 @@ export interface BlogPostFr {
 
 export const blogPostsFr: BlogPostFr[] = [
   {
+    id: '13',
+    title: 'Baia di Recommone: Le Refuge Secret entre Nerano et Crapolla',
+    slug: 'baia-recommone',
+    excerpt: 'Un croissant de sable et de roche où l\'eau est tellement transparente que tu vois les poissons. Tour aragonaise du XVe siècle, eau cristalline et snorkeling spectaculaire.',
+    category: 'DÉCOUVERTES',
+    date: '20 mai 2026',
+    readTime: '10 min',
+    image: '/images/baia-recommone-hero.jpg',
+    path: '/fr-fr/blog/baia-recommone/',
+  },
+  {
     id: '12',
     title: 'Le Fjord de Crapolla : Le trésor caché des 700 marches',
     slug: 'fiordo-di-crapolla',

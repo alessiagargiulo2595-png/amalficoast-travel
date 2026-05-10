@@ -12,6 +12,17 @@ export interface BlogPostEn {
 
 export const blogPostsEn: BlogPostEn[] = [
   {
+    id: '13',
+    title: 'Baia di Recommone: The Hidden Refuge Between Nerano and Crapolla',
+    slug: 'baia-recommone',
+    excerpt: 'A crescent of sand and rock where the water is so transparent you can see fish like in an aquarium. An Aragonese 15th-century tower, crystal-clear water and spectacular snorkeling.',
+    category: 'DISCOVERIES',
+    date: 'May 20, 2026',
+    readTime: '10 min',
+    image: '/images/baia-recommone-hero.jpg',
+    path: '/en-us/blog/baia-recommone/',
+  },
+  {
     id: '12',
     title: 'Crapolla Fjord: The Hidden Treasure Among the 700 Steps',
     slug: 'fiordo-di-crapolla',

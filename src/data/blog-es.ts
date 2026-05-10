@@ -12,6 +12,17 @@ export interface BlogPostEs {
 
 export const blogPostsEs: BlogPostEs[] = [
   {
+    id: '13',
+    title: 'Baia di Recommone: El Refugio Secreto entre Nerano y Crapolla',
+    slug: 'baia-recommone',
+    excerpt: 'Una media luna de arena y roca donde el agua es tan transparente que ves los peces como en un acuario. Torre aragonesa del siglo XV, agua cristalina y snorkel espectacular.',
+    category: 'DESCUBRIMIENTOS',
+    date: '20 de mayo de 2026',
+    readTime: '10 min',
+    image: '/images/baia-recommone-hero.jpg',
+    path: '/es-es/blog/baia-recommone/',
+  },
+  {
     id: '12',
     title: 'Fiordo de Crapolla: El tesoro escondido entre los 700 escalones',
     slug: 'fiordo-di-crapolla',
