@@ -151,8 +151,8 @@ const keyTakeaways = [
 
   <!-- Video Section -->
   <div class="rounded-[2rem] shadow-xl mb-8 flex justify-center bg-slate-900 py-4">
-    <video muted
-      controls
+    <video muted="muted"
+      controls id="disable-audio"
       poster="/images/fiordo-crapolla-hero.jpg"
       class="max-w-full max-h-[500px]"
       width="1280"
@@ -161,6 +161,14 @@ const keyTakeaways = [
       <source src="/videos/fiordo-crapolla-video.mp4" type="video/mp4" />
       Il tuo browser non supporta il tag video. Scarica il video per visualizzarlo.
     </video>
+    <script>
+      const video = document.getElementById("disable-audio");
+      if (video) {
+        video.addEventListener("volumechange", (e) => {
+          if (!e.target.muted) { e.target.muted = true; }
+        });
+      }
+    </script>
   </div>
 
   <!-- Il Sentiero -->

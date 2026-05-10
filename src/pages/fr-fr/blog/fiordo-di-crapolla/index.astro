@@ -151,8 +151,8 @@ const videoSchema = {
 
   <!-- Video Section -->
   <div class="rounded-[2rem] shadow-xl mb-8 flex justify-center bg-slate-900 py-4">
-    <video muted
-      controls
+    <video muted="muted"
+      controls id="disable-audio"
       poster="/images/fiordo-crapolla-hero.jpg"
       class="max-w-full max-h-[500px]"
       width="1280"
@@ -161,6 +161,14 @@ const videoSchema = {
       <source src="/videos/fiordo-crapolla-video.mp4" type="video/mp4" />
       Votre navigateur ne supporte pas la balise vidéo. Veuillez télécharger la vidéo pour la visionner.
     </video>
+    <script>
+      const video = document.getElementById("disable-audio");
+      if (video) {
+        video.addEventListener("volumechange", (e) => {
+          if (!e.target.muted) { e.target.muted = true; }
+        });
+      }
+    </script>
   </div>
 
   <!-- Le Sentier -->
