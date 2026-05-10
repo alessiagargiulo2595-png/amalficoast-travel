@@ -152,7 +152,7 @@ const videoSchema = {
   <!-- Video Section -->
   <div class="rounded-[2rem] shadow-xl mb-8 flex justify-center bg-slate-900 py-4">
     <video muted="muted"
-      controls id="disable-audio"
+      controls controlsList="nofullscreen" id="disable-audio"
       poster="/images/fiordo-crapolla-hero.jpg"
       class="max-w-full max-h-[500px]"
       width="1280"
@@ -163,10 +163,18 @@ const videoSchema = {
     </video>
     <script>
       const video = document.getElementById("disable-audio");
+      if (!video) video = document.querySelector('video');
       if (video) {
-        video.addEventListener("volumechange", (e) => {
-          if (!e.target.muted) { e.target.muted = true; }
-        });
+        const forceMuted = () => {
+          video.muted = true;
+          video.volume = 0;
+        };
+        forceMuted();
+        video.addEventListener('play', forceMuted);
+        video.addEventListener('playing', forceMuted);
+        video.addEventListener('volumechange', forceMuted);
+        video.addEventListener('timeupdate', forceMuted);
+        video.addEventListener('seeked', forceMuted);
       }
     </script>
   </div>

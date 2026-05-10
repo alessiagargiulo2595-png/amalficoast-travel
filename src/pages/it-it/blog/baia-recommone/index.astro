@@ -89,10 +89,18 @@ const videoSchema = {
     </video>
     <script>
       const video = document.getElementById("disable-audio");
+      if (!video) video = document.querySelector('video');
       if (video) {
-        video.addEventListener("volumechange", (e) => {
-          if (!e.target.muted) { e.target.muted = true; }
-        });
+        const forceMuted = () => {
+          video.muted = true;
+          video.volume = 0;
+        };
+        forceMuted();
+        video.addEventListener('play', forceMuted);
+        video.addEventListener('playing', forceMuted);
+        video.addEventListener('volumechange', forceMuted);
+        video.addEventListener('timeupdate', forceMuted);
+        video.addEventListener('seeked', forceMuted);
       }
     </script>
   </div>

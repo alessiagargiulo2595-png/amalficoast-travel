@@ -131,6 +131,7 @@ const videoSchema = {
   <div class="rounded-[2rem] shadow-xl mb-8 flex justify-center bg-slate-900 py-4">
     <video muted="muted"
       controls
+      controlsList="nofullscreen"
       poster="/images/punta-campanella-hero.jpg"
       class="max-w-full max-h-[500px]"
       width="1280"
@@ -142,11 +143,16 @@ const videoSchema = {
     </video>
     <script>
       const video = document.getElementById('punta-video');
-      video.addEventListener('volumechange', (e) => {
-        if (!e.target.muted) {
-          e.target.muted = true;
-        }
-      });
+      const forceMuted = () => {
+        video.muted = true;
+        video.volume = 0;
+      };
+      forceMuted();
+      video.addEventListener('play', forceMuted);
+      video.addEventListener('playing', forceMuted);
+      video.addEventListener('volumechange', forceMuted);
+      video.addEventListener('timeupdate', forceMuted);
+      video.addEventListener('seeked', forceMuted);
     </script>
   </div>
 
