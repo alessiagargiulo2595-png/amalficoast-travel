@@ -12,6 +12,17 @@ export interface BlogPostFr {
 
 export const blogPostsFr: BlogPostFr[] = [
   {
+    id: '12',
+    title: 'Le Fjord de Crapolla : Le trésor caché des 700 marches',
+    slug: 'fiordo-di-crapolla',
+    excerpt: 'Un monument naturel et archéologique sculpté dans les falaises calcaires avec 700 marches anciennes, une chapelle médiévale, les ruines d\'un temple romain et une plage vierge cachée du monde moderne.',
+    category: 'DÉCOUVERTES',
+    date: '15 mai 2026',
+    readTime: '12 min',
+    image: '/images/fiordo-crapolla-hero.jpg',
+    path: '/fr-fr/blog/fiordo-di-crapolla/',
+  },
+  {
     id: '11',
     title: 'Punta Campanella : Là où le Mythe Rencontre les Deux Golfes',
     slug: 'punta-campanella',

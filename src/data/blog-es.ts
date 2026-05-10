@@ -12,6 +12,17 @@ export interface BlogPostEs {
 
 export const blogPostsEs: BlogPostEs[] = [
   {
+    id: '12',
+    title: 'Fiordo de Crapolla: El tesoro escondido entre los 700 escalones',
+    slug: 'fiordo-di-crapolla',
+    excerpt: 'Un monumento natural y arqueológico excavado en acantilados de piedra caliza con 700 escalones antiguos, una capilla medieval, ruinas de templos romanos y una playa virgen escondida del mundo moderno.',
+    category: 'DESCUBRIMIENTOS',
+    date: '15 de mayo de 2026',
+    readTime: '12 min',
+    image: '/images/fiordo-crapolla-hero.jpg',
+    path: '/es-es/blog/fiordo-di-crapolla/',
+  },
+  {
     id: '11',
     title: 'Punta Campanella: Donde el Mito se Encuentra con los Dos Golfos',
     slug: 'punta-campanella',

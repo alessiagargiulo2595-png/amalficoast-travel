@@ -12,6 +12,17 @@ export interface BlogPostDe {
 
 export const blogPostsDe: BlogPostDe[] = [
   {
+    id: '12',
+    title: 'Crapolla-Fjord: Der verborgene Schatz der 700 Stufen',
+    slug: 'fiordo-di-crapolla',
+    excerpt: 'Ein Natur- und Archäologiedenkmal, das in Kalksteinfelsen geschnitzt ist, mit 700 antiken Stufen, einer mittelalterlichen Kapelle, römischen Tempelruinen und einem unberührten Strand.',
+    category: 'ENTDECKUNGEN',
+    date: '15. Mai 2026',
+    readTime: '12 min',
+    image: '/images/fiordo-crapolla-hero.jpg',
+    path: '/de-de/blog/fiordo-di-crapolla/',
+  },
+  {
     id: '11',
     title: 'Punta Campanella: Wo Mythos auf zwei Golfe trifft',
     slug: 'punta-campanella',

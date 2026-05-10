@@ -12,6 +12,17 @@ export interface BlogPostEn {
 
 export const blogPostsEn: BlogPostEn[] = [
   {
+    id: '12',
+    title: 'Crapolla Fjord: The Hidden Treasure Among the 700 Steps',
+    slug: 'fiordo-di-crapolla',
+    excerpt: 'A natural and archaeological monument carved into limestone cliffs with 700 ancient steps, a medieval chapel, Roman temple ruins, and a pristine beach hidden from the modern world.',
+    category: 'DISCOVERIES',
+    date: 'May 15, 2026',
+    readTime: '12 min',
+    image: '/images/fiordo-crapolla-hero.jpg',
+    path: '/en-us/blog/fiordo-di-crapolla/',
+  },
+  {
     id: '11',
     title: 'Punta Campanella: Where Myth Meets the Two Gulfs',
     slug: 'punta-campanella',
