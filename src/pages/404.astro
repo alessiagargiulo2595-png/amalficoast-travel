@@ -108,6 +108,11 @@ const guidesJSON = JSON.stringify(localeGuides);
 ---
 
 <script is:inline define:vars={{translationsJSON, guidesJSON}}>
+  // Clean escaped apostrophes from strings
+  function cleanApostrophes(text) {
+    return text.replace(/\\'/g, "'");
+  }
+
   // Detect locale from current URL
   const pathname = window.location.pathname;
   const locales = ['en-us', 'de-de', 'fr-fr', 'es-es', 'it-it'];
@@ -128,17 +133,17 @@ const guidesJSON = JSON.stringify(localeGuides);
 
   // Update message
   const message = document.querySelector('.text-xl.md\\:text-2xl');
-  if (message) message.textContent = t.message;
+  if (message) message.textContent = cleanApostrophes(t.message);
 
   // Update description
   const desc = document.querySelector('.text-lg.text-amber-700');
-  if (desc) desc.textContent = t.description;
+  if (desc) desc.textContent = cleanApostrophes(t.description);
 
   // Update back home button
   const backBtn = document.querySelector('.inline-block.bg-amber-600');
   if (backBtn) {
     backBtn.href = `/${detectedLocale}/`;
-    backBtn.textContent = `🏠 ${t.backHome}`;
+    backBtn.textContent = `🏠 ${cleanApostrophes(t.backHome)}`;
   }
 
   // Update "Browse Our Guides" title
@@ -178,7 +183,7 @@ const guidesJSON = JSON.stringify(localeGuides);
 
   // Update "Visit in other languages" title
   const otherLangTitle = document.querySelectorAll('.font-serif.text-4xl')[2];
-  if (otherLangTitle) otherLangTitle.textContent = t.otherLanguages;
+  if (otherLangTitle) otherLangTitle.textContent = cleanApostrophes(t.otherLanguages);
 
   // Update language buttons
   const langButtons = document.querySelectorAll('.group.p-6.rounded');
