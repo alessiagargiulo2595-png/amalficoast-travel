@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import Swiper from 'swiper';
+import { Pagination } from 'swiper/modules';
 
 const lang = 'de-de';
 
@@ -54,13 +57,6 @@ const ztlData = [
     <img src="/images/parcheggi-hero.jpg" alt="Sorrent, Halbinsel Sorrent" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
     <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
-      <nav class="flex items-center gap-2 text-white/60 text-xs mb-6">
-        <a href="/de-de/" class="hover:text-white transition-colors">Startseite</a>
-        <span>/</span>
-        <span class="text-white/60">Reiseratgeber</span>
-        <span>/</span>
-        <span class="text-white">Parken & ZTL</span>
-      </nav>
       <div class="max-w-3xl">
         <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Reiseratgeber</p>
         <h1 class="font-serif text-display text-white mb-4">Parken & ZTL-Zonen</h1>
@@ -69,14 +65,15 @@ const ztlData = [
         </p>
       </div>
     </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
-  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-4 space-y-12">
 
-    <section class="max-w-text">
-      <div class="bg-red-50 border border-red-200 rounded-[2rem] p-6 mb-8">
-        <p class="font-semibold text-red-800 mb-2">⚠️ ZTL-Warnung</p>
-        <p class="text-xs sm:text-sm text-red-700">ZTL-Zonen an der Amalfiküste werden mit Kameras überwacht. Einfahren ohne Genehmigung führt zu einem Bußgeld von €80–160, das direkt an die Mietwagengesellschaft oder Ihre Heimatadresse geschickt wird.</p>
+    <section class="max-w-editorial">
+      <div style="background-color: #E2725B; border-color: #E2725B; padding: 6px 12px 6px 12px;" class="border rounded-[2rem] mb-6 mt-8">
+        <p class="font-semibold mb-0 mt-0 text-white text-sm leading-tight" style="margin-top: -2px;">⚠️ ZTL-Warnung</p>
+        <p class="text-xs text-white/95 leading-tight">ZTL-Zonen an der Amalfiküste werden mit Kameras überwacht. Einfahren ohne Genehmigung führt zu einem Bußgeld von €80–160, das direkt an die Mietwagengesellschaft oder Ihre Heimatadresse geschickt wird.</p>
       </div>
       <p class="text-xl leading-relaxed text-charcoal">
         Die beste Strategie ist das „strategische Parken": Auto an einem gut erreichbaren Punkt abstellen (Salerno, Vietri, Sorrent oder Praiano) und von dort Busse, Fähren oder Tragflügelboote nutzen.
@@ -88,7 +85,7 @@ const ztlData = [
       <div class="overflow-x-auto rounded-2xl border border-slate-200">
         <table class="w-full text-xs sm:text-sm">
           <thead>
-            <tr class="bg-med-blue/5 text-charcoal">
+            <tr class="bg-slate-900 text-white">
               <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Ort</th>
               <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">ZTL</th>
               <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Zeitraum</th>
@@ -131,6 +128,268 @@ const ztlData = [
       </div>
     </section>
 
+    <!-- EVERYTHING YOU NEED -->
+    <section class="py-16 bg-white">
+      <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Das Wichtigste für Ihre Reise</h2>
+          <div class="w-20 h-1 bg-med-gold mx-auto rounded-full"></div>
+        </div>
+
+        <!-- MOBILE: Swiper slider -->
+        <div class="swiper swiper-guides md:hidden">
+          <div class="swiper-wrapper pb-12">
+            <div class="swiper-slide">
+              <a href="/de-de/ratgeber/faehren/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300 h-full">
+                <h3 class="font-serif text-xl font-bold text-med-gold mb-2">Fähren & Tragflügelboote</h3>
+                <p class="text-white text-sm mb-3">Wie Sie die Küste über das Meer erreichen</p>
+                <p class="text-white/70 text-xs leading-relaxed mb-4">Fahrpläne, Tarife und Hauptrouten von Neapel und Salerno</p>
+                <span class="text-med-gold font-semibold text-sm">Zur Anleitung →</span>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="/de-de/ratgeber/sita-bus/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300 h-full">
+                <h3 class="font-serif text-xl font-bold text-med-gold mb-2">SITA Bus</h3>
+                <p class="text-white text-sm mb-3">Fahrpläne, Tarife und Hauptrouten</p>
+                <p class="text-white/70 text-xs leading-relaxed mb-4">Entlang der Küste fahren: alle Linien und Haltestellen</p>
+                <span class="text-med-gold font-semibold text-sm">Lesen →</span>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="/de-de/beste-reisezeit/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300 h-full">
+                <h3 class="font-serif text-xl font-bold text-med-gold mb-2">Beste Reisezeit</h3>
+                <p class="text-white text-sm mb-3">Monat für Monat: Wetter und Menschenmengen</p>
+                <p class="text-white/70 text-xs leading-relaxed mb-4">Wählen Sie die beste Zeit für Ihren Besuch</p>
+                <span class="text-med-gold font-semibold text-sm">Lesen →</span>
+              </a>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- DESKTOP: Grid 3 colonne -->
+        <div class="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <a href="/de-de/ratgeber/faehren/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300">
+            <h3 class="font-serif text-xl font-bold text-med-gold mb-2">Fähren & Tragflügelboote</h3>
+            <p class="text-white text-sm mb-3">Wie Sie die Küste über das Meer erreichen</p>
+            <p class="text-white/70 text-xs leading-relaxed mb-4">Fahrpläne, Tarife und Hauptrouten von Neapel und Salerno</p>
+            <span class="text-med-gold font-semibold text-sm">Zur Anleitung →</span>
+          </a>
+
+          <a href="/de-de/ratgeber/sita-bus/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300">
+            <h3 class="font-serif text-xl font-bold text-med-gold mb-2">SITA Bus</h3>
+            <p class="text-white text-sm mb-3">Fahrpläne, Tarife und Hauptrouten</p>
+            <p class="text-white/70 text-xs leading-relaxed mb-4">Entlang der Küste fahren: alle Linien und Haltestellen</p>
+            <span class="text-med-gold font-semibold text-sm">Lesen →</span>
+          </a>
+
+          <a href="/de-de/beste-reisezeit/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300">
+            <h3 class="font-serif text-xl font-bold text-med-gold mb-2">Beste Reisezeit</h3>
+            <p class="text-white text-sm mb-3">Monat für Monat: Wetter und Menschenmengen</p>
+            <p class="text-white/70 text-xs leading-relaxed mb-4">Wählen Sie die beste Zeit für Ihren Besuch</p>
+            <span class="text-med-gold font-semibold text-sm">Lesen →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUTHENTIC EXPERIENCES -->
+    <section class="py-16 bg-white overflow-hidden">
+      <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+          <div class="max-w-2xl">
+            <span class="text-med-gold font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Erleben Sie das Gebiet</span>
+            <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Authentische Erlebnisse</h2>
+            <p class="text-slate-600 text-lg">Von traditioneller Küche bis zu Zitronenplantagen - entdecken Sie die wahre Seele der Küste.</p>
+          </div>
+          <a href="/de-de/erlebnisse/" class="group flex items-center gap-2 text-med-blue font-semibold hover:text-med-gold transition-colors">
+            Alle Erlebnisse
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- MOBILE: Swiper slider -->
+        <div class="swiper swiper-experiences md:hidden">
+          <div class="swiper-wrapper pb-12">
+            <div class="swiper-slide">
+              <a href="/de-de/erlebnisse/kochkurs-amalfikueste/" class="group block">
+                <div class="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-6 shadow-lg">
+                  <img
+                    src="/images/cooking-class-hero.webp"
+                    alt="Kochkurs"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div class="absolute bottom-6 left-6">
+                    <h3 class="text-2xl font-serif font-bold text-white">Kochkurs</h3>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="/de-de/erlebnisse/limoncello-tour-amalfikueste/" class="group block">
+                <div class="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-6 shadow-lg">
+                  <img
+                    src="/images/limoncello-mercato-hero.webp"
+                    alt="Limoncello-Tour"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div class="absolute bottom-6 left-6">
+                    <h3 class="text-2xl font-serif font-bold text-white">Limoncello-Tour</h3>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="/de-de/erlebnisse/mozzarella-erlebnis-agerola-tramonti/" class="group block">
+                <div class="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-6 shadow-lg">
+                  <img
+                    src="/images/mozzarella-provolone-hero.webp"
+                    alt="Mozzarella-Erlebnis"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div class="absolute bottom-6 left-6">
+                    <h3 class="text-2xl font-serif font-bold text-white">Mozzarella-Erlebnis</h3>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="/de-de/erlebnisse/sterne-restaurants-amalfikueste/" class="group block">
+                <div class="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-6 shadow-lg">
+                  <img
+                    src="/images/ravello-hero.webp"
+                    alt="Sterne-Restaurants"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div class="absolute bottom-6 left-6">
+                    <h3 class="text-2xl font-serif font-bold text-white">Sterne-Restaurants</h3>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- DESKTOP: Grid -->
+        <div class="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <a href="/de-de/erlebnisse/kochkurs-amalfikueste/" class="group block">
+            <div class="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-6 shadow-lg">
+              <img
+                src="/images/cooking-class-hero.webp"
+                alt="Kochkurs"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div class="absolute bottom-6 left-6">
+                <h3 class="text-2xl font-serif font-bold text-white">Kochkurs</h3>
+              </div>
+            </div>
+          </a>
+
+          <a href="/de-de/erlebnisse/limoncello-tour-amalfikueste/" class="group block">
+            <div class="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-6 shadow-lg">
+              <img
+                src="/images/limoncello-mercato-hero.webp"
+                alt="Limoncello-Tour"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div class="absolute bottom-6 left-6">
+                <h3 class="text-2xl font-serif font-bold text-white">Limoncello-Tour</h3>
+              </div>
+            </div>
+          </a>
+
+          <a href="/de-de/erlebnisse/mozzarella-erlebnis-agerola-tramonti/" class="group block">
+            <div class="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-6 shadow-lg">
+              <img
+                src="/images/mozzarella-provolone-hero.webp"
+                alt="Mozzarella-Erlebnis"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div class="absolute bottom-6 left-6">
+                <h3 class="text-2xl font-serif font-bold text-white">Mozzarella-Erlebnis</h3>
+              </div>
+            </div>
+          </a>
+
+          <a href="/de-de/erlebnisse/sterne-restaurants-amalfikueste/" class="group block">
+            <div class="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden mb-6 shadow-lg">
+              <img
+                src="/images/ravello-hero.webp"
+                alt="Sterne-Restaurants"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div class="absolute bottom-6 left-6">
+                <h3 class="text-2xl font-serif font-bold text-white">Sterne-Restaurants</h3>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
   </div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Pagination } from 'swiper/modules';
+
+  // Guides slider
+  new Swiper('.swiper-guides', {
+    modules: [Pagination],
+    slidesPerView: 1.2,
+    spaceBetween: 16,
+    pagination: { el: '.swiper-guides .swiper-pagination', clickable: true },
+  });
+</script>
+
+<style is:global>
+  @import 'swiper/css';
+  @import 'swiper/css/pagination';
+
+  :root {
+    --swiper-pagination-color: #D4AF37;
+  }
+
+  .swiper-pagination-bullet {
+    background-color: var(--swiper-pagination-color);
+    opacity: 0.5;
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
+
+  /* Hide sliders on desktop */
+  @media (min-width: 768px) {
+    .swiper {
+      display: none !important;
+    }
+  }
+</style>
 
 </BaseLayout>
