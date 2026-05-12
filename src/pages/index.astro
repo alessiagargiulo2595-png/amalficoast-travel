@@ -3,5 +3,21 @@ import { getDefaultLocale } from '../i18n/translations';
 
 // With i18n routing configured, Astro will automatically handle the redirect
 // from / to the localized path. This page shouldn't be served directly.
-return Astro.redirect(`/${getDefaultLocale()}/`, 301);
+const defaultLocale = getDefaultLocale();
 ---
+
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redirect</title>
+  <link rel="canonical" href={`https://amalficoast-travel.com/${defaultLocale}/`} />
+  <meta http-equiv="refresh" content={`0;url=/${defaultLocale}/`} />
+</head>
+<body>
+  <p>Redirecting to <a href={`/${defaultLocale}/`}>/{defaultLocale}/</a></p>
+  <script>
+    window.location.href = `/${getDefaultLocale()}/`;
+  </script>
+</body>
+</html>
