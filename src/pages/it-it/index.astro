@@ -221,7 +221,7 @@ const blogHighlights = [
         <div class="swiper-wrapper pb-12">
           {silos.map(silo => (
             <div class="swiper-slide">
-              <a href={silo.href} class="group relative aspect-[4/5] overflow-hidden rounded-[3rem] shadow-none md:shadow-[0_20px_50px_rgba(0,0,0,0.3)] block hover:scale-[1.02] transition-transform duration-500">
+              <a href={silo.href} class="group relative aspect-[16/9] md:aspect-[4/5] overflow-hidden rounded-[3rem] shadow-none md:shadow-[0_20px_50px_rgba(0,0,0,0.3)] block hover:scale-[1.02] transition-transform duration-500">
                 <img
                   src={silo.img}
                   alt={silo.title}
@@ -250,7 +250,7 @@ const blogHighlights = [
       <!-- DESKTOP: Grid -->
       <div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-6">
         {silos.map(silo => (
-          <a href={silo.href} class="group relative aspect-[4/5] overflow-hidden rounded-[3rem] shadow-none md:shadow-[0_20px_50px_rgba(0,0,0,0.3)] block hover:scale-[1.02] transition-transform duration-500">
+          <a href={silo.href} class="group relative aspect-square md:aspect-[4/5] overflow-hidden rounded-[3rem] shadow-none md:shadow-[0_20px_50px_rgba(0,0,0,0.3)] block hover:scale-[1.02] transition-transform duration-500">
             <img
               src={silo.img}
               alt={silo.title}
@@ -386,7 +386,7 @@ const blogHighlights = [
           {borghi.map((b) => (
             <div class="swiper-slide">
               <a href={b.href} class="group cursor-pointer flex flex-col h-full">
-                <div class="relative aspect-[4/5] overflow-hidden rounded-[3rem] mb-6 shadow-none md:shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                <div class="relative aspect-square md:aspect-[4/5] overflow-hidden rounded-[3rem] mb-6 shadow-none md:shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
                   <img
                     src={b.img}
                     alt={b.name}
@@ -398,7 +398,7 @@ const blogHighlights = [
                   <!-- Gradient overlay - hidden on mobile, visible on tablet+ -->
                   <div class="absolute bottom-8 left-8 right-8">
                     <span class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2 block">{b.subtitle}</span>
-                    <h3 class="font-serif text-3xl font-bold text-white tracking-tight">{b.name}</h3>
+                    <h3 class="font-serif text-xl md:text-3xl font-bold text-white tracking-tight">{b.name}</h3>
                   </div>
                 </div>
                 <p class="text-slate-500 text-xs sm:text-sm leading-relaxed font-light mb-4">{b.description}</p>
@@ -418,7 +418,7 @@ const blogHighlights = [
       <div class="hidden md:grid grid-cols-1 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {borghi.map((b, i) => (
           <a href={b.href} class="group cursor-pointer fade-in-card" style={`animation-delay: ${i * 0.1}s`}>
-            <div class="relative aspect-[4/5] overflow-hidden rounded-[3rem] mb-6 shadow-none md:shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+            <div class="relative aspect-square md:aspect-[4/5] overflow-hidden rounded-[3rem] mb-6 shadow-none md:shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
               <img
                 src={b.img}
                 alt={b.name}
@@ -430,7 +430,7 @@ const blogHighlights = [
               <div class="absolute inset-0 hidden md:block bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
               <div class="absolute bottom-8 left-8 right-8">
                 <span class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2 block">{b.subtitle}</span>
-                <h3 class="font-serif text-3xl font-bold text-white tracking-tight">{b.name}</h3>
+                <h3 class="font-serif text-xl md:text-3xl font-bold text-white tracking-tight">{b.name}</h3>
               </div>
             </div>
             <p class="text-slate-500 text-xs sm:text-sm leading-relaxed font-light mb-4">{b.description}</p>
@@ -749,7 +749,7 @@ const blogHighlights = [
   // Borghi slider
   new Swiper('.swiper-borghi', {
     modules: [Pagination],
-    slidesPerView: 1.2,
+    slidesPerView: 1.35,
     spaceBetween: 16,
     pagination: { el: '.swiper-borghi .swiper-pagination', clickable: true },
   });
@@ -781,7 +781,7 @@ const blogHighlights = [
   // Experiences slider
   new Swiper('.swiper-experiences', {
     modules: [Pagination],
-    slidesPerView: 1.2,
+    slidesPerView: 1.35,
     spaceBetween: 16,
     pagination: { el: '.swiper-experiences .swiper-pagination', clickable: true },
   });
@@ -797,7 +797,7 @@ const blogHighlights = [
   // Resources slider
   new Swiper('.swiper-resources', {
     modules: [Pagination],
-    slidesPerView: 1.2,
+    slidesPerView: 1.35,
     spaceBetween: 16,
     pagination: { el: '.swiper-resources .swiper-pagination', clickable: true },
   });
@@ -805,7 +805,7 @@ const blogHighlights = [
   // Guides slider
   new Swiper('.swiper-guides', {
     modules: [Pagination],
-    slidesPerView: 1.2,
+    slidesPerView: 1.35,
     spaceBetween: 16,
     pagination: { el: '.swiper-guides .swiper-pagination', clickable: true },
   });
@@ -843,6 +843,19 @@ const blogHighlights = [
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  /* Fix swiper slide width on mobile */
+  @media (max-width: 767px) {
+    .swiper-slide {
+      width: 85% !important;
+      margin-right: 15px !important;
+    }
+
+    .swiper-slide a.group {
+      aspect-ratio: 4 / 5 !important;
+      height: auto !important;
     }
   }
 </style>
