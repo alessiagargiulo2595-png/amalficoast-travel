@@ -331,7 +331,6 @@ export const homeContent: Record<Locale, HomeContent> = {
         tagline: 'Le joyau de la Côte Amalfitaine',
         description: 'Positano est la ville la plus photographiée de la côte - et pour cause. Ses maisons aux couleurs pastel dévalent un flanc escarpé directement vers la mer, créant l\'un des paysages urbains les plus dramatiques d\'Europe. La plage est animée, les boutiques sont élégantes, et les terrasses de restaurants offrent des vues incomparables.',
         highlights: ['Plage Spiaggia Grande', 'Shopping Via dei Mulini', 'Église Santa Maria Assunta', 'Belvédère des îles Li Galli', 'Départ du Sentier des Dieux'],
-        area: 'costiera-amalfitana',
       },
       {
         name: 'Amalfi', slug: 'amalfi',
