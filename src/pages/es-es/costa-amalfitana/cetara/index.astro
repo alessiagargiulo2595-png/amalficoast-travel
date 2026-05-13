@@ -1,0 +1,380 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'es-es';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Costa Amalfitana', url: '/es-es/costa-amalfitana/' },
+  { name: 'Cetara', url: '/es-es/costa-amalfitana/cetara/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Cetara",
+  "description": "Cetara es el alma auténtica de la Costa Amalfitana, el pueblo de pescadores y cuna de la colatura di alici (salsa de anchoas). Un laberinto de callejones que convergen hacia el puerto, donde los barcos de pesca tradicionales todavía llegan hoy.",
+  "url": "https://amalficoast-travel.com/es-es/costa-amalfitana/cetara/",
+  "image": "https://amalficoast-travel.com/images/cetara-hero.jpg",
+  "touristType": ["Gastronomía", "Autenticidad", "Mar", "Historia"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Cetara",
+    "addressRegion": "Salerno",
+    "addressCountry": "IT",
+    "postalCode": "84010"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.5961,
+    "longitude": 14.6083
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es la colatura di alici?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es un líquido ámbar obtenido por fermentación de anchoas bajo sal en barriles de madera (terzigni). Es el ingrediente principal de los espaguetis alla cetarese y se considera el oro de Cetara. Obtuvo estatus de Denominación de Origen Protegida en 2010."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo se llega a Cetara?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En ferry: servida por Travelmar con conexiones a Salerno, Vietri, Maiori, Minori y Amalfi (estacional). En autobús: línea SITA Salerno-Amalfi, aproximadamente 20-30 minutos desde Salerno. En coche: es el segundo municipio desde Salerno, con aparcamiento público en el puerto (de pago, limitado)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuáles son las mejores playas de Cetara?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Spiaggia della Marina: la más conveniente, a los pies del pueblo. Spiaggia di Porto: una pequeña cala perfecta para un baño rápido. Spiaggia di Lannari: salvaje y tranquila, accesible por una larga escalera, ideal para quien busca soledad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuándo visitar Cetara?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El 29 de junio se celebra San Pietro, el santo patrón, con procesiones y uno de los mejores fuegos artificiales de Campania. Para gastronomía, el mejor período es junio a septiembre cuando llega el atún rojo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué comer en Cetara?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Los espaguetis alla colatura di alici son el plato signature. Tampoco hay que perderse el atún rojo procesado artesanalmente, el cuoppo di frittura (pescado frito mixto en papel) y todos los platos de pescado fresco."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Cetara: El Pueblo de Pescadores & Salsa de Anchoas | Costa Amalfitana"
+  description="Cetara es el alma auténtica de la Costa Amalfitana. Descubre el pueblo de pescadores, la colatura di alici DOP, playas y restaurantes tradicionales."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, faqSchema]}
+  pageKey="cetara"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[52.5vh] sm:h-[70vh] flex items-end bg-charcoal overflow-hidden">
+    <img
+      src="/images/cetara-hero.jpg"
+      alt="Cetara, el pueblo de pescadores de la Costa Amalfitana"
+      class="absolute inset-0 w-full h-full object-cover"
+      style="object-position: center 90%"
+      loading="eager"
+      referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pb-16 pt-32 w-full">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Costa Amalfitana</p>
+        <h1 class="font-serif text-display text-white mb-4">Cetara</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          El pueblo de pescadores. El alma auténtica de la Costa Amalfitana.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">
+            Datos Rápidos
+          </a>
+          <a href="#gastronomy" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            Gastronomía
+          </a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            FAQ
+          </a>
+        </div>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <!-- Content Grid -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+
+      <!-- Main Content -->
+      <div class="lg:col-span-2 space-y-12">
+
+        <!-- Intro -->
+        <div>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">El Alma de la Costa</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-4">
+            <strong>Cetara</strong> es el alma auténtica de la Costa Amalfitana. Situado al pie del Monte Falerio, este pequeño joyel ha conservado intacto su encanto como <strong>pueblo de pescadores</strong>, resistiendo a las transformaciones del turismo de masas. Aquí el tiempo está marcado por el regreso de las barcas de pesca tradicionales y el aroma del mar.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            A diferencia de las ciudades más grandes, Cetara se descubre lentamente. El pueblo es un laberinto de callejones que convergen hacia el puerto, donde todavía se puede ver el movimiento auténtico de la pesca tradicional hoy en día.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">¿Sabías que?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1 000+</p>
+              <p class="text-white/60 text-xs italic mt-1">barriles de colatura que maduran cada año</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">2010</p>
+              <p class="text-white/60 text-xs italic mt-1">año en que la colatura recibió certificación DOP</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">8-10</p>
+              <p class="text-white/60 text-xs italic mt-1">meses mínimos de fermentación para DOP</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            La colatura di alici hereda la tradición del <em>garum</em>, el líquido de pescado romano que sazonaba todos los platos. Cetara sigue siendo el único lugar en el mundo donde esta técnica antigua se practica industrialmente.
+          </p>
+        </div>
+
+        <!-- What to See -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Qué Ver en Cetara</h2>
+
+          <div class="space-y-8">
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">La Torre Real</h3>
+              <p class="text-slate-600 leading-relaxed">Símbolo del pueblo, esta torre angevina servía para defender a la población de los ataques sarracenos. Hoy, tras una cuidadosa restauración, alberga el Museo Cívico de la Torre con obras de pintores locales y el Museo de la Bodega, dedicado a la tradición pesquera.</p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Iglesia San Pietro Apostolo</h3>
+              <p class="text-slate-600 leading-relaxed">El corazón espiritual de Cetara. Su cúpula cubierta de mayólica destaca entre las casas blancas, mientras que el interior barroco y la campana del siglo XII atestiguan la importancia histórica del pueblo.</p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">El Puerto y la Paseo</h3>
+              <p class="text-slate-600 leading-relaxed">El puerto de Cetara es uno de los más activos de la costa. Un paseo por el muelle le permite ver de cerca las cianciare (barcas utilizadas para la pesca de anchoas) y disfrutar de una vista general del pueblo que se alza sobre la colina.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beaches -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Las Playas de Cetara</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Las playas aquí se caracterizan por aguas profundas y claras, gracias a las corrientes del Golfo de Salerno.
+          </p>
+
+          <div class="space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Spiaggia della Marina</h3>
+              <p class="text-slate-600 text-sm">Situada justo a los pies del pueblo, es la más conveniente y frecuentada, rodeada de casas coloridas y dominada por la Torre.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Spiaggia di Porto</h3>
+              <p class="text-slate-600 text-sm">Una pequeña franja de arena y guijarros ubicada detrás del muelle, perfecta para un baño rápido en agua cristalina.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Spiaggia di Lannari</h3>
+              <p class="text-slate-600 text-sm">Una ensenada salvaje accesible por una larga escalera a lo largo de la Carretera del Estado Amalfitana, ideal para los que buscan tranquilidad y mar esmeralda.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gastronomy -->
+        <div id="gastronomy">
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Gastronomía: El Oro de Cetara</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Cetara es la <strong>capital gastronómica de la Costa Amalfitana</strong>. Su fama está vinculada a dos productos de excelencia.
+          </p>
+
+          <div class="space-y-6">
+            <div class="bg-med-gold/10 p-6 rounded-2xl border border-med-gold/20">
+              <h3 class="font-bold text-slate-900 mb-2 text-lg">Colatura di Alici (DOP)</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Un líquido ámbar obtenido por fermentación de anchoas bajo sal en barriles de madera (terzigni). Es el ingrediente principal de <strong>espaguetis alla cetarese</strong> y obtuvo estatus de Denominación de Origen Protegida en 2010. <a href="/es-es/blog/anchoas-cetara/" class="text-med-blue hover:underline font-medium">Aprende más sobre la colatura</a>.
+              </p>
+            </div>
+
+            <div class="bg-med-gold/10 p-6 rounded-2xl border border-med-gold/20">
+              <h3 class="font-bold text-slate-900 mb-2 text-lg">Atún Rojo</h3>
+              <p class="text-slate-600 leading-relaxed">
+                La flota de Cetara es una de las más importantes del Mediterráneo para la pesca de atún, que se procesa artesanalmente siguiendo recetas transmitidas de generación en generación.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- How to Get There -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Cómo Llegar</h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">En Ferry ⭐</p>
+              <p class="text-slate-700 font-medium mb-1">Travelmar Estacional</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Conexiones con Salerno, Vietri, Maiori, Minori, Amalfi (verifica horarios).</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus SITA</p>
+              <p class="text-slate-700 font-medium mb-1">20-30 minutos desde Salerno</p>
+              <p class="text-slate-500 text-xs sm:text-sm">La línea Salerno-Amalfi para regularmente en Cetara.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">En Coche</p>
+              <p class="text-slate-700 font-medium mb-1">Segundo municipio desde Salerno</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Aparcamiento público cerca del puerto (de pago, limitado).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Preguntas Frecuentes</h2>
+          <div class="space-y-4">
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                ¿Qué es la colatura di alici?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                Es un líquido ámbar obtenido por fermentación de anchoas bajo sal en barriles de madera (terzigni). Es el ingrediente principal de los espaguetis alla cetarese y se considera el oro de Cetara. Obtuvo estatus DOP en 2010.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                ¿Cómo se llega a Cetara?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                En ferry: servida por Travelmar con conexiones a Salerno, Vietri, Maiori, Minori y Amalfi (estacional). En autobús: línea SITA Salerno-Amalfi, aproximadamente 20-30 minutos desde Salerno. En coche: segundo municipio desde Salerno, con aparcamiento público en el puerto (de pago, limitado).
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                ¿Cuáles son las mejores playas de Cetara?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                Spiaggia della Marina: la más conveniente, a los pies del pueblo. Spiaggia di Porto: una pequeña cala perfecta para un baño rápido. Spiaggia di Lannari: salvaje y tranquila, con escalera larga, ideal para quien busca soledad.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                ¿Cuándo visitar Cetara?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                El 29 de junio se celebra San Pietro, el santo patrón, con procesiones y uno de los mejores fuegos artificiales de Campania. Para gastronomía, el mejor período es junio a septiembre cuando llega el atún rojo.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                ¿Qué comer en Cetara?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                Los espaguetis alla colatura di alici son el plato signature. Tampoco hay que perderse el atún rojo procesado artesanalmente, el cuoppo di frittura (pescado frito mixto en papel) y todos los platos de pescado fresco.
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar Fast-Facts -->
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Datos Rápidos - Cetara</p>
+          <dl class="space-y-3">
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Ubicación</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">15 km de Amalfi<br/>6 km de Salerno</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Habitantes</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">Aproximadamente 2 000</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Especialidades</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">Colatura DOP<br/>Atún Rojo<br/>Pescado Fresco</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Fiesta Patronal</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">29 de junio<br/>San Pietro</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Ideal Para</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">Foodies<br/>Autenticidad<br/>Gastronomía</dd>
+            </div>
+          </dl>
+
+          <div class="mt-10 pt-8 border-t border-white/10">
+            <a
+              href="/es-es/costa-amalfitana/"
+              class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
+            >
+              ← Volver a Costa Amalfitana
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explora Más en la Costa Amalfitana"
+    items={[
+      { name: 'Amalfi',   href: '/es-es/costa-amalfitana/amalfi/',   tag: 'República Marítima', desc: 'La capital histórica con la Catedral de Sant\'Andrea y el Museo del Papel.' },
+      { name: 'Positano', href: '/es-es/costa-amalfitana/positano/', tag: 'Moda & Vistas',     desc: 'Casas coloridas encaramadas en el mar y playa de Fornillo.' },
+      { name: 'Ravello',  href: '/es-es/costa-amalfitana/ravello/',  tag: 'Música & Jardines',    desc: 'Villa Rufolo, Villa Cimbrone y Festival de Música a 350 m.' },
+      { name: 'Praiano',  href: '/es-es/costa-amalfitana/praiano/', tag: 'Atardecer & Calma',    desc: 'El atardecer desde San Gennaro y la tranquila Marina di Praia.' },
+      { name: 'Maiori',   href: '/es-es/costa-amalfitana/maiori/',  tag: 'Playa & Relajación', desc: 'La playa de arena más larga de la costa: 300 m.' },
+      { name: 'Minori',   href: '/es-es/costa-amalfitana/minori/',  tag: 'Sabores & Cultura', desc: 'Villa romana del siglo I, scialatielli fresco y panaderías artesanales.' },
+    ]}
+  />
+
+</BaseLayout>

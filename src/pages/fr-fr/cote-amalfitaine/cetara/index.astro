@@ -1,0 +1,380 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Côte Amalfitaine', url: '/fr-fr/cote-amalfitaine/' },
+  { name: 'Cetara', url: '/fr-fr/cote-amalfitaine/cetara/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Cetara",
+  "description": "Cetara est l'âme authentique de la Côte Amalfitaine, le village de pêcheurs et berceau de la colatura di alici (sauce d'anchois). Un dédale de ruelles convergeant vers le port, où les barques de pêche traditionnelles arrivent encore aujourd'hui.",
+  "url": "https://amalficoast-travel.com/fr-fr/cote-amalfitaine/cetara/",
+  "image": "https://amalficoast-travel.com/images/cetara-hero.jpg",
+  "touristType": ["Gastronomie", "Authenticité", "Mer", "Histoire"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Cetara",
+    "addressRegion": "Salerne",
+    "addressCountry": "IT",
+    "postalCode": "84010"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.5961,
+    "longitude": 14.6083
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce que la colatura di alici ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "C'est un liquide ambré obtenu par fermentation d'anchois sous sel dans des tonneaux en bois (terzigni). C'est l'ingrédient principal des spaghetti alla cetarese et est considérée comme l'or de Cetara. Elle a obtenu le statut AOP (Appellation d'Origine Protégée) en 2010."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment se rendre à Cetara ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "En ferry : desservie par Travelmar avec connexions vers Salerne, Vietri, Maiori, Minori et Amalfi (saisonnier). En bus : ligne SITA Salerne-Amalfi, environ 20-30 minutes depuis Salerne. En voiture : c'est la deuxième commune depuis Salerne, avec parking public au port (payant, limité)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelles sont les meilleures plages de Cetara ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Spiaggia della Marina : la plus pratique, au pied du village. Spiaggia di Porto : une petite cove parfaite pour une baignade rapide. Spiaggia di Lannari : sauvage et tranquille, accessible par un long escalier, idéale pour ceux qui cherchent la solitude."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quand visiter Cetara ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le 29 juin célèbre San Pietro, le saint patron, avec processions et l'un des plus beaux feux d'artifice de Campanie. Pour la gastronomie, la meilleure période est juin à septembre quand arrive le thon rouge."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Que manger à Cetara ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les spaghetti alla colatura di alici sont le plat signature. À ne pas manquer également : le thon rouge transformé artisanalement, le cuoppo di frittura (poisson frit mélangé en papier), et tous les plats de poisson frais."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Cetara : Le Village de Pêcheurs & Sauce d'Anchois | Côte Amalfitaine"
+  description="Cetara est l'âme authentique de la Côte Amalfitaine. Découvrez le village de pêcheurs, la colatura di alici AOP, les plages et les restaurants traditionnels."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, faqSchema]}
+  pageKey="cetara"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[52.5vh] sm:h-[70vh] flex items-end bg-charcoal overflow-hidden">
+    <img
+      src="/images/cetara-hero.jpg"
+      alt="Cetara, le village de pêcheurs de la Côte Amalfitaine"
+      class="absolute inset-0 w-full h-full object-cover"
+      style="object-position: center 90%"
+      loading="eager"
+      referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pb-16 pt-32 w-full">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Côte Amalfitaine</p>
+        <h1 class="font-serif text-display text-white mb-4">Cetara</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Le village de pêcheurs. L'âme authentique de la Côte Amalfitaine.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">
+            Infos pratiques
+          </a>
+          <a href="#gastronomy" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            Gastronomie
+          </a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            FAQ
+          </a>
+        </div>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <!-- Content Grid -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+
+      <!-- Main Content -->
+      <div class="lg:col-span-2 space-y-12">
+
+        <!-- Intro -->
+        <div>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">L'Âme de la Côte</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-4">
+            <strong>Cetara</strong> est l'âme authentique de la Côte Amalfitaine. Située au pied du Monte Falerio, ce petit joyau a conservé intact son charme de <strong>village de pêcheurs</strong>, résistant aux transformations du tourisme de masse. Ici le temps est marqué par le retour des barques de pêche traditionnelles et l'odeur de la mer.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Contrairement aux plus grandes villes, Cetara se découvre lentement. Le village est un dédale de ruelles qui convergent toutes vers le port, où on peut encore voir le mouvement authentique de la pêche traditionnelle aujourd'hui.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Le saviez-vous ?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1 000+</p>
+              <p class="text-white/60 text-xs italic mt-1">tonneaux de colatura qui mûrissent chaque année</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">2010</p>
+              <p class="text-white/60 text-xs italic mt-1">année où la colatura a reçu la certification AOP</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">8-10</p>
+              <p class="text-white/60 text-xs italic mt-1">mois minimum de fermentation pour l'AOP</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            La colatura di alici hérite de la tradition du <em>garum</em>, le liquide de poisson romain qui parfumait tous les plats. Cetara est toujours le seul endroit au monde où cette technique ancienne est pratiquée industriellement.
+          </p>
+        </div>
+
+        <!-- What to See -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Que Voir à Cetara</h2>
+
+          <div class="space-y-8">
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">La Torre Reale</h3>
+              <p class="text-slate-600 leading-relaxed">Symbole du village, cette tour angevine a servi à défendre la population des raids sarrasins. Aujourd'hui, après une restauration minutieuse, elle abrite le Musée Civique de la Tour avec des œuvres de peintres locaux et le Musée de la Tonnellerie, dédié à la tradition de la pêche.</p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Église San Pietro Apostolo</h3>
+              <p class="text-slate-600 leading-relaxed">Le cœur spirituel de Cetara. Son dôme recouvert de majolique se détache parmi les maisons blanches, tandis que l'intérieur baroque et le clocher du XIIe siècle témoignent de l'importance historique du village.</p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Le Port et la Promenade</h3>
+              <p class="text-slate-600 leading-relaxed">Le port de Cetara est l'un des plus actifs de la côte. Une promenade le long de la jetée permet de voir de près les cianciare (bateaux utilisés pour la pêche aux anchois) et de jouir d'une vue d'ensemble du village qui s'élève sur la colline.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beaches -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Les Plages de Cetara</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Les plages ici se caractérisent par des eaux profondes et claires, grâce aux courants du Golfe de Salerne.
+          </p>
+
+          <div class="space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Spiaggia della Marina</h3>
+              <p class="text-slate-600 text-sm">Située au pied du village, c'est la plus pratique et la plus fréquentée, entourée de maisons colorées et dominée par la Tour.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Spiaggia di Porto</h3>
+              <p class="text-slate-600 text-sm">Une petite bande de sable et de galets située derrière la jetée, parfaite pour une baignade rapide dans une eau cristalline.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Spiaggia di Lannari</h3>
+              <p class="text-slate-600 text-sm">Une cove sauvage accessible via un long escalier le long de la Route d'État Amalfitaine, idéale pour ceux qui cherchent la tranquillité et une mer émeraude.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gastronomy -->
+        <div id="gastronomy">
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Gastronomie : L'Or de Cetara</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Cetara est la <strong>capitale gastronomique de la Côte Amalfitaine</strong>. Sa réputation est liée à deux produits d'excellence.
+          </p>
+
+          <div class="space-y-6">
+            <div class="bg-med-gold/10 p-6 rounded-2xl border border-med-gold/20">
+              <h3 class="font-bold text-slate-900 mb-2 text-lg">Colatura di Alici (AOP)</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Un liquide ambré obtenu par fermentation d'anchois sous sel dans des tonneaux en bois (terzigni). C'est l'ingrédient principal des <strong>spaghetti alla cetarese</strong> et a obtenu le statut d'Appellation d'Origine Protégée en 2010. <a href="/fr-fr/blog/anchois-cetara/" class="text-med-blue hover:underline font-medium">En savoir plus sur la colatura</a>.
+              </p>
+            </div>
+
+            <div class="bg-med-gold/10 p-6 rounded-2xl border border-med-gold/20">
+              <h3 class="font-bold text-slate-900 mb-2 text-lg">Thon Rouge</h3>
+              <p class="text-slate-600 leading-relaxed">
+                La flotte de Cetara est parmi les plus importantes de la Méditerranée pour la pêche au thon, qui est transformée artisanalement selon des recettes transmises de génération en génération.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- How to Get There -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Comment S'y Rendre</h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">En Ferry ⭐</p>
+              <p class="text-slate-700 font-medium mb-1">Travelmar Saisonnier</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Connexions avec Salerne, Vietri, Maiori, Minori, Amalfi (vérifiez les horaires).</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus SITA</p>
+              <p class="text-slate-700 font-medium mb-1">20-30 minutes depuis Salerne</p>
+              <p class="text-slate-500 text-xs sm:text-sm">La ligne Salerne-Amalfi s'arrête régulièrement à Cetara.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">En Voiture</p>
+              <p class="text-slate-700 font-medium mb-1">Deuxième commune depuis Salerne</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Parking public près du port (payant, limité).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Questions Fréquemment Posées</h2>
+          <div class="space-y-4">
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Qu'est-ce que la colatura di alici ?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                C'est un liquide ambré obtenu par fermentation d'anchois sous sel dans des tonneaux en bois (terzigni). C'est l'ingrédient principal des spaghetti alla cetarese et est considérée comme l'or de Cetara. Elle a obtenu le statut AOP en 2010.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Comment se rendre à Cetara ?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                En ferry : desservie par Travelmar avec connexions vers Salerne, Vietri, Maiori, Minori et Amalfi (saisonnier). En bus : ligne SITA Salerne-Amalfi, environ 20-30 minutes depuis Salerne. En voiture : c'est la deuxième commune depuis Salerne, avec parking public au port (payant, limité).
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Quelles sont les meilleures plages de Cetara ?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                Spiaggia della Marina : la plus pratique, au pied du village. Spiaggia di Porto : une petite cove parfaite pour une baignade rapide. Spiaggia di Lannari : sauvage et tranquille, accessible avec un long escalier, idéale pour ceux qui cherchent la solitude.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Quand visiter Cetara ?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                Le 29 juin célèbre San Pietro, le saint patron, avec processions et l'un des plus beaux feux d'artifice de Campanie. Pour la gastronomie, la meilleure période est juin à septembre quand arrive le thon rouge.
+              </div>
+            </details>
+
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+              <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                Que manger à Cetara ?
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                Les spaghetti alla colatura di alici sont le plat signature. À ne pas manquer également : le thon rouge transformé artisanalement, le cuoppo di frittura (poisson frit mélangé en papier), et tous les plats de poisson frais.
+              </div>
+            </details>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar Fast-Facts -->
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Infos Pratiques - Cetara</p>
+          <dl class="space-y-3">
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Localisation</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">15 km depuis Amalfi<br/>6 km depuis Salerne</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Population</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">Environ 2 000</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Spécialités</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">Colatura AOP<br/>Thon Rouge<br/>Poisson Frais</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Fête Patronale</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">29 juin<br/>San Pietro</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Idéal Pour</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">Gourmets<br/>Authenticité<br/>Gastronomie</dd>
+            </div>
+          </dl>
+
+          <div class="mt-10 pt-8 border-t border-white/10">
+            <a
+              href="/fr-fr/cote-amalfitaine/"
+              class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
+            >
+              ← Retour à Côte Amalfitaine
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explorez Plus sur la Côte Amalfitaine"
+    items={[
+      { name: 'Amalfi',   href: '/fr-fr/cote-amalfitaine/amalfi/',   tag: 'République Maritime', desc: 'La capitale historique avec la Cathédrale de Sant\'Andrea et le Musée du Papier.' },
+      { name: 'Positano', href: '/fr-fr/cote-amalfitaine/positano/', tag: 'Mode & Vues',     desc: 'Maisons colorées perchées sur la mer et plage de Fornillo.' },
+      { name: 'Ravello',  href: '/fr-fr/cote-amalfitaine/ravello/',  tag: 'Musique & Jardins',    desc: 'Villa Rufolo, Villa Cimbrone et le Festival de Musique à 350 m.' },
+      { name: 'Praiano',  href: '/fr-fr/cote-amalfitaine/praiano/', tag: 'Coucher de Soleil & Calme',    desc: 'Le coucher de soleil depuis San Gennaro et la tranquille Marina di Praia.' },
+      { name: 'Maiori',   href: '/fr-fr/cote-amalfitaine/maiori/',  tag: 'Plage & Détente', desc: 'La plus longue plage de sable de la côte : 300 m.' },
+      { name: 'Minori',   href: '/fr-fr/cote-amalfitaine/minori/',  tag: 'Saveurs & Culture', desc: 'Villa romaine du 1er siècle, scialatielli frais et boulangeries artisanales.' },
+    ]}
+  />
+
+</BaseLayout>
