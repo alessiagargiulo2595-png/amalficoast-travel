@@ -7,11 +7,15 @@ import { homeContent } from '../../i18n/content';
 const lang = 'de-de';
 const breadcrumbs = [
   { name: 'Startseite', url: '/de-de/' },
-  { name: 'Reiseziele', url: '/de-de/destinations' },
+  { name: 'Reiseziele', url: '/de-de/reiseziele' },
 ];
 const t = getTranslations(lang);
 const content = homeContent[lang];
-const metaDescription = 'Erkunden Sie jede Stadt der Amalfiküste: Positano, Amalfi, Ravello, Praiano, Cetara, Vietri sul Mare. Entdecken Sie Strände, Geschichte, Gastronomie und Fortbewegungsmöglichkeiten.';
+const metaDescription = 'Entdecken Sie jeden Ort der Amalfiküste: Positano, Amalfi, Ravello, Praiano, Cetara, Vietri sul Mare. Erfahren Sie mehr über Strände, Geschichte, Gastronomie und Anreise.';
+
+const costieraDestinations = content.towns.filter(town => town.area === 'costiera-amalfitana');
+const isoleDestinations = content.towns.filter(town => town.area === 'isole');
+const penisolaDestinations = content.towns.filter(town => town.area === 'penisola-sorrentina');
 
 const townImages: Record<string, string> = {
   positano: '/images/positano-hero.jpg',
@@ -38,81 +42,158 @@ const townImages: Record<string, string> = {
   pageKey="destinations"
 >
   <!-- Hero -->
-  <section class="relative bg-charcoal text-white py-20 overflow-hidden">
-    <img src="/images/costiera-hero.jpg" alt="Amalfiküste" class="absolute inset-0 w-full h-full object-cover opacity-20" loading="eager" referrerpolicy="no-referrer"/>
-    <div class="absolute inset-0 bg-charcoal/80"></div>
-    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <p class="text-white/80 text-xs sm:text-sm uppercase tracking-[0.3em] mb-3">Amalfiküste</p>
-      <h1 class="text-4xl md:text-5xl font-bold font-serif mb-4">Städte & Reiseziele</h1>
-      <p class="text-white/80 text-lg max-w-2xl mx-auto">Vom glamourösen Positano bis zum ruhigen Cetara: jeder Ort an der Amalfiküste hat einen einzigartigen Charakter.</p>
+  <section class="relative h-[52.5vh] sm:h-[70vh] flex items-end bg-charcoal overflow-hidden">
+    <img src="/images/costiera-hero.jpg" alt="Reiseziele Amalfiküste" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pb-16 pt-32 w-full">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Entdecken Sie das Gebiet</p>
+        <h1 class="font-serif text-display text-white mb-4">Reiseziele</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Von der atemberaubenden Amalfiküste über verzauberte Inseln bis zur Sorrentiner Halbinsel: Entdecken Sie die einzigartigen Reiseziele des Golfes von Neapel.
+        </p>
+      </div>
     </div>
     <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
-  <!-- Intro -->
-  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <p class="text-lg text-slate-600 leading-relaxed">
-      Die Amalfiküste ist kein einzelnes Reiseziel, sondern eine Reihe außergewöhnlich unterschiedlicher Orte, die sich auf 50 Kilometern Steilküste aneinanderreihen. Jeder hat seine eigene Geschichte, Architektur und seinen eigenen Charakter. Positano zieht Modebewusste und Fotografen an; Amalfi bewahrt die Monumente einer Seerepublik, die einst eine Weltmacht war; Ravello lebt für Musik und Gärten; kleinere Orte wie Praiano, Cetara und Vietri bieten ein authentisches Italien abseits der Touristenströme.
-    </p>
-  </section>
-
-  <!-- Towns -->
-  <section class="pb-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="space-y-16">
-        {content.towns.map((town, i) => (
-          <div class={`flex flex-col ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-center`}>
-            <div class="lg:w-1/2">
-              <div class="relative rounded-[2rem] h-64 overflow-hidden shadow-lg">
-                <img src={townImages[town.slug] ?? '/images/costiera-hero.jpg'} alt={town.name} class="w-full h-full object-cover" loading="lazy" referrerpolicy="no-referrer"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                <p class="absolute bottom-4 left-5 text-white font-serif font-bold text-2xl">{town.name}</p>
+  <!-- Amalfiküste -->
+  <section class="bg-med-cream py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-12">
+        <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Amalfiküste</p>
+        <h2 class="font-serif text-3xl font-bold text-slate-900">Reiseziele an der Amalfiküste</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {costieraDestinations.map((town) => (
+          <a href={`/de-de/amalfikueste/${town.slug}/`} class="group block hover:opacity-80 transition-opacity">
+            <div class="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-4 shadow-xl">
+              <img
+                src={townImages[town.slug] ?? '/images/costiera-hero.jpg'}
+                alt={town.name}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                <h3 class="font-serif text-xl font-bold text-white mb-1 leading-tight">{town.name}</h3>
+                <p class="text-white/70 text-xs">{town.tagline}</p>
               </div>
             </div>
-            <div class="lg:w-1/2">
-              <h2 class="text-3xl font-bold font-serif text-slate-900 mb-2">{town.name}</h2>
-              <p class="text-med-blue font-medium mb-4">{town.tagline}</p>
-              <p class="text-slate-600 leading-relaxed mb-6">{town.description}</p>
-              <div>
-                <h3 class="font-semibold text-slate-900 mb-3">Sehenswürdigkeiten:</h3>
-                <ul class="space-y-2">
-                  {town.highlights.map(h => (
-                    <li class="flex items-center gap-2 text-slate-600 text-xs sm:text-sm">
-                      <svg class="w-4 h-4 text-med-blue flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                      </svg>
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
+            <p class="text-slate-600 text-sm leading-relaxed">{town.description}</p>
+          </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Fortbewegung zwischen den Orten -->
-  <section class="bg-med-blue py-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl font-bold font-serif text-slate-900 mb-6">Fortbewegung zwischen den Orten</h2>
-      <div class="grid grid-cols-1 grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white rounded-[2rem] p-6 shadow-sm">
-          <div class="text-3xl mb-3">⛴️</div>
-          <h3 class="font-bold text-slate-900 mb-2">Fähre</h3>
-          <p class="text-slate-600 text-xs sm:text-sm">Die schönste und oft schnellste Möglichkeit. Fähren verbinden Positano, Amalfi und Salerno von April bis Oktober.</p>
-        </div>
-        <div class="bg-white rounded-[2rem] p-6 shadow-sm">
-          <div class="text-3xl mb-3">🚌</div>
-          <h3 class="font-bold text-slate-900 mb-2">SITA Bus</h3>
-          <p class="text-slate-600 text-xs sm:text-sm">Öffentlicher Bus fährt das ganze Jahr auf der SS163. Günstig, aber in der Hochsaison langsam. Tickets an Bord oder in Tabakläden.</p>
-        </div>
-        <div class="bg-white rounded-[2rem] p-6 shadow-sm">
-          <div class="text-3xl mb-3">🚗</div>
-          <h3 class="font-bold text-slate-900 mb-2">Privatauto</h3>
-          <p class="text-slate-600 text-xs sm:text-sm">Nicht empfohlen im Juli und August. Im Frühling und Herbst praktisch, aber Parkplätze sind rar und teuer.</p>
-        </div>
+  <!-- Inseln -->
+  <section class="bg-white py-20 px-6 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-12">
+        <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Inseln des Golfes</p>
+        <h2 class="font-serif text-3xl font-bold text-slate-900">Reiseziele auf den Inseln</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {isoleDestinations.map((town) => (
+          <a href={`/de-de/inseln/${town.slug}/`} class="group block hover:opacity-80 transition-opacity">
+            <div class="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-4 shadow-xl">
+              <img
+                src={townImages[town.slug] ?? '/images/costiera-hero.jpg'}
+                alt={town.name}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                <h3 class="font-serif text-xl font-bold text-white mb-1 leading-tight">{town.name}</h3>
+                <p class="text-white/70 text-xs">{town.tagline}</p>
+              </div>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed">{town.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sorrentiner Halbinsel -->
+  <section class="bg-med-cream py-20 px-6 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-12">
+        <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Sorrentiner Halbinsel</p>
+        <h2 class="font-serif text-3xl font-bold text-slate-900">Reiseziele auf der Sorrentiner Halbinsel</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {penisolaDestinations.map((town) => (
+          <a href={`/de-de/sorrentiner-halbinsel/${town.slug}/`} class="group block hover:opacity-80 transition-opacity">
+            <div class="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-4 shadow-xl">
+              <img
+                src={townImages[town.slug] ?? '/images/costiera-hero.jpg'}
+                alt={town.name}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+              <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                <h3 class="font-serif text-xl font-bold text-white mb-1 leading-tight">{town.name}</h3>
+                <p class="text-white/70 text-xs">{town.tagline}</p>
+              </div>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed">{town.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Zwischen den Orten unterwegs -->
+  <section class="bg-slate-900 py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="font-serif text-3xl font-bold text-white mb-12">Anreise zwischen den Orten</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <a href={getLocalePath(lang, 'ferries')} class="bg-white rounded-[2rem] p-8 shadow-sm hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 rounded-2xl bg-med-gold/10 flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M2 13h20M2 14v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4"/>
+              <path d="M12 3v10M8 7h8M6 7h12v2H6z"/>
+              <circle cx="5" cy="19" r="1"/>
+              <circle cx="19" cy="19" r="1"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-slate-900 mb-3 text-lg">Fähre</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Die schönste und oft schnellste Option. Fähren verbinden Positano, Amalfi und Salerno von April bis Oktober.</p>
+          <p class="text-med-gold text-xs font-semibold mt-4">Mehr erfahren →</p>
+        </a>
+        <a href={getLocalePath(lang, 'sita-bus')} class="bg-white rounded-[2rem] p-8 shadow-sm hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 rounded-2xl bg-med-gold/10 flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <rect x="2" y="7" width="20" height="11" rx="2"/>
+              <path d="M4 18h16M7 3v4M17 3v4M6 7h12"/>
+              <circle cx="5" cy="20" r="1.5"/>
+              <circle cx="19" cy="20" r="1.5"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-slate-900 mb-3 text-lg">SITA Bus</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Der öffentliche Bus fährt die SS163 das ganze Jahr über. Günstig, aber in der Hochsaison langsam. Fahrkarten an Bord oder beim Tabakhändler.</p>
+          <p class="text-med-gold text-xs font-semibold mt-4">Mehr erfahren →</p>
+        </a>
+        <a href={getLocalePath(lang, 'parking-ztl')} class="bg-white rounded-[2rem] p-8 shadow-sm hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 rounded-2xl bg-med-gold/10 flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M5 9h14M3 13h18v3a2 2 0 0 1-2 2h-14a2 2 0 0 1-2-2v-3z"/>
+              <circle cx="6" cy="18" r="1.5"/>
+              <circle cx="18" cy="18" r="1.5"/>
+              <path d="M5 9V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </div>
+          <h3 class="font-bold text-slate-900 mb-3 text-lg">Privatauto</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Nicht empfohlen im Juli und August. Im Frühling und Herbst praktisch, aber Parkplätze sind begrenzt und teuer.</p>
+          <p class="text-med-gold text-xs font-semibold mt-4">Mehr erfahren →</p>
+        </a>
       </div>
     </div>
   </section>
@@ -121,10 +202,10 @@ const townImages: Record<string, string> = {
   <section class="py-16 text-center">
     <div class="max-w-2xl mx-auto px-4">
       <h2 class="text-2xl font-bold text-slate-900 mb-4">Bereit, Ihre Reise zu planen?</h2>
-      <p class="text-slate-600 mb-8">Entdecken Sie unsere empfohlenen Reiserouten für die Amalfiküste.</p>
+      <p class="text-slate-600 mb-8">Entdecken Sie unsere empfohlenen Reiserouten, um das Beste aus der Amalfiküste zu machen.</p>
       <a href={getLocalePath(lang, 'itineraries')}
         class="inline-block bg-med-blue text-white font-semibold px-8 py-3 rounded-full hover:bg-med-blue transition-colors">
-        Reiserouten ansehen
+        Reiserouten anzeigen
       </a>
     </div>
   </section>
