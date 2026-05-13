@@ -1,0 +1,309 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Costiera Amalfitana', url: '/it-it/costiera-amalfitana/' },
+  { name: 'Cetara', url: '/it-it/costiera-amalfitana/cetara/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Cetara",
+  "description": "Cetara è l'anima verace della Costiera Amalfitana, il borgo dei pescatori e della colatura di alici. Un labirinto di vicoli che convergono verso il porto, dove ancora oggi rientrano le lampare tradizionali.",
+  "url": "https://amalficoast-travel.com/it-it/costiera-amalfitana/cetara/",
+  "image": "https://amalficoast-travel.com/images/cetara-hero.jpg",
+  "touristType": ["Gastronomia", "Autenticità", "Mare", "Storia"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Cetara",
+    "addressRegion": "Salerno",
+    "addressCountry": "IT",
+    "postalCode": "84010"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.5961,
+    "longitude": 14.6083
+  }
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Cetara, Costiera Amalfitana",
+  "description": "Il borgo dei pescatori e della colatura di alici, cuore autentico della Costiera Amalfitana ai piedi del Monte Falerio.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.5961,
+    "longitude": 14.6083
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Che cos'è la colatura di alici?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "È un liquido ambrato ottenuto dalla fermentazione delle alici sotto sale in botti di legno (terzigni). È l'ingrediente principe degli spaghetti alla cetarese ed è considerato l'oro di Cetara. Ha ottenuto la DOP nel 2010."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Come si arriva a Cetara?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Traghetto: servita dalla Travelmar con collegamenti a Salerno, Vietri, Maiori, Minori e Amalfi (stagionale). In Bus: linea SITA Salerno-Amalfi, circa 20-30 minuti da Salerno. In Auto: è il secondo comune da Salerno, con parcheggio pubblico a pagamento in zona porto."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quali sono le migliori spiagge di Cetara?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Spiaggia della Marina: la più comoda, ai piedi del borgo. Spiaggia di Porto: piccola caletta perfetta per un bagno veloce. Spiaggia di Lannari: selvaggia e tranquilla, accessibile con lunga scalinata, ideale per chi cerca solitudine."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quando visitare Cetara?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il 29 giugno si festeggia San Pietro, il patrono, con processioni e uno dei fuochi d'artificio più belli della Campania. Per la gastronomia, il periodo migliore è da giugno a settembre quando arriva il tonno rosso."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa mangiare a Cetara?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gli spaghetti alla colatura di alici sono il piatto principe. Da non perdere anche il tonno rosso lavorato artigianalmente, il cuoppo di frittura (frittura mista in carta), e tutti i piatti a base di pesce fresco."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Cetara: Il Borgo dei Pescatori e della Colatura di Alici"
+  description="Cetara è l'anima verace della Costiera Amalfitana. Scopri il borgo marinaro, la colatura di alici DOP, le spiagge e i ristoranti tradizionali."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, placeSchema, faqSchema]}
+  pageKey="cetara"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[52.5vh] sm:h-[70vh] flex items-end bg-charcoal overflow-hidden">
+    <img
+      src="/images/cetara-hero.jpg"
+      alt="Cetara, il borgo dei pescatori della Costiera Amalfitana"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+      referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pb-16 pt-32 w-full">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Costiera Amalfitana</p>
+        <h1 class="font-serif text-display text-white mb-4">Cetara</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Il borgo dei pescatori e della <strong>colatura di alici</strong>. L'anima verace della Costiera.
+        </p>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <!-- Contenuto principale + Sidebar -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+
+      <!-- Testo principale -->
+      <div class="lg:col-span-2 space-y-12">
+
+        <!-- Intro -->
+        <div>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">L'Anima della Costiera</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-4">
+            <strong>Cetara</strong> è l'anima verace della Costiera Amalfitana. Situata ai piedi del Monte Falerio, questa piccola gemma ha conservato intatto il suo fascino di <strong>borgo marinaro</strong>, resistendo alle trasformazioni del turismo di massa. Qui il tempo è scandito dal rientro delle lampare e dal profumo del mare.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            A differenza delle città più grandi, Cetara si esplora lentamente. Il borgo è un labirinto di vicoli che convergono tutti verso la marina, dove ancora oggi si vede il movimento autentico della pesca tradizionale.
+          </p>
+        </div>
+
+        <!-- Cosa Vedere -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Cosa Vedere a Cetara</h2>
+
+          <div class="space-y-8">
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">La Torre Vicereale</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Simbolo del borgo, questa torre angioina serviva a difendere la popolazione dalle incursioni dei pirati saraceni. Oggi, dopo un attento restauro, ospita il <strong>Museo Civico della Torre</strong> con opere di pittori locali e il Museo della Cantina, dedicato alla tradizione della pesca.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Chiesa di San Pietro Apostolo</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Il cuore spirituale di Cetara. La sua cupola rivestita di maioliche spicca tra le case bianche, mentre l'interno barocco e il campanile del XII secolo testimoniano l'importanza storica del borgo.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Il Porto e il Lungommare</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Il porto di Cetara è uno dei più attivi della costa. Passeggiare lungo il molo permette di vedere da vicino le cianciare (le imbarcazioni per la pesca delle alici) e godere della vista d'insieme del borgo che risale la collina.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spiagge -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Le Spiagge di Cetara</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Le spiagge qui sono caratterizzate da acque profonde e pulite, grazie alle correnti del Golfo di Salerno.
+          </p>
+
+          <div class="space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Spiaggia della Marina</h3>
+              <p class="text-slate-600 text-sm">Situata proprio ai piedi del borgo, è la più comoda e frequentata, circondata dalle case colorate e dominata dalla Torre.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Spiaggia di Porto</h3>
+              <p class="text-slate-600 text-sm">Una piccola striscia di sabbia e ciottoli situata dietro il molo, perfetta per un bagno veloce in acque limpide.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Spiaggia di Lannari</h3>
+              <p class="text-slate-600 text-sm">Una caletta selvaggia accessibile tramite una lunga scalinata lungo la Statale Amalfitana, ideale per chi cerca tranquillità e un mare color smeraldo.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gastronomia -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Gastronomia: L'Oro di Cetara</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Cetara è la <strong>capitale gastronomica della Costiera</strong>. La sua fama è legata a due prodotti d'eccellenza.
+          </p>
+
+          <div class="space-y-6">
+            <div class="bg-med-gold/10 p-6 rounded-2xl border border-med-gold/20">
+              <h3 class="font-bold text-slate-900 mb-2 text-lg">Colatura di Alici (DOP)</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Un liquido ambrato ottenuto dalla fermentazione delle alici sotto sale in botti di legno (terzigni). È l'ingrediente principe degli <strong>spaghetti alla cetarese</strong> e ha ottenuto la Denominazione di Origine Protetta nel 2010.
+              </p>
+            </div>
+
+            <div class="bg-med-gold/10 p-6 rounded-2xl border border-med-gold/20">
+              <h3 class="font-bold text-slate-900 mb-2 text-lg">Tonno Rosso</h3>
+              <p class="text-slate-600 leading-relaxed">
+                La flotta di Cetara è tra le più importanti del Mediterraneo per la pesca del tonno, che viene lavorato artigianalmente seguendo ricette tramandate da generazioni.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Come Arrivare -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Arrivare</h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">In Traghetto ⭐</p>
+              <p class="text-slate-700 font-medium mb-1">Travelmar Seasonale</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Collegamento con Salerno, Vietri, Maiori, Minori, Amalfi (verificare orari).</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus SITA</p>
+              <p class="text-slate-700 font-medium mb-1">20-30 minuti da Salerno</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Linea Salerno-Amalfi ferma regolarmente a Cetara.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">In Auto</p>
+              <p class="text-slate-700 font-medium mb-1">Secondo comune da Salerno</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Parcheggio pubblico in zona porto (a pagamento, limitato).</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar Fast-Facts -->
+      <aside class="lg:col-span-1">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
+            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Fast-Facts
+          </h3>
+
+          <div class="space-y-6">
+            <div class="border-b border-white/5 pb-4">
+              <span class="text-white/40 text-xs sm:text-sm font-light block mb-1">Posizione</span>
+              <span class="text-white font-medium text-xs sm:text-sm">15 km da Amalfi<br/>6 km da Salerno</span>
+            </div>
+
+            <div class="border-b border-white/5 pb-4">
+              <span class="text-white/40 text-xs sm:text-sm font-light block mb-1">Abitanti</span>
+              <span class="text-white font-medium text-xs sm:text-sm">Circa 2.000</span>
+            </div>
+
+            <div class="border-b border-white/5 pb-4">
+              <span class="text-white/40 text-xs sm:text-sm font-light block mb-1">Specialità</span>
+              <span class="text-white font-medium text-xs sm:text-sm">Spaghetti alla Colatura<br/>Tonno Rosso<br/>Cuoppo di frittura</span>
+            </div>
+
+            <div class="border-b border-white/5 pb-4">
+              <span class="text-white/40 text-xs sm:text-sm font-light block mb-1">Festa Patronale</span>
+              <span class="text-white font-medium text-xs sm:text-sm">29 Giugno - San Pietro<br/>(Fuochi d'artificio)</span>
+            </div>
+
+            <div>
+              <span class="text-white/40 text-xs sm:text-sm font-light block mb-1">Ideale Per</span>
+              <span class="text-white font-medium text-xs sm:text-sm">Foodies<br/>Amanti dell'autenticità<br/>Relax & Gastronomia</span>
+            </div>
+          </div>
+
+          <div class="mt-10 pt-8 border-t border-white/10">
+            <a
+              href="/it-it/costiera-amalfitana/"
+              class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
+            >
+              ← Torna a Costiera Amalfitana
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-med-blue py-16 text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="font-serif text-2xl font-bold text-white mb-4">Scopri la Costiera Amalfitana</h2>
+      <a
+        href="/it-it/costiera-amalfitana/"
+        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
+      >
+        Guida completa
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
