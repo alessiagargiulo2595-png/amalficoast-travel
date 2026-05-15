@@ -31,32 +31,38 @@ const days = [
   {
     day: 'Tag 1',
     title: 'Ankunft auf Ischia',
+    highlight: 'Entdecken Sie die größte Insel mit Thermalquellen und Vulkanbuchten',
     items: [
       'Fähre oder Tragflügelboot von Neapel Beverello nach Ischia Porto (50–75 Min.).',
       'Check-in. Nachmittag: Ischia Ponte und das Aragonische Kastell (Eintritt ~€24, 2 Std.).',
       'Strand Maronti (längster der Insel, schwarzer Vulkansand) oder Aperitivo in Forio.',
       'Abendessen in Lacco Ameno oder Ischia Porto: Ischitanische Küche, Kaninchen nach Ischitaner Art.',
+      'Lokaler Tipp: Das Aragonische Kastell am Nachmittag besuchen, wenn die Sonne niedriger steht. Beeindruckende Fotografie.',
     ],
   },
   {
     day: 'Tag 2',
     title: 'Thermalquellen und Strände',
+    highlight: 'Genießen Sie die natürlichen Thermalbäder und versteckten Buchten',
     items: [
       'Morgens: Thermalgärten (Poseidon oder Negombo, ~€35–40 Eintritt). Thermalbecken, Saunen.',
       'Nachmittag: Strand Citara (Forio), einer der schönsten der Insel.',
       'Sonnenuntergang vom Aussichtspunkt Sant\'Angelo, dem malerischsten Dorf Ischias.',
       'Abendessen in Sant\'Angelo oder Rückkehr nach Ischia Porto.',
+      'Lokaler Tipp: Poseidon online buchen (€32 statt €40). Im Sommer ist es überfüllt - gehen Sie früh (9:00).',
     ],
   },
   {
     day: 'Tag 3',
     title: 'Tagesausflug nach Procida',
+    highlight: 'Besuchen Sie die kleine Künstlerinsel mit pastellfarbenen Häusern',
     items: [
       'Tragflügelboot von Ischia nach Procida (20 Min., ~€9). Erste Abfahrt 08:00.',
       'Marina Corricella: der Fischerhafen, pastellfarbene Häuser, Bar am Pier.',
       'Terra Murata: das höchste mittelalterliche Dorf der Insel, Blick über den Golf.',
       'Strand Pozzo Vecchio (der Strand aus "Der Postmann") für ein Mittagsbad.',
       'Rückreise nach Neapel per Tragflügelboot von Procida (35 Min.).',
+      'Lokaler Tipp: Procida ist klein - Sie können alles in 5 Stunden sehen. Nehmen Sie den 8:00-Tragflügelboot und kehren Sie um 16:00 zurück.',
     ],
   },
 ];
@@ -130,15 +136,29 @@ const days = [
       <div class="space-y-8">
         {days.map(d => (
           <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
-            <div class="bg-med-blue/5 px-6 py-4 flex items-center gap-3">
-              <span class="text-[10px] uppercase tracking-wide bg-med-blue text-white px-2 py-1 rounded-full font-medium">{d.day}</span>
-              <h3 class="font-semibold text-charcoal">{d.title}</h3>
+            <div class="bg-slate-900 px-6 py-4 flex items-start gap-3">
+              <div class="flex-1">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-[10px] uppercase tracking-wide bg-med-gold text-slate-900 px-2 py-1 rounded-full font-medium">{d.day}</span>
+                  <h3 class="font-semibold text-white">{d.title}</h3>
+                </div>
+                {d.highlight && <p class="text-xs text-med-gold">{d.highlight}</p>}
+              </div>
             </div>
-            <ul class="px-6 py-4 space-y-2">
+            <ul class="px-6 py-4 space-y-3">
               {d.items.map(item => (
-                <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
-                  <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span>
-                  <span>{item}</span>
+                <li class="flex items-start gap-3 text-xs sm:text-sm">
+                  {item.startsWith('Lokaler Tipp:') ? (
+                    <div class="w-full">
+                      <p class="font-semibold text-med-blue mb-1">Lokaler Tipp:</p>
+                      <p class="text-charcoal">{item.replace('Lokaler Tipp: ', '')}</p>
+                    </div>
+                  ) : (
+                    <>
+                      <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span>
+                      <span class="text-charcoal">{item}</span>
+                    </>
+                  )}
                 </li>
               ))}
             </ul>
@@ -180,6 +200,14 @@ const days = [
           </details>
         ))}
       </div>
+    </section>
+
+    <section class="bg-gradient-to-r from-med-blue to-med-blue/80 rounded-[2rem] p-8 text-center">
+      <h2 class="font-serif text-2xl font-semibold text-white mb-3">Bereit für drei Tage auf den Inseln?</h2>
+      <p class="text-white/90 mb-6 max-w-2xl mx-auto">Ischia und Procida erwarten Sie: Thermalbäder, Vulkanstrände und bunte Fischerhafen. Buchen Sie Ihre Tragflügelboote im Voraus.</p>
+      <a href="/de-de/planung/" class="inline-block bg-white text-med-blue font-semibold px-6 py-3 rounded-lg hover:bg-white/90 transition-colors">
+        Inseln entdecken
+      </a>
     </section>
 
   </div>

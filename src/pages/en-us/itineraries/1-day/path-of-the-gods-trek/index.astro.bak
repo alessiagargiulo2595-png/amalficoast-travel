@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Planning', url: '/en-us/planning/' },
+  { name: 'Path of the Gods Trek', url: '/en-us/itineraries/1-day/path-of-the-gods-trek/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you do the Path of the Gods in a day trip from Naples?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Leave Naples on the Circumvesuviana to Sorrento (70 min), then SITA bus to Amalfi (90 min), then local bus to Agerola (45 min). The Agerola→Nocelle trail is 8 km, 3–4h. From Nocelle take the local bus to Positano (15 min), then SITA bus or ferry to Sorrento and Circumvesuviana back to Naples." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you need to book the Path of the Gods in advance?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In high season (July–August) the Path of the Gods requires mandatory booking on the Parco dei Monti Lattari portal. The fee is nominal (~€5). Outside peak season no booking is required. Always check conditions on the official website before setting out." }
+    },
+    {
+      "@type": "Question",
+      "name": "What should you bring for the Path of the Gods?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Essential: hiking boots (not sandals or smooth-soled trainers), at least 1.5L of water, sunscreen, a hat. The trail has no water sources or shops. Bring a snack. In spring/autumn a light jacket is advisable for the wind at altitude." }
+    }
+  ]
+};
+
+const destinations = [
+  { name: 'Sorrento', url: '/en-us/sorrentine-peninsula/sorrento/' },
+  { name: 'Amalfi', url: '/en-us/amalfi-coast/amalfi/' },
+  { name: 'Positano', url: '/en-us/amalfi-coast/positano/' },
+];
+
+const destinationHighlights = destinations.map(d => ({ name: d.name, desc: '', url: d.url }));
+
+const schedule = [
+  { time: '07:00', place: 'Naples', action: 'Circumvesuviana to Sorrento (70 min, ~€3.90)', transport: 'train' },
+  { time: '08:15', place: 'Sorrento', action: 'SITA bus to Amalfi (90 min, ~€3.50) - the 8:30 service', transport: 'bus' },
+  { time: '10:00', place: 'Amalfi', action: 'Local bus to Agerola, San Lazzaro hamlet (45 min, ~€1.50). Start of trail.', transport: 'bus' },
+  { time: '11:00', place: 'Agerola (618 m)', action: 'Departure on the Path of the Gods. 8 km, ~500 m descent, EE grade. Breathtaking scenery.', transport: 'walk' },
+  { time: '14:30', place: 'Nocelle', action: 'Arrival at Nocelle. Break and lunch at one of the local rifugios/bars.', transport: 'visit' },
+  { time: '15:15', place: 'Nocelle → Positano', action: 'Local bus to Positano centre (15 min, ~€1.50) or on foot (~1,000 steps, 45 min)', transport: 'bus' },
+  { time: '16:00', place: 'Positano', action: 'Stroll, gelato, beach (1h free time)', transport: 'visit' },
+  { time: '17:15', place: 'Positano → Naples', action: 'SITA bus to Sorrento (~50 min), then Circumvesuviana to Naples (70 min)', transport: 'bus' },
+];
+
+const tips = [
+  'Best season: April–June and September–October. July–August is very hot and crowded.',
+  'The bus from Amalfi to Agerola has limited services: check timetables on eavsrl.it the evening before.',
+  'Always hike in the Agerola→Nocelle direction: almost entirely downhill, signage designed for this way.',
+  'The trail has no water points: bring at least 1.5L. The last bar is in Agerola before you set off.',
+  'From Nocelle you can descend to Positano on foot (~1,000 steps, 45 min) or by bus (15 min, ~€1.50).',
+];
+
+const transportBadge: Record<string, { label: string; cls: string }> = {
+  train: { label: 'TRAIN', cls: 'bg-orange-100 text-orange-700' },
+  ferry: { label: 'FERRY', cls: 'bg-blue-100 text-blue-700' },
+  bus:   { label: 'BUS', cls: 'bg-green-100 text-green-700' },
+  walk:  { label: 'TREK', cls: 'bg-red-100 text-red-700' },
+  visit: { label: '', cls: '' },
+};
+---
+
+<BaseLayout
+  title="Path of the Gods Trek in 1 Day from Naples 2026 | Agerola to Positano"
+  description="1-day hiking itinerary on the Path of the Gods (Sentiero degli Dei): Agerola to Nocelle to Positano. Trek, transport and practical tips."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+ pageKey="path-of-the-gods-trek">
+
+  <!-- Hero Section -->
+  <section class="relative bg-charcoal overflow-hidden min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center">
+    <img src="/images/costiera-hero.jpg" alt="Path of the Gods Trek" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/40 to-black/70"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-3xl mx-auto">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Itinerary · 1 day trek</p>
+        <h1 class="font-serif text-display text-white mb-4">Path of the Gods Trek</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
+          The legendary Sentiero degli Dei from Agerola to Positano: 8 km, 3–4 hours, breathtaking Amalfi Coast views from on high.
+        </p>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 space-y-10">
+
+    <!-- Intro & Stats Section - Featured -->
+    <section class="text-center mb-2">
+      <!-- Quick Stats Grid - Scrollable on Mobile -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-6 overflow-x-auto snap-x snap-mandatory sm:overflow-visible pb-2 sm:pb-0">
+        <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Duration</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">1 day</p>
+        </div>
+        <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Base</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">Naples</p>
+        </div>
+        <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M6 9l6-6 6 6M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9M9 14h6"/>
+          </svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Trek</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">8 km<br/>3–4 hours</p>
+        </div>
+        <div class="w-full bg-slate-900 rounded-2xl p-4 sm:p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
+          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="1"/>
+            <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/>
+          </svg>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Transport Budget</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">€20–25<br/><span class="text-xs">p.p.</span></p>
+        </div>
+      </div>
+
+      <!-- SEO Text Below -->
+      <div>
+        <p class="text-lg text-slate-700 leading-relaxed">
+          Hike the legendary <strong>Path of the Gods</strong> (Sentiero degli Dei) in a single day from Naples. Leave early via <strong>Circumvesuviana</strong> to <strong>Sorrento</strong>, take buses to <strong>Amalfi</strong> and Agerola, then descend 8 km through terraced vineyards and breathtaking coastline to Nocelle and <strong>Positano</strong>. EE-grade hiking, no water on the trail, mandatory booking in summer. A challenging but unforgettable day. <strong>Transport budget: €20–25</strong>.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- Day by Day Itinerary -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Day Schedule</h2>
+      <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+        <div class="px-6 py-8 space-y-6">
+          {schedule.map((item, idx) => {
+            const badge = transportBadge[item.transport];
+            const isLastItem = idx === schedule.length - 1;
+            return (
+              <div class="flex gap-4">
+                <div class="flex flex-col items-center flex-shrink-0">
+                  <div class="w-16 bg-slate-900 text-med-gold rounded-full px-2 py-1 text-center text-sm font-semibold flex items-center justify-center">
+                    {item.time}
+                  </div>
+                  {!isLastItem && <div class="w-0.5 h-12 bg-med-blue/30 mt-2"></div>}
+                </div>
+                <div class="pb-4 flex-1">
+                  <p class="font-semibold text-slate-900 mb-1">{item.place}</p>
+                  <p class="text-slate-700 text-sm mb-2" set:html={item.action} />
+                  {badge.label && (
+                    <span class={`text-xs font-semibold px-2 py-1 rounded-full ${badge.cls}`}>
+                      {badge.label}
+                    </span>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- Destinations Highlighted -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Itinerary Hubs</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        {destinationHighlights.map((dest) => (
+          <a href={dest.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
+            <h3 class="font-semibold text-charcoal mb-2 group-hover:text-med-blue transition-colors">{dest.name}</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-3">{dest.desc}</p>
+            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+              Discover →
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Planning Tips -->
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+      <h2 class="font-serif text-xl font-semibold text-charcoal mb-6">Practical Tips</h2>
+      <ul class="space-y-4">
+        {tips.map((text, idx) => {
+          const nums = ['❶', '❷', '❸', '❹', '❺'];
+          return (
+            <li class="flex items-start gap-4 text-sm text-charcoal">
+              <span class="text-2xl font-bold text-white flex-shrink-0 leading-none mt-0.5 bg-[#E2725B] w-9 h-9 flex items-center justify-center rounded-full">{nums[idx] || '•'}</span>
+              <span class="leading-relaxed" set:html={text} />
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-gradient-to-r from-med-blue to-med-blue/80 rounded-2xl p-10 text-center text-white">
+      <h2 class="font-serif text-3xl font-bold mb-3">Plan Your Path of the Gods</h2>
+      <p class="text-white/90 mb-6 max-w-2xl mx-auto">
+        Learn more about hiking the Amalfi Coast, trail conditions, seasons and booking requirements for the legendary Sentiero degli Dei.
+      </p>
+      <a href="/en-us/guide/ferries/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">
+        Travel Guide →
+      </a>
+    </section>
+
+  </div>
+
+</BaseLayout>

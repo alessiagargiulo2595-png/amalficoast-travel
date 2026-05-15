@@ -31,31 +31,37 @@ const days = [
   {
     day: 'Tag 1',
     title: 'Sorrent',
+    highlight: 'Entdecken Sie die malerische Klilfstadt über dem Meer',
     items: [
       'Ankunft in Sorrent per Circumvesuviana von Neapel (70 Min., ~€3,90).',
       'Altstadt: Piazza Tasso, Dom, Vallone dei Mulini (Vulkanschlucht im Stadtzentrum).',
       'Museo Correale: Römische Artefakte und Stadtansichten aus dem 18. Jahrhundert.',
       'Marina Grande: der Fischerhafen, Abendessen mit Meerblick.',
+      'Lokaler Tipp: Marina Grande ist touristisch, aber Sie finden authentische Restaurants direkt auf den Hafenmauern. Fragen Sie nach der Fischsuppe des Tages.',
     ],
   },
   {
     day: 'Tag 2',
     title: 'Herculaneum und Vesuv',
+    highlight: 'Erkunden Sie die von Schlamm verschüttete römische Stadt und den Vulkan',
     items: [
       'Circumvesuviana nach Herculaneum Scavi (20 Min. von Neapel, 50 Min. von Sorrent).',
       'Archäologische Stätte Herculaneum: außergewöhnliche Erhaltung, 2–3 Stunden.',
       'Nachmittag: Bus/Shuttle zum Vesuv (Krater auf 1.281 m, ~€12 + Pflichtführer). Blick über den Golf von Neapel.',
       'Rückkehr nach Sorrent per Circumvesuviana.',
+      'Lokaler Tipp: Herculaneum ist weniger überlaufen als Pompeji. Der Führer am Vesuv ist obligatorisch, aber nehmen Sie einen englischsprachigen Führer für bessere Geologie.',
     ],
   },
   {
     day: 'Tag 3',
     title: 'Pompeji',
+    highlight: 'Gehen Sie durch die gefrorenen Straßen der antiken römischen Stadt',
     items: [
       'Circumvesuviana nach Pompei Scavi – Villa dei Misteri (35 Min. von Neapel, 45 Min. von Sorrent).',
       'Ausgrabungen von Pompeji: Forum, Thermen, Amphitheater, Patrizierhäuser. Mindestens 3 Std.',
       'Mittagessen im modernen Pompeji, dann Besuch des Schatzmuseums San Gennaro (optional).',
       'Rückreise nach Neapel oder Sorrent am Nachmittag.',
+      'Lokaler Tipp: Mieten Sie einen Audioguide (€10), um der Menge zu entgehen. Beginnen Sie mit dem Amphitheater, enden Sie mit der Villa dei Misteri.',
     ],
   },
 ];
@@ -129,15 +135,29 @@ const days = [
       <div class="space-y-8">
         {days.map(d => (
           <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
-            <div class="bg-med-blue/5 px-6 py-4 flex items-center gap-3">
-              <span class="text-[10px] uppercase tracking-wide bg-med-blue text-white px-2 py-1 rounded-full font-medium">{d.day}</span>
-              <h3 class="font-semibold text-charcoal">{d.title}</h3>
+            <div class="bg-slate-900 px-6 py-4 flex items-start gap-3">
+              <div class="flex-1">
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-[10px] uppercase tracking-wide bg-med-gold text-slate-900 px-2 py-1 rounded-full font-medium">{d.day}</span>
+                  <h3 class="font-semibold text-white">{d.title}</h3>
+                </div>
+                {d.highlight && <p class="text-xs text-med-gold">{d.highlight}</p>}
+              </div>
             </div>
-            <ul class="px-6 py-4 space-y-2">
+            <ul class="px-6 py-4 space-y-3">
               {d.items.map(item => (
-                <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
-                  <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span>
-                  <span>{item}</span>
+                <li class="flex items-start gap-3 text-xs sm:text-sm">
+                  {item.startsWith('Lokaler Tipp:') ? (
+                    <div class="w-full">
+                      <p class="font-semibold text-med-blue mb-1">Lokaler Tipp:</p>
+                      <p class="text-charcoal">{item.replace('Lokaler Tipp: ', '')}</p>
+                    </div>
+                  ) : (
+                    <>
+                      <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span>
+                      <span class="text-charcoal">{item}</span>
+                    </>
+                  )}
                 </li>
               ))}
             </ul>
@@ -179,6 +199,14 @@ const days = [
           </details>
         ))}
       </div>
+    </section>
+
+    <section class="bg-gradient-to-r from-med-blue to-med-blue/80 rounded-[2rem] p-8 text-center">
+      <h2 class="font-serif text-2xl font-semibold text-white mb-3">Bereit für eine historische Reise?</h2>
+      <p class="text-white/90 mb-6 max-w-2xl mx-auto">Drei Tage zur Erkundung von Sorrent, Herculaneum, dem Vesuv und Pompeji. Buchen Sie Ihre Circumvesuviana-Tickets im Voraus.</p>
+      <a href="/de-de/planung/" class="inline-block bg-white text-med-blue font-semibold px-6 py-3 rounded-lg hover:bg-white/90 transition-colors">
+        Geschichte entdecken
+      </a>
     </section>
 
   </div>
