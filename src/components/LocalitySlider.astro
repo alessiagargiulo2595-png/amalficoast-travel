@@ -8,15 +8,51 @@ interface LocalityItem {
 interface Props {
   heading?: string;
   items: LocalityItem[];
+  lang?: string;
 }
-const { heading = 'Località Vicine', items } = Astro.props;
+
+const getButtonText = (lang?: string) => {
+  const translations: Record<string, string> = {
+    'it-it': 'Scopri',
+    'es-es': 'Descubre',
+    'en-us': 'Discover',
+    'fr-fr': 'Découvrir',
+    'de-de': 'Entdecken',
+  };
+  return translations[lang || 'it-it'] || 'Scopri';
+};
+
+const getSubtitle = (lang?: string) => {
+  const translations: Record<string, string> = {
+    'it-it': 'Esplora i dintorni',
+    'es-es': 'Explora los alrededores',
+    'en-us': 'Explore Surroundings',
+    'fr-fr': 'Explorez les environs',
+    'de-de': 'Erkunde die Umgebung',
+  };
+  return translations[lang || 'it-it'] || 'Esplora i dintorni';
+};
+
+const getHeading = (lang?: string) => {
+  const translations: Record<string, string> = {
+    'it-it': 'Località Vicine',
+    'es-es': 'Lugares Cercanos',
+    'en-us': 'Nearby Places',
+    'fr-fr': 'Lieux Proches',
+    'de-de': 'Nah gelegene Orte',
+  };
+  return translations[lang || 'it-it'] || 'Località Vicine';
+};
+
+const { heading, items, lang } = Astro.props;
+const finalHeading = heading || getHeading(lang);
 ---
 
 <section class="border-t border-slate-200 py-16 px-6 max-w-7xl mx-auto">
   <div class="flex justify-between items-end mb-10">
     <div>
-      <span class="text-med-gold font-bold uppercase tracking-[0.3em] text-[10px] mb-2 block">Esplora i dintorni</span>
-      <h3 class="text-3xl font-serif font-bold text-slate-900">{heading}</h3>
+      <span class="text-med-gold font-bold uppercase tracking-[0.3em] text-[10px] mb-2 block">{getSubtitle(lang)}</span>
+      <h3 class="text-3xl font-serif font-bold text-slate-900">{finalHeading}</h3>
     </div>
   </div>
   <div class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -43,7 +79,7 @@ const { heading = 'Località Vicine', items } = Astro.props;
           <div class="absolute bottom-6 left-6 right-6">
             <h4 class="text-xl font-serif font-bold text-white leading-tight">{item.name}</h4>
             <p class="text-white/70 text-xs mt-2 inline-flex items-center gap-1 group-hover:text-white transition-colors duration-300">
-              Scopri
+              {getButtonText(lang)}
               <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
             </p>
           </div>

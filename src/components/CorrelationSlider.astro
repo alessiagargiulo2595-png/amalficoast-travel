@@ -8,13 +8,38 @@ interface SliderItem {
 interface Props {
   heading?: string;
   items: SliderItem[];
+  lang?: string;
 }
-const { heading = 'Esplora anche', items } = Astro.props;
+
+const getButtonText = (lang?: string) => {
+  const translations: Record<string, string> = {
+    'it-it': 'Scopri',
+    'es-es': 'Descubre',
+    'en-us': 'Discover',
+    'fr-fr': 'Découvrir',
+    'de-de': 'Entdecken',
+  };
+  return translations[lang || 'it-it'] || 'Scopri';
+};
+
+const getHeading = (lang?: string) => {
+  const translations: Record<string, string> = {
+    'it-it': 'Esplora anche',
+    'es-es': 'Explora también',
+    'en-us': 'Also Explore',
+    'fr-fr': 'Explorez aussi',
+    'de-de': 'Auch erkunden',
+  };
+  return translations[lang || 'it-it'] || 'Esplora anche';
+};
+
+const { heading, items, lang } = Astro.props;
+const finalHeading = heading || getHeading(lang);
 ---
 
 <section class="bg-offwhite border-t border-slate-100 py-12">
   <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">{heading}</h2>
+    <h2 class="font-serif text-2xl font-semibold text-charcoal mb-6">{finalHeading}</h2>
     <div class="flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory -mx-4 px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {items.map(item => (
         <a
@@ -25,7 +50,7 @@ const { heading = 'Esplora anche', items } = Astro.props;
           <h3 class="font-serif text-lg font-semibold text-charcoal mt-3 mb-1 group-hover:text-med-blue transition-colors">{item.name}</h3>
           <p class="text-xs text-slate-500 leading-relaxed line-clamp-3">{item.desc}</p>
           <p class="text-med-blue text-xs font-medium mt-3 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-            Scopri
+            {getButtonText(lang)}
             <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
           </p>
         </a>
