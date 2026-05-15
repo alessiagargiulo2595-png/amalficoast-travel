@@ -247,7 +247,7 @@ export const events: EventItem[] = [
     id: 'festa-sant-antonino',
     title: "Feast of Sant'Antonino – Sorrento",
     subtitle: 'Sorrento celebrates its patron saint with procession and fireworks.',
-    category: 'TRADITIONS',
+    category: 'TRADITION',
     area: 'sorrentine-peninsula',
     image: '/images/pexels-daniel-eliashevsky-30667400-9718902.jpg',
     date: '14 Feb 2026',
