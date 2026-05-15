@@ -13,7 +13,6 @@ const t = getTranslations(lang);
 const townBase: Record<Locale, string> = {
   'it-it': '/it-it/costiera-amalfitana',
   'en-us': '/en-us/amalfi-coast',
-  'en-gb': '/en-gb/amalfi-coast',
   'de-de': '/de-de/amalfikueste',
   'fr-fr': '/fr-fr/cote-amalfitaine',
   'es-es': '/es-es/costa-amalfitana',
@@ -27,7 +26,6 @@ type SectionKeys = 'territori' | 'guida' | 'esperienze' | 'itinerari';
 const sectionHeadings: Record<Locale, Record<SectionKeys, string>> = {
   'it-it': { territori: 'Territori', guida: 'Guida Pratica', esperienze: 'Esperienze', itinerari: 'Itinerari' },
   'en-us': { territori: 'Destinations', guida: 'Practical Guide', esperienze: 'Experiences', itinerari: 'Itineraries' },
-  'en-gb': { territori: 'Destinations', guida: 'Practical Guide', esperienze: 'Experiences', itinerari: 'Itineraries' },
   'de-de': { territori: 'Orte', guida: 'Praktischer Ratgeber', esperienze: 'Erlebnisse', itinerari: 'Routen' },
   'fr-fr': { territori: 'Destinations', guida: 'Guide Pratique', esperienze: 'Expériences', itinerari: 'Itinéraires' },
   'es-es': { territori: 'Destinos', guida: 'Guía Práctica', esperienze: 'Experiencias', itinerari: 'Itinerarios' },
@@ -49,13 +47,6 @@ const guidaLinks: Record<Locale, Record<GuidaKeys, { label: string; href: string
     parking:  { label: 'Parking & ZTL',  href: '/en-us/guide/parking-ztl/' },
     beaches:  { label: 'Free Beaches',   href: '/en-us/beaches' },
     trekking: { label: 'Hiking Trails',  href: '/en-us/experiences/trekking/' },
-  },
-  'en-gb': {
-    ferries:  { label: 'Ferries 2026',   href: '/en-gb/guide/ferries/' },
-    bus:      { label: 'SITA Bus',       href: '/en-gb/guide/sita-bus/' },
-    parking:  { label: 'Parking & ZTL',  href: '/en-gb/guide/parking-ztl/' },
-    beaches:  { label: 'Free Beaches',   href: '/en-gb/beaches' },
-    trekking: { label: 'Hiking Trails',  href: '/en-gb/experiences/trekking/' },
   },
   'de-de': {
     ferries:  { label: 'Fähren 2026',    href: '/de-de/ratgeber/faehren/' },
@@ -85,14 +76,12 @@ type EsperienzeKeys = 'cooking' | 'weddings' | 'restaurants' | 'limoncello' | 'm
 const esperienzeLinks: Record<Locale, Record<EsperienzeKeys, { label: string; href: string }>> = {
   'it-it': { cooking: { label: 'Cooking Class', href: '/it-it/esperienze/cooking-class/' }, weddings: { label: 'Matrimoni', href: '/it-it/esperienze/matrimoni/' }, restaurants: { label: 'Ristoranti Stellati', href: '/it-it/esperienze/ristoranti-stellati/' }, limoncello: { label: 'Limoncello Tour', href: '/it-it/esperienze/limoncello-tour/' }, mozzarella: { label: 'Mozzarella Experience', href: '/it-it/esperienze/mozzarella-experience/' } },
   'en-us': { cooking: { label: 'Cooking Class', href: '/en-us/experiences/cooking-class/' }, weddings: { label: 'Weddings', href: '/en-us/experiences/weddings/' }, restaurants: { label: 'Michelin Restaurants', href: '/en-us/experiences/starred-restaurants/' }, limoncello: { label: 'Limoncello Tour', href: '/en-us/experiences/limoncello-tour/' }, mozzarella: { label: 'Mozzarella Experience', href: '/en-us/experiences/mozzarella-experience/' } },
-  'en-gb': { cooking: { label: 'Cooking Class', href: '#' }, weddings: { label: 'Weddings', href: '#' }, restaurants: { label: 'Michelin Restaurants', href: '#' }, limoncello: { label: 'Limoncello Tour', href: '#' }, mozzarella: { label: 'Mozzarella Experience', href: '#' } },
   'de-de': { cooking: { label: 'Kochkurs', href: '/de-de/erlebnisse/kochkurs/' }, weddings: { label: 'Hochzeiten', href: '/de-de/erlebnisse/hochzeiten/' }, restaurants: { label: 'Sterne-Restaurants', href: '/de-de/erlebnisse/sterne-restaurants/' }, limoncello: { label: 'Limoncello Tour', href: '/de-de/erlebnisse/limoncello-tour/' }, mozzarella: { label: 'Mozzarella Erlebnis', href: '/de-de/erlebnisse/mozzarella-erlebnis/' } },
   'fr-fr': { cooking: { label: 'Cours de Cuisine', href: '/fr-fr/experiences/cours-de-cuisine/' }, weddings: { label: 'Mariages', href: '/fr-fr/experiences/mariages/' }, restaurants: { label: 'Restaurants Étoilés', href: '/fr-fr/experiences/restaurants-etoiles/' }, limoncello: { label: 'Tour du Limoncello', href: '/fr-fr/experiences/tour-limoncello/' }, mozzarella: { label: 'Expérience Mozzarella', href: '/fr-fr/experiences/experience-mozzarella/' } },
   'es-es': { cooking: { label: 'Clase de Cocina', href: '/es-es/experiencias/clase-cocina/' }, weddings: { label: 'Bodas', href: '/es-es/experiencias/bodas/' }, restaurants: { label: 'Restaurantes Estrella', href: '/es-es/experiencias/restaurantes-estrella/' }, limoncello: { label: 'Tour del Limoncello', href: '/es-es/experiencias/tour-limoncello/' }, mozzarella: { label: 'Experiencia Mozzarella', href: '/es-es/experiencias/experiencia-mozzarella/' } },
 };
 
 /* ── Itinerari links per locale ── */
-const itPeriods = ({ 'en-us': { d1: '- 1 day', d3: '- 3 days', d7: '- 7 days' }, 'en-gb': { d1: '- 1 day', d3: '- 3 days', d7: '- 7 days' }, 'de-de': { d1: '- 1 Tag', d3: '- 3 Tage', d7: '- 7 Tage' }, 'fr-fr': { d1: '- 1 jour', d3: '- 3 jours', d7: '- 7 jours' }, 'es-es': { d1: '- 1 día', d3: '- 3 días', d7: '- 7 días' }, 'it-it': { d1: '1 giorno', d3: '3 giorni', d7: '7 giorni' } } as const)[lang];
 
 const itinerari1g = ({
   'en-us': [
@@ -101,10 +90,6 @@ const itinerari1g = ({
     { name: 'Sorrentine Peninsula',      href: '/en-us/itineraries/1-day/sorrentine-peninsula-from-naples/' },
     { name: 'Path of the Gods Trek',     href: '/en-us/itineraries/1-day/path-of-the-gods-trek/' },
     { name: 'Capri from Sorrento',       href: '/en-us/itineraries/1-day/capri-from-sorrento/' },
-  ],
-  'en-gb': [
-    { name: 'Amalfi Coast from Naples', href: '#' }, { name: 'Amalfi Coast from Salerno', href: '#' },
-    { name: 'Sorrentine Peninsula', href: '#' }, { name: 'Path of the Gods Trek', href: '#' }, { name: 'Capri from Sorrento', href: '#' },
   ],
   'de-de': [
     { name: 'Amalfiküste von Neapel',          href: '/de-de/reiserouten/1-tag/amalfikueste-von-neapel/' },
@@ -142,7 +127,6 @@ const itinerari3g = ({
     { name: 'Sorrento, Pompeii & History',href: '/en-us/itineraries/3-days/sorrento-pompeii-history/' },
     { name: 'Islands: Ischia & Procida',  href: '/en-us/itineraries/3-days/islands-ischia-procida/' },
   ],
-  'en-gb': [{ name: 'Classic Amalfi Coast', href: '#' }, { name: 'Sorrento, Pompeii & History', href: '#' }, { name: 'Islands: Ischia & Procida', href: '#' }],
   'de-de': [
     { name: 'Klassische Amalfiküste',      href: '/de-de/reiserouten/3-tage/klassische-amalfikueste/' },
     { name: 'Sorrent, Pompeji & Geschichte',href: '/de-de/reiserouten/3-tage/sorrent-pompeji-geschichte/' },
@@ -170,7 +154,6 @@ const itinerari7g = ({
     { name: 'Grand Tour Coast & Peninsula', href: '/en-us/itineraries/7-days/grand-tour-coast-peninsula/' },
     { name: 'Slow Travel: Villages & Food', href: '/en-us/itineraries/7-days/slow-travel-villages-food/' },
   ],
-  'en-gb': [{ name: 'Grand Tour Coast & Peninsula', href: '#' }, { name: 'Slow Travel: Villages & Food', href: '#' }],
   'de-de': [
     { name: 'Grand Tour Küste & Halbinsel',  href: '/de-de/reiserouten/7-tage/grand-tour-kueste-halbinsel/' },
     { name: 'Slow Travel: Dörfer & Kulinarik',href: '/de-de/reiserouten/7-tage/slow-travel-doerfer-kulinarik/' },

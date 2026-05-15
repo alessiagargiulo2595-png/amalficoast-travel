@@ -106,7 +106,6 @@ export const translations: Record<Locale, Translations> = {
     lang_switcher: 'Language',
     languages: {
       'en-us': '🇺🇸 English (US)',
-      'en-gb': '🇬🇧 English (UK)',
       'de-de': '🇩🇪 Deutsch',
       'fr-fr': '🇫🇷 Français',
       'es-es': '🇪🇸 Español',
@@ -114,65 +113,6 @@ export const translations: Record<Locale, Translations> = {
     },
   },
 
-  'en-gb': {
-    nav: {
-      home: 'Home',
-      destinations: 'Destinations',
-      beaches: 'Beaches',
-      itineraries: 'Itineraries',
-      getting_here: 'Getting Here',
-      when_to_visit: 'When to Visit',
-    },
-    hero: {
-      title: 'Discover the Amalfi Coast',
-      subtitle: 'Where rugged cliffs plunge into the Mediterranean - explore Italy\'s most spectacular coastline, from the pastel villages of Positano to the magnificent cathedral city of Amalfi.',
-      cta: 'Explore Destinations',
-      cta_secondary: 'Plan Your Holiday',
-    },
-    sections: {
-      featured_towns: 'Iconic Towns & Villages',
-      why_visit: 'Why Visit the Amalfi Coast',
-      top_beaches: 'Top Beaches',
-      plan_your_trip: 'Plan Your Holiday',
-      explore_more: 'Explore More',
-      read_more: 'Read More',
-      back_to_home: 'Back to Home',
-    },
-    footer: {
-      about_title: 'About This Guide',
-      about_text: 'Amalfi Coast Travel helps travellers from around the world plan their trip to the Amalfi Coast through guides, travel tips, and much more. The entire project is lovingly curated by Alessia, directly from Massa Lubrense.',
-      quick_links: 'Quick Links',
-      contact_title: 'Get in Touch',
-      contact_email: 'hello@amalficoast-travel.com',
-      copyright: '© 2026 Amalfi Coast Travel Guide. All rights reserved.',
-      tagline: 'The Amalfi Coast - A UNESCO World Heritage Site',
-    },
-    meta: {
-      home_title: 'Amalfi Coast Travel Guide - Positano, Amalfi & Beyond',
-      home_description: 'Complete holiday guide to the Amalfi Coast, Italy. Discover Positano, Amalfi, Ravello and hidden gems. Best beaches, itineraries, how to get there, and when to visit.',
-      destinations_title: 'Amalfi Coast Destinations - Towns & Villages Guide',
-      destinations_description: 'Explore every town on the Amalfi Coast: Positano, Amalfi, Ravello, Praiano, Cetara, Vietri sul Mare. Find the perfect base for your holiday.',
-      beaches_title: 'Best Beaches on the Amalfi Coast - Complete Guide',
-      beaches_description: 'Discover the most beautiful beaches on the Amalfi Coast, from the shingle shores of Positano to hidden sea caves. Swimming, snorkelling, and beach clubs.',
-      getting_here_title: 'How to Get to the Amalfi Coast - Transport Guide',
-      getting_here_description: 'Everything you need to know about getting to the Amalfi Coast from the UK: from Naples, from Rome, by ferry, by car, and by bus. Practical travel tips.',
-      itineraries_title: 'Amalfi Coast Itineraries - 1 Day, 3 Days, 1 Week',
-      itineraries_description: 'The best Amalfi Coast itineraries for every trip length. One day, three days, or a full week - make the most of your holiday on Italy\'s Costiera Amalfitana.',
-      planning_title: 'Planning - Practical Travel Guides for the Amalfi Coast',
-      planning_description: 'Practical guides for your Amalfi Coast trip: how to get there, local transport, ferries, parking, best times to visit and insider tips.',
-      when_to_visit_title: 'Best Time to Visit the Amalfi Coast - Month by Month',
-      when_to_visit_description: 'When is the best time to visit the Amalfi Coast? Month-by-month weather guide, crowd levels, prices, and what\'s on each season.',
-    },
-    lang_switcher: 'Language',
-    languages: {
-      'en-us': '🇺🇸 English (US)',
-      'en-gb': '🇬🇧 English (UK)',
-      'de-de': '🇩🇪 Deutsch',
-      'fr-fr': '🇫🇷 Français',
-      'es-es': '🇪🇸 Español',
-      'it-it': '🇮🇹 Italiano',
-    },
-  },
 
   'de-de': {
     nav: {
@@ -226,7 +166,6 @@ export const translations: Record<Locale, Translations> = {
     lang_switcher: 'Sprache',
     languages: {
       'en-us': '🇺🇸 English (US)',
-      'en-gb': '🇬🇧 English (UK)',
       'de-de': '🇩🇪 Deutsch',
       'fr-fr': '🇫🇷 Français',
       'es-es': '🇪🇸 Español',
@@ -286,7 +225,6 @@ export const translations: Record<Locale, Translations> = {
     lang_switcher: 'Langue',
     languages: {
       'en-us': '🇺🇸 English (US)',
-      'en-gb': '🇬🇧 English (UK)',
       'de-de': '🇩🇪 Deutsch',
       'fr-fr': '🇫🇷 Français',
       'es-es': '🇪🇸 Español',
@@ -346,7 +284,6 @@ export const translations: Record<Locale, Translations> = {
     lang_switcher: 'Idioma',
     languages: {
       'en-us': '🇺🇸 English (US)',
-      'en-gb': '🇬🇧 English (UK)',
       'de-de': '🇩🇪 Deutsch',
       'fr-fr': '🇫🇷 Français',
       'es-es': '🇪🇸 Español',
@@ -406,7 +343,6 @@ export const translations: Record<Locale, Translations> = {
     lang_switcher: 'Lingua',
     languages: {
       'en-us': '🇺🇸 English (US)',
-      'en-gb': '🇬🇧 English (UK)',
       'de-de': '🇩🇪 Deutsch',
       'fr-fr': '🇫🇷 Français',
       'es-es': '🇪🇸 Español',
@@ -428,7 +364,6 @@ export type SlugMap = Record<Locale, string>;
 export const slugMap: Record<string, SlugMap> = {
   destinations: {
     'en-us': 'destinations',
-    'en-gb': 'destinations',
     'de-de': 'reiseziele',
     'fr-fr': 'destinations',
     'es-es': 'destinos',
@@ -436,7 +371,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   beaches: {
     'en-us': 'beaches',
-    'en-gb': 'beaches',
     'de-de': 'strande',
     'fr-fr': 'plages',
     'es-es': 'playas',
@@ -444,7 +378,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'getting-here': {
     'en-us': 'guide/getting-here',
-    'en-gb': 'guide/getting-here',
     'de-de': 'ratgeber/anreise',
     'fr-fr': 'guide/comment-venir',
     'es-es': 'guia/como-llegar',
@@ -452,7 +385,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   itineraries: {
     'en-us': 'itineraries',
-    'en-gb': 'itineraries',
     'de-de': 'reiserouten',
     'fr-fr': 'itineraires',
     'es-es': 'itinerarios',
@@ -460,7 +392,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'when-to-visit': {
     'en-us': 'guide/when-to-visit',
-    'en-gb': 'guide/when-to-visit',
     'de-de': 'ratgeber/reisezeit',
     'fr-fr': 'guide/quand-visiter',
     'es-es': 'guia/cuando-visitar',
@@ -468,7 +399,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   planning: {
     'en-us': 'planning',
-    'en-gb': 'planning',
     'de-de': 'planung',
     'fr-fr': 'planification',
     'es-es': 'planificacion',
@@ -477,7 +407,6 @@ export const slugMap: Record<string, SlugMap> = {
   // Destination town pages (Amalfi Coast)
   amalfi: {
     'en-us': 'amalfi-coast/amalfi',
-    'en-gb': 'amalfi-coast/amalfi',
     'de-de': 'amalfikueste/amalfi',
     'fr-fr': 'cote-amalfitaine/amalfi',
     'es-es': 'costa-amalfitana/amalfi',
@@ -485,7 +414,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   positano: {
     'en-us': 'amalfi-coast/positano',
-    'en-gb': 'amalfi-coast/positano',
     'de-de': 'amalfikueste/positano',
     'fr-fr': 'cote-amalfitaine/positano',
     'es-es': 'costa-amalfitana/positano',
@@ -493,7 +421,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   ravello: {
     'en-us': 'amalfi-coast/ravello',
-    'en-gb': 'amalfi-coast/ravello',
     'de-de': 'amalfikueste/ravello',
     'fr-fr': 'cote-amalfitaine/ravello',
     'es-es': 'costa-amalfitana/ravello',
@@ -501,7 +428,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   praiano: {
     'en-us': 'amalfi-coast/praiano',
-    'en-gb': 'amalfi-coast/praiano',
     'de-de': 'amalfikueste/praiano',
     'fr-fr': 'cote-amalfitaine/praiano',
     'es-es': 'costa-amalfitana/praiano',
@@ -509,7 +435,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   maiori: {
     'en-us': 'amalfi-coast/maiori',
-    'en-gb': 'amalfi-coast/maiori',
     'de-de': 'amalfikueste/maiori',
     'fr-fr': 'cote-amalfitaine/maiori',
     'es-es': 'costa-amalfitana/maiori',
@@ -517,7 +442,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   minori: {
     'en-us': 'amalfi-coast/minori',
-    'en-gb': 'amalfi-coast/minori',
     'de-de': 'amalfikueste/minori',
     'fr-fr': 'cote-amalfitaine/minori',
     'es-es': 'costa-amalfitana/minori',
@@ -525,7 +449,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'vietri-sul-mare': {
     'en-us': 'amalfi-coast/vietri-sul-mare',
-    'en-gb': 'amalfi-coast/vietri-sul-mare',
     'de-de': 'amalfikueste/vietri-sul-mare',
     'fr-fr': 'cote-amalfitaine/vietri-sul-mare',
     'es-es': 'costa-amalfitana/vietri-sul-mare',
@@ -534,7 +457,6 @@ export const slugMap: Record<string, SlugMap> = {
   // Island pages
   capri: {
     'en-us': 'islands/capri',
-    'en-gb': 'islands/capri',
     'de-de': 'inseln/capri',
     'fr-fr': 'iles/capri',
     'es-es': 'islas/capri',
@@ -542,7 +464,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   ischia: {
     'en-us': 'islands/ischia',
-    'en-gb': 'islands/ischia',
     'de-de': 'inseln/ischia',
     'fr-fr': 'iles/ischia',
     'es-es': 'islas/ischia',
@@ -550,7 +471,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   procida: {
     'en-us': 'islands/procida',
-    'en-gb': 'islands/procida',
     'de-de': 'inseln/procida',
     'fr-fr': 'iles/procida',
     'es-es': 'islas/procida',
@@ -559,7 +479,6 @@ export const slugMap: Record<string, SlugMap> = {
   // Peninsula town pages
   sorrento: {
     'en-us': 'sorrento-peninsula/sorrento',
-    'en-gb': 'sorrento-peninsula/sorrento',
     'de-de': 'sorrentinische-halbinsel/sorrent',
     'fr-fr': 'peninsule-sorrentine/sorrente',
     'es-es': 'peninsula-sorrentina/sorrento',
@@ -567,7 +486,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'vico-equense': {
     'en-us': 'sorrento-peninsula/vico-equense',
-    'en-gb': 'sorrento-peninsula/vico-equense',
     'de-de': 'sorrentinische-halbinsel/vico-equense',
     'fr-fr': 'peninsule-sorrentine/vico-equense',
     'es-es': 'peninsula-sorrentina/vico-equense',
@@ -575,7 +493,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'massa-lubrense': {
     'en-us': 'sorrento-peninsula/massa-lubrense',
-    'en-gb': 'sorrento-peninsula/massa-lubrense',
     'de-de': 'sorrentinische-halbinsel/massa-lubrense',
     'fr-fr': 'peninsule-sorrentine/massa-lubrense',
     'es-es': 'peninsula-sorrentina/massa-lubrense',
@@ -583,7 +500,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'sant-agnello': {
     'en-us': 'sorrento-peninsula/sant-agnello',
-    'en-gb': 'sorrento-peninsula/sant-agnello',
     'de-de': 'sorrentinische-halbinsel/sant-agnello',
     'fr-fr': 'peninsule-sorrentine/sant-agnello',
     'es-es': 'peninsula-sorrentina/sant-agnello',
@@ -592,7 +508,6 @@ export const slugMap: Record<string, SlugMap> = {
   // Region hub pages
   'amalfi-coast': {
     'en-us': 'amalfi-coast',
-    'en-gb': 'amalfi-coast',
     'de-de': 'amalfikueste',
     'fr-fr': 'cote-amalfitaine',
     'es-es': 'costa-amalfitana',
@@ -600,7 +515,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   islands: {
     'en-us': 'islands',
-    'en-gb': 'islands',
     'de-de': 'inseln',
     'fr-fr': 'iles',
     'es-es': 'islas',
@@ -608,7 +522,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'sorrento-peninsula': {
     'en-us': 'sorrento-peninsula',
-    'en-gb': 'sorrento-peninsula',
     'de-de': 'sorrentinische-halbinsel',
     'fr-fr': 'peninsule-sorrentine',
     'es-es': 'peninsula-sorrentina',
@@ -616,7 +529,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   experiences: {
     'en-us': 'experiences',
-    'en-gb': 'experiences',
     'de-de': 'erlebnisse',
     'fr-fr': 'experiences',
     'es-es': 'experiencias',
@@ -624,7 +536,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'boat-tours': {
     'en-us': 'experiences/boat-tours',
-    'en-gb': 'experiences/boat-tours',
     'de-de': 'erlebnisse/bootstouren',
     'fr-fr': 'experiences/tours-en-bateau',
     'es-es': 'experiencias/tours-en-barco',
@@ -632,7 +543,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'cooking-class': {
     'en-us': 'experiences/cooking-class',
-    'en-gb': 'experiences/cooking-class',
     'de-de': 'erlebnisse/kochkurs',
     'fr-fr': 'experiences/cours-de-cuisine',
     'es-es': 'experiencias/clase-cocina',
@@ -640,7 +550,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   weddings: {
     'en-us': 'experiences/weddings',
-    'en-gb': 'experiences/weddings',
     'de-de': 'erlebnisse/hochzeiten',
     'fr-fr': 'experiences/mariages',
     'es-es': 'experiencias/bodas',
@@ -648,7 +557,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'starred-restaurants': {
     'en-us': 'experiences/starred-restaurants',
-    'en-gb': 'experiences/starred-restaurants',
     'de-de': 'erlebnisse/sterne-restaurants',
     'fr-fr': 'experiences/restaurants-etoiles',
     'es-es': 'experiencias/restaurantes-estrella',
@@ -656,7 +564,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'limoncello-tour': {
     'en-us': 'experiences/limoncello-tour',
-    'en-gb': 'experiences/limoncello-tour',
     'de-de': 'erlebnisse/limoncello-tour',
     'fr-fr': 'experiences/tour-limoncello',
     'es-es': 'experiencias/tour-limoncello',
@@ -664,7 +571,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'mozzarella-experience': {
     'en-us': 'experiences/mozzarella-experience',
-    'en-gb': 'experiences/mozzarella-experience',
     'de-de': 'erlebnisse/mozzarella-erlebnis',
     'fr-fr': 'experiences/experience-mozzarella',
     'es-es': 'experiencias/experiencia-mozzarella',
@@ -672,7 +578,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   trekking: {
     'en-us': 'experiences/trekking',
-    'en-gb': 'experiences/trekking',
     'de-de': 'erlebnisse/trekking',
     'fr-fr': 'experiences/trekking',
     'es-es': 'experiencias/trekking',
@@ -776,110 +681,29 @@ export function getLocalePath(locale: Locale, pageKey: string): string {
 // Updated 2026-04-30: Added experience hub and experience slug translations
 export const pathSegments: Array<Record<Locale, string>> = [
   // Coast hub + sub-paths (beaches/events/…)
-  { 'en-us': 'amalfi-coast',         'en-gb': 'amalfi-coast',         'de-de': 'amalfikueste',       'fr-fr': 'cote-amalfitaine',     'es-es': 'costa-amalfitana',     'it-it': 'costiera-amalfitana'  },
   // Islands hub
-  { 'en-us': 'islands',              'en-gb': 'islands',              'de-de': 'inseln',              'fr-fr': 'iles',                 'es-es': 'islas',                'it-it': 'isole'                },
   // Beaches hub
-  { 'en-us': 'beaches',              'en-gb': 'beaches',              'de-de': 'strande',             'fr-fr': 'plages',               'es-es': 'playas',               'it-it': 'spiagge'              },
   // Guide hub
-  { 'en-us': 'guide',                'en-gb': 'guide',                'de-de': 'ratgeber',            'fr-fr': 'guide',                'es-es': 'guia',                 'it-it': 'guida'                },
   // Events hub
-  { 'en-us': 'events',               'en-gb': 'events',               'de-de': 'veranstaltungen',     'fr-fr': 'evenements',           'es-es': 'eventos',              'it-it': 'eventi'               },
   // Experiences hub (updated with correct translations)
-  { 'en-us': 'experiences',          'en-gb': 'experiences',          'de-de': 'erlebnisse',          'fr-fr': 'experiences',          'es-es': 'experiencias',         'it-it': 'esperienze'           },
   // Experience detail slugs
-  { 'en-us': 'boat-tours',                       'en-gb': 'boat-tours',                       'de-de': 'bootstouren',                        'fr-fr': 'tours-en-bateau',                   'es-es': 'tours-en-barco',                    'it-it': 'tour-barca'                        },
-  { 'en-us': 'cooking-class',                    'en-gb': 'cooking-class',                    'de-de': 'kochkurs',                           'fr-fr': 'cours-de-cuisine',                  'es-es': 'clase-cocina',                      'it-it': 'cooking-class'                     },
-  { 'en-us': 'weddings',                         'en-gb': 'weddings',                         'de-de': 'hochzeiten',                         'fr-fr': 'mariages',                          'es-es': 'bodas',                             'it-it': 'matrimoni'                         },
-  { 'en-us': 'starred-restaurants',              'en-gb': 'starred-restaurants',              'de-de': 'sterne-restaurants',                  'fr-fr': 'restaurants-etoiles',               'es-es': 'restaurantes-estrella',             'it-it': 'ristoranti-stellati'               },
-  { 'en-us': 'limoncello-tour',                  'en-gb': 'limoncello-tour',                  'de-de': 'limoncello-tour',                    'fr-fr': 'tour-limoncello',                   'es-es': 'tour-limoncello',                   'it-it': 'limoncello-tour'                   },
-  { 'en-us': 'mozzarella-experience',            'en-gb': 'mozzarella-experience',            'de-de': 'mozzarella-erlebnis',                 'fr-fr': 'experience-mozzarella',             'es-es': 'experiencia-mozzarella',            'it-it': 'mozzarella-experience'             },
-  { 'en-us': 'trekking',                         'en-gb': 'trekking',                         'de-de': 'trekking',                           'fr-fr': 'trekking',                          'es-es': 'trekking',                          'it-it': 'trekking'                          },
   // Itineraries hub
-  { 'en-us': 'itineraries',          'en-gb': 'itineraries',          'de-de': 'reiserouten',         'fr-fr': 'itineraires',          'es-es': 'itinerarios',          'it-it': 'itinerari'            },
   // Getting here
-  { 'en-us': 'getting-here',         'en-gb': 'getting-here',         'de-de': 'anreise',             'fr-fr': 'comment-venir',        'es-es': 'como-llegar',          'it-it': 'come-arrivare'        },
   // When to visit
-  { 'en-us': 'when-to-visit',        'en-gb': 'when-to-visit',        'de-de': 'reisezeit',           'fr-fr': 'quand-visiter',        'es-es': 'cuando-visitar',       'it-it': 'quando-visitare'      },
   // Destinations page
-  { 'en-us': 'destinations',         'en-gb': 'destinations',         'de-de': 'reiseziele',          'fr-fr': 'destinations',         'es-es': 'destinos',             'it-it': 'destinazioni'         },
   // Guide sub-pages
-  { 'en-us': 'ferries',              'en-gb': 'ferries',              'de-de': 'faehren',             'fr-fr': 'ferries',              'es-es': 'ferries',              'it-it': 'traghetti'            },
-  { 'en-us': 'sita-bus',             'en-gb': 'sita-bus',             'de-de': 'sita-bus',            'fr-fr': 'bus-sita',             'es-es': 'bus-sita',             'it-it': 'bus-sita'             },
-  { 'en-us': 'parking-ztl',          'en-gb': 'parking-ztl',          'de-de': 'parken-ztl',          'fr-fr': 'parking-ztl',          'es-es': 'aparcamiento-ztl',     'it-it': 'parcheggi-ztl'        },
   // Itinerary duration folders
-  { 'en-us': '1-day',                'en-gb': '1-day',                'de-de': '1-tag',               'fr-fr': '1-jour',               'es-es': '1-dia',                'it-it': '1-giorno'             },
-  { 'en-us': '3-days',               'en-gb': '3-days',               'de-de': '3-tage',              'fr-fr': '3-jours',              'es-es': '3-dias',               'it-it': '3-giorni'             },
-  { 'en-us': '7-days',               'en-gb': '7-days',               'de-de': '7-tage',              'fr-fr': '7-jours',              'es-es': '7-dias',               'it-it': '7-giorni'             },
   // Beach region names (must come before Events sub-area slugs to match correctly in lookup)
-  { 'en-us': 'sorrento-peninsula',    'en-gb': 'sorrento-peninsula',   'de-de': 'sorrentinische-halbinsel', 'fr-fr': 'peninsule-sorrentine',  'es-es': 'peninsula-sorrentina',  'it-it': 'penisola-sorrentina'  },
   // Events sub-area slugs (amalfi-coast already defined above)
-  { 'en-us': 'islands',              'en-gb': 'islands',              'de-de': 'inseln',              'fr-fr': 'iles',                 'es-es': 'islas',                'it-it': 'isole'                },
   // Itinerary detail slugs - 1 day
-  { 'en-us': 'amalfi-coast-from-naples',          'en-gb': 'amalfi-coast-from-naples',          'de-de': 'amalfikueste-von-neapel',           'fr-fr': 'cote-amalfitaine-depuis-naples',    'es-es': 'costa-amalfitana-desde-napoles',    'it-it': 'costiera-amalfitana-da-napoli'     },
-  { 'en-us': 'amalfi-coast-from-salerno',         'en-gb': 'amalfi-coast-from-salerno',         'de-de': 'amalfikueste-von-salerno',           'fr-fr': 'cote-amalfitaine-depuis-salerne',   'es-es': 'costa-amalfitana-desde-salerno',    'it-it': 'costiera-amalfitana-da-salerno'    },
-  { 'en-us': 'capri-from-sorrento',               'en-gb': 'capri-from-sorrento',               'de-de': 'capri-von-sorrent',                  'fr-fr': 'capri-depuis-sorrente',             'es-es': 'capri-desde-sorrento',              'it-it': 'capri-da-sorrento'                 },
-  { 'en-us': 'sorrentine-peninsula-from-naples',  'en-gb': 'sorrentine-peninsula-from-naples',  'de-de': 'sorrentinische-halbinsel-von-neapel','fr-fr': 'peninsule-sorrentine-depuis-naples','es-es': 'peninsula-sorrentina-desde-napoles','it-it': 'penisola-sorrentina-da-napoli'     },
-  { 'en-us': 'path-of-the-gods-trek',             'en-gb': 'path-of-the-gods-trek',             'de-de': 'weg-der-goetter-trekking',           'fr-fr': 'sentier-des-dieux-trek',            'es-es': 'sendero-de-los-dioses-trek',        'it-it': 'trekking-sentiero-degli-dei'       },
   // Itinerary detail slugs - 3 days
-  { 'en-us': 'classic-amalfi-coast',              'en-gb': 'classic-amalfi-coast',              'de-de': 'klassische-amalfikueste',            'fr-fr': 'cote-amalfitaine-classique',        'es-es': 'costa-amalfitana-clasica',          'it-it': 'classico-costiera-amalfitana'      },
-  { 'en-us': 'islands-ischia-procida',            'en-gb': 'islands-ischia-procida',            'de-de': 'inseln-ischia-procida',              'fr-fr': 'iles-ischia-procida',               'es-es': 'islas-ischia-procida',              'it-it': 'isole-ischia-procida'              },
-  { 'en-us': 'sorrento-pompeii-history',          'en-gb': 'sorrento-pompeii-history',          'de-de': 'sorrent-pompeji-geschichte',         'fr-fr': 'sorrente-pompei-histoire',          'es-es': 'sorrento-pompeya-historia',         'it-it': 'sorrento-pompei-storia'            },
   // Itinerary detail slugs - 7 days
-  { 'en-us': 'grand-tour-coast-peninsula',        'en-gb': 'grand-tour-coast-peninsula',        'de-de': 'grand-tour-kueste-halbinsel',        'fr-fr': 'grand-tour-cote-peninsule',         'es-es': 'gran-tour-costa-peninsula',         'it-it': 'grand-tour-costiera-penisola'      },
-  { 'en-us': 'slow-travel-villages-food',         'en-gb': 'slow-travel-villages-food',         'de-de': 'slow-travel-doerfer-kulinarik',      'fr-fr': 'slow-travel-villages-gastronomie',  'es-es': 'slow-travel-pueblos-gastronomia',   'it-it': 'slow-travel-borghi-cibo'           },
   // Blog post slugs
-  { 'en-us': 'amalfi-coast-wines',                'en-gb': 'amalfi-coast-wines',                'de-de': 'amalfi-weine',                       'fr-fr': 'vins-cote-amalfi',                  'es-es': 'vinos-costa-amalfi',                'it-it': 'vini-costa-amalfi'                 },
-  { 'en-us': 'cetara-anchovies',                  'en-gb': 'cetara-anchovies',                  'de-de': 'cetara-sardellen',                   'fr-fr': 'anchois-cetara',                    'es-es': 'anchoas-cetara',                    'it-it': 'alici-di-cetara'                   },
-  { 'en-us': 'comfortable-beaches',               'en-gb': 'comfortable-beaches',               'de-de': 'komfortable-ausgestattete-strande',  'fr-fr': 'plages-confortables-equipees',      'es-es': 'playas-comodas-equipadas',          'it-it': 'spiagge-comode-attrezzate'         },
-  { 'en-us': 'emerald-grotto',                    'en-gb': 'emerald-grotto',                    'de-de': 'smaragd-grotte',                     'fr-fr': 'grotte-emeraude',                   'es-es': 'gruta-esmeralda',                   'it-it': 'grotta-dello-smeraldo'             },
-  { 'en-us': 'ferriere-valley',                   'en-gb': 'ferriere-valley',                   'de-de': 'ferriere-tal',                       'fr-fr': 'vallee-des-ferriere',               'es-es': 'valle-ferriere',                    'it-it': 'valle-delle-ferriere'              },
-  { 'en-us': 'sunset-beaches',                    'en-gb': 'sunset-beaches',                    'de-de': 'sonnenuntergang-strande',             'fr-fr': 'coucher-soleil-plages',             'es-es': 'puesta-de-sol-playas',              'it-it': 'tramonto-spiaggia-costiera'        },
-  { 'en-us': 'wild-remote-beaches',               'en-gb': 'wild-remote-beaches',               'de-de': 'wilde-abgelegene-strande',            'fr-fr': 'oasis-sauvages-plages',             'es-es': 'oasis-salvajes-playas',             'it-it': 'oasi-selvagge-spiagge-mare'        },
-  { 'en-us': 'lemon-delight',                     'en-gb': 'lemon-delight',                     'de-de': 'zitronen-koestlichkeit',              'fr-fr': 'delice-citron',                     'es-es': 'delizia-limon',                     'it-it': 'delizia-al-limone'                 },
-  { 'en-us': 'atrani',                            'en-gb': 'atrani',                            'de-de': 'atrani',                             'fr-fr': 'atrani',                            'es-es': 'atrani',                            'it-it': 'atrani'                            },
-  { 'en-us': 'sorrento-vs-praiano',                'en-gb': 'sorrento-vs-praiano',                'de-de': 'sorrento-vs-praiano',                 'fr-fr': 'sorrento-vs-praiano',               'es-es': 'sorrento-vs-praiano',               'it-it': 'sorrento-vs-praiano'               },
   // Destination town slugs (same in all languages)
-  { 'en-us': 'positano',                          'en-gb': 'positano',                          'de-de': 'positano',                           'fr-fr': 'positano',                          'es-es': 'positano',                          'it-it': 'positano'                          },
-  { 'en-us': 'amalfi',                            'en-gb': 'amalfi',                            'de-de': 'amalfi',                             'fr-fr': 'amalfi',                            'es-es': 'amalfi',                            'it-it': 'amalfi'                            },
-  { 'en-us': 'ravello',                           'en-gb': 'ravello',                           'de-de': 'ravello',                            'fr-fr': 'ravello',                           'es-es': 'ravello',                           'it-it': 'ravello'                           },
-  { 'en-us': 'praiano',                           'en-gb': 'praiano',                           'de-de': 'praiano',                            'fr-fr': 'praiano',                           'es-es': 'praiano',                           'it-it': 'praiano'                           },
-  { 'en-us': 'marina-di-praia',                   'en-gb': 'marina-di-praia',                   'de-de': 'marina-di-praia',                    'fr-fr': 'marina-di-praia',                   'es-es': 'marina-di-praia',                   'it-it': 'marina-di-praia'                   },
-  { 'en-us': 'maiori',                            'en-gb': 'maiori',                            'de-de': 'maiori',                             'fr-fr': 'maiori',                            'es-es': 'maiori',                            'it-it': 'maiori'                            },
-  { 'en-us': 'minori',                            'en-gb': 'minori',                            'de-de': 'minori',                             'fr-fr': 'minori',                            'es-es': 'minori',                            'it-it': 'minori'                            },
-  { 'en-us': 'vietri-sul-mare',                   'en-gb': 'vietri-sul-mare',                   'de-de': 'vietri-sul-mare',                    'fr-fr': 'vietri-sul-mare',                   'es-es': 'vietri-sul-mare',                   'it-it': 'vietri-sul-mare'                   },
   // Peninsula town names (names that differ by language)
-  { 'en-us': 'sorrento',                          'en-gb': 'sorrento',                          'de-de': 'sorrent',                            'fr-fr': 'sorrente',                          'es-es': 'sorrento',                          'it-it': 'sorrento'                          },
-  { 'en-us': 'vico-equense',                       'en-gb': 'vico-equense',                      'de-de': 'vico-equense',                       'fr-fr': 'vico-equense',                      'es-es': 'vico-equense',                      'it-it': 'vico-equense'                      },
-  { 'en-us': 'massa-lubrense',                     'en-gb': 'massa-lubrense',                    'de-de': 'massa-lubrense',                     'fr-fr': 'massa-lubrense',                    'es-es': 'massa-lubrense',                    'it-it': 'massa-lubrense'                    },
-  { 'en-us': 'sant-agnello',                       'en-gb': 'sant-agnello',                      'de-de': 'sant-agnello',                       'fr-fr': 'sant-agnello',                      'es-es': 'sant-agnello',                      'it-it': 'sant-agnello'                      },
   // Event detail slugs (same in all languages)
-  { 'en-us': 'capodanno-bizantino',               'en-gb': 'capodanno-bizantino',               'de-de': 'capodanno-bizantino',                'fr-fr': 'capodanno-bizantino',               'es-es': 'capodanno-bizantino',               'it-it': 'capodanno-bizantino'              },
-  { 'en-us': 'festa-san-gennaro-praiano',         'en-gb': 'festa-san-gennaro-praiano',         'de-de': 'festa-san-gennaro-praiano',          'fr-fr': 'festa-san-gennaro-praiano',         'es-es': 'festa-san-gennaro-praiano',         'it-it': 'festa-san-gennaro-praiano'        },
-  { 'en-us': 'festa-sant-andrea-amalfi',          'en-gb': 'festa-sant-andrea-amalfi',          'de-de': 'festa-sant-andrea-amalfi',           'fr-fr': 'festa-sant-andrea-amalfi',          'es-es': 'festa-sant-andrea-amalfi',          'it-it': 'festa-sant-andrea-amalfi'         },
-  { 'en-us': 'festival-limone-minori',            'en-gb': 'festival-limone-minori',            'de-de': 'festival-limone-minori',             'fr-fr': 'festival-limone-minori',            'es-es': 'festival-limone-minori',            'it-it': 'festival-limone-minori'           },
   { 'en-us': 'fuochi-ferragosto-positano-maiori', 'de-de': 'fuochi-ferragosto-positano-maiori',  'fr-fr': 'fuochi-ferragosto-positano-maiori', 'es-es': 'fuochi-ferragosto-positano-maiori', 'it-it': 'fuochi-ferragosto-positano-maiori' },
-  { 'en-us': 'luminaria-san-domenico-praiano',    'en-gb': 'luminaria-san-domenico-praiano',    'de-de': 'luminaria-san-domenico-praiano',     'fr-fr': 'luminaria-san-domenico-praiano',    'es-es': 'luminaria-san-domenico-praiano',    'it-it': 'luminaria-san-domenico-praiano'   },
-  { 'en-us': 'notte-blu-vietri',                  'en-gb': 'notte-blu-vietri',                  'de-de': 'notte-blu-vietri',                   'fr-fr': 'notte-blu-vietri',                  'es-es': 'notte-blu-vietri',                  'it-it': 'notte-blu-vietri'                 },
-  { 'en-us': 'positano-mare-sole-cultura',        'en-gb': 'positano-mare-sole-cultura',        'de-de': 'positano-mare-sole-cultura',         'fr-fr': 'positano-mare-sole-cultura',        'es-es': 'positano-mare-sole-cultura',        'it-it': 'positano-mare-sole-cultura'       },
-  { 'en-us': 'ravello-festival',                  'en-gb': 'ravello-festival',                  'de-de': 'ravello-festival',                   'fr-fr': 'ravello-festival',                  'es-es': 'ravello-festival',                  'it-it': 'ravello-festival'                 },
-  { 'en-us': 'regata-storica-amalfi',             'en-gb': 'regata-storica-amalfi',             'de-de': 'regata-storica-amalfi',              'fr-fr': 'regata-storica-amalfi',             'es-es': 'regata-storica-amalfi',             'it-it': 'regata-storica-amalfi'            },
-  { 'en-us': 'sagra-del-pesce-positano',          'en-gb': 'sagra-del-pesce-positano',          'de-de': 'sagra-del-pesce-positano',           'fr-fr': 'sagra-del-pesce-positano',          'es-es': 'sagra-del-pesce-positano',          'it-it': 'sagra-del-pesce-positano'         },
-  { 'en-us': 'anacapri-settembre-borgo',          'en-gb': 'anacapri-settembre-borgo',          'de-de': 'anacapri-settembre-borgo',           'fr-fr': 'anacapri-settembre-borgo',          'es-es': 'anacapri-settembre-borgo',          'it-it': 'anacapri-settembre-borgo'         },
-  { 'en-us': 'ischia-global-film-festival',       'en-gb': 'ischia-global-film-festival',       'de-de': 'ischia-global-film-festival',        'fr-fr': 'ischia-global-film-festival',       'es-es': 'ischia-global-film-festival',       'it-it': 'ischia-global-film-festival'      },
-  { 'en-us': 'sagra-del-mare-graziella-procida',  'en-gb': 'sagra-del-mare-graziella-procida',  'de-de': 'sagra-del-mare-graziella-procida',   'fr-fr': 'sagra-del-mare-graziella-procida',  'es-es': 'sagra-del-mare-graziella-procida',  'it-it': 'sagra-del-mare-graziella-procida' },
-  { 'en-us': 'festa-sant-antonino',               'en-gb': 'festa-sant-antonino',               'de-de': 'festa-sant-antonino',                'fr-fr': 'festa-sant-antonino',               'es-es': 'festa-sant-antonino',               'it-it': 'festa-sant-antonino'              },
-  { 'en-us': 'gustamincanto-vico-equense',        'en-gb': 'gustamincanto-vico-equense',        'de-de': 'gustamincanto-vico-equense',         'fr-fr': 'gustamincanto-vico-equense',        'es-es': 'gustamincanto-vico-equense',        'it-it': 'gustamincanto-vico-equense'       },
-  { 'en-us': 'madonna-della-libera',              'en-gb': 'madonna-della-libera',              'de-de': 'madonna-della-libera',               'fr-fr': 'madonna-della-libera',              'es-es': 'madonna-della-libera',              'it-it': 'madonna-della-libera'             },
-  { 'en-us': 'sagra-limone-massa-lubrense',       'en-gb': 'sagra-limone-massa-lubrense',       'de-de': 'sagra-limone-massa-lubrense',        'fr-fr': 'sagra-limone-massa-lubrense',       'es-es': 'sagra-limone-massa-lubrense',       'it-it': 'sagra-limone-massa-lubrense'      },
-  { 'en-us': 'sagra-melanzana-preazzano',         'en-gb': 'sagra-melanzana-preazzano',         'de-de': 'sagra-melanzana-preazzano',          'fr-fr': 'sagra-melanzana-preazzano',         'es-es': 'sagra-melanzana-preazzano',         'it-it': 'sagra-melanzana-preazzano'        },
-  { 'en-us': 'sorrento-meeting-cultura',          'en-gb': 'sorrento-meeting-cultura',          'de-de': 'sorrento-meeting-cultura',           'fr-fr': 'sorrento-meeting-cultura',          'es-es': 'sorrento-meeting-cultura',          'it-it': 'sorrento-meeting-cultura'         },
   // Beach name translations
-  { 'en-us': 'spiaggia-di-ieranto',               'en-gb': 'spiaggia-di-ieranto',               'de-de': 'spiaggia-di-ieranto',                'fr-fr': 'spiaggia-di-ieranto',               'es-es': 'spiaggia-di-ieranto',               'it-it': 'ieranto'                          },
-  { 'en-us': 'cala-mitigliano',                   'en-gb': 'cala-mitigliano',                   'de-de': 'cala-mitigliano',                    'fr-fr': 'cala-mitigliano',                  'es-es': 'cala-mitigliano',                  'it-it': 'cala-mitigliano'                 },
-  { 'en-us': 'marina-del-cantone',                'en-gb': 'marina-del-cantone',                'de-de': 'marina-del-cantone',                 'fr-fr': 'marina-del-cantone',               'es-es': 'marina-del-cantone',               'it-it': 'marina-del-cantone'              },
-  { 'en-us': 'regina-giovanna',                   'en-gb': 'regina-giovanna',                   'de-de': 'regina-giovanna',                    'fr-fr': 'regina-giovanna',                  'es-es': 'regina-giovanna',                  'it-it': 'regina-giovanna'                 },
-  { 'en-us': 'marina-di-praia',                   'en-gb': 'marina-di-praia',                   'de-de': 'marina-di-praia',                    'fr-fr': 'marina-di-praia',                  'es-es': 'marina-di-praia',                  'it-it': 'marina-di-praia'                 },
 ];
 
 /**
