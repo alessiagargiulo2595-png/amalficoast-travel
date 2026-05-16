@@ -102,9 +102,6 @@ function buildHreflangsFromSlugMap(slugMap, sitemapUrls) {
       if (slug === '') {
         // Home page
         urlPath = `/${locale}/`;
-      } else if (slug.startsWith('spiagge/penisola-sorrentina/spiaggia-di-ieranto')) {
-        // Special case: Italian beach page without /spiagge prefix
-        urlPath = `/${locale}/penisola-sorrentina/spiaggia-di-ieranto/`;
       } else {
         urlPath = `/${locale}/${slug}/`;
       }

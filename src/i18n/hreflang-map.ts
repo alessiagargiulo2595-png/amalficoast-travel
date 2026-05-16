@@ -61,6 +61,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/amalfi/',
     source: 'pattern-match',
   },
+  '/de-de/amalfikueste/cetara/': {
+    url: 'https://amalficoast-travel.com/de-de/amalfikueste/cetara/',
+    canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+      'de-de': 'https://amalficoast-travel.com/de-de/amalfikueste/cetara/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/cote-amalfitaine/cetara/',
+      'es-es': 'https://amalficoast-travel.com/es-es/costa-amalfitana/cetara/',
+      'it-it': 'https://amalficoast-travel.com/it-it/costiera-amalfitana/cetara/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+    source: 'pattern-match',
+  },
   '/de-de/amalfikueste/maiori/': {
     url: 'https://amalficoast-travel.com/de-de/amalfikueste/maiori/',
     canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/maiori/',
@@ -73,19 +86,6 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     },
     'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/maiori/',
     source: 'pattern-match',
-  },
-  '/de-de/amalfikueste/marina-di-praia/': {
-    url: 'https://amalficoast-travel.com/de-de/amalfikueste/marina-di-praia/',
-    canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-    alternates: {
-      'en-us': 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-      'de-de': 'https://amalficoast-travel.com/de-de/amalfikueste/marina-di-praia/',
-      'fr-fr': 'https://amalficoast-travel.com/fr-fr/cote-amalfitaine/marina-di-praia/',
-      'es-es': 'https://amalficoast-travel.com/es-es/costa-amalfitana/marina-di-praia/',
-      'it-it': 'https://amalficoast-travel.com/it-it/costiera-amalfitana/marina-di-praia/',
-    },
-    'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-    source: 'slugMap',
   },
   '/de-de/amalfikueste/minori/': {
     url: 'https://amalficoast-travel.com/de-de/amalfikueste/minori/',
@@ -737,17 +737,6 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/sorrento-peninsula/massa-lubrense/',
     source: 'slugMap',
   },
-  '/de-de/sorrentinische-halbinsel/massa-lubrense/spiaggia-di-ieranto/': {
-    url: 'https://amalficoast-travel.com/de-de/sorrentinische-halbinsel/massa-lubrense/spiaggia-di-ieranto/',
-    canonical: 'https://amalficoast-travel.com/de-de/sorrentinische-halbinsel/massa-lubrense/spiaggia-di-ieranto/',
-    alternates: {
-      'de-de': 'https://amalficoast-travel.com/de-de/sorrentinische-halbinsel/massa-lubrense/spiaggia-di-ieranto/',
-      'fr-fr': 'https://amalficoast-travel.com/fr-fr/peninsule-sorrentine/massa-lubrense/spiaggia-di-ieranto/',
-      'es-es': 'https://amalficoast-travel.com/es-es/peninsula-sorrentina/massa-lubrense/spiaggia-di-ieranto/',
-    },
-    'x-default': 'https://amalficoast-travel.com/de-de/sorrentinische-halbinsel/massa-lubrense/spiaggia-di-ieranto/',
-    source: 'pattern-match',
-  },
   '/de-de/sorrentinische-halbinsel/sant-agnello/': {
     url: 'https://amalficoast-travel.com/de-de/sorrentinische-halbinsel/sant-agnello/',
     canonical: 'https://amalficoast-travel.com/en-us/sorrento-peninsula/sant-agnello/',
@@ -821,9 +810,10 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'de-de': 'https://amalficoast-travel.com/de-de/strande/amalfikueste/marina-di-praia/',
       'fr-fr': 'https://amalficoast-travel.com/fr-fr/plages/cote-amalfitaine/marina-di-praia/',
       'es-es': 'https://amalficoast-travel.com/es-es/playas/costa-amalfitana/marina-di-praia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/spiagge/costiera-amalfitana/marina-di-praia/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/beaches/amalfi-coast/marina-di-praia/',
-    source: 'pattern-match',
+    source: 'slugMap',
   },
   '/de-de/strande/amalfikueste/santa-croce-amalfi/': {
     url: 'https://amalficoast-travel.com/de-de/strande/amalfikueste/santa-croce-amalfi/',
@@ -950,7 +940,7 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'de-de': 'https://amalficoast-travel.com/de-de/strande/sorrentinische-halbinsel/spiaggia-di-ieranto/',
       'fr-fr': 'https://amalficoast-travel.com/fr-fr/plages/peninsule-sorrentine/spiaggia-di-ieranto/',
       'es-es': 'https://amalficoast-travel.com/es-es/playas/peninsula-sorrentina/spiaggia-di-ieranto/',
-      'it-it': 'https://amalficoast-travel.com/it-it/penisola-sorrentina/spiaggia-di-ieranto/',
+      'it-it': 'https://amalficoast-travel.com/it-it/spiagge/penisola-sorrentina/ieranto/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/',
     source: 'slugMap',
@@ -1261,6 +1251,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/amalfi/',
     source: 'pattern-match',
   },
+  '/en-us/amalfi-coast/cetara/': {
+    url: 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+    canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+      'de-de': 'https://amalficoast-travel.com/de-de/amalfikueste/cetara/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/cote-amalfitaine/cetara/',
+      'es-es': 'https://amalficoast-travel.com/es-es/costa-amalfitana/cetara/',
+      'it-it': 'https://amalficoast-travel.com/it-it/costiera-amalfitana/cetara/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+    source: 'pattern-match',
+  },
   '/en-us/amalfi-coast/maiori/': {
     url: 'https://amalficoast-travel.com/en-us/amalfi-coast/maiori/',
     canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/maiori/',
@@ -1273,19 +1276,6 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     },
     'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/maiori/',
     source: 'pattern-match',
-  },
-  '/en-us/amalfi-coast/marina-di-praia/': {
-    url: 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-    canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-    alternates: {
-      'en-us': 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-      'de-de': 'https://amalficoast-travel.com/de-de/amalfikueste/marina-di-praia/',
-      'fr-fr': 'https://amalficoast-travel.com/fr-fr/cote-amalfitaine/marina-di-praia/',
-      'es-es': 'https://amalficoast-travel.com/es-es/costa-amalfitana/marina-di-praia/',
-      'it-it': 'https://amalficoast-travel.com/it-it/costiera-amalfitana/marina-di-praia/',
-    },
-    'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-    source: 'slugMap',
   },
   '/en-us/amalfi-coast/minori/': {
     url: 'https://amalficoast-travel.com/en-us/amalfi-coast/minori/',
@@ -1386,9 +1376,10 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'de-de': 'https://amalficoast-travel.com/de-de/strande/amalfikueste/marina-di-praia/',
       'fr-fr': 'https://amalficoast-travel.com/fr-fr/plages/cote-amalfitaine/marina-di-praia/',
       'es-es': 'https://amalficoast-travel.com/es-es/playas/costa-amalfitana/marina-di-praia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/spiagge/costiera-amalfitana/marina-di-praia/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/beaches/amalfi-coast/marina-di-praia/',
-    source: 'pattern-match',
+    source: 'slugMap',
   },
   '/en-us/beaches/amalfi-coast/santa-croce-amalfi/': {
     url: 'https://amalficoast-travel.com/en-us/beaches/amalfi-coast/santa-croce-amalfi/',
@@ -1515,7 +1506,7 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'de-de': 'https://amalficoast-travel.com/de-de/strande/sorrentinische-halbinsel/spiaggia-di-ieranto/',
       'fr-fr': 'https://amalficoast-travel.com/fr-fr/plages/peninsule-sorrentine/spiaggia-di-ieranto/',
       'es-es': 'https://amalficoast-travel.com/es-es/playas/peninsula-sorrentina/spiaggia-di-ieranto/',
-      'it-it': 'https://amalficoast-travel.com/it-it/penisola-sorrentina/spiaggia-di-ieranto/',
+      'it-it': 'https://amalficoast-travel.com/it-it/spiagge/penisola-sorrentina/ieranto/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/',
     source: 'slugMap',
@@ -1701,6 +1692,16 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
     source: 'slugMap',
+  },
+  '/en-us/destinations/': {
+    url: 'https://amalficoast-travel.com/en-us/destinations/',
+    canonical: 'https://amalficoast-travel.com/en-us/destinations/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/destinations/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/destinations/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/destinations/',
+    source: 'pattern-match',
   },
   '/en-us/events/': {
     url: 'https://amalficoast-travel.com/en-us/events/',
@@ -2560,6 +2561,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/amalfi/',
     source: 'pattern-match',
   },
+  '/es-es/costa-amalfitana/cetara/': {
+    url: 'https://amalficoast-travel.com/es-es/costa-amalfitana/cetara/',
+    canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+      'de-de': 'https://amalficoast-travel.com/de-de/amalfikueste/cetara/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/cote-amalfitaine/cetara/',
+      'es-es': 'https://amalficoast-travel.com/es-es/costa-amalfitana/cetara/',
+      'it-it': 'https://amalficoast-travel.com/it-it/costiera-amalfitana/cetara/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+    source: 'pattern-match',
+  },
   '/es-es/costa-amalfitana/maiori/': {
     url: 'https://amalficoast-travel.com/es-es/costa-amalfitana/maiori/',
     canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/maiori/',
@@ -2572,19 +2586,6 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     },
     'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/maiori/',
     source: 'pattern-match',
-  },
-  '/es-es/costa-amalfitana/marina-di-praia/': {
-    url: 'https://amalficoast-travel.com/es-es/costa-amalfitana/marina-di-praia/',
-    canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-    alternates: {
-      'en-us': 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-      'de-de': 'https://amalficoast-travel.com/de-de/amalfikueste/marina-di-praia/',
-      'fr-fr': 'https://amalficoast-travel.com/fr-fr/cote-amalfitaine/marina-di-praia/',
-      'es-es': 'https://amalficoast-travel.com/es-es/costa-amalfitana/marina-di-praia/',
-      'it-it': 'https://amalficoast-travel.com/it-it/costiera-amalfitana/marina-di-praia/',
-    },
-    'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-    source: 'slugMap',
   },
   '/es-es/costa-amalfitana/minori/': {
     url: 'https://amalficoast-travel.com/es-es/costa-amalfitana/minori/',
@@ -3308,17 +3309,6 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/sorrento-peninsula/massa-lubrense/',
     source: 'slugMap',
   },
-  '/es-es/peninsula-sorrentina/massa-lubrense/spiaggia-di-ieranto/': {
-    url: 'https://amalficoast-travel.com/es-es/peninsula-sorrentina/massa-lubrense/spiaggia-di-ieranto/',
-    canonical: 'https://amalficoast-travel.com/de-de/sorrentinische-halbinsel/massa-lubrense/spiaggia-di-ieranto/',
-    alternates: {
-      'de-de': 'https://amalficoast-travel.com/de-de/sorrentinische-halbinsel/massa-lubrense/spiaggia-di-ieranto/',
-      'fr-fr': 'https://amalficoast-travel.com/fr-fr/peninsule-sorrentine/massa-lubrense/spiaggia-di-ieranto/',
-      'es-es': 'https://amalficoast-travel.com/es-es/peninsula-sorrentina/massa-lubrense/spiaggia-di-ieranto/',
-    },
-    'x-default': 'https://amalficoast-travel.com/de-de/sorrentinische-halbinsel/massa-lubrense/spiaggia-di-ieranto/',
-    source: 'pattern-match',
-  },
   '/es-es/peninsula-sorrentina/sant-agnello/': {
     url: 'https://amalficoast-travel.com/es-es/peninsula-sorrentina/sant-agnello/',
     canonical: 'https://amalficoast-travel.com/en-us/sorrento-peninsula/sant-agnello/',
@@ -3405,9 +3395,10 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'de-de': 'https://amalficoast-travel.com/de-de/strande/amalfikueste/marina-di-praia/',
       'fr-fr': 'https://amalficoast-travel.com/fr-fr/plages/cote-amalfitaine/marina-di-praia/',
       'es-es': 'https://amalficoast-travel.com/es-es/playas/costa-amalfitana/marina-di-praia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/spiagge/costiera-amalfitana/marina-di-praia/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/beaches/amalfi-coast/marina-di-praia/',
-    source: 'pattern-match',
+    source: 'slugMap',
   },
   '/es-es/playas/costa-amalfitana/santa-croce-amalfi/': {
     url: 'https://amalficoast-travel.com/es-es/playas/costa-amalfitana/santa-croce-amalfi/',
@@ -3534,7 +3525,7 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'de-de': 'https://amalficoast-travel.com/de-de/strande/sorrentinische-halbinsel/spiaggia-di-ieranto/',
       'fr-fr': 'https://amalficoast-travel.com/fr-fr/plages/peninsule-sorrentine/spiaggia-di-ieranto/',
       'es-es': 'https://amalficoast-travel.com/es-es/playas/peninsula-sorrentina/spiaggia-di-ieranto/',
-      'it-it': 'https://amalficoast-travel.com/it-it/penisola-sorrentina/spiaggia-di-ieranto/',
+      'it-it': 'https://amalficoast-travel.com/it-it/spiagge/penisola-sorrentina/ieranto/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/',
     source: 'slugMap',
@@ -3760,6 +3751,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/amalfi/',
     source: 'pattern-match',
   },
+  '/fr-fr/cote-amalfitaine/cetara/': {
+    url: 'https://amalficoast-travel.com/fr-fr/cote-amalfitaine/cetara/',
+    canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+      'de-de': 'https://amalficoast-travel.com/de-de/amalfikueste/cetara/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/cote-amalfitaine/cetara/',
+      'es-es': 'https://amalficoast-travel.com/es-es/costa-amalfitana/cetara/',
+      'it-it': 'https://amalficoast-travel.com/it-it/costiera-amalfitana/cetara/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+    source: 'pattern-match',
+  },
   '/fr-fr/cote-amalfitaine/maiori/': {
     url: 'https://amalficoast-travel.com/fr-fr/cote-amalfitaine/maiori/',
     canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/maiori/',
@@ -3772,19 +3776,6 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     },
     'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/maiori/',
     source: 'pattern-match',
-  },
-  '/fr-fr/cote-amalfitaine/marina-di-praia/': {
-    url: 'https://amalficoast-travel.com/fr-fr/cote-amalfitaine/marina-di-praia/',
-    canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-    alternates: {
-      'en-us': 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-      'de-de': 'https://amalficoast-travel.com/de-de/amalfikueste/marina-di-praia/',
-      'fr-fr': 'https://amalficoast-travel.com/fr-fr/cote-amalfitaine/marina-di-praia/',
-      'es-es': 'https://amalficoast-travel.com/es-es/costa-amalfitana/marina-di-praia/',
-      'it-it': 'https://amalficoast-travel.com/it-it/costiera-amalfitana/marina-di-praia/',
-    },
-    'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-    source: 'slugMap',
   },
   '/fr-fr/cote-amalfitaine/minori/': {
     url: 'https://amalficoast-travel.com/fr-fr/cote-amalfitaine/minori/',
@@ -3850,6 +3841,16 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     },
     'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/vietri-sul-mare/',
     source: 'slugMap',
+  },
+  '/fr-fr/destinations/': {
+    url: 'https://amalficoast-travel.com/fr-fr/destinations/',
+    canonical: 'https://amalficoast-travel.com/en-us/destinations/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/destinations/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/destinations/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/destinations/',
+    source: 'pattern-match',
   },
   '/fr-fr/evenements/': {
     url: 'https://amalficoast-travel.com/fr-fr/evenements/',
@@ -4508,17 +4509,6 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/sorrento-peninsula/massa-lubrense/',
     source: 'slugMap',
   },
-  '/fr-fr/peninsule-sorrentine/massa-lubrense/spiaggia-di-ieranto/': {
-    url: 'https://amalficoast-travel.com/fr-fr/peninsule-sorrentine/massa-lubrense/spiaggia-di-ieranto/',
-    canonical: 'https://amalficoast-travel.com/de-de/sorrentinische-halbinsel/massa-lubrense/spiaggia-di-ieranto/',
-    alternates: {
-      'de-de': 'https://amalficoast-travel.com/de-de/sorrentinische-halbinsel/massa-lubrense/spiaggia-di-ieranto/',
-      'fr-fr': 'https://amalficoast-travel.com/fr-fr/peninsule-sorrentine/massa-lubrense/spiaggia-di-ieranto/',
-      'es-es': 'https://amalficoast-travel.com/es-es/peninsula-sorrentina/massa-lubrense/spiaggia-di-ieranto/',
-    },
-    'x-default': 'https://amalficoast-travel.com/de-de/sorrentinische-halbinsel/massa-lubrense/spiaggia-di-ieranto/',
-    source: 'pattern-match',
-  },
   '/fr-fr/peninsule-sorrentine/sant-agnello/': {
     url: 'https://amalficoast-travel.com/fr-fr/peninsule-sorrentine/sant-agnello/',
     canonical: 'https://amalficoast-travel.com/en-us/sorrento-peninsula/sant-agnello/',
@@ -4592,9 +4582,10 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'de-de': 'https://amalficoast-travel.com/de-de/strande/amalfikueste/marina-di-praia/',
       'fr-fr': 'https://amalficoast-travel.com/fr-fr/plages/cote-amalfitaine/marina-di-praia/',
       'es-es': 'https://amalficoast-travel.com/es-es/playas/costa-amalfitana/marina-di-praia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/spiagge/costiera-amalfitana/marina-di-praia/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/beaches/amalfi-coast/marina-di-praia/',
-    source: 'pattern-match',
+    source: 'slugMap',
   },
   '/fr-fr/plages/cote-amalfitaine/santa-croce-amalfi/': {
     url: 'https://amalficoast-travel.com/fr-fr/plages/cote-amalfitaine/santa-croce-amalfi/',
@@ -4721,7 +4712,7 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'de-de': 'https://amalficoast-travel.com/de-de/strande/sorrentinische-halbinsel/spiaggia-di-ieranto/',
       'fr-fr': 'https://amalficoast-travel.com/fr-fr/plages/peninsule-sorrentine/spiaggia-di-ieranto/',
       'es-es': 'https://amalficoast-travel.com/es-es/playas/peninsula-sorrentina/spiaggia-di-ieranto/',
-      'it-it': 'https://amalficoast-travel.com/it-it/penisola-sorrentina/spiaggia-di-ieranto/',
+      'it-it': 'https://amalficoast-travel.com/it-it/spiagge/penisola-sorrentina/ieranto/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/',
     source: 'slugMap',
@@ -4960,6 +4951,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/amalfi/',
     source: 'pattern-match',
   },
+  '/it-it/costiera-amalfitana/cetara/': {
+    url: 'https://amalficoast-travel.com/it-it/costiera-amalfitana/cetara/',
+    canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+      'de-de': 'https://amalficoast-travel.com/de-de/amalfikueste/cetara/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/cote-amalfitaine/cetara/',
+      'es-es': 'https://amalficoast-travel.com/es-es/costa-amalfitana/cetara/',
+      'it-it': 'https://amalficoast-travel.com/it-it/costiera-amalfitana/cetara/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/cetara/',
+    source: 'pattern-match',
+  },
   '/it-it/costiera-amalfitana/maiori/': {
     url: 'https://amalficoast-travel.com/it-it/costiera-amalfitana/maiori/',
     canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/maiori/',
@@ -4972,19 +4976,6 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     },
     'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/maiori/',
     source: 'pattern-match',
-  },
-  '/it-it/costiera-amalfitana/marina-di-praia/': {
-    url: 'https://amalficoast-travel.com/it-it/costiera-amalfitana/marina-di-praia/',
-    canonical: 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-    alternates: {
-      'en-us': 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-      'de-de': 'https://amalficoast-travel.com/de-de/amalfikueste/marina-di-praia/',
-      'fr-fr': 'https://amalficoast-travel.com/fr-fr/cote-amalfitaine/marina-di-praia/',
-      'es-es': 'https://amalficoast-travel.com/es-es/costa-amalfitana/marina-di-praia/',
-      'it-it': 'https://amalficoast-travel.com/it-it/costiera-amalfitana/marina-di-praia/',
-    },
-    'x-default': 'https://amalficoast-travel.com/en-us/amalfi-coast/marina-di-praia/',
-    source: 'slugMap',
   },
   '/it-it/costiera-amalfitana/minori/': {
     url: 'https://amalficoast-travel.com/it-it/costiera-amalfitana/minori/',
@@ -5734,19 +5725,6 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/sorrento-peninsula/sorrento/',
     source: 'pattern-match',
   },
-  '/it-it/penisola-sorrentina/spiaggia-di-ieranto/': {
-    url: 'https://amalficoast-travel.com/it-it/penisola-sorrentina/spiaggia-di-ieranto/',
-    canonical: 'https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/',
-    alternates: {
-      'en-us': 'https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/',
-      'de-de': 'https://amalficoast-travel.com/de-de/strande/sorrentinische-halbinsel/spiaggia-di-ieranto/',
-      'fr-fr': 'https://amalficoast-travel.com/fr-fr/plages/peninsule-sorrentine/spiaggia-di-ieranto/',
-      'es-es': 'https://amalficoast-travel.com/es-es/playas/peninsula-sorrentina/spiaggia-di-ieranto/',
-      'it-it': 'https://amalficoast-travel.com/it-it/penisola-sorrentina/spiaggia-di-ieranto/',
-    },
-    'x-default': 'https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/',
-    source: 'slugMap',
-  },
   '/it-it/penisola-sorrentina/vico-equense/': {
     url: 'https://amalficoast-travel.com/it-it/penisola-sorrentina/vico-equense/',
     canonical: 'https://amalficoast-travel.com/en-us/sorrento-peninsula/vico-equense/',
@@ -5797,6 +5775,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/spiagge/costiera-amalfitana/fiordo-di-furore/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/beaches/amalfi-coast/fiordo-di-furore/',
+    source: 'slugMap',
+  },
+  '/it-it/spiagge/costiera-amalfitana/marina-di-praia/': {
+    url: 'https://amalficoast-travel.com/it-it/spiagge/costiera-amalfitana/marina-di-praia/',
+    canonical: 'https://amalficoast-travel.com/en-us/beaches/amalfi-coast/marina-di-praia/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/beaches/amalfi-coast/marina-di-praia/',
+      'de-de': 'https://amalficoast-travel.com/de-de/strande/amalfikueste/marina-di-praia/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/plages/cote-amalfitaine/marina-di-praia/',
+      'es-es': 'https://amalficoast-travel.com/es-es/playas/costa-amalfitana/marina-di-praia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/spiagge/costiera-amalfitana/marina-di-praia/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/beaches/amalfi-coast/marina-di-praia/',
     source: 'slugMap',
   },
   '/it-it/spiagge/costiera-amalfitana/santa-croce-amalfi/': {
@@ -5890,6 +5881,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/cala-mitigliano/',
     source: 'slugMap',
   },
+  '/it-it/spiagge/penisola-sorrentina/ieranto/': {
+    url: 'https://amalficoast-travel.com/it-it/spiagge/penisola-sorrentina/ieranto/',
+    canonical: 'https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/',
+      'de-de': 'https://amalficoast-travel.com/de-de/strande/sorrentinische-halbinsel/spiaggia-di-ieranto/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/plages/peninsule-sorrentine/spiaggia-di-ieranto/',
+      'es-es': 'https://amalficoast-travel.com/es-es/playas/peninsula-sorrentina/spiaggia-di-ieranto/',
+      'it-it': 'https://amalficoast-travel.com/it-it/spiagge/penisola-sorrentina/ieranto/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/',
+    source: 'slugMap',
+  },
   '/it-it/spiagge/penisola-sorrentina/marina-del-cantone/': {
     url: 'https://amalficoast-travel.com/it-it/spiagge/penisola-sorrentina/marina-del-cantone/',
     canonical: 'https://amalficoast-travel.com/en-us/beaches/sorrentine-peninsula/marina-del-cantone/',
@@ -5947,5 +5951,5 @@ export function getXDefault(url: string): string | null {
 export const hrefLangStats = {
   totalUrls: 456,
   locales: ["en-us","de-de","fr-fr","es-es","it-it"],
-  generatedAt: '2026-05-10T21:13:40.891Z',
+  generatedAt: '2026-05-16T11:29:24.684Z',
 };

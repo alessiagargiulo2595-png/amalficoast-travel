@@ -711,7 +711,7 @@ export const slugMap: Record<string, SlugMap> = {
   'cala-mitigliano': { 'en-us': 'beaches/sorrentine-peninsula/cala-mitigliano', 'de-de': 'strande/sorrentinische-halbinsel/cala-mitigliano', 'fr-fr': 'plages/peninsule-sorrentine/cala-mitigliano', 'es-es': 'playas/peninsula-sorrentina/cala-mitigliano', 'it-it': 'spiagge/penisola-sorrentina/cala-mitigliano' },
   'marina-del-cantone': { 'en-us': 'beaches/sorrentine-peninsula/marina-del-cantone', 'de-de': 'strande/sorrentinische-halbinsel/marina-del-cantone', 'fr-fr': 'plages/peninsule-sorrentine/marina-del-cantone', 'es-es': 'playas/peninsula-sorrentina/marina-del-cantone', 'it-it': 'spiagge/penisola-sorrentina/marina-del-cantone' },
   'regina-giovanna': { 'en-us': 'beaches/sorrentine-peninsula/regina-giovanna', 'de-de': 'strande/sorrentinische-halbinsel/regina-giovanna', 'fr-fr': 'plages/peninsule-sorrentine/regina-giovanna', 'es-es': 'playas/peninsula-sorrentina/regina-giovanna', 'it-it': 'spiagge/penisola-sorrentina/regina-giovanna' },
-  'spiaggia-di-ieranto': { 'en-us': 'beaches/sorrentine-peninsula/spiaggia-di-ieranto', 'de-de': 'strande/sorrentinische-halbinsel/spiaggia-di-ieranto', 'fr-fr': 'plages/peninsule-sorrentine/spiaggia-di-ieranto', 'es-es': 'playas/peninsula-sorrentina/spiaggia-di-ieranto', 'it-it': 'spiagge/penisola-sorrentina/spiaggia-di-ieranto' },
+  'spiaggia-di-ieranto': { 'en-us': 'beaches/sorrentine-peninsula/spiaggia-di-ieranto', 'de-de': 'strande/sorrentinische-halbinsel/spiaggia-di-ieranto', 'fr-fr': 'plages/peninsule-sorrentine/spiaggia-di-ieranto', 'es-es': 'playas/peninsula-sorrentina/spiaggia-di-ieranto', 'it-it': 'spiagge/penisola-sorrentina/ieranto' },
   // Itinerary slugs (same in all languages, nested under duration)
   'amalfi-coast-from-naples': { 'en-us': 'itineraries/1-day/amalfi-coast-from-naples', 'de-de': 'reiserouten/1-tag/amalfikueste-von-neapel', 'fr-fr': 'itineraires/1-jour/cote-amalfitaine-depuis-naples', 'es-es': 'itinerarios/1-dia/costa-amalfitana-desde-napoles', 'it-it': 'itinerari/1-giorno/costiera-amalfitana-da-napoli' },
   'amalfi-coast-from-salerno': { 'en-us': 'itineraries/1-day/amalfi-coast-from-salerno', 'de-de': 'reiserouten/1-tag/amalfikueste-von-salerno', 'fr-fr': 'itineraires/1-jour/cote-amalfitaine-depuis-salerne', 'es-es': 'itinerarios/1-dia/costa-amalfitana-desde-salerno', 'it-it': 'itinerari/1-giorno/costiera-amalfitana-da-salerno' },
@@ -729,10 +729,7 @@ export const slugMap: Record<string, SlugMap> = {
   'parking-ztl': { 'en-us': 'guide/parking-ztl', 'de-de': 'ratgeber/parken-ztl', 'fr-fr': 'guide/parking-ztl', 'es-es': 'guia/aparcamiento-ztl', 'it-it': 'guida/parcheggi-ztl' },
   // Event hub pages (with language-specific paths)
   events: { 'en-us': 'events', 'de-de': 'veranstaltungen', 'fr-fr': 'evenements', 'es-es': 'eventos', 'it-it': 'eventi' },
-  // Marina-di-praia destination page (NOT beach page - different from marina-di-praia-beach)
-  'marina-di-praia-dest': { 'en-us': 'amalfi-coast/marina-di-praia', 'de-de': 'amalfikueste/marina-di-praia', 'fr-fr': 'cote-amalfitaine/marina-di-praia', 'es-es': 'costa-amalfitana/marina-di-praia', 'it-it': 'costiera-amalfitana/marina-di-praia' },
-  // NOTE: Marina-di-praia beach page does NOT exist in sitemap (not built)
-  // It would be: 'en-us': 'beaches/amalfi-coast/marina-di-praia', but this isn't created
+  // NOTE: marina-di-praia-dest entries removed (destination pages deleted, 301 redirects to beach pages)
   // Blog pages (same slug in most languages)
   'amalfi-coast-wines': { 'en-us': 'blog/amalfi-coast-wines', 'de-de': 'blog/amalfi-weine', 'fr-fr': 'blog/vins-cote-amalfi', 'es-es': 'blog/vinos-costa-amalfi', 'it-it': 'blog/vini-costa-amalfi' },
   'cetara-anchovies': { 'en-us': 'blog/cetara-anchovies', 'de-de': 'blog/cetara-sardellen', 'fr-fr': 'blog/anchois-cetara', 'es-es': 'blog/anchoas-cetara', 'it-it': 'blog/alici-di-cetara' },
