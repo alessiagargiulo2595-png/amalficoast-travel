@@ -1,28 +1,56 @@
-<!-- Sticky Bottom Bar - Mobile only, IT only -->
-<div class="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-100 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+---
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+
+const config: Record<string, { ferries: string; ferriesUrl: string; bus: string; busUrl: string; map: string }> = {
+  'it-it': { ferries: 'Traghetti', ferriesUrl: '/it-it/guida/traghetti/',   bus: 'Bus SITA', busUrl: '/it-it/guida/bus-sita/',       map: 'Mappa'  },
+  'en-us': { ferries: 'Ferries',   ferriesUrl: '/en-us/guide/ferries/',     bus: 'SITA Bus', busUrl: '/en-us/guide/sita-bus/',       map: 'Map'    },
+  'de-de': { ferries: 'Fähren',    ferriesUrl: '/de-de/ratgeber/faehren/',  bus: 'SITA Bus', busUrl: '/de-de/ratgeber/sita-bus/',    map: 'Karte'  },
+  'es-es': { ferries: 'Ferries',   ferriesUrl: '/es-es/guia/ferries/',      bus: 'Bus SITA', busUrl: '/es-es/guia/bus-sita/',        map: 'Mapa'   },
+  'fr-fr': { ferries: 'Ferries',   ferriesUrl: '/fr-fr/guide/ferries/',     bus: 'Bus SITA', busUrl: '/fr-fr/guide/bus-sita/',       map: 'Carte'  },
+};
+
+const t = config[lang] ?? config['en-us'];
+---
+
+<!-- Sticky Bottom Bar - Mobile only -->
+<div class="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-100 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] stickybar-safe">
   <div class="grid grid-cols-3 divide-x divide-slate-100">
-    <a href="/it-it/guida/traghetti/"
+    <a href={t.ferriesUrl}
        class="flex flex-col items-center gap-1 py-3 text-charcoal hover:text-med-blue hover:bg-med-blue/5 transition-colors">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18M3 17l-1.5 3h21L21 17M8 11V7a4 4 0 018 0v4"/>
       </svg>
-      <span class="text-[10px] font-medium uppercase tracking-[0.2em]">Traghetti</span>
+      <span class="text-[10px] font-medium uppercase tracking-[0.2em]">{t.ferries}</span>
     </a>
-    <a href="/it-it/guida/bus-sita/"
+    <a href={t.busUrl}
        class="flex flex-col items-center gap-1 py-3 text-charcoal hover:text-med-blue hover:bg-med-blue/5 transition-colors">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
         <rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="M3 10h18M8 19v2M16 19v2"/>
       </svg>
-      <span class="text-[10px] font-medium uppercase tracking-[0.2em]">Bus SITA</span>
+      <span class="text-[10px] font-medium uppercase tracking-[0.2em]">{t.bus}</span>
     </a>
     <a href="https://maps.google.com/?q=Amalfi+Coast+Italy" target="_blank" rel="noopener"
        class="flex flex-col items-center gap-1 py-3 text-charcoal hover:text-med-blue hover:bg-med-blue/5 transition-colors">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
       </svg>
-      <span class="text-[10px] font-medium uppercase tracking-[0.2em]">Mappa</span>
+      <span class="text-[10px] font-medium uppercase tracking-[0.2em]">{t.map}</span>
     </a>
   </div>
 </div>
 <!-- Spacer so content isn't hidden behind sticky bar -->
-<div class="lg:hidden h-16"></div>
+<div class="lg:hidden h-16 stickybar-spacer"></div>
+
+<style>
+  /* iOS safe area: bar sticks to bottom edge including home indicator */
+  .stickybar-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  /* Spacer grows to match bar + safe area */
+  .stickybar-spacer {
+    height: calc(4rem + env(safe-area-inset-bottom, 0px));
+  }
+</style>
