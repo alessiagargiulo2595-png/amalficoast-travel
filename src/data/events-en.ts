@@ -145,7 +145,7 @@ export const events: EventItem[] = [
     date: 'September 2026',
     location: 'Historic centre, Vico Equense',
     description: 'Food festival celebrating Provolone del Monaco DOP and Michelin-starred chefs through the medieval streets of Vico Equense.',
-    path: '/en-us/events/sorrento-peninsula/gustamincanto-vico-equense/',
+    path: '/en-us/',
   },
   {
     id: 'madonna-della-libera',
@@ -157,7 +157,7 @@ export const events: EventItem[] = [
     date: '13 Sep 2026',
     location: 'Sant\'Agnello',
     description: 'Local neighbourhood feast preserving the authentic spirit of Sorrentine Peninsula traditions, far from the tourist crowds.',
-    path: '/en-us/events/sorrento-peninsula/madonna-della-libera/',
+    path: '/en-us/',
   },
   {
     id: 'sagra-limone-massa-lubrense',
@@ -169,7 +169,7 @@ export const events: EventItem[] = [
     date: '11–12 Jul 2026',
     location: 'Historic centre, Massa Lubrense',
     description: 'Tasting trails through the historic doorways of Massa Lubrense, celebrating the Femminiello IGP lemon with limoncello, granita and lemon pasta.',
-    path: '/en-us/events/sorrento-peninsula/sagra-limone-massa-lubrense/',
+    path: '/en-us/',
   },
   {
     id: 'sagra-melanzana-preazzano',
@@ -181,7 +181,7 @@ export const events: EventItem[] = [
     date: '9–10 Aug 2026',
     location: 'Preazzano, Vico Equense',
     description: 'One of the oldest festivals in the area: the local aubergine in dozens of variations, including the famous chocolate version.',
-    path: '/en-us/events/sorrento-peninsula/sagra-melanzana-preazzano/',
+    path: '/en-us/',
   },
   {
     id: 'sorrento-meeting-cultura',
@@ -193,7 +193,7 @@ export const events: EventItem[] = [
     date: 'Jun–Jul 2026',
     location: 'Chiostro di San Francesco, Sorrento',
     description: 'Evening meetings with internationally renowned authors in the Gothic-Arab cloister of San Francesco.',
-    path: '/en-us/events/sorrento-peninsula/sorrento-meeting-cultura/',
+    path: '/en-us/',
   },
   {
     id: 'regata-storica-amalfi',
@@ -253,6 +253,6 @@ export const events: EventItem[] = [
     date: '14 Feb 2026',
     location: "Basilica di Sant'Antonino, Sorrento",
     description: "Sorrento's patron saint festival with the procession of the saint's effigy through the historic centre and traditional fireworks.",
-    path: '/en-us/events/sorrento-peninsula/festa-sant-antonino/',
+    path: '/en-us/',
   },
 ];
