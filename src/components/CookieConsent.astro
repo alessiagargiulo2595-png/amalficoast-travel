@@ -32,6 +32,9 @@ const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
   const privacyUrl = el?.dataset.privacy || '/en-us/privacy-policy/';
   const cookieUrl = el?.dataset.cookie || '/en-us/cookie-policy/';
 
+  // Expose for footer "Cookie preferences" link
+  (window as any).showCookiePreferences = () => CookieConsent.showPreferences();
+
   function updateConsent(granted: boolean) {
     if (typeof (window as any).gtag === 'function') {
       (window as any).gtag('consent', 'update', {
@@ -83,7 +86,6 @@ const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
             description: `Analytics only — no advertising. <a href="${privacyUrl}">Privacy</a> · <a href="${cookieUrl}">Cookies</a>`,
             acceptAllBtn: 'Accept',
             acceptNecessaryBtn: 'Reject',
-            showPreferencesBtn: 'Settings',
           },
           preferencesModal: {
             title: 'Cookie preferences',
@@ -99,11 +101,10 @@ const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
         },
         it: {
           consentModal: {
-            title: 'Cookie',
-            description: `Solo analitici — zero pubblicità. <a href="${privacyUrl}">Privacy</a> · <a href="${cookieUrl}">Cookie</a>`,
+            title: 'Naviga leggero, la tua privacy è al sicuro',
+            description: `Solo cookie analitici, zero pubblicità. <a href="${privacyUrl}">Privacy Policy</a> · <a href="${cookieUrl}">Cookie Policy</a>`,
             acceptAllBtn: 'Accetta',
             acceptNecessaryBtn: 'Rifiuta',
-            showPreferencesBtn: 'Impostazioni',
           },
           preferencesModal: {
             title: 'Preferenze cookie',
@@ -203,9 +204,9 @@ const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
     --cc-btn-primary-color: #ffffff;
     --cc-btn-primary-hover-bg: #1e293b;
 
-    /* Reject — ghost */
-    --cc-btn-secondary-bg: transparent;
-    --cc-btn-secondary-color: #64748b;
+    /* Reject — white bg with border */
+    --cc-btn-secondary-bg: #ffffff;
+    --cc-btn-secondary-color: #0f172a;
     --cc-btn-secondary-hover-bg: #f8fafc;
     --cc-btn-secondary-border-color: #e2e8f0;
 
@@ -219,31 +220,21 @@ const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
   #cc-main .cm {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10), 0 1px 4px rgba(0, 0, 0, 0.06);
     border: 1px solid #f1f5f9;
-    max-width: 340px;
+    max-width: 300px;
   }
 
   /* Tighter padding */
-  #cc-main .cm__body { padding: 1.1rem 1.25rem 0.75rem; }
-  #cc-main .cm__footer { padding: 0.75rem 1.25rem 1rem; }
-  #cc-main .cm__title { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.35rem; }
-  #cc-main .cm__desc { font-size: 0.78rem; line-height: 1.5; color: #64748b; }
+  #cc-main .cm__body { padding: 0.85rem 1rem 0.5rem; }
+  #cc-main .cm__footer { padding: 0.5rem 1rem 0.85rem; }
+  #cc-main .cm__title { font-size: 0.8rem; font-weight: 600; margin-bottom: 0.25rem; }
+  #cc-main .cm__desc { font-size: 0.72rem; line-height: 1.45; color: #64748b; }
   #cc-main .cm__desc a { color: #2563eb; text-decoration: none; }
   #cc-main .cm__desc a:hover { text-decoration: underline; }
 
-  /* Button row — compact */
-  #cc-main .cm__btn-group { gap: 0.5rem; }
-  #cc-main .cm__btn { font-size: 0.78rem; padding: 0.45rem 0.9rem; font-weight: 500; }
-
-  /* "Settings" link — minimal, below buttons */
-  #cc-main .cm__btn--secondary:last-child {
-    font-size: 0.72rem;
-    color: #94a3b8;
-    border: none;
-    padding: 0.2rem 0;
-    text-decoration: underline;
-    background: transparent;
-  }
-  #cc-main .cm__btn--secondary:last-child:hover { color: #475569; background: transparent; }
+  /* 2 buttons side by side */
+  #cc-main .cm__btn-group { gap: 0.5rem; display: flex !important; flex-direction: row !important; flex-wrap: nowrap; }
+  #cc-main .cm__btn { font-size: 0.78rem; padding: 0.45rem 0.9rem; font-weight: 500; flex: 1; text-align: center; min-width: 0; }
+  #cc-main .cm__btn--secondary { border: 1px solid #e2e8f0; }
 
   /* Bottom-left margin so it clears StickyBar on mobile */
   @media (max-width: 1023px) {
