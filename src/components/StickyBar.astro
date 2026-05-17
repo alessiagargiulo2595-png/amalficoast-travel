@@ -4,6 +4,35 @@ interface Props {
 }
 const { lang } = Astro.props;
 
+// Context-aware map: detect location from URL path segments
+const pathname = Astro.url.pathname;
+const segments = pathname.split('/').filter(Boolean);
+const locationMap: Record<string, string> = {
+  'positano': 'Positano, Amalfi Coast, Italy',
+  'amalfi': 'Amalfi, Italy',
+  'ravello': 'Ravello, Italy',
+  'praiano': 'Praiano, Italy',
+  'maiori': 'Maiori, Italy',
+  'minori': 'Minori, Italy',
+  'cetara': 'Cetara, Italy',
+  'vietri-sul-mare': 'Vietri sul Mare, Italy',
+  'marina-di-praia': 'Marina di Praia, Italy',
+  'capri': 'Capri, Italy',
+  'ischia': 'Ischia, Italy',
+  'procida': 'Procida, Italy',
+  'sorrento': 'Sorrento, Italy',
+  'sorrent': 'Sorrento, Italy',
+  'sorrente': 'Sorrento, Italy',
+  'massa-lubrense': 'Massa Lubrense, Italy',
+  'vico-equense': 'Vico Equense, Italy',
+  'sant-agnello': "Sant'Agnello, Italy",
+};
+let mapQuery = 'Amalfi Coast Italy';
+for (const seg of [...segments].reverse()) {
+  if (locationMap[seg]) { mapQuery = locationMap[seg]; break; }
+}
+const mapUrl = `https://maps.google.com/?q=${encodeURIComponent(mapQuery)}`;
+
 const config: Record<string, { ferries: string; ferriesUrl: string; bus: string; busUrl: string; map: string }> = {
   'it-it': { ferries: 'Traghetti', ferriesUrl: '/it-it/guida/traghetti/',   bus: 'Bus SITA', busUrl: '/it-it/guida/bus-sita/',       map: 'Mappa'  },
   'en-us': { ferries: 'Ferries',   ferriesUrl: '/en-us/guide/ferries/',     bus: 'SITA Bus', busUrl: '/en-us/guide/sita-bus/',       map: 'Map'    },
@@ -32,7 +61,7 @@ const t = config[lang] ?? config['en-us'];
       </svg>
       <span class="text-[10px] font-medium uppercase tracking-[0.2em]">{t.bus}</span>
     </a>
-    <a href="https://maps.google.com/?q=Amalfi+Coast+Italy" target="_blank" rel="noopener"
+    <a href={mapUrl} target="_blank" rel="noopener"
        class="flex flex-col items-center gap-1 py-3 text-charcoal hover:text-med-blue hover:bg-med-blue/5 transition-colors">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>

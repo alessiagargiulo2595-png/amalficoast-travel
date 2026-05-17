@@ -15,9 +15,10 @@ interface Props {
   pageKey?: string;
   breadcrumbs?: { name: string; url: string }[];
   schema?: object[];
+  ogImage?: string;
 }
 
-const { title, description, lang, pageKey, breadcrumbs, schema } = Astro.props;
+const { title, description, lang, pageKey, breadcrumbs, schema, ogImage = '/images/costiera-hero.webp' } = Astro.props;
 const t = getTranslations(lang);
 const site = 'https://amalficoast-travel.com';
 
@@ -103,6 +104,11 @@ const allSchemas = [websiteSchema, organizationSchema, ...(schema || []), ...(br
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="Amalfi Coast Travel Guide" />
     <meta property="og:locale" content={htmlLang} />
+    <meta property="og:image" content={`${site}${ogImage}`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={`${site}${ogImage}`} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -155,5 +161,21 @@ const allSchemas = [websiteSchema, organizationSchema, ...(schema || []), ...(br
     <Footer lang={lang} />
     <StickyBar lang={lang} />
     <CookieConsent lang={lang} />
+
+    <!-- Back to top -->
+    <button id="back-to-top" class="hidden fixed bottom-20 right-4 z-40 w-11 h-11 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-slate-500 hover:text-med-blue hover:shadow-xl transition-all duration-200 lg:bottom-8" aria-label="Back to top">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
+      </svg>
+    </button>
+    <script>
+      const btt = document.getElementById('back-to-top');
+      if (btt) {
+        window.addEventListener('scroll', () => {
+          btt.classList.toggle('hidden', window.scrollY < 300);
+        }, { passive: true });
+        btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      }
+    </script>
   </body>
 </html>
