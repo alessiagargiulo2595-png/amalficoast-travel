@@ -1,0 +1,203 @@
+---
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+
+const ccLangMap: Record<string, string> = {
+  'en-us': 'en', 'it-it': 'it', 'de-de': 'de', 'fr-fr': 'fr', 'es-es': 'es'
+};
+const privacyUrls: Record<string, string> = {
+  'en-us': '/en-us/privacy-policy/', 'it-it': '/it-it/privacy-policy/',
+  'de-de': '/de-de/privacy-policy/', 'fr-fr': '/fr-fr/privacy-policy/', 'es-es': '/es-es/privacy-policy/',
+};
+const cookieUrls: Record<string, string> = {
+  'en-us': '/en-us/cookie-policy/', 'it-it': '/it-it/cookie-policy/',
+  'de-de': '/de-de/cookie-policy/', 'fr-fr': '/fr-fr/cookie-policy/', 'es-es': '/es-es/cookie-policy/',
+};
+
+const ccLang = ccLangMap[lang] || 'en';
+const privacyUrl = privacyUrls[lang] || '/en-us/privacy-policy/';
+const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
+---
+
+<span id="cc-config" data-lang={ccLang} data-privacy={privacyUrl} data-cookie={cookieUrl} hidden></span>
+
+<script>
+  import * as CookieConsent from 'vanilla-cookieconsent';
+  import 'vanilla-cookieconsent/dist/cookieconsent.css';
+
+  const el = document.getElementById('cc-config') as HTMLElement;
+  const lang = el?.dataset.lang || 'en';
+  const privacyUrl = el?.dataset.privacy || '/en-us/privacy-policy/';
+  const cookieUrl = el?.dataset.cookie || '/en-us/cookie-policy/';
+
+  function updateConsent(granted: boolean) {
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('consent', 'update', {
+        analytics_storage: granted ? 'granted' : 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      });
+    }
+  }
+
+  CookieConsent.run({
+    guiOptions: {
+      consentModal: {
+        layout: 'box',
+        position: 'bottom left',
+        equalWeightButtons: false,
+        flipButtons: false,
+      },
+    },
+    categories: {
+      necessary: { enabled: true, readOnly: true },
+      analytics: {
+        enabled: false,
+        autoClear: {
+          cookies: [
+            { name: /^(_ga|_gid|_gat)/ },
+            { name: /^_ga_/ },
+            { name: /^(_clck|_clsk)/ },
+          ],
+        },
+      },
+    },
+    onConsent: () => {
+      updateConsent(CookieConsent.acceptedCategory('analytics'));
+    },
+    onChange: ({ changedCategories }) => {
+      if (changedCategories.includes('analytics')) {
+        updateConsent(CookieConsent.acceptedCategory('analytics'));
+      }
+    },
+    language: {
+      default: lang,
+      translations: {
+        en: {
+          consentModal: {
+            title: 'We use cookies',
+            description: `We use analytics cookies (Google Analytics, Microsoft Clarity) to understand how visitors use this site. <a href="${privacyUrl}">Privacy Policy</a> · <a href="${cookieUrl}">Cookie Policy</a>`,
+            acceptAllBtn: 'Accept all',
+            acceptNecessaryBtn: 'Reject all',
+            showPreferencesBtn: 'Manage preferences',
+          },
+          preferencesModal: {
+            title: 'Cookie preferences',
+            acceptAllBtn: 'Accept all',
+            acceptNecessaryBtn: 'Reject all',
+            savePreferencesBtn: 'Save preferences',
+            closeIconLabel: 'Close',
+            sections: [
+              { title: 'Strictly necessary', description: 'Required for the site to function. Cannot be disabled.', linkedCategory: 'necessary' },
+              { title: 'Analytics', description: 'Google Analytics and Microsoft Clarity collect anonymous data to help improve the site. No personal data is stored.', linkedCategory: 'analytics' },
+            ],
+          },
+        },
+        it: {
+          consentModal: {
+            title: 'Utilizziamo i cookie',
+            description: `Utilizziamo cookie analitici (Google Analytics, Microsoft Clarity) per capire come i visitatori usano il sito. <a href="${privacyUrl}">Privacy Policy</a> · <a href="${cookieUrl}">Cookie Policy</a>`,
+            acceptAllBtn: 'Accetta tutto',
+            acceptNecessaryBtn: 'Rifiuta tutto',
+            showPreferencesBtn: 'Gestisci preferenze',
+          },
+          preferencesModal: {
+            title: 'Preferenze cookie',
+            acceptAllBtn: 'Accetta tutto',
+            acceptNecessaryBtn: 'Rifiuta tutto',
+            savePreferencesBtn: 'Salva preferenze',
+            closeIconLabel: 'Chiudi',
+            sections: [
+              { title: 'Strettamente necessari', description: 'Necessari al funzionamento del sito. Non possono essere disabilitati.', linkedCategory: 'necessary' },
+              { title: 'Analitici', description: 'Google Analytics e Microsoft Clarity raccolgono dati anonimi per migliorare il sito. Nessun dato personale viene memorizzato.', linkedCategory: 'analytics' },
+            ],
+          },
+        },
+        de: {
+          consentModal: {
+            title: 'Wir verwenden Cookies',
+            description: `Wir verwenden Analyse-Cookies (Google Analytics, Microsoft Clarity), um zu verstehen, wie Besucher diese Website nutzen. <a href="${privacyUrl}">Datenschutz</a> · <a href="${cookieUrl}">Cookie-Richtlinie</a>`,
+            acceptAllBtn: 'Alle akzeptieren',
+            acceptNecessaryBtn: 'Alle ablehnen',
+            showPreferencesBtn: 'Einstellungen verwalten',
+          },
+          preferencesModal: {
+            title: 'Cookie-Einstellungen',
+            acceptAllBtn: 'Alle akzeptieren',
+            acceptNecessaryBtn: 'Alle ablehnen',
+            savePreferencesBtn: 'Einstellungen speichern',
+            closeIconLabel: 'Schließen',
+            sections: [
+              { title: 'Unbedingt notwendig', description: 'Für den Betrieb der Website erforderlich. Können nicht deaktiviert werden.', linkedCategory: 'necessary' },
+              { title: 'Analyse', description: 'Google Analytics und Microsoft Clarity sammeln anonyme Daten zur Verbesserung der Website. Es werden keine personenbezogenen Daten gespeichert.', linkedCategory: 'analytics' },
+            ],
+          },
+        },
+        fr: {
+          consentModal: {
+            title: 'Nous utilisons des cookies',
+            description: `Nous utilisons des cookies analytiques (Google Analytics, Microsoft Clarity) pour comprendre comment les visiteurs utilisent ce site. <a href="${privacyUrl}">Confidentialité</a> · <a href="${cookieUrl}">Cookies</a>`,
+            acceptAllBtn: 'Tout accepter',
+            acceptNecessaryBtn: 'Tout refuser',
+            showPreferencesBtn: 'Gérer les préférences',
+          },
+          preferencesModal: {
+            title: 'Préférences de cookies',
+            acceptAllBtn: 'Tout accepter',
+            acceptNecessaryBtn: 'Tout refuser',
+            savePreferencesBtn: 'Sauvegarder',
+            closeIconLabel: 'Fermer',
+            sections: [
+              { title: 'Strictement nécessaires', description: 'Nécessaires au fonctionnement du site. Ne peuvent pas être désactivés.', linkedCategory: 'necessary' },
+              { title: 'Analytiques', description: 'Google Analytics et Microsoft Clarity collectent des données anonymes pour améliorer le site. Aucune donnée personnelle n\'est stockée.', linkedCategory: 'analytics' },
+            ],
+          },
+        },
+        es: {
+          consentModal: {
+            title: 'Usamos cookies',
+            description: `Usamos cookies analíticas (Google Analytics, Microsoft Clarity) para entender cómo los visitantes usan este sitio. <a href="${privacyUrl}">Privacidad</a> · <a href="${cookieUrl}">Cookies</a>`,
+            acceptAllBtn: 'Aceptar todo',
+            acceptNecessaryBtn: 'Rechazar todo',
+            showPreferencesBtn: 'Gestionar preferencias',
+          },
+          preferencesModal: {
+            title: 'Preferencias de cookies',
+            acceptAllBtn: 'Aceptar todo',
+            acceptNecessaryBtn: 'Rechazar todo',
+            savePreferencesBtn: 'Guardar preferencias',
+            closeIconLabel: 'Cerrar',
+            sections: [
+              { title: 'Estrictamente necesarias', description: 'Necesarias para el funcionamiento del sitio. No pueden desactivarse.', linkedCategory: 'necessary' },
+              { title: 'Analíticas', description: 'Google Analytics y Microsoft Clarity recopilan datos anónimos para mejorar el sitio. No se almacenan datos personales.', linkedCategory: 'analytics' },
+            ],
+          },
+        },
+      },
+    },
+  });
+</script>
+
+<style is:global>
+  #cc-main {
+    --cc-font-family: Inter, system-ui, sans-serif;
+    --cc-modal-border-radius: 1rem;
+    --cc-btn-border-radius: 0.5rem;
+    --cc-bg: #0f172a;
+    --cc-primary-color: #fff;
+    --cc-secondary-color: rgba(255,255,255,0.6);
+    --cc-separator-border-color: rgba(255,255,255,0.08);
+    --cc-btn-primary-bg: #2563eb;
+    --cc-btn-primary-color: #fff;
+    --cc-btn-primary-hover-bg: #1d4ed8;
+    --cc-btn-secondary-bg: rgba(255,255,255,0.08);
+    --cc-btn-secondary-color: #fff;
+    --cc-btn-secondary-hover-bg: rgba(255,255,255,0.15);
+    --cc-overlay-bg: rgba(0,0,0,0.5);
+    --cc-toggle-on-bg: #2563eb;
+    --cc-toggle-off-bg: rgba(255,255,255,0.2);
+  }
+</style>

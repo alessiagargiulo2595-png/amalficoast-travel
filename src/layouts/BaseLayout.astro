@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import StickyBar from '../components/StickyBar.astro';
 import HrefLangTags from '../components/HrefLangTags.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import { getTranslations, getLocalePath, slugMap, translatePath, extractPageKeyFromPath, resolveCanonicalUrl } from '../i18n/translations';
 import type { Locale } from '../i18n/translations';
 
@@ -142,34 +143,7 @@ const allSchemas = [websiteSchema, organizationSchema, ...(schema || []), ...(br
       })(window, document, "clarity", "script", "wj6329gkzr");
     </script>
 
-    <!-- Iubenda Cookie Consent -->
-    <script type="text/javascript" src="https://embeds.iubenda.com/widgets/8e3fe260-5b84-4417-b3b5-1195b72552ba.js"></script>
-
-    <!-- Listen for Iubenda consent changes -->
-    <script is:inline>
-      window._iub = window._iub || {};
-      window._iub.csConfiguration = window._iub.csConfiguration || {};
-
-      // Store original callback
-      const originalCallback = window._iub.csConfiguration.callback;
-
-      window._iub.csConfiguration.callback = {
-        onConsentChange: function(preference, service) {
-          if (preference.purposes && preference.purposes['analytics']) {
-            gtag('consent', 'update', {
-              'analytics_storage': 'granted'
-            });
-          }
-        },
-        onPurposesConsent: function(purposes) {
-          if (purposes && purposes['analytics']) {
-            gtag('consent', 'update', {
-              'analytics_storage': 'granted'
-            });
-          }
-        }
-      };
-    </script>
+    <!-- Cookie Consent (vanilla-cookieconsent, MIT) -->
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
@@ -180,5 +154,6 @@ const allSchemas = [websiteSchema, organizationSchema, ...(schema || []), ...(br
     </main>
     <Footer lang={lang} />
     <StickyBar lang={lang} />
+    <CookieConsent lang={lang} />
   </body>
 </html>
