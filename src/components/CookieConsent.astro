@@ -50,6 +50,7 @@ const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
         position: 'bottom left',
         equalWeightButtons: false,
         flipButtons: false,
+        disablePageInteraction: false,
       },
     },
     categories: {
@@ -78,11 +79,11 @@ const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
       translations: {
         en: {
           consentModal: {
-            title: 'We use cookies',
-            description: `We use analytics cookies (Google Analytics, Microsoft Clarity) to understand how visitors use this site. <a href="${privacyUrl}">Privacy Policy</a> · <a href="${cookieUrl}">Cookie Policy</a>`,
-            acceptAllBtn: 'Accept all',
-            acceptNecessaryBtn: 'Reject all',
-            showPreferencesBtn: 'Manage preferences',
+            title: 'Cookies',
+            description: `Analytics only — no advertising. <a href="${privacyUrl}">Privacy</a> · <a href="${cookieUrl}">Cookies</a>`,
+            acceptAllBtn: 'Accept',
+            acceptNecessaryBtn: 'Reject',
+            showPreferencesBtn: 'Settings',
           },
           preferencesModal: {
             title: 'Cookie preferences',
@@ -98,11 +99,11 @@ const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
         },
         it: {
           consentModal: {
-            title: 'Utilizziamo i cookie',
-            description: `Utilizziamo cookie analitici (Google Analytics, Microsoft Clarity) per capire come i visitatori usano il sito. <a href="${privacyUrl}">Privacy Policy</a> · <a href="${cookieUrl}">Cookie Policy</a>`,
-            acceptAllBtn: 'Accetta tutto',
-            acceptNecessaryBtn: 'Rifiuta tutto',
-            showPreferencesBtn: 'Gestisci preferenze',
+            title: 'Cookie',
+            description: `Solo analitici — zero pubblicità. <a href="${privacyUrl}">Privacy</a> · <a href="${cookieUrl}">Cookie</a>`,
+            acceptAllBtn: 'Accetta',
+            acceptNecessaryBtn: 'Rifiuta',
+            showPreferencesBtn: 'Impostazioni',
           },
           preferencesModal: {
             title: 'Preferenze cookie',
@@ -118,11 +119,11 @@ const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
         },
         de: {
           consentModal: {
-            title: 'Wir verwenden Cookies',
-            description: `Wir verwenden Analyse-Cookies (Google Analytics, Microsoft Clarity), um zu verstehen, wie Besucher diese Website nutzen. <a href="${privacyUrl}">Datenschutz</a> · <a href="${cookieUrl}">Cookie-Richtlinie</a>`,
-            acceptAllBtn: 'Alle akzeptieren',
-            acceptNecessaryBtn: 'Alle ablehnen',
-            showPreferencesBtn: 'Einstellungen verwalten',
+            title: 'Cookies',
+            description: `Nur Analyse — keine Werbung. <a href="${privacyUrl}">Datenschutz</a> · <a href="${cookieUrl}">Cookies</a>`,
+            acceptAllBtn: 'Akzeptieren',
+            acceptNecessaryBtn: 'Ablehnen',
+            showPreferencesBtn: 'Einstellungen',
           },
           preferencesModal: {
             title: 'Cookie-Einstellungen',
@@ -138,11 +139,11 @@ const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
         },
         fr: {
           consentModal: {
-            title: 'Nous utilisons des cookies',
-            description: `Nous utilisons des cookies analytiques (Google Analytics, Microsoft Clarity) pour comprendre comment les visiteurs utilisent ce site. <a href="${privacyUrl}">Confidentialité</a> · <a href="${cookieUrl}">Cookies</a>`,
-            acceptAllBtn: 'Tout accepter',
-            acceptNecessaryBtn: 'Tout refuser',
-            showPreferencesBtn: 'Gérer les préférences',
+            title: 'Cookies',
+            description: `Analytiques uniquement — zéro pub. <a href="${privacyUrl}">Confidentialité</a> · <a href="${cookieUrl}">Cookies</a>`,
+            acceptAllBtn: 'Accepter',
+            acceptNecessaryBtn: 'Refuser',
+            showPreferencesBtn: 'Paramètres',
           },
           preferencesModal: {
             title: 'Préférences de cookies',
@@ -158,11 +159,11 @@ const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
         },
         es: {
           consentModal: {
-            title: 'Usamos cookies',
-            description: `Usamos cookies analíticas (Google Analytics, Microsoft Clarity) para entender cómo los visitantes usan este sitio. <a href="${privacyUrl}">Privacidad</a> · <a href="${cookieUrl}">Cookies</a>`,
-            acceptAllBtn: 'Aceptar todo',
-            acceptNecessaryBtn: 'Rechazar todo',
-            showPreferencesBtn: 'Gestionar preferencias',
+            title: 'Cookies',
+            description: `Solo analíticas — sin publicidad. <a href="${privacyUrl}">Privacidad</a> · <a href="${cookieUrl}">Cookies</a>`,
+            acceptAllBtn: 'Aceptar',
+            acceptNecessaryBtn: 'Rechazar',
+            showPreferencesBtn: 'Ajustes',
           },
           preferencesModal: {
             title: 'Preferencias de cookies',
@@ -184,20 +185,68 @@ const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
 <style is:global>
   #cc-main {
     --cc-font-family: Inter, system-ui, sans-serif;
-    --cc-modal-border-radius: 1rem;
-    --cc-btn-border-radius: 0.5rem;
-    --cc-bg: #0f172a;
-    --cc-primary-color: #fff;
-    --cc-secondary-color: rgba(255,255,255,0.6);
-    --cc-separator-border-color: rgba(255,255,255,0.08);
-    --cc-btn-primary-bg: #2563eb;
-    --cc-btn-primary-color: #fff;
-    --cc-btn-primary-hover-bg: #1d4ed8;
-    --cc-btn-secondary-bg: rgba(255,255,255,0.08);
-    --cc-btn-secondary-color: #fff;
-    --cc-btn-secondary-hover-bg: rgba(255,255,255,0.15);
-    --cc-overlay-bg: rgba(0,0,0,0.5);
-    --cc-toggle-on-bg: #2563eb;
-    --cc-toggle-off-bg: rgba(255,255,255,0.2);
+    --cc-modal-border-radius: 0.875rem;
+    --cc-btn-border-radius: 0.375rem;
+
+    /* Light, minimal theme */
+    --cc-bg: #ffffff;
+    --cc-primary-color: #0f172a;
+    --cc-secondary-color: #64748b;
+    --cc-separator-border-color: #f1f5f9;
+    --cc-link-color: #2563eb;
+
+    /* No overlay — banner floats without blocking */
+    --cc-overlay-bg: transparent;
+
+    /* Accept — dark filled */
+    --cc-btn-primary-bg: #0f172a;
+    --cc-btn-primary-color: #ffffff;
+    --cc-btn-primary-hover-bg: #1e293b;
+
+    /* Reject — ghost */
+    --cc-btn-secondary-bg: transparent;
+    --cc-btn-secondary-color: #64748b;
+    --cc-btn-secondary-hover-bg: #f8fafc;
+    --cc-btn-secondary-border-color: #e2e8f0;
+
+    /* Preferences modal toggle */
+    --cc-toggle-on-bg: #0f172a;
+    --cc-toggle-off-bg: #cbd5e1;
+    --cc-toggle-readonly-bg: #e2e8f0;
+  }
+
+  /* Compact box with shadow, no harsh border */
+  #cc-main .cm {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10), 0 1px 4px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f1f5f9;
+    max-width: 340px;
+  }
+
+  /* Tighter padding */
+  #cc-main .cm__body { padding: 1.1rem 1.25rem 0.75rem; }
+  #cc-main .cm__footer { padding: 0.75rem 1.25rem 1rem; }
+  #cc-main .cm__title { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.35rem; }
+  #cc-main .cm__desc { font-size: 0.78rem; line-height: 1.5; color: #64748b; }
+  #cc-main .cm__desc a { color: #2563eb; text-decoration: none; }
+  #cc-main .cm__desc a:hover { text-decoration: underline; }
+
+  /* Button row — compact */
+  #cc-main .cm__btn-group { gap: 0.5rem; }
+  #cc-main .cm__btn { font-size: 0.78rem; padding: 0.45rem 0.9rem; font-weight: 500; }
+
+  /* "Settings" link — minimal, below buttons */
+  #cc-main .cm__btn--secondary:last-child {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    border: none;
+    padding: 0.2rem 0;
+    text-decoration: underline;
+    background: transparent;
+  }
+  #cc-main .cm__btn--secondary:last-child:hover { color: #475569; background: transparent; }
+
+  /* Bottom-left margin so it clears StickyBar on mobile */
+  @media (max-width: 1023px) {
+    #cc-main .cm { margin-bottom: 4.5rem; }
   }
 </style>
