@@ -55,14 +55,11 @@ const scrollBtnLeftId = `scroll-btn-left-${lang}`;
     // Update button visibility on scroll
     const updateButtonVisibility = () => {
       if (container && buttonLeft) {
-        // Use setTimeout to ensure scroll has finished
-        setTimeout(() => {
-          if (container.scrollLeft > 0) {
-            buttonLeft.classList.remove('opacity-0', 'pointer-events-none');
-          } else {
-            buttonLeft.classList.add('opacity-0', 'pointer-events-none');
-          }
-        }, 0);
+        if (container.scrollLeft > 5) {
+          buttonLeft.classList.remove('opacity-0', 'pointer-events-none');
+        } else {
+          buttonLeft.classList.add('opacity-0', 'pointer-events-none');
+        }
       }
     };
 
@@ -102,15 +99,20 @@ const scrollBtnLeftId = `scroll-btn-left-${lang}`;
         {items.map(item => (
           <a
             href={item.href}
-            class="flex-shrink-0 w-48 sm:w-56 snap-start bg-white border border-slate-200 rounded-2xl p-5 hover:border-med-blue/30 hover:shadow-md transition-all duration-200 group flex flex-col sm:h-auto sm:min-h-0 min-h-[240px]"
+            class="correlation-card flex-shrink-0 w-48 sm:w-56 snap-start rounded-2xl p-5 border border-slate-200 hover:border-med-blue/30 hover:shadow-md transition-all duration-200 group flex flex-col sm:h-auto sm:min-h-0 min-h-[240px] relative overflow-hidden"
           >
-            <span class="text-[10px] uppercase tracking-wide bg-med-blue/5 text-med-blue px-2 py-1 rounded-full font-medium w-fit">{item.tag}</span>
-            <h3 class="font-serif text-lg font-semibold text-charcoal mt-3 mb-1 group-hover:text-med-blue transition-colors">{item.name}</h3>
-            <p class="text-xs text-slate-500 leading-relaxed flex-grow">{item.desc}</p>
-            <p class="text-med-blue text-xs font-medium mt-4 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-              {getButtonText(lang)}
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
-            </p>
+            <div class="absolute -inset-2 bg-[url('/images/tile-vietri-sm.jpg')] bg-cover bg-center bg-no-repeat"></div>
+            <div class="absolute inset-0 bg-black/70"></div>
+            <div class="relative z-10 flex flex-col flex-grow">
+              <span class="text-[10px] uppercase tracking-wide bg-med-gold/30 text-white px-2 py-1 rounded-full font-bold w-fit [text-shadow:_0_1px_2px_rgba(0,0,0,0.5)]">{item.tag}</span>
+              <h3 class="font-serif text-xl font-bold text-white mt-3 mb-1 group-hover:text-med-gold transition-colors [text-shadow:_0_1px_4px_rgba(0,0,0,0.6)]">{item.name}</h3>
+              <p class="text-[13px] text-white font-semibold leading-relaxed flex-grow [text-shadow:_0_1px_3px_rgba(0,0,0,0.5)]">{item.desc}</p>
+              <div class="w-12 h-[2px] bg-med-gold rounded-full mt-4 mb-2"></div>
+              <p class="text-med-gold text-sm font-extrabold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 drop-shadow-[0_1px_3px_rgba(212,175,55,0.5)]">
+                {getButtonText(lang)}
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+              </p>
+            </div>
           </a>
         ))}
         <!-- Spacer for scroll on mobile -->
@@ -119,19 +121,19 @@ const scrollBtnLeftId = `scroll-btn-left-${lang}`;
       <!-- Scroll arrows (mobile only) -->
       <button
         id={`scroll-btn-left-${lang}`}
-        class="absolute -left-4 top-1/2 -translate-y-1/2 pointer-events-auto bg-gradient-to-r from-offwhite/95 to-transparent w-12 h-32 flex items-center justify-start pl-3 sm:hidden hover:pl-2 transition-all active:pl-3 z-20"
+        class="absolute left-1 top-1/2 -translate-y-1/2 w-9 h-9 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-slate-500 hover:text-med-blue hover:shadow-xl transition-all duration-200 sm:hidden z-20 opacity-0 pointer-events-none"
         aria-label="Scroll left"
       >
-        <svg class="w-5 h-5 text-med-blue" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
         </svg>
       </button>
       <button
         id={`scroll-btn-${lang}`}
-        class="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-auto bg-gradient-to-l from-offwhite/95 to-transparent w-12 h-32 flex items-center justify-end pr-3 sm:hidden hover:pr-2 transition-all active:pr-3 z-20 opacity-100"
+        class="absolute right-1 top-1/2 -translate-y-1/2 w-9 h-9 bg-white rounded-full shadow-lg border border-slate-100 flex items-center justify-center text-slate-500 hover:text-med-blue hover:shadow-xl transition-all duration-200 sm:hidden z-20"
         aria-label="Scroll right"
       >
-        <svg class="w-5 h-5 text-med-blue animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
         </svg>
       </button>
