@@ -1,0 +1,238 @@
+---
+import type { Locale } from '../i18n/translations';
+import { buildSearchIndex } from '../data/search-index';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const searchIndex = buildSearchIndex(lang);
+
+const ui = ({
+  'it-it': { placeholder: 'Cerca destinazioni, spiagge, esperienze...', noResults: 'Nessun risultato trovato', quickLinks: 'Link Rapidi' },
+  'en-us': { placeholder: 'Search destinations, beaches, experiences...', noResults: 'No results found', quickLinks: 'Quick Links' },
+  'de-de': { placeholder: 'Suche Reiseziele, Strande, Erlebnisse...', noResults: 'Keine Ergebnisse gefunden', quickLinks: 'Schnellzugriff' },
+  'fr-fr': { placeholder: 'Chercher destinations, plages, experiences...', noResults: 'Aucun resultat', quickLinks: 'Liens Rapides' },
+  'es-es': { placeholder: 'Buscar destinos, playas, experiencias...', noResults: 'Sin resultados', quickLinks: 'Enlaces Rapidos' },
+} as const)[lang];
+---
+
+<!-- Search data (hidden, read by JS) -->
+<script id="search-data" type="application/json" set:html={JSON.stringify(searchIndex)} />
+
+<!-- Search Modal Overlay -->
+<div id="search-modal" class="fixed inset-0 z-[200] hidden" role="dialog" aria-modal="true" aria-label="Search">
+  <!-- Backdrop -->
+  <div id="search-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-200"></div>
+
+  <!-- Modal Container -->
+  <div class="relative flex items-start justify-center pt-[10vh] sm:pt-[14vh] px-4">
+    <div id="search-panel" class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-200 ease-out">
+
+      <!-- Search Input Area -->
+      <div class="flex items-center gap-3 px-5 py-4 border-b border-slate-100">
+        <svg class="w-5 h-5 text-med-blue flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input
+          id="search-input"
+          type="text"
+          placeholder={ui.placeholder}
+          autocomplete="off"
+          spellcheck="false"
+          class="flex-1 bg-transparent text-base text-slate-800 placeholder-slate-400 outline-none font-sans"
+        />
+        <button id="search-close-btn" class="flex items-center justify-center w-7 h-7 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-600 transition-colors text-xs font-bold">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Results Area -->
+      <div id="search-results" class="max-h-[55vh] overflow-y-auto overscroll-contain scroll-smooth">
+        <!-- Default state: Quick links -->
+        <div id="search-default" class="py-2 px-2">
+          <p class="px-3 py-2 text-[10px] font-bold uppercase tracking-[0.25em] text-slate-300">{ui.quickLinks}</p>
+        </div>
+        <!-- Search results -->
+        <div id="search-hits" class="py-2 px-2 hidden"></div>
+        <!-- No results -->
+        <div id="search-empty" class="hidden py-16 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-100 flex items-center justify-center">
+            <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </div>
+          <p class="text-sm font-medium text-slate-400">{ui.noResults}</p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<script>
+  import Fuse from 'fuse.js';
+
+  interface SearchItem {
+    title: string;
+    description: string;
+    category: string;
+    url: string;
+    icon: string;
+  }
+
+  const dataScript = document.getElementById('search-data');
+  const data: SearchItem[] = dataScript ? JSON.parse(dataScript.textContent || '[]') : [];
+
+  const fuse = new Fuse(data, {
+    keys: [
+      { name: 'title', weight: 0.6 },
+      { name: 'description', weight: 0.3 },
+      { name: 'category', weight: 0.1 },
+    ],
+    threshold: 0.35,
+    includeScore: true,
+    minMatchCharLength: 2,
+  });
+
+  const modal = document.getElementById('search-modal')!;
+  const panel = document.getElementById('search-panel')!;
+  const input = document.getElementById('search-input') as HTMLInputElement;
+  const hitsEl = document.getElementById('search-hits')!;
+  const defaultEl = document.getElementById('search-default')!;
+  const emptyEl = document.getElementById('search-empty')!;
+  const closeBtn = document.getElementById('search-close-btn');
+  const backdrop = document.getElementById('search-backdrop');
+
+  let activeIndex = -1;
+
+  function createResultEl(item: SearchItem, idx: number): HTMLAnchorElement {
+    const el = document.createElement('a');
+    el.href = item.url;
+    el.className = 'search-result flex items-center gap-3 px-3 py-2.5 mx-1 rounded-xl text-left transition-all duration-100 hover:bg-med-blue/5 group cursor-pointer';
+    el.dataset.index = String(idx);
+    el.innerHTML = `
+      <div class="w-9 h-9 rounded-lg bg-slate-50 group-hover:bg-med-blue/10 flex items-center justify-center flex-shrink-0 transition-colors border border-slate-100 group-hover:border-med-blue/20">
+        <svg class="w-4 h-4 text-slate-400 group-hover:text-med-blue transition-colors" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="${item.icon}"/>
+        </svg>
+      </div>
+      <div class="flex-1 min-w-0">
+        <p class="text-[13px] font-medium text-slate-700 group-hover:text-med-blue truncate transition-colors">${item.title}</p>
+        <p class="text-[11px] text-slate-400 truncate mt-0.5">${item.description}</p>
+      </div>
+      <span class="text-[9px] uppercase tracking-[0.15em] font-semibold text-slate-300 group-hover:text-med-blue/50 flex-shrink-0 hidden sm:block transition-colors">${item.category}</span>
+      <svg class="w-4 h-4 text-slate-200 group-hover:text-med-blue/40 flex-shrink-0 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+    `;
+    return el;
+  }
+
+  function renderResults(items: SearchItem[], container: HTMLElement) {
+    items.forEach((item, idx) => {
+      container.appendChild(createResultEl(item, idx));
+    });
+  }
+
+  // Build quick links
+  renderResults(data.slice(0, 8), defaultEl);
+
+  function setActive(idx: number) {
+    const items = document.querySelectorAll('.search-result');
+    items.forEach((el, i) => {
+      if (i === idx) {
+        el.classList.add('!bg-med-blue/5');
+        el.scrollIntoView({ block: 'nearest' });
+      } else {
+        el.classList.remove('!bg-med-blue/5');
+      }
+    });
+    activeIndex = idx;
+  }
+
+  function openModal() {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+      panel.classList.remove('scale-95', 'opacity-0');
+      panel.classList.add('scale-100', 'opacity-100');
+      input.focus();
+    });
+  }
+
+  function closeModal() {
+    panel.classList.add('scale-95', 'opacity-0');
+    panel.classList.remove('scale-100', 'opacity-100');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      input.value = '';
+      resetToDefault();
+    }, 200);
+  }
+
+  function resetToDefault() {
+    hitsEl.classList.add('hidden');
+    emptyEl.classList.add('hidden');
+    defaultEl.classList.remove('hidden');
+    activeIndex = -1;
+  }
+
+  // Ctrl+K / Cmd+K
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      modal.classList.contains('hidden') ? openModal() : closeModal();
+    }
+  });
+
+  // Keyboard nav inside modal
+  modal.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { e.preventDefault(); closeModal(); }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const items = document.querySelectorAll('.search-result');
+      setActive(activeIndex < items.length - 1 ? activeIndex + 1 : 0);
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const items = document.querySelectorAll('.search-result');
+      setActive(activeIndex > 0 ? activeIndex - 1 : items.length - 1);
+    }
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const items = document.querySelectorAll<HTMLAnchorElement>('.search-result');
+      if (activeIndex >= 0 && items[activeIndex]) {
+        window.location.href = items[activeIndex].href;
+      }
+    }
+  });
+
+  // Close events
+  backdrop?.addEventListener('click', closeModal);
+  closeBtn?.addEventListener('click', closeModal);
+
+  // Search input
+  input.addEventListener('input', () => {
+    const q = input.value.trim();
+    if (q.length < 2) { resetToDefault(); return; }
+
+    const results = fuse.search(q).slice(0, 10);
+
+    defaultEl.classList.add('hidden');
+    if (results.length === 0) {
+      hitsEl.classList.add('hidden');
+      emptyEl.classList.remove('hidden');
+    } else {
+      emptyEl.classList.add('hidden');
+      hitsEl.classList.remove('hidden');
+      hitsEl.innerHTML = '';
+      renderResults(results.map(r => r.item), hitsEl);
+      activeIndex = -1;
+    }
+  });
+
+  // Expose to header buttons
+  (window as any).__openSearch = openModal;
+</script>
