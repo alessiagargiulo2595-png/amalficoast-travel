@@ -804,9 +804,12 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'ferries',              'de-de': 'faehren',             'fr-fr': 'ferries',              'es-es': 'ferries',              'it-it': 'traghetti'            },
   { 'en-us': 'sita-bus',             'de-de': 'sita-bus',            'fr-fr': 'bus-sita',             'es-es': 'bus-sita',             'it-it': 'bus-sita'             },
   { 'en-us': 'parking-ztl',          'de-de': 'parken-ztl',          'fr-fr': 'parking-ztl',          'es-es': 'aparcamiento-ztl',     'it-it': 'parcheggi-ztl'        },
+  // Guide sub-page: map
+  { 'en-us': 'map',                  'de-de': 'karte',               'fr-fr': 'carte',                'es-es': 'mapa',                 'it-it': 'mappa'                },
   // Itinerary duration folders
   { 'en-us': '1-day',                'de-de': '1-tag',               'fr-fr': '1-jour',               'es-es': '1-dia',                'it-it': '1-giorno'             },
   { 'en-us': '3-days',               'de-de': '3-tage',              'fr-fr': '3-jours',              'es-es': '3-dias',               'it-it': '3-giorni'             },
+  { 'en-us': '4-days',               'de-de': '4-tage',              'fr-fr': '4-jours',              'es-es': '4-dias',               'it-it': '4-giorni'             },
   { 'en-us': '7-days',               'de-de': '7-tage',              'fr-fr': '7-jours',              'es-es': '7-dias',               'it-it': '7-giorni'             },
   // Beach region names (must come before Events sub-area slugs to match correctly in lookup)
   { 'en-us': 'sorrento-peninsula',   'de-de': 'sorrentinische-halbinsel', 'fr-fr': 'peninsule-sorrentine',  'es-es': 'peninsula-sorrentina',  'it-it': 'penisola-sorrentina'  },
@@ -825,6 +828,8 @@ export const pathSegments: Array<Record<Locale, string>> = [
   // Itinerary detail slugs - 7 days
   { 'en-us': 'grand-tour-coast-peninsula',        'de-de': 'grand-tour-kueste-halbinsel',        'fr-fr': 'grand-tour-cote-peninsule',         'es-es': 'gran-tour-costa-peninsula',         'it-it': 'grand-tour-costiera-penisola'      },
   { 'en-us': 'slow-travel-villages-food',         'de-de': 'slow-travel-doerfer-kulinarik',      'fr-fr': 'slow-travel-villages-gastronomie',  'es-es': 'slow-travel-pueblos-gastronomia',   'it-it': 'slow-travel-borghi-cibo'           },
+  // Itinerary detail slugs - 4 days
+  { 'en-us': 'complete-amalfi-coast',            'de-de': 'komplette-amalfikueste',             'fr-fr': 'cote-amalfitaine-complete',         'es-es': 'costa-amalfitana-completa',         'it-it': 'costiera-amalfitana-completa'      },
   // Blog post slugs
   { 'en-us': 'amalfi-coast-wines',                'de-de': 'amalfi-weine',                       'fr-fr': 'vins-cote-amalfi',                  'es-es': 'vinos-costa-amalfi',                'it-it': 'vini-costa-amalfi'                 },
   { 'en-us': 'cetara-anchovies',                  'de-de': 'cetara-sardellen',                   'fr-fr': 'anchois-cetara',                    'es-es': 'anchoas-cetara',                    'it-it': 'alici-di-cetara'                   },
