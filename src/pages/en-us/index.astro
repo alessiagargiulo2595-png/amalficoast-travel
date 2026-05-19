@@ -753,89 +753,25 @@ const blogHighlights = [
   import Swiper from 'swiper';
   import { Pagination } from 'swiper/modules';
 
-  // Borghi slider
-  new Swiper('.swiper-borghi', {
+  // REGOLA UNICA: slidesPerView 1.15 per tutti (15% peek)
+  // Swiper gestisce nativamente l'ultima slide al 100% — zero offset necessario
+  // Solo spiagge: 2.1 (card piccole, 2 visibili)
+  const base = {
     modules: [Pagination],
-    slidesPerView: 1.35,
+    slidesPerView: 1.15,
     spaceBetween: 16,
-    pagination: { el: '.swiper-borghi .swiper-pagination', clickable: true },
     watchSlidesProgress: true,
     resistanceRatio: 0,
-    slidesOffsetAfter: 300,
     touchReleaseOnEdges: true,
-  });
+  };
 
-  // Spiagge slider
-  new Swiper('.swiper-spiagge', {
-    modules: [Pagination],
-    slidesPerView: 2,
-    spaceBetween: 16,
-    pagination: { el: '.swiper-spiagge .swiper-pagination', clickable: true },
-    watchSlidesProgress: true,
-    resistanceRatio: 0,
-    slidesOffsetAfter: 200,
-    touchReleaseOnEdges: true,
-  });
-
-  // Silos slider
-  new Swiper('.swiper-silos', {
-    modules: [Pagination],
-    slidesPerView: 1.1,
-    spaceBetween: 16,
-    pagination: { el: '.swiper-silos .swiper-pagination', clickable: true },
-    watchSlidesProgress: true,
-    resistanceRatio: 0,
-    slidesOffsetAfter: 20,
-    touchReleaseOnEdges: true,
-  });
-
-  // Curiosità slider
-  new Swiper('.swiper-curiosita', {
-    modules: [Pagination],
-    slidesPerView: 1.1,
-    spaceBetween: 16,
-    pagination: { el: '.swiper-curiosita .swiper-pagination', clickable: true },
-    watchSlidesProgress: true,
-    resistanceRatio: 0,
-    slidesOffsetAfter: 20,
-    touchReleaseOnEdges: true,
-  });
-
-  // Experiences slider
-  new Swiper('.swiper-experiences', {
-    modules: [Pagination],
-    slidesPerView: 1.2,
-    spaceBetween: 16,
-    pagination: { el: '.swiper-experiences .swiper-pagination', clickable: true },
-    watchSlidesProgress: true,
-    resistanceRatio: 0,
-    slidesOffsetAfter: 80,
-    touchReleaseOnEdges: true,
-  });
-
-  // Blog slider
-  new Swiper('.swiper-blog', {
-    modules: [Pagination],
-    slidesPerView: 1.1,
-    spaceBetween: 16,
-    pagination: { el: '.swiper-blog .swiper-pagination', clickable: true },
-    watchSlidesProgress: true,
-    resistanceRatio: 0,
-    slidesOffsetAfter: -20,
-    touchReleaseOnEdges: true,
-  });
-
-  // Resources slider
-  new Swiper('.swiper-resources', {
-    modules: [Pagination],
-    slidesPerView: 1.35,
-    spaceBetween: 16,
-    pagination: { el: '.swiper-resources .swiper-pagination', clickable: true },
-    watchSlidesProgress: true,
-    resistanceRatio: 0,
-    slidesOffsetAfter: 200,
-    touchReleaseOnEdges: true,
-  });
+  new Swiper('.swiper-borghi',      { ...base, pagination: { el: '.swiper-borghi .swiper-pagination', clickable: true } });
+  new Swiper('.swiper-spiagge',     { ...base, slidesPerView: 2.1, pagination: { el: '.swiper-spiagge .swiper-pagination', clickable: true } });
+  new Swiper('.swiper-silos',       { ...base, pagination: { el: '.swiper-silos .swiper-pagination', clickable: true } });
+  new Swiper('.swiper-curiosita',   { ...base, pagination: { el: '.swiper-curiosita .swiper-pagination', clickable: true } });
+  new Swiper('.swiper-experiences', { ...base, pagination: { el: '.swiper-experiences .swiper-pagination', clickable: true } });
+  new Swiper('.swiper-blog',        { ...base, pagination: { el: '.swiper-blog .swiper-pagination', clickable: true } });
+  new Swiper('.swiper-resources',   { ...base, pagination: { el: '.swiper-resources .swiper-pagination', clickable: true } });
 </script>
 
 <style is:global>
@@ -887,18 +823,6 @@ const blogHighlights = [
     }
   }
 
-  /* Fix swiper slide width on mobile */
-  @media (max-width: 767px) {
-    .swiper-slide {
-      width: 85% !important;
-      margin-right: 15px !important;
-    }
-
-    .swiper-slide a.group {
-      aspect-ratio: 4 / 5 !important;
-      height: auto !important;
-    }
-  }
 
 </style>
 

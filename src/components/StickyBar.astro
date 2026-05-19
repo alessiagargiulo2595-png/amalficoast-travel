@@ -74,12 +74,13 @@ const t = config[lang] ?? config['en-us'];
 <div class="lg:hidden h-16 stickybar-spacer"></div>
 
 <style>
-  /* iOS safe area + GPU compositing to prevent floating on scroll-up */
+  /* iOS safe area + GPU compositing to prevent detach on scroll-up */
   .stickybar-safe {
     padding-bottom: env(safe-area-inset-bottom, 0px);
-    /* Forces own compositing layer — fixes iOS Safari dynamic viewport jump */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     will-change: transform;
   }
   /* Spacer grows to match bar + safe area */
