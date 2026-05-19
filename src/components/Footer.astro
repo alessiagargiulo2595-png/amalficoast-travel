@@ -1,13 +1,24 @@
 ---
-import { getTranslations, getLocalePath } from '../i18n/translations';
+import { getTranslations, getLocalePath, translatePath } from '../i18n/translations';
 import type { Locale } from '../i18n/translations';
 
 interface Props {
   lang: Locale;
+  pageKey?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, pageKey } = Astro.props;
 const t = getTranslations(lang);
+const locales: Locale[] = ['en-us', 'de-de', 'fr-fr', 'es-es', 'it-it'];
+const flagMap: Record<Locale, string> = { 'it-it': '🇮🇹', 'en-us': '🇺🇸', 'de-de': '🇩🇪', 'fr-fr': '🇫🇷', 'es-es': '🇪🇸' };
+const countryCodeMap: Record<Locale, string> = { 'it-it': 'IT', 'en-us': 'EN', 'de-de': 'DE', 'fr-fr': 'FR', 'es-es': 'ES' };
+const existingPages: Record<Locale, string[]> = {
+  'en-us': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning'],
+  'de-de': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning'],
+  'fr-fr': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning'],
+  'es-es': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning'],
+  'it-it': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning'],
+};
 
 /* ── Town base paths per locale ── */
 const townBase: Record<Locale, string> = {
@@ -300,8 +311,22 @@ const base = townBase[lang];
 
     </div>
 
+    <!-- Language switcher -->
+    <div class="border-t border-white/5 mt-14 pt-8 flex justify-center gap-3">
+      {locales.map(l => {
+        const fullPathname = Astro.url.pathname.startsWith('/') && !Astro.url.pathname.split('/')[1]?.match(/[a-z]{2}-[a-z]{2}/)
+          ? `/${lang}${Astro.url.pathname}`
+          : Astro.url.pathname;
+        return (
+          <a href={pageKey && existingPages[l]?.includes(pageKey) ? getLocalePath(l, pageKey) : translatePath(fullPathname, lang, l)} class={`text-xl px-2.5 py-1.5 rounded-md transition-colors ${l === lang ? 'bg-med-gold/20 ring-1 ring-med-gold/40' : 'opacity-50 hover:opacity-80'}`} title={countryCodeMap[l]}>
+            {flagMap[l]}
+          </a>
+        );
+      })}
+    </div>
+
     <!-- Bottom bar -->
-    <div class="border-t border-white/5 mt-14 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="border-t border-white/5 mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
       <p class="text-white/20 text-[10px] uppercase tracking-[0.3em]">{t.footer.copyright}</p>
       <div class="flex items-center gap-6 flex-wrap justify-center">
         <a href={`/${lang}/privacy-policy/`} class="text-white/20 hover:text-white/40 text-[10px] uppercase tracking-[0.3em] transition-colors">Privacy Policy</a>

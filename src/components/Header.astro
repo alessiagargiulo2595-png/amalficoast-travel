@@ -65,6 +65,9 @@ const itinerariHref   = ({ 'en-us': '/en-us/itineraries/', 'de-de': '/de-de/reis
 const destinazioniHref = ({ 'en-us': '/en-us/destinations/', 'de-de': '/de-de/reiseziele/', 'fr-fr': '/fr-fr/destinations/', 'es-es': '/es-es/destinos/', 'it-it': '/it-it/destinazioni/' } as const)[lang];
 const tuttiEvLabel    = ({ 'en-us': 'All events →', 'de-de': 'Alle Veranstaltungen →', 'fr-fr': 'Tous les événements →', 'es-es': 'Todos los eventos →', 'it-it': 'Tutti gli eventi →' } as const)[lang];
 const tuttiEvHref     = lang === 'it-it' ? '/it-it/eventi/' : lang === 'en-us' ? '/en-us/events/' : lang === 'de-de' ? '/de-de/veranstaltungen/' : lang === 'es-es' ? '/es-es/eventos/' : lang === 'fr-fr' ? '/fr-fr/evenements/' : '#';
+const pianificazioneHref = ({ 'en-us': '/en-us/planning/', 'de-de': '/de-de/planung/', 'fr-fr': '/fr-fr/planification/', 'es-es': '/es-es/planificacion/', 'it-it': '/it-it/pianificazione/' } as const)[lang];
+const blogHref = ({ 'en-us': '/en-us/blog/', 'de-de': '/de-de/blog/', 'fr-fr': '/fr-fr/blog/', 'es-es': '/es-es/blog/', 'it-it': '/it-it/blog/' } as const)[lang];
+const viewAllLabel = ({ 'en-us': 'View all', 'de-de': 'Alle anzeigen', 'fr-fr': 'Voir tout', 'es-es': 'Ver todos', 'it-it': 'Vedi tutti' } as const)[lang];
 
 /* ── Menu descriptions and labels ── */
 const menuDescDest = ({ 'en-us': 'Discover charming destinations', 'de-de': 'Entdecke charmante Ziele', 'fr-fr': 'Découvrez des destinations charmantes', 'es-es': 'Descubre destinos fascinantes', 'it-it': 'Scopri destinazioni affascinanti' } as const)[lang];
@@ -697,7 +700,7 @@ const eventiGastronomia = ({
             <div class="grid grid-cols-3 gap-x-16 gap-y-8">
               <!-- Pianificazione -->
               <div class="flex flex-col space-y-3">
-                <a href="#" class="text-med-blue text-[10px] font-bold uppercase tracking-[0.3em] relative block pb-2">
+                <a href={pianificazioneHref} class="text-med-blue text-[10px] font-bold uppercase tracking-[0.3em] relative block pb-2">
                   {lang === 'it-it' ? 'Pianificazione' : lang === 'en-us' ? 'Planning' : lang === 'de-de' ? 'Planung' : lang === 'fr-fr' ? 'Planification' : 'Planificación'}
                   <span class="absolute bottom-[-1px] left-0 w-8 h-px bg-med-gold"></span>
                 </a>
@@ -716,7 +719,7 @@ const eventiGastronomia = ({
               </div>
               <!-- Guide Pratiche -->
               <div class="flex flex-col space-y-3">
-                <a href="#" class="text-med-blue text-[10px] font-bold uppercase tracking-[0.3em] relative block pb-2">
+                <a href={pianificazioneHref} class="text-med-blue text-[10px] font-bold uppercase tracking-[0.3em] relative block pb-2">
                   {lang === 'it-it' ? 'Guide pratiche' : lang === 'en-us' ? 'Practical Guides' : lang === 'de-de' ? 'Praktische Ratgeber' : lang === 'fr-fr' ? 'Guides Pratiques' : 'Guías Prácticas'}
                   <span class="absolute bottom-[-1px] left-0 w-8 h-px bg-med-gold"></span>
                 </a>
@@ -735,7 +738,7 @@ const eventiGastronomia = ({
               </div>
               <!-- Blog & Local Tips -->
               <div class="flex flex-col space-y-3">
-                <a href="#" class="text-med-blue text-[10px] font-bold uppercase tracking-[0.3em] relative block pb-2">
+                <a href={blogHref} class="text-med-blue text-[10px] font-bold uppercase tracking-[0.3em] relative block pb-2">
                   {lang === 'it-it' ? 'Blog & Local tips' : lang === 'en-us' ? 'Blog & Local Tips' : lang === 'de-de' ? 'Blog & Lokale Tipps' : lang === 'fr-fr' ? 'Blog & Conseils Locaux' : 'Blog & Consejos Locales'}
                   <span class="absolute bottom-[-1px] left-0 w-8 h-px bg-med-gold"></span>
                 </a>
@@ -752,6 +755,11 @@ const eventiGastronomia = ({
                   ))}
                 </ul>
               </div>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 text-right">
+              <a href={pianificazioneHref} class="text-med-blue font-bold text-[11px] uppercase tracking-[0.3em] hover:text-med-blue/70 transition-colors inline-flex items-center gap-2">
+                {exploreMoreLabel} <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
             </div>
           </div>
         </div>
@@ -946,184 +954,200 @@ const eventiGastronomia = ({
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-100 bg-white max-h-[80vh] overflow-y-auto">
-    <div class="px-3 py-2 divide-y divide-slate-100">
-
-      <!-- Destinazioni -->
-      <details class="group/mob-dest">
-        <summary class="flex items-center justify-between px-3 py-3.5 rounded-xl text-sm font-semibold text-slate-800 hover:bg-slate-50 cursor-pointer select-none list-none">
-          {nav.dest}
-          <svg class="w-4 h-4 text-slate-400 group-open/mob-dest:rotate-180 transition-transform duration-200 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="pb-3 pt-1 space-y-3">
-          <div>
-            <a href={`${costieraBase}/`} class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold px-4 py-1 block relative pb-2">{dh.costiera}<span class="absolute bottom-[-1px] left-4 w-8 h-px bg-med-gold"></span></a>
-            {costieraBorghi.map(b => (
-              <a href={b.href} class="block px-6 py-2 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{b.name}</a>
-            ))}
-          </div>
-          <div>
-            <a href={sorrentineHref} class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold px-4 py-1 block relative pb-2">{dh.sorrentina}<span class="absolute bottom-[-1px] left-4 w-8 h-px bg-med-gold"></span></a>
-            {sorrentinaBorghi.map(b => (
-              <a href={b.href} class="block px-6 py-2 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{b.name}</a>
-            ))}
-          </div>
-          <div>
-            <a href={isoleHref} class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold px-4 py-1 block relative pb-2">{dh.isole}<span class="absolute bottom-[-1px] left-4 w-8 h-px bg-med-gold"></span></a>
-            {isoleLinks.map(b => (
-              <a href={b.href} class="block px-6 py-2 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{b.name}</a>
-            ))}
-          </div>
-        </div>
-        <a href={getLocalePath(lang, 'destinations')} class="block px-6 py-2 text-xs text-med-blue font-medium hover:text-med-blue/70 transition-colors inline-flex items-center gap-2">
-          Esplora di più <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </a>
-      </details>
-
-      <!-- Spiagge -->
-      <details class="group/mob-spiagge">
-        <summary class="flex items-center justify-between px-3 py-3.5 rounded-xl text-sm font-semibold text-slate-800 hover:bg-slate-50 cursor-pointer select-none list-none">
-          {nav.spiagge}
-          <svg class="w-4 h-4 text-slate-400 group-open/mob-spiagge:rotate-180 transition-transform duration-200 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="pb-3 pt-1">
-          {spiaggeAree.map(area => (
-            <div class="mt-2">
-              <p class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold px-4 pb-1 relative pb-2">{area.area}<span class="absolute bottom-[-1px] left-4 w-8 h-px bg-med-gold"></span></p>
-              {area.beaches.map(b => (
-                <a href={b.href} class="block px-6 py-2 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{b.name}</a>
-              ))}
-            </div>
-          ))}
-        </div>
-        <a href={spiaggeHref} class="block px-6 py-2 text-xs text-med-blue font-medium hover:text-med-blue/70 transition-colors inline-flex items-center gap-2">
-          Esplora di più <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </a>
-      </details>
-
-      <!-- Guida Pratica -->
-      <details class="group/mob-guida">
-        <summary class="flex items-center justify-between px-3 py-3.5 rounded-xl text-sm font-semibold text-slate-800 hover:bg-slate-50 cursor-pointer select-none list-none">
-          {nav.guida}
-          <svg class="w-4 h-4 text-slate-400 group-open/mob-guida:rotate-180 transition-transform duration-200 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="pb-3 pt-1 space-y-4">
-          <!-- Pianificazione -->
-          <div>
-            <p class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold px-4 py-1 relative pb-2">{lang === 'it-it' ? 'Pianificazione' : lang === 'en-us' ? 'Planning' : lang === 'de-de' ? 'Planung' : lang === 'fr-fr' ? 'Planification' : 'Planificación'}<span class="absolute bottom-[-1px] left-4 w-8 h-px bg-med-gold"></span></p>
-            {guidaPratica.planning.map(l => (
-              <a href={l.href} class="block px-6 py-2 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-            ))}
-          </div>
-          <!-- Guide Pratiche -->
-          <div>
-            <p class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold px-4 py-1 relative pb-2">{lang === 'it-it' ? 'Guide pratiche' : lang === 'en-us' ? 'Practical Guides' : lang === 'de-de' ? 'Praktische Ratgeber' : lang === 'fr-fr' ? 'Guides Pratiques' : 'Guías Prácticas'}<span class="absolute bottom-[-1px] left-4 w-8 h-px bg-med-gold"></span></p>
-            {guidaPratica.guides.map(l => (
-              <a href={l.href} class="block px-6 py-2 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-            ))}
-          </div>
-          <!-- Blog & Local Tips -->
-          <div>
-            <p class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold px-4 py-1 relative pb-2">{lang === 'it-it' ? 'Blog & Local tips' : lang === 'en-us' ? 'Blog & Local Tips' : lang === 'de-de' ? 'Blog & Lokale Tipps' : lang === 'fr-fr' ? 'Blog & Conseils Locaux' : 'Blog & Consejos Locales'}<span class="absolute bottom-[-1px] left-4 w-8 h-px bg-med-gold"></span></p>
-            {guidaPratica.blog.map(l => (
-              <a href={l.href} class="block px-6 py-2 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-            ))}
-          </div>
-        </div>
-      </details>
-
-      <!-- Esperienze + Itinerari -->
-      <details class="group/mob-esp">
-        <summary class="flex items-center justify-between px-3 py-3.5 rounded-xl text-sm font-semibold text-slate-800 hover:bg-slate-50 cursor-pointer select-none list-none">
-          {nav.esp}
-          <svg class="w-4 h-4 text-slate-400 group-open/mob-esp:rotate-180 transition-transform duration-200 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="pb-3 pt-1 space-y-3">
-          <div>
-            <a href={esperienzeHref} class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold px-4 py-1 block relative pb-2">{nav.esp}<span class="absolute bottom-[-1px] left-4 w-8 h-px bg-med-gold"></span></a>
-            {esperienze.map(l => (
-              <a href={l.href} class="block px-6 py-2 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-            ))}
-          </div>
-          <div>
-            <a href={itinerariHref} class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold px-4 py-1 block relative pb-2">{itinerariLabel}<span class="absolute bottom-[-1px] left-4 w-8 h-px bg-med-gold"></span></a>
-            <p class="text-[10px] text-med-gold uppercase tracking-[0.2em] px-4 pb-1 mt-1">{itPeriods.d1}</p>
-            {itinerari1g.map(l => (
-              <a href={l.href} class="block px-6 py-1.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-            ))}
-            <p class="text-[10px] text-med-gold uppercase tracking-[0.2em] px-4 pb-1 mt-2">{itPeriods.d3}</p>
-            {itinerari3g.map(l => (
-              <a href={l.href} class="block px-6 py-1.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-            ))}
-            {itinerari4g.length > 0 && (
-              <>
-                <p class="text-[10px] text-med-gold uppercase tracking-[0.2em] px-4 pb-1 mt-2">{itPeriods.d4}</p>
-                {itinerari4g.map(l => (
-                  <a href={l.href} class="block px-6 py-1.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-                ))}
-              </>
-            )}
-            {itinerari7g.length > 0 && (
-              <>
-                <p class="text-[10px] text-med-gold uppercase tracking-[0.2em] px-4 pb-1 mt-2">{itPeriods.d7}</p>
-                {itinerari7g.map(l => (
-                  <a href={l.href} class="block px-6 py-1.5 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-                ))}
-              </>
-            )}
-          </div>
-        </div>
-        <a href={esperienzeHref} class="block px-6 py-2 text-xs text-med-blue font-medium hover:text-med-blue/70 transition-colors inline-flex items-center gap-2">
-          Esplora di più <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </a>
-      </details>
-
-      <!-- Eventi -->
-      <details class="group/mob-ev">
-        <summary class="flex items-center justify-between px-3 py-3.5 rounded-xl text-sm font-semibold text-slate-800 hover:bg-slate-50 cursor-pointer select-none list-none">
-          {nav.ev}
-          <svg class="w-4 h-4 text-slate-400 group-open/mob-ev:rotate-180 transition-transform duration-200 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </summary>
-        <div class="pb-3 pt-1 space-y-3">
-          <div>
-            <p class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold px-4 py-1 relative pb-2">{evSec.cultura}<span class="absolute bottom-[-1px] left-4 w-8 h-px bg-med-gold"></span></p>
-            {eventiCultura.map(l => (
-              <a href={l.href} class="block px-6 py-2 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-            ))}
-          </div>
-          <div>
-            <p class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold px-4 py-1 relative pb-2">{evSec.tradizioni}<span class="absolute bottom-[-1px] left-4 w-8 h-px bg-med-gold"></span></p>
-            {eventiTradizioni.map(l => (
-              <a href={l.href} class="block px-6 py-2 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-            ))}
-          </div>
-          <div>
-            <p class="text-[10px] uppercase tracking-[0.3em] text-med-blue font-semibold px-4 py-1 relative pb-2">{evSec.gastro}<span class="absolute bottom-[-1px] left-4 w-8 h-px bg-med-gold"></span></p>
-            {eventiGastronomia.map(l => (
-              <a href={l.href} class="block px-6 py-2 rounded-xl text-sm text-slate-700 hover:bg-med-blue/5 hover:text-med-blue transition-colors">{l.name}</a>
-            ))}
-            <a href={tuttiEvHref} class="block px-6 py-2 text-xs text-med-blue font-medium hover:text-med-blue/70 transition-colors">{tuttiEvLabel}</a>
-          </div>
-        </div>
-      </details>
-
+  <!-- Full-screen mobile overlay -->
+  <div id="mobile-menu" class="fixed inset-0 z-[60] bg-white hidden lg:hidden flex flex-col mob-overlay-anim">
+    <!-- Top bar: logo + close -->
+    <div class="flex items-center justify-between h-20 px-8 border-b border-med-blue/10 flex-shrink-0">
+      <a href={`/${lang}/`} class="flex-shrink-0">
+        <img src="/logo.svg" alt={amalfiCoastGuideAlt} class="h-10 w-auto" />
+      </a>
+      <button id="mob-close-btn" class="p-2.5 rounded-full text-slate-400 hover:text-med-blue hover:bg-med-blue/5 transition-colors" aria-label="Close menu">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
     </div>
 
-    <!-- Lingua (sticky at bottom) -->
-    <div class="sticky bottom-0 border-t border-slate-100 bg-white pt-3 pb-3 px-3 flex gap-2 flex-wrap">
-      {locales.map(l => {
-        const fullPathname = Astro.url.pathname.startsWith('/') && !Astro.url.pathname.split('/')[1]?.match(/[a-z]{2}-[a-z]{2}/)
-          ? `/${lang}${Astro.url.pathname}`
-          : Astro.url.pathname;
-        return (
-          <a href={pageKey && existingPages[l]?.includes(pageKey) ? getLocalePath(l, pageKey) : translatePath(fullPathname, lang, l)} class={`text-2xl px-3 py-2 rounded-lg transition-colors ${l === lang ? 'bg-med-gold/20 ring-2 ring-med-gold/50' : 'hover:bg-slate-100'}`} title={countryCodeMap[l]}>
-            {flagMap[l]}
-          </a>
-        );
-      })}
+    <!-- Slide container -->
+    <div class="flex-1 overflow-hidden relative">
+      <div id="mob-slide-wrap" class="flex h-full transition-transform duration-300 ease-out" style="width:200%">
+
+        <!-- ═══ PANEL 0: Root categories ═══ -->
+        <div class="w-1/2 h-full overflow-y-auto flex flex-col">
+          <nav class="px-8 pt-8 pb-6 flex-1">
+            <button data-mob-panel="dest" class="mob-cat-btn flex items-center justify-between w-full py-5 text-left border-b border-med-blue/10 transition-colors group">
+              <span class="text-base tracking-wide text-slate-900 group-active:text-med-blue">{nav.dest}</span>
+              <svg class="w-4 h-4 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <button data-mob-panel="spiagge" class="mob-cat-btn flex items-center justify-between w-full py-5 text-left border-b border-med-blue/10 transition-colors group">
+              <span class="text-base tracking-wide text-slate-900 group-active:text-med-blue">{nav.spiagge}</span>
+              <svg class="w-4 h-4 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <button data-mob-panel="guida" class="mob-cat-btn flex items-center justify-between w-full py-5 text-left border-b border-med-blue/10 transition-colors group">
+              <span class="text-base tracking-wide text-slate-900 group-active:text-med-blue">{nav.guida}</span>
+              <svg class="w-4 h-4 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <button data-mob-panel="esp" class="mob-cat-btn flex items-center justify-between w-full py-5 text-left border-b border-med-blue/10 transition-colors group">
+              <span class="text-base tracking-wide text-slate-900 group-active:text-med-blue">{nav.esp}</span>
+              <svg class="w-4 h-4 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <button data-mob-panel="ev" class="mob-cat-btn flex items-center justify-between w-full py-5 text-left border-b border-med-blue/10 transition-colors group">
+              <span class="text-base tracking-wide text-slate-900 group-active:text-med-blue">{nav.ev}</span>
+              <svg class="w-4 h-4 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </nav>
+        </div>
+
+        <!-- ═══ PANEL 1: Sub-panel ═══ -->
+        <div class="w-1/2 h-full overflow-y-auto">
+          <!-- Back button -->
+          <button id="mob-back-btn" class="flex items-center gap-2.5 w-full px-8 py-4 text-[13px] font-medium tracking-wide text-med-blue border-b border-med-blue/10 transition-colors active:bg-med-blue/5">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            <span id="mob-back-label"></span>
+          </button>
+
+          <!-- Destinazioni -->
+          <div id="mob-sub-dest" class="mob-sub-panel hidden px-8 py-6">
+            <div class="space-y-6">
+              <div>
+                <a href={`${costieraBase}/`} class="text-[11px] uppercase tracking-[0.2em] text-med-blue font-semibold flex items-center justify-between pb-2 mb-2 border-b border-med-gold/30">{dh.costiera}<svg class="w-3 h-3 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+                {costieraBorghi.slice(0, 5).map(b => (
+                  <a href={b.href} class="block py-[7px] text-[14px] text-slate-600 active:text-med-blue transition-colors">{b.name}</a>
+                ))}
+                {costieraBorghi.length > 5 && (
+                  <a href={`${costieraBase}/`} class="block pt-1 text-[11px] text-med-gold font-medium tracking-wide">{viewAllLabel} →</a>
+                )}
+              </div>
+              <div>
+                <a href={sorrentineHref} class="text-[11px] uppercase tracking-[0.2em] text-med-blue font-semibold flex items-center justify-between pb-2 mb-2 border-b border-med-gold/30">{dh.sorrentina}<svg class="w-3 h-3 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+                {sorrentinaBorghi.map(b => (
+                  <a href={b.href} class="block py-[7px] text-[14px] text-slate-600 active:text-med-blue transition-colors">{b.name}</a>
+                ))}
+              </div>
+              <div>
+                <a href={isoleHref} class="text-[11px] uppercase tracking-[0.2em] text-med-blue font-semibold flex items-center justify-between pb-2 mb-2 border-b border-med-gold/30">{dh.isole}<svg class="w-3 h-3 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+                {isoleLinks.map(b => (
+                  <a href={b.href} class="block py-[7px] text-[14px] text-slate-600 active:text-med-blue transition-colors">{b.name}</a>
+                ))}
+              </div>
+            </div>
+            <a href={getLocalePath(lang, 'destinations')} class="inline-flex items-center gap-1.5 mt-6 text-[12px] tracking-wide uppercase text-med-gold font-medium">
+              {exploreMoreLabel} <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Spiagge -->
+          <div id="mob-sub-spiagge" class="mob-sub-panel hidden px-8 py-6">
+            <div class="space-y-6">
+              {spiaggeAree.map(area => (
+                <div>
+                  <a href={spiaggeHref} class="text-[11px] uppercase tracking-[0.2em] text-med-blue font-semibold flex items-center justify-between pb-2 mb-2 border-b border-med-gold/30">{area.area}<svg class="w-3 h-3 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+                  {area.beaches.map(b => (
+                    <a href={b.href} class="block py-[7px] text-[14px] text-slate-600 active:text-med-blue transition-colors">{b.name}</a>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <a href={spiaggeHref} class="inline-flex items-center gap-1.5 mt-6 text-[12px] tracking-wide uppercase text-med-gold font-medium">
+              {tutteBeachLabel} <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Guida -->
+          <div id="mob-sub-guida" class="mob-sub-panel hidden px-8 py-6">
+            <div class="space-y-6">
+              <div>
+                <a href={pianificazioneHref} class="text-[11px] uppercase tracking-[0.2em] text-med-blue font-semibold flex items-center justify-between pb-2 mb-2 border-b border-med-gold/30">{lang === 'it-it' ? 'Pianificazione' : lang === 'en-us' ? 'Planning' : lang === 'de-de' ? 'Planung' : lang === 'fr-fr' ? 'Planification' : 'Planificación'}<svg class="w-3 h-3 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+                {guidaPratica.planning.map(l => (
+                  <a href={l.href} class="block py-[7px] text-[14px] text-slate-600 active:text-med-blue transition-colors">{l.name}</a>
+                ))}
+              </div>
+              <div>
+                <a href={pianificazioneHref} class="text-[11px] uppercase tracking-[0.2em] text-med-blue font-semibold flex items-center justify-between pb-2 mb-2 border-b border-med-gold/30">{lang === 'it-it' ? 'Guide pratiche' : lang === 'en-us' ? 'Practical Guides' : lang === 'de-de' ? 'Praktische Ratgeber' : lang === 'fr-fr' ? 'Guides Pratiques' : 'Guías Prácticas'}<svg class="w-3 h-3 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+                {guidaPratica.guides.map(l => (
+                  <a href={l.href} class="block py-[7px] text-[14px] text-slate-600 active:text-med-blue transition-colors">{l.name}</a>
+                ))}
+              </div>
+              <div>
+                <a href={blogHref} class="text-[11px] uppercase tracking-[0.2em] text-med-blue font-semibold flex items-center justify-between pb-2 mb-2 border-b border-med-gold/30">{lang === 'it-it' ? 'Blog & Local tips' : lang === 'en-us' ? 'Blog & Local Tips' : lang === 'de-de' ? 'Blog & Lokale Tipps' : lang === 'fr-fr' ? 'Blog & Conseils Locaux' : 'Blog & Consejos Locales'}<svg class="w-3 h-3 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+                {guidaPratica.blog.map(l => (
+                  <a href={l.href} class="block py-[7px] text-[14px] text-slate-600 active:text-med-blue transition-colors">{l.name}</a>
+                ))}
+              </div>
+            </div>
+            <a href={pianificazioneHref} class="inline-flex items-center gap-1.5 mt-6 text-[12px] tracking-wide uppercase text-med-gold font-medium">
+              {exploreMoreLabel} <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Esperienze -->
+          <div id="mob-sub-esp" class="mob-sub-panel hidden px-8 py-6">
+            <div class="space-y-6">
+              <div>
+                <a href={esperienzeHref} class="text-[11px] uppercase tracking-[0.2em] text-med-blue font-semibold flex items-center justify-between pb-2 mb-2 border-b border-med-gold/30">{nav.esp}<svg class="w-3 h-3 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+                {esperienze.map(l => (
+                  <a href={l.href} class="block py-[7px] text-[14px] text-slate-600 active:text-med-blue transition-colors">{l.name}</a>
+                ))}
+              </div>
+              <div>
+                <a href={itinerariHref} class="text-[11px] uppercase tracking-[0.2em] text-med-blue font-semibold flex items-center justify-between pb-2 mb-2 border-b border-med-gold/30">{itinerariLabel}<svg class="w-3 h-3 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+                {itinerari1g.slice(0, 2).map(l => (
+                  <a href={l.href} class="block py-[6px] text-[14px] text-slate-600 active:text-med-blue transition-colors"><span class="text-[10px] text-med-gold/70 mr-1.5">{itPeriods.d1}</span>{l.name}</a>
+                ))}
+                {itinerari3g.slice(0, 2).map(l => (
+                  <a href={l.href} class="block py-[6px] text-[14px] text-slate-600 active:text-med-blue transition-colors"><span class="text-[10px] text-med-gold/70 mr-1.5">{itPeriods.d3}</span>{l.name}</a>
+                ))}
+                {itinerari7g.slice(0, 1).map(l => (
+                  <a href={l.href} class="block py-[6px] text-[14px] text-slate-600 active:text-med-blue transition-colors"><span class="text-[10px] text-med-gold/70 mr-1.5">{itPeriods.d7}</span>{l.name}</a>
+                ))}
+                <a href={itinerariHref} class="block pt-1 text-[11px] text-med-gold font-medium tracking-wide">{viewAllLabel} →</a>
+              </div>
+            </div>
+            <a href={esperienzeHref} class="inline-flex items-center gap-1.5 mt-6 text-[12px] tracking-wide uppercase text-med-gold font-medium">
+              {exploreMoreLabel} <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <!-- Eventi -->
+          <div id="mob-sub-ev" class="mob-sub-panel hidden px-8 py-6">
+            <div class="space-y-6">
+              <div>
+                <a href={tuttiEvHref} class="text-[11px] uppercase tracking-[0.2em] text-med-blue font-semibold flex items-center justify-between pb-2 mb-2 border-b border-med-gold/30">{evSec.cultura}<svg class="w-3 h-3 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+                {eventiCultura.map(l => (
+                  <a href={l.href} class="block py-[7px] text-[14px] text-slate-600 active:text-med-blue transition-colors">{l.name}</a>
+                ))}
+              </div>
+              <div>
+                <a href={tuttiEvHref} class="text-[11px] uppercase tracking-[0.2em] text-med-blue font-semibold flex items-center justify-between pb-2 mb-2 border-b border-med-gold/30">{evSec.tradizioni}<svg class="w-3 h-3 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+                {eventiTradizioni.map(l => (
+                  <a href={l.href} class="block py-[7px] text-[14px] text-slate-600 active:text-med-blue transition-colors">{l.name}</a>
+                ))}
+              </div>
+              <div>
+                <a href={tuttiEvHref} class="text-[11px] uppercase tracking-[0.2em] text-med-blue font-semibold flex items-center justify-between pb-2 mb-2 border-b border-med-gold/30">{evSec.gastro}<svg class="w-3 h-3 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a>
+                {eventiGastronomia.map(l => (
+                  <a href={l.href} class="block py-[7px] text-[14px] text-slate-600 active:text-med-blue transition-colors">{l.name}</a>
+                ))}
+              </div>
+            </div>
+            <a href={tuttiEvHref} class="inline-flex items-center gap-1.5 mt-6 text-[12px] tracking-wide uppercase text-med-gold font-medium">
+              {tuttiEvLabel}
+            </a>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 </header>
+
+<style>
+  .mob-overlay-anim {
+    animation: mobFadeIn 200ms ease-out;
+  }
+  @keyframes mobFadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
 
 <script is:inline>
   // Search button handlers
@@ -1134,15 +1158,74 @@ const eventiGastronomia = ({
     if (window.__openSearch) window.__openSearch();
   });
 
-  // Mobile menu toggle
+  // Mobile menu
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
   const iconOpen = document.getElementById('icon-open');
   const iconClose = document.getElementById('icon-close');
+  const closeBtn = document.getElementById('mob-close-btn');
+  const slideWrap = document.getElementById('mob-slide-wrap');
+  const backBtn = document.getElementById('mob-back-btn');
+  const backLabel = document.getElementById('mob-back-label');
+
+  // Category label map for back button
+  const catLabels = {};
+  document.querySelectorAll('.mob-cat-btn').forEach(b => {
+    catLabels[b.getAttribute('data-mob-panel')] = b.querySelector('span')?.textContent?.trim() || b.textContent.trim();
+  });
+
+  function openMobMenu() {
+    menu?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    iconOpen?.classList.add('hidden');
+    iconClose?.classList.remove('hidden');
+  }
+
+  function closeMobMenu() {
+    menu?.classList.add('hidden');
+    document.body.style.overflow = '';
+    iconOpen?.classList.remove('hidden');
+    iconClose?.classList.add('hidden');
+    // Reset to root panel
+    if (slideWrap) slideWrap.style.transform = 'translateX(0)';
+    document.querySelectorAll('.mob-sub-panel').forEach(p => p.classList.add('hidden'));
+  }
+
   btn?.addEventListener('click', () => {
-    menu?.classList.toggle('hidden');
-    iconOpen?.classList.toggle('hidden');
-    iconClose?.classList.toggle('hidden');
+    if (menu?.classList.contains('hidden')) openMobMenu();
+    else closeMobMenu();
+  });
+
+  closeBtn?.addEventListener('click', closeMobMenu);
+
+  // ESC to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu?.classList.contains('hidden')) closeMobMenu();
+  });
+
+  // Slide to sub-panel
+  const rootPanel = slideWrap?.children[0];
+  const subPanel = slideWrap?.children[1];
+
+  document.querySelectorAll('.mob-cat-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      const panelId = b.getAttribute('data-mob-panel');
+      document.querySelectorAll('.mob-sub-panel').forEach(p => p.classList.add('hidden'));
+      const target = document.getElementById('mob-sub-' + panelId);
+      if (target) target.classList.remove('hidden');
+      if (backLabel) backLabel.textContent = catLabels[panelId] || '';
+      // Slide right + fade in sub-panel
+      if (slideWrap) slideWrap.style.transform = 'translateX(-50%)';
+      if (rootPanel) rootPanel.style.opacity = '0.3';
+      if (subPanel) { subPanel.style.opacity = '0'; requestAnimationFrame(() => { subPanel.style.transition = 'opacity 200ms ease'; subPanel.style.opacity = '1'; }); }
+    });
+  });
+
+  // Slide back to root
+  backBtn?.addEventListener('click', () => {
+    if (slideWrap) slideWrap.style.transform = 'translateX(0)';
+    if (rootPanel) { rootPanel.style.transition = 'opacity 250ms ease'; rootPanel.style.opacity = '1'; rootPanel.scrollTop = 0; }
+    if (subPanel) subPanel.scrollTop = 0;
   });
 
   // Header scroll effect
