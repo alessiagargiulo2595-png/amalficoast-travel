@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../../components/CorrelationSlider.astro';
 import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
 
 const lang = 'de-de';
@@ -17,7 +18,7 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "Wie organisiert man den Weg der Götter an einem Tag ab Neapel?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Ab Neapel mit der Circumvesuviana nach Sorrent (70 Min.), dann SITA-Bus nach Amalfi (90 Min.), dann lokaler Bus nach Agerola (45 Min.). Der Wanderweg Agerola→Nocelle ist 8 km, 3–4h. Von Nocelle lokaler Bus nach Positano (15 Min.), dann SITA-Bus oder Fähre nach Sorrent und Circumvesuviana nach Neapel." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Ab Neapel mit der Circumvesuviana nach Sorrent (70 Min.), dann SITA-Bus nach Amalfi (90 Min.), dann lokaler Bus nach Bomerano/Agerola (45 Min.). Der Wanderweg Bomerano→Nocelle ist 7,8 km, 3–4h. Von Nocelle lokaler Bus nach Positano (15 Min.), dann SITA-Bus oder Fähre nach Sorrent und Circumvesuviana nach Neapel." }
     },
     {
       "@type": "Question",
@@ -28,35 +29,53 @@ const faqSchema = {
       "@type": "Question",
       "name": "Was muss man für den Weg der Götter mitbringen?",
       "acceptedAnswer": { "@type": "Answer", "text": "Pflichtausrüstung: Wanderschuhe (keine Sandalen oder glatten Sneaker), mindestens 1,5 L Wasser, Sonnenschutz, Hut. Der Weg hat weder Brunnen noch Läden. Einen Snack mitnehmen. Im Frühling/Herbst eine leichte Jacke gegen den Wind in der Höhe empfohlen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist der Weg der Götter gefährlich?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Der Weg der Götter ist nicht gefährlich für Wanderer mit geeignetem Schuhwerk und normaler Fitness. Er ist als E/EE (mittelschwer) eingestuft. Ausgesetzte Abschnitte haben Schutzmauern oder Geländer. Bei Regen nicht empfohlen (rutschiger Boden). Nicht geeignet für Personen mit Höhenangst oder Kinder unter 6 Jahren." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert der Weg der Götter?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die klassische Route Bomerano→Nocelle ist 7,8 km lang und dauert 3–4 Stunden bei moderatem Tempo mit Fotopausen. Die Höhenvariante (Sentiero degli Dei Alto) fügt ca. 2 km und 1 Stunde hinzu. Von Nocelle nach Positano kommen 45 Minuten zu Fuß (1.700 Stufen) oder 15 Minuten mit dem Bus hinzu." }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist der Weg der Götter kostenlos?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Von Juli bis August ist eine Pflichtbuchung (~€5) über das Portal des Parco dei Monti Lattari erforderlich. In den übrigen Monaten ist der Zugang frei und kostenlos. Die Gebühr deckt die Instandhaltung des Weges und den Rettungsdienst." }
     }
   ]
 };
 
-const destinations = [
-  { name: 'Sorrent', url: '/de-de/sorrentinische-halbinsel/sorrent/' },
-  { name: 'Amalfi', url: '/de-de/amalfikueste/amalfi/' },
-  { name: 'Positano', url: '/de-de/amalfikueste/positano/' },
-];
-
-const destinationHighlights = destinations.map(d => ({ name: d.name, desc: '', url: d.url }));
+const hikingTrailSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Weg der Götter (Sentiero degli Dei)",
+  "description": "Atemberaubender 7,8 km langer Küstenwanderweg von Bomerano (Agerola) nach Nocelle (Positano) an der Amalfiküste, mit Blick auf das Meer und Capri.",
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.6389, "longitude": 14.5472 },
+  "touristType": ["Hiking", "Nature", "Adventure"],
+  "isAccessibleForFree": false,
+  "address": { "@type": "PostalAddress", "addressLocality": "Agerola", "addressRegion": "Campania", "addressCountry": "IT" }
+};
 
 const schedule = [
   { time: '07:00', place: 'Neapel', action: 'Circumvesuviana nach Sorrent (70 Min., ~€3,90)', transport: 'train' },
   { time: '08:15', place: 'Sorrent', action: 'SITA-Bus nach Amalfi (90 Min., ~€3,50) - Abfahrt 8:30 Uhr', transport: 'bus' },
-  { time: '10:00', place: 'Amalfi', action: 'Lokaler Bus nach Agerola, Ortsteil San Lazzaro (45 Min., ~€1,50). Wanderbeginn.', transport: 'bus' },
-  { time: '11:00', place: 'Agerola (618 m)', action: 'Start Weg der Götter. 8 km, ~500 m Abstieg, EE. Atemberaubende Landschaften.', transport: 'walk' },
+  { time: '10:00', place: 'Amalfi', action: 'Lokaler Bus nach Bomerano, Ortsteil von Agerola (45 Min., ~€1,50). Wanderbeginn.', transport: 'bus' },
+  { time: '11:00', place: 'Bomerano, Agerola (618 m)', action: 'Start Weg der Götter. 7,8 km, ~500 m Abstieg, Schwierigkeit E/EE. Atemberaubende Landschaften.', transport: 'walk' },
   { time: '14:30', place: 'Nocelle', action: 'Ankunft Nocelle. Pause und Mittagessen in einem der lokalen Rifugi/Bars.', transport: 'visit' },
-  { time: '15:15', place: 'Nocelle → Positano', action: 'Lokaler Bus nach Positano Zentrum (15 Min., ~€1,50) oder zu Fuß (~1.000 Stufen, 45 Min.)', transport: 'bus' },
+  { time: '15:15', place: 'Nocelle → Positano', action: 'Lokaler Bus nach Positano Zentrum (15 Min., ~€1,50) oder zu Fuß (~1.700 Stufen, 45 Min.)', transport: 'bus' },
   { time: '16:00', place: 'Positano', action: 'Spaziergang, Eis, Strand (1h frei)', transport: 'visit' },
   { time: '17:15', place: 'Positano → Neapel', action: 'SITA-Bus nach Sorrent (~50 Min.), dann Circumvesuviana nach Neapel (70 Min.)', transport: 'bus' },
 ];
 
 const tips = [
   'Ideale Saison: April–Juni und September–Oktober. Juli–August ist sehr heiß und überfüllt.',
-  'Der Bus von Amalfi nach Agerola fährt selten: Abfahrtzeiten am Vorabend auf eavsrl.it prüfen.',
-  'Immer in Richtung Agerola→Nocelle gehen: fast durchgehend bergab, Beschilderung für diese Richtung.',
-  'Kein Trinkwasser auf dem Weg: mindestens 1,5 L mitbringen. Die letzte Bar ist in Agerola vor dem Start.',
-  'Von Nocelle nach Positano: zu Fuß bergab (~1.000 Stufen, 45 Min.) oder mit Bus (15 Min., ~€1,50).',
+  'Der Bus von Amalfi nach Bomerano (Agerola) fährt selten: Abfahrtzeiten am Vorabend auf eavsrl.it prüfen.',
+  'Immer in Richtung Bomerano→Nocelle gehen: fast durchgehend bergab, Beschilderung für diese Richtung.',
+  'Kein Trinkwasser auf dem Weg: mindestens 1,5 L mitbringen. Die letzte Bar ist am Platz in Bomerano vor dem Start.',
+  'Von Nocelle nach Positano: zu Fuß bergab (~1.700 Stufen, 45 Min.) oder mit Bus (15 Min., ~€1,50).',
 ];
 
 const transportBadge: Record<string, { label: string; cls: string }> = {
@@ -69,22 +88,22 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
 ---
 
 <BaseLayout
-  title="Weg der Götter Trek in 1 Tag von Neapel 2026 | Agerola nach Positano"
-  description="Tagesausflug auf dem Weg der Götter (Sentiero degli Dei): Agerola nach Nocelle bis Positano. Wanderung, Verkehr und Praktische Tipps."
+  title="Weg der Götter 2026: Karte, Schwierigkeit, Wanderweg Bomerano–Nocelle"
+  description="Kompletter Wanderführer Weg der Götter (Sentiero degli Dei): Karte, Schwierigkeitsgrad, ist er gefährlich?, Buchung, Anreise ab Neapel. 7,8 km Bomerano→Nocelle an der Amalfiküste."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, hikingTrailSchema]}
  pageKey="weg-der-goetter-trekking">
 
   <section class="relative bg-charcoal overflow-hidden min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center">
-    <img src="/images/costiera-hero.jpg" alt="Weg der Götter" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
+    <img src="/images/trekking-hero.jpg" alt="Weg der Götter, Amalfiküste" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
     <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/40 to-black/70"></div>
     <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <div class="max-w-3xl mx-auto">
         <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Reiseroute · 1 Tag Trek</p>
         <h1 class="font-serif text-display text-white mb-4">Weg der Götter Trek</h1>
         <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
-          Der legendäre Sentiero degli Dei von Agerola nach Positano: 8 km, 3–4 Stunden, atemberaubende Aussichten auf die Amalfiküste von oben.
+          Bomerano nach Nocelle: 7,8 km atemberaubende Aussichten über die Amalfiküste. Zug, Bus und Wanderung ab Neapel an einem Tag.
         </p>
       </div>
     </div>
@@ -102,24 +121,24 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
         </div>
         <div class="bg-slate-900 rounded-2xl p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
           <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Ausgangspunkt</p>
-          <p class="font-serif text-lg font-semibold text-med-gold">Neapel</p>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Höhenmeter</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">~500 m<br/>Abstieg</p>
         </div>
         <div class="bg-slate-900 rounded-2xl p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
           <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 9l6-6 6 6M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9M9 14h6"/></svg>
-          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Trek</p>
-          <p class="font-serif text-lg font-semibold text-med-gold">8 km<br/>3–4 Stunden</p>
+          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Distanz</p>
+          <p class="font-serif text-lg font-semibold text-med-gold">7,8 km<br/>3–4 Stunden</p>
         </div>
         <div class="bg-slate-900 rounded-2xl p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
           <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
           <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Verkehrsbudget</p>
-          <p class="font-serif text-lg font-semibold text-med-gold">€20–25<br/><span class="text-xs">p.P.</span></p>
+          <p class="font-serif text-lg font-semibold text-med-gold">€11–14<br/><span class="text-xs">p.P.</span></p>
         </div>
       </div>
 
       <div>
         <p class="text-lg text-slate-700 leading-relaxed">
-          Wandere den legendären <strong>Weg der Götter</strong> (Sentiero degli Dei) an einem Tag ab Neapel. Fahre mit der <strong>Circumvesuviana</strong> nach <strong>Sorrent</strong>, dann per Bus zu <strong>Amalfi</strong> und Agerola. Wandere 8 km durch Terrassenweinberge und atemberaubende Küstenlandschaft nach Nocelle und hinab nach <strong>Positano</strong>. EE-Wanderung, keine Wasserquellen, Pflichtbuchung im Sommer. Ein unbeschreiblicher aber anspruchsvoller Tag. <strong>Verkehrsbudget: €20–25</strong>.
+          Der <strong>Weg der Götter</strong> (Sentiero degli Dei) ist die berühmteste Wanderung an der <strong>Amalfiküste</strong>: 7,8 km von <strong>Bomerano</strong> (Agerola) nach <strong>Nocelle</strong>, überwiegend bergab, mit atemberaubenden Ausblicken auf Capri und die Küste. Schwierigkeit E/EE, geeignet für Wanderer mit normaler Fitness. Ab Neapel ca. 4 Stunden zum Startpunkt (Circumvesuviana + SITA-Bus + Lokalbus). Die Wanderung dauert 3–4 Stunden. <strong>Pflichtbuchung Juli–August</strong> (~€5). Verkehrsbudget: €11–14.
         </p>
       </div>
     </section>
@@ -149,18 +168,90 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
       </div>
     </section>
 
-    <section>
-      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Trek-Hubs</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {destinationHighlights.map((dest) => (
-          <a href={dest.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
-            <h3 class="font-semibold text-charcoal mb-2 group-hover:text-med-blue transition-colors">{dest.name}</h3>
-            <p class="text-xs text-slate-500 leading-relaxed mb-3">{dest.desc}</p>
-            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">Entdecken →</span>
-          </a>
-        ))}
+    <!-- Karte des Wanderwegs -->
+    <section id="karte">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-4">Karte des Weg der Götter</h2>
+      <p class="text-slate-600 mb-6 leading-relaxed">Der Weg beginnt an der <strong>Piazza Paolo Capasso in Bomerano</strong> (Ortsteil von Agerola, 618 m ü.M.) und folgt dem CAI-Wanderweg Nr. 327 in westlicher Richtung entlang des Lattari-Gebirges bis <strong>Nocelle</strong> (420 m ü.M.), dem Höhenortsteil von Positano. Der Weg ist mit rot-weißen CAI-Markierungen beschildert.</p>
+      <div class="rounded-2xl overflow-hidden border border-slate-200">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=14.475%2C40.618%2C14.565%2C40.655&layer=mapnik&marker=40.638%2C14.547"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          title="Karte Weg der Götter: Wanderweg Bomerano - Nocelle">
+        </iframe>
+      </div>
+      <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="bg-slate-50 rounded-xl p-4 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-wide mb-1">Start</p>
+          <p class="font-semibold text-slate-900">Bomerano (618 m)</p>
+          <p class="text-xs text-slate-500">Piazza Paolo Capasso</p>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-wide mb-1">Ziel</p>
+          <p class="font-semibold text-slate-900">Nocelle (420 m)</p>
+          <p class="text-xs text-slate-500">Piazzetta di Nocelle</p>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-wide mb-1">Höhenmeter</p>
+          <p class="font-semibold text-slate-900">+200 m / −400 m</p>
+          <p class="text-xs text-slate-500">Überwiegend bergab</p>
+        </div>
       </div>
     </section>
+
+    <!-- Schwierigkeit und Sicherheit -->
+    <section id="schwierigkeit">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-4">Schwierigkeit und Sicherheit</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white border border-slate-200 rounded-2xl p-6">
+          <h3 class="font-semibold text-slate-900 mb-3 flex items-center gap-2">
+            <span class="w-8 h-8 bg-green-100 text-green-700 rounded-full flex items-center justify-center text-sm font-bold">E</span>
+            Einstufung: E / EE
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-3">
+            Der Weg der Götter ist als <strong>E</strong> (Wanderweg) mit einigen <strong>EE</strong>-Abschnitten (Erfahrene Wanderer) eingestuft. Keine Seile, Steigeisen oder Kletterausrüstung erforderlich. Der Untergrund ist Erde und Fels mit in Stein gehauenen Stufen.
+          </p>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">&#10003;</span> Keine Klettersteige oder Kletterpassagen</li>
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">&#10003;</span> Klare CAI rot-weiße Wegmarkierungen</li>
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">&#10003;</span> Ausgesetzte Stellen mit Schutzmauern</li>
+          </ul>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-6">
+          <h3 class="font-semibold text-slate-900 mb-3 flex items-center gap-2">
+            <span class="w-8 h-8 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-sm font-bold">!</span>
+            Ist der Weg der Götter gefährlich?
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-3">
+            <strong>Nein, mit der richtigen Ausrüstung und normaler Fitness.</strong> Der Weg ist sicher für alle mit Wanderschuhen und angemessener Kondition. Dennoch ist Vorsicht geboten:
+          </p>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Bei Regen wird der Boden rutschig: Wanderung vermeiden</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Steilabschnitte: nicht für Personen mit Höhenangst</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Nicht geeignet für Kinder unter 6 Jahren</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Mindestens 1,5 L Wasser mitnehmen (keine Brunnen)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <CorrelationSlider
+    heading="Trek-Destinationen"
+    lang="de-de"
+    items={[
+      { name: 'Positano', href: '/de-de/amalfikueste/positano/', tag: 'Dorf & Strände', desc: 'Ziel der Wanderung, farbenfrohes Juwel der Amalfiküste.' },
+      { name: 'Amalfi', href: '/de-de/amalfikueste/amalfi/', tag: 'Kunst & Geschichte', desc: 'Ihr Ausgangspunkt zum Wanderweg via Bus nach Bomerano.' },
+      { name: 'Ravello', href: '/de-de/amalfikueste/ravello/', tag: 'Musik & Gärten', desc: 'Die Terrasse der Unendlichkeit, Villa Rufolo und Panoramablicke 350 m über dem Meer.' },
+      { name: 'Praiano', href: '/de-de/amalfikueste/praiano/', tag: 'Sonnenuntergang', desc: 'Nahe Nocelle, spektakuläre Sonnenuntergänge und der Strand Gavitella.' },
+    ]}
+  />
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-10 space-y-10">
 
     <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
       <h2 class="font-serif text-xl font-semibold text-charcoal mb-6">Praktische Tipps</h2>

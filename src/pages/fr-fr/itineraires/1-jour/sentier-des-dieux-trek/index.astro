@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../../components/CorrelationSlider.astro';
 import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
 
 const lang = 'fr-fr';
@@ -17,7 +18,7 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "Comment organiser le Sentier des Dieux en une journée depuis Naples ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Partez de Naples avec la Circumvésuvienne jusqu'à Sorrente (70 min), puis bus SITA pour Amalfi (90 min), puis bus local pour Agerola (45 min). Le sentier Agerola→Nocelle fait 8 km, 3-4h. Depuis Nocelle, bus local pour Positano (15 min), puis bus SITA ou ferry pour Sorrente et Circumvésuvienne pour Naples." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Partez de Naples avec la Circumvésuvienne jusqu'à Sorrente (70 min), puis bus SITA pour Amalfi (90 min), puis bus local pour Bomerano/Agerola (45 min). Le sentier Bomerano→Nocelle fait 7,8 km, 3-4h. Depuis Nocelle, bus local pour Positano (15 min), puis bus SITA ou ferry pour Sorrente et Circumvésuvienne pour Naples." }
     },
     {
       "@type": "Question",
@@ -28,27 +29,53 @@ const faqSchema = {
       "@type": "Question",
       "name": "Que faut-il emporter pour le Sentier des Dieux ?",
       "acceptedAnswer": { "@type": "Answer", "text": "Obligatoire : chaussures de randonnée (pas de sandales ni baskets lisses), au moins 1,5 L d'eau, protection solaire, chapeau. Le sentier n'a ni fontaines ni boutiques. Emportez un en-cas. Au printemps/automne, une veste légère est conseillée pour le vent en altitude." }
+    },
+    {
+      "@type": "Question",
+      "name": "Le Sentier des Dieux est-il dangereux ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Le Sentier des Dieux n'est pas dangereux pour les randonneurs avec des chaussures adaptées et une condition physique correcte. Il est classé E/EE (randonnée modérée). Les sections exposées ont des murets ou des rambardes. À éviter par temps de pluie (sol glissant). Déconseillé aux personnes sujettes au vertige et aux enfants de moins de 6 ans." }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien de temps dure le Sentier des Dieux ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Le parcours classique Bomerano→Nocelle fait 7,8 km et se parcourt en 3-4 heures à rythme modéré avec des pauses photos. La variante haute (Sentiero degli Dei Alto) ajoute environ 2 km et 1 heure. De Nocelle à Positano, comptez 45 minutes à pied (1 700 marches) ou 15 minutes en bus." }
+    },
+    {
+      "@type": "Question",
+      "name": "Le Sentier des Dieux est-il payant ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "De juillet à août, une réservation obligatoire (~€5) est requise via le portail du Parc des Monts Lattari. Le reste de l'année, l'accès est libre et gratuit. Le tarif couvre l'entretien du sentier et le service de secours." }
     }
   ]
 };
 
+const hikingTrailSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Sentier des Dieux (Sentiero degli Dei)",
+  "description": "Magnifique sentier côtier de 7,8 km de Bomerano (Agerola) à Nocelle (Positano) sur la Côte Amalfitaine, avec vue imprenable sur la mer et Capri.",
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.6389, "longitude": 14.5472 },
+  "touristType": ["Hiking", "Nature", "Adventure"],
+  "isAccessibleForFree": false,
+  "address": { "@type": "PostalAddress", "addressLocality": "Agerola", "addressRegion": "Campania", "addressCountry": "IT" }
+};
+
 const schedule = [
   { time: '07:00', place: 'Naples', action: 'Circumvésuvienne pour Sorrente (70 min, ~€3,90)', transport: 'train' },
-  { time: '08:15', place: 'Sorrente', action: 'Bus SITA pour Amalfi (90 min, ~€3,50€) - départ 8h30', transport: 'bus' },
-  { time: '10:00', place: 'Amalfi', action: 'Bus local pour Agerola, hameau San Lazzaro (45 min, ~€1,50). Début du sentier.', transport: 'bus' },
-  { time: '11:00', place: 'Agerola (618 m)', action: 'Départ Sentier des Dieux. 8 km, ~500 m de descente, EE. Paysages à couper le souffle.', transport: 'walk' },
+  { time: '08:15', place: 'Sorrente', action: 'Bus SITA pour Amalfi (90 min, ~€3,50) - départ 8h30', transport: 'bus' },
+  { time: '10:00', place: 'Amalfi', action: 'Bus local pour Bomerano, hameau d\'Agerola (45 min, ~€1,50). Début du sentier.', transport: 'bus' },
+  { time: '11:00', place: 'Bomerano, Agerola (618 m)', action: 'Départ Sentier des Dieux. 7,8 km, ~500 m de descente, difficulté E/EE. Paysages à couper le souffle.', transport: 'walk' },
   { time: '14:30', place: 'Nocelle', action: 'Arrivée à Nocelle. Pause et déjeuner dans l\'un des refuges/bars locaux.', transport: 'visit' },
-  { time: '15:15', place: 'Nocelle → Positano', action: 'Bus local pour Positano centre (15 min, ~€1,50) ou à pied (~1 000 marches, 45 min)', transport: 'bus' },
+  { time: '15:15', place: 'Nocelle → Positano', action: 'Bus local pour Positano centre (15 min, ~€1,50) ou à pied (~1 700 marches, 45 min)', transport: 'bus' },
   { time: '16:00', place: 'Positano', action: 'Promenade, glace, plage (1h libre)', transport: 'visit' },
   { time: '17:15', place: 'Positano → Naples', action: 'Bus SITA pour Sorrente (~50 min), puis Circumvésuvienne pour Naples (70 min)', transport: 'bus' },
 ];
 
 const tips = [
   'Saison idéale : avril-juin et septembre-octobre. Juillet-août est très chaud et très fréquenté.',
-  'Le bus d\'Amalfi pour Agerola a des horaires limités : vérifiez sur eavsrl.it la veille au soir.',
-  'Partez toujours dans le sens Agerola→Nocelle : presque tout en descente, balisage conçu dans ce sens.',
-  'Le sentier n\'a pas de points d\'eau : emportez au moins 1,5 L. Le dernier bar est à Agerola avant le départ.',
-  'Depuis Nocelle on descend à Positano à pied (~1 000 marches, 45 min) ou en bus (15 min, ~€1,50).',
+  'Le bus d\'Amalfi pour Bomerano (Agerola) a des horaires limités : vérifiez sur eavsrl.it la veille au soir.',
+  'Partez toujours dans le sens Bomerano→Nocelle : presque tout en descente, balisage conçu dans ce sens.',
+  'Le sentier n\'a pas de points d\'eau : emportez au moins 1,5 L. Le dernier bar est sur la place de Bomerano avant le départ.',
+  'Depuis Nocelle on descend à Positano à pied (~1 700 marches, 45 min) ou en bus (15 min, ~€1,50).',
 ];
 
 const transportBadge: Record<string, { label: string; cls: string }> = {
@@ -58,18 +85,14 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   walk:  { label: 'TREKKING', cls: 'bg-red-100 text-red-700' },
   visit: { label: '', cls: '' },
 };
-
-const destinationHighlights = [
-  { name: 'Positano', desc: 'Village pittoresque avec maisons colorées, plage et galeries d\'art', url: '/fr-fr/cote-amalfitaine/positano/' },
-];
 ---
 
 <BaseLayout
-  title="Sentier des Dieux en 1 Jour depuis Naples 2026 | Itinéraire de Trekking"
-  description="Le Sentier des Dieux (Agerola–Nocelle) en une journée depuis Naples : horaires, transports, réservation et conseils. 8 km de trekking avec vue sur la Côte Amalfitaine."
+  title="Sentier des Dieux 2026 : Carte, Difficulté, Itinéraire Bomerano–Nocelle"
+  description="Guide complet du Sentier des Dieux (Sentiero degli Dei) : carte du parcours, difficulté, est-il dangereux ?, réservation, comment y accéder depuis Naples. 7,8 km Bomerano→Nocelle sur la Côte Amalfitaine."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, hikingTrailSchema]}
  pageKey="sentier-des-dieux-trek">
 
   <!-- Hero Section -->
@@ -81,7 +104,7 @@ const destinationHighlights = [
         <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Itinéraire · Trekking · 1 jour</p>
         <h1 class="font-serif text-display text-white mb-4">Trek Sentier des Dieux</h1>
         <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
-          Sentier des Dieux : trois heures et demie de trekking entre Positano et Praiano.
+          Bomerano à Nocelle : 7,8 km de vues imprenables sur la Côte Amalfitaine. Train, bus et randonnée depuis Naples en une journée.
         </p>
       </div>
     </div>
@@ -90,17 +113,16 @@ const destinationHighlights = [
 
   <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 space-y-10">
 
-    <!-- Intro Section -->
+    <!-- Intro -->
     <section class="text-center mb-2">
       <div>
         <p class="text-lg text-slate-700 leading-relaxed">
-          Le <strong>Sentier des Dieux</strong> est une <strong>randonnée de 8 km</strong> avec des vues spectaculaires sur la <strong>Côte Amalfitaine</strong>. <strong>3–4 heures</strong> d'<strong>Agerola à Nocelle</strong> avec <strong>500 m de descente</strong> (difficulté EE). Accessible depuis Naples en train et bus. <strong>Budget: €12–18 pour les transports</strong>.
+          Le <strong>Sentier des Dieux</strong> (Sentiero degli Dei) est la randonnée la plus célèbre de la <strong>Côte Amalfitaine</strong> : 7,8 km de <strong>Bomerano</strong> (Agerola) à <strong>Nocelle</strong>, presque tout en descente, avec des vues spectaculaires sur Capri et la côte. Difficulté E/EE, adapté aux randonneurs en condition physique correcte. Depuis Naples, comptez environ 4 heures pour rejoindre le départ (Circumvésuvienne + bus SITA + bus local). Le parcours prend 3-4 heures à rythme modéré. <strong>Réservation obligatoire juillet-août</strong> (~€5). Budget transport : €12–18.
         </p>
       </div>
     </section>
 
-
-    <!-- Day by Day Itinerary -->
+    <!-- Programme de la journée -->
     <section>
       <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Programme de la journée</h2>
       <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
@@ -111,19 +133,13 @@ const destinationHighlights = [
             return (
               <div class="flex gap-4">
                 <div class="flex flex-col items-center flex-shrink-0">
-                  <div class="w-16 bg-slate-900 text-med-gold rounded-full px-2 py-1 text-center text-sm font-semibold flex items-center justify-center">
-                    {item.time}
-                  </div>
+                  <div class="w-16 bg-slate-900 text-med-gold rounded-full px-2 py-1 text-center text-sm font-semibold flex items-center justify-center">{item.time}</div>
                   {!isLastItem && <div class="w-0.5 h-12 bg-med-blue/30 mt-2"></div>}
                 </div>
                 <div class="pb-4 flex-1">
                   <p class="font-semibold text-slate-900 mb-1">{item.place}</p>
                   <p class="text-slate-700 text-sm mb-2">{item.action}</p>
-                  {badge.label && (
-                    <span class={`text-xs font-semibold px-2 py-1 rounded-full ${badge.cls}`}>
-                      {badge.label}
-                    </span>
-                  )}
+                  {badge.label && <span class={`text-xs font-semibold px-2 py-1 rounded-full ${badge.cls}`}>{badge.label}</span>}
                 </div>
               </div>
             );
@@ -132,23 +148,92 @@ const destinationHighlights = [
       </div>
     </section>
 
-    <!-- Destinations Highlighted -->
-    <section>
-      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Destinations de l'itinéraire</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {destinationHighlights.map((dest) => (
-          <a href={dest.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
-            <h3 class="font-semibold text-charcoal mb-2 group-hover:text-med-blue transition-colors">{dest.name}</h3>
-            <p class="text-xs text-slate-500 leading-relaxed mb-3">{dest.desc}</p>
-            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-              Découvrez →
-            </span>
-          </a>
-        ))}
+    <!-- Carte du parcours -->
+    <section id="carte">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-4">Carte du Sentier des Dieux</h2>
+      <p class="text-slate-600 mb-6 leading-relaxed">Le parcours part de la <strong>Piazza Paolo Capasso à Bomerano</strong> (hameau d'Agerola, 618 m d'altitude) et suit le sentier CAI n. 327 en direction ouest le long des Monts Lattari, jusqu'à <strong>Nocelle</strong> (420 m d'altitude), hameau haut de Positano. Le sentier est balisé avec des marques rouge-blanc du CAI.</p>
+      <div class="rounded-2xl overflow-hidden border border-slate-200">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=14.475%2C40.618%2C14.565%2C40.655&layer=mapnik&marker=40.638%2C14.547"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          title="Carte Sentier des Dieux : parcours Bomerano - Nocelle">
+        </iframe>
+      </div>
+      <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="bg-slate-50 rounded-xl p-4 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-wide mb-1">Départ</p>
+          <p class="font-semibold text-slate-900">Bomerano (618 m)</p>
+          <p class="text-xs text-slate-500">Piazza Paolo Capasso</p>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-wide mb-1">Arrivée</p>
+          <p class="font-semibold text-slate-900">Nocelle (420 m)</p>
+          <p class="text-xs text-slate-500">Piazzetta di Nocelle</p>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-wide mb-1">Dénivelé</p>
+          <p class="font-semibold text-slate-900">+200 m / −400 m</p>
+          <p class="text-xs text-slate-500">Principalement en descente</p>
+        </div>
       </div>
     </section>
 
-    <!-- Planning Tips -->
+    <!-- Difficulté et sécurité -->
+    <section id="difficulte">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-4">Difficulté et sécurité</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white border border-slate-200 rounded-2xl p-6">
+          <h3 class="font-semibold text-slate-900 mb-3 flex items-center gap-2">
+            <span class="w-8 h-8 bg-green-100 text-green-700 rounded-full flex items-center justify-center text-sm font-bold">E</span>
+            Classification : E / EE
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-3">
+            Le Sentier des Dieux est classé <strong>E</strong> (randonnée) avec quelques tronçons <strong>EE</strong> (randonneurs expérimentés). Ni cordes, ni crampons, ni équipement d'escalade. Le sol est en terre et roche avec des marches taillées dans la pierre.
+          </p>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">&#10003;</span> Aucun tronçon de via ferrata ou d'escalade</li>
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">&#10003;</span> Balisage CAI clair (rouge et blanc)</li>
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">&#10003;</span> Sections exposées avec murets de protection</li>
+          </ul>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-6">
+          <h3 class="font-semibold text-slate-900 mb-3 flex items-center gap-2">
+            <span class="w-8 h-8 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-sm font-bold">!</span>
+            Le Sentier des Dieux est-il dangereux ?
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-3">
+            <strong>Non, avec l'équipement adapté et une condition physique correcte.</strong> Le sentier est sûr pour toute personne portant des chaussures de randonnée et en forme raisonnable. Cependant, la prudence s'impose :
+          </p>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Par temps de pluie le sol devient glissant : à éviter</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Sections en bord de falaise : déconseillé si sujet au vertige</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Non adapté aux enfants de moins de 6 ans</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Emportez au moins 1,5 L d'eau (aucune fontaine)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <CorrelationSlider
+    heading="Destinations de l'itinéraire"
+    lang="fr-fr"
+    items={[
+      { name: 'Positano', href: '/fr-fr/cote-amalfitaine/positano/', tag: 'Village & Plages', desc: 'Destination finale du trek, joyau coloré de la Côte Amalfitaine.' },
+      { name: 'Amalfi', href: '/fr-fr/cote-amalfitaine/amalfi/', tag: 'Art & Histoire', desc: 'Votre point d\'accès au sentier via bus pour Bomerano.' },
+      { name: 'Ravello', href: '/fr-fr/cote-amalfitaine/ravello/', tag: 'Musique & Jardins', desc: 'La Terrasse de l\'Infini, Villa Rufolo et vues panoramiques à 350 m au-dessus de la mer.' },
+      { name: 'Praiano', href: '/fr-fr/cote-amalfitaine/praiano/', tag: 'Coucher de soleil', desc: 'Près de Nocelle, couchers de soleil spectaculaires et la plage Gavitella.' },
+    ]}
+  />
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-10 space-y-10">
+
+    <!-- Conseils pratiques -->
     <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
       <h2 class="font-serif text-xl font-semibold text-charcoal mb-6">Conseils pratiques</h2>
       <ul class="space-y-4">
@@ -174,9 +259,7 @@ const destinationHighlights = [
               {q.name}
               <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
             </summary>
-            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
-              {q.acceptedAnswer.text}
-            </div>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
           </details>
         ))}
       </div>
@@ -185,12 +268,8 @@ const destinationHighlights = [
     <!-- CTA -->
     <section class="bg-gradient-to-r from-med-blue to-med-blue/80 rounded-2xl p-10 text-center text-white">
       <h2 class="font-serif text-3xl font-bold mb-3">Planifiez votre aventure de trekking</h2>
-      <p class="text-white/90 mb-6 max-w-2xl mx-auto">
-        Guide complet du Sentier des Dieux : réservation, équipement, meilleure saison et comment venir depuis Naples.
-      </p>
-      <a href="/fr-fr/guide/comment-venir/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">
-        Guide de transport →
-      </a>
+      <p class="text-white/90 mb-6 max-w-2xl mx-auto">Guide complet du Sentier des Dieux : réservation, équipement, meilleure saison et comment venir depuis Naples.</p>
+      <a href="/fr-fr/cote-amalfitaine/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">Découvrir la Côte Amalfitaine →</a>
     </section>
 
   </div>

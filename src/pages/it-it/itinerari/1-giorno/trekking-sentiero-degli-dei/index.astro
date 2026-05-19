@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../../components/CorrelationSlider.astro';
 import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
 
 const lang = 'it-it';
@@ -17,7 +18,7 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "Come organizzare il Sentiero degli Dei in un giorno da Napoli?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Parti da Napoli con la Circumvesuviana fino a Sorrento (70 min), poi bus SITA per Amalfi (90 min), poi bus locale per Agerola (45 min). Il sentiero Agerola→Nocelle è 8 km, 3-4h. Da Nocelle bus locale per Positano (15 min), poi bus SITA o traghetto per Sorrento e Circumvesuviana per Napoli." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Parti da Napoli con la Circumvesuviana fino a Sorrento (70 min), poi bus SITA per Amalfi (90 min), poi bus locale per Bomerano/Agerola (45 min). Il sentiero Bomerano→Nocelle è 8 km, 3-4h. Da Nocelle bus locale per Positano (15 min), poi bus SITA o traghetto per Sorrento e Circumvesuviana per Napoli." }
     },
     {
       "@type": "Question",
@@ -28,15 +29,51 @@ const faqSchema = {
       "@type": "Question",
       "name": "Cosa portare per il Sentiero degli Dei?",
       "acceptedAnswer": { "@type": "Answer", "text": "Obbligatorio: scarpe da trekking (non sandali o sneaker lisce), almeno 1.5L di acqua, protezione solare, cappello. Il sentiero non ha fontane né negozi. Portare uno spuntino. In primavera/autunno una giacca leggera è consigliata per il vento in quota." }
+    },
+    {
+      "@type": "Question",
+      "name": "Il Sentiero degli Dei è pericoloso?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Il Sentiero degli Dei non è pericoloso per chi ha scarpe adatte e un minimo di preparazione fisica. Il percorso è classificato E/EE: sentiero escursionistico senza tratti attrezzati. I punti esposti hanno protezioni. Sconsigliato con pioggia (fondo scivoloso) e con vertigini nei tratti panoramici a strapiombo. Non adatto a bambini sotto i 6 anni." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto dura il Sentiero degli Dei?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Il percorso classico Bomerano→Nocelle è lungo 7,8 km e richiede 3-4 ore a passo moderato con soste fotografiche. La variante alta (Sentiero degli Dei Alto) aggiunge circa 2 km e 1 ora. Da Nocelle a Positano si aggiungono 45 minuti a piedi (1.700 gradini) oppure 15 minuti in bus." }
+    },
+    {
+      "@type": "Question",
+      "name": "Il Sentiero degli Dei si paga?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Da luglio ad agosto è richiesta una prenotazione obbligatoria (~€5) sul portale del Parco dei Monti Lattari. Negli altri mesi l'accesso è libero e gratuito. Il costo copre la manutenzione del sentiero e il servizio di soccorso." }
     }
   ]
+};
+
+const hikingTrailSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Sentiero degli Dei",
+  "alternateName": "Path of the Gods",
+  "description": "Sentiero panoramico di 7,8 km da Bomerano (Agerola) a Nocelle (Positano) sulla Costiera Amalfitana, con vista mozzafiato sul mare e sui Faraglioni di Capri.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6389,
+    "longitude": 14.5472
+  },
+  "touristType": ["Hiking", "Nature", "Adventure"],
+  "isAccessibleForFree": false,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Agerola",
+    "addressRegion": "Campania",
+    "addressCountry": "IT"
+  }
 };
 
 const schedule = [
   { time: '07:00', place: 'Napoli', action: 'Circumvesuviana per Sorrento (70 min, ~€3.90)', transport: 'train' },
   { time: '08:15', place: 'Sorrento', action: 'Bus SITA per Amalfi (90 min, ~€3.50) - corsa delle 8:30', transport: 'bus' },
-  { time: '10:00', place: 'Amalfi', action: 'Bus locale per Agerola, fraz. San Lazzaro (45 min, ~€1.50). Inizio sentiero.', transport: 'bus' },
-  { time: '11:00', place: 'Agerola (618 m)', action: 'Partenza Sentiero degli Dei. 8 km, ~500 m discesa, EE. Paesaggi mozzafiato.', transport: 'walk' },
+  { time: '10:00', place: 'Amalfi', action: 'Bus locale per Bomerano, fraz. di Agerola (45 min, ~€1.50). Inizio sentiero.', transport: 'bus' },
+  { time: '11:00', place: 'Bomerano, Agerola (618 m)', action: 'Partenza Sentiero degli Dei. 7,8 km, ~500 m discesa, difficoltà E/EE. Paesaggi mozzafiato.', transport: 'walk' },
   { time: '14:30', place: 'Nocelle', action: 'Arrivo Nocelle. Pausa e pranzo in uno dei rifugi/bar locali.', transport: 'visit' },
   { time: '15:15', place: 'Nocelle → Positano', action: 'Bus locale per Positano centro (15 min, ~€1.50) o a piedi (~1.000 gradini, 45 min)', transport: 'bus' },
   { time: '16:00', place: 'Positano', action: 'Passeggiata, gelato, spiaggia (1h libera)', transport: 'visit' },
@@ -45,9 +82,9 @@ const schedule = [
 
 const tips = [
   'Stagione ideale: aprile-giugno e settembre-ottobre. Luglio-agosto è caldissimo e affollato.',
-  'Il bus da Amalfi per Agerola ha corse limitate: controlla gli orari su eavsrl.it la sera prima.',
-  'Parti sempre in direzione Agerola→Nocelle: quasi tutto in discesa, segnaletica pensata per questo senso.',
-  'Il sentiero non ha punti acqua: porta almeno 1.5L. L\'ultimo bar è ad Agerola prima della partenza.',
+  'Il bus da Amalfi per Bomerano (Agerola) ha corse limitate: controlla gli orari su eavsrl.it la sera prima.',
+  'Parti sempre in direzione Bomerano→Nocelle: quasi tutto in discesa, segnaletica pensata per questo senso.',
+  'Il sentiero non ha punti acqua: porta almeno 1,5L. L\'ultimo bar è a Bomerano, in piazza, prima della partenza.',
   'Da Nocelle si scende a Positano a piedi (~1.000 gradini, 45 min) o in bus (15 min, ~€1.50).',
 ];
 
@@ -67,11 +104,11 @@ const destinationHighlights = [
 ---
 
 <BaseLayout
-  title="Sentiero degli Dei Trek da Napoli in Un Giorno 2026 | Agerola, Nocelle, Positano"
-  description="Trekking Sentiero degli Dei da Napoli: Agerola → Nocelle, 8 km, 3-4 ore. Prenotazione, orari bus, cosa portare."
+  title="Sentiero degli Dei 2026: Mappa, Difficoltà, Percorso Bomerano-Nocelle"
+  description="Guida completa al Sentiero degli Dei: mappa del percorso, difficoltà, è pericoloso?, prenotazione, come arrivare da Napoli. Trek 7,8 km Bomerano→Nocelle con vista Costiera Amalfitana."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, hikingTrailSchema]}
  pageKey="trekking-sentiero-degli-dei">
 
   <!-- Hero Section -->
@@ -132,7 +169,7 @@ const destinationHighlights = [
       <!-- SEO Text Below -->
       <div>
         <p class="text-lg text-slate-700 leading-relaxed">
-          Un trekking indimenticabile sulla <strong>Costiera Amalfitana</strong>: 8 km da <strong>Agerola</strong> a <strong>Nocelle</strong> in discesa, con viste spettacolari sulla costa. Parte da Napoli in Circumvesuviana, bus fino ad Agerola (4 ore totali), trekking 3-4 ore, rientro via Positano. <strong>Prenotazione obbligatoria in alta stagione</strong>. Budget trasporti: €11–14.
+          Il <strong>Sentiero degli Dei</strong> è il trekking più celebre della <strong>Costiera Amalfitana</strong>: 7,8 km da <strong>Bomerano</strong> (Agerola) a <strong>Nocelle</strong> in discesa, con viste spettacolari su Capri e la costa. Difficoltà E/EE, adatto a escursionisti con un minimo di preparazione. Da Napoli servono circa 4 ore per raggiungere il punto di partenza (Circumvesuviana + bus SITA + bus locale). Il percorso dura 3-4 ore a passo moderato. <strong>Prenotazione obbligatoria in luglio-agosto</strong> (~€5). Budget trasporti: €11–14.
         </p>
       </div>
     </section>
@@ -170,21 +207,90 @@ const destinationHighlights = [
       </div>
     </section>
 
-    <!-- Destinations Highlighted -->
-    <section>
-      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Le destinazioni dell'itinerario</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {destinationHighlights.map((dest) => (
-          <a href={dest.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
-            <h3 class="font-semibold text-charcoal mb-2 group-hover:text-med-blue transition-colors">{dest.name}</h3>
-            <p class="text-xs text-slate-500 leading-relaxed mb-3">{dest.desc}</p>
-            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-              Scopri →
-            </span>
-          </a>
-        ))}
+    <!-- Mappa del percorso -->
+    <section id="mappa">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-4">Mappa del Sentiero degli Dei</h2>
+      <p class="text-slate-600 mb-6 leading-relaxed">Il percorso parte da <strong>Piazza Paolo Capasso a Bomerano</strong> (fraz. di Agerola, 618 m s.l.m.) e segue il sentiero CAI n. 327 in direzione ovest lungo la cresta dei Monti Lattari, terminando a <strong>Nocelle</strong> (420 m s.l.m.), frazione alta di Positano. Il sentiero è segnalato con bandierine bianco-rosse.</p>
+      <div class="rounded-2xl overflow-hidden border border-slate-200">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=14.475%2C40.618%2C14.565%2C40.655&layer=mapnik&marker=40.638%2C14.547"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          title="Mappa Sentiero degli Dei: percorso Bomerano - Nocelle">
+        </iframe>
+      </div>
+      <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="bg-slate-50 rounded-xl p-4 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-wide mb-1">Partenza</p>
+          <p class="font-semibold text-slate-900">Bomerano (618 m)</p>
+          <p class="text-xs text-slate-500">Piazza Paolo Capasso</p>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-wide mb-1">Arrivo</p>
+          <p class="font-semibold text-slate-900">Nocelle (420 m)</p>
+          <p class="text-xs text-slate-500">Piazzetta di Nocelle</p>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-wide mb-1">Dislivello</p>
+          <p class="font-semibold text-slate-900">+200 m / −400 m</p>
+          <p class="text-xs text-slate-500">Prevalentemente in discesa</p>
+        </div>
       </div>
     </section>
+
+    <!-- Difficoltà e sicurezza -->
+    <section id="difficolta">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-4">Difficoltà e sicurezza</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white border border-slate-200 rounded-2xl p-6">
+          <h3 class="font-semibold text-slate-900 mb-3 flex items-center gap-2">
+            <span class="w-8 h-8 bg-green-100 text-green-700 rounded-full flex items-center justify-center text-sm font-bold">E</span>
+            Classificazione: E / EE
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-3">
+            Il Sentiero degli Dei è classificato <strong>E</strong> (Escursionistico) con alcuni tratti <strong>EE</strong> (Escursionisti Esperti). Non servono corde, ramponi o attrezzatura alpinistica. Il fondo è sterrato con tratti rocciosi e gradini scavati nella pietra.
+          </p>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">&#10003;</span> Nessun tratto attrezzato (no ferrate)</li>
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">&#10003;</span> Segnaletica CAI chiara (bianco-rosso)</li>
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">&#10003;</span> Punti esposti con protezioni/muretti</li>
+          </ul>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-6">
+          <h3 class="font-semibold text-slate-900 mb-3 flex items-center gap-2">
+            <span class="w-8 h-8 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-sm font-bold">!</span>
+            Il sentiero è pericoloso?
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-3">
+            <strong>No, se si rispettano le regole base.</strong> Il Sentiero degli Dei non è pericoloso per chi indossa scarpe da trekking e ha un minimo di allenamento. Tuttavia occorre prudenza:
+          </p>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Con pioggia il fondo diventa scivoloso: evitare</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Tratti a strapiombo: sconsigliato a chi soffre di vertigini</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Non adatto a bambini sotto i 6 anni</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> In estate portare almeno 1,5 L di acqua (nessuna fontana)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <CorrelationSlider
+    heading="Le destinazioni dell'itinerario"
+    lang="it-it"
+    items={[
+      { name: 'Positano', href: '/it-it/costiera-amalfitana/positano/', tag: 'Borgo & Spiagge', desc: 'Destinazione finale del trekking, gioiello colorato della Costiera Amalfitana.' },
+      { name: 'Amalfi', href: '/it-it/costiera-amalfitana/amalfi/', tag: 'Arte & Storia', desc: 'Base per l\'accesso al Sentiero degli Dei via bus per Bomerano.' },
+      { name: 'Ravello', href: '/it-it/costiera-amalfitana/ravello/', tag: 'Musica & Giardini', desc: 'Terrazza dell\'Infinito, Villa Rufolo e panorami mozzafiato a 350 m sul mare.' },
+      { name: 'Praiano', href: '/it-it/costiera-amalfitana/praiano/', tag: 'Tramonto & Quiete', desc: 'Vicino a Nocelle, tramonti spettacolari e la spiaggia Gavitella.' },
+    ]}
+  />
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-10 space-y-10">
 
     <!-- Planning Tips -->
     <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">

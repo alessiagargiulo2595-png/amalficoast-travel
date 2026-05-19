@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../../components/CorrelationSlider.astro';
 import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
 
 const lang = 'en-us';
@@ -17,7 +18,7 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "How do you do the Path of the Gods in a day trip from Naples?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Leave Naples on the Circumvesuviana to Sorrento (70 min), then SITA bus to Amalfi (90 min), then local bus to Agerola (45 min). The Agerola→Nocelle trail is 8 km, 3–4h. From Nocelle take the local bus to Positano (15 min), then SITA bus or ferry to Sorrento and Circumvesuviana back to Naples." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Leave Naples on the Circumvesuviana to Sorrento (70 min), then SITA bus to Amalfi (90 min), then local bus to Bomerano/Agerola (45 min). The Bomerano→Nocelle trail is 7.8 km, 3–4h. From Nocelle take the local bus to Positano (15 min), then SITA bus or ferry to Sorrento and Circumvesuviana back to Naples." }
     },
     {
       "@type": "Question",
@@ -28,15 +29,50 @@ const faqSchema = {
       "@type": "Question",
       "name": "What should you bring for the Path of the Gods?",
       "acceptedAnswer": { "@type": "Answer", "text": "Essential: hiking boots (not sandals or smooth-soled trainers), at least 1.5L of water, sunscreen, a hat. The trail has no water sources or shops. Bring a snack. In spring/autumn a light jacket is advisable for the wind at altitude." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the Path of the Gods dangerous?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The Path of the Gods is not dangerous for reasonably fit hikers with proper footwear. It is graded E/EE (moderate hiking). Exposed sections have low walls or railings. Avoid hiking in rain (slippery surface). Not recommended for those with vertigo or children under 6." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does the Path of the Gods take?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The classic Bomerano→Nocelle route is 7.8 km and takes 3–4 hours at a moderate pace with photo stops. The high-level variant (Sentiero degli Dei Alto) adds about 2 km and 1 hour. From Nocelle to Positano add 45 minutes on foot (1,700 steps) or 15 minutes by bus." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the Path of the Gods free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "From July to August a mandatory booking (~€5) is required via the Parco dei Monti Lattari portal. The rest of the year access is free. The fee covers trail maintenance and rescue services." }
     }
   ]
+};
+
+const hikingTrailSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Path of the Gods (Sentiero degli Dei)",
+  "description": "Stunning 7.8 km coastal hiking trail from Bomerano (Agerola) to Nocelle (Positano) on the Amalfi Coast, with breathtaking views of the sea and Capri.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6389,
+    "longitude": 14.5472
+  },
+  "touristType": ["Hiking", "Nature", "Adventure"],
+  "isAccessibleForFree": false,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Agerola",
+    "addressRegion": "Campania",
+    "addressCountry": "IT"
+  }
 };
 
 const schedule = [
   { time: '07:00', place: 'Naples', action: 'Circumvesuviana to Sorrento (70 min, ~€3.90)', transport: 'train' },
   { time: '08:15', place: 'Sorrento', action: 'SITA bus to Amalfi (90 min, ~€3.50) - the 8:30 service', transport: 'bus' },
-  { time: '10:00', place: 'Amalfi', action: 'Local bus to Agerola, San Lazzaro hamlet (45 min, ~€1.50). Start of trail.', transport: 'bus' },
-  { time: '11:00', place: 'Agerola (618 m)', action: 'Departure on the Path of the Gods. 8 km, ~500 m descent, EE grade. Breathtaking scenery.', transport: 'walk' },
+  { time: '10:00', place: 'Amalfi', action: 'Local bus to Bomerano, Agerola hamlet (45 min, ~€1.50). Start of trail.', transport: 'bus' },
+  { time: '11:00', place: 'Bomerano, Agerola (618 m)', action: 'Departure on the Path of the Gods. 7.8 km, ~500 m descent, E/EE grade. Breathtaking scenery.', transport: 'walk' },
   { time: '14:30', place: 'Nocelle', action: 'Arrival at Nocelle. Break and lunch at one of the local rifugios/bars.', transport: 'visit' },
   { time: '15:15', place: 'Nocelle → Positano', action: 'Local bus to Positano centre (15 min, ~€1.50) or on foot (~1,000 steps, 45 min)', transport: 'bus' },
   { time: '16:00', place: 'Positano', action: 'Stroll, gelato, beach (1h free time)', transport: 'visit' },
@@ -45,9 +81,9 @@ const schedule = [
 
 const tips = [
   'Best season: April–June and September–October. July–August is very hot and crowded.',
-  'The bus from Amalfi to Agerola has limited services: check timetables on eavsrl.it the evening before.',
-  'Always hike in the Agerola→Nocelle direction: almost entirely downhill, signage designed for this way.',
-  'The trail has no water points: bring at least 1.5L. The last bar is in Agerola before you set off.',
+  'The bus from Amalfi to Bomerano (Agerola) has limited services: check timetables on eavsrl.it the evening before.',
+  'Always hike in the Bomerano→Nocelle direction: almost entirely downhill, signage designed for this way.',
+  'The trail has no water points: bring at least 1.5L. The last bar is in Bomerano square before you set off.',
   'From Nocelle you can descend to Positano on foot (~1,000 steps, 45 min) or by bus (15 min, ~€1.50).',
 ];
 
@@ -67,11 +103,11 @@ const destinationHighlights = [
 ---
 
 <BaseLayout
-  title="Path of the Gods Trek in 1 Day from Naples 2026 | Hiking Itinerary"
-  description="How to do the Path of the Gods (Agerola–Nocelle) in a day from Naples: timetables, transport, booking and tips. 8 km of hiking with views over the Amalfi Coast."
+  title="Path of the Gods 2026: Map, Difficulty, Bomerano–Nocelle Trail Guide"
+  description="Complete guide to the Path of the Gods (Sentiero degli Dei): trail map, difficulty level, is it dangerous?, booking, how to get there from Naples. 7.8 km Bomerano→Nocelle hike on the Amalfi Coast."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, hikingTrailSchema]}
  pageKey="path-of-the-gods-trek">
 
   <!-- Hero Section -->
@@ -132,7 +168,7 @@ const destinationHighlights = [
       <!-- SEO Text Below -->
       <div>
         <p class="text-lg text-slate-700 leading-relaxed">
-          The <strong>Path of the Gods</strong> (Sentiero degli Dei) from <strong>Naples</strong> in one day: take the <strong>Circumvesuviana</strong> to Sorrento, then SITA bus to <strong>Amalfi</strong> and local bus to <strong>Agerola</strong>. Trek 8 km through stunning cliff-top scenery to <strong>Nocelle</strong>, then descend to <strong>Positano</strong>. Mandatory booking in July–August via Parco dei Monti Lattari (~€5). <strong>Transport budget: €12–18</strong>.
+          The <strong>Path of the Gods</strong> (Sentiero degli Dei) is the most famous hike on the <strong>Amalfi Coast</strong>: 7.8 km from <strong>Bomerano</strong> (Agerola) to <strong>Nocelle</strong>, mostly downhill, with jaw-dropping views of Capri and the coastline. Difficulty: E/EE, suitable for hikers with basic fitness. From Naples allow about 4 hours to reach the trailhead (Circumvesuviana + SITA bus + local bus). The hike takes 3–4 hours at a moderate pace. <strong>Mandatory booking in July–August</strong> (~€5). Transport budget: €12–18.
         </p>
       </div>
     </section>
@@ -170,21 +206,90 @@ const destinationHighlights = [
       </div>
     </section>
 
-    <!-- Destinations Highlighted -->
-    <section>
-      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Itinerary destinations</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {destinationHighlights.map((dest) => (
-          <a href={dest.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
-            <h3 class="font-semibold text-charcoal mb-2 group-hover:text-med-blue transition-colors">{dest.name}</h3>
-            <p class="text-xs text-slate-500 leading-relaxed mb-3">{dest.desc}</p>
-            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-              Discover →
-            </span>
-          </a>
-        ))}
+    <!-- Trail Map -->
+    <section id="map">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-4">Path of the Gods trail map</h2>
+      <p class="text-slate-600 mb-6 leading-relaxed">The trail starts at <strong>Piazza Paolo Capasso in Bomerano</strong> (a hamlet of Agerola, 618 m a.s.l.) and follows CAI trail n. 327 westward along the Lattari Mountains ridge, ending at <strong>Nocelle</strong> (420 m a.s.l.), the upper hamlet of Positano. The path is marked with red-and-white CAI blazes.</p>
+      <div class="rounded-2xl overflow-hidden border border-slate-200">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=14.475%2C40.618%2C14.565%2C40.655&layer=mapnik&marker=40.638%2C14.547"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          title="Path of the Gods trail map: Bomerano to Nocelle route">
+        </iframe>
+      </div>
+      <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="bg-slate-50 rounded-xl p-4 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-wide mb-1">Start</p>
+          <p class="font-semibold text-slate-900">Bomerano (618 m)</p>
+          <p class="text-xs text-slate-500">Piazza Paolo Capasso</p>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-wide mb-1">End</p>
+          <p class="font-semibold text-slate-900">Nocelle (420 m)</p>
+          <p class="text-xs text-slate-500">Piazzetta di Nocelle</p>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-wide mb-1">Elevation</p>
+          <p class="font-semibold text-slate-900">+200 m / −400 m</p>
+          <p class="text-xs text-slate-500">Mostly downhill</p>
+        </div>
       </div>
     </section>
+
+    <!-- Difficulty & Safety -->
+    <section id="difficulty">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-4">Difficulty and safety</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white border border-slate-200 rounded-2xl p-6">
+          <h3 class="font-semibold text-slate-900 mb-3 flex items-center gap-2">
+            <span class="w-8 h-8 bg-green-100 text-green-700 rounded-full flex items-center justify-center text-sm font-bold">E</span>
+            Grade: E / EE (moderate)
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-3">
+            The Path of the Gods is graded <strong>E</strong> (hiking) with some <strong>EE</strong> (experienced hiker) sections. No ropes, crampons or climbing gear required. The surface is dirt and rock with stone-cut steps in places.
+          </p>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">&#10003;</span> No via ferrata or scrambling sections</li>
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">&#10003;</span> Clear CAI red-and-white trail blazes</li>
+            <li class="flex items-start gap-2"><span class="text-green-600 mt-0.5">&#10003;</span> Exposed sections have low walls or railings</li>
+          </ul>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-6">
+          <h3 class="font-semibold text-slate-900 mb-3 flex items-center gap-2">
+            <span class="w-8 h-8 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center text-sm font-bold">!</span>
+            Is the Path of the Gods dangerous?
+          </h3>
+          <p class="text-slate-600 text-sm leading-relaxed mb-3">
+            <strong>No, with the right gear and basic fitness.</strong> The trail is safe for anyone wearing hiking boots and in reasonable shape. However, some caution is needed:
+          </p>
+          <ul class="text-sm text-slate-600 space-y-1">
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Rain makes the surface slippery: avoid hiking in wet weather</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Cliff-edge sections: not recommended for those with vertigo</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Not suitable for children under 6</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600 mt-0.5">&#9888;</span> Bring at least 1.5L of water (no fountains on the trail)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <CorrelationSlider
+    heading="Itinerary destinations"
+    lang="en-us"
+    items={[
+      { name: 'Positano', href: '/en-us/amalfi-coast/positano/', tag: 'Village & Beaches', desc: 'The trek\'s final destination, the jewel of the Amalfi Coast.' },
+      { name: 'Amalfi', href: '/en-us/amalfi-coast/amalfi/', tag: 'Art & History', desc: 'Your gateway to the trail via bus to Bomerano.' },
+      { name: 'Ravello', href: '/en-us/amalfi-coast/ravello/', tag: 'Music & Gardens', desc: 'The Terrace of Infinity, Villa Rufolo and panoramic views 350 m above the sea.' },
+      { name: 'Praiano', href: '/en-us/amalfi-coast/praiano/', tag: 'Sunset & Quiet', desc: 'Close to Nocelle, stunning sunsets and the Gavitella beach.' },
+    ]}
+  />
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pb-10 space-y-10">
 
     <!-- Planning Tips -->
     <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
