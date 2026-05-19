@@ -75,6 +75,12 @@ const ui = ({
 <script>
   import Fuse from 'fuse.js';
 
+  declare global {
+    interface Window {
+      gtag?: (...args: any[]) => void;
+    }
+  }
+
   interface SearchItem {
     title: string;
     description: string;
@@ -113,6 +119,7 @@ const ui = ({
     el.href = item.url;
     el.className = 'search-result flex items-center gap-3 px-3 py-2.5 mx-1 rounded-xl text-left transition-all duration-100 hover:bg-med-blue/5 group cursor-pointer';
     el.dataset.index = String(idx);
+    el.addEventListener('click', () => trackSearchClick(input.value.trim(), item.url));
     el.innerHTML = `
       <div class="w-9 h-9 rounded-lg bg-slate-50 group-hover:bg-med-blue/10 flex items-center justify-center flex-shrink-0 transition-colors border border-slate-100 group-hover:border-med-blue/20">
         <svg class="w-4 h-4 text-slate-400 group-hover:text-med-blue transition-colors" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
@@ -204,6 +211,7 @@ const ui = ({
       e.preventDefault();
       const items = document.querySelectorAll<HTMLAnchorElement>('.search-result');
       if (activeIndex >= 0 && items[activeIndex]) {
+        trackSearchClick(input.value.trim(), items[activeIndex].href);
         window.location.href = items[activeIndex].href;
       }
     }
@@ -213,12 +221,37 @@ const ui = ({
   backdrop?.addEventListener('click', closeModal);
   closeBtn?.addEventListener('click', closeModal);
 
+  // GA4 search tracking (debounced)
+  let searchDebounce: ReturnType<typeof setTimeout>;
+  function trackSearch(term: string, resultsCount: number) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'search', {
+        search_term: term,
+        search_results_count: resultsCount,
+      });
+    }
+  }
+
+  function trackSearchClick(term: string, url: string) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'select_content', {
+        content_type: 'search_result',
+        search_term: term,
+        content_id: url,
+      });
+    }
+  }
+
   // Search input
   input.addEventListener('input', () => {
     const q = input.value.trim();
     if (q.length < 2) { resetToDefault(); return; }
 
     const results = fuse.search(q).slice(0, 10);
+
+    // Track search after 800ms of inactivity
+    clearTimeout(searchDebounce);
+    searchDebounce = setTimeout(() => trackSearch(q, results.length), 800);
 
     defaultEl.classList.add('hidden');
     if (results.length === 0) {
