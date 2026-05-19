@@ -178,6 +178,91 @@ const allSchemas = [websiteSchema, organizationSchema, ...(schema || []), ...(br
         }, { passive: true });
         btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
       }
+
+      // Outbound link tracking
+      document.querySelectorAll<HTMLAnchorElement>('a[href^="http"]').forEach(link => {
+        if (link.hostname !== window.location.hostname) {
+          link.addEventListener('click', () => {
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'outbound_click', {
+                link_url: link.href,
+                link_text: link.textContent?.trim().slice(0, 100) || '',
+                link_domain: link.hostname,
+                page_path: window.location.pathname,
+              });
+            }
+          });
+        }
+      });
+
+      // CTA click tracking (bg-med-blue sections = CTA blocks)
+      document.querySelectorAll<HTMLAnchorElement>('section.bg-med-blue a, section.bg-slate-900 a, a[class*="bg-med-blue"], a[class*="bg-med-gold"]').forEach(link => {
+        link.addEventListener('click', () => {
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'cta_click', {
+              cta_text: link.textContent?.trim().slice(0, 100) || '',
+              cta_url: link.getAttribute('href') || '',
+              page_path: window.location.pathname,
+            });
+          }
+        });
+      });
+
+      // FAQ / accordion tracking (<details> elements in main content)
+      document.querySelectorAll<HTMLDetailsElement>('main details').forEach(det => {
+        det.addEventListener('toggle', () => {
+          if (det.open && typeof window.gtag === 'function') {
+            const question = det.querySelector('summary')?.textContent?.trim().slice(0, 150) || '';
+            window.gtag('event', 'faq_interaction', {
+              faq_question: question,
+              page_path: window.location.pathname,
+            });
+          }
+        });
+      });
+
+      // File download tracking
+      document.querySelectorAll<HTMLAnchorElement>('a[download], a[href$=".pdf"], a[href$=".gpx"]').forEach(link => {
+        link.addEventListener('click', () => {
+          if (typeof window.gtag === 'function') {
+            const url = link.getAttribute('href') || '';
+            const fileName = url.split('/').pop() || url;
+            window.gtag('event', 'file_download', {
+              file_name: fileName,
+              file_url: url,
+              link_text: link.textContent?.trim().slice(0, 100) || '',
+              page_path: window.location.pathname,
+            });
+          }
+        });
+      });
+
+      // Scroll depth tracking (25%, 50%, 75%, 90%)
+      (function() {
+        const thresholds = [25, 50, 75, 90];
+        const fired = new Set<number>();
+
+        function getScrollPercent(): number {
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (docHeight <= 0) return 100;
+          return Math.round((window.scrollY / docHeight) * 100);
+        }
+
+        window.addEventListener('scroll', () => {
+          const pct = getScrollPercent();
+          for (const t of thresholds) {
+            if (pct >= t && !fired.has(t)) {
+              fired.add(t);
+              if (typeof window.gtag === 'function') {
+                window.gtag('event', 'scroll_depth', {
+                  percent_scrolled: t,
+                  page_path: window.location.pathname,
+                });
+              }
+            }
+          }
+        }, { passive: true });
+      })();
     </script>
   </body>
 </html>

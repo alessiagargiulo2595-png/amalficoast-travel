@@ -70,7 +70,14 @@ const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
       },
     },
     onConsent: () => {
-      updateConsent(CookieConsent.acceptedCategory('analytics'));
+      const accepted = CookieConsent.acceptedCategory('analytics');
+      updateConsent(accepted);
+      if (typeof (window as any).gtag === 'function') {
+        (window as any).gtag('event', 'cookie_consent', {
+          consent_action: accepted ? 'accept' : 'reject',
+          page_path: window.location.pathname,
+        });
+      }
     },
     onChange: ({ changedCategories }) => {
       if (changedCategories.includes('analytics')) {
