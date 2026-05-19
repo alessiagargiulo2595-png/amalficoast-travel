@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../../components/CorrelationSlider.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Pianificazione', url: '/it-it/pianificazione/' },
+  { name: 'Costiera Completa - 4 giorni', url: '/it-it/itinerari/4-giorni/costiera-amalfitana-completa/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Dove dormire per visitare la Costiera Amalfitana in 4 giorni?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La base migliore e Amalfi: posizione centrale, ben servita da bus SITA e traghetti, buona scelta di B&B e hotel. In alternativa Praiano offre tranquillita e prezzi piu bassi, oppure Maiori per chi preferisce la spiaggia. Con 4 giorni conviene restare in una sola base per evitare spostamenti con i bagagli." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costa un viaggio di 4 giorni in Costiera Amalfitana?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Budget medio a persona (4 notti): alloggio €60-120/notte (B&B/hotel 3*), trasporti €30-50 totali (bus+traghetti), pasti €25-40/giorno, ingressi €20-30 totali. Totale stimato: €400-700 a persona in media stagione, escluso il viaggio per raggiungere la Costiera." }
+    },
+    {
+      "@type": "Question",
+      "name": "4 giorni sulla Costiera: meglio in alta o bassa stagione?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Maggio-giugno e settembre-ottobre sono i mesi ideali: clima perfetto per il trekking, meno folla sui bus, prezzi piu bassi. Luglio-agosto e possibile ma i bus sono stracolmi, i parcheggi pieni e le spiagge affollate. Con 4 giorni la bassa stagione permette di godersi tutto con calma." }
+    },
+    {
+      "@type": "Question",
+      "name": "Si puo fare il Sentiero degli Dei in questo itinerario?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Si, il Giorno 3 e dedicato al Sentiero degli Dei (Bomerano-Nocelle, 7.8 km, 2-3 ore). Si raggiunge Bomerano in bus SITA da Amalfi (45 min). Servono scarpe da trekking, acqua e protezione solare. Il sentiero e classificato E (escursionistico) e non presenta difficolta tecniche." }
+    }
+  ]
+};
+
+const days = [
+  {
+    day: 'Giorno 1',
+    title: 'Arrivo, Amalfi e Atrani',
+    highlight: 'Duomo, Museo della Carta, borgo di Atrani',
+    items: [
+      'Arrivo a Salerno in treno (da Napoli: 30 min, €4.80). Traghetto Travelmar per Amalfi (35 min) oppure bus SITA (75 min).',
+      'Check-in e prima esplorazione di Amalfi: Duomo di Sant\'Andrea, Chiostro del Paradiso, passeggiata sul porto.',
+      'Pomeriggio: Museo della Carta (la carta amalfitana, XIII sec., ingresso €4.50).',
+      'Passeggiata ad Atrani (10 min a piedi): piazzetta sul mare, Collegiata di San Salvatore de\' Birecto, aperitivo.',
+      'Cena ad Atrani: sarchiapone e pesce fresco sulla piazzetta (prezzi piu onesti di Amalfi).',
+    ],
+  },
+  {
+    day: 'Giorno 2',
+    title: 'Ravello e Minori',
+    highlight: 'Villa Rufolo, Villa Cimbrone, villa romana',
+    items: [
+      'Bus SITA Amalfi-Ravello (25 min, partenza ore 8:30). Arrivare presto per evitare la folla.',
+      'Villa Rufolo (€10): giardini pensili, terrazza panoramica sul mare. Se c\'e il Festival, concerti al tramonto.',
+      'Villa Cimbrone (€10): il celebre Terrazzo dell\'Infinito, una delle viste piu belle d\'Italia.',
+      'Pranzo a Ravello: cucina locale con vista sulla valle del Dragone.',
+      'Pomeriggio: bus per Minori (10 min). Villa Romana del I secolo (gratuita). Passeggiata sul lungomare.',
+      'Local tip: a Minori assaggia gli ndunderi (gnocchi di ricotta, piatto medievale) e i dolci della pasticceria De Riso.',
+    ],
+  },
+  {
+    day: 'Giorno 3',
+    title: 'Sentiero degli Dei e Positano',
+    highlight: 'Trekking Bomerano-Nocelle, discesa a Positano',
+    items: [
+      'Partenza presto: bus SITA Amalfi-Agerola/Bomerano (45 min, ore 7:30). Inizio sentiero dalla piazzetta di Bomerano.',
+      'Sentiero degli Dei: 7.8 km, dislivello -630 m, 2-3 ore. Panorami sulla costa, Capri e i Faraglioni. Classificazione E.',
+      'Arrivo a Nocelle (450 m). Scalinata di 1.700 gradini fino ad Arienzo oppure bus navetta per Positano.',
+      'Pranzo a Positano: ristorante con vista sulla Spiaggia Grande.',
+      'Pomeriggio: Spiaggia di Fornillo (piu tranquilla), shopping su Via dei Mulini, chiesa di Santa Maria Assunta.',
+      'Rientro ad Amalfi: bus SITA (25-40 min) o traghetto (25 min, stagionale).',
+    ],
+  },
+  {
+    day: 'Giorno 4',
+    title: 'Praiano, Grotta dello Smeraldo e partenza',
+    highlight: 'Spiaggia Gavitella, grotta, borghi orientali',
+    items: [
+      'Mattina: bus SITA per Praiano (15 min da Amalfi). Passeggiata al belvedere di San Gennaro.',
+      'Discesa alla spiaggia della Gavitella: acque cristalline e vista su Positano e Capri.',
+      'Grotta dello Smeraldo (Conca dei Marini): ingresso ~€5, luce verde spettacolare. Raggiungibile in bus o barca da Amalfi.',
+      'Rientro ad Amalfi per pranzo. Ultima passeggiata tra i vicoli.',
+      'Partenza: traghetto Amalfi-Salerno (35 min) per prendere il treno, oppure bus SITA per Sorrento se si prosegue verso Napoli.',
+      'Local tip: con tempo extra, fermata a Cetara (20 min da Amalfi) per spaghetti alla colatura di alici.',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Costiera Amalfitana 4 Giorni 2026: Itinerario Completo con Sentiero degli Dei"
+  description="Itinerario di 4 giorni in Costiera Amalfitana: Amalfi, Ravello, Positano, Sentiero degli Dei, Atrani e Praiano. Programma giorno per giorno con trasporti e consigli."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+  pageKey="costiera-amalfitana-4-giorni">
+
+  <!-- Hero Section -->
+  <section class="relative bg-charcoal overflow-hidden min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center">
+    <img src="/images/costiera-hero.jpg" alt="Costiera Amalfitana panorama" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/40 to-black/70"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-3xl mx-auto">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Itinerario · 4 giorni</p>
+        <h1 class="font-serif text-display text-white mb-4">Costiera Amalfitana Completa</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
+          Quattro giorni per vivere il meglio della Costiera: <strong>Amalfi</strong>, <strong>Ravello</strong>, il <strong>Sentiero degli Dei</strong>, <strong>Positano</strong> e i borghi autentici come <strong>Atrani</strong> e <strong>Praiano</strong>.
+        </p>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 space-y-10">
+
+    <!-- Intro -->
+    <section class="text-center mb-2">
+      <p class="text-lg text-slate-700 leading-relaxed">
+        Un <strong>itinerario di 4 giorni in Costiera Amalfitana</strong> che combina cultura, trekking, spiagge e gastronomia. Tutto raggiungibile con i trasporti pubblici, senza auto. Base consigliata: <strong>Amalfi</strong>.
+      </p>
+    </section>
+
+    <!-- Overview cards -->
+    <section class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      {[
+        { label: 'Durata', value: '4 giorni / 3 notti' },
+        { label: 'Base', value: 'Amalfi' },
+        { label: 'Trasporti', value: 'Bus SITA + Traghetti' },
+        { label: 'Budget', value: '€400-700 p.p.' },
+      ].map(card => (
+        <div class="bg-slate-900 rounded-2xl p-4 text-center">
+          <p class="text-[10px] uppercase tracking-wider text-med-gold font-medium mb-1">{card.label}</p>
+          <p class="text-white font-semibold text-sm">{card.value}</p>
+        </div>
+      ))}
+    </section>
+
+    <!-- Day by Day -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Il programma giorno per giorno</h2>
+      <div class="space-y-6">
+        {days.map((d) => (
+          <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-slate-900 px-6 py-6 flex items-start gap-4 sm:items-center sm:gap-3">
+              <span class="text-[10px] uppercase tracking-wide bg-white/15 text-white px-3 py-1.5 rounded-full font-bold flex-shrink-0">{d.day}</span>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-serif font-semibold text-white text-lg">{d.title}</h3>
+                <p class="text-xs text-med-gold mt-1 font-medium">{d.highlight}</p>
+              </div>
+            </div>
+            <ul class="px-6 py-5 space-y-3">
+              {d.items.map((item, itemIdx) => {
+                const isLocalTip = item.includes('Local tip:');
+                const displayText = item.replace('Local tip: ', '');
+                const isLastItem = itemIdx === d.items.length - 1;
+                return (
+                  <li class={`flex gap-3 text-sm relative ${isLocalTip ? 'bg-med-gold/10 p-3 rounded-lg border border-med-gold/20' : ''}`}>
+                    <div class="flex flex-col items-center">
+                      {isLocalTip ? (
+                        <svg class="w-5 h-5 text-med-gold flex-shrink-0 self-center" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                          <circle cx="12" cy="8" r="5"/>
+                          <path d="M12 13v2"/>
+                          <rect x="10" y="15" width="4" height="3" rx="0.5"/>
+                        </svg>
+                      ) : (
+                        <span class="w-2 h-2 rounded-full bg-med-blue flex-shrink-0"></span>
+                      )}
+                      {!isLastItem && <div class="w-0.5 h-6 bg-med-blue/30 mt-1"></div>}
+                    </div>
+                    <span class={`leading-relaxed ${isLocalTip ? 'font-semibold text-slate-800' : 'text-slate-700'}`}>
+                      {isLocalTip && <strong>Local tip: </strong>}
+                      {displayText}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Consigli pratici -->
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+      <h2 class="font-serif text-xl font-semibold text-charcoal mb-6">Consigli pratici</h2>
+      <ul class="space-y-4">
+        {[
+          { num: '1', text: 'Biglietto bus SITA: €2,40 corsa singola oppure 24h pass (verifica disponibilita). Compralo in tabaccheria.' },
+          { num: '2', text: 'Sentiero degli Dei: scarpe da trekking obbligatorie, 1.5 litri d\'acqua a testa, crema solare. Partire entro le 8:30.' },
+          { num: '3', text: 'Traghetti Travelmar (apr-ott): Amalfi-Positano €10, Amalfi-Salerno €8. Piu veloce e panoramico del bus.' },
+          { num: '4', text: 'Prenota l\'alloggio con 2-3 mesi di anticipo per maggio-ottobre. I B&B centrali ad Amalfi si esauriscono presto.' },
+          { num: '5', text: 'Mangia nei borghi minori (Atrani, Minori, Cetara): stessa qualita di Amalfi/Positano a meta prezzo.' },
+        ].map(({ num, text }) => (
+          <li class="flex items-start gap-4 text-sm text-charcoal">
+            <span class="text-lg font-bold text-white flex-shrink-0 leading-none bg-[#E2725B] w-9 h-9 flex items-center justify-center rounded-full">{num}</span>
+            <span class="leading-relaxed" set:html={text}></span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Domande frequenti</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-gradient-to-r from-med-blue to-med-blue/80 rounded-2xl p-10 text-center text-white">
+      <h2 class="font-serif text-3xl font-bold mb-3">Pronto a partire?</h2>
+      <p class="text-white/90 mb-6 max-w-2xl mx-auto">
+        Consulta la guida completa ai trasporti per arrivare e muoverti sulla Costiera Amalfitana.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/it-it/guida/come-arrivare/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">
+          Come arrivare →
+        </a>
+        <a href="/it-it/guida/mappa/" class="inline-block bg-white/10 border border-white/30 text-white font-semibold px-8 py-3 rounded-full hover:bg-white/20 transition-colors">
+          Mappa Costiera →
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+  <CorrelationSlider
+    heading="Esplora le destinazioni dell'itinerario"
+    items={[
+      { name: 'Amalfi', href: '/it-it/costiera-amalfitana/amalfi/', tag: 'Repubblica Marinara', desc: 'La capitale storica con il Duomo e il Museo della Carta.' },
+      { name: 'Positano', href: '/it-it/costiera-amalfitana/positano/', tag: 'Fashion & Vista', desc: 'Le case colorate a picco sul mare e la spiaggia Fornillo.' },
+      { name: 'Ravello', href: '/it-it/costiera-amalfitana/ravello/', tag: 'Musica & Giardini', desc: 'Villa Rufolo, Villa Cimbrone e il Festival a 350 m.' },
+      { name: 'Praiano', href: '/it-it/costiera-amalfitana/praiano/', tag: 'Tramonto & Quiete', desc: 'Il tramonto da San Gennaro e la silenziosa Marina di Praia.' },
+    ]}
+    lang="it-it"
+  />
+
+</BaseLayout>

@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../../components/CorrelationSlider.astro';
+
+const lang = 'de-de';
+
+const breadcrumbs = [
+  { name: 'Startseite', url: '/de-de/' },
+  { name: 'Reiseplanung', url: '/de-de/reiseplanung/' },
+  { name: 'Komplette Kueste - 4 Tage', url: '/de-de/reiserouten/4-tage/komplette-amalfikueste/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wo sollte man bei 4 Tagen an der Amalfikueste uebernachten?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die beste Basis ist Amalfi: zentrale Lage, gut angebunden mit SITA-Bussen und Faehren, gute Auswahl an B&Bs und Hotels. Alternativ bietet Praiano Ruhe und niedrigere Preise oder Maiori fuer Strandliebhaber. Bei 4 Tagen empfiehlt es sich, an einem Ort zu bleiben, um Gepaeckschleppen zu vermeiden." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet eine 4-taegige Reise an die Amalfikueste?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Durchschnittliches Budget pro Person (4 Naechte): Unterkunft €60-120/Nacht (B&B/3*-Hotel), Transport €30-50 gesamt (Bus+Faehren), Mahlzeiten €25-40/Tag, Eintritte €20-30 gesamt. Geschaetztes Gesamtbudget: €400-700 pro Person in der Nebensaison, ohne Anreise zur Kueste." }
+    },
+    {
+      "@type": "Question",
+      "name": "4 Tage an der Kueste: Haupt- oder Nebensaison?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Mai-Juni und September-Oktober sind die idealen Monate: perfektes Wanderwetter, weniger Gedraenge in den Bussen, niedrigere Preise. Juli-August ist moeglich, aber die Busse sind ueberfuellt, Parkplaetze voll und Straende ueberlaufen. Mit 4 Tagen kann man in der Nebensaison alles entspannt geniessen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann man den Goetterweg in diesem Reiseplan wandern?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, Tag 3 ist dem Goetterweg gewidmet (Bomerano-Nocelle, 7,8 km, 2-3 Stunden). Man erreicht Bomerano mit dem SITA-Bus von Amalfi (45 Min). Wanderschuhe, Wasser und Sonnenschutz sind erforderlich. Der Weg ist als E (Wanderweg) eingestuft und weist keine technischen Schwierigkeiten auf." }
+    }
+  ]
+};
+
+const days = [
+  {
+    day: 'Tag 1',
+    title: 'Ankunft, Amalfi und Atrani',
+    highlight: 'Dom, Papiermuseum, Dorf Atrani',
+    items: [
+      'Ankunft in Salerno mit dem Zug (von Neapel: 30 Min, €4,80). Travelmar-Faehre nach Amalfi (35 Min) oder SITA-Bus (75 Min).',
+      'Check-in und erste Erkundung von Amalfi: Dom Sant\'Andrea, Kreuzgang des Paradieses, Spaziergang am Hafen.',
+      'Nachmittag: Papiermuseum (Amalfi-Papier, 13. Jh., Eintritt €4,50).',
+      'Spaziergang nach Atrani (10 Min zu Fuss): Piazzetta am Meer, Collegiata di San Salvatore de\' Birecto, Aperitivo.',
+      'Abendessen in Atrani: Sarchiapone und frischer Fisch auf der Piazzetta (guenstigere Preise als in Amalfi).',
+    ],
+  },
+  {
+    day: 'Tag 2',
+    title: 'Ravello und Minori',
+    highlight: 'Villa Rufolo, Villa Cimbrone, roemische Villa',
+    items: [
+      'SITA-Bus Amalfi-Ravello (25 Min, Abfahrt 8:30 Uhr). Frueh ankommen, um den Massen auszuweichen.',
+      'Villa Rufolo (€10): Haengende Gaerten, Panoramaterrasse mit Meerblick. Bei Festival: Konzerte bei Sonnenuntergang.',
+      'Villa Cimbrone (€10): Die beruehmte Terrasse der Unendlichkeit, einer der schoensten Ausblicke Italiens.',
+      'Mittagessen in Ravello: lokale Kueche mit Blick auf das Drachental.',
+      'Nachmittag: Bus nach Minori (10 Min). Roemische Villa aus dem 1. Jh. (kostenlos). Spaziergang an der Uferpromenade.',
+      'Reisetipp: In Minori die Ndunderi (Ricotta-Gnocchi, ein mittelalterliches Gericht) und Gebaeck der Baeckerei De Riso probieren.',
+    ],
+  },
+  {
+    day: 'Tag 3',
+    title: 'Goetterweg und Positano',
+    highlight: 'Wanderung Bomerano-Nocelle, Abstieg nach Positano',
+    items: [
+      'Frueher Start: SITA-Bus Amalfi-Agerola/Bomerano (45 Min, 7:30 Uhr). Wanderstart an der Piazzetta von Bomerano.',
+      'Goetterweg: 7,8 km, Hoehenunterschied -630 m, 2-3 Stunden. Ausblicke auf die Kueste, Capri und die Faraglioni. Schwierigkeitsgrad E.',
+      'Ankunft in Nocelle (450 m). Treppe mit 1.700 Stufen nach Arienzo oder Shuttlebus nach Positano.',
+      'Mittagessen in Positano: Restaurant mit Blick auf die Spiaggia Grande.',
+      'Nachmittag: Fornillo-Strand (ruhiger), Shopping auf der Via dei Mulini, Kirche Santa Maria Assunta.',
+      'Rueckfahrt nach Amalfi: SITA-Bus (25-40 Min) oder Faehre (25 Min, saisonal).',
+    ],
+  },
+  {
+    day: 'Tag 4',
+    title: 'Praiano, Smaragdgrotte und Abreise',
+    highlight: 'Gavitella-Strand, Grotte, oestliche Doerfer',
+    items: [
+      'Vormittag: SITA-Bus nach Praiano (15 Min von Amalfi). Spaziergang zum Aussichtspunkt San Gennaro.',
+      'Abstieg zum Gavitella-Strand: kristallklares Wasser und Blick auf Positano und Capri.',
+      'Smaragdgrotte (Conca dei Marini): Eintritt ~€5, spektakulaeres gruenes Licht. Erreichbar per Bus oder Boot von Amalfi.',
+      'Rueckfahrt nach Amalfi zum Mittagessen. Letzter Spaziergang durch die engen Gassen.',
+      'Abreise: Faehre Amalfi-Salerno (35 Min) fuer den Zugansschluss oder SITA-Bus nach Sorrento Richtung Neapel.',
+      'Reisetipp: Bei zusaetzlicher Zeit Halt in Cetara (20 Min von Amalfi) fuer Spaghetti alla Colatura di Alici.',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Amalfikueste 4 Tage 2026: Kompletter Reiseplan mit Goetterweg"
+  description="4-Tage-Reiseplan fuer die Amalfikueste: Amalfi, Ravello, Positano, Goetterweg, Atrani und Praiano. Tag-fuer-Tag-Programm mit Transport und Tipps."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+  pageKey="costiera-amalfitana-4-giorni">
+
+  <section class="relative bg-charcoal overflow-hidden min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center">
+    <img src="/images/costiera-hero.jpg" alt="Panorama der Amalfikueste" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/40 to-black/70"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-3xl mx-auto">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Reiseroute · 4 Tage</p>
+        <h1 class="font-serif text-display text-white mb-4">Komplette Amalfikueste</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
+          Vier Tage, um das Beste der Kueste zu erleben: <strong>Amalfi</strong>, <strong>Ravello</strong>, der <strong>Goetterweg</strong>, <strong>Positano</strong> und authentische Doerfer wie <strong>Atrani</strong> und <strong>Praiano</strong>.
+        </p>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 space-y-10">
+
+    <section class="text-center mb-2">
+      <p class="text-lg text-slate-700 leading-relaxed">
+        Ein <strong>4-Tage-Reiseplan fuer die Amalfikueste</strong>, der Kultur, Wandern, Straende und Gastronomie verbindet. Alles mit oeffentlichen Verkehrsmitteln erreichbar, ohne Auto. Empfohlene Basis: <strong>Amalfi</strong>.
+      </p>
+    </section>
+
+    <section class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      {[
+        { label: 'Dauer', value: '4 Tage / 3 Naechte' },
+        { label: 'Basis', value: 'Amalfi' },
+        { label: 'Transport', value: 'SITA-Bus + Faehren' },
+        { label: 'Budget', value: '€400-700 p.P.' },
+      ].map(card => (
+        <div class="bg-slate-900 rounded-2xl p-4 text-center">
+          <p class="text-[10px] uppercase tracking-wider text-med-gold font-medium mb-1">{card.label}</p>
+          <p class="text-white font-semibold text-sm">{card.value}</p>
+        </div>
+      ))}
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Tag-fuer-Tag-Programm</h2>
+      <div class="space-y-6">
+        {days.map((d) => (
+          <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-slate-900 px-6 py-6 flex items-start gap-4 sm:items-center sm:gap-3">
+              <span class="text-[10px] uppercase tracking-wide bg-white/15 text-white px-3 py-1.5 rounded-full font-bold flex-shrink-0">{d.day}</span>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-serif font-semibold text-white text-lg">{d.title}</h3>
+                <p class="text-xs text-med-gold mt-1 font-medium">{d.highlight}</p>
+              </div>
+            </div>
+            <ul class="px-6 py-5 space-y-3">
+              {d.items.map((item, itemIdx) => {
+                const isLocalTip = item.includes('Reisetipp:');
+                const displayText = item.replace('Reisetipp: ', '');
+                const isLastItem = itemIdx === d.items.length - 1;
+                return (
+                  <li class={`flex gap-3 text-sm relative ${isLocalTip ? 'bg-med-gold/10 p-3 rounded-lg border border-med-gold/20' : ''}`}>
+                    <div class="flex flex-col items-center">
+                      {isLocalTip ? (
+                        <svg class="w-5 h-5 text-med-gold flex-shrink-0 self-center" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                          <circle cx="12" cy="8" r="5"/>
+                          <path d="M12 13v2"/>
+                          <rect x="10" y="15" width="4" height="3" rx="0.5"/>
+                        </svg>
+                      ) : (
+                        <span class="w-2 h-2 rounded-full bg-med-blue flex-shrink-0"></span>
+                      )}
+                      {!isLastItem && <div class="w-0.5 h-6 bg-med-blue/30 mt-1"></div>}
+                    </div>
+                    <span class={`leading-relaxed ${isLocalTip ? 'font-semibold text-slate-800' : 'text-slate-700'}`}>
+                      {isLocalTip && <strong>Reisetipp: </strong>}
+                      {displayText}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+      <h2 class="font-serif text-xl font-semibold text-charcoal mb-6">Praktische Tipps</h2>
+      <ul class="space-y-4">
+        {[
+          { num: '1', text: 'SITA-Busticket: €2,40 Einzelfahrt oder 24h-Pass (Verfuegbarkeit pruefen). Im Tabakladen kaufen.' },
+          { num: '2', text: 'Goetterweg: Wanderschuhe Pflicht, 1,5 Liter Wasser pro Person, Sonnenschutz. Bis 8:30 Uhr starten.' },
+          { num: '3', text: 'Travelmar-Faehren (Apr-Okt): Amalfi-Positano €10, Amalfi-Salerno €8. Schneller und malerischer als der Bus.' },
+          { num: '4', text: 'Unterkunft 2-3 Monate vorher buchen fuer Mai-Oktober. Zentrale B&Bs in Amalfi sind schnell ausgebucht.' },
+          { num: '5', text: 'In kleineren Doerfern essen (Atrani, Minori, Cetara): gleiche Qualitaet wie Amalfi/Positano zum halben Preis.' },
+        ].map(({ num, text }) => (
+          <li class="flex items-start gap-4 text-sm text-charcoal">
+            <span class="text-lg font-bold text-white flex-shrink-0 leading-none bg-[#E2725B] w-9 h-9 flex items-center justify-center rounded-full">{num}</span>
+            <span class="leading-relaxed" set:html={text}></span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Haeufig gestellte Fragen</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="bg-gradient-to-r from-med-blue to-med-blue/80 rounded-2xl p-10 text-center text-white">
+      <h2 class="font-serif text-3xl font-bold mb-3">Bereit zur Abreise?</h2>
+      <p class="text-white/90 mb-6 max-w-2xl mx-auto">Lesen Sie den kompletten Transportfuehrer zur Anreise und Fortbewegung an der Amalfikueste.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/de-de/ratgeber/anreise/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">Anreise →</a>
+        <a href="/de-de/ratgeber/karte/" class="inline-block bg-white/10 border border-white/30 text-white font-semibold px-8 py-3 rounded-full hover:bg-white/20 transition-colors">Karte der Kueste →</a>
+      </div>
+    </section>
+
+  </div>
+
+  <CorrelationSlider
+    heading="Entdecken Sie die Reiseziele"
+    items={[
+      { name: 'Amalfi', href: '/de-de/amalfikueste/amalfi/', tag: 'Seerepublik', desc: 'Die historische Hauptstadt mit Dom und Papiermuseum.' },
+      { name: 'Positano', href: '/de-de/amalfikueste/positano/', tag: 'Mode & Ausblick', desc: 'Bunte Haeuser am Hang zum Meer und Fornillo-Strand.' },
+      { name: 'Ravello', href: '/de-de/amalfikueste/ravello/', tag: 'Musik & Gaerten', desc: 'Villa Rufolo, Villa Cimbrone und das Festival auf 350 m.' },
+      { name: 'Praiano', href: '/de-de/amalfikueste/praiano/', tag: 'Sonnenuntergang', desc: 'Der Sonnenuntergang von San Gennaro und die stille Marina di Praia.' },
+    ]}
+    lang="de-de"
+  />
+
+</BaseLayout>

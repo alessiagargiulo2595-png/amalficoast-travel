@@ -1,0 +1,347 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'de-de';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/de-de/' },
+  { name: 'Amalfikueste', url: '/de-de/amalfikueste/' },
+  { name: 'Atrani', url: '/de-de/amalfikueste/atrani/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Atrani",
+  "description": "Atrani ist die kleinste Gemeinde Italiens nach Flaeche (0,12 km2), ein mittelalterliches Juwel zwischen Felsen, nur 700 Meter von Amalfi entfernt. Piazzetta am Meer, Treppen und authentische Gassen.",
+  "url": "https://amalficoast-travel.com/de-de/amalfikueste/atrani/",
+  "image": "https://amalficoast-travel.com/images/atrani-hero.jpg",
+  "touristType": ["Authentizitaet", "Geschichte", "Meer", "Fotografie"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Atrani",
+    "addressRegion": "Salerno",
+    "addressCountry": "IT",
+    "postalCode": "84010"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6364,
+    "longitude": 14.6083
+  }
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Atrani, Amalfikueste",
+  "description": "Die kleinste Gemeinde Italiens, ein authentisches mittelalterliches Dorf 700 m von Amalfi entfernt.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6364,
+    "longitude": 14.6083
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie weit ist Atrani von Amalfi entfernt?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Atrani ist nur 700 Meter von Amalfi entfernt. Man erreicht es zu Fuss in 10-15 Minuten durch einen Fussgaengertunnel oder entlang der Kuestenstrasse. Es sind die beiden naechstgelegenen Orte an der gesamten Amalfikueste." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie kommt man nach Atrani?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Am besten zu Fuss von Amalfi (10-15 Min.). Mit dem Bus: SITA-Linie Salerno-Amalfi, Haltestelle Atrani. Mit dem Auto: Parkplaetze sind extrem begrenzt; am besten in Amalfi parken (Parkplatz Luna Rossa) und laufen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum ist Atrani beruehmt?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Atrani ist die kleinste Gemeinde Italiens nach Flaeche (0,12 km2). Hier wurden die Dogen der Seerepublik Amalfi gekroent und begraben. Kuerzlich wurde es als Hauptdrehort der Netflix-Serie Ripley (2024) beruehmt." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was sollte man in Atrani essen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Das typische Gericht ist Sarchiapone: lange Zucchini gefuellt mit Hackfleisch, Provola-Kaese und Eiern. Probieren Sie auch den frischen Fisch in den Restaurants an der Piazzetta und die traditionellen Suessigkeiten der Amalfi-Tradition." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann man in Atrani baden?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, Atrani hat einen kleinen Sand- und Kieselstrand direkt an der Piazzetta des Dorfes. Es ist einer der wenigen freien Straende an der Kueste. Kristallklares Wasser und eine authentische Atmosphaere, viel weniger ueberlaufen als Amalfi." }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Atrani: Italiens Kleinstes Dorf an der Amalfikueste"
+  description="Reisefuehrer fuer Atrani, die kleinste Gemeinde Italiens, nur 700 m von Amalfi entfernt. Piazzetta am Meer, Dogen-Geschichte, Ripley-Netflix-Drehort, Strand und Sarchiapone."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, placeSchema, faqSchema]}
+  pageKey="atrani"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[52.5vh] sm:h-[70vh] flex items-end bg-charcoal overflow-hidden">
+    <img
+      src="/images/atrani-hero.jpg"
+      alt="Atrani, Italiens kleinstes Dorf an der Amalfikueste"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+      referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/40 to-black/70"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pb-16 pt-32 w-full">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Amalfikueste</p>
+        <h1 class="font-serif text-display text-white mb-4">Atrani</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Italiens kleinstes Dorf. Nur 700 Meter von Amalfi entfernt, eine voellig andere Welt.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">
+            Fast Facts
+          </a>
+          <a href="#sehenswuerdigkeiten" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            Sehenswuerdigkeiten
+          </a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            FAQ
+          </a>
+        </div>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <!-- Hauptinhalt + Sidebar -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+
+      <!-- Haupttext -->
+      <div class="lg:col-span-2 space-y-12">
+
+        <!-- Intro -->
+        <div>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Das bestgehuetete Geheimnis der Amalfikueste</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-4">
+            <strong>Atrani</strong> ist die <strong>kleinste Gemeinde Italiens</strong> nach Flaeche: nur 0,12 km&sup2; aus Gassen, Treppen und mittelalterlichen Boegen, eingekeilt zwischen zwei Felsklippen ueber dem Meer. Nur 700 Meter von Amalfi entfernt, und dennoch eine voellig andere Welt.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Hier gibt es keine Luxusboutiquen und keine Touristenrestaurants. Es gibt eine Piazzetta, auf der Kinder Fussball spielen, einen kleinen freien Strand und das Geraeusch von Wasser, das zwischen den Haeusern fliesst. Wer nach Atrani kommt, entdeckt die Amalfikueste, wie sie vor dem Massentourismus war.
+          </p>
+        </div>
+
+        <!-- Wussten Sie? -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Wussten Sie?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">0,12</p>
+              <p class="text-white/60 text-xs italic mt-1">km&sup2; Gesamtflaeche</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">839</p>
+              <p class="text-white/60 text-xs italic mt-1">Einwohner (ein lebendiges Dorf)</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">700</p>
+              <p class="text-white/60 text-xs italic mt-1">Meter von Amalfi zu Fuss</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Im Mittelalter war Atrani der Ort, an dem die Dogen der Seerepublik Amalfi gekroent wurden. Die Kollegiatkirche San Salvatore de' Birecto bewahrt noch immer die Porphyrplatte, auf der die Zeremonie stattfand.
+          </p>
+        </div>
+
+        <!-- Sehenswuerdigkeiten -->
+        <div id="sehenswuerdigkeiten">
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Sehenswuerdigkeiten in Atrani</h2>
+
+          <div class="space-y-8">
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Piazza Umberto I</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Das pulsierende Herz des Dorfes. Einer der ganz wenigen Plaetze an der Kueste, der sich direkt zum Meer oeffnet, mit Cafes, Restaurants und dem Alltag der Einwohner. Hier findet das Fest der Santa Maria Maddalena statt (22. Juli).
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Kollegiatkirche San Salvatore de' Birecto</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Im 10. Jahrhundert gegruendet, beherbergt sie die <strong>Porphyrplatte</strong>, auf der die Dogen von Amalfi gekroent wurden. Die Bronzetuer ist eine Kopie der aus Konstantinopel (das Original befindet sich im Dioezesanmuseum). Ein Stueck Geschichte der Seerepublik.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Kirche Santa Maria Maddalena</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Die Majolika-Kuppel und der Glockenturm praegen das Profil Atranis von der Kueste aus. Das barocke Innere beherbergt ein hoelzernes Kruzifix aus dem 13. Jahrhundert. Das Fest am 22. Juli gehoert zu den bedeutendsten an der Kueste.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Masaniellos Hoehle</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Der Legende nach versteckte sich Masaniello, der beruehmte neapolitanische Revolutionaer, waehrend des Aufstands von 1647 in einer Hoehle oberhalb von Atrani. Der Weg zur Hoehle bietet spektakulaere Ausblicke auf die Kueste.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strand -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Der Strand von Atrani</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Der kleine Strand von Atrani ist eines der bestgehueteten Geheimnisse der Kueste. Sand und Kiesel, kristallklares Wasser und eine Atmosphaere, die eher an ein Fischerdorf als an ein Touristenziel erinnert.
+          </p>
+          <div class="bg-white p-6 rounded-2xl border border-slate-100">
+            <h3 class="font-bold text-slate-900 mb-2">Piazzetta-Strand</h3>
+            <p class="text-slate-600 text-sm">Direkt unterhalb der Piazza Umberto I. Freier oeffentlicher Strand, keine Strandbars. Tiefes, sauberes Wasser. Deutlich weniger ueberlaufen als der Spiaggia Grande in Amalfi, der nur 15 Gehminuten entfernt ist.</p>
+          </div>
+        </div>
+
+        <!-- Ripley -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Atrani und Ripley: Der Netflix-Drehort</h2>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            2024 nutzte die Netflix-Serie <strong>Ripley</strong> mit Andrew Scott Atrani als Hauptdrehort fuer die Szenen in der fiktiven Kuestenstadt. Die Piazzetta, Treppen und Gassen des Dorfes wurden in Schwarz-Weiss gefilmt und gaben die schwebende, mysterioese Atmosphaere von Patricia Highsmiths Roman wieder.
+          </p>
+        </div>
+
+        <!-- Gastronomie -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Essen in Atrani</h2>
+          <div class="space-y-6">
+            <div class="bg-med-gold/10 p-6 rounded-2xl border border-med-gold/20">
+              <h3 class="font-bold text-slate-900 mb-2 text-lg">Sarchiapone</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Das typische Gericht von Atrani: lange Zucchini gefuellt mit Hackfleisch, geraeuchertem Provola-Kaese, Eiern und altbackenem Brot, in Tomatensauce gekocht. Ein Soulfood der Amalfi-Tradition.
+              </p>
+            </div>
+            <div class="bg-med-gold/10 p-6 rounded-2xl border border-med-gold/20">
+              <h3 class="font-bold text-slate-900 mb-2 text-lg">Frischer Fisch auf der Piazzetta</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Die Restaurants an der Piazza bieten fangfrischen Fisch zu faireren Preisen als in Amalfi. Frittierter Fisch, Spaghetti ai frutti di mare und marinierte Sardellen sind die Spezialitaeten.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Haeufig gestellte Fragen zu Atrani</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+        <!-- Anreise -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Anreise</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Zu Fuss von Amalfi</p>
+              <p class="text-slate-700 font-medium mb-1">10-15 Minuten</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Fussgaengertunnel oder Spaziergang entlang der Kueste. Der bequemste und schoenste Weg.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">SITA-Bus</p>
+              <p class="text-slate-700 font-medium mb-1">Haltestelle Atrani</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Linie Salerno-Amalfi. Eigene Haltestelle an der SS163.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Mit dem Auto</p>
+              <p class="text-slate-700 font-medium mb-1">Begrenzte Parkplaetze</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Sehr wenige Plaetze. Besser in Amalfi parken (Luna Rossa) und laufen.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar Fast-Facts -->
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts - Atrani</p>
+          <dl class="space-y-3">
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Lage</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">700 m von Amalfi<br/>25 km von Salerno</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Flaeche</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">0,12 km&sup2;<br/>Kleinste in Italien</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Einwohner</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">Ca. 839</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Typisches Gericht</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">Sarchiapone</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Patronatsfest</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">22. Juli<br/>S. Maria Maddalena</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Besonderheit</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">Ripley-Drehort<br/>(Netflix, 2024)</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Ideal fuer</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">Authentizitaet<br/>Fotografie<br/>Ruhe</dd>
+            </div>
+          </dl>
+
+          <div class="mt-10 pt-8 border-t border-white/10">
+            <a
+              href="/de-de/amalfikueste/"
+              class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
+            >
+              ← Zurueck zur Amalfikueste
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Entdecken Sie die Kueste"
+    items={[
+      { name: 'Amalfi', href: '/de-de/amalfikueste/amalfi/', tag: 'Seerepublik', desc: 'Nur 700 m von Atrani: der Dom, das Papiermuseum und der Hafen.' },
+      { name: 'Ravello', href: '/de-de/amalfikueste/ravello/', tag: 'Musik & Gaerten', desc: 'Villa Rufolo, Villa Cimbrone und das Musikfestival auf 350 m Hoehe.' },
+      { name: 'Positano', href: '/de-de/amalfikueste/positano/', tag: 'Mode & Aussicht', desc: 'Bunte Haeuser am Steilhang zum Meer und der Strand Fornillo.' },
+      { name: 'Minori', href: '/de-de/amalfikueste/minori/', tag: 'Geschmack & Kultur', desc: 'Roemische Villa aus dem 1. Jh., frische Scialatielli und Konditoreien.' },
+      { name: 'Cetara', href: '/de-de/amalfikueste/cetara/', tag: 'Gastronomie', desc: 'Das Fischerdorf und Heimat der Colatura di Alici DOP.' },
+      { name: 'Praiano', href: '/de-de/amalfikueste/praiano/', tag: 'Sonnenuntergang & Stille', desc: 'Der Sonnenuntergang von San Gennaro und die stille Marina di Praia.' },
+    ]}
+    lang="de-de"
+  />
+
+</BaseLayout>

@@ -1,0 +1,250 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Planning', url: '/en-us/planning/' },
+  { name: 'Map', url: '/en-us/guide/map/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long is the Amalfi Coast?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The Amalfi Coast stretches about 50 km along the SS163 road, from Vietri sul Mare to Positano. The straight-line distance is shorter, but the coastal road is winding with dozens of hairpin turns overlooking the sea." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you get around the Amalfi Coast?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The three main options are: SITA buses (Amalfi-Sorrento and Amalfi-Salerno lines, every 30-60 min), Travelmar ferries (Salerno-Amalfi-Positano, seasonal Apr-Oct), and private car (not recommended in summer due to traffic and parking). Nearby towns like Amalfi-Atrani are easily reached on foot." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best town to use as a base on the Amalfi Coast?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Amalfi is the most practical base: central location, well served by buses and ferries, good range of accommodation. Positano is more scenic but pricier. Praiano is ideal for those seeking tranquillity. Maiori has the longest beach and lower prices." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take from Positano to Amalfi?",
+      "acceptedAnswer": { "@type": "Answer", "text": "By SITA bus about 25-40 minutes (depending on traffic). By ferry about 25 minutes (seasonal). By car about 20-30 minutes, but summer traffic can double the time. The distance is about 17 km on the SS163." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you visit the Amalfi Coast without a car?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Absolutely yes, and it is recommended. SITA buses and ferries connect all the main towns. From Naples you can take the train to Salerno (30 min) or Sorrento (Circumvesuviana, 70 min) and from there a bus or ferry. In summer, a car is more of a problem than an advantage." }
+    }
+  ]
+};
+
+const distances = [
+  { from: 'Positano', to: 'Praiano', km: '9', bus: '15 min', ferry: '-' },
+  { from: 'Positano', to: 'Amalfi', km: '17', bus: '25-40 min', ferry: '25 min' },
+  { from: 'Amalfi', to: 'Ravello', km: '7', bus: '25 min', ferry: '-' },
+  { from: 'Amalfi', to: 'Atrani', km: '0.7', bus: '3 min', ferry: '-' },
+  { from: 'Amalfi', to: 'Minori', km: '4', bus: '10 min', ferry: '10 min' },
+  { from: 'Amalfi', to: 'Maiori', km: '6', bus: '15 min', ferry: '15 min' },
+  { from: 'Amalfi', to: 'Cetara', km: '14', bus: '25 min', ferry: '20 min' },
+  { from: 'Amalfi', to: 'Vietri', km: '18', bus: '35 min', ferry: '30 min' },
+  { from: 'Salerno', to: 'Vietri', km: '5', bus: '10 min', ferry: '-' },
+  { from: 'Salerno', to: 'Amalfi', km: '24', bus: '75 min', ferry: '35 min' },
+  { from: 'Sorrento', to: 'Positano', km: '18', bus: '50 min', ferry: '35 min' },
+];
+
+const towns = [
+  { name: 'Positano', desc: 'Colourful houses cascading down the cliff. Spiaggia Grande, Fornillo, beach fashion.', type: 'West Coast', url: '/en-us/amalfi-coast/positano/' },
+  { name: 'Praiano', desc: 'Sunset from San Gennaro, Marina di Praia, tranquillity. Starting point of the Path of the Gods.', type: 'West Coast', url: '/en-us/amalfi-coast/praiano/' },
+  { name: 'Amalfi', desc: 'Cathedral of St. Andrew, Paper Museum, central harbour. The most practical base.', type: 'Centre', url: '/en-us/amalfi-coast/amalfi/' },
+  { name: 'Atrani', desc: 'The smallest town in Italy. Seaside piazza, authentic atmosphere, 700 m from Amalfi.', type: 'Centre', url: '/en-us/amalfi-coast/atrani/' },
+  { name: 'Ravello', desc: 'Villa Rufolo, Villa Cimbrone, music festival. At 350 m above sea level.', type: 'Hillside', url: '/en-us/amalfi-coast/ravello/' },
+  { name: 'Minori', desc: '1st-century Roman villa, historic pastry shops, fresh scialatielli pasta.', type: 'East Coast', url: '/en-us/amalfi-coast/minori/' },
+  { name: 'Maiori', desc: 'The longest sandy beach on the coast (300 m). Affordable prices.', type: 'East Coast', url: '/en-us/amalfi-coast/maiori/' },
+  { name: 'Cetara', desc: 'Fishing village, colatura di alici DOP, red tuna. Pure gastronomy.', type: 'East Coast', url: '/en-us/amalfi-coast/cetara/' },
+  { name: 'Vietri sul Mare', desc: 'Capital of ceramics. Eastern gateway to the Amalfi Coast.', type: 'East Coast', url: '/en-us/amalfi-coast/vietri-sul-mare/' },
+];
+---
+
+<BaseLayout
+  title="Amalfi Coast Map 2026: Towns, Distances & How to Get Around"
+  description="Interactive map of the Amalfi Coast with all towns, distances between Positano, Amalfi, Ravello and how to get around by bus, ferry and car."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+  pageKey="mappa">
+
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/costiera-hero.jpg" alt="Aerial view of the Amalfi Coast" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Practical Guide</p>
+        <h1 class="font-serif text-display text-white mb-4">Amalfi Coast Map</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          All the <strong>Amalfi Coast towns</strong>, distances, travel times and transport options. A visual guide to finding your way between <strong>Positano</strong>, <strong>Amalfi</strong>, <strong>Ravello</strong> and the other villages.
+        </p>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 space-y-16">
+
+    <!-- Interactive map -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Interactive map</h2>
+      <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=14.35%2C40.58%2C14.75%2C40.68&layer=mapnik"
+          class="w-full h-[350px] sm:h-[500px]"
+          loading="lazy"
+          title="Map of the Amalfi Coast"
+          style="border:0"
+        ></iframe>
+      </div>
+      <p class="text-xs text-slate-400 mt-2">OpenStreetMap map. Zoom and drag to explore. From Positano (west) to Vietri sul Mare (east), about 50 km of coastline.</p>
+    </section>
+
+    <!-- Towns of the coast -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Towns of the Amalfi Coast</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {towns.map(t => (
+          <a href={t.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
+            <div class="flex items-center gap-2 mb-2">
+              <h3 class="font-semibold text-charcoal group-hover:text-med-blue transition-colors">{t.name}</h3>
+              <span class="text-[10px] bg-med-cream text-med-gold px-2 py-0.5 rounded-full font-medium">{t.type}</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed mb-3">{t.desc}</p>
+            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+              Discover →
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Distances table -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-white bg-slate-900 px-6 py-4 rounded-t-2xl mb-0">Distances and travel times</h2>
+      <div class="overflow-x-auto rounded-b-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">From</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">To</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Distance</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">SITA Bus</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Ferry</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {distances.map(d => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3 font-medium text-charcoal text-xs sm:text-sm">{d.from}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">{d.to}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-600 font-mono text-xs">{d.km} km</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-600 text-xs sm:text-sm">{d.bus}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">
+                  {d.ferry === '-'
+                    ? <span class="text-slate-300">-</span>
+                    : <span class="text-med-blue font-medium">{d.ferry}</span>
+                  }
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-400 mt-2">* Approximate times. In summer, buses can take twice as long due to traffic on the SS163.</p>
+    </section>
+
+    <!-- Getting around -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Getting around the Amalfi Coast</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+          <div class="w-12 h-12 bg-med-blue/10 rounded-2xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0H21M3.375 14.25h17.25" /></svg>
+          </div>
+          <h3 class="font-bold text-charcoal mb-2">SITA Bus</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-3">Amalfi-Sorrento and Amalfi-Salerno lines. Every 30-60 min. Ticket ~€2.40. Connects all the main towns.</p>
+          <a href="/en-us/guide/sita-bus/" class="text-xs font-semibold text-med-blue">SITA Bus Guide →</a>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+          <div class="w-12 h-12 bg-med-blue/10 rounded-2xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+          </div>
+          <h3 class="font-bold text-charcoal mb-2">Ferries</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-3">Travelmar: Salerno-Cetara-Maiori-Minori-Amalfi-Positano. Seasonal (Apr-Oct). Skip the traffic.</p>
+          <a href="/en-us/guide/ferries/" class="text-xs font-semibold text-med-blue">Ferry Guide →</a>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+          <div class="w-12 h-12 bg-med-blue/10 rounded-2xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0H21" /></svg>
+          </div>
+          <h3 class="font-bold text-charcoal mb-2">Car & Parking</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-3">SS163 is scenic but narrow. Parking is limited and expensive (€5-8/h). ZTL zones active in summer. Not recommended on summer weekends.</p>
+          <a href="/en-us/guide/parking-ztl/" class="text-xs font-semibold text-med-blue">Parking & ZTL Guide →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tips -->
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6 sm:p-8">
+      <p class="font-semibold text-charcoal text-base sm:text-lg mb-3">Tips for getting your bearings</p>
+      <ul class="space-y-2">
+        {[
+          'The coast is divided into two sides: <strong>west</strong> (Positano, Praiano) and <strong>east</strong> (Minori, Maiori, Cetara, Vietri). Amalfi is in the centre.',
+          'From <strong>Naples</strong>: the fastest way is a train to <strong>Salerno</strong> (30 min, €4.80) + ferry. From Sorrento, the SITA bus takes 90+ min.',
+          'In summer, catch the <strong>first morning bus</strong> (6:30-7:00): after 9 am the SS163 becomes gridlocked.',
+          'Ravello is not on the coast but in the hills: you need a dedicated bus from Amalfi (25 min, frequent).',
+          '<strong>On foot</strong>: Amalfi-Atrani 10 min, Minori-Maiori 20 min. Nearby towns are easily reached by walking.',
+        ].map(tip => (
+          <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
+            <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+            <span set:html={tip}></span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Frequently asked questions</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </div>
+
+  <CorrelationSlider
+    heading="Explore the destinations"
+    items={[
+      { name: 'Positano', href: '/en-us/amalfi-coast/positano/', tag: 'Fashion & Views', desc: 'Colourful houses perched above the sea and Fornillo beach.' },
+      { name: 'Amalfi', href: '/en-us/amalfi-coast/amalfi/', tag: 'Maritime Republic', desc: 'The historic capital with the Cathedral and Paper Museum.' },
+      { name: 'Ravello', href: '/en-us/amalfi-coast/ravello/', tag: 'Music & Gardens', desc: 'Villa Rufolo, Villa Cimbrone and the Festival at 350 m.' },
+      { name: 'Cetara', href: '/en-us/amalfi-coast/cetara/', tag: 'Gastronomy', desc: 'The fishing village and its colatura di alici DOP.' },
+    ]}
+    lang="en-us"
+  />
+
+</BaseLayout>

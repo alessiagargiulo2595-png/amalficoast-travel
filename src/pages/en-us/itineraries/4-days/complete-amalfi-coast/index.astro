@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../../components/CorrelationSlider.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Planning', url: '/en-us/planning/' },
+  { name: 'Complete Coast - 4 days', url: '/en-us/itineraries/4-days/complete-amalfi-coast/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where should I stay to visit the Amalfi Coast in 4 days?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The best base is Amalfi: centrally located, well served by SITA buses and ferries, with a good selection of B&Bs and hotels. Alternatively, Praiano offers peace and lower prices, or Maiori if you prefer the beach. With 4 days it's best to stay in one base to avoid moving luggage around." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a 4-day trip to the Amalfi Coast cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Average budget per person (4 nights): accommodation €60-120/night (B&B/3* hotel), transport €30-50 total (bus+ferries), meals €25-40/day, entrance fees €20-30 total. Estimated total: €400-700 per person in shoulder season, excluding travel to reach the Coast." }
+    },
+    {
+      "@type": "Question",
+      "name": "4 days on the Coast: is high or low season better?",
+      "acceptedAnswer": { "@type": "Answer", "text": "May-June and September-October are the ideal months: perfect weather for hiking, fewer crowds on buses, and lower prices. July-August is possible but buses are packed, car parks are full, and beaches are crowded. With 4 days, shoulder season lets you enjoy everything at a relaxed pace." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I hike the Path of the Gods on this itinerary?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, Day 3 is dedicated to the Path of the Gods (Bomerano-Nocelle, 7.8 km, 2-3 hours). You reach Bomerano by SITA bus from Amalfi (45 min). You'll need hiking shoes, water and sun protection. The trail is rated E (hiking) and presents no technical difficulties." }
+    }
+  ]
+};
+
+const days = [
+  {
+    day: 'Day 1',
+    title: 'Arrival, Amalfi and Atrani',
+    highlight: 'Cathedral, Paper Museum, village of Atrani',
+    items: [
+      'Arrive in Salerno by train (from Naples: 30 min, €4.80). Travelmar ferry to Amalfi (35 min) or SITA bus (75 min).',
+      'Check-in and first exploration of Amalfi: Cathedral of Sant\'Andrea, Cloister of Paradise, stroll along the harbour.',
+      'Afternoon: Paper Museum (Amalfi paper, 13th century, admission €4.50).',
+      'Walk to Atrani (10 min on foot): seaside piazzetta, Collegiata di San Salvatore de\' Birecto, aperitivo.',
+      'Dinner in Atrani: sarchiapone and fresh fish on the piazzetta (more honest prices than Amalfi).',
+    ],
+  },
+  {
+    day: 'Day 2',
+    title: 'Ravello and Minori',
+    highlight: 'Villa Rufolo, Villa Cimbrone, Roman villa',
+    items: [
+      'SITA bus Amalfi-Ravello (25 min, departing at 8:30). Arrive early to avoid the crowds.',
+      'Villa Rufolo (€10): hanging gardens, panoramic terrace overlooking the sea. If the Festival is on, sunset concerts.',
+      'Villa Cimbrone (€10): the famous Terrace of Infinity, one of the most beautiful views in Italy.',
+      'Lunch in Ravello: local cuisine with views over the Dragon Valley.',
+      'Afternoon: bus to Minori (10 min). 1st-century Roman Villa (free). Walk along the seafront.',
+      'Local tip: in Minori try the ndunderi (ricotta gnocchi, a medieval dish) and pastries from De Riso bakery.',
+    ],
+  },
+  {
+    day: 'Day 3',
+    title: 'Path of the Gods and Positano',
+    highlight: 'Bomerano-Nocelle hike, descent to Positano',
+    items: [
+      'Early start: SITA bus Amalfi-Agerola/Bomerano (45 min, 7:30 am). Trail begins from Bomerano\'s piazzetta.',
+      'Path of the Gods: 7.8 km, elevation loss -630 m, 2-3 hours. Views of the coast, Capri and the Faraglioni. Grade E.',
+      'Arrival in Nocelle (450 m). Staircase of 1,700 steps down to Arienzo or shuttle bus to Positano.',
+      'Lunch in Positano: restaurant with views over the Spiaggia Grande.',
+      'Afternoon: Fornillo Beach (quieter), shopping on Via dei Mulini, church of Santa Maria Assunta.',
+      'Return to Amalfi: SITA bus (25-40 min) or ferry (25 min, seasonal).',
+    ],
+  },
+  {
+    day: 'Day 4',
+    title: 'Praiano, Emerald Grotto and departure',
+    highlight: 'Gavitella Beach, grotto, eastern villages',
+    items: [
+      'Morning: SITA bus to Praiano (15 min from Amalfi). Walk to the San Gennaro viewpoint.',
+      'Descent to Gavitella Beach: crystal-clear waters and views of Positano and Capri.',
+      'Emerald Grotto (Conca dei Marini): admission ~€5, spectacular green light. Reachable by bus or boat from Amalfi.',
+      'Return to Amalfi for lunch. Final stroll through the narrow streets.',
+      'Departure: ferry Amalfi-Salerno (35 min) to catch the train, or SITA bus to Sorrento if continuing towards Naples.',
+      'Local tip: with extra time, stop in Cetara (20 min from Amalfi) for spaghetti alla colatura di alici.',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Amalfi Coast 4 Days 2026: Complete Itinerary with Path of the Gods"
+  description="4-day Amalfi Coast itinerary: Amalfi, Ravello, Positano, Path of the Gods, Atrani and Praiano. Day-by-day programme with transport and tips."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+  pageKey="costiera-amalfitana-4-giorni">
+
+  <!-- Hero Section -->
+  <section class="relative bg-charcoal overflow-hidden min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center">
+    <img src="/images/costiera-hero.jpg" alt="Amalfi Coast panorama" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/40 to-black/70"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-3xl mx-auto">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Itinerary · 4 days</p>
+        <h1 class="font-serif text-display text-white mb-4">Complete Amalfi Coast</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
+          Four days to experience the best of the Coast: <strong>Amalfi</strong>, <strong>Ravello</strong>, the <strong>Path of the Gods</strong>, <strong>Positano</strong> and authentic villages like <strong>Atrani</strong> and <strong>Praiano</strong>.
+        </p>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 space-y-10">
+
+    <!-- Intro -->
+    <section class="text-center mb-2">
+      <p class="text-lg text-slate-700 leading-relaxed">
+        A <strong>4-day Amalfi Coast itinerary</strong> combining culture, hiking, beaches and gastronomy. Everything reachable by public transport, no car needed. Recommended base: <strong>Amalfi</strong>.
+      </p>
+    </section>
+
+    <!-- Overview cards -->
+    <section class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      {[
+        { label: 'Duration', value: '4 days / 3 nights' },
+        { label: 'Base', value: 'Amalfi' },
+        { label: 'Transport', value: 'SITA Bus + Ferries' },
+        { label: 'Budget', value: '€400-700 p.p.' },
+      ].map(card => (
+        <div class="bg-slate-900 rounded-2xl p-4 text-center">
+          <p class="text-[10px] uppercase tracking-wider text-med-gold font-medium mb-1">{card.label}</p>
+          <p class="text-white font-semibold text-sm">{card.value}</p>
+        </div>
+      ))}
+    </section>
+
+    <!-- Day by Day -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Day-by-day programme</h2>
+      <div class="space-y-6">
+        {days.map((d) => (
+          <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-slate-900 px-6 py-6 flex items-start gap-4 sm:items-center sm:gap-3">
+              <span class="text-[10px] uppercase tracking-wide bg-white/15 text-white px-3 py-1.5 rounded-full font-bold flex-shrink-0">{d.day}</span>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-serif font-semibold text-white text-lg">{d.title}</h3>
+                <p class="text-xs text-med-gold mt-1 font-medium">{d.highlight}</p>
+              </div>
+            </div>
+            <ul class="px-6 py-5 space-y-3">
+              {d.items.map((item, itemIdx) => {
+                const isLocalTip = item.includes('Local tip:');
+                const displayText = item.replace('Local tip: ', '');
+                const isLastItem = itemIdx === d.items.length - 1;
+                return (
+                  <li class={`flex gap-3 text-sm relative ${isLocalTip ? 'bg-med-gold/10 p-3 rounded-lg border border-med-gold/20' : ''}`}>
+                    <div class="flex flex-col items-center">
+                      {isLocalTip ? (
+                        <svg class="w-5 h-5 text-med-gold flex-shrink-0 self-center" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                          <circle cx="12" cy="8" r="5"/>
+                          <path d="M12 13v2"/>
+                          <rect x="10" y="15" width="4" height="3" rx="0.5"/>
+                        </svg>
+                      ) : (
+                        <span class="w-2 h-2 rounded-full bg-med-blue flex-shrink-0"></span>
+                      )}
+                      {!isLastItem && <div class="w-0.5 h-6 bg-med-blue/30 mt-1"></div>}
+                    </div>
+                    <span class={`leading-relaxed ${isLocalTip ? 'font-semibold text-slate-800' : 'text-slate-700'}`}>
+                      {isLocalTip && <strong>Local tip: </strong>}
+                      {displayText}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Practical tips -->
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+      <h2 class="font-serif text-xl font-semibold text-charcoal mb-6">Practical tips</h2>
+      <ul class="space-y-4">
+        {[
+          { num: '1', text: 'SITA bus ticket: €2.40 single ride or 24h pass (check availability). Buy it at a tobacconist.' },
+          { num: '2', text: 'Path of the Gods: hiking shoes mandatory, 1.5 litres of water per person, sunscreen. Start by 8:30 am.' },
+          { num: '3', text: 'Travelmar ferries (Apr-Oct): Amalfi-Positano €10, Amalfi-Salerno €8. Faster and more scenic than the bus.' },
+          { num: '4', text: 'Book accommodation 2-3 months ahead for May-October. Central B&Bs in Amalfi sell out quickly.' },
+          { num: '5', text: 'Eat in the smaller villages (Atrani, Minori, Cetara): same quality as Amalfi/Positano at half the price.' },
+        ].map(({ num, text }) => (
+          <li class="flex items-start gap-4 text-sm text-charcoal">
+            <span class="text-lg font-bold text-white flex-shrink-0 leading-none bg-[#E2725B] w-9 h-9 flex items-center justify-center rounded-full">{num}</span>
+            <span class="leading-relaxed" set:html={text}></span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Frequently asked questions</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-gradient-to-r from-med-blue to-med-blue/80 rounded-2xl p-10 text-center text-white">
+      <h2 class="font-serif text-3xl font-bold mb-3">Ready to go?</h2>
+      <p class="text-white/90 mb-6 max-w-2xl mx-auto">
+        Check out the complete transport guide to reach and get around the Amalfi Coast.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/en-us/guide/getting-here/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">
+          Getting here →
+        </a>
+        <a href="/en-us/guide/map/" class="inline-block bg-white/10 border border-white/30 text-white font-semibold px-8 py-3 rounded-full hover:bg-white/20 transition-colors">
+          Coast map →
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+  <CorrelationSlider
+    heading="Explore the destinations on this itinerary"
+    items={[
+      { name: 'Amalfi', href: '/en-us/amalfi-coast/amalfi/', tag: 'Maritime Republic', desc: 'The historic capital with the Cathedral and Paper Museum.' },
+      { name: 'Positano', href: '/en-us/amalfi-coast/positano/', tag: 'Fashion & Views', desc: 'Colourful houses tumbling to the sea and Fornillo Beach.' },
+      { name: 'Ravello', href: '/en-us/amalfi-coast/ravello/', tag: 'Music & Gardens', desc: 'Villa Rufolo, Villa Cimbrone and the Festival at 350 m.' },
+      { name: 'Praiano', href: '/en-us/amalfi-coast/praiano/', tag: 'Sunset & Serenity', desc: 'Sunset from San Gennaro and the peaceful Marina di Praia.' },
+    ]}
+    lang="en-us"
+  />
+
+</BaseLayout>

@@ -1,0 +1,250 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Pianificazione', url: '/it-it/pianificazione/' },
+  { name: 'Mappa', url: '/it-it/guida/mappa/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quanto e lunga la Costiera Amalfitana?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La Costiera Amalfitana si estende per circa 50 km lungo la SS163 Amalfitana, da Vietri sul Mare a Positano. In linea d'aria la distanza e minore, ma la strada costiera e tortuosa con decine di curve a strapiombo sul mare." }
+    },
+    {
+      "@type": "Question",
+      "name": "Come spostarsi tra i borghi della Costiera Amalfitana?",
+      "acceptedAnswer": { "@type": "Answer", "text": "I tre mezzi principali sono: Bus SITA (linea Amalfi-Sorrento e Amalfi-Salerno, frequenza 30-60 min), traghetti Travelmar (Salerno-Amalfi-Positano, stagionali apr-ott) e auto privata (sconsigliata in estate per traffico e parcheggi). I borghi vicini come Amalfi-Atrani si raggiungono comodamente a piedi." }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual e il borgo migliore come base sulla Costiera?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Amalfi e la base piu pratica: posizione centrale, ben servita da bus e traghetti, buona scelta di alloggi. Positano e piu scenografica ma piu cara. Praiano e ideale per chi cerca tranquillita. Maiori ha la spiaggia piu grande e prezzi piu bassi." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto tempo ci vuole da Positano ad Amalfi?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In bus SITA circa 25-40 minuti (dipende dal traffico). In traghetto circa 25 minuti (stagionale). In auto circa 20-30 minuti ma con traffico estivo puo raddoppiare. La distanza e di circa 17 km sulla SS163." }
+    },
+    {
+      "@type": "Question",
+      "name": "Si puo visitare la Costiera Amalfitana senza auto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Assolutamente si, ed e consigliato. Bus SITA e traghetti collegano tutti i borghi principali. Da Napoli si arriva in treno a Salerno (30 min) o Sorrento (Circumvesuviana, 70 min) e da li in bus o traghetto. In estate l'auto e piu un problema che un vantaggio." }
+    }
+  ]
+};
+
+const distances = [
+  { from: 'Positano', to: 'Praiano', km: '9', bus: '15 min', ferry: '-' },
+  { from: 'Positano', to: 'Amalfi', km: '17', bus: '25-40 min', ferry: '25 min' },
+  { from: 'Amalfi', to: 'Ravello', km: '7', bus: '25 min', ferry: '-' },
+  { from: 'Amalfi', to: 'Atrani', km: '0.7', bus: '3 min', ferry: '-' },
+  { from: 'Amalfi', to: 'Minori', km: '4', bus: '10 min', ferry: '10 min' },
+  { from: 'Amalfi', to: 'Maiori', km: '6', bus: '15 min', ferry: '15 min' },
+  { from: 'Amalfi', to: 'Cetara', km: '14', bus: '25 min', ferry: '20 min' },
+  { from: 'Amalfi', to: 'Vietri', km: '18', bus: '35 min', ferry: '30 min' },
+  { from: 'Salerno', to: 'Vietri', km: '5', bus: '10 min', ferry: '-' },
+  { from: 'Salerno', to: 'Amalfi', km: '24', bus: '75 min', ferry: '35 min' },
+  { from: 'Sorrento', to: 'Positano', km: '18', bus: '50 min', ferry: '35 min' },
+];
+
+const towns = [
+  { name: 'Positano', desc: 'Case colorate a cascata sulla scogliera. Spiaggia Grande, Fornillo, moda mare.', type: 'Costa Ovest', url: '/it-it/costiera-amalfitana/positano/' },
+  { name: 'Praiano', desc: 'Tramonto da San Gennaro, Marina di Praia, tranquillita. Punto di partenza del Sentiero degli Dei.', type: 'Costa Ovest', url: '/it-it/costiera-amalfitana/praiano/' },
+  { name: 'Amalfi', desc: 'Duomo di Sant\'Andrea, Museo della Carta, porto centrale. La base piu pratica.', type: 'Centro', url: '/it-it/costiera-amalfitana/amalfi/' },
+  { name: 'Atrani', desc: 'Il borgo piu piccolo d\'Italia. Piazzetta sul mare, autentico, a 700 m da Amalfi.', type: 'Centro', url: '/it-it/costiera-amalfitana/atrani/' },
+  { name: 'Ravello', desc: 'Villa Rufolo, Villa Cimbrone, Festival musicale. A 350 m sul livello del mare.', type: 'Collina', url: '/it-it/costiera-amalfitana/ravello/' },
+  { name: 'Minori', desc: 'Villa romana del I sec., pasticcerie storiche, scialatielli freschi.', type: 'Costa Est', url: '/it-it/costiera-amalfitana/minori/' },
+  { name: 'Maiori', desc: 'La spiaggia di sabbia piu lunga della costiera (300 m). Prezzi accessibili.', type: 'Costa Est', url: '/it-it/costiera-amalfitana/maiori/' },
+  { name: 'Cetara', desc: 'Borgo dei pescatori, colatura di alici DOP, tonno rosso. Gastronomia pura.', type: 'Costa Est', url: '/it-it/costiera-amalfitana/cetara/' },
+  { name: 'Vietri sul Mare', desc: 'Capitale della ceramica. Porta d\'ingresso orientale della Costiera.', type: 'Costa Est', url: '/it-it/costiera-amalfitana/vietri-sul-mare/' },
+];
+---
+
+<BaseLayout
+  title="Mappa Costiera Amalfitana 2026: Borghi, Distanze e Come Spostarsi"
+  description="Mappa interattiva della Costiera Amalfitana con tutti i borghi, le distanze tra Positano, Amalfi, Ravello e come spostarsi in bus, traghetto e auto."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+  pageKey="mappa">
+
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/costiera-hero.jpg" alt="Vista aerea della Costiera Amalfitana" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Guida Pratica</p>
+        <h1 class="font-serif text-display text-white mb-4">Mappa della Costiera Amalfitana</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Tutti i <strong>borghi della Costiera</strong>, le distanze, i tempi di percorrenza e i mezzi di trasporto. La guida visiva per orientarsi tra <strong>Positano</strong>, <strong>Amalfi</strong>, <strong>Ravello</strong> e gli altri paesi.
+        </p>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 space-y-16">
+
+    <!-- Mappa interattiva -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Mappa interattiva</h2>
+      <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=14.35%2C40.58%2C14.75%2C40.68&layer=mapnik"
+          class="w-full h-[350px] sm:h-[500px]"
+          loading="lazy"
+          title="Mappa della Costiera Amalfitana"
+          style="border:0"
+        ></iframe>
+      </div>
+      <p class="text-xs text-slate-400 mt-2">Mappa OpenStreetMap. Zoom e trascina per esplorare. Da Positano (ovest) a Vietri sul Mare (est), circa 50 km di costa.</p>
+    </section>
+
+    <!-- I borghi della Costiera -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">I borghi della Costiera</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {towns.map(t => (
+          <a href={t.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
+            <div class="flex items-center gap-2 mb-2">
+              <h3 class="font-semibold text-charcoal group-hover:text-med-blue transition-colors">{t.name}</h3>
+              <span class="text-[10px] bg-med-cream text-med-gold px-2 py-0.5 rounded-full font-medium">{t.type}</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed mb-3">{t.desc}</p>
+            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+              Scopri →
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Tabella distanze -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-white bg-slate-900 px-6 py-4 rounded-t-2xl mb-0">Distanze e tempi di percorrenza</h2>
+      <div class="overflow-x-auto rounded-b-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Da</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">A</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Distanza</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Bus SITA</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Traghetto</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {distances.map(d => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3 font-medium text-charcoal text-xs sm:text-sm">{d.from}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">{d.to}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-600 font-mono text-xs">{d.km} km</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-600 text-xs sm:text-sm">{d.bus}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">
+                  {d.ferry === '-'
+                    ? <span class="text-slate-300">-</span>
+                    : <span class="text-med-blue font-medium">{d.ferry}</span>
+                  }
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-400 mt-2">* Tempi indicativi. In estate il bus puo impiegare il doppio per il traffico sulla SS163.</p>
+    </section>
+
+    <!-- Come spostarsi -->
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Come spostarsi sulla Costiera</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+          <div class="w-12 h-12 bg-med-blue/10 rounded-2xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0H21M3.375 14.25h17.25" /></svg>
+          </div>
+          <h3 class="font-bold text-charcoal mb-2">Bus SITA</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-3">Linea Amalfi–Sorrento e Amalfi–Salerno. Frequenza ogni 30-60 min. Biglietto ~€2,40. Collega tutti i borghi principali.</p>
+          <a href="/it-it/guida/bus-sita/" class="text-xs font-semibold text-med-blue">Guida Bus SITA →</a>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+          <div class="w-12 h-12 bg-med-blue/10 rounded-2xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+          </div>
+          <h3 class="font-bold text-charcoal mb-2">Traghetti</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-3">Travelmar: Salerno–Cetara–Maiori–Minori–Amalfi–Positano. Stagionali (apr-ott). Eviti il traffico.</p>
+          <a href="/it-it/guida/traghetti/" class="text-xs font-semibold text-med-blue">Guida Traghetti →</a>
+        </div>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+          <div class="w-12 h-12 bg-med-blue/10 rounded-2xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0H21" /></svg>
+          </div>
+          <h3 class="font-bold text-charcoal mb-2">Auto & Parcheggi</h3>
+          <p class="text-xs text-slate-600 leading-relaxed mb-3">SS163 panoramica ma stretta. Parcheggi limitati e cari (€5-8/h). ZTL attive in estate. Sconsigliata nei weekend estivi.</p>
+          <a href="/it-it/guida/parcheggi-ztl/" class="text-xs font-semibold text-med-blue">Guida Parcheggi & ZTL →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consigli -->
+    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6 sm:p-8">
+      <p class="font-semibold text-charcoal text-base sm:text-lg mb-3">Consigli per orientarsi</p>
+      <ul class="space-y-2">
+        {[
+          'La Costiera si divide in due versanti: <strong>ovest</strong> (Positano, Praiano) e <strong>est</strong> (Minori, Maiori, Cetara, Vietri). Amalfi e al centro.',
+          'Da <strong>Napoli</strong>: il modo piu rapido e treno fino a <strong>Salerno</strong> (30 min, €4.80) + traghetto. Da Sorrento il bus SITA impiega 90+ min.',
+          'In estate prendi il <strong>primo bus del mattino</strong> (6:30-7:00): dopo le 9 la SS163 diventa un ingorgo.',
+          'Ravello non e sulla costa ma in collina: serve un bus dedicato da Amalfi (25 min, frequente).',
+          '<strong>A piedi</strong>: Amalfi-Atrani 10 min, Minori-Maiori 20 min. I borghi vicini si raggiungono facilmente camminando.',
+        ].map(tip => (
+          <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
+            <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+            <span set:html={tip}></span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Domande frequenti</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </div>
+
+  <CorrelationSlider
+    heading="Esplora le destinazioni"
+    items={[
+      { name: 'Positano', href: '/it-it/costiera-amalfitana/positano/', tag: 'Fashion & Vista', desc: 'Le case colorate a picco sul mare e la spiaggia Fornillo.' },
+      { name: 'Amalfi', href: '/it-it/costiera-amalfitana/amalfi/', tag: 'Repubblica Marinara', desc: 'La capitale storica con il Duomo e il Museo della Carta.' },
+      { name: 'Ravello', href: '/it-it/costiera-amalfitana/ravello/', tag: 'Musica & Giardini', desc: 'Villa Rufolo, Villa Cimbrone e il Festival a 350 m.' },
+      { name: 'Cetara', href: '/it-it/costiera-amalfitana/cetara/', tag: 'Gastronomia', desc: 'Il borgo dei pescatori e della colatura di alici DOP.' },
+    ]}
+    lang="it-it"
+  />
+
+</BaseLayout>

@@ -1,0 +1,347 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Costiera Amalfitana', url: '/it-it/costiera-amalfitana/' },
+  { name: 'Atrani', url: '/it-it/costiera-amalfitana/atrani/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Atrani",
+  "description": "Atrani e il comune piu piccolo d'Italia per superficie (0,12 km2), un gioiello medievale incastonato tra le rocce a soli 700 metri da Amalfi. Piazzetta sul mare, scalinate e vicoli autentici.",
+  "url": "https://amalficoast-travel.com/it-it/costiera-amalfitana/atrani/",
+  "image": "https://amalficoast-travel.com/images/atrani-hero.jpg",
+  "touristType": ["Autenticita", "Storia", "Mare", "Fotografia"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Atrani",
+    "addressRegion": "Salerno",
+    "addressCountry": "IT",
+    "postalCode": "84010"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6364,
+    "longitude": 14.6083
+  }
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Atrani, Costiera Amalfitana",
+  "description": "Il comune piu piccolo d'Italia, borgo medievale autentico a 700 m da Amalfi.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.6364,
+    "longitude": 14.6083
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quanto dista Atrani da Amalfi?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Atrani dista soli 700 metri da Amalfi. Si raggiunge a piedi in 10-15 minuti attraverso un tunnel pedonale o seguendo la strada costiera. Sono i due comuni piu vicini di tutta la Costiera Amalfitana." }
+    },
+    {
+      "@type": "Question",
+      "name": "Come si arriva ad Atrani?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Il modo migliore e a piedi da Amalfi (10-15 min). In bus: linea SITA Salerno-Amalfi, fermata Atrani. In auto: parcheggio estremamente limitato, si consiglia di parcheggiare ad Amalfi (parcheggio Luna Rossa) e camminare." }
+    },
+    {
+      "@type": "Question",
+      "name": "Perche Atrani e famosa?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Atrani e il comune piu piccolo d'Italia per superficie (0,12 km2). Era il luogo dove venivano incoronati e sepolti i Dogi della Repubblica Marinara di Amalfi. Recentemente e diventata famosa come set della serie Netflix Ripley (2024)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa mangiare ad Atrani?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Il piatto tipico e il sarchiapone: zucchine lunghe farcite con carne, provola e uova. Da provare anche il pesce fresco nei ristoranti sulla piazzetta e i dolci della tradizione amalfitana." }
+    },
+    {
+      "@type": "Question",
+      "name": "Si puo fare il bagno ad Atrani?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Si, Atrani ha una piccola spiaggia di sabbia e ciottoli direttamente sulla piazzetta del borgo. E una delle poche spiagge libere della Costiera. Mare limpido e atmosfera autentica, molto meno affollata di Amalfi." }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Atrani: Il Borgo Piu Piccolo d'Italia sulla Costiera Amalfitana"
+  description="Guida ad Atrani, il comune piu piccolo d'Italia a 700 m da Amalfi. Piazzetta sul mare, storia dei Dogi, set di Ripley Netflix, spiaggia e sarchiapone."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[touristAttractionSchema, placeSchema, faqSchema]}
+  pageKey="atrani"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[52.5vh] sm:h-[70vh] flex items-end bg-charcoal overflow-hidden">
+    <img
+      src="/images/atrani-hero.jpg"
+      alt="Atrani, il borgo piu piccolo d'Italia sulla Costiera Amalfitana"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager"
+      referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/40 to-black/70"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pb-16 pt-32 w-full">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Costiera Amalfitana</p>
+        <h1 class="font-serif text-display text-white mb-4">Atrani</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Il borgo piu piccolo d'Italia. A 700 metri da Amalfi, un altro mondo.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">
+            Fast Facts
+          </a>
+          <a href="#cosa-vedere" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            Cosa Vedere
+          </a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">
+            FAQ
+          </a>
+        </div>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <!-- Contenuto principale + Sidebar -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+
+      <!-- Testo principale -->
+      <div class="lg:col-span-2 space-y-12">
+
+        <!-- Intro -->
+        <div>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Il Segreto Meglio Custodito della Costiera</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-4">
+            <strong>Atrani</strong> e il <strong>comune piu piccolo d'Italia</strong> per superficie: appena 0,12 km&sup2; di vicoli, scalinate e archi medievali incastonati tra due rupi a strapiombo sul mare. A soli 700 metri da Amalfi, eppure un mondo completamente diverso.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Qui non ci sono boutique di lusso ne ristoranti per turisti. C'e una piazzetta dove i bambini giocano a pallone, una piccola spiaggia libera, e il suono dell'acqua che scorre tra le case. Chi arriva ad Atrani scopre la Costiera Amalfitana com'era prima del turismo di massa.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Lo sapevi?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">0,12</p>
+              <p class="text-white/60 text-xs italic mt-1">km&sup2; di superficie totale</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">839</p>
+              <p class="text-white/60 text-xs italic mt-1">abitanti (il borgo vivo)</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">700</p>
+              <p class="text-white/60 text-xs italic mt-1">metri da Amalfi a piedi</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Nel Medioevo, Atrani era il luogo dove venivano incoronati i Dogi della Repubblica Marinara di Amalfi. La Collegiata di San Salvatore de' Birecto conserva ancora la lastra di porfido su cui si svolgeva la cerimonia.
+          </p>
+        </div>
+
+        <!-- Cosa Vedere -->
+        <div id="cosa-vedere">
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Cosa Vedere ad Atrani</h2>
+
+          <div class="space-y-8">
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Piazza Umberto I</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Il cuore pulsante del borgo. Una delle pochissime piazze della Costiera che si affaccia direttamente sul mare, con bar, ristoranti e la vita quotidiana degli abitanti. E qui che si svolge la Festa di Santa Maria Maddalena (22 luglio).
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Collegiata di San Salvatore de' Birecto</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Fondata nel X secolo, custodisce la <strong>lastra di porfido</strong> su cui venivano incoronati i Dogi di Amalfi. La porta bronzea e una copia di quella di Costantinopoli (l'originale e al Museo Diocesano). Un pezzo di storia della Repubblica Marinara.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Chiesa di Santa Maria Maddalena</h3>
+              <p class="text-slate-600 leading-relaxed">
+                La cupola maiolicata e il campanile dominano il profilo di Atrani dalla costa. L'interno barocco ospita un crocifisso ligneo del XIII secolo. La festa del 22 luglio e tra le piu sentite della Costiera.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-xl font-bold text-slate-900 mb-3">Grotta di Masaniello</h3>
+              <p class="text-slate-600 leading-relaxed">
+                La leggenda vuole che Masaniello, il celebre rivoluzionario napoletano, si nascose in una grotta sopra Atrani durante la rivolta del 1647. Il sentiero che porta alla grotta offre panorami spettacolari sulla costa.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spiaggia -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Spiaggia di Atrani</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La piccola spiaggia di Atrani e uno dei segreti meglio custoditi della Costiera. Sabbia e ciottoli, mare limpido, e un'atmosfera che ricorda piu un borgo di pescatori che una destinazione turistica.
+          </p>
+          <div class="bg-white p-6 rounded-2xl border border-slate-100">
+            <h3 class="font-bold text-slate-900 mb-2">Spiaggia della Piazzetta</h3>
+            <p class="text-slate-600 text-sm">Direttamente sotto Piazza Umberto I. Spiaggia libera, nessun lido attrezzato. Acque profonde e pulite. Molto meno affollata della Spiaggia Grande di Amalfi, che dista solo 15 minuti a piedi.</p>
+          </div>
+        </div>
+
+        <!-- Ripley -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Atrani e Ripley: il Set Netflix</h2>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Nel 2024 la serie Netflix <strong>Ripley</strong>, con Andrew Scott, ha utilizzato Atrani come set principale per le scene ambientate nella fittizia citta costiera. La piazzetta, le scalinate e i vicoli del borgo sono stati ripresi in bianco e nero, restituendo l'atmosfera sospesa e misteriosa del romanzo di Patricia Highsmith.
+          </p>
+        </div>
+
+        <!-- Gastronomia -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Cosa Mangiare ad Atrani</h2>
+          <div class="space-y-6">
+            <div class="bg-med-gold/10 p-6 rounded-2xl border border-med-gold/20">
+              <h3 class="font-bold text-slate-900 mb-2 text-lg">Sarchiapone</h3>
+              <p class="text-slate-600 leading-relaxed">
+                Il piatto tipico di Atrani: zucchine lunghe farcite con un ripieno di carne macinata, provola affumicata, uova e pane raffermo, cotte nel sugo di pomodoro. Un comfort food della tradizione amalfitana.
+              </p>
+            </div>
+            <div class="bg-med-gold/10 p-6 rounded-2xl border border-med-gold/20">
+              <h3 class="font-bold text-slate-900 mb-2 text-lg">Pesce Fresco sulla Piazzetta</h3>
+              <p class="text-slate-600 leading-relaxed">
+                I ristoranti che si affacciano sulla piazza offrono pesce del giorno a prezzi piu onesti rispetto ad Amalfi. Frittura mista, spaghetti ai frutti di mare e alici marinate sono le specialita.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Domande frequenti su Atrani</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+        <!-- Come Arrivare -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Arrivare</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">A Piedi da Amalfi</p>
+              <p class="text-slate-700 font-medium mb-1">10-15 minuti</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Tunnel pedonale o passeggiata lungo la costa. Il modo piu comodo e bello.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus SITA</p>
+              <p class="text-slate-700 font-medium mb-1">Fermata Atrani</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Linea Salerno-Amalfi. Fermata dedicata sulla SS163.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">In Auto</p>
+              <p class="text-slate-700 font-medium mb-1">Parcheggio limitato</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Pochissimi posti. Meglio parcheggiare ad Amalfi (Luna Rossa) e camminare.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar Fast-Facts -->
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts - Atrani</p>
+          <dl class="space-y-3">
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Posizione</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">700 m da Amalfi<br/>25 km da Salerno</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Superficie</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">0,12 km&sup2;<br/>Il piu piccolo d'Italia</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Abitanti</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">Circa 839</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Piatto Tipico</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">Sarchiapone</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Festa Patronale</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">22 Luglio<br/>S. Maria Maddalena</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Curiosita</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">Set di Ripley<br/>(Netflix, 2024)</dd>
+            </div>
+            <div class="border-t border-white/5"></div>
+            <div class="flex justify-between items-start gap-3">
+              <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">Ideale Per</dt>
+              <dd class="text-white font-medium text-xs sm:text-sm text-right">Autenticita<br/>Fotografia<br/>Tranquillita</dd>
+            </div>
+          </dl>
+
+          <div class="mt-10 pt-8 border-t border-white/10">
+            <a
+              href="/it-it/costiera-amalfitana/"
+              class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
+            >
+              ← Torna a Costiera Amalfitana
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Esplora anche sulla Costiera"
+    items={[
+      { name: 'Amalfi', href: '/it-it/costiera-amalfitana/amalfi/', tag: 'Repubblica Marinara', desc: 'A soli 700 m da Atrani: il Duomo, il Museo della Carta e il porto.' },
+      { name: 'Ravello', href: '/it-it/costiera-amalfitana/ravello/', tag: 'Musica & Giardini', desc: 'Villa Rufolo, Villa Cimbrone e il Festival Musicale a 350 m.' },
+      { name: 'Positano', href: '/it-it/costiera-amalfitana/positano/', tag: 'Fashion & Vista', desc: 'Le case colorate a picco sul mare e la spiaggia Fornillo.' },
+      { name: 'Minori', href: '/it-it/costiera-amalfitana/minori/', tag: 'Sapori & Cultura', desc: 'Villa romana del I sec., scialatielli freschi e pasticcerie.' },
+      { name: 'Cetara', href: '/it-it/costiera-amalfitana/cetara/', tag: 'Gastronomia', desc: 'Il borgo dei pescatori e della colatura di alici DOP.' },
+      { name: 'Praiano', href: '/it-it/costiera-amalfitana/praiano/', tag: 'Tramonto & Quiete', desc: 'Il tramonto da San Gennaro e la silenziosa Marina di Praia.' },
+    ]}
+    lang="it-it"
+  />
+
+</BaseLayout>
