@@ -22,7 +22,17 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "Can I book Amalfi Coast ferries online?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes, almost all companies allow online booking: nlg.it, alilauro.it, snav.it, travelmar.it, caremar.it. In summer (July–August) it's recommended to book at least 1–2 days in advance for ferries from Naples to Capri and Ischia." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, almost all companies allow online booking: nlg.it, alilauro.it, snav.it, travelmar.it, caremar.it, positanojet.it, alicost.it. In summer (July–August) it's recommended to book at least 1–2 days in advance for ferries from Naples to Capri and Ischia." }
+    },
+    {
+      "@type": "Question",
+      "name": "How long is the Positano to Capri ferry?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The Positano to Capri ferry takes 30–40 minutes by hydrofoil (NLG or Positano Jet). The ferry schedule runs from April to October with multiple daily departures. One-way tickets cost €20–25. Book in advance during July–August." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a ferry from Salerno to Amalfi?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, the Salerno to Amalfi ferry runs seasonally (April–October) by Travelmar and Alicost. Journey time is approximately 45 minutes. One-way tickets cost €8–12. The ferry port in Amalfi is in the town centre, steps from the Cathedral." }
     },
     {
       "@type": "Question",
@@ -43,14 +53,17 @@ const routes = [
   { from: 'Naples Beverello', to: 'Procida', time: '35 min (hydrofoil)', price: '€15–18', companies: 'Alilauro, SNAV', seasonal: false },
   { from: 'Sorrento', to: 'Capri', time: '20–25 min (hydrofoil)', price: '€18–22', companies: 'NLG, Alilauro', seasonal: false },
   { from: 'Pozzuoli', to: 'Ischia / Procida', time: '35 min / 15 min (ferry)', price: '€10–13 / €7–9', companies: 'Medmar, Caremar', seasonal: false },
-  { from: 'Salerno', to: 'Amalfi / Positano / Capri', time: '45 min / 65 min / 100 min', price: '€8–12 / €12–16 / €18–22', companies: 'Travelmar, NLG', seasonal: true },
+  { from: 'Positano', to: 'Capri', time: '30–40 min (hydrofoil)', price: '€20–25', companies: 'NLG, Positano Jet', seasonal: true },
+  { from: 'Salerno', to: 'Amalfi / Positano / Capri', time: '45 min / 65 min / 100 min', price: '€8–12 / €12–16 / €18–22', companies: 'Travelmar, NLG, Alicost', seasonal: true },
+  { from: 'Positano', to: 'Salerno', time: '65 min', price: '€12–16', companies: 'Travelmar', seasonal: true },
+  { from: 'Salerno', to: 'Capri', time: '100–120 min', price: '€18–25', companies: 'Alicost, NLG', seasonal: true },
   { from: 'Naples Beverello', to: 'Positano / Amalfi', time: '75 min / 90 min', price: '€15–20 / €18–22', companies: 'NLG, Alilauro', seasonal: true },
 ];
 ---
 
 <BaseLayout
-  title="Amalfi Coast Ferries & Hydrofoils 2026 | Schedules and Prices"
-  description="Complete guide to ferries and hydrofoils on the Amalfi Coast: Naples–Capri, Naples–Ischia, Sorrento–Capri, Salerno–Amalfi–Positano. Companies, timetables and updated prices."
+  title="Amalfi Coast Ferry Schedule 2026 | Routes, Prices & Timetables"
+  description="Complete Amalfi Coast ferry schedule 2026: Positano to Capri ferry, Salerno to Amalfi ferry, Sorrento to Capri hydrofoil. Travelmar, NLG, Alilauro, Alicost timetables, ferry map and updated prices."
   lang={lang}
   breadcrumbs={breadcrumbs}
   schema={[faqSchema]}
@@ -64,7 +77,7 @@ const routes = [
         <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Travel Guide</p>
         <h1 class="font-serif text-display text-white mb-4">Ferries & Hydrofoils</h1>
         <p class="text-xl text-white/80 leading-relaxed">
-          All maritime routes in Campania: Naples, Sorrento, Salerno, Positano, Amalfi, Capri, Ischia and Procida. Companies, indicative schedules and updated prices for the 2026 season.
+          Complete Amalfi Coast ferry schedule: all maritime routes from Naples, Sorrento, Salerno to Positano, Amalfi, Capri, Ischia and Procida. Companies like Travelmar, NLG, Positano Jet, Alilauro and Alicost — timetables, ferry map and updated prices for the 2026 season.
         </p>
       </div>
     </div>
@@ -106,7 +119,7 @@ const routes = [
           </tbody>
         </table>
       </div>
-      <p class="text-xs text-slate-400 mt-2">* Prices and durations are indicative. Always verify with the companies: nlg.it, alilauro.it, snav.it, caremar.it, medmar.it, travelmar.it</p>
+      <p class="text-xs text-slate-400 mt-2">* Prices and durations are indicative. Always verify with the companies: nlg.it, alilauro.it, snav.it, caremar.it, medmar.it, travelmar.it, positanojet.it, alicost.it. Check individual ferry schedule pages for seasonal timetable updates.</p>
     </section>
 
     <section>
@@ -118,7 +131,9 @@ const routes = [
           { name: 'SNAV', desc: 'Naples→Capri/Ischia/Procida. Also fast ferries. snav.it.' },
           { name: 'Caremar', desc: 'Slow ferries Naples→Capri/Ischia/Procida. Cheapest but slowest. caremar.it.' },
           { name: 'Medmar', desc: 'Ferries Pozzuoli→Ischia/Procida. Affordable and frequent. medmar.it.' },
-          { name: 'Travelmar', desc: 'Salerno→Amalfi→Positano seasonal route. travelmar.it.' },
+          { name: 'Travelmar', desc: 'Travelmar ferry Salerno→Amalfi→Positano seasonal route (Apr–Oct). Timetables at travelmar.it.' },
+          { name: 'Positano Jet', desc: 'Positano Jet ferry service: fast connections Positano→Capri and Positano→Amalfi. positanojet.it.' },
+          { name: 'Alicost', desc: 'Alicost ferry from Salerno to Capri and Amalfi Coast. Seasonal Apr–Oct service. alicost.it.' },
         ].map(c => (
           <div class="bg-med-cream rounded-xl p-3 sm:p-4 border border-slate-100">
             <p class="font-semibold text-charcoal text-sm mb-1">{c.name}</p>
