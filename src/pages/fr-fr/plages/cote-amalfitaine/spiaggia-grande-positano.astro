@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'fr-fr';
 
 const breadcrumbs = [
   { name: 'Accueil', url: '/fr-fr/' },
   { name: 'Plages', url: '/fr-fr/plages/' },
-  { name: 'Spiaggia Grande Positano', url: '/fr-fr/plages/cote-amalfitaine/spiaggia-grande-positano' },
+  { name: 'Spiaggia Grande Positano', url: '/fr-fr/plages/cote-amalfitaine/spiaggia-grande-positano/' },
 ];
 
 const facts = [
@@ -16,7 +17,59 @@ const facts = [
   { label: 'Ombre', value: 'À partir de 17h30' },
   { label: 'Équipements', value: 'Établissements de luxe, restaurants, embarcadère' },
   { label: 'Idéal pour', value: 'Atmosphère, glamour, VIP-watching' },
+  { label: 'Plage publique', value: 'Oui (zone est)' },
+  { label: 'Îles visibles', value: 'Li Galli (ex-Noureïev)' },
+  { label: 'Transat + parasol', value: '35–60 € par personne' },
+  { label: 'Arrivée conseillée', value: 'En ferry depuis Amalfi/Sorrente' },
+  { label: 'Meilleure période', value: 'Mai–juin, septembre' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quel est le meilleur moment pour visiter la Spiaggia Grande de Positano ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mai, juin et septembre offrent le meilleur équilibre : mer chaude, moins de foule et prix plus raisonnables. Juillet et août sont les mois les plus fréquentés ; en haute saison, les établissements se réservent plusieurs semaines à l'avance et la plage publique est occupée dès 9h. Le soleil illumine la plage pendant la majeure partie de la journée, avec de l'ombre seulement en fin d'après-midi (vers 17h30)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Y a-t-il une partie gratuite à la Spiaggia Grande de Positano ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. La zone est de la plage est libre et gratuite. Il n'y a pas de transats en location dans cette section, il faut donc apporter sa propre serviette. En haute saison, elle se remplit rapidement : il est conseillé d'arriver avant 9h pour trouver de la place. Les zones centrale et ouest sont gérées par des établissements de bains privés avec service transats et parasols."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment rejoindre Positano par la mer ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Des ferries saisonniers relient Positano à Amalfi (environ 35 minutes), Sorrente (environ 40 minutes) et Naples (environ 80 minutes). L'embarcadère se trouve directement sur la Spiaggia Grande. C'est l'option la plus pittoresque et la plus pratique, surtout parce qu'elle évite les difficultés de stationnement en ville. Les taxi-boats privés proposent des trajets flexibles depuis les criques voisines."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Que sont les îles Li Galli visibles depuis Positano ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les îles Li Galli (ou Sirenuse) sont un petit archipel privé clairement visible depuis la Spiaggia Grande. Selon la mythologie grecque, c'étaient les îles des Sirènes de l'Odyssée d'Homère. À l'époque moderne, les îles ont appartenu au célèbre danseur Rudolf Noureïev, qui les a achetées dans les années 1980 et en a fait sa résidence privée. Aujourd'hui, on peut les admirer depuis l'eau lors de tours en bateau organisés depuis Positano."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment rejoindre Positano sans voiture ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le bus SITA (ligne Amalfi–Sorrente) s'arrête à Positano Sponda, d'où l'on descend à pied jusqu'à la plage en environ 10 minutes. Le ferry saisonnier est la meilleure alternative pour ceux qui viennent d'Amalfi ou de Sorrente. Le stationnement à Positano est très limité et coûteux ; il est vivement conseillé de laisser la voiture hors du centre (par exemple à Praiano ou Sorrente) et de continuer par la mer ou en bus."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
@@ -39,6 +92,13 @@ const beachSchema = {
     { "@type": "LocationFeatureSpecification", "name": "Établissement de bains", "value": "Oui" }
   ]
 };
+
+const nearbyBeaches = [
+  { name: 'Marina di Praia', href: '/fr-fr/plages/cote-amalfitaine/marina-di-praia/', tag: 'Praiano', desc: 'Plage sauvage avec le coucher de soleil parfait.' },
+  { name: 'Fiordo di Furore', href: '/fr-fr/plages/cote-amalfitaine/fiordo-di-furore/', tag: 'Furore', desc: 'Un chef-d\'œuvre naturel enchâssé dans la roche.' },
+  { name: 'Santa Croce', href: '/fr-fr/plages/cote-amalfitaine/santa-croce-amalfi/', tag: 'Mer uniquement', desc: 'L\'escapade secrète à quelques minutes d\'Amalfi.' },
+  { name: 'Marina Piccola', href: '/fr-fr/plages/iles/marina-piccola-capri/', tag: 'Capri', desc: 'La plage exclusive avec vue sur les Faraglioni.' },
+];
 ---
 
 <BaseLayout
@@ -46,13 +106,13 @@ const beachSchema = {
   description="Vivez le cœur de Positano. Tarifs 2026 des transats, restaurants et comment rejoindre la Spiaggia Grande par la mer."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
  pageKey="spiaggia-grande-positano">
 
   <!-- Hero -->
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
-      src="/images/spiaggia-grande-positano.jpg"
+      src="/images/spiaggia-grande-positano-hero.jpg"
       alt="Spiaggia Grande di Positano"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
@@ -60,7 +120,7 @@ const beachSchema = {
     />
     <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Positano · Côte Amalfitaine</p>
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3"><a href="/fr-fr/cote-amalfitaine/positano/" class="text-med-gold hover:underline">Positano</a> · Côte Amalfitaine</p>
       <h1 class="font-serif text-display text-white mb-6">Spiaggia Grande</h1>
       <p class="text-lg md:text-xl font-light text-white/80">Le cœur glamour de la Côte Amalfitaine.</p>
     </div>
@@ -76,14 +136,14 @@ const beachSchema = {
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Le Glamour de la Côte</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            La Spiaggia Grande est le centre de la vie mondaine de Positano. Avec la ville verticale en toile de fond - maisons aux couleurs pastel qui grimpent jusqu'à l'église Santa Maria Assunta - le cadre est unique au monde. En 2026, les établissements de bains exigent des réservations plusieurs semaines à l'avance en haute saison.
+            La Spiaggia Grande de <a href="/fr-fr/cote-amalfitaine/positano/" class="text-med-blue hover:underline">Positano</a> est le centre de la vie mondaine de la côte. Avec la ville verticale en toile de fond — maisons aux couleurs pastel qui grimpent jusqu'à l'église Santa Maria Assunta — le cadre est unique au monde. En 2026, les établissements de bains exigent des réservations plusieurs semaines à l'avance en haute saison.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
             C'est aussi le point de départ de tous les taxi-boats vers les criques isolées de la côte. Si vous voulez le mélange parfait de confort, cocktails signature et atmosphère exclusive, c'est votre plage. La partie publique gratuite, à l'est, se remplit rapidement après 9h.
           </p>
         </div>
 
-        <!-- Tarifs -->
+        <!-- Tarifs 2026 -->
         <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
           <div class="flex items-center gap-4 mb-4">
             <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
@@ -93,17 +153,100 @@ const beachSchema = {
             Un transat plus parasol dans les établissements de la Spiaggia Grande coûte en moyenne <strong>35–60 € par personne</strong>. Les restaurants en bord de mer (La Buca di Bacco, La Scalinatella) incluent le service parasol avec le déjeuner.
           </p>
           <p class="text-slate-600 leading-relaxed">
-            Le <strong>stationnement</strong> au centre de Positano est fortement déconseillé : arrivez en ferry depuis Amalfi ou Sorrente, ou en bus SITA - descendez à l'arrêt Sponda.
+            Le <strong>stationnement</strong> au centre de <a href="/fr-fr/cote-amalfitaine/positano/" class="text-med-blue hover:underline">Positano</a> est fortement déconseillé : arrivez en ferry depuis <a href="/fr-fr/cote-amalfitaine/amalfi/" class="text-med-blue hover:underline">Amalfi</a> ou <a href="/fr-fr/peninsule-sorrentine/sorrente/" class="text-med-blue hover:underline">Sorrente</a>, ou en bus SITA — descendez à l'arrêt Sponda.
           </p>
         </div>
 
-        <!-- Comment y aller -->
+        <!-- Histoire -->
         <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Comment y Aller</h2>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Du Port Romain au Jet-Set International</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Le nom Positano évoque probablement Poséidon, le dieu grec de la mer, ou dérive de l'abbaye bénédictine de San Vito qui dominait la côte médiévale. À l'époque romaine, le site était déjà un petit port actif ; la <strong>Torre Trasita</strong>, encore visible au-dessus de la plage, fut construite au XVIe siècle pour protéger les habitants des fréquentes attaques des pirates sarrasins.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Les maisons colorées qui semblent se déverser en cascade vers la mer étaient à l'origine des habitations de pêcheurs. Le tournant arriva en <strong>1953</strong>, lorsque John Steinbeck écrivit un article sur Positano pour Harper's Bazaar avec des mots devenus légendaires : <em>"Positano bites deep. It is a dream place that isn't quite real when you are there and becomes beckoningly real after you have gone."</em> Depuis lors, l'afflux d'artistes, d'écrivains et de célébrités ne s'est jamais tari.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Dans les années 1960 et 1970, Positano devint une étape incontournable du jet-set mondial. Zeffirelli, Loren, les Kennedy et les Rolling Stones font partie des noms qui ont laissé leur empreinte dans cette petite ville verticale.
+          </p>
+        </div>
+
+        <!-- La coupole et Li Galli -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Coupole Majolique et les Îles des Sirènes</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            En regardant la plage depuis la mer, l'œil tombe inévitablement sur la coupole en majolique jaune, verte et blanche de l'<strong>église Santa Maria Assunta</strong>. Construite au XIIIe siècle, elle abrite la vénérée icône de la <em>Madone Noire</em> — la tradition veut qu'elle soit l'œuvre de saint Luc l'évangéliste. La coupole est parmi les plus photographiées d'Italie et constitue le contrepoint visuel parfait au bleu de la mer.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            À l'horizon, à quelques kilomètres du rivage, se dressent les <strong>îles Li Galli</strong> — connues aussi sous le nom de Sirenuse. Selon Homère, c'étaient les îles des Sirènes qui tentèrent de séduire Ulysse de leur chant. À l'époque moderne, elles devinrent célèbres pour avoir appartenu au légendaire danseur russe <strong>Rudolf Noureïev</strong>, qui les acheta en 1988 et y passa les dernières années de sa vie. Aujourd'hui, on peut les admirer depuis l'eau lors d'excursions en bateau organisées depuis le port de Positano.
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1953</p>
+            <p class="text-white/60 text-sm mt-1">article de Steinbeck</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">XIII</p>
+            <p class="text-white/60 text-sm mt-1">s. – église Assunta</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">3</p>
+            <p class="text-white/60 text-sm mt-1">îles Li Galli</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">35 €</p>
+            <p class="text-white/60 text-sm mt-1">transat (à partir de)</p>
+          </div>
+        </div>
+
+        <!-- Da Adolfo et vie sur la plage -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Plage Publique et les Établissements Historiques</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La Spiaggia Grande est divisée en zones bien distinctes. La <strong>plage publique</strong> se trouve dans la partie orientale (à droite en regardant la mer) : pas de transats, pas de service, mais gratuite. Les zones centrale et occidentale sont gérées par des établissements de bains privés, dont certains disposent de terrasses surélevées offrant une vue privilégiée.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Le restaurant <strong>Da Adolfo</strong> est un chapitre à part : accessible <em>uniquement en bateau</em> depuis la Spiaggia Grande (la navette part du ponton et ramène gratuitement les clients), il est niché dans une petite crique au nord. Avec ses tables au bord de l'eau et son menu de poisson simple et parfait, il est considéré par beaucoup comme le déjeuner maritime le plus authentique de toute la Côte.
+          </p>
+        </div>
+
+        <!-- Conseils des Locaux -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Conseils des Locaux</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Venez en mai ou septembre : la mer est déjà chaude, les établissements ont de la place et les prix sont plus raisonnables.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Arrivez en ferry depuis Amalfi ou Sorrente : l'entrée sur la plage depuis la mer, avec la ville en arrière-plan, est le plus beau moment de la journée.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Pour la plage publique, arrivez avant 9h en juillet et août : elle se remplit très vite.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Réservez Da Adolfo au moins quelques jours à l'avance : la navette part du ponton de la Spiaggia Grande et ramène les clients gratuitement.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Pour les plus belles photos de la coupole : positionnez-vous près de l'embarcadère des ferries, tôt le matin, avec la lumière rasante.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Comment y Accéder -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Comment y Accéder</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
               <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Par la mer ⭐ Recommandé</p>
-              <p class="text-slate-700 font-medium mb-1">Ferry depuis Amalfi ou Sorrente</p>
+              <p class="text-slate-700 font-medium mb-1">Ferry depuis <a href="/fr-fr/cote-amalfitaine/amalfi/" class="text-med-blue hover:underline">Amalfi</a> ou <a href="/fr-fr/peninsule-sorrentine/sorrente/" class="text-med-blue hover:underline">Sorrente</a></p>
               <p class="text-slate-500 text-xs sm:text-sm">Débarquement direct sur la plage. Profitez du panorama depuis l'eau.</p>
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
@@ -111,6 +254,34 @@ const beachSchema = {
               <p class="text-slate-700 font-medium mb-1">Arrêt Sponda</p>
               <p class="text-slate-500 text-xs sm:text-sm">Escalier escarpé jusqu'à la plage (environ 10 min à pied).</p>
             </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi-Boat Privé</p>
+              <p class="text-slate-700 font-medium mb-1">Depuis Praiano, Amalfi ou Capri</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Solution flexible pour petits groupes ; s'entendre sur le prix à l'avance.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Voiture / Scooter</p>
+              <p class="text-slate-700 font-medium mb-1">Parking Fornillo ou privés</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Très limité et coûteux. Déconseillé en haute saison.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Questions Fréquentes -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Questions Fréquentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
@@ -142,6 +313,13 @@ const beachSchema = {
 
     </div>
   </section>
+
+  <!-- Plages Voisines -->
+  <CorrelationSlider
+    title="Autres plages de la Côte Amalfitaine"
+    items={nearbyBeaches}
+    lang="fr-fr"
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">

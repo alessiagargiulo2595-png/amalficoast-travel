@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'en-us';
 
@@ -10,18 +12,28 @@ const breadcrumbs = [
 ];
 
 const facts = [
-  { label: 'Surface', value: 'Pebbles & rock' },
-  { label: 'Access', value: 'Steep trail (30 min) or boat' },
-  { label: 'Shade', value: 'From 17:00' },
+  { label: 'Location', value: 'Massa Lubrense, NA' },
+  { label: 'Surface', value: 'White pebbles and rock' },
+  { label: 'Access', value: '~300 steps (20-30 min)' },
+  { label: 'Elevation change', value: '~120 m' },
+  { label: 'Natural cave', value: 'Yes, shade from the sun' },
   { label: 'View', value: 'Faraglioni di Capri (head-on)' },
-  { label: 'Best for', value: 'Hiking, snorkelling, photography' },
+  { label: 'Shade', value: 'From around 17:00' },
+  { label: 'Facilities', value: 'None (wild beach)' },
+  { label: 'Snorkelling', value: 'Excellent (rocky seabed)' },
+  { label: 'Best season', value: 'May–Jun / Sep–Oct' },
 ];
 
 const beachSchema = {
   "@context": "https://schema.org",
   "@type": "Beach",
   "name": "Cala di Mitigliano",
-  "description": "A wild cove with a breathtaking head-on view of Capri's Faraglioni stacks. Reachable by steep trail from Massa Lubrense or by boat.",
+  "description": "Wild white-pebble cove with the best head-on view of Capri's Faraglioni from the mainland. Reachable only on foot (300 steps) or by boat. Natural cave, outstanding snorkelling and complete absence of facilities.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "40.6120",
+    "longitude": "14.3280"
+  },
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Massa Lubrense",
@@ -29,32 +41,65 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you get to Cala di Mitigliano?",
+      "acceptedAnswer": { "@type": "Answer", "text": "From Termini (a hamlet of Massa Lubrense) follow the signposted trail for Mitigliano. About 300 steps descend through Mediterranean scrub with a drop of roughly 120 metres. The descent takes 20-30 minutes, the ascent 35-45 minutes. Alternatively, reach it by taxi boat from Marina del Cantone or Sorrento. Closed shoes are essential for the trail." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the view of the Faraglioni so special here?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Cala di Mitigliano offers the closest head-on view of Capri's Faraglioni from the mainland. The cove sits at the extreme tip of the Sorrentine Peninsula, only 5 km as the crow flies from Capri. At sunset the raking light turns the Faraglioni gold: this is the most spectacular photography spot on the entire peninsula." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there shade on the beach?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The natural cave on the left side of the beach provides shelter from the sun for much of the day. The cliffs create natural shade from around 17:00. There are no sunbeds for hire: bring a light cloth to use as a sunshade if you arrive during the hottest hours." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the trail dangerous?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The trail is not technically dangerous but is steep and in places slippery, especially after rain. The 300 steps are irregular and cut from natural stone. Hiking boots or closed shoes with a grippy sole are essential. Not recommended for very young children or anyone with knee problems. The ascent is demanding." }
+    },
+    {
+      "@type": "Question",
+      "name": "What should you bring to Cala di Mitigliano?",
+      "acceptedAnswer": { "@type": "Answer", "text": "There are no facilities of any kind. Bring: water (at least 2 litres per person), food, sunscreen, a hat, closed shoes for the trail, water shoes for the water, a mask and snorkel for snorkelling, a towel and a bag for your rubbish. A small shade cloth can be useful during the hottest hours." }
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  title="Cala di Mitigliano: Secret Beach with Capri View"
-  description="Cala di Mitigliano at Massa Lubrense: the hidden cove with the best head-on view of Capri's Faraglioni. How to get there by trail or boat."
+  title="Cala di Mitigliano 2026: The Secret Beach with Faraglioni Views | Massa Lubrense"
+  description="Complete guide to Cala di Mitigliano at Massa Lubrense: the hidden beach with the best head-on view of Capri's Faraglioni. 300 steps, natural cave, snorkelling, history and practical tips."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
   pageKey="cala-mitigliano"
 >
 
   <!-- Hero -->
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
-      src="/images/cala-mitigliano.jpg"
-      alt="Cala di Mitigliano, Massa Lubrense, with Capri in the background"
+      src="/images/cala-mitigliano-hero.jpg"
+      alt="Cala di Mitigliano - white pebble beach with Faraglioni di Capri view, Massa Lubrense"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
       referrerpolicy="no-referrer"
     />
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Massa Lubrense · Capri View</p>
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Massa Lubrense · Capri View · Wild beach</p>
       <h1 class="font-serif text-display text-white mb-6">Cala di Mitigliano</h1>
       <p class="text-lg md:text-xl font-light text-white/80">The secret cove with Capri's Faraglioni right before your eyes.</p>
     </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
   <!-- Content + Sidebar -->
@@ -62,44 +107,209 @@ const beachSchema = {
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
 
       <!-- Main text -->
-      <div class="lg:col-span-2 space-y-12">
+      <div class="lg:col-span-2 space-y-16">
+
+        <!-- Intro -->
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">A Hidden Pearl</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Cala di Mitigliano is a hidden gem of the Sorrentine Peninsula. Rarely visited because of its demanding access trail, it offers a breathtaking head-on view of Capri and its Faraglioni stacks - arguably the finest view of Capri from the mainland. The water is crystal-clear over rocky seabeds ideal for snorkelling.
+            Cala di Mitigliano is a hidden pearl of the Sorrentine Peninsula. Rarely visited because of its demanding access trail — about 300 steps cut into the rock — it offers a breathtaking head-on view of Capri and its Faraglioni stacks. Arguably the finest view of Capri from the mainland.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            The water is crystal-clear over rocky seabeds ideal for snorkelling. The natural cave on the beach provides shade during the hottest hours. At sunset, the raking light turns the Faraglioni gold: bring your camera, because this is the Capri shot that tourists never take — it takes a bit of legwork to get here.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            A natural cave on the beach provides shade during the hottest hours. A true paradise for hiking and exploration lovers. At sunset, the raking light turns the Faraglioni golden: bring your camera.
+            No bars, no sunbeds, no music. Just white pebbles, the sound of the waves and the island of Capri so close it feels within reach. The perfect place for anyone looking for the coast before the crowds arrived.
           </p>
         </div>
 
-        <!-- Capri view highlight -->
+        <!-- Stats -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Did you know?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">300</p>
+              <p class="text-white/60 text-xs italic mt-1">steps to reach the cove</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">5 km</p>
+              <p class="text-white/60 text-xs italic mt-1">as the crow flies from Capri</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">120 m</p>
+              <p class="text-white/60 text-xs italic mt-1">elevation drop from the car park</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- History and name -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Origins: Between Monks and Fishermen</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            The name "Mitigliano" probably derives from the Latin <strong><em>Mytilus</em></strong> (mussel), indicating the abundance of molluscs once collected from the rocks of the cove. For centuries this was a beach known only to the fishermen of <a href="/en-us/sorrentine-peninsula/massa-lubrense/" class="text-med-blue hover:underline">Massa Lubrense</a>, who used it as a natural harbour sheltered from the winds.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            The area around the cove was owned by the Benedictine monks of the Monastery of San Pietro, who cultivated olive groves on the terraces still visible along the trail today. The dry-stone walls you encounter on the way down — some of them centuries old — are their handiwork.
+          </p>
+          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm my-8">
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">The Watchtowers</h3>
+            <p class="text-slate-600 leading-relaxed">
+              On the cliff above the cove stand the remains of a <strong>16th-century watchtower</strong>, part of the coastal defence system built by the Spanish Viceroys against Saracen pirate raids. From this tower sentinels communicated by fire and signal with the neighbouring towers of <a href="/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/" class="text-med-blue hover:underline">Ieranto</a> and Punta Campanella. The tower ruins are visible from the trail just before the final descent.
+            </p>
+          </div>
+        </div>
+
+        <!-- The cave -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">The Natural Cave</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            On the left side of the beach opens a <strong>natural limestone cave</strong> about 4-5 metres high and roughly ten metres deep. It is the most valuable natural shelter on the cove: during the central hours of the day, when the sun beats down on the pebbles, the cave offers cool shade and a unique vantage point over the bay.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Inside the cave the underwater seabed is particularly rich: the rock creates crevices where octopuses, moray eels and small crustaceans hide. With a mask and snorkel you can explore the submerged walls of the cave, where the light creates turquoise blue reflections.
+          </p>
+        </div>
+
+        <!-- Snorkelling -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Snorkelling: A Natural Aquarium</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            The waters of Cala di Mitigliano are among the clearest on the Sorrentine Peninsula. The proximity to the Punta Campanella Marine Protected Area and the difficult access keep motorboats away, leaving the sea in near-pristine condition.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Rocky zone (0-3 m)</p>
+              <p class="text-slate-500 text-xs sm:text-sm">White seabream, blue damselfish, rainbow wrasse, blennies. Along the rocky walls at the water's edge: sea urchins, anemones and small actinia. Ideal for beginners.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Sandy seabed (3-6 m)</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Red mullet, sole, starfish and Posidonia oceanica. In the Posidonia meadows: seahorses, pipefish and colourful nudibranchs.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">The submerged cave</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Octopuses, moray eels, red shrimp and small grouper. The light filtering through the cave entrance creates a blue-turquoise effect on the submerged walls.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Open water</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Shoals of salema, saddled seabream and bogue pass regularly in front of the cove. With luck you can spot Mediterranean barracuda and small dentex in the early morning.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Trail -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">The Trail of 300 Steps</h2>
+          <div class="space-y-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">1</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Departure from Termini (0-5 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Start from the small square at Termini (a hamlet of Massa Lubrense). The trail begins next to a votive chapel. The first minutes are a gentle descent on a paved mule track between dry-stone walls and olive groves.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">2</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">The olive groves and the tower (5-15 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">The trail passes through centuries-old olive groves on the Benedictine monks' terraces. Halfway along you glimpse the remains of the Saracen tower and the first views of the cove and Capri. The air smells of wild rosemary and myrtle.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">3</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">The final descent (15-30 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">The last section is the steepest: irregular stone steps descending through Mediterranean scrub. The Faraglioni appear in full majesty ahead. Arriving on the white-pebble beach makes every drop of sweat worthwhile.</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 mt-4">The ascent takes 35-45 minutes. Avoid the hottest hours (12:00-15:00) for the climb back up.</p>
+        </div>
+
+        <!-- How to Get There -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">How to Get There</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">On foot (trail) · Recommended</p>
+              <p class="text-slate-700 font-medium mb-1">From Termini, Massa Lubrense</p>
+              <p class="text-slate-500 text-xs sm:text-sm">~300 steps, 20-30 min downhill. Closed shoes essential. Limited parking at Termini (arrive early in summer).</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi boat</p>
+              <p class="text-slate-700 font-medium mb-1">From Marina del Cantone or Sorrento</p>
+              <p class="text-slate-500 text-xs sm:text-sm">The most comfortable option. Taxi boat from Marina del Cantone (~10 min, €40-60). From Sorrento ~30 min. Book a trip with a stop at the cove.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus + trail</p>
+              <p class="text-slate-700 font-medium mb-1">From Sorrento to Termini</p>
+              <p class="text-slate-500 text-xs sm:text-sm">SITA bus from Sorrento to Massa Lubrense, then local bus to Termini. About 40 min total + trail. Check timetables.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Kayak</p>
+              <p class="text-slate-700 font-medium mb-1">From Marina del Cantone</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Kayak hire from Marina del Cantone (~15 min paddling). Approaching by sea lets you admire the cliffs and cave from the water.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Capri view box -->
         <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
           <div class="flex items-center gap-4 mb-4">
             <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
             <h3 class="text-xl font-bold">The Best View of Capri</h3>
           </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            From the beach you get a <strong>direct, close-up view</strong> of all three Faraglioni stacks, just 5 km away. Around sunset (from about 17:30) the raking light turns them pure gold against a pink sky.
+          </p>
           <p class="text-slate-600 leading-relaxed">
-            From the beach you get a <strong>direct, close-up view</strong> of all three Faraglioni stacks. Around sunset (from about 17:30) the light is perfect. It is the Capri shot that tourists never take - because it takes a bit of legwork to get here.
+            This is the Capri shot that tourists never take — because it takes a bit of legwork to get here. The best spot for the photo is from the right side of the beach, where all three Faraglioni align perfectly.
           </p>
         </div>
 
-        <!-- Getting there -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">How to Get There</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">On foot (trail)</p>
-              <p class="text-slate-700 font-medium mb-1">From Termini, Massa Lubrense</p>
-              <p class="text-slate-500 text-xs sm:text-sm">30 min steep descent. Hiking footwear essential. No facilities on site.</p>
+        <!-- Local tips -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-6">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+            <h3 class="text-xl font-bold">4 Local Tips</h3>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-slate-900 mb-1">1. Bring water shoes</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">The pebbles are large and irregular. Getting in and out of the water without water shoes is painful. Pack them in your bag alongside a mask and snorkel — the snorkelling here is exceptional.</p>
             </div>
-            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Boat</p>
-              <p class="text-slate-700 font-medium mb-1">From Sorrento or Marina del Cantone</p>
-              <p class="text-slate-500 text-xs sm:text-sm">The easiest option. Book a boat tour with a stop at the cove.</p>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">2. Arrive in the afternoon, don't leave</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">The most magical moment is from 17:00 to 19:00, when the sun lights the Faraglioni in golden light and the cove enters natural shadow. Arrive in the early afternoon, enjoy a swim, and stay for the show.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">3. Take refuge in the cave</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">During the central hours (12:00-15:00) the sun beats directly on the pebbles and it gets very hot. The natural cave on the left is your refuge: cool shade and a perfect spot for watching the bay.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">4. Combine with Ieranto for an epic day</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">If you have strong legs, descend to <a href="/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/" class="text-med-blue hover:underline">Ieranto</a> from Nerano in the morning, climb back up, have lunch with Spaghetti alla Nerano, then descend to Mitigliano from Termini in the afternoon. Two secret beaches in one day.</p>
             </div>
           </div>
         </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
       </div>
 
       <!-- Sidebar Fast-Facts -->
@@ -121,7 +331,7 @@ const beachSchema = {
               href="/en-us/beaches/"
               class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
             >
-              ← All beaches
+              ← All Beaches
             </a>
           </div>
         </div>
@@ -130,17 +340,15 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="bg-med-blue py-16 text-center">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-white mb-4">Explore the Sorrentine Peninsula</h2>
-      <a
-        href="/en-us/sorrento-peninsula/"
-        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
-      >
-        Sorrentine Peninsula guide
-      </a>
-    </div>
-  </section>
+  <CorrelationSlider
+    lang="en-us"
+    heading="More Sorrentine Peninsula Beaches"
+    items={[
+      { name: 'Baia di Ieranto',    href: '/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/', tag: 'FAI Reserve',       desc: 'FAI-protected bay with Faraglioni views, reachable only on foot from Nerano.' },
+      { name: 'Regina Giovanna',    href: '/en-us/beaches/sorrentine-peninsula/regina-giovanna/',      tag: 'Roman Villa',       desc: 'Natural pool among the Roman ruins of Pollio Felice at Punta del Capo, Sorrento.' },
+      { name: 'Marina del Cantone', href: '/en-us/beaches/sorrentine-peninsula/marina-del-cantone/',  tag: 'Sand & Restaurants', desc: 'The largest beach on the Sorrentine Peninsula: pebbles, seafront restaurants.' },
+      { name: 'Massa Lubrense',     href: '/en-us/sorrentine-peninsula/massa-lubrense/',               tag: 'The Village',        desc: 'The municipality that guards Mitigliano, Ieranto and the peninsula\'s finest beaches.' },
+    ]}
+  />
 
 </BaseLayout>

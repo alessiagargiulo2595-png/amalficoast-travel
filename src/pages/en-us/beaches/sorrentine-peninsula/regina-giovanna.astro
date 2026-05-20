@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'en-us';
 
@@ -10,18 +12,22 @@ const breadcrumbs = [
 ];
 
 const facts = [
-  { label: 'Surface', value: 'Rocky' },
+  { label: 'Location', value: 'Punta del Capo, Sorrento' },
+  { label: 'Surface', value: 'Rock and pebbles' },
   { label: 'Access', value: '20-min trail (moderate)' },
-  { label: 'Shade', value: 'From 18:00' },
+  { label: 'Roman villa', value: '1st century AD (Pollio Felice)' },
+  { label: 'Natural shade', value: 'From around 18:00' },
   { label: 'Facilities', value: 'None - wild beach' },
-  { label: 'Best for', value: 'Archaeology, hiking, snorkelling' },
+  { label: 'Snorkelling', value: 'Excellent (natural arch)' },
+  { label: 'Best for', value: 'Archaeology, swimming, hiking' },
+  { label: 'Best season', value: 'May–Jun / Sep–Oct' },
 ];
 
 const beachSchema = {
   "@context": "https://schema.org",
   "@type": "Beach",
   "name": "Bagni della Regina Giovanna",
-  "description": "A natural swimming pool and Roman archaeological site near Sorrento. A hidden gem among olive groves, 20 minutes on foot from the town centre.",
+  "description": "Natural swimming pool and Roman archaeological site at Sorrento. Remains of the maritime villa of Pollio Felice (1st century AD) with a natural rock arch and emerald waters.",
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": "40.6450",
@@ -34,22 +40,54 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you reach the Bagni della Regina Giovanna?",
+      "acceptedAnswer": { "@type": "Answer", "text": "From Sorrento, take the EAV bus to Capo di Sorrento (10 min from Piazza Tasso), then walk about 15-20 minutes along a trail through ancient olive groves. Alternatively, on foot from Sorrento town centre takes about 40 minutes following Via del Capo. Part of the trail is unpaved: light hiking shoes are recommended." }
+    },
+    {
+      "@type": "Question",
+      "name": "Who was Queen Giovanna?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The Queen Giovanna referenced in the name is Joanna I of Anjou (1326-1382), Queen of Naples. According to local legend, the queen loved to bathe in the natural pool during her visits to Sorrento. In reality the villa is much older: it dates to the 1st century AD and belonged to the Roman nobleman Pollio Felice." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you swim at the Bagni della Regina Giovanna?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, swimming is free of charge. The natural pool is sheltered by the rock arch and offers calm, crystal-clear water, ideal for snorkelling as well. Entry into the water is from the flat rocks surrounding the pool (water shoes are essential). There are no beach clubs or lifeguards." }
+    },
+    {
+      "@type": "Question",
+      "name": "What remains of the Roman villa?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The foundations, water cisterns, some thermal-bath rooms and harbour structures are still visible. The natural rock arch was probably the entrance to the villa's private harbour. The villa is described by the poet Statius in the Silvae (1st century AD) as one of the most beautiful on the Gulf of Naples." }
+    },
+    {
+      "@type": "Question",
+      "name": "When is the best time to visit?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Early morning (before 10:00) or late afternoon. In summer the natural pool receives direct sun until about 17:00-18:00. May, June and September are ideal months: fewer crowds and perfect temperature. In the height of summer (July-August) it can get very busy, especially at weekends." }
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  title="Regina Giovanna Sorrento: The Natural Pool (2026)"
-  description="How to reach Bagni della Regina Giovanna near Sorrento. A natural pool amid Roman ruins, an olive-grove trail, and emerald-green waters. 2026 guide."
+  title="Bagni della Regina Giovanna Sorrento: Natural Pool & Roman Villa (2026)"
+  description="Complete guide to the Bagni della Regina Giovanna near Sorrento: the natural pool, the ruins of Pollio Felice's Roman villa, how to get there, history and practical tips. The finest beach on the Sorrentine Peninsula."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
   pageKey="regina-giovanna"
 >
 
   <!-- Hero -->
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
-      src="/images/regina-giovanna-sorrento.jpg"
-      alt="Bagni della Regina Giovanna, Sorrento"
+      src="/images/regina-giovanna-hero.jpg"
+      alt="Bagni della Regina Giovanna - natural pool with rock arch, Sorrento"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
       referrerpolicy="no-referrer"
@@ -57,9 +95,10 @@ const beachSchema = {
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
       <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrento · Sorrentine Peninsula</p>
-      <h1 class="font-serif text-display text-white mb-6">Regina Giovanna</h1>
-      <p class="text-lg md:text-xl font-light text-white/80">The natural pool hidden among Roman ruins.</p>
+      <h1 class="font-serif text-display text-white mb-6">Bagni della Regina Giovanna</h1>
+      <p class="text-lg md:text-xl font-light text-white/80">A natural pool among the ruins of a first-century Roman villa.</p>
     </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
   <!-- Content + Sidebar -->
@@ -67,44 +106,186 @@ const beachSchema = {
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
 
       <!-- Main text -->
-      <div class="lg:col-span-2 space-y-12">
+      <div class="lg:col-span-2 space-y-16">
+
+        <!-- Intro -->
         <div>
-          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Archaeology Meets Swimming</h2>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Sorrento's Natural Swimming Pool</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            The Bagni della Regina Giovanna are an open-air archaeological site where you can dive into emerald-blue water. A natural pool enclosed within the ruins of a 1st-century Roman villa - likely belonging to Publius Vedius Pollio - connects to the open sea through a rock arch. In 2026 it remains a wild spot: no beach clubs, no facilities.
+            The Bagni della Regina Giovanna are the best-kept secret of <a href="/en-us/sorrentine-peninsula/sorrento/" class="text-med-blue hover:underline">Sorrento</a>. A natural pool of emerald-green water, enclosed between limestone cliff walls and pierced by a natural rock arch that connects it to the open sea. All around, the remains of a 1st-century AD Roman maritime villa rise from the Mediterranean scrub like ghosts of a vanished world.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            The trail leading down to the baths passes through ancient olive groves with spectacular views across the Gulf of Naples and the island of Capri. Wear light hiking shoes and bring enough water - there are no bars or shops nearby.
+            This is not a beach in the conventional sense: it is an archaeological and natural treasure box where you dive between ruins. No beach clubs, no bars, no lifeguards. You arrive on foot, along a 20-minute trail through ancient olive groves, and discover a place that the people of Sorrento have been coming to for generations — long before it became famous on social media.
           </p>
         </div>
 
-        <!-- Wild beach note -->
-        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-          <div class="flex items-center gap-4 mb-4">
-            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-            <h3 class="text-xl font-bold">Wild Beach</h3>
+        <!-- The Roman Villa -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">The Villa of Pollio Felice: History and Archaeology</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            The ruins surrounding the natural pool belong to a 1st-century AD maritime villa attributed to the Roman nobleman <strong>Pollio Felice</strong>, a wealthy equestrian and arts patron. The villa is described in detail by the Latin poet <strong>Publius Papinius Statius</strong> in his <em>Silvae</em> (II, 2), where he celebrates it as one of the finest residences on the Gulf of Naples.
+          </p>
+          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm my-8">
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Statius's Description (1st century AD)</h3>
+            <p class="text-slate-600 leading-relaxed mb-4 italic">
+              "The villa juts out towards the sea on a promontory where the land seems to dissolve into the water. The rooms open directly onto the Tyrrhenian and the waves lap the mosaics of the summer dining rooms."
+            </p>
+            <p class="text-slate-600 leading-relaxed">
+              Statius describes a residence with <strong>private baths</strong> fed by fresh water, a <strong>private harbour</strong> (the present natural pool, sheltered by the rock arch), terraced gardens with fruit trees and a system of <strong>cisterns</strong> for collecting rainwater — some of which are still visible among the vegetation.
+            </p>
           </div>
-          <p class="text-slate-600 leading-relaxed">
-            No facilities, no bar, no beach club. Bring <strong>water, food, and water shoes</strong>. This is a genuinely local spot, frequented mainly by Sorrentines who know the place - a true authentic corner of the peninsula.
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            The villa covered a much larger area than what is visible today. It extended along the whole of Punta del Capo, exploiting the natural shape of the headland to create a residence that blended architecture and landscape. The foundations, perimeter walls and cisterns are still recognisable among the olive trees and scrubland.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            After the fall of the Roman Empire, the villa was gradually abandoned and nature reclaimed the structures. Natural collapses and marine erosion created the rock arch that is now the most spectacular feature of the site.
           </p>
         </div>
 
-        <!-- Getting there -->
+        <!-- The Legend of Queen Giovanna -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">The Legend of Queen Giovanna</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            The name "Regina Giovanna" has nothing to do with the Roman villa. It refers to <strong>Joanna I of Anjou</strong> (1326-1382), Queen of Naples, one of the most controversial and fascinating figures in Italian medieval history.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            According to local Sorrentine legend, the queen loved to retreat to this secluded spot to bathe away from prying eyes. The natural pool, sheltered by the rocks and invisible from the open sea, was the perfect refuge for a sovereign who wanted to escape the intrigues of the Neapolitan court.
+          </p>
+          <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+            <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Did you know?</p>
+            <div class="grid sm:grid-cols-3 gap-6">
+              <div class="text-center">
+                <p class="font-serif text-5xl font-bold text-med-gold">1st c.</p>
+                <p class="text-white/60 text-xs italic mt-1">Age of the Roman villa</p>
+              </div>
+              <div class="text-center">
+                <p class="font-serif text-5xl font-bold text-med-gold">1382</p>
+                <p class="text-white/60 text-xs italic mt-1">Death of Joanna I of Anjou</p>
+              </div>
+              <div class="text-center">
+                <p class="font-serif text-5xl font-bold text-med-gold">20 min</p>
+                <p class="text-white/60 text-xs italic mt-1">Trail through the olive groves</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Natural Arch and Pool -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">The Natural Arch and the Pool</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            The most spectacular feature of the site is the limestone rock arch that separates the natural pool from the open sea. The arch, formed over millennia by marine erosion, was probably the entrance to the Roman villa's private harbour.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            The pool is a basin roughly 30 metres in diameter, with turquoise crystal-clear water, 2 to 5 metres deep. The seabed is rock and sand, with abundant marine life visible to the naked eye: white seabream, wrasse, sea urchins and octopuses. Snorkelling here is exceptional, especially beneath the arch where the light creates dazzling reflections.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Entry into the water is from the flat rocks surrounding the pool. There is no sand: <strong>water shoes</strong> are essential. The more adventurous jump from the arch (about 3-4 metres high), but check the depth carefully first.
+          </p>
+        </div>
+
+        <!-- How to Get There -->
         <div>
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">How to Get There</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            The Bagni della Regina Giovanna are at Punta del Capo, the western tip of the Sorrentine Peninsula. They cannot be reached by car: the final stretch is a pedestrian trail.
+          </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">EAV Bus ⭐ Recommended</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">EAV Bus · Recommended</p>
               <p class="text-slate-700 font-medium mb-1">"Capo di Sorrento" line</p>
-              <p class="text-slate-500 text-xs sm:text-sm">From Piazza Tasso. Then 15–20 min walk through the olive groves.</p>
+              <p class="text-slate-500 text-xs sm:text-sm">From Piazza Tasso, alight at Capo di Sorrento. Then 15-20 min walk through the olive groves. The trail is signposted.</p>
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
               <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">On foot from the centre</p>
               <p class="text-slate-700 font-medium mb-1">About 40 minutes</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Scenic but strenuous. Follow Via del Capo towards Punta del Capo.</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Follow Via del Capo towards Punta del Capo. Scenic but demanding uphill sections. Bring water.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">By car</p>
+              <p class="text-slate-700 font-medium mb-1">Via del Capo parking</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Limited parking along Via del Capo. In summer it fills up early (arrive before 9:00). Then 15-20 min walk.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">By sea</p>
+              <p class="text-slate-700 font-medium mb-1">Kayak or private boat</p>
+              <p class="text-slate-500 text-xs sm:text-sm">You can enter the natural pool through the rock arch by kayak or dinghy. No rental services on site.</p>
             </div>
           </div>
         </div>
+
+        <!-- The Trail -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">The Trail: From Capo di Sorrento to the Pool</h2>
+          <div class="space-y-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">1</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Descent through the olive groves (10 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">From the bus stop a dirt trail descends through centuries-old olive groves and dry-stone walls. The route is shaded and pleasant, with sudden views across the Gulf of Naples and the island of Capri.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">2</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">The villa ruins (5 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">The trail passes alongside the remains of Pollio Felice's villa: cisterns, perimeter walls and foundations emerge from the vegetation. Informational panels (often faded) explain the history of the site.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">3</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">The final descent (5 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">The last section is the steepest: you scramble down through the rocks to sea level. The rock arch appears suddenly, framing the turquoise pool. The visual impact is extraordinary.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Practical tips -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+            <h3 class="text-xl font-bold">Practical Tips</h3>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-slate-900 mb-1">1. Bring everything with you</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">There are no bars, restaurants or facilities. Bring <strong>water (at least 1.5 litres per person)</strong>, food, sunscreen, water shoes, a towel and a bag for your rubbish. The only bin is at the start of the trail.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">2. Arrive early in summer</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">In July and August the pool fills up by 10:00, especially at weekends. Arriving at 8:30-9:00 guarantees space on the rocks and crystal-clear water before it gets disturbed by swimmers.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">3. The best snorkelling is under the arch</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">The point where the rock arch meets the open sea teems with life: white seabream, damselfish, octopuses and sea urchins. Bring a mask and snorkel — this is the best free snorkelling on the Sorrentine Peninsula.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">4. Sunset from the villa</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">If you stay until late afternoon, climb back up to the villa ruins for sunset: the golden light over the Gulf of Naples with Capri and Vesuvius in the background is one of the finest natural spectacles in the area.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
       </div>
 
       <!-- Sidebar Fast-Facts -->
@@ -126,7 +307,7 @@ const beachSchema = {
               href="/en-us/beaches/"
               class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
             >
-              ← All beaches
+              ← All Beaches
             </a>
           </div>
         </div>
@@ -135,17 +316,15 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="bg-med-blue py-16 text-center">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-white mb-4">Explore the Sorrentine Peninsula</h2>
-      <a
-        href="/en-us/sorrento-peninsula/"
-        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
-      >
-        Sorrentine Peninsula guide
-      </a>
-    </div>
-  </section>
+  <CorrelationSlider
+    lang="en-us"
+    heading="More Sorrentine Peninsula Beaches"
+    items={[
+      { name: 'Marina del Cantone', href: '/en-us/beaches/sorrentine-peninsula/marina-del-cantone/', tag: 'Sand & Restaurants', desc: 'The largest beach on the Sorrentine Peninsula: pebbles, seafront restaurants and the starting point for Ieranto.' },
+      { name: 'Baia di Ieranto',    href: '/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/', tag: 'FAI Reserve',       desc: 'FAI-protected bay with views of Capri\'s Faraglioni. Reachable only on foot (40 min) from Nerano.' },
+      { name: 'Cala di Mitigliano', href: '/en-us/beaches/sorrentine-peninsula/cala-mitigliano/',    tag: 'Wild',              desc: 'A white-pebble cove beneath Massa Lubrense, reached by 300 steps through Mediterranean scrub.' },
+      { name: 'Sorrento',           href: '/en-us/sorrentine-peninsula/sorrento/',                    tag: 'The Ideal Base',    desc: 'Transport hub, elegance and nightlife: the perfect base for exploring the Sorrentine Peninsula.' },
+    ]}
+  />
 
 </BaseLayout>

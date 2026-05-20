@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'en-us';
 
@@ -15,12 +17,66 @@ const facts = [
   { label: 'Shade', value: 'From 14:30 ⚠️' },
   { label: 'Facilities', value: 'Free public beach' },
   { label: 'Best for', value: 'Photography, couples' },
+  { label: 'Bridge height', value: '30 metres' },
+  { label: 'Annual event', value: 'MarMeeting (bridge diving)' },
+  { label: 'Art', value: 'Painted village – international murals' },
+  { label: 'Stream', value: 'Torrente Schiato' },
+  { label: 'Entrance', value: 'Free' },
 ];
 
 const logistica = [
   { transport: 'SITA Bus', stop: 'Furore Fiordo', notes: 'Amalfi–Positano line' },
-  { transport: 'Scooter', stop: 'Ponte Furore', notes: 'Limited roadside parking' },
+  { transport: 'Scooter / Car', stop: 'Ponte Furore', notes: 'Very limited roadside parking – arrive early' },
+  { transport: 'Ferry + taxi boat', stop: 'From Praiano or Amalfi', notes: 'Direct landing at the fjord by sea' },
+  { transport: 'Organised tour', stop: 'Various departure points', notes: 'Includes transport and guide' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you get to Fiordo di Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most convenient option is the SITA bus on the Amalfi–Positano line: alight at the 'Furore Fiordo' stop, right on the bridge itself. By car or scooter there are very few parking spots along the SS163, so it is worth arriving early in the morning. Alternatively, some taxi boats from Praiano and Amalfi offer a direct landing at the fjord by sea."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When is the best time to photograph Fiordo di Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The sun illuminates the floor of the fjord only between 11:00 and 14:30. The best light for photos of the turquoise water is around 11:30. Before and after this window the fjord is in deep shade. In summer, arrive by 10:00 to find parking and enjoy the full light."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you swim at Fiordo di Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can swim in the fjord. The water is generally cooler than on the open coast because sunlight reaches the bottom for only a few hours a day. The beach is small and pebbly. Jumping from the bridge (30 m) is permitted only for MarMeeting participants and is forbidden to tourists for safety reasons."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the MarMeeting at Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The MarMeeting is an international acrobatic diving competition held from the bridge over Fiordo di Furore, 30 metres above the water. It takes place every summer (usually July or August) and attracts professional divers from around the world. Tourists cannot participate but can watch for free from both the beach and the bridge."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there an entry fee for Fiordo di Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, Fiordo di Furore is a free public beach with no admission charge. To reach the beach you descend approximately 200 steps from the road (SS163). There are no facilities (bar, sun-lounger hire, showers), so bring water, food and everything you need."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
@@ -46,14 +102,21 @@ const beachSchema = {
     "value": "From 14:30"
   }
 };
+
+const nearbyBeaches = [
+  { name: 'Santa Croce', href: '/en-us/beaches/amalfi-coast/santa-croce-amalfi/', tag: 'By sea only', desc: "Amalfi's secret cove with historic restaurants." },
+  { name: 'Marina di Praia', href: '/en-us/beaches/amalfi-coast/marina-di-praia/', tag: 'Praiano', desc: 'A wild beach with the finest sunset on the Coast.' },
+  { name: 'Spiaggia Grande', href: '/en-us/beaches/amalfi-coast/spiaggia-grande-positano/', tag: 'Positano', desc: 'The glamorous heart of the Amalfi Coast.' },
+  { name: 'Ieranto', href: '/en-us/beaches/sorrentine-peninsula/ieranto/', tag: 'Marine Protected Area', desc: 'A pristine bay at the foot of the Lattari mountains.' },
+];
 ---
 
 <BaseLayout
   title="Fiordo di Furore 2026: Guide, Access & Sun Hours"
-  description="How to get to Fiordo di Furore in 2026. When the sun reaches the beach, how to visit, and tips for the perfect shot."
+  description="How to visit Fiordo di Furore in 2026. Sun hours, how to get there by bus, and tips for the perfect shot."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
  pageKey="fiordo-di-furore">
 
   <!-- Hero -->
@@ -65,12 +128,13 @@ const beachSchema = {
       loading="eager"
       referrerpolicy="no-referrer"
     />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Amalfi Coast</p>
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Amalfi Coast</p>
       <h1 class="font-serif text-display text-white mb-6">Fiordo di Furore</h1>
       <p class="text-lg md:text-xl font-light text-white/80">A masterpiece of nature carved into the rock.</p>
     </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
   <!-- Content + Sidebar -->
@@ -80,12 +144,12 @@ const beachSchema = {
       <!-- Main text -->
       <div class="lg:col-span-2 space-y-12">
         <div>
-          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">An Icon of the Amalfi Coast</h2>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">An Icon of the Coast</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Learn <strong>how to get to Fiordo di Furore</strong>: Fiordo di Furore is one of the most iconic images in Italy. Not a traditional beach, but a deep natural rift where the sea creeps beneath a monumental 30-metre bridge. In 2026 access is regulated to protect the site: the beach is small and the water is usually cooler than on the open coast.
+            Fiordo di Furore is one of the most iconic images in Italy. Not a traditional beach, but a deep natural rift where the sea creeps beneath a monumental 30-metre bridge. Set along the <a href="/en-us/amalfi-coast/" class="text-med-blue hover:underline">Amalfi Coast</a> between <a href="/en-us/amalfi-coast/positano/" class="text-med-blue hover:underline">Positano</a> and <a href="/en-us/amalfi-coast/amalfi/" class="text-med-blue hover:underline">Amalfi</a>, in 2026 access is regulated to protect the site: the beach is small and the water is usually cooler than on the open coast.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            A paradise for photographers - but watch the light: the sun illuminates the floor of the fjord only in the middle of the day. Arrive between 11:00 and 13:00 for the best shots. Diving off the bridge is a local tradition but is forbidden to tourists: enjoy the view from above before descending the 200 steps to the beach.
+            It is a paradise for photographers, but watch the light: the sun illuminates the floor of the fjord only in the middle of the day. Arrive between 11:00 and 13:00 for the best shots. Jumping from the bridge is a local tradition but is forbidden to tourists — enjoy the view from above before descending the 200 steps to the beach.
           </p>
         </div>
 
@@ -100,11 +164,102 @@ const beachSchema = {
           </p>
         </div>
 
-        <!-- Getting there -->
+        <!-- History -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">History: The Fjord and the Village That Isn't There</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            The fjord was carved over millennia by the Torrente Schiato, which still flows between limestone walls down to the sea. In the Middle Ages, numerous paper mills operated along the watercourse — Amalfi was the first European city to produce paper using the Arab technique, and Furore was part of this productive system that made the Republic famous.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            The village of Furore is known as the <em>"town that isn't there"</em>: a municipality with no centre, no square, no recognisable heart. The houses are scattered across the valley walls, connected by steep paths. This peculiarity has fuelled its reputation for decades as a place suspended between reality and legend.
+          </p>
+        </div>
+
+        <!-- MarMeeting -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">MarMeeting: Diving from the Bridge</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Every summer — usually in July or August — the bridge over the fjord becomes a diving platform for the <strong>MarMeeting</strong>, an international acrobatic diving competition born in the 1970s. Professional divers leap from 30 metres above the water in front of crowds packed onto the bridge and surrounding rocks.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Spectators can watch for free from both the beach and above. Free diving from the bridge is strictly forbidden to tourists for safety reasons: the currents at the entrance to the fjord can be unpredictable.
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">30</p>
+            <p class="text-white/60 text-sm mt-1">metres (bridge)</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">200</p>
+            <p class="text-white/60 text-sm mt-1">steps to descend</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1970</p>
+            <p class="text-white/60 text-sm mt-1">first MarMeeting</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">3½</p>
+            <p class="text-white/60 text-sm mt-1">hours of sun per day</p>
+          </div>
+        </div>
+
+        <!-- Painted Village -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Furore: The Painted Village</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Looking up from the floor of the fjord you catch the first traces of what makes Furore unique beyond the beach: it is a <strong>painted village</strong>. Since the 1980s, international artists have transformed the walls of houses clinging to the cliff into open-air canvases, creating an outdoor gallery that today counts dozens of murals.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Each summer a new artist is invited to add their work. It is well worth climbing back up from the fjord and wandering through the village lanes to discover the full collection — an experience completely different from the beach, but equally memorable.
+          </p>
+        </div>
+
+        <!-- Marine life -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Marine Life and Snorkeling</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            The narrow shape of the fjord channels nutrient-rich waters from the open sea, supporting a particularly lively marine ecosystem. Among the submerged rocks live dense shoals of <strong>white seabream</strong> (sarago), octopuses camouflaging themselves in crevices, and sea urchins clinging to the walls. Visibility is generally good during the middle hours, when light penetrates to the bottom.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            An acoustic phenomenon makes the visit even more atmospheric: the rock walls amplify every sound, turning the noise of the waves into a deep, enveloping echo — an effect the locals simply call "the voice of the fjord".
+          </p>
+        </div>
+
+        <!-- Local Tips -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Local Tips</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Arrive by 9:30 in summer to find a spot along the road or in the small layby near the bridge.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">The sunlight window is short: time your descent to the beach for 11:00–11:30 to make the most of it.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">There is no bar or shower: bring water, snacks and water shoes. The pebbles are hard on bare feet.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">After your swim, head back up to the village and look for the murals: allow at least an hour to stroll among Furore's painted houses.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">For snorkeling, bring mask and fins: the rocky seabed near the fjord walls is full of marine life.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- How to Get There -->
         <div>
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">How to Get There</h2>
           <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
-            <table class="w-full text-xs sm:text-xs sm:text-sm">
+            <table class="w-full text-sm">
               <thead>
                 <tr class="bg-charcoal text-white">
                   <th class="text-left p-4 font-medium">Transport</th>
@@ -122,6 +277,24 @@ const beachSchema = {
                 ))}
               </tbody>
             </table>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
@@ -145,7 +318,7 @@ const beachSchema = {
               href="/en-us/beaches/"
               class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
             >
-              ← All beaches
+              &larr; All Beaches
             </a>
           </div>
         </div>
@@ -153,6 +326,13 @@ const beachSchema = {
 
     </div>
   </section>
+
+  <!-- Nearby Beaches -->
+  <CorrelationSlider
+    title="More Amalfi Coast Beaches"
+    items={nearbyBeaches}
+    lang="en-us"
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">

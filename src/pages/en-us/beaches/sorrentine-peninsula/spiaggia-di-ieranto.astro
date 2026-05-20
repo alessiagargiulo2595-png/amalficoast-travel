@@ -1,48 +1,86 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'en-us';
 
 const breadcrumbs = [
   { name: 'Home', url: '/en-us/' },
   { name: 'Beaches', url: '/en-us/beaches/' },
-  { name: 'Ieranto', url: '/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/' },
+  { name: 'Baia di Ieranto', url: '/en-us/beaches/sorrentine-peninsula/spiaggia-di-ieranto/' },
 ];
 
 const facts = [
-  { label: 'Surface', value: 'Sand and pebbles' },
-  { label: 'Access', value: 'Hiking trail only' },
-  { label: 'Difficulty', value: 'Moderate hike (30 min)' },
-  { label: 'Atmosphere', value: 'Wild, untouched' },
-  { label: 'Best for', value: 'Hikers, snorkeling' },
+  { label: 'Location', value: 'Massa Lubrense, NA' },
+  { label: 'Protection', value: 'Punta Campanella Marine Reserve' },
+  { label: 'Management', value: 'FAI - Italian Environment Fund' },
+  { label: 'Surface', value: 'Sand, pebbles and rocks' },
+  { label: 'Access', value: 'Hiking trail 40-50 min from Nerano' },
+  { label: 'Elevation change', value: '~200 m descent' },
+  { label: 'Facilities', value: 'None (wild beach)' },
+  { label: 'Snorkelling', value: 'Outstanding (protected area)' },
+  { label: 'View', value: 'Faraglioni di Capri' },
+  { label: 'Best season', value: 'May–Jun / Sep–Oct' },
 ];
 
 const beachSchema = {
   "@context": "https://schema.org",
   "@type": "Beach",
-  "name": "Spiaggia di Ieranto",
-  "description": "A hidden beach accessible only by hiking trail. Crystal waters, wild cliffs, and a protected nature reserve.",
-  "image": "https://amalficoast-travel.com/images/ieranto-hero.jpg",
+  "name": "Baia di Ieranto",
+  "description": "FAI-protected bay within the Punta Campanella Marine Protected Area. Wild beach with views of Capri's Faraglioni, reachable only on foot or by sea. One of the most beautiful bays in the Mediterranean.",
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": "40.5700",
-    "longitude": "14.3683"
+    "latitude": "40.6050",
+    "longitude": "14.3350"
   },
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Praiano",
-    "addressRegion": "SA",
+    "addressLocality": "Massa Lubrense",
+    "addressRegion": "NA",
     "addressCountry": "IT"
   }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you get to Baia di Ieranto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The main trail starts from the hamlet of Nerano (Massa Lubrense). Park at Nerano and walk about 40-50 minutes downhill along a FAI-signposted path through olive groves and Mediterranean scrub. The descent drops about 200 metres. The return uphill takes about 60-70 minutes. Alternatively, you can reach it by sea via taxi boat from Marina del Cantone or Sorrento." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Baia di Ieranto really one of the world's 8 most beautiful bays?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Baia di Ieranto has been included in lists of the world's 8 most beautiful bays by several international travel publications. The recognition is due to the unique combination of landscape (the Faraglioni di Capri as a backdrop), protected marine biodiversity, the absence of urbanisation and the site's millennia of history. The FAI has managed it as a natural and cultural heritage site since 1987." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you fish or collect things at Baia di Ieranto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Baia di Ieranto is part of the Punta Campanella Marine Protected Area (Zone B general reserve). Fishing, collecting any marine organism, free anchoring and combustion-engine navigation are all prohibited. These restrictions have allowed an extraordinary recovery of the marine fauna." }
+    },
+    {
+      "@type": "Question",
+      "name": "What fish can you see snorkelling here?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Thanks to the protection of the Marine Protected Area, the waters of Ieranto host exceptional biodiversity: brown grouper (up to 60 cm), Mediterranean barracuda, dentex, amberjack, white seabream, damselfish, wrasse, octopuses, moray eels, starfish and sea urchins. The Posidonia oceanica meadows on the seabed are the perfect habitat for dozens of species. It is common to spot shoals of hundreds of fish just metres from shore." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the trail suitable for children?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The trail is suitable for children aged 7-8 and above who are used to walking. It has no exposed or dangerous sections, but it is long (40-50 min downhill, 60-70 uphill) and in places steep. Bring plenty of water (at least 1.5 litres per person), a hat, sunscreen and closed shoes. There are no facilities or shade on the beach." }
+    }
+  ]
 };
 ---
 
 <BaseLayout
-  title="Spiaggia di Ieranto 2026: Hidden Beach & Hiking Guide"
-  description="Ieranto is a pristine beach in a protected marine reserve. Accessible only by hiking trail from Praiano. Guide to the hike and what to expect."
+  title="Baia di Ieranto 2026: Marine Reserve, FAI Trek & Snorkelling | Massa Lubrense"
+  description="Complete guide to Baia di Ieranto at Massa Lubrense: Punta Campanella marine protected area, FAI hiking trail, snorkelling with grouper and barracuda, history of the old quarry, views of Capri's Faraglioni. How to get there and practical tips."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
   pageKey="spiaggia-di-ieranto"
 >
 
@@ -50,17 +88,18 @@ const beachSchema = {
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
       src="/images/ieranto-hero.jpg"
-      alt="Spiaggia di Ieranto, Sorrentine Peninsula"
+      alt="Baia di Ieranto aerial view - Punta Campanella Marine Protected Area, Massa Lubrense"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
       referrerpolicy="no-referrer"
     />
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrentine Peninsula · Protected Reserve</p>
-      <h1 class="font-serif text-display text-white mb-6">Spiaggia di Ieranto</h1>
-      <p class="text-lg md:text-xl font-light text-white/80">A pristine beach hidden in a protected marine reserve, reachable only on foot.</p>
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Massa Lubrense · Marine Protected Area · FAI</p>
+      <h1 class="font-serif text-display text-white mb-6">Baia di Ieranto</h1>
+      <p class="text-lg md:text-xl font-light text-white/80">Among the world's 8 most beautiful bays: protected nature, Capri's Faraglioni and a sea where fish have no fear of people.</p>
     </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
   <!-- Content + Sidebar -->
@@ -68,48 +107,210 @@ const beachSchema = {
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
 
       <!-- Main text -->
-      <div class="lg:col-span-2 space-y-12">
+      <div class="lg:col-span-2 space-y-16">
+
+        <!-- Intro -->
         <div>
-          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">A Beach Lost in Time</h2>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">For the Adventurous Only</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Spiaggia di Ieranto lies within a protected marine reserve, one of the first created in Italy. Its isolation and protection have preserved it as a natural paradise. A 30-minute hike from Praiano, the effort is rewarded with pristine sand, turquoise waters, and an untouched landscape.
+            Ieranto is not a beach for everyone. There is no road, no facilities, no sunbeds. There is only a hiking trail of about 40-50 minutes that descends through a maritime pine forest to a hidden cove of golden sand and pebbles, surrounded by near-100-metre white cliffs.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            If you are willing to do the hike, you will find what few tourists ever see: an almost deserted beach, crystal-clear water for snorkelling, and the sound of cicadas in the pine cones descending to the marine horizon. This is where the coast turns truly wild.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            The beach has a small freshwater spring, historically used by shepherds. The clear waters make it an exceptional snorkeling destination. Part of your entry fee supports marine conservation.
+            Protected by the <strong>FAI - Italian Environment Fund</strong> since 1987 and part of the <strong>Punta Campanella Marine Protected Area</strong>, this bay has been included in the list of the <strong>world's 8 most beautiful bays</strong> by several international travel publications. The reason is obvious the moment you arrive: a crescent set between cliffs, with the <strong>Faraglioni di Capri</strong> directly in front, so close they seem reachable by swimming. And the fish — protected by a no-fishing ban — swim centimetres from shore without a trace of fear.
           </p>
         </div>
 
-        <!-- The Hike -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">The Hiking Trail</h2>
-          <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-            <div class="space-y-4 text-slate-600">
-              <p class="leading-relaxed">
-                <strong>Duration:</strong> 30 minutes down, 40 minutes up (with the sun exposure on return)
-              </p>
-              <p class="leading-relaxed">
-                <strong>Difficulty:</strong> Moderate. Well-maintained path with sections of stairs and exposed areas. Good shoes essential.
-              </p>
-              <p class="leading-relaxed">
-                <strong>Starting point:</strong> Via Spiaggia del Gavitello in Praiano (parking available)
-              </p>
-              <p class="leading-relaxed">
-                <strong>What to bring:</strong> Water, sunscreen, comfortable hiking shoes. There are no facilities at the beach.
-              </p>
+        <!-- Stats box -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Ieranto by the numbers</p>
+          <div class="grid sm:grid-cols-4 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-med-gold">1987</p>
+              <p class="text-white/60 text-xs italic mt-1">Year of FAI acquisition</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-med-gold">49 ha</p>
+              <p class="text-white/60 text-xs italic mt-1">Protected area</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-med-gold">200+</p>
+              <p class="text-white/60 text-xs italic mt-1">Marine species recorded</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-med-gold">Top 8</p>
+              <p class="text-white/60 text-xs italic mt-1">Most beautiful bays in the world</p>
             </div>
           </div>
         </div>
 
-        <!-- Marine Reserve -->
-        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Protected Marine Reserve</h3>
-          <p class="text-slate-600 leading-relaxed mb-4">
-            Ieranto is part of the Limonium Marine Protected Area, created to preserve this exceptional ecosystem. Swimming and snorkeling are allowed, but fishing and anchoring are prohibited. Entrance is €2.50/person.
+        <!-- History -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">History: From Myth to Quarry to Rebirth</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            The name "Ieranto" derives from the ancient Greek <strong><em>Ieros</em></strong> (sacred). According to tradition, the headland was sacred to the <strong>Sirens</strong> of Greek mythology: it is right here, between Ieranto and Punta Campanella, that Odysseus — tied to the mast of his ship — heard the irresistible song of the Sirens on his return journey from Troy.
           </p>
-          <p class="text-slate-600 leading-relaxed">
-            Respect the reserve: don't touch corals, don't take souvenirs, and use reef-safe sunscreen only.
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            The Romans built a <strong>Temple of Athena</strong> (Minerva) on the nearby Punta Campanella, confirming the sacredness of the place. For centuries the bay remained the territory of fishermen and farmers, with the olive-terraced slopes that still mark the landscape today.
           </p>
+          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm my-8">
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">The Former Italsider Quarry (1918–1952)</h3>
+            <p class="text-slate-600 leading-relaxed mb-4">
+              In 1918 the <strong>Italsider</strong> company opened a dolomitic limestone quarry on the eastern side of the bay. For 34 years the quarry extracted stone from the cliff, loading it directly onto barges moored in the bay via a system of cable cars and hoppers. The activity radically transformed the landscape, leaving scars in the rock that are still visible today.
+            </p>
+            <p class="text-slate-600 leading-relaxed">
+              The quarry closed in 1952. The remains of the industrial plant — pylons, rails, hoppers — were gradually absorbed by the vegetation. In 1987 the <strong>FAI</strong> purchased the entire area (49 hectares) through a donation, launching an environmental recovery programme that has transformed an abandoned industrial site into one of Italy's most precious natural places.
+            </p>
+          </div>
         </div>
+
+        <!-- Marine Protected Area -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Marine Protected Area: The Underwater Sanctuary</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Baia di Ieranto falls within <strong>Zone B (general reserve)</strong> of the Punta Campanella Marine Protected Area, established in 1997. This means an absolute ban on fishing, collecting organisms, free anchoring and motor navigation. The result, after nearly 30 years of protection, is a marine ecosystem of extraordinary richness.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            The waters of Ieranto have become a true <strong>natural laboratory</strong> demonstrating what happens when the sea is left in peace. Species that are rare or gone elsewhere thrive here just metres from shore.
+          </p>
+
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">What You See Snorkelling</h3>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Reef fish</p>
+              <p class="text-slate-700 font-medium mb-1">Brown grouper, white seabream, damselfish</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Brown grouper reach 50-60 cm and approach swimmers without fear. White seabream form shoals of dozens among the rocks. Blue damselfish colour the water like confetti.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Pelagic predators</p>
+              <p class="text-slate-700 font-medium mb-1">Mediterranean barracuda, dentex, amberjack</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Mediterranean barracuda (up to 1 metre) patrol the bay entrance in small groups. Dentex and amberjack are spotted in deeper water, especially early in the morning.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Seabed</p>
+              <p class="text-slate-700 font-medium mb-1">Octopuses, moray eels, starfish, sea urchins</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Octopuses are common among the rocks (don't touch them). Moray eels hide in crevices. The seabed is rich in sea urchins, anemones and colourful nudibranchs visible at just a few metres depth.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Posidonia meadows</p>
+              <p class="text-slate-700 font-medium mb-1">The Mediterranean's key ecosystem</p>
+              <p class="text-slate-500 text-xs sm:text-sm">The <em>Posidonia oceanica</em> meadows covering the seabed are the habitat that sustains all this biodiversity. They produce oxygen, protect the coast from erosion and shelter hundreds of species.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Trail -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">The FAI Trail: From Nerano to the Bay</h2>
+          <div class="space-y-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">1</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Departure from Nerano (0-10 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Start from the small square at Nerano (a hamlet of Massa Lubrense). The trail begins with a paved mule track between dry-stone walls and olive groves. FAI panels point the way. First glimpses of Marina del Cantone.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">2</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Through the Mediterranean scrub (10-25 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">The trail enters Mediterranean scrub: myrtle, lentisk, wild rosemary and maritime pines. The air is wonderfully fragrant. The bay begins to appear in the distance and the Faraglioni di Capri emerge on the horizon.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">3</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">The old quarry remains (25-35 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">You pass through the remains of the former Italsider quarry: concrete pylons swallowed by vegetation, rusty old rails, hoppers. A piece of industrial archaeology that the FAI has chosen to preserve as a historical record.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">4</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Final descent and the bay (35-50 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">The last section drops steeply to the sea. At one point the bay opens before you in full splendour: pale sand, turquoise water, white cliffs and the Faraglioni di Capri perfectly aligned on the horizon. The visual impact is unforgettable.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- How to Get There -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">How to Get There</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Hiking trail · Recommended</p>
+              <p class="text-slate-700 font-medium mb-1">From Nerano (Massa Lubrense)</p>
+              <p class="text-slate-500 text-xs sm:text-sm">40-50 min downhill, 60-70 min uphill. FAI-signposted trail. Parking at Nerano (limited in summer, arrive early). Difficulty: moderate.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">By sea</p>
+              <p class="text-slate-700 font-medium mb-1">Taxi boat or kayak</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Taxi boat from Marina del Cantone (~10 min, €50-80 per boat). Kayak hire from Marina del Cantone. Combustion engines banned in the bay (protected area).</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus + hiking</p>
+              <p class="text-slate-700 font-medium mb-1">From Sorrento to Nerano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">SITA bus from Sorrento to Nerano (about 30 min). Then trail on foot. Car-free option. Check timetables at sitasudtrasporti.it.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">By car</p>
+              <p class="text-slate-700 font-medium mb-1">Parking at Nerano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Limited parking at Nerano (few roadside spaces). In summer arrive before 8:30. About 25 min from Sorrento by car via SP45.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Local tips -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-6">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+            <h3 class="text-xl font-bold">5 Local Tips</h3>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-slate-900 mb-1">1. Bring everything with you</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">There are no bars, restaurants or facilities of any kind. Bring <strong>water (at least 2 litres per person)</strong>, food, sunscreen, a hat, closed shoes for the trail, water shoes for the water, a mask and snorkel. A bag for rubbish is essential: leave nothing behind.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">2. Mask and snorkel are non-negotiable</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Coming to Ieranto without a snorkel mask is like going to the Louvre blindfolded. Grouper approach to within a metre. Barracuda patrol the bay entrance. Posidonia meadows teem with life. This is the finest snorkelling on the Sorrentine Peninsula.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">3. Leave early, return before 16:00</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">The return climb (60-70 min) in afternoon heat is brutal. Leave Nerano at 8:00-8:30, enjoy the bay until 14:00-15:00, and head back up in the late afternoon when the trail is in shade.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">4. After the bay, lunch at Nerano</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Nerano is famous for <strong>Spaghetti alla Nerano</strong> (fried courgettes and provolone del Monaco), invented here in 1952. After the hike, a plate at Taverna del Capitano or Maria Grazia is the perfect reward.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">5. Respect the protected area</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">No fishing, no collecting shells, sea urchins or any organism. No anchoring on Posidonia meadows. Do not touch the fish (even if they come close). Respecting the rules is what makes this place so special.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
       </div>
 
       <!-- Sidebar Fast-Facts -->
@@ -126,12 +327,12 @@ const beachSchema = {
               </div>
             ))}
           </div>
-          <div class="mt-10 pt-8 border-t border-white/10">
+          <div class="mt-10 pt-8 border-t border-white/10 space-y-3">
             <a
               href="/en-us/beaches/"
               class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
             >
-              ← All beaches
+              ← All Beaches
             </a>
           </div>
         </div>
@@ -140,17 +341,15 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="bg-med-blue py-16 text-center">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-white mb-4">Discover more Sorrentine Peninsula beaches</h2>
-      <a
-        href="/en-us/beaches/"
-        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
-      >
-        Complete beach guide
-      </a>
-    </div>
-  </section>
+  <CorrelationSlider
+    lang="en-us"
+    heading="More Sorrentine Peninsula Beaches"
+    items={[
+      { name: 'Regina Giovanna',    href: '/en-us/beaches/sorrentine-peninsula/regina-giovanna/',    tag: 'Roman Villa',       desc: 'Natural pool among the Roman ruins of Pollio Felice at Punta del Capo, Sorrento.' },
+      { name: 'Marina del Cantone', href: '/en-us/beaches/sorrentine-peninsula/marina-del-cantone/', tag: 'Sand & Restaurants', desc: 'The largest beach on the Sorrentine Peninsula: pebbles, seafront restaurants.' },
+      { name: 'Cala di Mitigliano', href: '/en-us/beaches/sorrentine-peninsula/cala-mitigliano/',    tag: 'Wild',              desc: 'A white-pebble cove beneath Massa Lubrense, reached by 300 steps.' },
+      { name: 'Massa Lubrense',     href: '/en-us/sorrentine-peninsula/massa-lubrense/',              tag: 'The Village',       desc: 'The municipality that guards Ieranto, Nerano and the peninsula\'s finest beaches.' },
+    ]}
+  />
 
 </BaseLayout>

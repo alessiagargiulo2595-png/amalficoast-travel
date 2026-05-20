@@ -1,27 +1,82 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'de-de';
 
 const breadcrumbs = [
-  { name: 'Startseite', url: '/de-de/' },
+  { name: 'Home', url: '/de-de/' },
   { name: 'Strände', url: '/de-de/strande/' },
   { name: 'Fiordo di Furore', url: '/de-de/strande/amalfikueste/fiordo-di-furore/' },
 ];
 
 const facts = [
   { label: 'Untergrund', value: 'Kiesel' },
-  { label: 'Zugang', value: 'Treppen (~200 Stufen)' },
+  { label: 'Zugang', value: 'Treppe (ca. 200 Stufen)' },
   { label: 'Schatten', value: 'Ab 14:30 Uhr ⚠️' },
-  { label: 'Ausstattung', value: 'Öffentlicher Strand, kostenlos' },
+  { label: 'Ausstattung', value: 'Freier Strand' },
   { label: 'Ideal für', value: 'Fotografie, Paare' },
+  { label: 'Brückenhöhe', value: '30 Meter' },
+  { label: 'Jährliches Ereignis', value: 'MarMeeting (Sprünge von der Brücke)' },
+  { label: 'Kunst', value: 'Bemaltes Dorf – internationale Wandgemälde' },
+  { label: 'Bach', value: 'Torrente Schiato' },
+  { label: 'Eintritt', value: 'Kostenlos' },
 ];
 
 const logistik = [
   { transport: 'SITA-Bus', haltestelle: 'Furore Fiordo', hinweise: 'Linie Amalfi–Positano' },
-  { transport: 'Motorroller', haltestelle: 'Ponte Furore', hinweise: 'Begrenztes Parken am Straßenrand' },
+  { transport: 'Roller / Auto', haltestelle: 'Ponte Furore', hinweise: 'Wenige Parkplätze am Straßenrand – früh ankommen' },
+  { transport: 'Fähre + Taxiboot', haltestelle: 'Ab Praiano oder Amalfi', hinweise: 'Direktes Anlegen am Fjord auf dem Seeweg' },
+  { transport: 'Geführte Tour', haltestelle: 'Verschiedene Abfahrtsorte', hinweise: 'Inklusive Transport und Reiseleitung' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie kommt man zum Fiordo di Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Am bequemsten erreicht man den Fjord mit dem SITA-Bus auf der Linie Amalfi–Positano: Aussteigen an der Haltestelle 'Furore Fiordo', direkt auf der Brücke. Mit Auto oder Roller gibt es nur wenige Parkplätze entlang der SS163, daher empfiehlt sich eine frühe Anreise. Alternativ bieten einige Taxiboote aus Praiano und Amalfi die direkte Anfahrt zum Fjord auf dem Seeweg an."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wann ist der beste Zeitpunkt, den Fiordo di Furore zu fotografieren?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Sonne beleuchtet den Fjordgrund nur zwischen 11:00 und 14:30 Uhr. Das beste Licht für Fotos des türkisfarbenen Wassers ist gegen 11:30 Uhr. Vor und nach diesem Zeitfenster liegt der Fjord im tiefen Schatten. Im Sommer sollte man bis 10 Uhr ankommen, um einen Parkplatz zu finden und das volle Licht zu genießen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann man im Fiordo di Furore schwimmen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, im Fjord kann man schwimmen. Das Wasser ist im Allgemeinen kühler als an der offenen Küste, da die Sonne nur wenige Stunden täglich hineinscheint. Der Strand ist klein und aus Kieselsteinen. Der Sprung von der Brücke (30 m) ist nur für Teilnehmer des MarMeetings erlaubt und aus Sicherheitsgründen für Touristen verboten."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist das MarMeeting di Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das MarMeeting ist ein internationaler Wettbewerb für akrobatische Sprünge von der Brücke des Fiordo di Furore, die 30 Meter hoch ist. Er findet jeden Sommer (meist im Juli oder August) statt und zieht Profi-Springer aus aller Welt an. Touristen dürfen nicht teilnehmen, aber kostenlos zuschauen – sowohl vom Strand als auch von der Brücke."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist der Eintritt zum Fiordo di Furore kostenpflichtig?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein, der Fiordo di Furore ist ein freier Strand und der Zugang ist kostenlos. Zum Hinuntergehen zum Strand muss man ca. 200 Stufen von der Straße (SS163) bewältigen. Es gibt keine Einrichtungen (Café, Liegenverleih, Duschen), daher Wasser, Essen und alles Notwendige mitbringen."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
@@ -40,8 +95,20 @@ const beachSchema = {
     "addressRegion": "SA",
     "addressCountry": "IT"
   },
-  "publicAccess": "true"
+  "publicAccess": "true",
+  "amenityFeature": {
+    "@type": "LocationFeatureSpecification",
+    "name": "Schattenzeit",
+    "value": "Ab 14:30 Uhr"
+  }
 };
+
+const nearbyBeaches = [
+  { name: 'Santa Croce', href: '/de-de/strande/amalfikueste/santa-croce-amalfi/', tag: 'Nur per Boot', desc: 'Die geheime Flucht aus Amalfi mit historischen Restaurants.' },
+  { name: 'Marina di Praia', href: '/de-de/strande/amalfikueste/marina-di-praia/', tag: 'Praiano', desc: 'Wilder Strand mit dem schönsten Sonnenuntergang der Küste.' },
+  { name: 'Spiaggia Grande', href: '/de-de/strande/amalfikueste/spiaggia-grande-positano/', tag: 'Positano', desc: 'Das weltläufige Herz der Amalfiküste.' },
+  { name: 'Ieranto', href: '/de-de/strande/sorrentinische-halbinsel/spiaggia-di-ieranto/', tag: 'Meeresschutzgebiet', desc: 'Die unberührte Bucht am Fuß der Lattari.' },
+];
 ---
 
 <BaseLayout
@@ -49,7 +116,7 @@ const beachSchema = {
   description="So besuchen Sie den Fiordo di Furore 2026. Wann die Sonne den Strand erreicht, Anreise mit dem Bus und Tipps für das perfekte Foto."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
  pageKey="fiordo-di-furore">
 
   <!-- Hero -->
@@ -61,9 +128,9 @@ const beachSchema = {
       loading="eager"
       referrerpolicy="no-referrer"
     />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Amalfiküste</p>
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Amalfiküste</p>
       <h1 class="font-serif text-display text-white mb-6">Fiordo di Furore</h1>
       <p class="text-lg md:text-xl font-light text-white/80">Ein Meisterwerk der Natur, in den Fels gehauen.</p>
     </div>
@@ -79,29 +146,120 @@ const beachSchema = {
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Eine Ikone der Amalfiküste</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Der Fiordo di Furore gehört zu den ikonischsten Bildern Italiens. Es ist kein gewöhnlicher Strand, sondern eine tiefe natürliche Felsspalte, in die das Meer unter einer monumentalen 30 Meter hohen Brücke eindringt. 2026 ist der Zugang reglementiert, um das Naturdenkmal zu schützen: Der Strand ist klein, und das Wasser ist meist kühler als an der offenen Küste.
+            Der Fiordo di Furore gehört zu den ikonischsten Bildern Italiens. Es ist kein gewöhnlicher Strand, sondern eine tiefe natürliche Felsspalte, in die das Meer unter einer monumentalen 30 Meter hohen Brücke eindringt. Eingebettet entlang der <a href="/de-de/amalfikueste/" class="text-med-blue hover:underline">Amalfiküste</a> zwischen <a href="/de-de/amalfikueste/positano/" class="text-med-blue hover:underline">Positano</a> und <a href="/de-de/amalfikueste/amalfi/" class="text-med-blue hover:underline">Amalfi</a>, ist der Zugang 2026 geregelt, um das Naturdenkmal zu schützen: Der Strand ist klein, und das Wasser ist meist kühler als an der offenen Küste.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            Ein Paradies für Fotografen - aber Vorsicht beim Licht: Die Sonne beleuchtet den Fjordgrund nur zur Mittagszeit. Kommen Sie zwischen 11 und 13 Uhr für die besten Aufnahmen. Das Springen von der Brücke ist eine lokale Tradition, für Touristen aber verboten: Genießen Sie die Aussicht von oben, bevor Sie die 200 Stufen zum Strand hinuntergehen.
+            Ein Paradies für Fotografen – aber Vorsicht beim Licht: Die Sonne beleuchtet den Fjordgrund nur in den Mittagsstunden. Kommen Sie zwischen 11 und 13 Uhr für die besten Aufnahmen. Das Springen von der Brücke ist eine lokale Tradition, für Touristen aber verboten: Genießen Sie die Aussicht von oben, bevor Sie die 200 Stufen zum Strand hinuntergehen.
           </p>
         </div>
 
-        <!-- Schatten-Warnung -->
+        <!-- Wichtiger Hinweis -->
         <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
           <div class="flex items-center gap-4 mb-4">
             <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             <h3 class="text-xl font-bold">Schatten-Warnung</h3>
           </div>
           <p class="text-slate-600 leading-relaxed">
-            Die Sonne erreicht den Strand nur zwischen <strong>11 und 14:30 Uhr</strong>. Außerhalb dieses Zeitfensters liegt der Fjord vollständig im Schatten. Planen Sie Ihren Besuch entsprechend, wenn Sie Sonne zum Schwimmen wünschen. Für perfekte Fotos des türkisfarbenen erleuchteten Wassers empfiehlt sich die Zeit um 11:30 Uhr.
+            Die Sonne erreicht den Strand nur zwischen <strong>11:00 und 14:30 Uhr</strong>. Vor und nach diesem Zeitfenster liegt der Fjord vollständig im Schatten. Wer Sonne zum Schwimmen möchte, sollte den Besuch entsprechend planen. Für perfekte Fotos des leuchtend türkisfarbenen Wassers empfiehlt sich die Zeit um 11:30 Uhr.
           </p>
+        </div>
+
+        <!-- Geschichte und Ursprünge -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Geschichte: Der Fjord und das Dorf, das es nicht gibt</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Der Fjord wurde im Laufe von Jahrtausenden vom Torrente Schiato ausgegraben, der noch heute zwischen den Kalksteinwänden bis zum Meer fließt. Im Mittelalter betrieben entlang des Wasserlaufs zahlreiche Papiermühlen – Amalfi war die erste europäische Stadt, die Papier nach arabischer Technik herstellte, und Furore war Teil dieses Produktionssystems, das die Republik berühmt machte.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Der Ort Furore ist als das <em>"Dorf, das es nicht gibt"</em> bekannt: eine Gemeinde ohne Zentrum, ohne Platz, ohne erkennbaren Kern. Die Häuser sind über die Talwände verstreut und durch steile Pfade verbunden. Diese Besonderheit hat über Jahrzehnte seinen Ruf als Ort zwischen Realität und Legende genährt.
+          </p>
+        </div>
+
+        <!-- MarMeeting -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">MarMeeting: Sprünge von der Brücke</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Jeden Sommer – meist im Juli oder August – verwandelt sich die Fjordbrücke in ein Sprungbrett für das <strong>MarMeeting</strong>, einen internationalen Wettbewerb für akrobatische Sprünge, der in den 1970er-Jahren ins Leben gerufen wurde. Profi-Springer werfen sich aus 30 Metern Höhe vor einer Zuschauermenge, die sich auf der Brücke und den umliegenden Felsen drängt.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Das Publikum kann kostenlos zuschauen – sowohl vom Strand als auch von oben. Das freie Springen ist Touristen aus Sicherheitsgründen streng verboten: Die Strömungen am Fjordeingang können unberechenbar sein.
+          </p>
+        </div>
+
+        <!-- Statistiken -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">30</p>
+            <p class="text-white/60 text-sm mt-1">Meter (Brücke)</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">200</p>
+            <p class="text-white/60 text-sm mt-1">Stufen hinunter</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1970</p>
+            <p class="text-white/60 text-sm mt-1">erstes MarMeeting</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">3½</p>
+            <p class="text-white/60 text-sm mt-1">Sonnenstunden täglich</p>
+          </div>
+        </div>
+
+        <!-- Bemaltes Dorf -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Furore: Das bemalte Dorf</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Vom Fjordgrund nach oben blickend erkennt man die ersten Spuren dessen, was Furore auch abseits des Strandes einzigartig macht: Es ist ein <strong>bemaltes Dorf</strong>. Seit den 1980er-Jahren haben internationale Künstler die Wände der in den Fels gebauten Häuser in Open-Air-Leinwände verwandelt und eine Freiluft-Galerie geschaffen, die heute Dutzende von Wandgemälden umfasst.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Jeden Sommer wird ein neuer Künstler eingeladen, sein Werk hinzuzufügen. Es lohnt sich, vom Fjord wieder hinaufzusteigen und durch die Gassen des Dorfes zu spazieren, um die vollständige Sammlung zu entdecken – ein völlig anderes Erlebnis als der Strand, aber genauso unvergesslich.
+          </p>
+        </div>
+
+        <!-- Meeresleben -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Meeresleben und Schnorcheln</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Die enge Form des Fjords kanalisiert nährstoffreiches Wasser aus dem offenen Meer und fördert ein besonders lebhaftes Meeresökosystem. Zwischen den versunkenen Felsen leben große Schwärme von <strong>Weißem Seebrassen</strong> (Sarago), Tintenfische, die sich in Spalten tarnen, und Seeigel, die an den Wänden haften. Die Sichtweite ist in den Mittagsstunden generell gut, wenn das Licht bis auf den Grund eindringt.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Ein akustisches Phänomen macht den Besuch noch eindrucksvoller: Die Felswände verstärken jeden Laut und verwandeln das Wellenrauschen in ein tiefes, umhüllendes Echo – ein Effekt, den die Einheimischen einfach "die Stimme des Fjords" nennen.
+          </p>
+        </div>
+
+        <!-- Tipps der Einheimischen -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Tipps der Einheimischen</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Im Sommer bis 9:30 Uhr ankommen, um einen Platz an der Straße oder auf dem kleinen Parkstreifen nahe der Brücke zu finden.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Das Sonnenfenster ist kurz: Den Abstieg zum Strand für 11:00–11:30 Uhr einplanen, um es optimal zu nutzen.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Kein Café, keine Duschen: Wasser, Snacks und Wasserschuhe mitbringen. Die Schuhe zieht man am Strand aus, aber die Kiesel tun weh.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Nach dem Schwimmen wieder ins Dorf aufsteigen und die Wandgemälde suchen: Mindestens eine Stunde für den Spaziergang durch Furores bemalte Häuser einplanen.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Zum Schnorcheln Maske und Flossen mitbringen: Der Felsuntergrund nahe den Fjordwänden ist voller Meeresleben.</span>
+            </li>
+          </ul>
         </div>
 
         <!-- Anreise -->
         <div>
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Anreise</h2>
           <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
-            <table class="w-full text-xs sm:text-xs sm:text-sm">
+            <table class="w-full text-sm">
               <thead>
                 <tr class="bg-charcoal text-white">
                   <th class="text-left p-4 font-medium">Verkehrsmittel</th>
@@ -121,9 +279,26 @@ const beachSchema = {
             </table>
           </div>
         </div>
+        <!-- Häufig gestellte Fragen -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Häufig gestellte Fragen</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <!-- Sidebar Kurzinfos -->
+      <!-- Sidebar Fast-Facts -->
       <aside class="lg:col-span-1">
         <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
           <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
@@ -132,15 +307,15 @@ const beachSchema = {
           <div class="space-y-6">
             {facts.map((item) => (
               <div class="border-b border-white/5 pb-4 last:border-0">
-                <span class="text-white/40 text-xs sm:text-sm font-light block mb-1">{item.label}</span>
-                <span class="text-white font-medium text-xs sm:text-sm">{item.value}</span>
+                <span class="text-white/40 text-sm font-light block mb-1">{item.label}</span>
+                <span class="text-white font-medium text-sm">{item.value}</span>
               </div>
             ))}
           </div>
           <div class="mt-10 pt-8 border-t border-white/10">
             <a
               href="/de-de/strande/"
-              class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
+              class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors"
             >
               ← Alle Strände
             </a>
@@ -150,6 +325,13 @@ const beachSchema = {
 
     </div>
   </section>
+
+  <!-- Weitere Strände -->
+  <CorrelationSlider
+    title="Weitere Strände der Amalfiküste"
+    items={nearbyBeaches}
+    lang="de-de"
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">

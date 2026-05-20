@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'es-es';
 
@@ -11,24 +12,69 @@ const breadcrumbs = [
 ];
 
 const facts = [
-  { label: 'Composición', value: 'Guijarros y rocas' },
-  { label: 'Acceso', value: 'En barco o senderismo' },
-  { label: 'Sombra', value: 'Mínima (expuesta)' },
-  { label: 'Atmósfera', value: 'Salvaje, aislada' },
-  { label: 'Ideal para', value: 'Aventureros, senderismo' },
+  { label: 'Composición', value: 'Arena y guijarros' },
+  { label: 'Acceso', value: 'Escalones en la roca (50 peldaños)' },
+  { label: 'Sombra', value: 'A partir de las 15:00' },
+  { label: 'Servicios', value: 'Playa pública' },
+  { label: 'Ideal para', value: 'Puesta de sol, snorkel, tranquilidad' },
+  { label: 'Torre histórica', value: 'Torre a Mare (s. XVI)' },
+  { label: 'Profundidad buceo', value: 'Hasta 25 metros' },
+  { label: 'Local nocturno', value: 'Africana (cueva natural, desde 1963)' },
+  { label: 'Nombre original', value: '"Plaga" (latín: orilla del mar)' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo se accede a Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Marina di Praia se alcanza desde el centro de Praiano bajando unos 50 escalones tallados directamente en la roca, por la vía del Mar. El recorrido dura unos 5 minutos a pie. Se recomienda calzado cómodo. Como alternativa es posible llegar por mar en taxi acuático desde Praiano o desde Marina Grande de Positano (15–20 € por persona)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es el Africana Famous Club de Praiano?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El Africana Famous Club es una discoteca legendaria excavada en una cueva natural del acantilado junto a Marina di Praia. Abierta en 1963, fue frecuentada por Jackie Kennedy, Sophia Loren y Federico Fellini. La pista de baile tiene un suelo de cristal bajo el que se ve el mar. Sigue activa en verano y es una de las experiencias nocturnas más únicas de la Costa Amalfitana."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿A qué hora es la mejor puesta de sol en Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La puesta de sol en Marina di Praia es una de las más bonitas de la Costa. La playa está orientada al oeste, así que el sol cae directamente sobre el horizonte marino. La mejor hora es hacia las 18:30–19:00 en verano (junio–septiembre), cuando la luz ilumina las paredes de roca con matices de rosa y dorado. Lleva la cámara y llega al menos 30 minutos antes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Se puede bucear en Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, Marina di Praia es uno de los mejores puntos de buceo de toda la Costa Amalfitana. La pared submarina desciende hasta 25 metros con cuevas marinas, morenas, meros y pulpos. Las inmersiones nocturnas son muy populares en verano. Algunos centros de buceo locales organizan excursiones guiadas tanto para principiantes como para buceadores experimentados."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hay playa pública en Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, Marina di Praia es enteramente playa pública: no hay chiringuitos ni hamacas de pago. Lleva todo lo necesario (toalla, sombrilla, comida y agua) porque los servicios son mínimos. Esta es su magia: te ofrece una experiencia auténtica, lejos de la multitud comercial de la Costa."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
   "@type": "Beach",
   "name": "Marina di Praia",
-  "description": "Una playa salvaje y escondida accesible solo en barco o senderismo. Acantilados dramáticos y aguas cristalinas para el snorkel.",
-  "image": "https://amalficoast-travel.com/images/praia-hero.jpg",
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "40.5967",
-    "longitude": "14.4883"
-  },
+  "description": "Una playa salvaje e íntima de Praiano, escondida tras escalones tallados en la roca. Arena dorada y aguas transparentes lejos de las multitudes.",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Praiano",
@@ -36,48 +82,152 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const nearbyBeaches = [
+  { name: 'Fiordo di Furore', href: '/es-es/playas/costa-amalfitana/fiordo-di-furore/', tag: 'Furore', desc: 'El fiordo más icónico encajado en la roca.' },
+  { name: 'Spiaggia Grande', href: '/es-es/playas/costa-amalfitana/spiaggia-grande-positano/', tag: 'Positano', desc: 'El corazón social de la Costa Amalfitana.' },
+  { name: 'Santa Croce', href: '/es-es/playas/costa-amalfitana/santa-croce-amalfi/', tag: 'Solo por mar', desc: 'El escondite secreto con restaurantes históricos.' },
+  { name: 'Cala Mitigliano', href: '/es-es/playas/peninsula-sorrentina/cala-mitigliano/', tag: 'Massa Lubrense', desc: 'Salvaje e íntima, 300 escalones hacia el paraíso.' },
+];
 ---
 
 <BaseLayout
-  title="Marina di Praia 2026: Guía de la Playa Secreta"
-  description="Marina di Praia es una playa salvaje y escondida entre Positano y Praiano. Guía de acceso en barco, senderismo y consejos."
+  title="Marina di Praia: La Playa Salvaje de Praiano"
+  description="Marina di Praia en Praiano: la playa escondida accesible por escalones en la roca. Puesta de sol perfecta, aguas cristalinas, lejos de las multitudes de la Costa."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
  pageKey="marina-di-praia">
 
   <!-- Hero -->
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
       src="/images/praia-hero.jpg"
-      alt="Marina di Praia, Costa Amalfitana"
+      alt="Marina di Praia, Praiano"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
       referrerpolicy="no-referrer"
     />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Costa Amalfitana · Gemas Ocultas</p>
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Praiano · Salvaje y Auténtica</p>
       <h1 class="font-serif text-display text-white mb-6">Marina di Praia</h1>
-      <p class="text-lg md:text-xl font-light text-white/80">La playa salvaje entre Positano y Praiano, preservada del turismo masivo.</p>
+      <p class="text-lg md:text-xl font-light text-white/80">Una playa secreta accesible por escalones tallados en la roca, con la puesta de sol más bonita de la Costa.</p>
     </div>
     <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
-  <!-- Contenido + Barra Lateral -->
+  <!-- Contenido + Sidebar -->
   <section class="bg-med-cream py-24 px-6">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
 
-      <!-- Texto Principal -->
+      <!-- Texto principal -->
       <div class="lg:col-span-2 space-y-12">
         <div>
-          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">El Secreto Salvaje de la Costa Amalfitana</h2>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Más Allá de las Multitudes</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Marina di Praia es una pequeña playa dramática anidada bajo acantilados empinados entre Positano y Praiano. Ningún camino lleva aquí-el acceso es solo por mar o un desafiante sendero de senderismo. Este aislamiento la ha preservado como una de las últimas playas verdaderamente intactas de la costa.
+            Marina di Praia es el secreto mejor guardado de <a href="/es-es/costa-amalfitana/praiano/" class="text-med-blue hover:underline">Praiano</a>. No la encontrarás en el mapa turístico principal, porque solo es accesible por una corta serie de escalones tallados directamente en la roca. ¿Qué descubres al otro lado? Una playa de arena dorada y guijarros, con aguas turquesas y casi nadie.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            La playa es principalmente guijarros y rocas pequeñas, con algunos parches de arena. El agua cristalina y el excelente esnórquel la hacen un destino para nadadores aventureros. Los acantilados arriba son escarpados y dramáticos, ofreciendo vistas inolvidables.
+            Es el lugar perfecto para escapar de las multitudes de la <a href="/es-es/costa-amalfitana/" class="text-med-blue hover:underline">Costa Amalfitana</a> sin renunciar a las aguas cristalinas de Praiano. Al atardecer, el sol ilumina las paredes de roca sobre la playa: la mejor hora es hacia las 19:00 de abril a septiembre, cuando la luz es casi horizontal y el agua refleja matices de rosa y dorado.
           </p>
+        </div>
+
+        <!-- Puesta de sol -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 12.79A6 6 0 0 0 17.21 3 7 7 0 0 0 12 19a7 7 0 0 0 5.21-2.79"/></svg>
+            <h3 class="text-xl font-bold">La Puesta de Sol Perfecta</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed">
+            Marina di Praia tiene una de las mejores puestas de sol de la Costa. Llega hacia las <strong>18:30 (verano)</strong> y tendrás luz hasta las 19:30. La playa está orientada al oeste, así que el sol cae directamente sobre el horizonte marino. Lleva la cámara.
+          </p>
+        </div>
+
+        <!-- Historia y orígenes -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Historia: Torre, Piratas y un Nombre Antiguo</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            En la Edad Media, Marina di Praia era un animado pueblo de pescadores, uno de los tantos fondeaderos escondidos a lo largo de la Costa. El nombre "Praia" deriva del latín <em>plaga</em> —orilla, shore— y representa uno de los topónimos más antiguos de la costa. Praiano mismo, según algunos historiadores, deriva de <em>prai-ano</em>, es decir, "mar abierto".
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            En el siglo XVI se erigió la <strong>Torre a Mare</strong>, una torre de vigilancia construida para defender a la población de las incursiones de los piratas sarracenos que merodeaban por todo el Tirreno. La torre es aún visible hoy, encaramada sobre el acantilado encima de la playa, y es uno de los signos más visibles de la historia defensiva de la Costa Amalfitana.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            La configuración geológica de la bahía es el resultado de milenios de erosión: la ensenada estrecha fue excavada por el mar entre dos paredes de roca caliza. El saliente del acantilado crea un refugio natural del sol de la tarde —una ventaja nada desdeñable en los calurosos veranos campanos— y muestra en su perfil millones de años de historia geológica estratificada.
+          </p>
+        </div>
+
+        <!-- Africana -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            <h3 class="text-xl font-bold">El Africana Famous Club: La Cueva de los VIP</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Junto a la playa, excavado en la roca viva del acantilado, se encuentra una de las discotecas más legendarias de Italia: el <strong>Africana Famous Club</strong>. Abierto en 1963, se convirtió rápidamente en el lugar favorito de Jackie Kennedy, Sophia Loren y Federico Fellini. ¿La característica más extraordinaria? La pista de baile tiene un <strong>suelo de cristal</strong> bajo el que se ve el mar que discurre.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            El Africana sigue operativo en verano y continúa siendo una experiencia nocturna única en su género. El acceso es por mar o a través de un recorrido por la roca —lo que añade un toque de misterio adicional a una velada ya de por sí memorable.
+          </p>
+        </div>
+
+        <!-- Buceo -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Bajo la Superficie: Buceo y Snorkel</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Marina di Praia está considerada uno de los mejores puntos de buceo de toda la Costa Amalfitana. La pared submarina desciende verticalmente hasta <strong>25 metros</strong>, ofreciendo cuevas marinas, formaciones rocosas y una biodiversidad impresionante. Entre las especies más avistadas: morenas, meros, pulpos y bancos de sargos.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Las inmersiones nocturnas son especialmente espectaculares en verano, cuando la bioluminiscencia ilumina el agua oscura y los depredadores nocturnos se vuelven activos. Algunos centros de buceo de la zona organizan salidas guiadas tanto para principiantes con brevet open water como para buceadores avanzados. El snorkel en superficie también es excelente: las aguas son cristalinas y la fauna abundante.
+          </p>
+        </div>
+
+        <!-- Stats Box -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">50</p>
+            <p class="text-white/60 text-sm mt-1">escalones en la roca</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">25m</p>
+            <p class="text-white/60 text-sm mt-1">profundidad máx. buceo</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1963</p>
+            <p class="text-white/60 text-sm mt-1">apertura Africana Club</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">S. XVI</p>
+            <p class="text-white/60 text-sm mt-1">Torre a Mare</p>
+          </div>
+        </div>
+
+        <!-- Consejos de los Locales -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consejos de los Locales</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Llega antes de las 10:00 para encontrar sitio en la arena — por la tarde la playa se llena aunque los escalones disuadan a los menos atléticos.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Lleva agua y comida: no hay bares ni quioscos en la playa. El bar más cercano está en el centro de Praiano, 5 minutos subiendo los escalones.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Para el buceo, contacta los centros de buceo de Praiano con al menos un día de antelación en julio y agosto: las plazas se agotan rápido.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">El Africana abre solo en verano (junio–septiembre). Comprueba los horarios en su web oficial antes de organizar la noche.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Los escalones de bajada son empinados y sin barandilla en algunos tramos: con niños pequeños o problemas de movilidad, opta por el taxi acuático.</span>
+            </li>
+          </ul>
         </div>
 
         <!-- Cómo Llegar -->
@@ -85,40 +235,52 @@ const beachSchema = {
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Cómo Llegar</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">En Barco ⭐</p>
-              <p class="text-slate-700 font-medium mb-1">Desde Positano o Praiano</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Taxi acuático o barco de alquiler. Opción más confiable. €20-30 ida y vuelta.</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">A pie</p>
+              <p class="text-slate-700 font-medium mb-1">Desde el centro de Praiano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">5 minutos a pie por la vía del Mar, luego 50 escalones en la roca. Calzado cómodo recomendado.</p>
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Sendero de Senderismo</p>
-              <p class="text-slate-700 font-medium mb-1">45 minutos desde Praiano</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Descenso empinado. Calzado adecuado esencial. No para todos.</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Acuático</p>
+              <p class="text-slate-700 font-medium mb-1">Desde Praiano o Positano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">No es un desembarco regular, pero los taxis acuáticos locales la conocen. Coste: 15–20 € por persona.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus SITA</p>
+              <p class="text-slate-700 font-medium mb-1">Desde Amalfi o Positano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Parada Praiano centro. Desde allí 5 minutos a pie hasta el inicio de los escalones para la playa. Ideal llegando desde <a href="/es-es/costa-amalfitana/positano/" class="text-med-blue hover:underline">Positano</a>.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Coche / Moto</p>
+              <p class="text-slate-700 font-medium mb-1">Aparcamiento en Praiano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Aparcamiento público de pago en el centro de Praiano. En temporada alta conviene llegar antes de las 9:00.</p>
             </div>
           </div>
         </div>
 
-        <!-- Por Qué es Especial -->
-        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Por Qué es Especial</h3>
-          <div class="space-y-4 text-slate-600">
-            <p class="leading-relaxed">
-              <strong>Intacta:</strong> Sin chiringuitos, sin multitudes, sin comercialización. Solo naturaleza y el mar.
-            </p>
-            <p class="leading-relaxed">
-              <strong>Esnórquel:</strong> El agua es tan clara que puedes ver 15+ metros de profundidad. Peces de colores y formaciones rocosas interesantes.
-            </p>
-            <p class="leading-relaxed">
-              <strong>Fotografía:</strong> El drama de los acantilados combinado con agua turquesa crea imágenes impresionantes.
-            </p>
+        <!-- Preguntas Frecuentes -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Preguntas Frecuentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
 
-      <!-- Barra Lateral Datos Rápidos -->
+      <!-- Sidebar Datos Clave -->
       <aside class="lg:col-span-1">
         <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
           <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
-            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Datos Rápidos
+            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Datos Clave
           </h3>
           <div class="space-y-6">
             {facts.map((item) => (
@@ -142,10 +304,17 @@ const beachSchema = {
     </div>
   </section>
 
+  <!-- Playas Cercanas -->
+  <CorrelationSlider
+    title="Más playas de la Costa Amalfitana"
+    items={nearbyBeaches}
+    lang="es-es"
+  />
+
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">
     <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-white mb-4">Descubre más playas de la Costa Amalfitana</h2>
+      <h2 class="font-serif text-2xl font-bold text-white mb-4">Descubre otras playas de la Costa Amalfitana</h2>
       <a
         href="/es-es/playas/"
         class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"

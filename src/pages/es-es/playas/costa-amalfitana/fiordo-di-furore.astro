@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'es-es';
 
@@ -16,12 +17,66 @@ const facts = [
   { label: 'Sombra', value: 'A partir de las 14:30 ⚠️' },
   { label: 'Equipamiento', value: 'Playa pública gratuita' },
   { label: 'Ideal para', value: 'Fotografía, parejas' },
+  { label: 'Altura del puente', value: '30 metros' },
+  { label: 'Evento anual', value: 'MarMeeting (saltos desde el puente)' },
+  { label: 'Arte', value: 'Pueblo pintado – murales internacionales' },
+  { label: 'Arroyo', value: 'Torrente Schiato' },
+  { label: 'Entrada', value: 'Gratuita' },
 ];
 
 const logistica = [
-  { transport: 'Bus SITA', parada: 'Furore Fiordo', notas: 'Línea Amalfi–Positano' },
-  { transport: 'Moto', parada: 'Ponte Furore', notas: 'Aparcamiento limitado en el arcén' },
+  { mezzo: 'Bus SITA', fermata: 'Furore Fiordo', note: 'Línea Amalfi–Positano' },
+  { mezzo: 'Moto / Coche', fermata: 'Ponte Furore', note: 'Pocos aparcamientos en el arcén – llega pronto' },
+  { mezzo: 'Ferry + taxi acuático', fermata: 'Desde Praiano o Amalfi', note: 'Atraque directo al fiordo por mar' },
+  { mezzo: 'Tour organizado', fermata: 'Varios puntos de salida', note: 'Incluye transporte y guía' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo se llega al Fiordo di Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La opción más cómoda es el bus SITA en la línea Amalfi–Positano: baja en la parada 'Furore Fiordo', justo en el propio puente. En coche o moto hay muy pocos aparcamientos a lo largo de la SS163, así que conviene llegar temprano por la mañana. Como alternativa, algunos taxis acuáticos desde Praiano y Amalfi ofrecen atraque directo al fiordo por mar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuándo es el mejor momento para fotografiar el Fiordo di Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El sol ilumina el fondo del fiordo solo entre las 11:00 y las 14:30. La mejor luz para las fotos del agua turquesa es alrededor de las 11:30. Antes y después de esa ventana, el fiordo está completamente en sombra. En verano llega antes de las 10 para encontrar aparcamiento y disfrutar de la luz plena."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Se puede nadar en el Fiordo di Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, se puede nadar en el fiordo. El agua es generalmente más fresca que en la costa abierta porque el sol llega solo unas pocas horas al día. La playa es pequeña y de cantos rodados. El salto desde el puente (30 m) solo está permitido a los participantes del MarMeeting y está prohibido a los turistas por razones de seguridad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué es el MarMeeting de Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El MarMeeting es una competición internacional de saltos acrobáticos desde el puente del Fiordo di Furore, a 30 metros de altura. Se celebra cada verano (normalmente en julio o agosto) y atrae a saltadores profesionales de todo el mundo. Los turistas no pueden participar pero pueden presenciarlo gratuitamente tanto desde la playa como desde el puente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La entrada al Fiordo di Furore es de pago?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, el Fiordo di Furore es una playa pública y el acceso es gratuito. Para bajar a la playa se recorren unos 200 peldaños desde la carretera (SS163). No hay servicios (bar, alquiler de tumbonas, duchas), así que trae agua, comida y todo lo necesario."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
@@ -40,8 +95,20 @@ const beachSchema = {
     "addressRegion": "SA",
     "addressCountry": "IT"
   },
-  "publicAccess": "true"
+  "publicAccess": "true",
+  "amenityFeature": {
+    "@type": "LocationFeatureSpecification",
+    "name": "Horario de sombra",
+    "value": "A partir de las 14:30"
+  }
 };
+
+const nearbyBeaches = [
+  { name: 'Santa Croce', href: '/es-es/playas/costa-amalfitana/santa-croce-amalfi/', tag: 'Solo por mar', desc: 'La escapada secreta desde Amalfi con restaurantes históricos.' },
+  { name: 'Marina di Praia', href: '/es-es/playas/costa-amalfitana/marina-di-praia/', tag: 'Praiano', desc: 'Playa salvaje con el atardecer más bello de la Costa.' },
+  { name: 'Spiaggia Grande', href: '/es-es/playas/costa-amalfitana/spiaggia-grande-positano/', tag: 'Positano', desc: 'El corazón glamuroso de la Costa Amalfitana.' },
+  { name: 'Ieranto', href: '/es-es/playas/peninsula-sorrentina/spiaggia-di-ieranto/', tag: 'Área Marina Protegida', desc: 'La bahía virgen al pie de los Lattari.' },
+];
 ---
 
 <BaseLayout
@@ -49,7 +116,7 @@ const beachSchema = {
   description="Cómo visitar el Fiordo di Furore en 2026. Cuándo llega el sol a la playa, cómo ir en autobús y consejos para la foto perfecta."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
  pageKey="fiordo-di-furore">
 
   <!-- Hero -->
@@ -61,9 +128,9 @@ const beachSchema = {
       loading="eager"
       referrerpolicy="no-referrer"
     />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Costa Amalfitana</p>
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Costa Amalfitana</p>
       <h1 class="font-serif text-display text-white mb-6">Fiordo di Furore</h1>
       <p class="text-lg md:text-xl font-light text-white/80">Una obra maestra de la naturaleza esculpida en la roca.</p>
     </div>
@@ -79,29 +146,120 @@ const beachSchema = {
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Un Icono de la Costa Amalfitana</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            El Fiordo di Furore es una de las imágenes más icónicas de Italia. No es una playa tradicional, sino una profunda grieta natural donde el mar se cuela bajo un puente monumental de 30 metros. En 2026, el acceso está regulado para proteger el enclave: la playa es pequeña y el agua suele ser más fresca que en la costa abierta.
+            El Fiordo di Furore es una de las imágenes más icónicas de Italia. No es una playa tradicional, sino una profunda grieta natural donde el mar se cuela bajo un puente monumental de 30 metros. Enclavado en la <a href="/es-es/costa-amalfitana/" class="text-med-blue hover:underline">Costa Amalfitana</a> entre <a href="/es-es/costa-amalfitana/positano/" class="text-med-blue hover:underline">Positano</a> y <a href="/es-es/costa-amalfitana/amalfi/" class="text-med-blue hover:underline">Amalfi</a>, en 2026 el acceso está regulado para preservar el enclave: la playa es pequeña y el agua suele ser más fresca que en la costa abierta.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            Un paraíso para fotógrafos - pero ojo a la luz: el sol ilumina el fondo del fiordo solo a mediodía. Llega entre las 11 y las 13 h para las mejores fotos. Saltar desde el puente es una tradición local, pero está prohibido para los turistas: disfruta de las vistas desde arriba antes de bajar los 200 peldaños hasta la playa.
+            Es el paraíso de los fotógrafos, pero ojo a la luz: el sol ilumina el fondo del fiordo solo en las horas centrales del día. Llega entre las 11 y las 13 h para las mejores fotos. Saltar desde el puente es una tradición local, pero está prohibido a los turistas: disfruta del panorama desde arriba antes de bajar los 200 peldaños hasta la playa.
           </p>
         </div>
 
-        <!-- Alerta Sombra -->
+        <!-- Aviso de Sombra -->
         <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
           <div class="flex items-center gap-4 mb-4">
             <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
             <h3 class="text-xl font-bold">Aviso de Sombra</h3>
           </div>
           <p class="text-slate-600 leading-relaxed">
-            El sol alcanza la playa solo entre las <strong>11 y las 14:30 h</strong>. Antes y después de esa ventana, el fiordo está completamente en sombra. Planifica tu visita si quieres sol para bañarte. Para fotos perfectas del agua turquesa iluminada, apunta a las 11:30 h aproximadamente.
+            El sol alcanza la playa solo entre las <strong>11:00 y las 14:30 h</strong>. Antes y después de esa ventana el fiordo está completamente en sombra. Planifica tu visita si quieres sol para bañarte. Para fotos perfectas del agua turquesa iluminada, apunta a las 11:30 h.
           </p>
         </div>
 
-        <!-- Cómo llegar -->
+        <!-- Historia y orígenes -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Historia: El Fiordo y el Pueblo que No Existe</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            El fiordo fue excavado a lo largo de milenios por el torrente Schiato, que aún hoy fluye entre las paredes de roca calcárea hasta el mar. En la Edad Media, a lo largo del curso de agua operaban numerosas fábricas de papel — Amalfi fue la primera ciudad europea en producir papel según la técnica árabe, y Furore formaba parte de ese sistema productivo que hizo célebre a la República.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            El pueblo de Furore es conocido como el <em>"pueblo que no existe"</em>: un municipio sin centro, sin plaza, sin un núcleo reconocible. Las casas están dispersas por las paredes del valle, conectadas por senderos empinados. Esta particularidad ha alimentado durante décadas su fama de lugar suspendido entre la realidad y la leyenda.
+          </p>
+        </div>
+
+        <!-- MarMeeting -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">MarMeeting: Saltos desde el Puente</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Cada verano — normalmente en julio o agosto — el puente del fiordo se convierte en trampolín para el <strong>MarMeeting</strong>, competición internacional de saltos acrobáticos nacida en los años 70. Los saltadores profesionales se lanzan desde 30 metros de altura ante una multitud de espectadores congregados en el puente y las rocas circundantes.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            El público puede asistir gratuitamente tanto desde la playa como desde arriba. El salto libre está rigurosamente prohibido a los turistas por motivos de seguridad: las corrientes a la entrada del fiordo pueden ser imprevisibles.
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">30</p>
+            <p class="text-white/60 text-sm mt-1">metros (puente)</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">200</p>
+            <p class="text-white/60 text-sm mt-1">peldaños para bajar</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1970</p>
+            <p class="text-white/60 text-sm mt-1">primer MarMeeting</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">3½</p>
+            <p class="text-white/60 text-sm mt-1">horas de sol al día</p>
+          </div>
+        </div>
+
+        <!-- Pueblo Pintado -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Furore: El Pueblo Pintado</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Desde el fondo del fiordo, mirando hacia arriba, se distinguen las primeras huellas de lo que hace único a Furore más allá de la playa: es un <strong>pueblo pintado</strong>. Desde los años 80, artistas internacionales han transformado los muros de las casas encaramadas en la roca en lienzos al aire libre, creando una galería de arte en plein air que hoy cuenta con decenas de murales.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Cada verano se invita a un nuevo artista a añadir su obra. Vale la pena volver a subir desde el fiordo y caminar por los callejones del pueblo para descubrir la colección completa — es una experiencia completamente distinta a la playa, pero igual de memorable.
+          </p>
+        </div>
+
+        <!-- Vida marina -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Vida Marina y Snorkel</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La forma estrecha del fiordo canaliza aguas ricas en nutrientes provenientes del mar abierto, favoreciendo un ecosistema marino especialmente activo. Entre las rocas sumergidas viven densos bancos de <strong>sargo</strong> (white seabream), pulpos que se camuflan en las grietas y erizos de mar agarrados a las paredes. La visibilidad es generalmente buena en las horas centrales, cuando la luz penetra hasta el fondo.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Un fenómeno acústico hace la visita aún más especial: las paredes de roca amplifican cada sonido, transformando el ruido de las olas en un eco profundo y envolvente — un efecto que los locales llaman sencillamente "la voz del fiordo".
+          </p>
+        </div>
+
+        <!-- Consejos de los Locales -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consejos de los Locales</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Llega antes de las 9:30 en verano para encontrar sitio en la carretera o en el pequeño ensanchamiento junto al puente.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">La ventana de luz solar es breve: programa la bajada a la playa para las 11:00–11:30 h para aprovecharla al máximo.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">No hay bar ni duchas: trae agua, aperitivos y escarpines. Los zapatos se quitan en la playa, pero los cantos rodados duelen.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Después del baño, sube al pueblo y busca los murales: dedica al menos una hora al paseo entre las casas pintadas de Furore.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Para el snorkel lleva máscara y aletas: el fondo rocoso junto a las paredes del fiordo está lleno de vida marina.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Cómo Llegar -->
         <div>
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Cómo Llegar</h2>
           <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
-            <table class="w-full text-xs sm:text-xs sm:text-sm">
+            <table class="w-full text-sm">
               <thead>
                 <tr class="bg-charcoal text-white">
                   <th class="text-left p-4 font-medium">Transporte</th>
@@ -112,18 +270,36 @@ const beachSchema = {
               <tbody>
                 {logistica.map((row, i) => (
                   <tr class={i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
-                    <td class="p-4 font-medium">{row.transport}</td>
-                    <td class="p-4 text-slate-600">{row.parada}</td>
-                    <td class="p-4 text-slate-500">{row.notas}</td>
+                    <td class="p-4 font-medium">{row.mezzo}</td>
+                    <td class="p-4 text-slate-600">{row.fermata}</td>
+                    <td class="p-4 text-slate-500">{row.note}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Preguntas Frecuentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <!-- Sidebar Datos Rápidos -->
+      <!-- Sidebar Fast-Facts -->
       <aside class="lg:col-span-1">
         <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
           <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
@@ -132,15 +308,15 @@ const beachSchema = {
           <div class="space-y-6">
             {facts.map((item) => (
               <div class="border-b border-white/5 pb-4 last:border-0">
-                <span class="text-white/40 text-xs sm:text-sm font-light block mb-1">{item.label}</span>
-                <span class="text-white font-medium text-xs sm:text-sm">{item.value}</span>
+                <span class="text-white/40 text-sm font-light block mb-1">{item.label}</span>
+                <span class="text-white font-medium text-sm">{item.value}</span>
               </div>
             ))}
           </div>
           <div class="mt-10 pt-8 border-t border-white/10">
             <a
               href="/es-es/playas/"
-              class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
+              class="inline-flex items-center gap-2 text-med-gold text-sm font-medium hover:text-white transition-colors"
             >
               ← Todas las playas
             </a>
@@ -151,41 +327,12 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- Guías Prácticas -->
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-slate-900 mb-8">Guías Prácticas</h2>
-      <div class="grid sm:grid-cols-3 gap-4">
-        <a href="/es-es/guia/cuando-visitar/" class="flex items-center gap-4 bg-med-cream rounded-2xl p-5 hover:bg-med-blue/5 transition-colors group border border-slate-100">
-          <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 text-med-blue">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path stroke-linecap="round" d="M16 2v4M8 2v4M3 10h18"/></svg>
-          </div>
-          <div>
-            <p class="font-medium text-charcoal group-hover:text-med-blue text-xs sm:text-sm transition-colors">Cuándo visitar</p>
-            <p class="text-xs text-slate-500">Mes a mes</p>
-          </div>
-        </a>
-        <a href="/es-es/guia/como-llegar/" class="flex items-center gap-4 bg-med-cream rounded-2xl p-5 hover:bg-med-blue/5 transition-colors group border border-slate-100">
-          <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 text-med-blue">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18"/></svg>
-          </div>
-          <div>
-            <p class="font-medium text-charcoal group-hover:text-med-blue text-xs sm:text-sm transition-colors">Cómo llegar</p>
-            <p class="text-xs text-slate-500">Ferries, autobús, coche</p>
-          </div>
-        </a>
-        <a href="/es-es/playas/" class="flex items-center gap-4 bg-med-cream rounded-2xl p-5 hover:bg-med-blue/5 transition-colors group border border-slate-100">
-          <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 text-med-blue">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17c3-3 6-3 9 0s6 3 9 0M3 12c3-3 6-3 9 0s6 3 9 0"/></svg>
-          </div>
-          <div>
-            <p class="font-medium text-charcoal group-hover:text-med-blue text-xs sm:text-sm transition-colors">Las playas</p>
-            <p class="text-xs text-slate-500">9 playas seleccionadas</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
+  <!-- Playas Cercanas -->
+  <CorrelationSlider
+    title="Más playas de la Costa Amalfitana"
+    items={nearbyBeaches}
+    lang="es-es"
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">

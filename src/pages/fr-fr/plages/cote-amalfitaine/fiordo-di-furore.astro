@@ -1,13 +1,14 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'fr-fr';
 
 const breadcrumbs = [
   { name: 'Accueil', url: '/fr-fr/' },
   { name: 'Plages', url: '/fr-fr/plages/' },
-  { name: 'Fiordo di Furore', url: '/fr-fr/plages/cote-amalfitaine/fiordo-di-furore' },
+  { name: 'Fiordo di Furore', url: '/fr-fr/plages/cote-amalfitaine/fiordo-di-furore/' },
 ];
 
 const facts = [
@@ -16,12 +17,66 @@ const facts = [
   { label: 'Ombre', value: 'À partir de 14h30 ⚠️' },
   { label: 'Équipements', value: 'Plage publique gratuite' },
   { label: 'Idéal pour', value: 'Photographie, couples' },
+  { label: 'Hauteur du pont', value: '30 mètres' },
+  { label: 'Événement annuel', value: 'MarMeeting (plongeons depuis le pont)' },
+  { label: 'Art', value: 'Village peint – fresques internationales' },
+  { label: 'Torrent', value: 'Torrente Schiato' },
+  { label: 'Entrée', value: 'Gratuite' },
 ];
 
 const logistica = [
   { transport: 'Bus SITA', arret: 'Furore Fiordo', notes: 'Ligne Amalfi–Positano' },
-  { transport: 'Scooter', arret: 'Ponte Furore', notes: 'Stationnement limité en bord de route' },
+  { transport: 'Scooter / Voiture', arret: 'Ponte Furore', notes: 'Peu de places en bord de route – arriver tôt' },
+  { transport: 'Ferry + taxi boat', arret: 'Depuis Praiano ou Amalfi', notes: 'Accostage direct au fjord par la mer' },
+  { transport: 'Circuit organisé', arret: 'Divers points de départ', notes: 'Inclut le transport et le guide' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment se rendre au Fiordo di Furore ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La façon la plus commode est le bus SITA sur la ligne Amalfi–Positano : descendez à l'arrêt « Furore Fiordo », situé sur le pont même. En voiture ou scooter, il y a peu de places de stationnement le long de la SS163, il vaut donc mieux arriver tôt le matin. En alternative, certains taxi boats depuis Praiano et Amalfi proposent un accostage direct au fjord par la mer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quel est le meilleur moment pour photographier le Fiordo di Furore ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le soleil n'illumine le fond du fjord qu'entre 11h et 14h30. La meilleure lumière pour les photos de l'eau turquoise se situe vers 11h30. Avant et après cette fenêtre, le fjord est dans l'ombre profonde. En été, arrivez avant 10h pour trouver à vous garer et profiter de la pleine lumière."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on nager au Fiordo di Furore ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, on peut nager dans le fjord. L'eau est généralement plus fraîche que sur la côte ouverte car le soleil ne l'atteint que quelques heures par jour. La plage est petite et de galets. Le saut depuis le pont (30 m) n'est autorisé qu'aux participants du MarMeeting et est interdit aux touristes pour des raisons de sécurité."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce que le MarMeeting de Furore ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le MarMeeting est une compétition internationale de plongeons acrobatiques depuis le pont du Fiordo di Furore, haut de 30 mètres. Il se déroule chaque été (généralement en juillet ou août) et attire des plongeurs professionnels du monde entier. Les touristes ne peuvent pas y participer mais peuvent assister gratuitement, aussi bien depuis la plage que depuis le pont."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "L'entrée au Fiordo di Furore est-elle payante ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non, le Fiordo di Furore est une plage publique et l'accès est gratuit. Pour descendre à la plage, on emprunte environ 200 marches depuis la route (SS163). Il n'y a aucun service (bar, location de transats, douches), donc apportez de l'eau, de la nourriture et tout le nécessaire."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
@@ -40,8 +95,20 @@ const beachSchema = {
     "addressRegion": "SA",
     "addressCountry": "IT"
   },
-  "publicAccess": "true"
+  "publicAccess": "true",
+  "amenityFeature": {
+    "@type": "LocationFeatureSpecification",
+    "name": "Heure d'ombre",
+    "value": "À partir de 14h30"
+  }
 };
+
+const nearbyBeaches = [
+  { name: 'Santa Croce', href: '/fr-fr/plages/cote-amalfitaine/santa-croce-amalfi/', tag: 'Mer uniquement', desc: "L'escapade secrète depuis Amalfi avec des restaurants historiques." },
+  { name: 'Marina di Praia', href: '/fr-fr/plages/cote-amalfitaine/marina-di-praia/', tag: 'Praiano', desc: 'Plage sauvage avec le plus beau coucher de soleil de la Côte.' },
+  { name: 'Spiaggia Grande', href: '/fr-fr/plages/cote-amalfitaine/spiaggia-grande-positano/', tag: 'Positano', desc: 'Le cœur glamour de la Côte Amalfitaine.' },
+  { name: 'Ieranto', href: '/fr-fr/plages/peninsule-sorrentine/spiaggia-di-ieranto/', tag: 'Aire Marine Protégée', desc: 'La baie préservée au pied des Lattari.' },
+];
 ---
 
 <BaseLayout
@@ -49,7 +116,7 @@ const beachSchema = {
   description="Comment visiter le Fiordo di Furore en 2026. Quand le soleil atteint la plage, comment y aller en bus et conseils pour la photo parfaite."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
  pageKey="fiordo-di-furore">
 
   <!-- Hero -->
@@ -63,7 +130,7 @@ const beachSchema = {
     />
     <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Côte Amalfitaine</p>
+      <p class="text-med-gold text-sm font-medium uppercase tracking-[0.3em] mb-3">Côte Amalfitaine</p>
       <h1 class="font-serif text-display text-white mb-6">Fiordo di Furore</h1>
       <p class="text-lg md:text-xl font-light text-white/80">Un chef-d'œuvre de la nature taillé dans la roche.</p>
     </div>
@@ -79,10 +146,10 @@ const beachSchema = {
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Une Icône de la Côte Amalfitaine</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Le Fiordo di Furore est l'une des images les plus iconiques d'Italie. Ce n'est pas une plage traditionnelle, mais une profonde fissure naturelle où la mer s'infiltre sous un pont monumental de 30 mètres. En 2026, l'accès est réglementé pour protéger le site : la plage est petite et l'eau est généralement plus fraîche que sur la côte ouverte.
+            Le Fiordo di Furore est l'une des images les plus iconiques d'Italie. Ce n'est pas une plage traditionnelle, mais une profonde fissure naturelle où la mer s'infiltre sous un pont monumental de 30 mètres. Niché le long de la <a href="/fr-fr/cote-amalfitaine/" class="text-med-blue hover:underline">Côte Amalfitaine</a> entre <a href="/fr-fr/cote-amalfitaine/positano/" class="text-med-blue hover:underline">Positano</a> et <a href="/fr-fr/cote-amalfitaine/amalfi/" class="text-med-blue hover:underline">Amalfi</a>, en 2026 l'accès est réglementé pour préserver le site : la plage est petite et l'eau est généralement plus fraîche que sur la côte ouverte.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            Un paradis pour les photographes - mais attention à la lumière : le soleil n'illumine le fond du fjord qu'en milieu de journée. Arrivez entre 11h et 13h pour les meilleures photos. Sauter du pont est une tradition locale mais est interdit aux touristes : profitez de la vue d'en haut avant de descendre les 200 marches jusqu'à la plage.
+            C'est le paradis des photographes, mais attention à la lumière : le soleil n'illumine le fond du fjord qu'en milieu de journée. Arrivez entre 11h et 13h pour les meilleures photos. Le saut depuis le pont est une tradition locale, mais il est interdit aux touristes : profitez de la vue d'en haut avant de descendre les 200 marches vers la plage.
           </p>
         </div>
 
@@ -97,11 +164,102 @@ const beachSchema = {
           </p>
         </div>
 
-        <!-- Comment y aller -->
+        <!-- Histoire et origines -->
         <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Comment y Aller</h2>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Histoire : Le Fjord et le Village Introuvable</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Le fjord a été creusé au fil des millénaires par le torrent Schiato, qui coule encore aujourd'hui entre les parois de roche calcaire jusqu'à la mer. Au Moyen Âge, de nombreuses papeteries fonctionnaient le long de ce cours d'eau — Amalfi fut la première ville européenne à produire du papier selon la technique arabe, et Furore faisait partie de ce système productif qui rendit la République célèbre.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Le village de Furore est connu comme le <em>« village introuvable »</em> : une commune sans centre, sans place, sans cœur reconnaissable. Les maisons sont éparpillées sur les parois de la vallée, reliées par des sentiers escarpés. Cette particularité a alimenté pendant des décennies sa réputation de lieu suspendu entre réalité et légende.
+          </p>
+        </div>
+
+        <!-- MarMeeting -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">MarMeeting : Plongeons depuis le Pont</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Chaque été — généralement en juillet ou août — le pont du fjord se transforme en tremplin pour le <strong>MarMeeting</strong>, compétition internationale de plongeons acrobatiques née dans les années 1970. Des plongeurs professionnels s'élancent de 30 mètres de hauteur devant une foule de spectateurs massés sur le pont et sur les rochers alentour.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Le public peut assister gratuitement aussi bien depuis la plage que depuis le haut. Le saut libre est strictement interdit aux touristes pour des raisons de sécurité : les courants à l'entrée du fjord peuvent être imprévisibles.
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">30</p>
+            <p class="text-white/60 text-sm mt-1">mètres (pont)</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">200</p>
+            <p class="text-white/60 text-sm mt-1">marches pour descendre</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1970</p>
+            <p class="text-white/60 text-sm mt-1">premier MarMeeting</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">3½</p>
+            <p class="text-white/60 text-sm mt-1">heures de soleil par jour</p>
+          </div>
+        </div>
+
+        <!-- Village peint -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Furore : Le Village Peint</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Depuis le bas du fjord, en regardant vers le haut, on aperçoit les premiers signes de ce qui rend Furore unique même loin de la plage : c'est un <strong>village peint</strong>. Depuis les années 1980, des artistes internationaux ont transformé les murs des maisons accrochées à la falaise en toiles à ciel ouvert, créant une galerie d'art en plein air qui compte aujourd'hui des dizaines de fresques.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Chaque été, un nouvel artiste est invité à ajouter son œuvre. Il vaut la peine de remonter depuis le fjord et de se promener dans les ruelles du bourg pour découvrir la collection complète — c'est une expérience totalement différente de la plage, mais tout aussi mémorable.
+          </p>
+        </div>
+
+        <!-- Vie marine -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Vie Marine et Snorkeling</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La configuration étroite du fjord canalise des eaux riches en nutriments venant du large, favorisant un écosystème marin particulièrement vivace. Entre les rochers immergés vivent de denses bancs de <strong>sparidés</strong>, des pieuvres qui se camouflent dans les anfractuosités et des oursins accrochés aux parois. La visibilité est généralement bonne aux heures centrales, quand la lumière pénètre jusqu'au fond.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Un phénomène acoustique rend la visite encore plus suggestive : les parois de roche amplifient chaque son, transformant le bruit des vagues en un écho profond et enveloppant — un effet que les habitants appellent simplement « la voix du fjord ».
+          </p>
+        </div>
+
+        <!-- Conseils des Locaux -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Conseils des Locaux</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Arrivez avant 9h30 en été pour trouver une place le long de la route ou dans le petit espace près du pont.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">La fenêtre de lumière solaire est brève : planifiez la descente à la plage pour 11h–11h30 afin d'en profiter au maximum.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Il n'y a ni bar ni douches : apportez de l'eau, des en-cas et des chaussures aquatiques. Les galets font mal aux pieds nus.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Après la baignade, remontez au bourg et cherchez les fresques : consacrez au moins une heure à la promenade entre les maisons peintes de Furore.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Pour le snorkeling, apportez masque et palmes : les fonds rocheux près des parois du fjord regorgent de vie marine.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Comment Accéder -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Comment y Accéder</h2>
           <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
-            <table class="w-full text-xs sm:text-xs sm:text-sm">
+            <table class="w-full text-sm">
               <thead>
                 <tr class="bg-charcoal text-white">
                   <th class="text-left p-4 font-medium">Transport</th>
@@ -119,6 +277,24 @@ const beachSchema = {
                 ))}
               </tbody>
             </table>
+          </div>
+        </div>
+
+        <!-- Questions Fréquentes -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Questions Fréquentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
@@ -150,6 +326,13 @@ const beachSchema = {
 
     </div>
   </section>
+
+  <!-- Plages à Proximité -->
+  <CorrelationSlider
+    title="Autres plages de la Côte Amalfitaine"
+    items={nearbyBeaches}
+    lang="fr-fr"
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">
