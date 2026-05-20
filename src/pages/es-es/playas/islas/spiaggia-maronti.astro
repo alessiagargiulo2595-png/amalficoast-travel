@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'es-es';
 
@@ -11,18 +12,70 @@ const breadcrumbs = [
 ];
 
 const facts = [
-  { label: 'Suelo', value: 'Arena volcánica' },
-  { label: 'Longitud', value: '3 km (la más larga de la isla)' },
+  { label: 'Composicion', value: 'Arena volcanica' },
+  { label: 'Longitud', value: '3 km (la mas larga de la isla)' },
   { label: 'Especial', value: 'Fumarolas naturales calientes' },
   { label: 'Sombra', value: 'A partir de las 19:00' },
   { label: 'Ideal para', value: 'Termalismo natural, familias, relax' },
+  { label: 'Volcan', value: 'Monte Epomeo (788 m)' },
+  { label: 'Termas naturales', value: 'Canyon Cavascura' },
+  { label: 'Temperatura fumarolas', value: 'Hasta 60°C' },
+  { label: 'Mejor epoca', value: 'Mayo-Junio, Septiembre' },
+  { label: 'Primera colonia griega', value: 'Pithecusae (siglo VIII a.C.)' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Que temperatura alcanzan las fumarolas en los Maronti?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Las fumarolas en la zona central de la playa (area Fumarole Beach) alcanzan temperaturas de hasta 60°C en la arena superficial. Los vapores son aun mas calientes. No acercarse a los chorros de vapor con la piel descubierta: enterrar los pies en la arena caliente es una experiencia termal natural gratuita y segura si se mantiene una distancia prudencial de los puntos de emision mas intensos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Como se accede al canyon termal de Cavascura?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Las termas de Cavascura se alcanzan recorriendo un breve sendero desde el extremo oriental de la playa de los Maronti (unos 10 minutos a pie). La entrada es de pago (alrededor de 10-15 euros). En su interior hay piscinas naturales talladas en la roca, una cascada de agua termal caliente y vestuarios rusticos. Las instalaciones estan abiertas de mayo a octubre."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿La playa de los Maronti es adecuada para ninos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Si, los Maronti son ideales para familias con ninos: las aguas son muy tranquilas y poco profundas (fondos que descienden suavemente), la playa es amplia y no esta masificada ni en agosto. Sin embargo, hay que vigilar a los ninos en la zona de las fumarolas donde la arena puede estar muy caliente. Los taxi acuaticos desde Sant'Angelo son practicos con ninos pequenos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Como se llega a los Maronti desde Ischia Porto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hay dos opciones principales: el bus linea 5 desde Ischia Porto hasta Barano, luego un sendero en bajada de unos 15 minutos hacia la playa; o el taxi acuatico desde Sant'Angelo (5 minutos, la forma mas comoda y pintoresca, con desembarco directo en la playa). Una tercera opcion es alquilar un scooter y bajar hasta el aparcamiento cercano a la playa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cual es la mejor zona de la playa de los Maronti?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El tramo oriental es el mas tranquilo y cercano a las termas de Cavascura: ideal para quienes quieren combinar playa y termas. El tramo central alberga la zona de las fumarolas (la mas caracteristica). El tramo occidental, cerca de Sant'Angelo, es mas animado con mas servicios y establecimientos. Para maxima tranquilidad, apuntar a los extremos de la playa, siempre menos frecuentados."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
   "@type": "Beach",
   "name": "Spiaggia dei Maronti",
-  "description": "La playa volcánica de Ischia, la más larga de la isla (3 km), famosa por sus fumarolas naturales calientes y sus manantiales termales subterráneos.",
+  "description": "La playa volcanica de Ischia, la mas larga de la isla (3 km), famosa por sus fumarolas naturales calientes y sus manantiales termales subterraneos.",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Barano d'Ischia",
@@ -34,10 +87,10 @@ const beachSchema = {
 
 <BaseLayout
   title="Spiaggia dei Maronti Ischia 2026: Fumarolas y Arena Caliente"
-  description="Los Maronti son la playa más larga de Ischia (3 km) con fumarolas termales naturales. Guía 2026: cómo llegar, qué esperar y consejos prácticos."
+  description="Los Maronti son la playa mas larga de Ischia (3 km) con fumarolas termales naturales. Guia 2026: como llegar, que esperar y consejos practicos."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
  pageKey="spiaggia-maronti">
 
   <!-- Hero -->
@@ -49,11 +102,11 @@ const beachSchema = {
       loading="eager"
       referrerpolicy="no-referrer"
     />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
       <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Ischia · Islas del Golfo</p>
       <h1 class="font-serif text-display text-white mb-6">Spiaggia dei Maronti</h1>
-      <p class="text-lg md:text-xl font-light text-white/80">Tres kilómetros de arena caliente calentada por el volcán.</p>
+      <p class="text-lg md:text-xl font-light text-white/80">Tres kilometros de arena caliente calentada por el volcan.</p>
     </div>
     <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
@@ -67,10 +120,10 @@ const beachSchema = {
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Termalismo Natural</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Los Maronti ofrecen una experiencia única en Italia. La playa es inmensa - tres kilómetros de arena volcánica oscura - y la propia arena está calentada por el calor volcánico del subsuelo a través de las <strong>fumarolas</strong>: chorros de vapor caliente que emergen de la arena, alcanzando en algunos puntos temperaturas superiores a los 60 °C.
+            Los Maronti ofrecen una experiencia unica en Italia. La playa es inmensa - tres kilometros de arena volcanica oscura - y la propia arena esta calentada por el calor volcanico del subsuelo a traves de las <strong>fumarolas</strong>: chorros de vapor caliente que emergen de la arena, alcanzando en algunos puntos temperaturas superiores a los 60°C.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            Perfecta para los que buscan escapar del bullicio de los puertos. La gran extensión garantiza que incluso en agosto siempre se encuentra un rincón tranquilo. El agua es tranquila e ideal para familias con niños pequeños.
+            Perfecta para quienes aman caminar y quieren escapar del bullicio de los puertos de <a href="/es-es/islas/procida/" class="text-med-blue hover:underline">Procida</a> y <a href="/es-es/islas/capri/" class="text-med-blue hover:underline">Capri</a>. La gran extension garantiza que incluso en agosto siempre se encuentra un rincon tranquilo. Las aguas son tranquilas, ideales para familias con ninos pequenos.
           </p>
         </div>
 
@@ -81,29 +134,137 @@ const beachSchema = {
             <h3 class="text-xl font-bold">Las Fumarolas</h3>
           </div>
           <p class="text-slate-600 leading-relaxed">
-            Las fumarolas se encuentran en la parte central de la playa (zona Fumarole Beach). Puedes enterrar los pies en la arena caliente para un efecto termal natural gratuito. <strong>No te acerques demasiado a los chorros de vapor</strong>: las temperaturas pueden ser muy elevadas. Los niños deben estar vigilados en esta zona.
+            Las fumarolas se encuentran en la parte central de la playa (zona Fumarole Beach). Puedes enterrar los pies en la arena caliente para un efecto termal natural gratuito. <strong>No te acerques demasiado a los chorros de vapor</strong>: las temperaturas pueden ser muy elevadas. Los ninos deben estar vigilados en esta zona.
           </p>
         </div>
 
-        <!-- Cómo llegar -->
+        <!-- Origen volcanico -->
         <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Cómo Llegar</h2>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Nacida del Fuego: El Origen Volcanico</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La playa de los Maronti debe su existencia al <strong>Monte Epomeo</strong> (788 m), el volcan dormido que domina <a href="/es-es/islas/ischia/" class="text-med-blue hover:underline">Ischia</a>. Las erupciones prehistoricas depositaron capas de tufo volcanico rico en minerales, que milenios de erosion marina transformaron en la arena oscura y pesada que pisamos hoy. Ischia es la isla volcanicamente mas activa del Mediterraneo: el calor del magma subterraneo aun calienta el suelo y las aguas, creando los manantiales termales que hicieron famosa a la isla desde la antiguedad.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            El terremoto de <strong>1883</strong> (magnitud 5,8), que devasto el pueblo de Casamicciola sobre la playa, provoco tambien un pequeno maremoto que alcanzo los Maronti. Aquella catastrofe impulso a Italia a dotarse de los primeros codigos de construccion antisismicos de la historia. Aun hoy la zona es sismicamente activa, pero segura para los visitantes.
+          </p>
+        </div>
+
+        <!-- Canyon Cavascura -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <h3 class="text-xl font-bold">El Canyon de Cavascura</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Escondido detras de la playa, accesible desde el extremo oriental recorriendo un breve sendero, se encuentra el <strong>canyon de Cavascura</strong>: un estrecho desfiladero rocoso con manantiales termales naturales y un rustico spa tallado en la roca viva. Los antiguos romanos ya usaban estas aguas curativas. Hoy puedes banarte en agua termal caliente bajo una cascada natural, rodeado de rocas altas y vegetacion mediterranea. Una experiencia completamente diferente a la playa, a pocos minutos caminando.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            El arroyo estacional que llega a la playa en su centro era antiguamente famoso por plantas raras y micro-piscinas termales naturales. Un desprendimiento en 2017 altero parcialmente el paisaje, pero la recuperacion ambiental esta en curso.
+          </p>
+        </div>
+
+        <!-- Historia griega -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Los Griegos de Pithecusae</h2>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Ischia era llamada <strong>Pithecusae</strong> por los antiguos griegos, que en el siglo VIII a.C. fundaron alli la primera colonia griega del Mediterraneo occidental. Algunas teorias sugieren que los colonos euboicos desembarcaron precisamente cerca de la bahia de los Maronti, atraidos por su posicion resguardada. Los restos ceramicos hallados en el interior datan de aquella epoca. Ischia precedio en decadas a la fundacion de Cuma en el continente, convirtiendose en la puerta de entrada de la civilizacion griega en Italia.
+          </p>
+        </div>
+
+        <!-- Stats box -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">3</p>
+            <p class="text-white/60 text-sm mt-1">km de playa</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">60°C</p>
+            <p class="text-white/60 text-sm mt-1">fumarolas max</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">788</p>
+            <p class="text-white/60 text-sm mt-1">m Monte Epomeo</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">VIII a.C.</p>
+            <p class="text-white/60 text-sm mt-1">primera colonia griega</p>
+          </div>
+        </div>
+
+        <!-- Consejos locales -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consejos de los Locales</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Toma el taxi acuatico desde Sant'Angelo: 5 minutos de travesia pintoresca en vez de 40 minutos de autobus. Merece cada centimo.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Llega antes de las 9:00 o despues de las 17:00 para encontrar la playa casi desierta incluso en agosto.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Para las termas de Cavascura, lleva chancletas: el camino por el sendero es incomodo descalzo.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">En la zona de las fumarolas, prueba primero la temperatura con la mano: la arena calentada puede variar mucho de un punto a otro.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Los restaurantes en la playa sirven excelente pescado local. Almorzar en septiembre, con menos turistas y precios mas bajos, es la mejor experiencia.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Como llegar -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Como Llegar</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus Línea 5</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus Linea 5</p>
               <p class="text-slate-700 font-medium mb-1">Desde Ischia Porto</p>
               <p class="text-slate-500 text-xs sm:text-sm">Bajar en Barano. Luego sendero en bajada hacia la playa (15 min).</p>
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Acuático ⭐</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Acuatico</p>
               <p class="text-slate-700 font-medium mb-1">Desde Sant'Angelo</p>
-              <p class="text-slate-500 text-xs sm:text-sm">5 minutos en barco. Pintoresco y práctico. Desembarco directo en la playa.</p>
+              <p class="text-slate-500 text-xs sm:text-sm">5 minutos en barco. Pintoresco y practico. Desembarco directo en la playa.</p>
             </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Scooter / Coche</p>
+              <p class="text-slate-700 font-medium mb-1">Desde Barano d'Ischia</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Aparcamiento de pago cerca de la playa. Comodo para quienes se alojan en el interior.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">A pie</p>
+              <p class="text-slate-700 font-medium mb-1">Desde Sant'Angelo</p>
+              <p class="text-slate-500 text-xs sm:text-sm">30 minutos por el sendero costero. Panoramico, pero exigente en la subida de vuelta.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Preguntas Frecuentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
 
-      <!-- Sidebar Datos Rápidos -->
+      <!-- Sidebar Datos Rapidos -->
       <aside class="lg:col-span-1">
         <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
           <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
@@ -131,41 +292,17 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- Guías Prácticas -->
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-slate-900 mb-8">Guías Prácticas</h2>
-      <div class="grid sm:grid-cols-3 gap-4">
-        <a href="/es-es/guia/cuando-visitar/" class="flex items-center gap-4 bg-med-cream rounded-2xl p-5 hover:bg-med-blue/5 transition-colors group border border-slate-100">
-          <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 text-med-blue">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path stroke-linecap="round" d="M16 2v4M8 2v4M3 10h18"/></svg>
-          </div>
-          <div>
-            <p class="font-medium text-charcoal group-hover:text-med-blue text-xs sm:text-sm transition-colors">Cuándo visitar</p>
-            <p class="text-xs text-slate-500">Mes a mes</p>
-          </div>
-        </a>
-        <a href="/es-es/guia/como-llegar/" class="flex items-center gap-4 bg-med-cream rounded-2xl p-5 hover:bg-med-blue/5 transition-colors group border border-slate-100">
-          <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 text-med-blue">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18"/></svg>
-          </div>
-          <div>
-            <p class="font-medium text-charcoal group-hover:text-med-blue text-xs sm:text-sm transition-colors">Cómo llegar</p>
-            <p class="text-xs text-slate-500">Ferries, autobús, coche</p>
-          </div>
-        </a>
-        <a href="/es-es/playas/" class="flex items-center gap-4 bg-med-cream rounded-2xl p-5 hover:bg-med-blue/5 transition-colors group border border-slate-100">
-          <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 text-med-blue">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17c3-3 6-3 9 0s6 3 9 0M3 12c3-3 6-3 9 0s6 3 9 0"/></svg>
-          </div>
-          <div>
-            <p class="font-medium text-charcoal group-hover:text-med-blue text-xs sm:text-sm transition-colors">Las playas</p>
-            <p class="text-xs text-slate-500">9 playas seleccionadas</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
+  <!-- Playas cercanas -->
+  <CorrelationSlider
+    lang="es-es"
+    title="Otras Playas de las Islas"
+    items={[
+      { name: 'Cala del Pozzo Vecchio', href: '/es-es/playas/islas/cala-del-pozzo-vecchio/', tag: 'Procida', desc: 'La playa del Cartero con arena negra volcanica.' },
+      { name: 'Marina Piccola', href: '/es-es/playas/islas/marina-piccola-capri/', tag: 'Capri', desc: 'La playa exclusiva con vista a los Faraglioni.' },
+      { name: 'Faraglioni', href: '/es-es/playas/islas/faraglioni-capri/', tag: 'Capri', desc: 'Las tres rocas legendarias simbolo de la isla.' },
+      { name: 'Marina del Cantone', href: '/es-es/playas/peninsula-sorrentina/marina-del-cantone/', tag: 'Nerano', desc: 'La capital del sabor frente al mar.' },
+    ]}
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">
@@ -175,7 +312,7 @@ const beachSchema = {
         href="/es-es/islas/ischia/"
         class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
       >
-        Guía completa de Ischia
+        Guia completa de Ischia
       </a>
     </div>
   </section>
