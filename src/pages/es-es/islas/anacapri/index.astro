@@ -1,0 +1,327 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'es-es';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Islas del Golfo', url: '/es-es/islas/' },
+  { name: 'Anacapri', url: '/es-es/islas/anacapri/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Anacapri",
+  "description": "Anacapri es el municipio más alto de la isla de Capri: Villa San Michele, telesilla para el Monte Solaro (589 m), Iglesia de San Michele y panoramas impresionantes sobre el Golfo de Nápoles.",
+  "url": "https://amalficoast-travel.com/es-es/islas/anacapri/",
+  "touristType": ["Cultura", "Naturaleza", "Senderismo", "Panoramas"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Anacapri", "addressRegion": "Napoli", "addressCountry": "IT", "postalCode": "80071" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.5520, "longitude": 14.2150 }
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Anacapri, Isla de Capri",
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.5520, "longitude": 14.2150 },
+  "containedInPlace": { "@type": "AdministrativeArea", "name": "Isla de Capri" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Como se llega a Anacapri desde Marina Grande?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Desde Marina Grande se toma el autobús ATC directo a Anacapri (unos 15 minutos, billete ~2 euros). Como alternativa se puede tomar el funicular hasta el centro de Capri y luego el autobús a Anacapri. Los taxis descapotables cuestan unos 20-25 euros." }
+    },
+    {
+      "@type": "Question",
+      "name": "Cuanto cuesta el telesilla al Monte Solaro?",
+      "acceptedAnswer": { "@type": "Answer", "text": "El telesilla individual desde la Piazza Vittoria en Anacapri cuesta unos 12 euros ida y vuelta (8 euros solo ida). La subida dura unos 12 minutos con vistas espectaculares. En la cima hay un bar y el punto panorámico más alto de la isla a 589 metros." }
+    },
+    {
+      "@type": "Question",
+      "name": "Vale la pena visitar Villa San Michele?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Absolutamente sí. Villa San Michele, construida por el médico sueco Axel Munthe sobre los restos de una capilla y una villa romana de Tiberio, es uno de los lugares más sugerentes de Capri. El jardín con la esfinge y la terraza panorámica sobre el Golfo de Nápoles son inolvidables. Entrada unos 8 euros." }
+    },
+    {
+      "@type": "Question",
+      "name": "Anacapri o Capri: cual es la diferencia?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Anacapri es el municipio alto de la isla (unos 275 m sobre el nivel del mar), más tranquilo, verde y auténtico. El centro de Capri es más cosmopolita, con la Piazzetta, tiendas de lujo y vida nocturna. Anacapri es ideal para quienes buscan naturaleza, panoramas y un ritmo más relajado." }
+    },
+    {
+      "@type": "Question",
+      "name": "Se puede llegar a la Gruta Azul desde Anacapri?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí. Desde Anacapri se puede llegar a la entrada de la Gruta Azul a pie (unos 30 minutos cuesta abajo) o en autobús hasta Grotta Azzurra. La entrada en barca cuesta unos 14 euros. Como alternativa se llega en barco desde Marina Grande." }
+    }
+  ]
+};
+
+const schemas = [touristAttractionSchema, placeSchema, faqSchema];
+
+const fastFacts = [
+  { dt: 'Ubicacion', dd: 'Isla de Capri, NA' },
+  { dt: 'Altitud', dd: '275 m s.n.m.' },
+  { dt: 'Poblacion', dd: '~7.000 habitantes' },
+  { dt: 'Cima', dd: 'Monte Solaro 589 m' },
+  { dt: 'Desde Marina Grande', dd: '15 min (autobús ATC)' },
+  { dt: 'Desde centro Capri', dd: '10 min (autobús)' },
+  { dt: 'Atraccion principal', dd: 'Villa San Michele' },
+  { dt: 'Mejor epoca', dd: 'Abr-Jun / Sep-Oct' },
+  { dt: 'Moneda', dd: 'Euro (EUR)' },
+];
+
+const tips = [
+  'Toma el primer autobús de Marina Grande a Anacapri (7:30): llegas antes de la multitud y haces el telesilla sin cola.',
+  'La Iglesia de San Michele tiene un pavimento de mayólica de 1761 visible desde la galería: entrada solo 2 euros.',
+  'Baja desde Monte Solaro a pie en lugar del telesilla: el sendero atraviesa bosques de encinas y ofrece vistas increíbles (45 min).',
+  'Via Orlandi es la calle comercial local: más barata que la Piazzetta de Capri, con auténticas tiendas artesanas.',
+];
+---
+
+<BaseLayout
+  title="Anacapri 2026: Guia Completa | Villa San Michele, Monte Solaro y Gruta Azul"
+  description="Anacapri guía completa: Villa San Michele, telesilla Monte Solaro, Iglesia de San Michele, Gruta Azul. Como llegar, que ver, consejos prácticos para visitar el pueblo alto de Capri."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={schemas}
+  pageKey="anacapri"
+>
+
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/40 to-black/70 z-10"></div>
+    <img src="/images/anacapri-hero.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Isla de Capri · El pueblo alto</p>
+        <h1 class="font-serif text-display text-white mb-4">Anacapri</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          El corazón verde y silencioso de la isla de Capri: Villa San Michele, el telesilla al Monte Solaro y los panoramas más espectaculares del Golfo.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">Fast Facts</a>
+          <a href="#como-llegar" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">Como llegar</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Anacapri es el segundo municipio de la isla de Capri, encaramado a unos 275 metros sobre el nivel del mar. Si el centro de Capri es mundanidad, boutiques y Piazzetta, Anacapri es su opuesto: jardines silenciosos, senderos panorámicos, pueblos auténticos y la cima más alta de la isla.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            El nombre deriva del griego "ana" (arriba) y Capri: literalmente "sobre Capri". Hasta 1877 los dos municipios solo estaban conectados por la Scala Fenicia, 921 escalones tallados en la roca. Hoy se sube cómodamente en autobús, pero esa escalinata sigue existiendo y es uno de los trekking más sugerentes de la isla.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Sabias que?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">589 m</p>
+              <p class="text-white/60 text-xs italic mt-1">Monte Solaro, cima más alta</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">921</p>
+              <p class="text-white/60 text-xs italic mt-1">escalones de la Scala Fenicia</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1877</p>
+              <p class="text-white/60 text-xs italic mt-1">año de la primera carretera</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Axel Munthe, el médico sueco que construyó Villa San Michele, escribió "La historia de San Michele" (1929), uno de los libros más vendidos del siglo XX, ambientado íntegramente en Anacapri.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Que ver en Anacapri</h2>
+          <div class="space-y-8">
+            {[
+              {
+                n: 1,
+                title: 'Villa San Michele',
+                text: 'La residencia-museo del médico sueco Axel Munthe, construida sobre los restos de una capilla medieval y una villa de Tiberio. El jardín con la esfinge egipcia y la terraza panorámica sobre el Golfo son algunas de las imágenes más icónicas de Capri. Entrada ~8 euros. Abierta todo el año.',
+              },
+              {
+                n: 2,
+                title: 'Monte Solaro (telesilla)',
+                text: 'El telesilla individual desde la Piazza Vittoria lleva a la cima del Monte Solaro (589 m) en 12 minutos. Panorama de 360 grados: se ven Capri, Ischia, Procida, el Vesubio, la Costa Amalfitana y en días despejados Calabria. En la cima: bar, mirador y el Santuario de la Madonna del Soccorso.',
+              },
+              {
+                n: 3,
+                title: 'Iglesia de San Michele Arcangelo',
+                text: 'La iglesia barroca del siglo XVIII conserva un extraordinario pavimento de mayólica (1761) que representa la expulsión de Adán y Eva del Paraíso terrenal. Se admira desde la galería para no pisarlo. Entrada ~2 euros. En la Piazza San Nicola.',
+              },
+              {
+                n: 4,
+                title: 'Scala Fenicia',
+                text: 'La antigua escalinata de 921 escalones que conectaba Marina Grande con Anacapri antes de la construcción de la carretera (1877). Se recorre en bajada en unos 25 minutos. Salida desde Via Capodimonte en Anacapri, llegada cerca del puerto. Vista espectacular durante el descenso.',
+              },
+              {
+                n: 5,
+                title: 'Gruta Azul',
+                text: 'Accesible desde Anacapri en autobús hasta Grotta Azzurra o a pie (30 min cuesta abajo). La célebre gruta marina se visita en barca: la luz entra por una cavidad sumergida e ilumina el agua de un azul eléctrico. Entrada ~14 euros. Evitar con mar agitado.',
+              },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div id="como-llegar">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-6">Como llegar a Anacapri</h2>
+          <p class="text-slate-600 mb-8 leading-relaxed">Anacapri se alcanza desde la Marina Grande de Capri con el autobús ATC directo (unos 15 minutos). Como alternativa se puede tomar el funicular hasta el centro de Capri y luego el autobús. Los taxis descapotables desde la Marina cuestan unos 20-25 euros.</p>
+
+          <div class="overflow-x-auto rounded-2xl border border-slate-200">
+            <table class="w-full text-xs sm:text-xs sm:text-sm">
+              <caption class="text-left text-xs text-slate-500 px-4 py-2 bg-slate-50 rounded-t-2xl border-b border-slate-200 font-medium">
+                Como desplazarse desde/hacia Anacapri
+              </caption>
+              <thead>
+                <tr class="bg-slate-900 text-white">
+                  <th class="text-left px-4 py-3 font-semibold">Ruta</th>
+                  <th class="text-left px-4 py-3 font-semibold">Transporte</th>
+                  <th class="text-left px-4 py-3 font-semibold">Duracion</th>
+                  <th class="text-left px-4 py-3 font-semibold">Precio</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                {[
+                  ['Marina Grande → Anacapri', 'Autobús ATC directo', '~15 min', '~2 EUR'],
+                  ['Centro Capri → Anacapri', 'Autobús ATC', '~10 min', '~2 EUR'],
+                  ['Marina Grande → Anacapri', 'Taxi descapotable', '~12 min', '~20-25 EUR'],
+                  ['Anacapri → Gruta Azul', 'Autobús ATC', '~10 min', '~2 EUR'],
+                  ['Anacapri → Monte Solaro', 'Telesilla', '~12 min', '~12 EUR I/V'],
+                ].map(([ruta, transporte, duracion, precio]) => (
+                  <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="px-4 py-3 font-medium text-charcoal">{ruta}</td>
+                    <td class="px-4 py-3 text-slate-500">{transporte}</td>
+                    <td class="px-4 py-3 font-mono">{duracion}</td>
+                    <td class="px-4 py-3 text-slate-500">{precio}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-slate-400 mt-2">* Precios y tiempos orientativos verano 2026.</p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-6">Rutas de senderismo desde Anacapri</h2>
+          <div class="grid sm:grid-cols-2 gap-6">
+            {[
+              { title: 'Scala Fenicia (bajada)', text: '921 escalones desde la carretera panorámica hasta Marina Grande. Unos 25 minutos en bajada (45 en subida). Panoramas increíbles sobre la costa norte de la isla. Salida desde Via Capodimonte.' },
+              { title: 'Sendero de los Fuertes', text: 'Recorrido costero de unos 5 km que conecta la Gruta Azul con el Faro de Punta Carena pasando por tres fuertes borbónicos. Vistas abiertas al mar, ideal al atardecer. Duración unas 2 horas.' },
+              { title: 'Monte Solaro a pie', text: 'Desde la Piazza Vittoria se sube a pie hasta la cima (589 m) en unas 1 hora atravesando bosques de encinas y matorral mediterráneo. Alternativa gratuita al telesilla.' },
+              { title: 'Migliera - Belvedere della Migliara', text: 'Paseo llano de unos 30 minutos desde el centro de Anacapri hasta el mirador sobre la costa sur y los Faraglioni. Recorrido fácil, apto para todos. Llega al Tuono, un restaurante panorámico.' },
+            ].map(({ title, text }) => (
+              <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+                <h3 class="font-semibold text-charcoal mb-2">{title}</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Preguntas frecuentes sobre Anacapri</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts - Anacapri</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-xs sm:text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Consejos de expertos</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+                <span set:html={tip}></span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Otras islas del Golfo</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/es-es/islas/capri/', label: 'Capri' },
+              { href: '/es-es/islas/ischia/', label: 'Ischia' },
+              { href: '/es-es/islas/forio/', label: 'Forio' },
+              { href: '/es-es/islas/procida/', label: 'Procida' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs sm:text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider lang="es-es"
+    heading="Explora las otras islas y la Costa"
+    items={[
+      { name: 'Capri',     href: '/es-es/islas/capri/',                 tag: 'La más icónica',    desc: 'Gruta Azul, Faraglioni, la Piazzetta: la isla más famosa del Golfo.' },
+      { name: 'Ischia',    href: '/es-es/islas/ischia/',                tag: 'Termas & Naturaleza', desc: 'Termas naturales, Castillo Aragonés, Monte Epomeo y playas volcánicas.' },
+      { name: 'Forio',     href: '/es-es/islas/forio/',                 tag: 'Atardeceres & Termas', desc: 'Los Jardines Poseidon, la Iglesia del Soccorso y los mejores atardeceres de Ischia.' },
+      { name: 'Procida',   href: '/es-es/islas/procida/',               tag: 'La más auténtica',  desc: 'Casas de colores en Marina Corricella, Capital italiana de la Cultura 2022.' },
+      { name: 'Positano',  href: '/es-es/costa-amalfitana/positano/',   tag: 'Moda & Vistas',     desc: 'Casas de colores en cascada hasta el mar y la playa más famosa de la Costa.' },
+    ]}
+  />
+
+</BaseLayout>

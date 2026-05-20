@@ -1,0 +1,328 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Iles du Golfe', url: '/fr-fr/iles/' },
+  { name: 'Forio', url: '/fr-fr/iles/forio/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Forio d'Ischia",
+  "description": "Forio est la plus grande commune de l'ile d'Ischia : les Jardins Poseidon, l'eglise du Soccorso, la Baie de Citara, les couchers de soleil sur la mer et les sources thermales en font une destination incontournable.",
+  "url": "https://amalficoast-travel.com/fr-fr/iles/forio/",
+  "touristType": ["Thermes", "Plage", "Culture", "Couchers de soleil"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Forio", "addressRegion": "Napoli", "addressCountry": "IT", "postalCode": "80075" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.7365, "longitude": 13.8570 }
+};
+
+const placeSchema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "name": "Forio, Ile d'Ischia",
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.7365, "longitude": 13.8570 },
+  "containedInPlace": { "@type": "AdministrativeArea", "name": "Ile d'Ischia" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment rejoindre Forio depuis Naples ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Depuis Naples, on prend le ferry ou l'hydroglisseur pour Ischia Porto (environ 50-75 minutes). De la, on rejoint Forio en bus (ligne CD ou CS, environ 25-30 minutes) ou en taxi. En alternative, certains ferries Medmar depuis Pozzuoli arrivent a Casamicciola, d'ou Forio est encore plus proche." }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien coutent les Jardins Poseidon ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "L'entree aux Jardins Poseidon Terme coute environ 35-38 euros pour la journee entiere (demi-journee a partir de 13h environ 30 euros). Le parc comprend 22 piscines thermales a differentes temperatures, une plage privee, un sauna et des jardins. C'est le parc thermal le plus grand et le plus celebre d'Ischia." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelle est la plus belle plage de Forio ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La Baie de Citara est la plage la plus celebre, avec son sable fin et ses eaux limpides. La plage de San Francesco est plus petite et tranquille. La Baie de Sorgeto offre des piscines naturelles d'eau thermale chaude qui se melange a la mer (gratuite, accessible par un escalier)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Que voir a Forio en une journee ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "En une journee, on peut visiter l'eglise du Soccorso au coucher du soleil, les Jardins La Mortella le matin, le centre historique avec les tours sarrasines, et la Baie de Citara ou les Jardins Poseidon l'apres-midi. S'il reste du temps, la Baie de Sorgeto pour un bain thermal au coucher du soleil." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quand est-il preferable de visiter Forio ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Mai, juin et septembre sont les mois ideaux : climat parfait, mer chaude, moins de foule qu'en juillet et aout. Les Jardins La Mortella sont ouverts d'avril a novembre. Les Jardins Poseidon sont ouverts d'avril a octobre. L'hiver est tres calme avec certains services reduits." }
+    }
+  ]
+};
+
+const schemas = [touristAttractionSchema, placeSchema, faqSchema];
+
+const fastFacts = [
+  { dt: 'Situation', dd: 'Cote ouest d\'Ischia, NA' },
+  { dt: 'Population', dd: '~18 000 habitants' },
+  { dt: 'Plus grande commune', dd: 'De l\'ile d\'Ischia' },
+  { dt: 'Depuis Ischia Porto', dd: '25-30 min (bus CD/CS)' },
+  { dt: 'Depuis Naples', dd: '50-75 min + bus' },
+  { dt: 'Thermes', dd: 'Jardins Poseidon, Sorgeto' },
+  { dt: 'Plage principale', dd: 'Baie de Citara' },
+  { dt: 'Meilleure periode', dd: 'Mai-Juin / Sep' },
+  { dt: 'Monnaie', dd: 'Euro (EUR)' },
+];
+
+const tips = [
+  'L\'eglise du Soccorso au coucher du soleil est l\'un des spectacles les plus beaux de tout le Golfe de Naples : arrivez 30 minutes avant pour trouver une bonne place.',
+  'Les Jardins La Mortella n\'ouvrent que certains jours : verifiez le calendrier sur lamortella.org avant de planifier votre visite.',
+  'La Baie de Sorgeto est gratuite mais se rejoint en descendant environ 200 marches : allez au coucher du soleil pour le bain thermal le plus suggestif.',
+  'Le bus circulaire CD (sens horaire) et CS (sens antihoraire) relie toutes les communes d\'Ischia : billet 90 min ~2 euros.',
+];
+---
+
+<BaseLayout
+  title="Forio d'Ischia 2026 : Guide Complet | Jardins de Poseidon, Eglise du Soccorso et Thermes"
+  description="Guide complet de Forio d'Ischia : Jardins Poseidon, eglise du Soccorso, Baie de Citara, Jardins La Mortella, Sorgeto. Comment y aller, que voir, thermes et couchers de soleil."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={schemas}
+  pageKey="forio"
+>
+
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/40 to-black/70 z-10"></div>
+    <img src="/images/forio-hero.jpg" alt="" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      </nav>
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Ile d'Ischia · Cote ouest</p>
+        <h1 class="font-serif text-display text-white mb-4">Forio</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Thermes a ciel ouvert, couchers de soleil legendaires sur l'eglise du Soccorso et les Jardins Poseidon : Forio est le coeur palpitant de la cote occidentale d'Ischia.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">Fast Facts</a>
+          <a href="#comment-y-aller" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">Comment y aller</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Forio est la plus grande commune de l'ile d'Ischia et occupe toute sa cote occidentale. C'est le point de l'ile ou le soleil se couche sur la mer ouverte - et ce simple fait geographique a facon son identite : un lieu de lumiere doree, de sources thermales volcaniques et de jardins luxuriants.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Historiquement village de pecheurs et de paysans, Forio a ete decouverte dans les annees 1950 par des artistes et intellectuels europeens - Truman Capote, W.H. Auden, Hans Werner Henze y ont compose certaines de leurs oeuvres les plus importantes. Aujourd'hui c'est la destination ideale pour ceux qui recherchent le cote le plus authentique et naturel d'Ischia, loin de la mondanite d'Ischia Porto.
+          </p>
+        </div>
+
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Le saviez-vous ?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">22</p>
+              <p class="text-white/60 text-xs italic mt-1">piscines thermales aux Jardins Poseidon</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">12</p>
+              <p class="text-white/60 text-xs italic mt-1">tours sarrasines sur le territoire</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1958</p>
+              <p class="text-white/60 text-xs italic mt-1">annee de fondation des Jardins La Mortella</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Lady Susana Walton, epouse du compositeur britannique William Walton, crea les Jardins La Mortella a Forio avec l'aide du paysagiste Russell Page. Aujourd'hui ils accueillent des concerts de musique de chambre chaque week-end.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Que voir a Forio</h2>
+          <div class="space-y-8">
+            {[
+              {
+                n: 1,
+                title: 'Eglise du Soccorso',
+                text: 'L\'eglise blanche sur le promontoire est le symbole de Forio et de toute Ischia. Construite au XIVe siecle, elle donne directement sur la mer ouverte avec un parvis pave en majolique. Au coucher du soleil, elle devient la scene naturelle la plus spectaculaire de l\'ile. Entree gratuite.',
+              },
+              {
+                n: 2,
+                title: 'Jardins Poseidon Terme',
+                text: 'Le parc thermal le plus grand et le plus celebre d\'Ischia : 22 piscines a differentes temperatures (de 20 a 40 degres), sauna naturel en grotte, plage privee sur la Baie de Citara. Une journee entiere de detente. Entree environ 35-38 euros journee entiere. Ouvert avril-octobre.',
+              },
+              {
+                n: 3,
+                title: 'Jardins La Mortella',
+                text: 'L\'un des plus beaux jardins botaniques de la Mediterranee, cree par Lady Walton en 1958. Deux hectares de plantes tropicales et mediterraneennes, fontaines, nenuphars, un musee et une salle de concerts ou se tiennent des recitals chaque week-end. Entree environ 12 euros. Ouvert certains jours par semaine (verifier le calendrier).',
+              },
+              {
+                n: 4,
+                title: 'Baie de Sorgeto',
+                text: 'Piscines naturelles ou l\'eau thermale chaude jaillit des rochers et se melange a la mer froide. On y accede en descendant environ 200 marches depuis le hameau de Panza. Gratuite et ouverte toute l\'annee, meme la nuit. Le bain au coucher du soleil ou sous les etoiles est une experience unique.',
+              },
+              {
+                n: 5,
+                title: 'Centre historique et tours sarrasines',
+                text: 'Le centre de Forio conserve 12 tours de guet des XVe-XVIe siecles, construites pour se defendre contre les incursions sarrasines. La Torre Torrione est la plus grande et abrite un musee civique. Le bourg est un entrelacs de ruelles, eglises baroques, boutiques artisanales et restaurants typiques.',
+              },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div id="comment-y-aller">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-6">Comment arriver a Forio</h2>
+          <p class="text-slate-600 mb-8 leading-relaxed">Forio se rejoint en ferry/hydroglisseur depuis Naples ou Pozzuoli jusqu'a Ischia Porto ou Casamicciola, puis en bus circulaire. Il n'existe pas de liaisons maritimes directes pour Forio.</p>
+
+          <div class="overflow-x-auto rounded-2xl border border-slate-200">
+            <table class="w-full text-xs sm:text-xs sm:text-sm">
+              <caption class="text-left text-xs text-slate-500 px-4 py-2 bg-slate-50 rounded-t-2xl border-b border-slate-200 font-medium">
+                Comment rejoindre Forio
+              </caption>
+              <thead>
+                <tr class="bg-slate-900 text-white">
+                  <th class="text-left px-4 py-3 font-semibold">Trajet</th>
+                  <th class="text-left px-4 py-3 font-semibold">Transport</th>
+                  <th class="text-left px-4 py-3 font-semibold">Duree</th>
+                  <th class="text-left px-4 py-3 font-semibold">Prix</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                {[
+                  ['Naples → Ischia Porto', 'Hydroglisseur (NLG/Alilauro)', '~50 min', '~20 EUR'],
+                  ['Naples → Ischia Porto', 'Ferry (Caremar)', '~75 min', '~13 EUR'],
+                  ['Pozzuoli → Casamicciola', 'Ferry (Medmar)', '~35 min', '~10 EUR'],
+                  ['Ischia Porto → Forio', 'Bus CD/CS', '~25-30 min', '~2 EUR'],
+                  ['Casamicciola → Forio', 'Bus CD/CS', '~15 min', '~2 EUR'],
+                ].map(([trajet, transport, duree, prix]) => (
+                  <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="px-4 py-3 font-medium text-charcoal">{trajet}</td>
+                    <td class="px-4 py-3 text-slate-500">{transport}</td>
+                    <td class="px-4 py-3 font-mono">{duree}</td>
+                    <td class="px-4 py-3 text-slate-500">{prix}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-slate-400 mt-2">* Prix et durees indicatifs ete 2026. Verifiez sur caremar.it, medmar.it, alilauro.it.</p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-6">Plages de Forio</h2>
+          <div class="grid sm:grid-cols-2 gap-6">
+            {[
+              { title: 'Baie de Citara', text: 'La plage la plus grande et la mieux equipee de Forio, avec un sable fin dore et des eaux turquoise. Elle accueille les Jardins Poseidon. Plages payantes et portion de plage libre. Exposee a l\'ouest : parfaite pour les couchers de soleil.' },
+              { title: 'Plage de San Francesco', text: 'Petite plage sous l\'eglise du Soccorso, plus intime et tranquille que Citara. Sable et galets, eau cristalline. Accessible a pied depuis le centre de Forio en 5 minutes.' },
+              { title: 'Plage de Cava dell\'Isola', text: 'Crique sauvage sur la cote nord de Forio, frequentee par les surfeurs et les amoureux de la nature. Moins amenagee, plus authentique. Accessible en voiture ou en bus + courte marche.' },
+              { title: 'Baie de Sorgeto (thermes)', text: 'Pas une plage traditionnelle mais des piscines naturelles thermales entre les rochers. L\'eau chaude volcanique se melange a la mer froide. Gratuite, ouverte toute l\'annee. On descend environ 200 marches depuis le hameau de Panza.' },
+            ].map(({ title, text }) => (
+              <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+                <h3 class="font-semibold text-charcoal mb-2">{title}</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Questions frequentes sur Forio</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts - Forio</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-xs sm:text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Conseils d'inities</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+                <span set:html={tip}></span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Autres iles du Golfe</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/fr-fr/iles/capri/', label: 'Capri' },
+              { href: '/fr-fr/iles/anacapri/', label: 'Anacapri' },
+              { href: '/fr-fr/iles/ischia/', label: 'Ischia' },
+              { href: '/fr-fr/iles/procida/', label: 'Procida' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs sm:text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explorez les autres iles et la Cote"
+    lang="fr-fr"
+    items={[
+      { name: 'Ischia',    href: '/fr-fr/iles/ischia/',                     tag: 'Thermes & Nature',   desc: 'Sources thermales, Chateau Aragonais, Monte Epomeo et plages volcaniques.' },
+      { name: 'Capri',     href: '/fr-fr/iles/capri/',                      tag: 'La plus iconique',   desc: 'Grotte Bleue, Faraglioni, la Piazzetta : l\'ile la plus celebre du Golfe.' },
+      { name: 'Anacapri',  href: '/fr-fr/iles/anacapri/',                   tag: 'Nature & Panoramas', desc: 'Villa San Michele, Monte Solaro, Scala Fenicia : le village haut de Capri.' },
+      { name: 'Procida',   href: '/fr-fr/iles/procida/',                    tag: 'La plus authentique', desc: 'Maisons colorees a Marina Corricella, Capitale italienne de la Culture 2022.' },
+      { name: 'Positano',  href: '/fr-fr/cote-amalfitaine/positano/',       tag: 'Mode & Vue',          desc: 'Les maisons colorees a pic sur la mer, boutiques de luxe et la plage Fornillo.' },
+    ]}
+  />
+
+</BaseLayout>

@@ -12,6 +12,17 @@ export interface BlogPostEn {
 
 export const blogPostsEn: BlogPostEn[] = [
   {
+    id: '14',
+    title: 'Tiberius Gardens & Via Krupp: The Imperial Path of Capri',
+    slug: 'tiberius-gardens-via-krupp',
+    excerpt: 'Two millennia of history in one breathtaking route: from the remains of Augustus\' villa to the vertiginous switchbacks carved into the rock by German industrialist Friedrich Alfred Krupp.',
+    category: 'DISCOVERIES',
+    date: 'May 20, 2026',
+    readTime: '9 min',
+    image: '/images/giardini-tiberio-via-krupp-hero.jpg',
+    path: '/en-us/blog/tiberius-gardens-via-krupp/',
+  },
+  {
     id: '13',
     title: 'Baia di Recommone: The Hidden Refuge Between Nerano and Crapolla',
     slug: 'baia-recommone',

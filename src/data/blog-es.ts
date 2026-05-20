@@ -12,6 +12,17 @@ export interface BlogPostEs {
 
 export const blogPostsEs: BlogPostEs[] = [
   {
+    id: '14',
+    title: 'Jardines de Tiberio y Via Krupp: El Sendero Imperial de Capri',
+    slug: 'jardines-tiberio-via-krupp',
+    excerpt: 'Dos milenios de historia en una ruta impresionante: desde los restos de la villa de Augusto hasta las vertiginosas curvas excavadas en la roca por el industrial alemán Friedrich Alfred Krupp.',
+    category: 'DESCUBRIMIENTOS',
+    date: '20 de mayo de 2026',
+    readTime: '9 min',
+    image: '/images/giardini-tiberio-via-krupp-hero.jpg',
+    path: '/es-es/blog/jardines-tiberio-via-krupp/',
+  },
+  {
     id: '13',
     title: 'Baia di Recommone: El Refugio Secreto entre Nerano y Crapolla',
     slug: 'baia-recommone',

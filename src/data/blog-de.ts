@@ -12,6 +12,17 @@ export interface BlogPostDe {
 
 export const blogPostsDe: BlogPostDe[] = [
   {
+    id: '14',
+    title: 'Tiberius-Gärten & Via Krupp: Der Kaiserliche Pfad von Capri',
+    slug: 'tiberius-gaerten-via-krupp',
+    excerpt: 'Zwei Jahrtausende Geschichte auf einer atemberaubenden Route: von den Resten der Villa des Augustus zu den schwindelerregenden Serpentinen, die der deutsche Industrielle Friedrich Alfred Krupp in den Fels schlagen ließ.',
+    category: 'ENTDECKUNGEN',
+    date: '20. Mai 2026',
+    readTime: '9 Min.',
+    image: '/images/giardini-tiberio-via-krupp-hero.jpg',
+    path: '/de-de/blog/tiberius-gaerten-via-krupp/',
+  },
+  {
     id: '13',
     title: 'Baia di Recommone: Der verborgene Zufluchtsort zwischen Nerano und Crapolla',
     slug: 'baia-recommone',
