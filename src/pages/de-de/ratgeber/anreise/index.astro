@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import { getTranslations, getLocalePath } from '../../../../i18n/translations';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import { getTranslations, getLocalePath } from '../../../../i18n/translations';
 
 const lang = 'de-de';
 const t = getTranslations(lang);
@@ -17,7 +17,8 @@ const breadcrumbs = [
   title={t.meta.getting_here_title}
   description={t.meta.getting_here_description}
   lang={lang}
- pageKey="anreise">
+  breadcrumbs={breadcrumbs}
+  pageKey="anreise">
   <!-- Hero -->
   <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
     <img src="/images/come-arrivare-hero.jpg" alt="Hafen von Sorrent, Amalfiküste" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
@@ -27,17 +28,91 @@ const breadcrumbs = [
       <h1 class="font-serif text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Anreise zur Amalfiküste</h1>
       <p class="text-white/80 text-lg max-w-2xl mx-auto font-light">Zug, Flugzeug, Fähre oder Auto: alle Möglichkeiten, um die Küste aus Italien und dem Ausland zu erreichen.</p>
     </div>
-  <Breadcrumbs breadcrumbs={breadcrumbs} />
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <p class="text-lg text-slate-600 leading-relaxed">
+    <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
       Die Amalfiküste hat weder einen eigenen Flughafen noch einen Bahnhof an ihrer Hauptstrecke. Der bequemste Weg, sie zu erreichen, führt über Neapel (internationaler Flughafen und Hochgeschwindigkeitsbahnhof) oder Salerno (per Zug aus ganz Italien erreichbar). Von dort gibt es Fähren, Busse und private Transfers.
     </p>
   </section>
 
-  <!-- Transport methods -->
-  <section class="pb-16">
+  <!-- Unser Tipp -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+    <div class="bg-slate-900 rounded-[2rem] p-6 sm:p-8">
+      <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-med-gold/15 flex items-center justify-center flex-shrink-0 mt-1">
+          <svg class="w-5 h-5 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>
+        </div>
+        <div>
+          <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Unser Tipp</p>
+          <p class="text-white/80 text-sm sm:text-base leading-relaxed"><strong class="text-white">Hochsaison (Mai–Okt):</strong> Fliegen Sie nach Neapel und nehmen Sie die Direktfähre nach Positano oder Amalfi. Kein Stau, atemberaubende Aussichten.</p>
+          <p class="text-white/80 text-sm sm:text-base leading-relaxed mt-2"><strong class="text-white">Nebensaison (Nov–Apr):</strong> Hochgeschwindigkeitszug bis Salerno + SITA Bus. Günstiger und die Fähren fahren nicht.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schnellvergleich -->
+  <section class="bg-slate-900 py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Schnellvergleich</p>
+      <h2 class="text-2xl font-bold font-serif text-white mb-10">Welches Verkehrsmittel wählen?</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+
+        <div class="bg-white/5 border border-med-gold/30 rounded-2xl p-5 relative">
+          <span class="absolute -top-3 left-4 bg-med-gold text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Empfohlen</span>
+          <div class="mt-2">
+            <p class="text-white font-bold text-lg mb-1">Fähre</p>
+            <p class="text-white/40 text-xs mb-4">Apr – Okt</p>
+            <div class="space-y-2 text-xs text-white/60">
+              <p><span class="text-white/80 font-medium">Kosten:</span> €15 – €25</p>
+              <p><span class="text-white/80 font-medium">Zeit:</span> 1h – 1h30</p>
+              <p><span class="text-white/80 font-medium">Komfort:</span> <span class="text-med-gold">Hoch</span></p>
+              <p><span class="text-white/80 font-medium">Stau/Verkehr:</span> Kein</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+          <p class="text-white font-bold text-lg mb-1">Zug + Bus</p>
+          <p class="text-white/40 text-xs mb-4">Ganzjährig</p>
+          <div class="space-y-2 text-xs text-white/60">
+            <p><span class="text-white/80 font-medium">Kosten:</span> €6 – €10</p>
+            <p><span class="text-white/80 font-medium">Zeit:</span> 2h30 – 3h</p>
+            <p><span class="text-white/80 font-medium">Komfort:</span> Mittel</p>
+            <p><span class="text-white/80 font-medium">Stau/Verkehr:</span> Möglich im Bus</p>
+          </div>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+          <p class="text-white font-bold text-lg mb-1">Privattransfer</p>
+          <p class="text-white/40 text-xs mb-4">Ganzjährig</p>
+          <div class="space-y-2 text-xs text-white/60">
+            <p><span class="text-white/80 font-medium">Kosten:</span> €90 – €150</p>
+            <p><span class="text-white/80 font-medium">Zeit:</span> 1h – 1h30</p>
+            <p><span class="text-white/80 font-medium">Komfort:</span> <span class="text-med-gold">Hoch</span></p>
+            <p><span class="text-white/80 font-medium">Stau/Verkehr:</span> Möglich</p>
+          </div>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+          <p class="text-white font-bold text-lg mb-1">Eigenes Auto</p>
+          <p class="text-white/40 text-xs mb-4">Nur Nebensaison</p>
+          <div class="space-y-2 text-xs text-white/60">
+            <p><span class="text-white/80 font-medium">Kosten:</span> Kraftstoff + Parken</p>
+            <p><span class="text-white/80 font-medium">Zeit:</span> Variabel</p>
+            <p><span class="text-white/80 font-medium">Komfort:</span> Mittel</p>
+            <p><span class="text-white/80 font-medium">Stau/Verkehr:</span> <span class="text-red-400">Stark im Sommer</span></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Verkehrsmittel -->
+  <section class="py-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
       <!-- Ab Neapel -->
@@ -48,7 +123,7 @@ const breadcrumbs = [
           </div>
           <div>
             <h2 class="text-2xl font-bold font-serif">Ab Neapel</h2>
-            <p class="text-med-gold text-xs sm:text-sm">Flughafen Capodichino · Hauptbahnhof Neapel</p>
+            <p class="text-med-gold text-xs sm:text-sm">Flughafen Capodichino · Neapel Hauptbahnhof</p>
           </div>
         </div>
         <p class="text-slate-600 leading-relaxed mb-6">
@@ -82,11 +157,17 @@ const breadcrumbs = [
           </div>
         </div>
         <p class="text-slate-600 leading-relaxed mb-6">
-          Salerno ist ein oft unterschätzter, aber sehr bequemer Ausgangspunkt. Der Bahnhof Salerno wird von Hochgeschwindigkeitszügen bedient (1h40 ab Rom, 2h30 ab Mailand) und von vielen Regionalzügen. Ab Salerno fährt der SITA Bus zur Küste häufig und braucht 45 Minuten bis Amalfi. Im Sommer gibt es auch Fähren.
+          Salerno ist ein oft unterschätzter, aber sehr bequemer Ausgangspunkt. Der Bahnhof Salerno wird von Hochgeschwindigkeitszügen bedient (1h40 ab Rom, 2h30 ab Mailand) und von vielen Regionalzügen. Der Flughafen Salerno-Amalfiküste (QSR) ist der nächstgelegene Flughafen zur Küste, mit nationalen und einigen europäischen Verbindungen. Ab Salerno fährt der SITA Bus zur Küste häufig und braucht 45 Minuten bis Amalfi. Im Sommer gibt es auch Fähren.
         </p>
-        <div class="bg-med-gold/5 rounded-2xl p-5">
-          <h3 class="font-semibold text-slate-900 mb-2">Fähre ab Salerno (Sommer)</h3>
-          <p class="text-slate-600 text-xs sm:text-sm">Fähren von Salerno nach Amalfi und Positano von April bis Oktober. Etwa 45 Minuten bis Amalfi, mit wunderschönen Küstenansichten. Günstiger als Fähren ab Neapel.</p>
+        <div class="space-y-4">
+          <div class="bg-med-gold/5 rounded-2xl p-4 sm:p-5">
+            <h3 class="font-semibold text-slate-900 mb-2">Flughafen Salerno-Amalfiküste (QSR)</h3>
+            <p class="text-slate-600 text-xs sm:text-sm">Der nächstgelegene Flughafen zur Amalfiküste, nur 20 km von Vietri sul Mare entfernt. Flüge aus Mailand, Rom und einigen europäischen Städten. Vom Flughafen erreichen Bus oder Privattransfer die Küste in etwa 30 Minuten.</p>
+          </div>
+          <div class="bg-med-gold/5 rounded-2xl p-4 sm:p-5">
+            <h3 class="font-semibold text-slate-900 mb-2">Fähre ab Salerno (Sommer)</h3>
+            <p class="text-slate-600 text-xs sm:text-sm">Fähren von Salerno nach Amalfi und Positano von April bis Oktober. Etwa 45 Minuten bis Amalfi, mit wunderschönen Küstenansichten. Günstiger als Fähren ab Neapel.</p>
+          </div>
         </div>
       </div>
 
@@ -143,63 +224,550 @@ const breadcrumbs = [
     </div>
   </section>
 
-  <!-- Entfernungen & Reisezeiten -->
+  <!-- Woher reisen Sie an? -->
+  <section class="pb-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold font-serif text-slate-900 mb-8">Woher reisen Sie an?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+
+        <div class="bg-white rounded-[2rem] shadow-sm border border-slate-100 p-6">
+          <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-3">Ab Rom</p>
+          <ul class="space-y-2 text-slate-600 text-xs sm:text-sm">
+            <li class="flex gap-2"><span class="text-med-gold font-bold">1.</span> Hochgeschwindigkeitszug Rom – Salerno (1h40, ab €19)</li>
+            <li class="flex gap-2"><span class="text-med-gold font-bold">2.</span> SITA Bus Salerno – Amalfi (45 Min., €2.40)</li>
+            <li class="flex gap-2"><span class="text-slate-400 text-xs">Gesamt: ca. 2h30 – der schnellste Weg</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-[2rem] shadow-sm border border-slate-100 p-6">
+          <p class="text-med-blue text-xs font-bold uppercase tracking-wider mb-3">Ab Mailand</p>
+          <ul class="space-y-2 text-slate-600 text-xs sm:text-sm">
+            <li class="flex gap-2"><span class="text-med-blue font-bold">A.</span> Flug Mailand – Neapel (1h15, ab €30) + Fähre</li>
+            <li class="flex gap-2"><span class="text-med-blue font-bold">B.</span> Flug Mailand – Salerno (1h20) – nächstgelegener Flughafen zur Küste</li>
+            <li class="flex gap-2"><span class="text-med-blue font-bold">C.</span> Hochgeschwindigkeitszug Mailand – Salerno (4h30, ab €39) + Bus</li>
+            <li class="flex gap-2"><span class="text-slate-400 text-xs">Salerno ist näher, Neapel hat mehr Flüge</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-[2rem] shadow-sm border border-slate-100 p-6">
+          <p class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-3">Aus dem Ausland</p>
+          <ul class="space-y-2 text-slate-600 text-xs sm:text-sm">
+            <li class="flex gap-2"><span class="text-slate-400 font-bold">✈</span> Fliegen Sie nach Neapel (NAP) – Direktflüge aus London, Paris, Berlin, Madrid, Amsterdam</li>
+            <li class="flex gap-2"><span class="text-slate-400 font-bold">✈</span> Salerno (QSR) – Flughafen Amalfiküste, der nächstgelegene zur Küste</li>
+            <li class="flex gap-2"><span class="text-slate-400 font-bold">✈</span> Alternative: Rom Fiumicino + Hochgeschwindigkeitszug nach Salerno</li>
+            <li class="flex gap-2"><span class="text-slate-400 text-xs">Salerno ist näher, Neapel hat mehr Billigflüge, Rom mehr Interkontinentalverbindungen</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Entfernungen und Reisezeiten - Tabs -->
   <section class="bg-slate-100 py-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl font-bold font-serif text-slate-900 mb-8 text-center">Entfernungen & Reisezeiten</h2>
-      <div class="overflow-x-auto">
-        <table class="w-full bg-white rounded-2xl shadow-sm overflow-hidden">
-          <thead class="bg-slate-900 text-white">
-            <tr>
-              <th class="px-6 py-4 text-left text-xs sm:text-sm font-semibold">Von</th>
-              <th class="px-6 py-4 text-left text-xs sm:text-sm font-semibold">Nach</th>
-              <th class="px-6 py-4 text-left text-xs sm:text-sm font-semibold">Verkehrsmittel</th>
-              <th class="px-6 py-4 text-left text-xs sm:text-sm font-semibold">Zeit</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-100">
+      <h2 class="text-2xl font-bold font-serif text-slate-900 mb-8 text-center">Entfernungen und Reisezeiten</h2>
+
+      <!-- Tab-Schaltflächen -->
+      <div class="flex flex-wrap justify-center gap-2 mb-8" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="costiera" class="tab-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-slate-900 text-white transition-colors">Amalfiküste</button>
+        <button role="tab" aria-selected="false" data-tab="penisola" class="tab-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white text-slate-600 hover:bg-slate-200 transition-colors">Sorrentiner Halbinsel</button>
+        <button role="tab" aria-selected="false" data-tab="isole" class="tab-btn px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white text-slate-600 hover:bg-slate-200 transition-colors">Inseln</button>
+      </div>
+
+      <!-- Tab: Amalfiküste -->
+      <div data-panel="costiera" class="tab-panel">
+        <div class="overflow-x-auto">
+          <table class="w-full bg-white rounded-2xl shadow-sm overflow-hidden">
+            <thead class="bg-slate-900 text-white">
+              <tr>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Von</th>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Nach</th>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Verkehrsmittel</th>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Zeit</th>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Preis</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+            <!-- Positano -->
             <tr class="hover:bg-slate-50">
-              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Neapel (Flughafen)</td>
-              <td class="px-6 py-4 text-xs sm:text-sm font-medium">Positano</td>
-              <td class="px-6 py-4 text-xs sm:text-sm">Fähre (Sommer)</td>
-              <td class="px-6 py-4 text-xs sm:text-sm text-med-gold font-medium">1h 30min</td>
-            </tr>
-            <tr class="hover:bg-slate-50">
-              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Neapel Hauptbahnhof</td>
-              <td class="px-6 py-4 text-xs sm:text-sm font-medium">Amalfi</td>
-              <td class="px-6 py-4 text-xs sm:text-sm">Zug + SITA Bus</td>
-              <td class="px-6 py-4 text-xs sm:text-sm text-med-gold font-medium">2h 30min</td>
-            </tr>
-            <tr class="hover:bg-slate-50">
-              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Salerno</td>
-              <td class="px-6 py-4 text-xs sm:text-sm font-medium">Amalfi</td>
-              <td class="px-6 py-4 text-xs sm:text-sm">SITA Bus</td>
-              <td class="px-6 py-4 text-xs sm:text-sm text-med-gold font-medium">45 min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Neapel (Beverello)</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Positano</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Fähre (Sommer)</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">1h 30min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€18 – €22</td>
             </tr>
             <tr class="hover:bg-slate-50">
               <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Sorrent</td>
-              <td class="px-6 py-4 text-xs sm:text-sm font-medium">Positano</td>
-              <td class="px-6 py-4 text-xs sm:text-sm">Fähre</td>
-              <td class="px-6 py-4 text-xs sm:text-sm text-med-gold font-medium">25 min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Positano</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Fähre</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">25 min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€18 – €20</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Salerno</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Positano</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Fähre (Sommer)</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">1h 15min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€14 – €18</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Neapel (Flughafen)</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Positano</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Privattransfer</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">1h – 1h30</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€90 – €120</td>
+            </tr>
+            <!-- Amalfi -->
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Neapel Hauptbahnhof</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Amalfi</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Zug + SITA Bus</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">2h 30min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">~€6.30</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Salerno</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Amalfi</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">SITA Bus</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">45 min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€2.40</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Sorrent</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Amalfi</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">SITA Bus</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">1h 40min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€2.80</td>
+            </tr>
+            <!-- Ravello -->
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Amalfi</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Ravello</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Lokalbus</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">25 min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€1.30</td>
+            </tr>
+            <!-- Praiano -->
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Amalfi</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Praiano</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">SITA Bus</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">20 min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€1.80</td>
+            </tr>
+            <!-- Minori -->
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Amalfi</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Minori</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">SITA Bus / Fähre</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">10 min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€1.30</td>
+            </tr>
+            <!-- Maiori -->
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Amalfi</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Maiori</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">SITA Bus / Fähre</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">15 min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€1.30</td>
+            </tr>
+            <!-- Cetara -->
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Amalfi</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Cetara</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">SITA Bus</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">25 min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€1.80</td>
+            </tr>
+            <!-- Vietri sul Mare -->
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Salerno (Flughafen)</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Vietri sul Mare</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Bus / Transfer</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">20 min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€5 – €30</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Salerno</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Vietri sul Mare</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">SITA Bus</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">10 min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€1.30</td>
+            </tr>
+            <!-- Ab Rom / Mailand / Ausland -->
+            <tr class="bg-slate-50"><td colspan="5" class="px-3 py-2 sm:px-6 sm:py-3 text-xs font-bold uppercase tracking-wider text-slate-400">Ab Rom / Mailand / Ausland</td></tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Rom Termini</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Salerno</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Hochgeschwindigkeitszug</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">1h 40min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €19</td>
             </tr>
             <tr class="hover:bg-slate-50">
               <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Rom Termini</td>
-              <td class="px-6 py-4 text-xs sm:text-sm font-medium">Salerno</td>
-              <td class="px-6 py-4 text-xs sm:text-sm">Hochgeschwindigkeitszug</td>
-              <td class="px-6 py-4 text-xs sm:text-sm text-med-gold font-medium">1h 40min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Neapel Hauptbahnhof</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Hochgeschwindigkeitszug</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">1h 10min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €15</td>
             </tr>
-          </tbody>
-        </table>
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Mailand Hauptbahnhof</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Salerno</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Hochgeschwindigkeitszug</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">4h 30min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €39</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Mailand (Flughafen)</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Neapel (NAP)</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Flug</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">1h 15min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €30</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Mailand (Flughafen)</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Salerno (QSR)</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Flug</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">1h 20min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €35</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">London / Paris / Berlin</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Neapel (NAP)</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Direktflug</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">2h – 2h30</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €30</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Rom Fiumicino</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Salerno</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Hochgeschwindigkeitszug (über Rom Termini)</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">2h 30min</td>
+              <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €25</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab: Sorrentiner Halbinsel -->
+      <div data-panel="penisola" class="tab-panel hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full bg-white rounded-2xl shadow-sm overflow-hidden">
+            <thead class="bg-slate-900 text-white">
+              <tr>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Von</th>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Nach</th>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Verkehrsmittel</th>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Zeit</th>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Preis</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <!-- Sorrent -->
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Neapel Hauptbahnhof</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Sorrent</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Circumvesuviana</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">1h 10min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€3.90</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Neapel (Beverello)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Sorrent</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Tragflügelboot</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">35 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€15 – €18</td>
+              </tr>
+              <!-- Vico Equense -->
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Neapel Hauptbahnhof</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Vico Equense</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Circumvesuviana</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">55 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€3.60</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Sorrent</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Vico Equense</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Circumvesuviana</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">10 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€1.80</td>
+              </tr>
+              <!-- Sant'Agnello -->
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Sorrent</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Sant'Agnello</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Circumvesuviana / zu Fuß</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">5 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€1.80</td>
+              </tr>
+              <!-- Massa Lubrense -->
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Sorrent</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Massa Lubrense</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">SITA Bus / Auto</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">20 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€1.80</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Sorrent</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Marina del Cantone</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">SITA Bus</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">35 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€1.80</td>
+              </tr>
+              <!-- Punta Campanella -->
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Massa Lubrense (Termini)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Punta Campanella</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Zu Fuß (Wanderweg)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">45 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Kostenlos</td>
+              </tr>
+              <!-- Ab Rom / Mailand / Ausland -->
+              <tr class="bg-slate-50"><td colspan="5" class="px-3 py-2 sm:px-6 sm:py-3 text-xs font-bold uppercase tracking-wider text-slate-400">Ab Rom / Mailand / Ausland</td></tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Rom Termini</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Neapel Hauptbahnhof</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Hochgeschwindigkeitszug</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">1h 10min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €15</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Mailand (Flughafen)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Neapel (NAP)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Flug</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">1h 15min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €30</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Mailand Hauptbahnhof</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Neapel Hauptbahnhof</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Hochgeschwindigkeitszug</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">4h 10min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €35</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">London / Paris / Berlin</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Neapel (NAP)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Direktflug</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">2h – 2h30</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €30</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab: Inseln -->
+      <div data-panel="isole" class="tab-panel hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full bg-white rounded-2xl shadow-sm overflow-hidden">
+            <thead class="bg-slate-900 text-white">
+              <tr>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Von</th>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Nach</th>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Verkehrsmittel</th>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Zeit</th>
+                <th class="px-3 py-2 sm:px-6 sm:py-4 text-left text-xs sm:text-sm font-semibold">Preis</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <!-- Capri -->
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Sorrent</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Capri</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Tragflügelboot</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">25 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€20 – €25</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Neapel (Beverello)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Capri</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Tragflügelboot</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">50 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€22 – €28</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Positano</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Capri</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Fähre (Sommer)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">30 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€20 – €25</td>
+              </tr>
+              <!-- Anacapri -->
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Capri (Marina Grande)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Anacapri</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ATC Bus</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">15 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€2.20</td>
+              </tr>
+              <!-- Ischia -->
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Neapel (Beverello)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Ischia Porto</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Tragflügelboot</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">50 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€20 – €25</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Neapel (Porta di Massa)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Ischia Porto</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Langsamfähre</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">1h 30min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€12 – €15</td>
+              </tr>
+              <!-- Forio -->
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Ischia Porto</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Forio</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">EAV Bus</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">30 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€1.80</td>
+              </tr>
+              <!-- Sant'Angelo -->
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Ischia Porto</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Sant'Angelo</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">EAV Bus</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">40 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€1.80</td>
+              </tr>
+              <!-- Casamicciola -->
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Ischia Porto</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Casamicciola</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">EAV Bus</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">15 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€1.80</td>
+              </tr>
+              <!-- Lacco Ameno -->
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Ischia Porto</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Lacco Ameno</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">EAV Bus</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">20 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€1.80</td>
+              </tr>
+              <!-- Procida -->
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Neapel (Beverello)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Procida</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Tragflügelboot</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">35 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€15 – €18</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Ischia Porto</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Procida</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Fähre</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">15 min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">€8 – €10</td>
+              </tr>
+              <!-- Ab Rom / Mailand / Ausland -->
+              <tr class="bg-slate-50"><td colspan="5" class="px-3 py-2 sm:px-6 sm:py-3 text-xs font-bold uppercase tracking-wider text-slate-400">Ab Rom / Mailand / Ausland</td></tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Rom Termini</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Neapel Hauptbahnhof</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Hochgeschwindigkeitszug</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">1h 10min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €15</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Mailand (Flughafen)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Neapel (NAP)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Flug</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">1h 15min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €30</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Mailand Hauptbahnhof</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Neapel Hauptbahnhof</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Hochgeschwindigkeitszug</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">4h 10min</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €35</td>
+              </tr>
+              <tr class="hover:bg-slate-50">
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">London / Paris / Berlin</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium">Neapel (NAP)</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">Direktflug</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm text-med-gold font-medium">2h – 2h30</td>
+                <td class="px-3 py-2 sm:px-6 sm:py-4 text-xs sm:text-sm">ab €30</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Tab-Wechsel-Skript -->
+  <script>
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.getAttribute('data-tab');
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          b.classList.remove('bg-slate-900', 'text-white');
+          b.classList.add('bg-white', 'text-slate-600');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.remove('bg-white', 'text-slate-600');
+        btn.classList.add('bg-slate-900', 'text-white');
+        btn.setAttribute('aria-selected', 'true');
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+        document.querySelector(`[data-panel="${tab}"]`)?.classList.remove('hidden');
+      });
+    });
+  </script>
+
+  <!-- Verkehrsführer -->
+  <section class="py-16">
+    <div class="max-w-5xl mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-3 text-center">Verkehrsführer</h2>
+      <p class="text-slate-600 text-center mb-10 max-w-2xl mx-auto">Ausführliche Ratgeber zu jedem Verkehrsmittel an der Amalfiküste</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <a href="/de-de/ratgeber/faehren/" class="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-slate-100">
+          <div class="w-12 h-12 bg-med-blue/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-med-blue/20 transition-colors">
+            <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5h16.5m-16.5 0a2.25 2.25 0 01-2.25-2.25V6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.25 6v5.25a2.25 2.25 0 01-2.25 2.25m-16.5 0v2.25A2.25 2.25 0 005.25 18h13.5a2.25 2.25 0 002.25-2.25V13.5"/></svg>
+          </div>
+          <h3 class="font-semibold text-slate-900 mb-1">Fähren und Tragflügelboote</h3>
+          <p class="text-sm text-slate-500">Routen, Fahrpläne, Preise und Tipps für die Fahrt auf dem Seeweg</p>
+        </a>
+        <a href="/de-de/ratgeber/sita-bus/" class="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-slate-100">
+          <div class="w-12 h-12 bg-med-blue/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-med-blue/20 transition-colors">
+            <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75h7.5M12 3v1.5m4.5 1.5h1.5a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-1.5m-9 0H6a2.25 2.25 0 01-2.25-2.25v-7.5A2.25 2.25 0 016 6h1.5m0 0h9m-9 0V4.5A1.5 1.5 0 019 3h6a1.5 1.5 0 011.5 1.5V6"/></svg>
+          </div>
+          <h3 class="font-semibold text-slate-900 mb-1">SITA Bus</h3>
+          <p class="text-sm text-slate-500">Linien, Haltestellen, Tickets und Fahrpläne auf der SS163</p>
+        </a>
+        <a href="/de-de/ratgeber/parken-ztl/" class="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-slate-100">
+          <div class="w-12 h-12 bg-med-blue/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-med-blue/20 transition-colors">
+            <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0H21a.75.75 0 00.75-.75v-3.75a3 3 0 00-3-3h-1.5V6.75a.75.75 0 00-.75-.75H5.25a.75.75 0 00-.75.75v7.5"/></svg>
+          </div>
+          <h3 class="font-semibold text-slate-900 mb-1">Parken und ZTL</h3>
+          <p class="text-sm text-slate-500">Wo parken, Kosten, Umweltzonen und Fahrbeschränkungen</p>
+        </a>
+        <a href="/de-de/ratgeber/karte/" class="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-slate-100">
+          <div class="w-12 h-12 bg-med-blue/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-med-blue/20 transition-colors">
+            <svg class="w-6 h-6 text-med-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
+          </div>
+          <h3 class="font-semibold text-slate-900 mb-1">Interaktive Karte</h3>
+          <p class="text-sm text-slate-500">Alle Häfen, Haltestellen und Strecken auf der Karte</p>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="py-16 text-center">
+  <section class="py-16 text-center bg-white">
     <div class="max-w-2xl mx-auto px-4">
       <h2 class="text-2xl font-bold text-slate-900 mb-4">Jetzt Ihre Reiseroute planen</h2>
       <a href={getLocalePath(lang, 'itineraries')}
-        class="inline-block bg-med-gold text-white font-semibold px-8 py-3 rounded-full hover:bg-med-gold transition-colors">
+        class="inline-block bg-med-blue text-white font-semibold px-8 py-3 rounded-full hover:bg-med-blue transition-colors">
         Empfohlene Reiserouten ansehen
       </a>
     </div>
