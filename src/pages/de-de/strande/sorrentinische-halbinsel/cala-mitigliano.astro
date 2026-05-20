@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'de-de';
 
@@ -11,18 +12,75 @@ const breadcrumbs = [
 ];
 
 const facts = [
-  { label: 'Untergrund', value: 'Kiesel und Felsen' },
-  { label: 'Zugang', value: 'Steiler Wanderweg (30 Min.) oder Boot' },
-  { label: 'Schatten', value: 'Ab 17:00 Uhr' },
+  { label: 'Lage', value: 'Massa Lubrense, NA' },
+  { label: 'Untergrund', value: 'Weißer Kiesel und Felsen' },
+  { label: 'Zugang', value: '~300 Stufen (20–30 Min.)' },
+  { label: 'Höhenunterschied', value: '~120 m' },
+  { label: 'Natürliche Höhle', value: 'Ja, Schutz vor der Sonne' },
   { label: 'Aussicht', value: 'Faraglioni di Capri (direkt gegenüber)' },
-  { label: 'Ideal für', value: 'Wandern, Schnorcheln, Fotografie' },
+  { label: 'Schatten', value: 'Ab ca. 17:00 Uhr' },
+  { label: 'Ausstattung', value: 'Keine (wilder Strand)' },
+  { label: 'Schnorcheln', value: 'Ausgezeichnet (Felsgrund)' },
+  { label: 'Beste Reisezeit', value: 'Mai–Jun / Sep–Okt' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie kommt man zur Cala di Mitigliano?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Von Termini (Ortsteil von Massa Lubrense) folgt man dem markierten Pfad nach Mitigliano. Man steigt ca. 300 Stufen durch die Macchia mediterranea hinab, mit einem Höhenunterschied von etwa 120 Metern. Der Abstieg dauert 20–30 Minuten, der Aufstieg 35–45 Minuten. Alternativ ist die Anfahrt per Wassertaxi von Marina del Cantone oder Sorrent möglich. Geschlossene Schuhe sind für den Pfad Pflicht."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum ist der Blick auf die Faraglioni so besonders?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cala di Mitigliano bietet den nächsten direkten Blick auf die Faraglioni di Capri vom Festland. Die Bucht liegt an der äußersten Spitze der Sorrentiner Halbinsel, nur 5 km Luftlinie von Capri entfernt. Beim Sonnenuntergang verwandelt das Streiflicht die Faraglioni in Gold: Es ist der spektakulärste Fotospot der gesamten Halbinsel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gibt es Schatten am Strand?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die natürliche Höhle auf der linken Seite des Strands bietet den ganzen Tag Schutz vor der Sonne. Die Klippen schaffen ab ca. 17:00 Uhr natürlichen Schatten. Es gibt keine Sonnenschirme zum Ausleihen: Ein Tuch als Sonnenschutz mitbringen, wenn man in den Mittagsstunden ankommt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist der Pfad gefährlich?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Pfad ist technisch nicht gefährlich, aber steil und stellenweise rutschig, besonders nach Regen. Die 300 Stufen sind unregelmäßig und aus Naturstein. Wanderschuhe oder geschlossene Schuhe mit griffiger Sohle sind Pflicht. Nicht empfehlenswert für Kleinkinder oder Personen mit Knieproblemen. Der Aufstieg ist anstrengend."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was sollte man zur Cala di Mitigliano mitbringen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es gibt keinerlei Einrichtungen. Mitbringen: Wasser (mindestens 2 Liter pro Person), Essen, Sonnencreme, Hut, geschlossene Schuhe für den Pfad, Wasserschuhe für das Wasser, Schnorchelmaske und Schnorchel, Handtuch und Mülltüte. Ein kleiner Sonnenschutz kann in den Mittagsstunden nützlich sein."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
   "@type": "Beach",
   "name": "Cala di Mitigliano",
-  "description": "Eine wilde Bucht mit atemberaubendem Blick auf die Faraglioni di Capri. Erreichbar über einen steilen Wanderpfad ab Massa Lubrense oder per Boot.",
+  "description": "Wilder Strand mit weißem Kiesel und dem besten direkten Blick auf die Faraglioni di Capri vom Festland. Nur zu Fuß (300 Stufen) oder per Boot erreichbar. Natürliche Höhle, außergewöhnliches Schnorcheln und keine Einrichtungen.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "40.6120",
+    "longitude": "14.3280"
+  },
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Massa Lubrense",
@@ -33,28 +91,28 @@ const beachSchema = {
 ---
 
 <BaseLayout
-  title="Cala di Mitigliano: Geheimer Strand mit Capri-Blick"
-  description="Cala di Mitigliano bei Massa Lubrense: die versteckte Bucht mit dem besten Blick direkt auf die Faraglioni di Capri. Anreise per Wanderweg oder Boot."
+  title="Cala di Mitigliano 2026: Geheimer Strand mit Capri-Blick | Massa Lubrense"
+  description="Vollständiger Führer zur Cala di Mitigliano bei Massa Lubrense: der versteckte Strand mit dem besten direkten Blick auf die Faraglioni di Capri. 300 Stufen, natürliche Höhle, Schnorcheln und praktische Tipps."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
   pageKey="cala-mitigliano"
 >
 
   <!-- Hero -->
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
-      src="/images/cala-mitigliano.jpg"
-      alt="Cala di Mitigliano, Massa Lubrense, mit Capri im Hintergrund"
+      src="/images/cala-mitigliano-hero.jpg"
+      alt="Cala di Mitigliano - weißer Kieselstrand mit Blick auf die Faraglioni di Capri, Massa Lubrense"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
       referrerpolicy="no-referrer"
     />
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Massa Lubrense · Capri-Blick</p>
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Massa Lubrense · Capri-Blick · Wilder Strand</p>
       <h1 class="font-serif text-display text-white mb-6">Cala di Mitigliano</h1>
-      <p class="text-lg md:text-xl font-light text-white/80">Die geheime Bucht mit den Faraglioni di Capri direkt gegenüber.</p>
+      <p class="text-lg md:text-xl font-light text-white/80">Der geheime Strand mit den Faraglioni di Capri direkt gegenüber.</p>
     </div>
     <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
@@ -64,26 +122,122 @@ const beachSchema = {
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
 
       <!-- Haupttext -->
-      <div class="lg:col-span-2 space-y-12">
+      <div class="lg:col-span-2 space-y-16">
+
+        <!-- Intro -->
         <div>
-          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Ein Verstecktes Juwel</h2>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Ein Verborgenes Juwel</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Die Cala di Mitigliano ist ein verstecktes Juwel der Sorrentiner Halbinsel. Wegen des anspruchsvollen Zugangswegs kaum besucht, bietet sie einen spektakulären Blick direkt auf die Faraglioni di Capri - zweifellos der schönste Capri-Blick vom Festland. Das Wasser ist kristallklar über Felsengrund, ideal zum Schnorcheln.
+            Die Cala di Mitigliano ist ein verborgenes Juwel der <a href="/de-de/sorrentinische-halbinsel/" class="text-med-blue hover:underline">Sorrentiner Halbinsel</a>. Wegen des anspruchsvollen Zugangswegs – etwa 300 in den Fels gehauene Stufen – kaum besucht, bietet sie einen atemberaubenden direkten Blick auf Capri und seine Faraglioni. Wahrscheinlich der schönste Capri-Blick vom Festland.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Das Wasser ist kristallklar mit Felsgrund, ideal zum Schnorcheln. Die natürliche Höhle am Strand bietet Schutz vor der Sonne in den heißesten Stunden. Beim Sonnenuntergang verwandelt das Streiflicht die Faraglioni in Gold: Kamera mitbringen, denn dies ist das Capri-Foto, das Touristen nicht machen – man braucht etwas Ausdauer, um hierher zu gelangen.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            Eine natürliche Höhle am Strand spendet Schatten in den heißesten Stunden. Ein echtes Paradies für Wanderer und Entdecker. Beim Sonnenuntergang taucht das Streiflicht die Faraglioni in Gold: Kamera nicht vergessen.
+            Keine Bars, keine Sonnenschirme, keine Musik. Nur weißer Kiesel, das Rauschen der Wellen und die Insel Capri so nah, dass sie zum Greifen scheint. Der perfekte Ort für alle, die die Küste suchen, bevor die Massen kamen.
           </p>
         </div>
 
-        <!-- Capri-Blick -->
-        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-          <div class="flex items-center gap-4 mb-4">
-            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-            <h3 class="text-xl font-bold">Der Schönste Capri-Blick</h3>
+        <!-- Stats -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Wusstest du?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">300</p>
+              <p class="text-white/60 text-xs italic mt-1">Stufen zur Bucht</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">5 km</p>
+              <p class="text-white/60 text-xs italic mt-1">Luftlinie nach Capri</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">120 m</p>
+              <p class="text-white/60 text-xs italic mt-1">Höhenunterschied vom Parkplatz</p>
+            </div>
           </div>
-          <p class="text-slate-600 leading-relaxed">
-            Vom Strand aus hat man einen <strong>direkten und nahen Blick</strong> auf alle drei Faraglioni. Gegen Sonnenuntergang (ab ca. 17:30 Uhr) ist das Licht perfekt. Das ist das Capri-Foto, das Touristen nicht machen - weil man etwas Mühe auf sich nehmen muss, um hierher zu gelangen.
+        </div>
+
+        <!-- Geschichte -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Die Ursprünge: Zwischen Mönchen und Fischern</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Der Name „Mitigliano" leitet sich wahrscheinlich vom lateinischen <strong><em>Mytilus</em></strong> (Miesmuschel) ab, was auf den Reichtum an Muscheln auf den Felsen der Bucht hinweist. Jahrhundertelang war dieser Strand nur den Fischern von <a href="/de-de/sorrentinische-halbinsel/massa-lubrense/" class="text-med-blue hover:underline">Massa Lubrense</a> bekannt, die ihn als natürlichen, windgeschützten Ankerplatz nutzten.
           </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Das Gebiet um die Bucht gehörte den Benediktinermönchen des Klosters San Pietro, die die Olivenhaine auf den Terrassen anbauten, die noch heute entlang des Pfades sichtbar sind. Die Trockenmauern, denen man beim Abstieg begegnet – manche davon Jahrhunderte alt – sind ihr Werk.
+          </p>
+          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm my-8">
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Die Wachttürme</h3>
+            <p class="text-slate-600 leading-relaxed">
+              Auf dem Kliff über der Bucht befinden sich die Überreste eines <strong>Wachturms aus dem 16. Jahrhundert</strong>, Teil des Küstenverteidigungssystems der spanischen Vizekönige gegen sarazenische Piratenüberfälle. Von diesem Turm aus kommunizierten die Wachposten durch Feuer und Signale mit den benachbarten Türmen von <a href="/de-de/strande/sorrentinische-halbinsel/spiaggia-di-ieranto/" class="text-med-blue hover:underline">Ieranto</a> und Punta Campanella. Die Turmreste sind kurz vor dem letzten Abstiegsstück vom Pfad aus sichtbar.
+            </p>
+          </div>
+        </div>
+
+        <!-- Die natürliche Höhle -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Die Natürliche Höhle</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Auf der linken Seite des Strands öffnet sich eine <strong>natürliche Höhle aus Kalkstein</strong>, etwa 4–5 Meter hoch und etwa zehn Meter tief. Sie ist der wertvollste natürliche Unterschlupf der Bucht: In den Mittagsstunden, wenn die Sonne senkrecht auf den Kiesel brennt, bietet die Höhle kühlen Schatten und eine einzigartige Perspektive auf die Bucht.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Im Inneren der Höhle ist der Meeresgrund besonders reich: Der Fels schafft Spalten, in denen sich Tintenfische, Muränen und kleine Krebstiere verstecken. Mit Schnorchelmaske und Schnorchel kann man die versunkenen Höhlenwände erkunden, wo das Licht türkisblaue Reflexe erzeugt.
+          </p>
+        </div>
+
+        <!-- Schnorcheln -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Schnorcheln: Ein Natürliches Aquarium</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            Das Wasser der Cala di Mitigliano zählt zu den klarsten der Sorrentiner Halbinsel. Die Nähe zum Meeresschutzgebiet Punta Campanella und der schwierige Zugang halten Motorboote fern und lassen das Meer in fast unberührtem Zustand.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Felszone (0–3 m)</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Goldbrassen, blaue Castagnole, Lippfische, Schleimfische. Entlang der Felswände an der Wasseroberfläche sieht man Seeigel, Anemonen und kleine Seeanemonen. Ideal für Anfänger.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Sandiger Grund (3–6 m)</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Meerbarben, Schollen, Seesterne und Posidonia oceanica. In den Posidonia-Wiesen verstecken sich Seepferdchen, Pfeifenfische und bunte Nacktschnecken.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Die versunkene Höhle</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Tintenfische, Muränen, rote Garnelen und kleine Zackenbarsche. Das Licht, das durch den Höhleneingang fällt, erzeugt einen blau-türkisen Effekt auf den versunkenen Wänden.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Offenes Wasser</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Schwärme von Salpen, Goldbrassen und Bogen passieren regelmäßig die Bucht. Mit Glück sieht man mediterrane Barrakudas und kleine Zahnbrassen in den frühen Morgenstunden.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Der Pfad -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Der Pfad der 300 Stufen</h2>
+          <div class="space-y-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">1</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Start in Termini (0–5 Min.)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Start vom Dorfplatz in Termini (Ortsteil von Massa Lubrense). Der Pfad beginnt neben einer Votivkapelle. Die ersten Minuten führen leicht bergab auf einem gepflasterten Saumpfad zwischen Trockenmauern und Olivenhainen.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">2</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Die Olivenhaine und der Turm (5–15 Min.)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Der Pfad führt durch jahrhundertealte Olivenhaine auf den Benediktiner-Terrassen. Auf halbem Weg sieht man die Überreste des Sarazenturms und die ersten Ausblicke auf die Bucht und Capri. Die Luft duftet nach wildem Rosmarin und Myrte.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">3</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Der finale Abstieg (15–30 Min.)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Das letzte Stück ist das steilste: Unregelmäßige Steinstufen steigen durch die Macchia mediterranea hinab. Die Faraglioni erscheinen in ganzer Pracht direkt gegenüber. Die Ankunft am weißen Kieselstrand belohnt jeden Schweißtropfen.</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 mt-4">Der Aufstieg dauert 35–45 Minuten. Die heißesten Stunden (12–15 Uhr) für den Aufstieg meiden.</p>
         </div>
 
         <!-- Anreise -->
@@ -91,24 +245,93 @@ const beachSchema = {
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Anreise</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Wanderweg zu Fuß</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Wanderweg zu Fuß · Empfohlen</p>
               <p class="text-slate-700 font-medium mb-1">Ab Termini, Massa Lubrense</p>
-              <p class="text-slate-500 text-xs sm:text-sm">30 Min. steiler Abstieg. Wanderschuhe unbedingt erforderlich. Keine Einrichtungen vor Ort.</p>
+              <p class="text-slate-500 text-xs sm:text-sm">~300 Stufen, 20–30 Min. bergab. Geschlossene Schuhe Pflicht. Begrenzter Parkplatz in Termini (im Sommer früh ankommen).</p>
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Boat</p>
-              <p class="text-slate-700 font-medium mb-1">Von Sorrent oder Marina del Cantone</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Die einfachste Option. Bootsausflug mit Halt an der Bucht buchen.</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Wassertaxi</p>
+              <p class="text-slate-700 font-medium mb-1">Von Marina del Cantone oder Sorrent</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Die komfortabelste Option. Wassertaxi von Marina del Cantone (~10 Min., 40–60 €). Von Sorrent ~30 Min. Bootstour mit Halt an der Bucht buchen.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus + Wanderweg</p>
+              <p class="text-slate-700 font-medium mb-1">Von Sorrent nach Termini</p>
+              <p class="text-slate-500 text-xs sm:text-sm">SITA-Bus von Sorrent nach Massa Lubrense, dann Lokalbus nach Termini. Ca. 40 Min. gesamt + Wanderweg. Fahrzeiten prüfen.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Kajak</p>
+              <p class="text-slate-700 font-medium mb-1">Von Marina del Cantone</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Kajak-Verleih von Marina del Cantone (~15 Min. paddeln). Der Meeresansatz erlaubt es, die Klippen und die Höhle vom Wasser aus zu bewundern.</p>
             </div>
           </div>
         </div>
+
+        <!-- Capri-Blick Box -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            <h3 class="text-xl font-bold">Der Schönste Blick auf Capri</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Vom Strand aus hat man einen <strong>direkten und nahen Blick</strong> auf alle drei Faraglioni di Capri, nur 5 km Luftlinie entfernt. Beim Sonnenuntergang (ab ca. 17:30 Uhr) verwandelt das Streiflicht sie in reines Gold vor dem rosafarbenen Himmel.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            Das ist das Capri-Foto, das Touristen nicht machen – weil man etwas Ausdauer braucht, um hierher zu gelangen. Der beste Fotostandpunkt ist von der rechten Seite des Strands, wo sich alle drei Faraglioni perfekt ausrichten.
+          </p>
+        </div>
+
+        <!-- Tipps -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-6">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+            <h3 class="text-xl font-bold">4 Tipps der Einheimischen</h3>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-slate-900 mb-1">1. Wasserschuhe mitbringen</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Die Kiesel sind groß und unregelmäßig. Ins Wasser ein- und austreten ohne Wasserschuhe ist schmerzhaft. Im Rucksack zusammen mit Schnorchelmaske und Schnorchel mitführen – das Schnorcheln hier ist außergewöhnlich.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">2. Zum Sonnenuntergang kommen, nicht gehen</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Der magischste Moment ist von 17:00 bis 19:00 Uhr, wenn die Sonne die Faraglioni in goldenem Licht erstrahlen lässt und die Bucht in natürlichen Schatten taucht. Nachmittags ankommen, das Bad genießen und für das Spektakel bleiben.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">3. In der Höhle Zuflucht suchen</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">In den Mittagsstunden (12–15 Uhr) brennt die Sonne senkrecht auf den Kiesel und es wird sehr heiß. Die natürliche Höhle links ist der Unterschlupf: kühler Schatten und ein perfekter Aussichtspunkt auf die Bucht.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">4. Mit Ieranto für einen epischen Tag kombinieren</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Wer starke Beine hat: morgens nach <a href="/de-de/strande/sorrentinische-halbinsel/spiaggia-di-ieranto/" class="text-med-blue hover:underline">Ieranto</a> von Nerano hinabsteigen, aufsteigen, Mittagessen mit Spaghetti alla Nerano, dann nachmittags von Termini nach Mitigliano. Zwei geheime Strände an einem Tag.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Häufig Gestellte Fragen</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
       </div>
 
-      <!-- Sidebar Kurzinfos -->
+      <!-- Sidebar Fast-Facts -->
       <aside class="lg:col-span-1">
         <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
           <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
-            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Kurzinfos
+            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Schnellfakten
           </h3>
           <div class="space-y-6">
             {facts.map((item) => (
@@ -132,17 +355,15 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="bg-med-blue py-16 text-center">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-white mb-4">Die Sorrentiner Halbinsel erkunden</h2>
-      <a
-        href="/de-de/sorrentinische-halbinsel/"
-        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
-      >
-        Reiseführer Sorrentiner Halbinsel
-      </a>
-    </div>
-  </section>
+  <CorrelationSlider
+    lang="de-de"
+    items={[
+      { name: 'Baia di Ieranto',     href: '/de-de/strande/sorrentinische-halbinsel/spiaggia-di-ieranto/',  tag: 'FAI-Schutzgebiet',    desc: 'Geschützte Bucht des FAI mit Blick auf die Faraglioni, nur zu Fuß von Nerano erreichbar.' },
+      { name: 'Regina Giovanna',     href: '/de-de/strande/sorrentinische-halbinsel/regina-giovanna/',      tag: 'Römerruinen',         desc: 'Natürlicher Pool zwischen den römischen Ruinen der Villa Pollio Felice, Sorrent.' },
+      { name: 'Marina del Cantone',  href: '/de-de/strande/sorrentinische-halbinsel/marina-del-cantone/',   tag: 'Sand & Restaurants',  desc: 'Der größte Strand der Sorrentiner Halbinsel: Geburtsort der Spaghetti alla Nerano.' },
+      { name: 'Massa Lubrense',      href: '/de-de/sorrentinische-halbinsel/massa-lubrense/',               tag: 'Das Dorf',            desc: 'Die Gemeinde, die Mitigliano, Ieranto und die schönsten Strände der Halbinsel beherbergt.' },
+    ]}
+    title="Weitere Strände der Sorrentiner Halbinsel"
+  />
 
 </BaseLayout>

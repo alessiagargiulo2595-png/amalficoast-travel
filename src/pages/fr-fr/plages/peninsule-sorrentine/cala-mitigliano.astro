@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'fr-fr';
 
@@ -11,18 +12,28 @@ const breadcrumbs = [
 ];
 
 const facts = [
-  { label: 'Revêtement', value: 'Galets et rochers' },
-  { label: 'Accès', value: 'Sentier pentu (30 min) ou bateau' },
-  { label: 'Ombre', value: 'À partir de 17h00' },
-  { label: 'Vue', value: 'Faraglioni di Capri (face à face)' },
-  { label: 'Idéal pour', value: 'Randonnée, snorkeling, photographie' },
+  { label: 'Position', value: 'Massa Lubrense, NA' },
+  { label: 'Revêtement', value: 'Galets blancs et rochers' },
+  { label: 'Accès', value: '~300 marches (20-30 min)' },
+  { label: 'Dénivelé', value: '~120 m' },
+  { label: 'Grotte naturelle', value: 'Oui, abri contre le soleil' },
+  { label: 'Vue', value: 'Faraglioni de Capri (face à face)' },
+  { label: 'Ombre', value: 'À partir de 17h00 environ' },
+  { label: 'Équipements', value: 'Aucun (plage sauvage)' },
+  { label: 'Snorkeling', value: 'Excellent (fonds rocheux)' },
+  { label: 'Meilleure période', value: 'Mai-Juin / Sep-Oct' },
 ];
 
 const beachSchema = {
   "@context": "https://schema.org",
   "@type": "Beach",
   "name": "Cala di Mitigliano",
-  "description": "Une crique sauvage avec une vue époustouflante en face sur les Faraglioni de Capri. Accessible par un sentier escarpé depuis Massa Lubrense ou en bateau.",
+  "description": "Crique sauvage de galets blancs offrant la meilleure vue frontale sur les Faraglioni de Capri depuis le continent. Accessible uniquement à pied (300 marches) ou en bateau. Grotte naturelle, snorkeling exceptionnel et absence totale d'installations.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "40.6120",
+    "longitude": "14.3280"
+  },
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Massa Lubrense",
@@ -30,14 +41,61 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment accéder à Cala di Mitigliano ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Depuis Termini (frazione de Massa Lubrense), suivez le sentier balisé vers Mitigliano. On descend environ 300 marches à travers la garrigue méditerranéenne pour un dénivelé d'environ 120 mètres. La descente prend 20-30 minutes, la remontée 35-45 minutes. On peut aussi y accéder par la mer en taxi-boat depuis Marina del Cantone ou Sorrente. Chaussures fermées obligatoires pour le sentier."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi la vue sur les Faraglioni est-elle si spéciale ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cala di Mitigliano offre la vue frontale la plus rapprochée sur les Faraglioni de Capri depuis la terre ferme. La crique se trouve à la pointe extrême de la Péninsule Sorrentine, à seulement 5 km à vol d'oiseau de Capri. Au coucher du soleil, la lumière rasante transforme les Faraglioni en or : c'est le point photographique le plus spectaculaire de toute la péninsule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Y a-t-il de l'ombre sur la plage ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La grotte naturelle sur la partie gauche de la plage offre un abri contre le soleil pendant une bonne partie de la journée. Les falaises créent une ombre naturelle à partir de 17h00 environ. Il n'y a pas de parasols à louer : apportez un drap à utiliser comme parasol si vous arrivez aux heures les plus chaudes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le sentier est-il dangereux ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le sentier n'est pas techniquement dangereux mais il est raide et par endroits glissant, surtout après la pluie. Les 300 marches sont irrégulières et en pierre naturelle. Des chaussures de randonnée ou des chaussures fermées à semelle antidérapante sont obligatoires. Déconseillé avec de très jeunes enfants ou des personnes ayant des problèmes aux genoux. La remontée est éprouvante."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Que faut-il apporter à Cala di Mitigliano ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il n'y a aucun équipement sur place. Apporter : eau (au moins 2 litres par personne), nourriture, crème solaire, chapeau, chaussures fermées pour le sentier, chaussures de rochers pour l'eau, masque et tuba pour le snorkeling, serviette et sac pour les déchets. Un petit drap-parasol peut être utile aux heures les plus chaudes."
+      }
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  title="Cala di Mitigliano : Plage Secrète avec Vue sur Capri"
-  description="Cala di Mitigliano à Massa Lubrense : la crique cachée avec la meilleure vue face aux Faraglioni de Capri. Comment y aller par sentier ou en bateau."
+  title="Cala di Mitigliano 2026 : Plage Secrète avec Vue sur les Faraglioni | Massa Lubrense"
+  description="Guide complet de Cala di Mitigliano à Massa Lubrense : la plage cachée avec la meilleure vue frontale sur les Faraglioni de Capri. 300 marches, grotte naturelle, snorkeling, histoire et conseils pratiques."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
   pageKey="cala-mitigliano"
 >
 
@@ -45,14 +103,14 @@ const beachSchema = {
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
       src="/images/cala-mitigliano.jpg"
-      alt="Cala di Mitigliano, Massa Lubrense, avec Capri en arrière-plan"
+      alt="Cala di Mitigliano - crique de galets blancs avec vue sur les Faraglioni de Capri, Massa Lubrense"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
       referrerpolicy="no-referrer"
     />
-    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Massa Lubrense · Vue Capri</p>
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Massa Lubrense · Vue Capri · Plage Sauvage</p>
       <h1 class="font-serif text-display text-white mb-6">Cala di Mitigliano</h1>
       <p class="text-lg md:text-xl font-light text-white/80">La crique secrète avec les Faraglioni de Capri droit devant.</p>
     </div>
@@ -64,26 +122,122 @@ const beachSchema = {
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
 
       <!-- Texte principal -->
-      <div class="lg:col-span-2 space-y-12">
+      <div class="lg:col-span-2 space-y-16">
+
+        <!-- Intro -->
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Un Joyau Caché</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            La Cala di Mitigliano est un joyau caché de la Péninsule Sorrentine. Peu fréquentée en raison de son sentier d'accès exigeant, elle offre une vue spectaculaire face aux Faraglioni de Capri - sans doute la plus belle vue de Capri depuis le continent. L'eau est cristalline sur des fonds rocheux idéaux pour le snorkeling.
+            Cala di Mitigliano est un joyau caché de la <a href="/fr-fr/peninsule-sorrentine/" class="text-med-blue hover:underline">Péninsule Sorrentine</a>. Peu fréquentée en raison de son sentier d'accès exigeant — environ 300 marches taillées dans la roche — elle offre une vue frontale époustouflante sur Capri et ses Faraglioni. Probablement la plus belle vue de Capri depuis le continent.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            L'eau est d'une limpidité absolue, avec des fonds rocheux idéaux pour le snorkeling. La grotte naturelle sur la plage offre un abri contre le soleil aux heures les plus chaudes. Au coucher du soleil, la lumière rasante transforme les Faraglioni en or : pensez à apporter votre appareil photo, car c'est la photo de Capri que les touristes ne font pas — il faut un peu d'effort pour arriver ici.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            Une grotte naturelle sur la plage procure de l'ombre pendant les heures les plus chaudes. Un vrai paradis pour les amateurs de randonnée et d'exploration. Au coucher du soleil, la lumière rasante transforme les Faraglioni en or : pensez à apporter votre appareil photo.
+            Pas de bar, pas de parasols, pas de musique. Seulement des galets blancs, le bruit des vagues et l'île de Capri si proche qu'elle semble à portée de main. C'est l'endroit parfait pour ceux qui cherchent la côte telle qu'elle était avant les foules.
           </p>
         </div>
 
-        <!-- Vue Capri -->
-        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-          <div class="flex items-center gap-4 mb-4">
-            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-            <h3 class="text-xl font-bold">La Plus Belle Vue sur Capri</h3>
+        <!-- Stats -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Le saviez-vous ?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">300</p>
+              <p class="text-white/60 text-xs italic mt-1">marches pour atteindre la crique</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">5 km</p>
+              <p class="text-white/60 text-xs italic mt-1">distance à vol d'oiseau de Capri</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">120 m</p>
+              <p class="text-white/60 text-xs italic mt-1">dénivelé depuis le parking</p>
+            </div>
           </div>
-          <p class="text-slate-600 leading-relaxed">
-            Depuis la plage vous avez une vue <strong>directe et rapprochée</strong> sur les trois Faraglioni. Vers le coucher du soleil (à partir de 17h30 environ) la lumière est parfaite. C'est la photo de Capri que les touristes ne font pas - parce qu'il faut un peu d'effort pour arriver ici.
+        </div>
+
+        <!-- Histoire et origines -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Les Origines : Entre Moines et Pêcheurs</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Le nom « Mitigliano » dérive probablement du latin <strong><em>Mytilus</em></strong> (moule), indiquant l'abondance de mollusques que l'on récoltait autrefois sur les rochers de la crique. Pendant des siècles, cette plage n'était connue que des pêcheurs de <a href="/fr-fr/peninsule-sorrentine/massa-lubrense/" class="text-med-blue hover:underline">Massa Lubrense</a>, qui l'utilisaient comme mouillage naturel abrité des vents.
           </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La zone autour de la crique appartenait aux moines bénédictins du Monastère de San Pietro, qui cultivaient les oliveraies sur les terrasses encore visibles aujourd'hui le long du sentier. Les murs en pierres sèches que vous croisez pendant la descente — certains vieux de plusieurs siècles — sont leur œuvre.
+          </p>
+          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm my-8">
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Les Tours de Guet</h3>
+            <p class="text-slate-600 leading-relaxed">
+              Sur la falaise au-dessus de la crique se trouvent les vestiges d'une <strong>tour de guet du XVIe siècle</strong>, faisant partie du système défensif côtier construit par les vice-rois espagnols contre les incursions des pirates sarrasins. Depuis cette tour, les guetteurs communiquaient par feux et signaux avec les tours voisines de <a href="/fr-fr/plages/peninsule-sorrentine/spiaggia-di-ieranto/" class="text-med-blue hover:underline">Ieranto</a> et de Punta Campanella. Les vestiges de la tour sont visibles depuis le sentier peu avant le dernier tronçon de la descente.
+            </p>
+          </div>
+        </div>
+
+        <!-- La grotte -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Grotte Naturelle</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Sur la partie gauche de la plage s'ouvre une <strong>grotte naturelle de roche calcaire</strong> haute d'environ 4-5 mètres et profonde d'une dizaine de mètres. C'est le refuge naturel le plus précieux de la crique : aux heures centrales de la journée, quand le soleil tape à plomb sur les galets, la grotte offre une ombre fraîche et une perspective unique sur la baie.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            À l'intérieur de la grotte, le fond marin est particulièrement riche : la roche crée des anfractuosités où se cachent pieuvres, murènes et petits crustacés. Avec masque et tuba on peut explorer les parois immergées de la grotte, où la lumière crée des jeux de reflets turquoise.
+          </p>
+        </div>
+
+        <!-- Snorkeling -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Snorkeling : Un Aquarium Naturel</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            Les eaux de Cala di Mitigliano sont parmi les plus limpides de la Péninsule Sorrentine. La proximité de l'Aire Marine Protégée de Punta Campanella et l'accès difficile tiennent les bateaux à moteur à l'écart, laissant la mer dans un état presque intact.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Zone rocheuse (0-3 m)</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Sars, castagnoles bleues, girelles paon, blennies. Le long des parois rocheuses à fleur d'eau on voit des oursins, des anémones et de petites actinies. Idéal pour les débutants.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Fond sableux (3-6 m)</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Rougets, soles, étoiles de mer et Posidonie océanique. Dans les herbiers de Posidonie se cachent des hippocampes, des syngnathes et des nudibranches colorés.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">La grotte immergée</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Pieuvres, murènes, crevettes rouges et petits mérous. La lumière filtrant par l'entrée de la grotte crée un effet bleu-turquoise sur les parois immergées.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Eaux ouvertes</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Des bancs de salpes, d'oblades et de bogues passent régulièrement devant la crique. Avec de la chance, on aperçoit des barracudas méditerranéens et de petits dentis aux premières heures du matin.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Le sentier -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Le Sentier des 300 Marches</h2>
+          <div class="space-y-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">1</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Départ depuis Termini (0-5 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">On part de la petite place de Termini (fraction de Massa Lubrense). Le sentier commence à côté d'une chapelle votive. Les premières minutes sont en légère descente sur un chemin pavé entre des murs en pierres sèches et des oliveraies.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">2</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Les oliveraies et la tour (5-15 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Le sentier traverse des oliveraies centenaires sur les terrasses des moines bénédictins. À mi-parcours on aperçoit les vestiges de la tour sarrasine et les premiers aperçus sur la crique et sur Capri. L'air sent le romarin sauvage et le myrte.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">3</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">La descente finale (15-30 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Le dernier tronçon est le plus raide : des marches en pierre irrégulières qui descendent à travers la garrigue méditerranéenne. Les Faraglioni apparaissent de face dans toute leur majesté. L'arrivée sur la plage de galets blancs récompense chaque goutte de sueur.</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 mt-4">La remontée prend 35-45 minutes. Évitez les heures les plus chaudes (12-15h) pour la montée.</p>
         </div>
 
         <!-- Comment y aller -->
@@ -91,17 +245,86 @@ const beachSchema = {
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Comment y Aller</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Sentier à pied</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Sentier à pied · Recommandé</p>
               <p class="text-slate-700 font-medium mb-1">Depuis Termini, Massa Lubrense</p>
-              <p class="text-slate-500 text-xs sm:text-sm">30 min de descente raide. Chaussures de randonnée indispensables. Aucun équipement sur place.</p>
+              <p class="text-slate-500 text-xs sm:text-sm">~300 marches, 20-30 min en descente. Chaussures fermées obligatoires. Parking limité à Termini (arriver tôt en été).</p>
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Boat</p>
-              <p class="text-slate-700 font-medium mb-1">Depuis Sorrente ou Marina del Cantone</p>
-              <p class="text-slate-500 text-xs sm:text-sm">L'option la plus simple. Réservez une excursion en bateau avec arrêt à la crique.</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi-boat</p>
+              <p class="text-slate-700 font-medium mb-1">Depuis Marina del Cantone ou Sorrente</p>
+              <p class="text-slate-500 text-xs sm:text-sm">L'option la plus confortable. Taxi-boat depuis Marina del Cantone (~10 min, 40-60 €). Depuis Sorrente ~30 min. Réservez une excursion avec arrêt à la crique.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus + sentier</p>
+              <p class="text-slate-700 font-medium mb-1">Depuis Sorrente à Termini</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Bus SITA depuis Sorrente jusqu'à Massa Lubrense, puis bus local jusqu'à Termini. Environ 40 min au total + sentier. Vérifier les horaires.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Kayak</p>
+              <p class="text-slate-700 font-medium mb-1">Depuis Marina del Cantone</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Location de kayak à Marina del Cantone (~15 min à pagayer). L'approche depuis la mer permet d'admirer les falaises et la grotte depuis l'eau.</p>
             </div>
           </div>
         </div>
+
+        <!-- Vue Capri box -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            <h3 class="text-xl font-bold">La Plus Belle Vue sur Capri</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Depuis la plage vous avez une vue <strong>frontale et rapprochée</strong> sur les trois Faraglioni de Capri, à seulement 5 km à vol d'oiseau. Au coucher du soleil (à partir de 17h30 environ), la lumière rasante les transforme en or pur contre le ciel rose.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            C'est la photo de Capri que les touristes ne font pas — parce qu'il faut un peu d'effort pour arriver ici. Le meilleur point de vue pour la photo se trouve sur la partie droite de la plage, où les trois Faraglioni s'alignent parfaitement.
+          </p>
+        </div>
+
+        <!-- Conseils d'initiés -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-6">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+            <h3 class="text-xl font-bold">4 Conseils d'initiés</h3>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-slate-900 mb-1">1. Apportez des chaussures de rochers</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Les galets sont grands et irréguliers. Entrer et sortir de l'eau sans chaussures de rochers est douloureux. Mettez-les dans votre sac avec masque et tuba — le snorkeling ici est exceptionnel.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">2. Arrivez pour le coucher de soleil, ne partez pas</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Le moment le plus magique est de 17h00 à 19h00, quand le soleil illumine les Faraglioni de lumière dorée et que la crique entre dans l'ombre naturelle. Arrivez en début d'après-midi, profitez du bain, et restez pour le spectacle.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">3. Réfugiez-vous dans la grotte</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Aux heures centrales (12h-15h) le soleil tape à plomb sur les galets et il fait très chaud. La grotte naturelle sur la gauche est votre refuge : fraîcheur et un point parfait pour observer la baie.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">4. Combinez avec Ieranto pour une journée épique</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Si vous avez de bonnes jambes, le matin descendez à <a href="/fr-fr/plages/peninsule-sorrentine/spiaggia-di-ieranto/" class="text-med-blue hover:underline">Ieranto</a> depuis Nerano, remontez, déjeuner avec les spaghetti à la Nerano, puis l'après-midi descendez à Mitigliano depuis Termini. Deux plages secrètes en une journée.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Questions Fréquentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
       </div>
 
       <!-- Sidebar Fast-Facts -->
@@ -132,17 +355,15 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="bg-med-blue py-16 text-center">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-white mb-4">Explorez la Péninsule Sorrentine</h2>
-      <a
-        href="/fr-fr/peninsule-sorrentine/"
-        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
-      >
-        Guide de la Péninsule Sorrentine
-      </a>
-    </div>
-  </section>
+  <CorrelationSlider
+    lang="fr-fr"
+    title="Autres plages de la Péninsule Sorrentine"
+    items={[
+      { name: 'Baia di Ieranto',      href: '/fr-fr/plages/peninsule-sorrentine/spiaggia-di-ieranto/', tag: 'Réserve FAI',          desc: 'Baie protégée par le FAI avec vue sur les Faraglioni, accessible uniquement à pied depuis Nerano.' },
+      { name: 'Regina Giovanna',      href: '/fr-fr/plages/peninsule-sorrentine/regina-giovanna/',     tag: 'Villa Romaine',        desc: 'Piscine naturelle parmi les ruines romaines de Pollio Felice à Punta del Capo, Sorrente.' },
+      { name: 'Marina del Cantone',   href: '/fr-fr/plages/peninsule-sorrentine/marina-del-cantone/',  tag: 'Sable & Restaurants',  desc: 'La plus grande plage de la Péninsule Sorrentine : galets et restaurants en bord de mer.' },
+      { name: 'Massa Lubrense',       href: '/fr-fr/peninsule-sorrentine/massa-lubrense/',              tag: 'Le Village',           desc: 'La commune qui abrite Mitigliano, Ieranto et les plus belles plages de la péninsule.' },
+    ]}
+  />
 
 </BaseLayout>

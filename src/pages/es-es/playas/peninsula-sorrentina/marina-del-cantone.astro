@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'es-es';
 
@@ -11,18 +12,69 @@ const breadcrumbs = [
 ];
 
 const facts = [
-  { label: 'Suelo', value: 'Guijarros grandes' },
+  { label: 'Composición', value: 'Guijarros grandes' },
   { label: 'Acceso', value: 'Muy fácil (llano)' },
   { label: 'Sombra', value: 'A partir de las 18:30' },
-  { label: 'Equipamiento', value: 'Chiringuitos, restaurantes' },
+  { label: 'Servicios', value: 'Chiringuitos, restaurantes estrellados' },
   { label: 'Ideal para', value: 'Familias, gastronomía, snorkel' },
+  { label: 'Área Protegida', value: 'AMP Punta Campanella (desde 1997)' },
+  { label: 'Plato típico', value: 'Spaghetti alla Nerano (desde 1952)' },
+  { label: 'Técnica de pesca', value: 'Pignatte (vasijas) para pulpos' },
+  { label: 'Historia romana', value: 'Piscinae (estanques) visibles bajo el agua' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo se llega a Marina del Cantone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Marina del Cantone se puede alcanzar en autobús EAV desde Sorrento (bajar en Nerano, luego 10 minutos a pie), en taxi acuático desde Sorrento con desembarco directo en la playa, o en coche siguiendo las indicaciones hacia Massa Lubrense y luego Nerano. En temporada alta el aparcamiento es limitado: mejor optar por autobús o barco. Desde Positano se puede llegar por mar con taxi acuático de temporada."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuál es el mejor restaurante para los Spaghetti alla Nerano?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El restaurante Maria Grazia es el lugar donde se inventaron los Spaghetti alla Nerano en 1952, y todavía está gestionado por la misma familia. La receta original — calabacines fritos, provolone del Monaco, albahaca y espaguetis — se considera un secreto familiar. También Lo Cantone es muy apreciado por los locales. Reservar por la mañana temprano es imprescindible en verano: las mesas se agotan rápidamente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es Marina del Cantone adecuada para familias con niños?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, Marina del Cantone es una de las playas más adecuadas para familias de la Península Sorrentina. El acceso es completamente llano, las aguas son tranquilas y protegidas por el Área Marina Protegida de Punta Campanella, y hay chiringuitos con servicios completos. Los niños adoran el snorkel gracias a la rica fauna marina y a las aguas cristalinas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuáles son las normas del Área Marina Protegida de Punta Campanella?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El Área Marina Protegida de Punta Campanella, establecida en 1997, prevé distintas zonas con diferentes niveles de protección. En las zonas más protegidas está prohibida la pesca, el fondeo de embarcaciones a motor y la recogida de organismos marinos (erizos, conchas). El snorkel está permitido en todas partes. Las actividades de buceo guiado están permitidas con operadores autorizados. Respetar estas normas es lo que mantiene las aguas entre las más limpias de Italia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hay aparcamiento en Marina del Cantone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El aparcamiento en Marina del Cantone es limitado y en temporada alta (julio-agosto) se llena antes de las 9:00. Existen algunas zonas de estacionamiento de pago en el pueblo de Nerano, a unos 10 minutos a pie de la playa. La mejor solución es llegar en autobús EAV desde Sorrento o en taxi acuático, evitando así completamente el problema del aparcamiento."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
   "@type": "Beach",
   "name": "Marina del Cantone",
-  "description": "Una amplia playa de guijarros en Nerano, famosa por su gastronomía - cuna de los Spaghetti alla Nerano - y sus aguas cristalinas en la reserva marina de Punta Campanella.",
+  "description": "Amplia playa de guijarros en Nerano, célebre por la gastronomía con los Spaghetti alla Nerano y las aguas cristalinas del Área Marina Protegida.",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Nerano",
@@ -30,6 +82,13 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const nearbyBeaches = [
+  { name: 'Ieranto', href: '/es-es/playas/peninsula-sorrentina/spiaggia-di-ieranto/', tag: 'Área Marina Protegida', desc: 'La bahía virgen al pie de los montes Lattari.' },
+  { name: 'Cala Mitigliano', href: '/es-es/playas/peninsula-sorrentina/cala-mitigliano/', tag: 'Massa Lubrense', desc: 'Salvaje e íntima entre los acantilados.' },
+  { name: 'Regina Giovanna', href: '/es-es/playas/peninsula-sorrentina/regina-giovanna/', tag: 'Sorrento', desc: 'Piscina natural con villa romana.' },
+  { name: 'Marina Piccola', href: '/es-es/playas/islas/marina-piccola-capri/', tag: 'Capri', desc: 'La playa exclusiva con vistas a los Faraglioni.' },
+];
 ---
 
 <BaseLayout
@@ -37,7 +96,7 @@ const beachSchema = {
   description="La playa más sabrosa de Italia: Marina del Cantone en Nerano une aguas cristalinas protegidas y los auténticos Spaghetti alla Nerano. Guía 2026."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
   pageKey="marina-del-cantone"
 >
 
@@ -68,10 +127,10 @@ const beachSchema = {
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Mar y Alta Cocina</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Nerano es la capital gastronómica de la Península Sorrentina. La playa de Marina del Cantone es amplia, limpia y soleada hasta última hora de la tarde. El agua está entre las más cristalinas de Campania, protegida por la reserva marina de Punta Campanella: el snorkel es excelente, con praderas de posidonia y una rica fauna marina.
+            Nerano es la capital gastronómica de la <a href="/es-es/peninsula-sorrentina/" class="text-med-blue hover:underline">Península Sorrentina</a>. La playa de Marina del Cantone es amplia, limpia y soleada hasta última hora de la tarde. El agua está entre las más cristalinas de Campania, protegida por el Área Marina Protegida de Punta Campanella: el snorkel es excelente, con praderas de posidonia y una rica fauna marina.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            Pero la fama mundial de Nerano es culinaria. Aquí nació el <strong>Spaghetti alla Nerano</strong> - calabacines fritos, provolone del Monaco, albahaca - y cada restaurante de la orilla sirve la versión original. Perfecta para familias y para quienes quieran combinar una bonita jornada de playa con una gastronomía de excepción.
+            Pero la fama mundial de Nerano es culinaria. Aquí nació el <strong>Spaghetti alla Nerano</strong> — calabacines fritos, provolone del Monaco, albahaca — y cada restaurante de la orilla sirve la versión original. Perfecta para familias y para quienes quieran combinar una bonita jornada de playa con una gastronomía de excepción.
           </p>
         </div>
 
@@ -82,8 +141,91 @@ const beachSchema = {
             <h3 class="text-xl font-bold">Consejo Gastronómico</h3>
           </div>
           <p class="text-slate-600 leading-relaxed">
-            <strong>Lo Cantone</strong> y <strong>Maria Grazia</strong> son los templos del Spaghetti alla Nerano. Reserva mesa por la mañana - en verano las plazas se agotan rápido. Un almuerzo a pie de playa aquí es una experiencia gastronómica completa.
+            <strong>Lo Cantone</strong> y <strong>Maria Grazia</strong> son los templos del Spaghetti alla Nerano. Reserva mesa por la mañana — en verano las plazas se agotan rápido. Un almuerzo a pie de playa aquí es una experiencia gastronómica completa.
           </p>
+        </div>
+
+        <!-- El nacimiento de los Spaghetti alla Nerano -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">El Nacimiento de un Plato Legendario</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Era 1952 cuando <strong>Maria Grazia</strong>, fundadora del restaurante homónimo en el paseo marítimo de Nerano, inventó lo que se convertiría en uno de los platos de pasta más imitados y amados del sur de Italia. La receta original era sencilla y genial: calabacines cortados en rodajas y fritos en aceite de oliva, mezclados con los espaguetis al dente, provolone del Monaco rallado y hojas de albahaca fresca.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            El secreto — todavía celosamente guardado por la familia — está en la proporción entre los distintos quesos y en el momento preciso en que se añade la mantequilla para mantecar. Cada restaurante de Nerano propone su versión, pero todos coinciden en que la receta original de Maria Grazia sigue siendo insuperable. El restaurante sigue abierto, gestionado por la misma familia.
+          </p>
+        </div>
+
+        <!-- Área Marina Protegida y Piscinae Romanas -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">El Área Marina Protegida y las Piscinae Romanas</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Las aguas de Marina del Cantone se encuentran dentro del <strong>Área Marina Protegida de Punta Campanella</strong>, establecida en 1997 y entre las mejor conservadas de Italia. Las praderas de <em>Posidonia oceánica</em> que cubren el fondo marino son un hábitat fundamental para caballitos de mar, tortugas marinas (avistadas ocasionalmente) y una variedad extraordinaria de peces. La visibilidad bajo el agua supera a menudo los 15 metros.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Pero Marina del Cantone tiene raíces aún más antiguas en el agua. Los Romanos construyeron a lo largo de esta costa sus <em>piscinae</em> — estanques para la cría de peces destinados a las villas de los patricios. Hoy los restos de estas estructuras son visibles bajo el agua en los márgenes rocosos de la bahía, silenciosos testigos de dos mil años de relación entre el hombre y este mar.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            En el extremo de la península se alza Punta Campanella, donde en época griega y romana se encontraba el <strong>Templo de Atenea/Minerva</strong>. Los marineros rezaban aquí antes de cruzar el canal de Capri, pidiendo protección a la diosa. Los restos del templo son apenas visibles, pero el lugar conserva una atmósfera de ancestral sacralidad.
+          </p>
+        </div>
+
+        <!-- Tradiciones de pesca -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+            <h3 class="text-xl font-bold">Los Pescadores de Pulpos de Nerano</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed">
+            Los pescadores de Nerano son famosos en toda Campania por una técnica de pesca antiquísima: las <strong>pignatte</strong>, pequeñas ánforas de terracota que se bajan al fondo donde los pulpos se refugian creyéndolas una guarida. Esta técnica, practicada en el Mediterráneo desde la antigüedad, sigue en uso hoy. Por la mañana temprano puedes ver los barcos regresar al puerto con las vasijas llenas.
+          </p>
+        </div>
+
+        <!-- Stats Box -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1952</p>
+            <p class="text-white/60 text-sm mt-1">año invención spaghetti</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1997</p>
+            <p class="text-white/60 text-sm mt-1">creación AMP</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">15m+</p>
+            <p class="text-white/60 text-sm mt-1">visibilidad bajo el agua</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">2.000</p>
+            <p class="text-white/60 text-sm mt-1">años de piscinae romanas</p>
+          </div>
+        </div>
+
+        <!-- Consejos de expertos -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consejos de expertos</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Reserva el restaurante Maria Grazia por teléfono el día anterior: es el lugar donde se inventaron los Spaghetti alla Nerano, y las mesas junto al mar se agotan antes de las 11 de la mañana.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Para el snorkel, lleva tu propia máscara: el alquiler está disponible pero el mejor equipamiento será el tuyo. Las praderas de posidonia comienzan a unos 30 metros de la orilla.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Llega en autobús EAV desde Sorrento: en julio y agosto el aparcamiento se agota antes de las 8:30 y no vale la pena estresarse en coche por la carretera sinuosa.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">En las zonas A del AMP está prohibido recoger erizos de mar y conchas: respeta las normas, son lo que mantiene estas aguas tan limpias y ricas.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Septiembre es el mejor mes: menos turistas, agua todavía caliente (25-26°C), y los restaurantes siguen teniendo todos los platos estivales en el menú.</span>
+            </li>
+          </ul>
         </div>
 
         <!-- Cómo llegar -->
@@ -100,11 +242,39 @@ const beachSchema = {
               <p class="text-slate-700 font-medium mb-1">Taxi acuático desde Sorrento</p>
               <p class="text-slate-500 text-xs sm:text-sm">Desembarco directo en la playa. Pintoresco y muy práctico.</p>
             </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">En coche</p>
+              <p class="text-slate-700 font-medium mb-1">Vía Massa Lubrense</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Aparcamiento limitado en Nerano. En temporada alta: llegar antes de las 8:30 u optar por autobús/barco.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">A pie (senderismo)</p>
+              <p class="text-slate-700 font-medium mb-1">Sendero desde Termini o Ieranto</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Para los caminantes: sendero panorámico desde Termini (45 min) o desde la <a href="/es-es/playas/peninsula-sorrentina/spiaggia-di-ieranto/" class="text-med-blue hover:underline">bahía de Ieranto</a> (60 min).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Preguntas Frecuentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
 
-      <!-- Sidebar Datos Rápidos -->
+      <!-- Sidebar Fast-Facts -->
       <aside class="lg:col-span-1">
         <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
           <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
@@ -132,53 +302,10 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- Guías Prácticas -->
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-slate-900 mb-8">Guías Prácticas</h2>
-      <div class="grid sm:grid-cols-3 gap-4">
-        <a href="/es-es/guia/cuando-visitar/" class="flex items-center gap-4 bg-med-cream rounded-2xl p-5 hover:bg-med-blue/5 transition-colors group border border-slate-100">
-          <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 text-med-blue">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path stroke-linecap="round" d="M16 2v4M8 2v4M3 10h18"/></svg>
-          </div>
-          <div>
-            <p class="font-medium text-charcoal group-hover:text-med-blue text-xs sm:text-sm transition-colors">Cuándo visitar</p>
-            <p class="text-xs text-slate-500">Mes a mes</p>
-          </div>
-        </a>
-        <a href="/es-es/guia/como-llegar/" class="flex items-center gap-4 bg-med-cream rounded-2xl p-5 hover:bg-med-blue/5 transition-colors group border border-slate-100">
-          <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 text-med-blue">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17l1.5-6H19.5L21 17M3 17h18"/></svg>
-          </div>
-          <div>
-            <p class="font-medium text-charcoal group-hover:text-med-blue text-xs sm:text-sm transition-colors">Cómo llegar</p>
-            <p class="text-xs text-slate-500">Ferries, autobús, coche</p>
-          </div>
-        </a>
-        <a href="/es-es/playas/" class="flex items-center gap-4 bg-med-cream rounded-2xl p-5 hover:bg-med-blue/5 transition-colors group border border-slate-100">
-          <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0 text-med-blue">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 17c3-3 6-3 9 0s6 3 9 0M3 12c3-3 6-3 9 0s6 3 9 0"/></svg>
-          </div>
-          <div>
-            <p class="font-medium text-charcoal group-hover:text-med-blue text-xs sm:text-sm transition-colors">Las playas</p>
-            <p class="text-xs text-slate-500">9 playas seleccionadas</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="bg-med-blue py-16 text-center">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-white mb-4">Explora la Península Sorrentina</h2>
-      <a
-        href="/es-es/peninsula-sorrentina/"
-        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
-      >
-        Guía de la Península Sorrentina
-      </a>
-    </div>
-  </section>
+  <CorrelationSlider
+    lang="es-es"
+    items={nearbyBeaches}
+    heading="Playas Cercanas que Explorar"
+  />
 
 </BaseLayout>

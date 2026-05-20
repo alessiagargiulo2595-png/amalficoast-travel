@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'de-de';
 
@@ -16,6 +17,11 @@ const facts = [
   { label: 'Zugang', value: '10 Min. zu Fuß ab Bushaltestelle' },
   { label: 'Schatten', value: 'Ab 17:30 Uhr' },
   { label: 'Ideal für', value: 'Filmfans, Poesie, authentische Entspannung' },
+  { label: 'Insel', value: 'Procida (4 km²)' },
+  { label: 'Geologie', value: 'Neapolitanischer Gelbtufo' },
+  { label: 'Film', value: 'Il Postino (1994)' },
+  { label: 'Oscar', value: '5 Nominierungen, 1 Gewinn' },
+  { label: 'Festung oben', value: 'Terra Murata (mittelalterlich)' },
 ];
 
 const beachSchema = {
@@ -30,6 +36,53 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie erreicht man die Cala del Pozzo Vecchio von Neapel aus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Von Neapel nimmt man die Fähre oder das Tragflügelboot nach Procida vom Hafen von Pozzuoli oder vom Molo Beverello (ca. 35–80 Minuten je nach Verkehrsmittel). Vom Hafen Procidas nimmt man den Bus der Linie C1 bis zur Haltestelle Pozzo Vecchio, dann 10 Minuten zu Fuß bergab. Alternativ ist der Strand zu Fuß vom Zentrum in etwa 20–25 Minuten durch die Gässchen der Insel erreichbar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist die Cala del Pozzo Vecchio wirklich der Strand aus dem Film Il Postino?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Die Cala del Pozzo Vecchio ist der Hauptstrand, der im Film Il Postino (1994) unter der Regie von Michael Radford mit Massimo Troisi und Philippe Noiret als Kulisse diente. Einige Szenen wurden auch an anderen Orten in Procida und auf der Insel Salina (für die Neruda-Aufnahmen) gedreht. Der Strand ist für Fans des Films sofort wiedererkennbar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gibt es Einrichtungen an der Cala del Pozzo Vecchio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Strand hat grundlegende Einrichtungen: einige Liegestühle und Sonnenschirme zur Miete sowie einen kleinen Kiosk für Getränke. Es ist kein vollständig ausgestatteter Lido, was zu seinem authentischen Charme beiträgt. Besser Wasser und Verpflegung mitbringen, wenn man den ganzen Tag bleiben möchte. Das nahe Dorf Procida bietet in wenigen Gehminuten Bars und Restaurants."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist die beste Reisezeit für Procida und die Cala del Pozzo Vecchio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mai, Juni und September sind die idealen Monate: Das Meer ist bereits warm (22–26°C), die Touristenzahlen sind im Vergleich zum August gering und die Atmosphäre ist am authentischsten. Im Juli und August füllt sich der Strand, erreicht aber nie die Überfüllungsgrade von Capri oder Ischia. Die Insel ist auch im Frühjahr für Wanderungen sehr angenehm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann man an der Cala del Pozzo Vecchio schnorcheln?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, das Wasser der Cala del Pozzo Vecchio ist klar und zum Schnorcheln geeignet. Der Sanduntergrund fällt sanft ab, mit guter Sicht besonders am Morgen, bevor der Nachmittagswind den Sand aufwühlt. In der Felsenzone an den Seiten der Bucht findet man Seeigel, Tintenfische und kleine Fischschwärme. Die eigene Ausrüstung mitbringen, da vor Ort kein Verleih vorhanden ist."
+      }
+    }
+  ]
+};
 ---
 
 <BaseLayout
@@ -37,14 +90,15 @@ const beachSchema = {
   description="Der durch den Film Il Postino unsterblich gewordene Strand. Schwarzer Vulkansand, smaragdgrünes Wasser und das authentischste Procida. Reiseführer 2026."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
- pageKey="cala-del-pozzo-vecchio">
+  schema={[beachSchema, faqSchema]}
+  pageKey="cala-del-pozzo-vecchio"
+>
 
   <!-- Hero -->
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
       src="/images/cala-pozzo-vecchio-procida.jpg"
-      alt="Cala del Pozzo Vecchio, Procida - der Postino-Strand"
+      alt="Cala del Pozzo Vecchio, Procida – der Postino-Strand"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
       referrerpolicy="no-referrer"
@@ -64,13 +118,15 @@ const beachSchema = {
 
       <!-- Haupttext -->
       <div class="lg:col-span-2 space-y-12">
+
+        <!-- Intro -->
         <div>
-          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Kino Wird Zum Strand</h2>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Kino wird zum Strand</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
             Der durch Massimo Troisi in <em>Il Postino</em> (1994) unsterblich gemachte Strand. Ein Halbmond aus schwarzem Vulkansand und smaragdgrünem Wasser, der direkt aus dem Film zu stammen scheint. Sobald man ankommt, versteht man sofort, warum Troisi und Regisseur Michael Radford ihn als Hauptschauplatz gewählt haben.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            Das ist das authentischste und am wenigsten touristisch erschlossene Gesicht der kampanischen Inseln. Procida hat den Massentourismus von Capri oder Ischia nie erlebt, und dieser Strand bewahrt diese Seele: wenige Besucher, viel Poesie, makellos sauberes Wasser. Perfekt für totale Entspannung und alle, die cinematografische Atmosphären lieben.
+            Das ist das authentischste und am wenigsten touristisch erschlossene Gesicht der kampanischen Inseln. <a href="/de-de/inseln/procida/" class="text-med-blue hover:underline">Procida</a> hat den Massentourismus von <a href="/de-de/inseln/capri/" class="text-med-blue hover:underline">Capri</a> oder <a href="/de-de/inseln/ischia/" class="text-med-blue hover:underline">Ischia</a> nie erlebt, und dieser Strand bewahrt diese Seele: wenige Besucher, viel Poesie, makellos sauberes Wasser. Perfekt für totale Entspannung und alle, die cinematografische Atmosphären lieben.
           </p>
         </div>
 
@@ -81,11 +137,91 @@ const beachSchema = {
             <h3 class="text-xl font-bold">Il Postino (1994)</h3>
           </div>
           <p class="text-slate-600 leading-relaxed mb-4">
-            Michael Radfords Film mit Massimo Troisi und Philippe Noiret gewann den Oscar für den besten fremdsprachigen Film. Dieser Strand ist das Herzstück des Films. Viele Besucher kommen hierher, um die ikonischen Szenen nachzuerleben - der Briefträger, der am Ufer entlanggeht, die Poesie des Meeres.
+            Michael Radfords Film mit Massimo Troisi und Philippe Noiret gewann den Oscar für den besten fremdsprachigen Film. Dieser Strand ist das Herzstück des Films. Viele Besucher kommen hierher, um die ikonischen Szenen nachzuerleben – der Briefträger, der am Ufer entlanggeht, die Poesie des Meeres.
           </p>
           <p class="text-slate-600 leading-relaxed italic">
-            «Il mondo è bello e tu sei un po' curioso» - Il Postino, 1994
+            «Il mondo è bello e tu sei un po' curioso» – Il Postino, 1994
           </p>
+        </div>
+
+        <!-- Die Geschichte hinter dem Film -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Die Geschichte hinter dem Film</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Massimo Troisi spielte Mario Ruoppolo, den Briefträger der Insel, der sich mit dem im Exil lebenden chilenischen Dichter Pablo Neruda (Philippe Noiret) anfreundet. Der Film wurde 1994 an diesem Strand und in den Gässchen von Procida gedreht. Die wahre Tragödie besteht darin, dass Troisi an einer schweren Herzerkrankung litt und die Operation verschob, um die Dreharbeiten abzuschließen. Er starb <strong>nur 12 Stunden nach dem Ende der Dreharbeiten</strong>, am 4. Juni 1994, im Alter von nur 41 Jahren.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Il Postino war für 5 Oscars nominiert und gewann den für die <strong>beste Filmmusik</strong> (Luis Bacalov). Es war der fremdsprachige Film mit den meisten Oscar-Nominierungen in der Geschichte bis dahin. Das Erbe von Troisi und diesem Strand lebt bis heute.
+          </p>
+        </div>
+
+        <!-- Geologie und Geschichte -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Il Pozzo Vecchio und die Geologie der Insel</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Der Name der Bucht leitet sich von einem alten Brunnen ab – dem <strong>Pozzo Vecchio</strong> (alten Brunnen) –, der sich einst in der Nähe befand und Fischern und Bauern als Süßwasserquelle diente. Der Brunnen ist nicht mehr sichtbar, aber sein Name blieb über Jahrhunderte erhalten. Der schwarze Sand ist <strong>neapolitanischer Gelbtufo</strong>: vulkanisches Gestein der Phlegräischen Felder, das das Meer zu dunklen, schweren Körnern erodiert hat. Die Klippen, die die Bucht säumen, zeigen deutlich die Schichten pyroklastischer Ablagerungen aus alten Vulkanausbrüchen.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Procida ist die kleinste der Phlegräischen Inseln (nur 4 km²). Vom Strand aus sieht man oben die Silhouette der <strong>Terra Murata</strong>, der mittelalterlichen Zitadelle mit der Abtei San Michele Arcangelo. Jahrhundertelang schützte jene Festung die Procidaner vor Überfällen der Sarazenen-Piraten.
+          </p>
+        </div>
+
+        <!-- Fischertradition -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 16.5a9 9 0 1 1-9-9"/><path d="M22 2L11 13"/><path d="M22 2h-5.5M22 2v5.5"/></svg>
+            <h3 class="text-xl font-bold">Die Fischertradition</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed">
+            Procida hat die stärkste Fischertradition aller Inseln im Golf. Die Procidaner Fischer verwenden noch traditionelle Methoden, und jedes Jahr feiert das Fest der <strong>Graziella</strong> diese Meeresidentität. Die literarische Figur der Graziella, von Alphonse de Lamartine 1852 geschaffen, war eine junge Fischerin aus Procida. Lokaler Fisch – Venusmuscheln, Tintenfische, Kalmars – gehört zum frischesten im Golf von Neapel.
+          </p>
+        </div>
+
+        <!-- Zahlen-Box -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">4</p>
+            <p class="text-white/60 text-sm mt-1">km² Procida</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">5</p>
+            <p class="text-white/60 text-sm mt-1">Oscar-Nominierungen</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">12 Std.</p>
+            <p class="text-white/60 text-sm mt-1">nach den Dreharbeiten</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1994</p>
+            <p class="text-white/60 text-sm mt-1">Jahr des Films</p>
+          </div>
+        </div>
+
+        <!-- Tipps der Einheimischen -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Tipps der Einheimischen</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Das Tragflügelboot ab Pozzuoli statt Neapel nehmen: günstiger und fast gleich schnell.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Den Strand früh morgens besuchen, um die stille, poetische Atmosphäre des Films zu erleben.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Nach dem Strand zu Fuß zur Terra Murata hinaufsteigen: Der Blick über den Golf belohnt den Aufstieg vollkommen.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Wasserschuhe mitbringen: Der schwarze Vulkansand heizt sich unter der Augustsonne stärker auf als normaler Sand.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Zum Mittagessen Trattorien im alten Dorf aufsuchen: günstiger und authentischer als die am Ufer.</span>
+            </li>
+          </ul>
         </div>
 
         <!-- Anreise -->
@@ -93,8 +229,8 @@ const beachSchema = {
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Anreise</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus Linie C1 ⭐</p>
-              <p class="text-slate-700 font-medium mb-1">Ab dem Hafen von Procida</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus Linie C1</p>
+              <p class="text-slate-700 font-medium mb-1">Vom Hafen Procidas</p>
               <p class="text-slate-500 text-xs sm:text-sm">Haltestelle Pozzo Vecchio. Dann 10 Min. zu Fuß bergab zum Strand.</p>
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
@@ -102,8 +238,37 @@ const beachSchema = {
               <p class="text-slate-700 font-medium mb-1">Vom Zentrum Procidas</p>
               <p class="text-slate-500 text-xs sm:text-sm">20–25 Minuten. Malerisch und angenehm durch die Gassen der Insel.</p>
             </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Fähre ab Neapel</p>
+              <p class="text-slate-700 font-medium mb-1">Molo Beverello oder Pozzuoli</p>
+              <p class="text-slate-500 text-xs sm:text-sm">35–80 Min. je nach Verkehrsmittel. Tragflügelboot schneller, Fähre günstiger.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Roller-Verleih</p>
+              <p class="text-slate-700 font-medium mb-1">Ab dem Hafen</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Praktisch, um die ganze Insel zu erkunden. Parkplatz in der Nähe der Bucht.</p>
+            </div>
           </div>
         </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Häufig Gestellte Fragen</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
       </div>
 
       <!-- Sidebar Kurzinfos -->
@@ -120,12 +285,21 @@ const beachSchema = {
               </div>
             ))}
           </div>
+          <!-- Tipps der Einheimischen -->
           <div class="mt-10 pt-8 border-t border-white/10">
+            <h4 class="text-med-gold text-xs font-bold uppercase tracking-wider mb-4">Tipps der Einheimischen</h4>
+            <ul class="space-y-3">
+              <li class="text-white/70 text-xs sm:text-sm leading-relaxed">Frühmorgens kommen für die poetische Filmstimmung ohne Touristenandrang.</li>
+              <li class="text-white/70 text-xs sm:text-sm leading-relaxed">Tragflügelboot ab Pozzuoli – günstiger und fast so schnell wie ab Neapel.</li>
+              <li class="text-white/70 text-xs sm:text-sm leading-relaxed">Nach dem Strand zur Terra Murata hinaufsteigen für den besten Ausblick.</li>
+            </ul>
+          </div>
+          <div class="mt-8 pt-6 border-t border-white/10">
             <a
               href="/de-de/strande/"
               class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
             >
-              ← Alle Strände
+              &larr; Alle Strände
             </a>
           </div>
         </div>
@@ -134,17 +308,15 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="bg-med-blue py-16 text-center">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-white mb-4">Alles über Procida entdecken</h2>
-      <a
-        href="/de-de/inseln/procida/"
-        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
-      >
-        Vollständiger Procida-Reiseführer
-      </a>
-    </div>
-  </section>
+  <CorrelationSlider
+    lang="de-de"
+    heading="Weitere Strände der Inseln"
+    items={[
+      { name: 'Spiaggia Maronti',       href: '/de-de/strande/inseln/spiaggia-maronti/',        tag: 'Ischia',   desc: 'Drei Kilometer heißer Sand, beheizt vom Vulkan.' },
+      { name: 'Marina Piccola',         href: '/de-de/strande/inseln/marina-piccola-capri/',     tag: 'Capri',    desc: 'Der exklusive Strand mit Faraglioni-Blick.' },
+      { name: 'Faraglioni',             href: '/de-de/strande/inseln/faraglioni-capri/',          tag: 'Capri',    desc: 'Die drei legendären Felsen, das Symbol der Insel.' },
+      { name: 'Spiaggia Grande',        href: '/de-de/strande/amalfikuste/spiaggia-grande-positano/', tag: 'Positano', desc: 'Das gesellschaftliche Zentrum der Amalfiküste.' },
+    ]}
+  />
 
 </BaseLayout>

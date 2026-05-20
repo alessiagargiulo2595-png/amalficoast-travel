@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'de-de';
 
@@ -11,24 +12,29 @@ const breadcrumbs = [
 ];
 
 const facts = [
-  { label: 'Typ', value: 'Felsenformationen (kein Strand)' },
-  { label: 'Zugang', value: 'Nur per Boot' },
-  { label: 'Berühmte Auftritte', value: 'Italienische Filme & Legende' },
-  { label: 'Atmosphäre', value: 'Ikonisch, dramatisch' },
-  { label: 'Geeignet für', value: 'Fotografie, Schwimmen' },
+  { label: 'Zusammensetzung', value: 'Felsenformation' },
+  { label: 'Zugang', value: 'Nur per Boot (Inselrundfahrt)' },
+  { label: 'Beste Aussicht', value: 'Von Marina Piccola' },
+  { label: 'Sichtbarkeit', value: 'Den ganzen Tag' },
+  { label: 'Ideal für', value: 'Fotografie, Schnorcheln, Ausflüge' },
+  { label: 'Maximale Höhe', value: 'Faraglione di Terra 109 m' },
+  { label: 'Endemische Art', value: 'Blaue Eidechse von Capri' },
+  { label: 'Bogen von Mezzo', value: 'ca. 40 Meter Länge' },
+  { label: 'Unterwassersicht', value: 'Bis zu 30+ Meter' },
+  { label: 'Tradition', value: 'Kuss unter dem Bogen (Paare)' },
 ];
 
 const beachSchema = {
   "@context": "https://schema.org",
-  "@type": "Beach",
-  "name": "Faraglioni di Capri",
-  "description": "Drei ikonische Felsenformationen, die sich 109 Meter aus dem Meer erheben. Ein Symbol Capris und Vedette berühmter italienischer Filme. Zugänglich per Boot zum Schwimmen und Tauchen.",
-  "image": "https://amalficoast-travel.com/images/faraglioni-capri.jpg",
+  "@type": "LandmarksOrHistoricalBuildings",
+  "name": "I Faraglioni di Capri",
+  "description": "Drei ikonische Felsenformationen von Capri, das Symbol der Insel. Sichtbar von Marina Piccola und der Nordküste.",
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": "40.5447",
-    "longitude": "14.2277"
+    "latitude": "40.5383",
+    "longitude": "14.2472"
   },
+  "image": "https://amalficoast-travel.com/images/faraglioni-capri.jpg",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Capri",
@@ -36,94 +42,251 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ist der beste Aussichtspunkt für Fotos der Faraglioni?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der meistfotografierte Punkt ist Marina Piccola, von wo die Faraglioni frontal aus dem Meer aufragen, mit idealem Licht am Morgen. Für eine andere Perspektive bietet Punta Tragara (zu Fuß vom Zentrum Capris in 20 Minuten erreichbar) einen Panoramablick von oben. Die Bootsrundfahrt um die Insel ermöglicht es, sie aus allen Winkeln zu sehen. Der Sonnenuntergang von Marina Piccola beschert spektakuläre Farben."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet die Bootsrundfahrt um die Faraglioni?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die vollständige Inselrundfahrt um Capri per Boot (einschließlich Faraglioni, Blaue Grotte von außen, Grotta Verde und andere Aussichtspunkte) kostet in der Regel zwischen 20 und 35 Euro pro Person bei einer gemeinsamen Tour ab Marina Grande. Private Boote und Schlauchboote sind teurer, bieten aber mehr Flexibilität. Der Bogen des Faraglione di Mezzo lässt sich mit kleinen Booten durchfahren."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann man die Faraglioni besteigen oder sich nähern?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Faraglioni sind zu Fuß nicht zugänglich: Es sind Felsformationen, die aus dem Meer ragen, ohne Strände oder Wege. Sie sind nur per Boot erreichbar. Das Schwimmen zu den Faraglioni ist für erfahrene Schwimmer von Marina Piccola aus möglich, aber die Entfernung ist beträchtlich und der Bootsverkehr kann dicht sein. Das Besteigen der Felsen ist verboten."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wo lebt die blaue Eidechse von Capri?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Podarcis sicula coerulea, die blaue Eidechse von Capri, lebt ausschließlich auf dem Faraglione di Fuori (auch Scopolo genannt), dem felsigen Vorsprung, der am weitesten von der Küste entfernt ist. Diese blaue Färbung hat sich durch Mimikry in einer isolierten Umgebung ohne Landräuber entwickelt. Sie ist eine der seltensten Reptilienarten Europas und genießt vollen gesetzlichen Schutz. Sie kann nur von Booten aus beobachtet werden, die sich dem Faraglione di Fuori nähern."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann man zu den Faraglioni tauchen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, der Meeresboden zu den Füßen der Faraglioni gehört zu den reichsten des Tyrrhenischen Meeres. Es gibt Unterwasserhöhlen, die nur erfahrenen Tauchern zugänglich sind, mit einer Sichtweite, die oft 30 Meter erreicht. Man findet Zackenbarsche, Barrakudas, Muränen, Gorgonankorallen und Fischschwärme. Mehrere Tauchzentren in Capri organisieren geführte Tauchgänge in dieser Zone. Oberflächliches Schnorcheln ist von Marina Piccola aus möglich, aber die interessantesten Gründe liegen in der Tiefe."
+      }
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  title="Faraglioni di Capri 2026: Ikonische Felsen & Schwimmführer"
-  description="Die Faraglioni sind drei massive Felsenformationen vor der Küste von Capri. Ein italienisches Wahrzeichen, Vedette von Filmen. Anleitung zum Besuch per Boot und was dich erwartet."
+  title="Faraglioni di Capri 2026: Die drei ikonischen Felsen"
+  description="Die Faraglioni sind das Symbol von Capri. Reiseführer 2026 mit Geschichte, wie man sie am besten sieht, und Ausflüge rund um die drei legendären Felsen."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
- pageKey="faraglioni-capri">
+  schema={[beachSchema, faqSchema]}
+  pageKey="faraglioni-capri"
+>
 
   <!-- Hero -->
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
       src="/images/faraglioni-capri.jpg"
-      alt="Faraglioni di Capri, Inseln der Bucht"
+      alt="Die drei Faraglioni von Capri – ikonische Felsformationen"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
       referrerpolicy="no-referrer"
     />
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Inseln der Bucht · Italienisches Symbol</p>
-      <h1 class="font-serif text-display text-white mb-6">Faraglioni di Capri</h1>
-      <p class="text-lg md:text-xl font-light text-white/80">Drei legendäre Felsenformationen, die seit Jahrhunderten Besucher faszinieren.</p>
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Capri · Golfinseln</p>
+      <h1 class="font-serif text-display text-white mb-6">I Faraglioni</h1>
+      <p class="text-lg md:text-xl font-light text-white/80">Drei legendäre Felsen, die seit Jahrhunderten Dichter und Reisende verzaubern.</p>
     </div>
     <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
-  <!-- Inhalt + Seitenleiste -->
+  <!-- Inhalt + Sidebar -->
   <section class="bg-med-cream py-24 px-6">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
 
       <!-- Haupttext -->
       <div class="lg:col-span-2 space-y-12">
+
+        <!-- Intro -->
         <div>
-          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Legende aus Stein</h2>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Das Symbol von Capri</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Die Faraglioni di Capri sind drei imposante Felsenformationen, die sich 109 Meter (357 Fuß) aus dem Tyrrhenischen Meer erheben. Sie gehören zu den meistfotografierten Natursehenswürdigkeiten Italiens und sind unmittelbar erkennbare Symbole von Capri und der Küste von Campania. Jede Formation hat einen Namen: Faraglione Grande (die größte), Faraglione di Mezzo (mittlere) und Faraglione di Fuori (äußere).
+            Die Faraglioni sind drei großartige Felsformationen, die vor <a href="/de-de/strande/inseln/marina-piccola-capri/" class="text-med-blue hover:underline">Marina Piccola</a> aus dem Meer aufragen. Sie sind das bekannteste Symbol von <a href="/de-de/inseln/capri/" class="text-med-blue hover:underline">Capri</a>, in unzähligen Filmen, Fotografien und Gemälden zu sehen. Jeder Felsen hat einen Namen: Faraglione Grande (der größte), Faraglione di Mezzo (der ikonischste, mit einem natürlichen Unterwasserbogen) und Faraglione Scopolo.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            Diese dramatischen Felsen haben unzählige Künstler, Filmemacher und Schriftsteller inspiriert. Sie erscheinen im klassischen italienischen Film "Der talentierte Mr. Ripley" und sind in der weltweiten Reisefotografie prominent vertreten. Einer lokalen Legende nach bringt das Durchfahren unter dem natürlichen Bogen der mittleren Felsenformation Glück-und hunderte von Booten tun dies täglich.
+            Die Legende besagt, diese Felsen seien die Überreste einer alten Burg, doch die geologische Wahrheit ist ebenso faszinierend: Es sind Überreste alter Vulkanausbrüche, die im Laufe von Millionen Jahren durch Meer und Wind geformt wurden. Den schönsten Blick genießt man auch von der Terrasse von <a href="/de-de/inseln/anacapri/" class="text-med-blue hover:underline">Anacapri</a>.
           </p>
         </div>
 
-        <!-- Geschichten & Geschichte -->
+        <!-- Drei Felsen, drei Persönlichkeiten -->
         <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Geschichten & Legende</h2>
-          <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-            <div class="space-y-6 text-slate-600">
-              <div>
-                <p class="font-semibold text-slate-900 mb-2">Die Blaue Eidechse</p>
-                <p class="leading-relaxed">
-                  Die Legende spricht von der endemischen blauen Eidechse (Podarcis sicula coerulea), die auf den Felsen lebt. Einst verbreitet, sind diese Geschöpfe selten geworden und sind jetzt in einem Meeresschutzgebiet geschützt.
-                </p>
-              </div>
-              <div>
-                <p class="font-semibold text-slate-900 mb-2">Im Kino & in der Kunst</p>
-                <p class="leading-relaxed">
-                  Die Faraglioni erscheinen in zahlreichen italienischen Filmen und dienen als visuelles Symbol der Dolce Vita. Künstler haben sie seit Jahrhunderten gemalt und das Licht und Drama dieser Formationen zu verschiedenen Tageszeiten eingefangen.
-                </p>
-              </div>
-              <div>
-                <p class="font-semibold text-slate-900 mb-2">Geologisches Wunderwerk</p>
-                <p class="leading-relaxed">
-                  Diese Kalksteinformationen sind Überreste alter, durch Wellen und Wind erodierter Klippen. Der natürliche Bogen in der mittleren Felsenformation schafft einen von Booten genutzten Durchgang-ein aufregendes Abenteuer und eine Fotogelegenheit.
-                </p>
-              </div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Drei Felsen, drei Persönlichkeiten</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Die Ausmaße der Faraglioni sind aus der Nähe beeindruckend: Der <strong>Faraglione di Terra</strong> (noch mit der Küste verbunden) ragt 109 Meter auf. Der <strong>Faraglione di Mezzo</strong>, 82 Meter hoch, ist derjenige mit dem berühmten natürlichen Bogen von etwa 40 Metern, durch den Boote fahren. Der <strong>Faraglione di Fuori</strong> (oder Scopolo), der am weitesten vom Ufer entfernte, erreicht 104 Meter. Zusammen erstrecken sie sich über etwa 300 Meter auf dem Meer.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Die <strong>Bogentradition</strong>: Wenn man mit dem Boot durch den Bogen des Faraglione di Mezzo fährt, sollen sich Paare küssen, um Glück zu bringen. Jede Bootstour um die Insel schließt dieses Ritual ein, begleitet vom Applaus der Passagiere.
+          </p>
+        </div>
+
+        <!-- Wie man sie am besten sieht -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Wie man sie am besten sieht</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Von Marina Piccola</p>
+              <p class="text-slate-700 font-medium mb-1">Der klassische Blick</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Das meistfotografierte und dramatischste Panorama. Ideal beim Sonnenuntergang.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bootsrundfahrt um die Insel</p>
+              <p class="text-slate-700 font-medium mb-1">Das vollständige Erlebnis</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Rund um die Faraglioni fahren, um den Unterwasserbogen zu sehen. Schnorcheln möglich.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Von Punta Tragara</p>
+              <p class="text-slate-700 font-medium mb-1">Der Panoramablick</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Von diesem Vorgebirge sieht man die Faraglioni aus einem anderen, eindrucksvollen Winkel.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Nächtliche Beleuchtung</p>
+              <p class="text-slate-700 font-medium mb-1">Ein seltenes Erlebnis</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Im Sommer nachts beleuchtet mit magischer Atmosphäre. Blick von Marina Piccola.</p>
             </div>
           </div>
         </div>
 
-        <!-- Wie man besucht -->
+        <!-- Geschichten und Kuriositäten -->
         <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Wie Man Besucht</h3>
-          <p class="text-slate-600 leading-relaxed mb-4">
-            Die Faraglioni können nur per Boot besucht werden. Zahlreiche Touren starten täglich von Capri, Positano und anderen Küstenstädten. Touren dauern normalerweise 2-3 Stunden und beinhalten Zeit zum Schwimmen und Schnorcheln um die Felsen.
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Geschichten und Kuriositäten</h3>
+          <div class="space-y-4 text-slate-600">
+            <p class="leading-relaxed">
+              <strong>Der Bogen des Faraglione di Mezzo:</strong> Der natürliche Unterwasserbogen ist etwa 40 Meter lang und eine der Hauptattraktionen. Zwischen Legende und Wirklichkeit nutzten die alten Römer diese Formation als Navigationspunkt.
+            </p>
+            <p class="leading-relaxed">
+              <strong>Die Faraglioni im Kino:</strong> Sie erschienen in Dutzenden von Hollywood- und italienischen Filmen, darunter „La Dolce Vita" und „Only You". Sie sind das repräsentativste Touristensymbol Italiens weltweit.
+            </p>
+            <p class="leading-relaxed">
+              <strong>Die endemische Bevölkerung:</strong> Auf den Faraglioni lebt eine endemische Eidechse, die blaue Eidechse von Capri, die ausschließlich auf diesen Felsen vorkommt und durch internationale Gesetze geschützt ist.
+            </p>
+          </div>
+        </div>
+
+        <!-- Die blaue Eidechse von Capri -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Die Blaue Eidechse von Capri</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Auf dem Faraglione di Fuori (Scopolo) lebt eine der seltensten Reptilienarten Europas: die <em>Podarcis sicula coerulea</em>, die <strong>blaue Eidechse von Capri</strong>. Ihre intensive blaue Farbe – so anders als die gewöhnliche grün-braune Eidechse – hat sich durch Isolation entwickelt. Ohne Landraubtiere auf dem isolierten Felsen war Tarnung durch Vegetation nicht mehr notwendig; die blaue Färbung setzte sich wahrscheinlich durch sexuelle Selektion durch. Sie ist durch das italienische Recht geschützt und kann nur von Booten aus beobachtet werden, die sich dem Faraglione di Fuori nähern.
           </p>
-          <p class="text-slate-600 leading-relaxed">
-            <strong>Beste Reisezeit:</strong> Mai bis September, wenn das Meer am ruhigsten ist. Boottouren am Morgen bieten das beste Licht für Fotografie. Schwimmen ist erlaubt, und das Wasser ist außergewöhnlich klar, was das Schnorcheln hervorragend macht.
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Der britische Schriftsteller <strong>Norman Douglas</strong>, der lange auf Capri lebte, widmete den Faraglioni unvergessliche Seiten in seinem „Siren Land" (1911) und beschrieb sie als „drei Steinfinger, die zum Himmel zeigen". Homer selbst soll sich nach Meinung einiger Gelehrter von den Faraglioni für die Felsen inspiriert haben lassen, die der Kyklop Polyphem gegen Odysseus' Schiff warf.
           </p>
         </div>
+
+        <!-- Meeresleben und Tauchen -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 16.5a9 9 0 1 1-9-9"/><path d="M22 2L11 13"/><path d="M22 2h-5.5M22 2v5.5"/></svg>
+            <h3 class="text-xl font-bold">Meeresleben und Tauchen</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            An den Füßen der Faraglioni öffnen sich Unterwasserhöhlen, die nur erfahrenen Tauchern zugänglich sind. Die Sichtweite erreicht oft 30 Meter, mit einem Meeresgrund reich an <strong>Zackenbarschen, Barrakudas, Muränen und Gorgonankorallen</strong>. Die Tauchzentren Capris organisieren geführte Tauchgänge in dieser Zone. Für Schnorchelliebhaber bietet Marina Piccola gute Sichtbarkeit in der Nähe der Oberflächenfelsen.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            Die Meeresströmungen zwischen den drei Felsen ziehen große Mengen Plankton an, das wiederum große Fische anzieht. Es ist nicht selten, Delfine in den Gewässern rund um die Faraglioni zu sichten, besonders bei Sonnenauf- oder -untergang.
+          </p>
+        </div>
+
+        <!-- Zahlen-Box -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">109</p>
+            <p class="text-white/60 text-sm mt-1">m Faraglione di Terra</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">40</p>
+            <p class="text-white/60 text-sm mt-1">m Bogen di Mezzo</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">30+</p>
+            <p class="text-white/60 text-sm mt-1">m Unterwassersicht</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">300</p>
+            <p class="text-white/60 text-sm mt-1">m Gesamtausdehnung</p>
+          </div>
+        </div>
+
+        <!-- Tipps der Einheimischen -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Tipps der Einheimischen</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Für das beste Fotolicht zu Marina Piccola zwischen 16:00 und 18:00 Uhr gehen: Die Faraglioni leuchten golden im Nachmittagslicht.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Die Bootsrundfahrt direkt früh morgens an Marina Grande buchen und so die Agenturen im Zentrum mit ihren Provisionen umgehen.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Der Weg nach Punta Tragara ist kostenlos und panoramisch: 20 Minuten zu Fuß vom Zentrum Capris, null Touristen im Vergleich zur Piazzetta.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Bei der Bootsrundfahrt ausdrücklich darum bitten, unter dem Bogen des Faraglione di Mezzo hindurchzufahren: nicht alle Touren schließen das automatisch ein.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Um die blaue Eidechse zu sehen, sich morgens langsam per Boot dem Faraglione di Fuori nähern, wenn sich die Eidechsen auf den Felsen sonnen.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Häufig Gestellte Fragen</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
       </div>
 
-      <!-- Seitenleiste Schnellfakten -->
+      <!-- Sidebar Kurzinfos -->
       <aside class="lg:col-span-1">
         <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
           <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
-            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Schnellfakten
+            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Kurzinfos
           </h3>
           <div class="space-y-6">
             {facts.map((item) => (
@@ -133,12 +296,21 @@ const beachSchema = {
               </div>
             ))}
           </div>
+          <!-- Tipps der Einheimischen -->
           <div class="mt-10 pt-8 border-t border-white/10">
+            <h4 class="text-med-gold text-xs font-bold uppercase tracking-wider mb-4">Tipps der Einheimischen</h4>
+            <ul class="space-y-3">
+              <li class="text-white/70 text-xs sm:text-sm leading-relaxed">Zwischen 16–18 Uhr zu Marina Piccola für goldenes Licht auf den Felsen.</li>
+              <li class="text-white/70 text-xs sm:text-sm leading-relaxed">Bootsrundfahrt direkt am Hafen buchen – günstiger ohne Agenturgebühren.</li>
+              <li class="text-white/70 text-xs sm:text-sm leading-relaxed">Punta Tragara: 20 Min. zu Fuß, kostenloses Panorama, kaum Touristen.</li>
+            </ul>
+          </div>
+          <div class="mt-8 pt-6 border-t border-white/10">
             <a
               href="/de-de/strande/"
               class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
             >
-              ← Alle Strände
+              &larr; Alle Strände
             </a>
           </div>
         </div>
@@ -147,17 +319,15 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="bg-med-blue py-16 text-center">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-white mb-4">Entdecken Sie mehr der Inseln der Bucht</h2>
-      <a
-        href="/de-de/strande/"
-        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
-      >
-        Vollständiger Strandführer
-      </a>
-    </div>
-  </section>
+  <CorrelationSlider
+    lang="de-de"
+    heading="Weitere Strände der Inseln"
+    items={[
+      { name: 'Marina Piccola',        href: '/de-de/strande/inseln/marina-piccola-capri/',        tag: 'Capri',   desc: 'Der exklusive Strand zu den Füßen der Faraglioni.' },
+      { name: 'Cala del Pozzo Vecchio', href: '/de-de/strande/inseln/cala-del-pozzo-vecchio/',     tag: 'Procida', desc: 'Der Postino-Strand mit schwarzem Vulkansand.' },
+      { name: 'Spiaggia Maronti',      href: '/de-de/strande/inseln/spiaggia-maronti/',            tag: 'Ischia',  desc: 'Drei Kilometer heißer Sand, beheizt vom Vulkan.' },
+      { name: 'Ieranto',               href: '/de-de/strande/sorrentinische-halbinsel/ieranto/',   tag: 'Meeresschutzgebiet', desc: 'Die unberührte Bucht zu den Füßen der Lattari-Berge.' },
+    ]}
+  />
 
 </BaseLayout>

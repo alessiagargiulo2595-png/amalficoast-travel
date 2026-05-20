@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'de-de';
 
@@ -11,18 +12,22 @@ const breadcrumbs = [
 ];
 
 const facts = [
-  { label: 'Untergrund', value: 'Felsig' },
+  { label: 'Lage', value: 'Punta del Capo, Sorrent' },
+  { label: 'Untergrund', value: 'Felsen und Geröll' },
   { label: 'Zugang', value: 'Wanderweg 20 Min. (moderat)' },
-  { label: 'Schatten', value: 'Ab 18:00 Uhr' },
-  { label: 'Ausstattung', value: 'Keine - wilder Strand' },
-  { label: 'Ideal für', value: 'Archäologie, Wandern, Schnorcheln' },
+  { label: 'Römische Villa', value: '1. Jh. n. Chr. (Pollio Felice)' },
+  { label: 'Natürlicher Schatten', value: 'Ab ca. 18:00 Uhr' },
+  { label: 'Ausstattung', value: 'Keine – wilder Strand' },
+  { label: 'Schnorcheln', value: 'Ausgezeichnet (Naturbogen)' },
+  { label: 'Ideal für', value: 'Archäologie, Schwimmen, Wandern' },
+  { label: 'Beste Reisezeit', value: 'Mai–Jun / Sep–Okt' },
 ];
 
 const beachSchema = {
   "@context": "https://schema.org",
   "@type": "Beach",
   "name": "Bagni della Regina Giovanna",
-  "description": "Ein Naturpool und antikes römisches Archäologiegebiet bei Sorrent. Ein verstecktes Juwel zwischen Olivenbäumen, 20 Gehminuten vom Zentrum entfernt.",
+  "description": "Natürlicher Pool und antike römische Ausgrabungsstätte in Sorrent. Überreste der Meersvilla des Pollio Felice (1. Jh. n. Chr.) mit natürlichem Felsbogen und smaragdgrünem Wasser.",
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": "40.6450",
@@ -35,14 +40,46 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie erreicht man die Bagni della Regina Giovanna?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Von Sorrent nimmt man den EAV-Bus nach Capo di Sorrento (10 Min. ab Piazza Tasso), dann folgt ein Fußweg von ca. 15–20 Minuten durch jahrtausendealte Olivenhaine. Alternativ ist der Ort vom Stadtzentrum Sorrents in etwa 40 Minuten zu Fuß über die Via del Capo erreichbar. Der Weg ist teilweise unbefestigt: leichte Wanderschuhe werden empfohlen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wer war Königin Giovanna?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die Königin Giovanna, auf die sich der Name bezieht, ist Johanna I. von Anjou (1326–1382), Königin von Neapel. Der Volkslegende zufolge liebte die Königin es, in dem natürlichen Becken zu schwimmen, wenn sie Sorrent besuchte. In Wirklichkeit ist die Villa viel älter: Sie stammt aus dem 1. Jahrhundert n. Chr. und gehörte dem römischen Adligen Pollio Felice." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann man in den Bagni della Regina Giovanna schwimmen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, das Schwimmen ist frei und kostenlos. Der natürliche Pool ist durch den Felsbogen geschützt und bietet ruhiges, kristallklares Wasser, das sich auch hervorragend zum Schnorcheln eignet. Der Einstieg ins Wasser erfolgt über die umliegenden Felsen (Wasserschuhe mitbringen). Es gibt keine Liegestühle und keinen Rettungsschwimmer." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was ist von der römischen Villa erhalten?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Noch sichtbar sind die Reste der Fundamente, Zisternen zur Regenwassersammlung, einige Baderäume und die Hafenstrukturen. Der natürliche Felsbogen war wahrscheinlich der Eingang zum privaten Hafen der Villa. Die Villa wird vom Dichter Statius in den Silvae (1. Jh. n. Chr.) als eine der schönsten am Golf von Neapel beschrieben." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wann ist der beste Zeitpunkt für einen Besuch?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Am frühen Morgen (vor 10:00 Uhr) oder am späten Nachmittag. Im Sommer erhält der natürliche Pool bis etwa 17–18 Uhr direkte Sonne. Mai, Juni und September sind die idealen Monate: weniger Besucher und perfekte Temperatur. Im Hochsommer (Juli–August) kann es sehr voll werden, besonders an Wochenenden." }
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  title="Regina Giovanna Sorrent: Der Naturpool (2026)"
-  description="So erreichen Sie die Bagni della Regina Giovanna bei Sorrent. Naturpool zwischen römischen Ruinen, Wanderweg durch Olivenhaine und smaragdgrünes Wasser. Reiseführer 2026."
+  title="Bagni della Regina Giovanna Sorrent: Natürlicher Pool & Römische Villa (2026)"
+  description="Vollständiger Reiseführer zu den Bagni della Regina Giovanna in Sorrent: der natürliche Pool, die Überreste der römischen Villa des Pollio Felice, Anreise, Geschichte und praktische Tipps. Der schönste Strand der Sorrentiner Halbinsel."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
   pageKey="regina-giovanna"
 >
 
@@ -50,7 +87,7 @@ const beachSchema = {
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
       src="/images/regina-giovanna-sorrento.jpg"
-      alt="Bagni della Regina Giovanna, Sorrent"
+      alt="Bagni della Regina Giovanna – natürlicher Pool mit Felsbogen, Sorrent"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
       referrerpolicy="no-referrer"
@@ -58,8 +95,8 @@ const beachSchema = {
     <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
       <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrent · Sorrentiner Halbinsel</p>
-      <h1 class="font-serif text-display text-white mb-6">Regina Giovanna</h1>
-      <p class="text-lg md:text-xl font-light text-white/80">Der versteckte Naturpool zwischen römischen Ruinen.</p>
+      <h1 class="font-serif text-display text-white mb-6">Bagni della Regina Giovanna</h1>
+      <p class="text-lg md:text-xl font-light text-white/80">Natürlicher Pool zwischen den Ruinen einer römischen Villa aus dem 1. Jahrhundert.</p>
     </div>
     <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
@@ -69,44 +106,186 @@ const beachSchema = {
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
 
       <!-- Haupttext -->
-      <div class="lg:col-span-2 space-y-12">
+      <div class="lg:col-span-2 space-y-16">
+
+        <!-- Intro -->
         <div>
-          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Archäologie und Baden</h2>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Der Naturpool von Sorrent</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Die Bagni della Regina Giovanna sind ein archäologisches Freiluftgelände, wo man in smaragdgrünes Wasser eintauchen kann. Ein natürlicher Pool, eingerahmt von den Überresten einer römischen Villa aus dem 1. Jahrhundert - wahrscheinlich die des Publius Vedius Pollio - verbindet sich durch einen Felsenbogen mit dem offenen Meer. 2026 ist es noch immer ein wilder Ort: keine Einrichtungen.
+            Die Bagni della Regina Giovanna sind das bestgehütete Geheimnis von <a href="/de-de/sorrentinische-halbinsel/sorrent/" class="text-med-blue hover:underline">Sorrent</a>. Ein natürlicher Smaragdpool, eingebettet zwischen Kalksteinwänden und durchquert von einem Naturbogen, der ihn mit dem offenen Meer verbindet. Ringsum ragen die Überreste einer römischen Meersvilla aus dem 1. Jahrhundert n. Chr. aus dem Mittelmeergebüsch hervor – wie Geister einer verlorenen Welt.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            Der Weg zu den Bädern führt durch jahrtausendealte Olivenhaine mit spektakulären Blicken auf den Golf von Neapel und die Insel Capri. Leichte Wanderschuhe mitnehmen und genug Wasser - es gibt weder Bar noch Geschäft in der Nähe.
+            Es ist kein Strand im klassischen Sinne: Es ist ein archäologisches und natürliches Kleinod, wo man zwischen Ruinen taucht. Keine Liegestühle, keine Bar, kein Rettungsschwimmer. Man kommt zu Fuß über einen 20-minütigen Weg durch jahrtausendealte Olivenhaine und entdeckt einen Ort, den die Einwohner Sorrents seit Generationen aufsuchen – lange bevor er in sozialen Medien berühmt wurde.
           </p>
         </div>
 
-        <!-- Wilder Strand -->
-        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-          <div class="flex items-center gap-4 mb-4">
-            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-            <h3 class="text-xl font-bold">Wilder Strand</h3>
+        <!-- Die Villa des Pollio Felice -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Die Villa des Pollio Felice: Geschichte und Archäologie</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Die Überreste rund um den natürlichen Pool gehören zu einer Meersvilla aus dem 1. Jahrhundert n. Chr., die dem römischen Adligen <strong>Pollio Felice</strong> zugeschrieben wird, einem wohlhabenden Ritter und Kunstmäzen. Die Villa wird vom lateinischen Dichter <strong>Publius Papinius Statius</strong> in seinen <em>Silvae</em> (II, 2) ausführlich beschrieben und als eine der schönsten Residenzen am Golf von Neapel gefeiert.
+          </p>
+          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm my-8">
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Die Beschreibung des Statius (1. Jh. n. Chr.)</h3>
+            <p class="text-slate-600 leading-relaxed mb-4 italic">
+              „Die Villa ragt auf einem Vorgebirge ans Meer hinaus, wo die Erde sich im Wasser aufzulösen scheint. Die Zimmer öffnen sich direkt zum Tyrrhenischen Meer und die Wellen lecken an den Mosaiken der Sommerspeisesäle."
+            </p>
+            <p class="text-slate-600 leading-relaxed">
+              Statius beschreibt eine Residenz mit <strong>privaten Thermen</strong>, die mit Süßwasser gespeist wurden, einem <strong>privaten Hafen</strong> (der heutige Naturpool, geschützt durch den Felsbogen), Terrassengärten mit Obstbäumen und einem System von <strong>Zisternen</strong> zur Regenwassersammlung – von denen einige noch zwischen der Vegetation sichtbar sind.
+            </p>
           </div>
-          <p class="text-slate-600 leading-relaxed">
-            Keine Einrichtungen, keine Bar, kein Lido. <strong>Wasser, Proviant und Wasserschuhe</strong> mitbringen. Ein authentisch lokaler Ort, hauptsächlich von Einheimischen besucht, die ihn kennen.
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Die Villa erstreckte sich über eine viel größere Fläche als heute sichtbar. Sie zog sich entlang der gesamten Punta del Capo hin und nutzte die natürliche Form des Vorgebirges, um eine Residenz zu schaffen, die Architektur und Landschaft miteinander verband. Fundamente, Umfassungsmauern und Zisternen sind noch zwischen den Olivenbäumen und im Buschwerk erkennbar.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Nach dem Fall des Römischen Reiches wurde die Villa nach und nach aufgegeben, und die Natur übernahm die Strukturen. Natürliche Einstürze und Meereserosion schufen den Felsbogen, der heute das spektakulärste Element des Geländes ist.
+          </p>
+        </div>
+
+        <!-- Die Legende der Königin Giovanna -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Die Legende der Königin Giovanna</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Der Name „Regina Giovanna" hat nichts mit der römischen Villa zu tun. Er bezieht sich auf <strong>Johanna I. von Anjou</strong> (1326–1382), Königin von Neapel, eine der umstrittensten und faszinierendsten Gestalten der mittelalterlichen Geschichte Italiens.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Der sorrentin'schen Volkslegende zufolge liebte die Königin es, sich an diesem abgeschiedenen Ort zu erholen und weit ab von neugierigen Augen zu schwimmen. Der natürliche Pool, durch die Felsen geschützt und vom offenen Meer aus nicht einsehbar, war der ideale Rückzugsort für eine Herrscherin, die den Intrigen des neapolitanischen Hofes entfliehen wollte.
+          </p>
+          <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+            <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Wussten Sie schon?</p>
+            <div class="grid sm:grid-cols-3 gap-6">
+              <div class="text-center">
+                <p class="font-serif text-5xl font-bold text-med-gold">1. Jh.</p>
+                <p class="text-white/60 text-xs italic mt-1">Alter der römischen Villa</p>
+              </div>
+              <div class="text-center">
+                <p class="font-serif text-5xl font-bold text-med-gold">1382</p>
+                <p class="text-white/60 text-xs italic mt-1">Tod Johannas I. von Anjou</p>
+              </div>
+              <div class="text-center">
+                <p class="font-serif text-5xl font-bold text-med-gold">20 Min.</p>
+                <p class="text-white/60 text-xs italic mt-1">Wanderweg durch Olivenhaine</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Der Naturbogen und der Pool -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Der Naturbogen und der Pool</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Das spektakulärste Element des Geländes ist der Kalksteinbogen, der den natürlichen Pool vom offenen Meer trennt. Der Bogen, der im Laufe der Jahrtausende durch Meereserosion entstand, war wahrscheinlich der Eingang zum privaten Hafen der römischen Villa.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Der Pool ist ein Becken von etwa 30 Metern Durchmesser mit türkisblauem, kristallklarem Wasser von 2 bis 5 Metern Tiefe. Der Untergrund ist Fels und Sand, mit reichhaltigem Meereslebewesen, das mit bloßem Auge sichtbar ist: Seebarsche, Girellen, Seeigel und Tintenfische. Das Schnorcheln ist hier ausgezeichnet, besonders unter dem Bogen, wo das Licht zauberhafte Reflexe erzeugt.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Der Einstieg ins Wasser erfolgt über die flachen Felsen rund um den Pool. Es gibt keinen Sand: <strong>Wasserschuhe</strong> sind unbedingt erforderlich. Die Abenteuerlustigen springen vom Bogen (Höhe ca. 3–4 Meter), aber die Tiefe sollte vorher sorgfältig geprüft werden.
           </p>
         </div>
 
         <!-- Anreise -->
         <div>
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Anreise</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            Die Bagni della Regina Giovanna befinden sich an der Punta del Capo, dem westlichen Ende der <a href="/de-de/sorrentinische-halbinsel/" class="text-med-blue hover:underline">Sorrentiner Halbinsel</a>. Mit dem Auto sind sie nicht direkt erreichbar: Der letzte Abschnitt ist ein Fußweg.
+          </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">EAV-Bus ⭐ Empfohlen</p>
-              <p class="text-slate-700 font-medium mb-1">Linie «Capo di Sorrento»</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Ab Piazza Tasso. Dann 15–20 Min. zu Fuß durch die Olivenhaine.</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">EAV-Bus · Empfohlen</p>
+              <p class="text-slate-700 font-medium mb-1">Linie „Capo di Sorrento"</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Ab Piazza Tasso, Ausstieg an der Haltestelle Capo di Sorrento. Dann 15–20 Min. zu Fuß durch die Olivenhaine. Der Weg ist ausgeschildert.</p>
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
               <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Zu Fuß vom Zentrum</p>
               <p class="text-slate-700 font-medium mb-1">Ca. 40 Minuten</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Panoramisch aber anspruchsvoll. Via del Capo Richtung Punta del Capo folgen.</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Via del Capo Richtung Punta del Capo folgen. Panoramisch, aber bergauf anstrengend. Wasser mitnehmen.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Mit dem Auto</p>
+              <p class="text-slate-700 font-medium mb-1">Parkplatz Via del Capo</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Wenige Parkplätze entlang der Via del Capo. Im Sommer früh voll (vor 9:00 Uhr ankommen). Dann 15–20 Min. zu Fuß.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Per Schiff</p>
+              <p class="text-slate-700 font-medium mb-1">Kajak oder Privatboot</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Man kann durch den Felsbogen mit einem Kajak oder Schlauchboot in den natürlichen Pool einfahren. Kein Verleih vor Ort.</p>
             </div>
           </div>
         </div>
+
+        <!-- Der Wanderweg -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Der Wanderweg: Von Capo di Sorrento zum Pool</h2>
+          <div class="space-y-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">1</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Der Abstieg durch die Olivenhaine (10 Min.)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Von der Bushaltestelle führt ein unbefestigter Weg durch jahrhundertealte Olivenhaine und Trockensteinmauern hinab. Der Weg ist schattig und angenehm, mit unvermittelten Ausblicken auf den Golf von Neapel und die Insel Capri.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">2</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Die Ruinen der Villa (5 Min.)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Der Weg führt an den Überresten der Villa des Pollio Felice vorbei: Zisternen, Umfassungsmauern und Fundamente ragen aus der Vegetation hervor. Informationstafeln (oft verblasst) erläutern die Geschichte des Geländes.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">3</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Der letzte Abstieg (5 Min.)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Das letzte Stück ist das steilste: Man steigt zwischen den Felsen bis auf Meereshöhe hinab. Der Felsbogen erscheint unvermittelt und rahmt den türkisen Pool ein. Der optische Eindruck ist atemberaubend.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Praktische Tipps -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+            <h3 class="text-xl font-bold">Praktische Tipps</h3>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-slate-900 mb-1">1. Alles selbst mitbringen</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Es gibt keine Bar, kein Restaurant und keine Liegestühle. Mitbringen: <strong>Wasser (mindestens 1,5 Liter pro Person)</strong>, Essen, Sonnencreme, Wasserschuhe, Handtuch und eine Tüte für Müll. Der einzige Mülleimer steht am Anfang des Weges.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">2. Im Sommer früh ankommen</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Im Juli und August füllt sich der Pool bereits um 10:00 Uhr, besonders an Wochenenden. Wer um 8:30–9:00 Uhr ankommt, findet noch Platz auf den Felsen und das Wasser ist kristallklar, bevor es von Badenden bewegt wird.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">3. Das beste Schnorcheln ist unter dem Bogen</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Wo der Felsbogen auf das offene Meer trifft, ist die Unterwasserwelt am reichhaltigsten: Seebarsche, Castagnole, Tintenfische und Seeigel. Schnorchel und Maske mitbringen – es ist das beste kostenlose Schnorchelabenteuer der Sorrentiner Halbinsel.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">4. Der Sonnenuntergang von der Villa</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Wer bis zum späten Nachmittag bleibt, sollte zu den Villaruinen aufsteigen: Das goldene Licht über dem Golf von Neapel mit Capri und dem Vesuv im Hintergrund ist eines der schönsten Naturschauspiele der Region.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Häufig Gestellte Fragen</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
       </div>
 
       <!-- Sidebar Kurzinfos -->
@@ -123,12 +302,21 @@ const beachSchema = {
               </div>
             ))}
           </div>
+          <!-- Tipps der Einheimischen -->
           <div class="mt-10 pt-8 border-t border-white/10">
+            <h4 class="text-med-gold text-xs font-bold uppercase tracking-wider mb-4">Tipps der Einheimischen</h4>
+            <ul class="space-y-3">
+              <li class="text-white/70 text-xs sm:text-sm leading-relaxed">Vor 9:00 Uhr ankommen, um einen guten Platz auf den Felsen zu sichern.</li>
+              <li class="text-white/70 text-xs sm:text-sm leading-relaxed">Zum Schnorcheln: Die Zone unter dem Bogen hat die reichhaltigste Unterwasserwelt.</li>
+              <li class="text-white/70 text-xs sm:text-sm leading-relaxed">Abends bleiben für den Sonnenuntergang – der Blick über den Golf ist unvergesslich.</li>
+            </ul>
+          </div>
+          <div class="mt-8 pt-6 border-t border-white/10">
             <a
               href="/de-de/strande/"
               class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
             >
-              ← Alle Strände
+              &larr; Alle Strände
             </a>
           </div>
         </div>
@@ -137,17 +325,15 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="bg-med-blue py-16 text-center">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-white mb-4">Die Sorrentiner Halbinsel erkunden</h2>
-      <a
-        href="/de-de/sorrentinische-halbinsel/"
-        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
-      >
-        Reiseführer Sorrentiner Halbinsel
-      </a>
-    </div>
-  </section>
+  <CorrelationSlider
+    lang="de-de"
+    heading="Weitere Strände der Sorrentiner Halbinsel"
+    items={[
+      { name: 'Marina del Cantone', href: '/de-de/strande/sorrentinische-halbinsel/marina-del-cantone/', tag: 'Sand & Restaurants', desc: 'Der größte Strand der Sorrentiner Halbinsel: Sand und Geröll, Restaurants am Meer und Ausgangspunkt für Ieranto.' },
+      { name: 'Ieranto',            href: '/de-de/strande/sorrentinische-halbinsel/ieranto/',             tag: 'FAI-Naturschutzgebiet', desc: 'Geschützte Bucht mit Blick auf die Faraglioni von Capri. Nur zu Fuß erreichbar (40 Min.) von Nerano.' },
+      { name: 'Cala di Mitigliano', href: '/de-de/strande/sorrentinische-halbinsel/cala-mitigliano/',    tag: 'Wildromantisch',    desc: 'Kleines Geröllstrand unter Massa Lubrense, erreichbar über 300 Stufen durch den Mittelmeer-Busch.' },
+      { name: 'Sorrent',            href: '/de-de/sorrentinische-halbinsel/sorrent/',                    tag: 'Die ideale Basis',  desc: 'Verkehrsknotenpunkt, Eleganz und Nachtleben: die perfekte Basis für die Erkundung der Sorrentiner Halbinsel.' },
+    ]}
+  />
 
 </BaseLayout>

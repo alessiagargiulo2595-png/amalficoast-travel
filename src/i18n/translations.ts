@@ -876,6 +876,8 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'sagra-limone-massa-lubrense',       'de-de': 'sagra-limone-massa-lubrense',        'fr-fr': 'sagra-limone-massa-lubrense',       'es-es': 'sagra-limone-massa-lubrense',       'it-it': 'sagra-limone-massa-lubrense'      },
   { 'en-us': 'sagra-melanzana-preazzano',         'de-de': 'sagra-melanzana-preazzano',          'fr-fr': 'sagra-melanzana-preazzano',         'es-es': 'sagra-melanzana-preazzano',         'it-it': 'sagra-melanzana-preazzano'        },
   { 'en-us': 'sorrento-meeting-cultura',          'de-de': 'sorrento-meeting-cultura',           'fr-fr': 'sorrento-meeting-cultura',          'es-es': 'sorrento-meeting-cultura',          'it-it': 'sorrento-meeting-cultura'         },
+  // Blog post: Tiberius Gardens & Via Krupp
+  { 'en-us': 'tiberius-gardens-via-krupp',         'de-de': 'tiberius-gaerten-via-krupp',          'fr-fr': 'jardins-tibere-via-krupp',            'es-es': 'jardines-tiberio-via-krupp',          'it-it': 'giardini-tiberio-via-krupp'        },
   // Beach name translations
   { 'en-us': 'spiaggia-di-ieranto',               'de-de': 'spiaggia-di-ieranto',                'fr-fr': 'spiaggia-di-ieranto',               'es-es': 'spiaggia-di-ieranto',               'it-it': 'ieranto'                          },
   { 'en-us': 'cala-mitigliano',                   'de-de': 'cala-mitigliano',                    'fr-fr': 'cala-mitigliano',                  'es-es': 'cala-mitigliano',                  'it-it': 'cala-mitigliano'                 },

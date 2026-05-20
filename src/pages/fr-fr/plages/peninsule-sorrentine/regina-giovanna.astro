@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'fr-fr';
 
@@ -11,18 +12,22 @@ const breadcrumbs = [
 ];
 
 const facts = [
-  { label: 'Revêtement', value: 'Rocheux' },
+  { label: 'Localisation', value: 'Punta del Capo, Sorrente' },
+  { label: 'Revêtement', value: 'Rocheux et galets' },
   { label: 'Accès', value: 'Sentier 20 min (modéré)' },
-  { label: 'Ombre', value: 'À partir de 18h00' },
+  { label: 'Villa romaine', value: 'Ier s. ap. J.-C. (Pollio Felice)' },
+  { label: 'Ombre naturelle', value: 'À partir de 18h00 environ' },
   { label: 'Équipements', value: 'Aucun - plage sauvage' },
-  { label: 'Idéal pour', value: 'Archéologie, randonnée, snorkeling' },
+  { label: 'Snorkeling', value: 'Excellent (arche naturelle)' },
+  { label: 'Idéal pour', value: 'Archéologie, natation, randonnée' },
+  { label: 'Meilleure période', value: 'Mai-Juin / Sept-Oct' },
 ];
 
 const beachSchema = {
   "@context": "https://schema.org",
   "@type": "Beach",
   "name": "Bagni della Regina Giovanna",
-  "description": "Une piscine naturelle et un site archéologique romain près de Sorrente. Un joyau caché parmi les oliviers, à 20 minutes à pied du centre-ville.",
+  "description": "Piscine naturelle et site archéologique romain à Sorrente. Vestiges de la villa maritime de Pollio Felice (Ier s. ap. J.-C.) avec arche de roche naturelle et eaux émeraude.",
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": "40.6450",
@@ -35,14 +40,46 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment rejoindre les Bagni della Regina Giovanna ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Depuis Sorrente, prenez le bus EAV pour Capo di Sorrento (10 min depuis Piazza Tasso), puis marchez environ 15-20 minutes sur un sentier entre des oliveraies millénaires. Autrement, à pied depuis le centre de Sorrente, comptez environ 40 minutes en suivant Via del Capo. Le sentier est en partie non pavé : des chaussures de randonnée légères sont conseillées." }
+    },
+    {
+      "@type": "Question",
+      "name": "Qui était la Reine Giovanna ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La reine Giovanna à laquelle se réfère le nom est Jeanne Ire d'Anjou (1326-1382), reine de Naples. Selon la légende populaire, la reine aimait se baigner dans la piscine naturelle lors de ses visites à Sorrente. En réalité, la villa est bien plus ancienne : elle remonte au Ier siècle ap. J.-C. et appartenait au noble romain Pollio Felice." }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on se baigner aux Bagni della Regina Giovanna ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui, la baignade est libre et gratuite. La piscine naturelle est protégée par l'arche de roche et offre des eaux calmes et cristallines, idéales aussi pour le snorkeling. L'entrée dans l'eau se fait depuis les rochers (apporter des chaussures aquatiques). Il n'y a pas d'établissement ni de maître-nageur." }
+    },
+    {
+      "@type": "Question",
+      "name": "Que reste-t-il de la villa romaine ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "On peut voir les restes des fondations, des citernes pour la collecte des eaux de pluie, de quelques salles thermales et des structures portuaires. L'arche naturelle de roche était probablement l'entrée du port privé de la villa. La villa est décrite par le poète Stace dans les Silves (Ier s. ap. J.-C.) comme l'une des plus belles du golfe de Naples." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quel est le meilleur moment pour visiter ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Le matin tôt (avant 10h) ou en fin d'après-midi. En été, la piscine naturelle reçoit le soleil direct jusqu'à 17-18h environ. Mai, juin et septembre sont les mois idéaux : moins de monde et température parfaite. En plein été (juillet-août) elle peut être très fréquentée, surtout les week-ends." }
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  title="Regina Giovanna Sorrente : La Piscine Naturelle (2026)"
-  description="Comment rejoindre les Bagni della Regina Giovanna près de Sorrente. Piscine naturelle parmi des ruines romaines, sentier dans les oliviers et eaux émeraude. Guide 2026."
+  title="Bagni della Regina Giovanna Sorrente : Piscine Naturelle et Villa Romaine (2026)"
+  description="Guide complet des Bagni della Regina Giovanna à Sorrente : la piscine naturelle, les vestiges de la villa romaine de Pollio Felice, comment y arriver, histoire et conseils pratiques. La plus belle plage de la Péninsule Sorrentine."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
   pageKey="regina-giovanna"
 >
 
@@ -50,16 +87,16 @@ const beachSchema = {
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
       src="/images/regina-giovanna-sorrento.jpg"
-      alt="Bagni della Regina Giovanna, Sorrente"
+      alt="Bagni della Regina Giovanna - piscine naturelle avec arche de roche, Sorrente"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
       referrerpolicy="no-referrer"
     />
-    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
       <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrente · Péninsule Sorrentine</p>
-      <h1 class="font-serif text-display text-white mb-6">Regina Giovanna</h1>
-      <p class="text-lg md:text-xl font-light text-white/80">La piscine naturelle cachée parmi les ruines romaines.</p>
+      <h1 class="font-serif text-display text-white mb-6">Bagni della Regina Giovanna</h1>
+      <p class="text-lg md:text-xl font-light text-white/80">Piscine naturelle parmi les ruines d'une villa romaine du Ier siècle.</p>
     </div>
     <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
@@ -69,51 +106,193 @@ const beachSchema = {
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
 
       <!-- Texte principal -->
-      <div class="lg:col-span-2 space-y-12">
+      <div class="lg:col-span-2 space-y-16">
+
+        <!-- Intro -->
         <div>
-          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Archéologie et Baignade</h2>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">La Piscine Naturelle de Sorrente</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Les Bagni della Regina Giovanna sont un site archéologique à ciel ouvert où l'on peut plonger dans une eau bleu émeraude. Une piscine naturelle encadrée par les vestiges d'une villa romaine du Ier siècle - probablement celle de Publius Vedius Pollio - communique avec la mer ouverte par une arche de roche. En 2026, c'est toujours un endroit sauvage : pas d'établissements.
+            Les Bagni della Regina Giovanna sont le secret le mieux gardé de <a href="/fr-fr/peninsule-sorrentine/sorrente/" class="text-med-blue hover:underline">Sorrente</a>. Une piscine naturelle d'eau émeraude, encadrée par des parois de roche calcaire et traversée par une arche naturelle qui la relie à la mer ouverte. Autour, les vestiges d'une villa maritime romaine du Ier siècle ap. J.-C. émergent de la garrigue comme les fantômes d'un monde perdu.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            Le sentier qui mène aux bains traverse des oliveraies millénaires avec des vues spectaculaires sur le golfe de Naples et l'île de Capri. Portez des chaussures de randonnée légères et apportez assez d'eau - il n'y a ni bar ni magasin à proximité.
+            Ce n'est pas une plage au sens classique : c'est un écrin archéologique et naturel où l'on plonge parmi les ruines. Il n'y a pas d'établissements, de bar, ni de maître-nageur. On y arrive à pied, par un sentier de 20 minutes entre des oliveraies millénaires, et on découvre un lieu que les Sorrentins fréquentent depuis des générations — bien avant qu'il ne devienne célèbre sur les réseaux sociaux.
           </p>
         </div>
 
-        <!-- Plage sauvage -->
-        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-          <div class="flex items-center gap-4 mb-4">
-            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
-            <h3 class="text-xl font-bold">Plage Sauvage</h3>
+        <!-- La Villa Romaine -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Villa de Pollio Felice : Histoire et Archéologie</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Les vestiges qui entourent la piscine naturelle appartiennent à une villa maritime du Ier siècle ap. J.-C., attribuée au noble romain <strong>Pollio Felice</strong>, riche chevalier et mécène des arts. La villa est décrite en détail par le poète latin <strong>Publius Papinius Statius</strong> dans ses <em>Silves</em> (II, 2), où il la célèbre comme l'une des résidences les plus belles du golfe de Naples.
+          </p>
+          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm my-8">
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">La Description de Stace (Ier s. ap. J.-C.)</h3>
+            <p class="text-slate-600 leading-relaxed mb-4 italic">
+              « La villa s'avance vers la mer sur un promontoire où la terre semble se dissoudre dans l'eau. Les pièces s'ouvrent directement sur la Méditerranée et les vagues lèchent les mosaïques des triclinia estivaux. »
+            </p>
+            <p class="text-slate-600 leading-relaxed">
+              Stace décrit une résidence avec des <strong>thermes privés</strong> alimentés en eau douce, un <strong>port privé</strong> (l'actuelle piscine naturelle, protégée par l'arche de roche), des jardins en terrasses avec des arbres fruitiers et un système de <strong>citernes</strong> pour collecter l'eau de pluie — dont certaines sont encore visibles dans la végétation.
+            </p>
           </div>
-          <p class="text-slate-600 leading-relaxed">
-            Aucun équipement, pas de bar, pas d'établissement. Apportez <strong>eau, nourriture et chaussures aquatiques</strong>. C'est un endroit authentiquement local, fréquenté surtout par les Sorrentins qui connaissent le lieu.
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La villa couvrait une superficie bien plus grande que celle visible aujourd'hui. Elle s'étendait le long de toute la Punta del Capo, exploitant la configuration naturelle du promontoire pour créer une résidence qui fusionnait architecture et paysage. Les fondations, les murs périmétraux et les citernes sont encore reconnaissables entre les oliviers et la garrigue.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Après la chute de l'Empire romain, la villa fut progressivement abandonnée et la nature se réappropria les structures. Les effondrements naturels et l'érosion marine ont créé l'arche de roche qui constitue aujourd'hui l'élément le plus spectaculaire du site.
+          </p>
+        </div>
+
+        <!-- La légende de la Reine Giovanna -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Légende de la Reine Giovanna</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Le nom « Regina Giovanna » n'a rien à voir avec la villa romaine. Il se réfère à <strong>Jeanne Ire d'Anjou</strong> (1326-1382), reine de Naples, l'une des figures les plus controversées et fascinantes de l'histoire médiévale italienne.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Selon la légende populaire sorrentine, la reine aimait se retirer dans ce lieu isolé pour se baigner à l'abri des regards indiscrets. La piscine naturelle, protégée par les rochers et invisible depuis la mer ouverte, était le refuge parfait pour une souveraine qui voulait échapper aux intrigues de la cour napolitaine.
+          </p>
+          <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+            <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Le saviez-vous ?</p>
+            <div class="grid sm:grid-cols-3 gap-6">
+              <div class="text-center">
+                <p class="font-serif text-5xl font-bold text-med-gold">Ier s.</p>
+                <p class="text-white/60 text-xs italic mt-1">Époque de la villa romaine</p>
+              </div>
+              <div class="text-center">
+                <p class="font-serif text-5xl font-bold text-med-gold">1382</p>
+                <p class="text-white/60 text-xs italic mt-1">Mort de Jeanne Ire d'Anjou</p>
+              </div>
+              <div class="text-center">
+                <p class="font-serif text-5xl font-bold text-med-gold">20 min</p>
+                <p class="text-white/60 text-xs italic mt-1">Sentier entre les oliviers</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- L'arche naturelle et la piscine -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">L'Arche Naturelle et la Piscine</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            L'élément le plus spectaculaire du site est l'arche de roche calcaire qui sépare la piscine naturelle de la mer ouverte. L'arche, formée au fil des millénaires par l'érosion marine, était probablement l'entrée du port privé de la villa romaine.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La piscine est un bassin d'environ 30 mètres de diamètre, aux eaux turquoises et cristallines, profond de 2 à 5 mètres. Le fond est de roche et de sable, avec une faune marine abondante visible à l'œil nu : sars, girelles, oursins et pieuvres. Le snorkeling ici est exceptionnel, surtout sous l'arche où la lumière crée des jeux de reflets.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            L'entrée dans l'eau se fait depuis les rochers plats qui entourent la piscine. Il n'y a pas de sable : des <strong>chaussures aquatiques</strong> sont indispensables. Les plus aventureux plongent depuis l'arche (hauteur d'environ 3-4 mètres), mais la profondeur doit être vérifiée avec attention.
           </p>
         </div>
 
         <!-- Comment y aller -->
         <div>
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Comment y Aller</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            Les Bagni della Regina Giovanna se trouvent à Punta del Capo, l'extrémité occidentale de la <a href="/fr-fr/peninsule-sorrentine/" class="text-med-blue hover:underline">Péninsule Sorrentine</a>. Ils ne sont pas accessibles en voiture : la dernière partie est un sentier pédestre.
+          </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus EAV ⭐ Recommandé</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus EAV · Recommandé</p>
               <p class="text-slate-700 font-medium mb-1">Ligne « Capo di Sorrento »</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Depuis Piazza Tasso. Puis 15–20 min à pied dans les oliviers.</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Depuis Piazza Tasso, descendre à Capo di Sorrento. Puis 15-20 min à pied dans les oliviers. Le sentier est balisé.</p>
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
               <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">À pied depuis le centre</p>
               <p class="text-slate-700 font-medium mb-1">Environ 40 minutes</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Panoramique mais exigeant. Suivre Via del Capo vers Punta del Capo.</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Suivre Via del Capo vers Punta del Capo. Panoramique mais exigeant en montée. Apporter de l'eau.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">En voiture</p>
+              <p class="text-slate-700 font-medium mb-1">Parking Via del Capo</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Peu de places le long de Via del Capo. En été elles se remplissent tôt (arriver avant 9h). Puis 15-20 min à pied.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Par la mer</p>
+              <p class="text-slate-700 font-medium mb-1">Kayak ou bateau privé</p>
+              <p class="text-slate-500 text-xs sm:text-sm">On peut entrer dans la piscine naturelle par l'arche de roche en kayak ou en annexe. Aucun service de location sur place.</p>
             </div>
           </div>
         </div>
+
+        <!-- Le sentier -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Le Sentier : De Capo di Sorrento à la Piscine</h2>
+          <div class="space-y-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">1</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">La descente dans les oliviers (10 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Depuis l'arrêt de bus on emprunte un sentier non pavé qui descend entre des oliveraies centenaires et des murets en pierre sèche. Le parcours est ombragé et agréable, avec des vues soudaines sur le golfe de Naples et l'île de Capri.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">2</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Les ruines de la villa (5 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Le sentier passe à côté des vestiges de la villa de Pollio Felice : citernes, murs périmétraux et fondations émergent de la végétation. Des panneaux d'information (souvent délavés) expliquent l'histoire du site.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">3</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">La descente finale (5 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Le dernier tronçon est le plus raide : on descend entre les rochers jusqu'au niveau de la mer. L'arche de roche apparaît soudainement, encadrant la piscine turquoise. L'impact visuel est extraordinaire.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conseils pratiques -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+            <h3 class="text-xl font-bold">Conseils d'initiés</h3>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-slate-900 mb-1">1. Apportez tout avec vous</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Il n'y a pas de bar, restaurant ni établissement. Apportez <strong>de l'eau (au moins 1,5 litre par personne)</strong>, de la nourriture, de la crème solaire, des chaussures aquatiques, une serviette et un sac pour les déchets. La seule poubelle est au début du sentier.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">2. Arrivez tôt en été</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">En juillet et août, la piscine se remplit dès 10h, surtout les week-ends. Arriver à 8h30-9h garantit de l'espace sur les rochers et une eau limpide avant qu'elle ne soit troublée par les baigneurs.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">3. Le meilleur snorkeling est sous l'arche</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Le point où l'arche de roche rejoint la mer ouverte est riche en vie marine : sars, castagnoles, pieuvres et oursins. Apportez masque et tuba — c'est le meilleur snorkeling gratuit de la Péninsule Sorrentine.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">4. Le coucher de soleil depuis la villa</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Si vous restez jusqu'en fin d'après-midi, remontez jusqu'aux ruines de la villa pour le coucher de soleil : la lumière dorée sur le golfe de Naples avec Capri et le Vésuve en toile de fond est l'un des plus beaux spectacles naturels de la région.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Questions Fréquentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
       </div>
 
       <!-- Sidebar Fast-Facts -->
       <aside class="lg:col-span-1">
         <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
           <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
-            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Infos Clés
+            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Fast-Facts
           </h3>
           <div class="space-y-6">
             {facts.map((item) => (
@@ -124,12 +303,19 @@ const beachSchema = {
             ))}
           </div>
           <div class="mt-10 pt-8 border-t border-white/10">
-            <a
-              href="/fr-fr/plages/"
-              class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
-            >
-              ← Toutes les plages
-            </a>
+            <p class="text-white/40 text-xs font-light mb-4">Plages à proximité</p>
+            <ul class="space-y-2">
+              <li><a href="/fr-fr/plages/peninsule-sorrentine/marina-del-cantone/" class="text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors">Marina del Cantone</a></li>
+              <li><a href="/fr-fr/plages/peninsule-sorrentine/ieranto/" class="text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors">Ieranto</a></li>
+            </ul>
+            <div class="mt-6 pt-6 border-t border-white/10">
+              <a
+                href="/fr-fr/plages/"
+                class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
+              >
+                &larr; Toutes les plages
+              </a>
+            </div>
           </div>
         </div>
       </aside>
@@ -137,17 +323,15 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="bg-med-blue py-16 text-center">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-white mb-4">Explorez la Péninsule Sorrentine</h2>
-      <a
-        href="/fr-fr/peninsule-sorrentine/"
-        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
-      >
-        Guide de la Péninsule Sorrentine
-      </a>
-    </div>
-  </section>
+  <CorrelationSlider
+    lang="fr-fr"
+    heading="Autres plages de la Péninsule Sorrentine"
+    items={[
+      { name: 'Marina del Cantone', href: '/fr-fr/plages/peninsule-sorrentine/marina-del-cantone/', tag: 'Sable & Restaurants', desc: 'La plus grande plage de la Péninsule Sorrentine : sable et galets, restaurants en bord de mer et départ pour Ieranto.' },
+      { name: 'Ieranto',            href: '/fr-fr/plages/peninsule-sorrentine/ieranto/',            tag: 'Réserve FAI',         desc: 'Baie protégée avec vue sur les Faraglioni de Capri. Accessible uniquement à pied (40 min) depuis Nerano.' },
+      { name: 'Cala di Mitigliano', href: '/fr-fr/plages/peninsule-sorrentine/cala-mitigliano/',   tag: 'Sauvage',             desc: 'Petite crique de galets blancs sous Massa Lubrense, accessible par 300 marches dans la garrigue.' },
+      { name: 'Sorrente',           href: '/fr-fr/peninsule-sorrentine/sorrente/',                  tag: 'La Base Idéale',      desc: 'Carrefour des transports, élégance et vie nocturne : la base parfaite pour explorer la Péninsule Sorrentine.' },
+    ]}
+  />
 
 </BaseLayout>

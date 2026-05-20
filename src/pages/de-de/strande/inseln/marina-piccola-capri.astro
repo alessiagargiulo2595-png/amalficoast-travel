@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'de-de';
 
@@ -13,9 +14,13 @@ const breadcrumbs = [
 const facts = [
   { label: 'Untergrund', value: 'Kiesel und Felsen' },
   { label: 'Zugang', value: 'Bus oder Treppe (Via Mulo)' },
-  { label: 'Schatten', value: 'Ab 16:00 Uhr ⚠️' },
+  { label: 'Schatten', value: 'Ab 16:00 Uhr' },
   { label: 'Aussicht', value: 'Faraglioni (schönste der Insel)' },
   { label: 'Ideal für', value: 'Exklusive Lidos, Fotografie, Schnorcheln' },
+  { label: 'Historischer Club', value: 'La Canzone del Mare (seit 1932)' },
+  { label: 'Ikonischer Felsen', value: 'Scoglio delle Sirene (Odysseus)' },
+  { label: 'Panoramaweg', value: 'Via Krupp (1902 erbaut)' },
+  { label: 'Kaiserliche Verbindung', value: 'Augustus landete hier als Erster' },
 ];
 
 const beachSchema = {
@@ -35,15 +40,70 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie kommt man von Marina Grande nach Marina Piccola?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Von Marina Grande (wo Fähren und Tragflügelboote anlegen) kann man Marina Piccola per Bus von der Piazzetta di Capri (Direktlinie, alle ca. 15 Minuten) oder zu Fuß über die Via Mulo in ca. 15 Minuten mit einem Panoramaweg erreichen. Alternativ bieten einige Wassertaxis den Transfer per Schiff direkt zwischen den beiden Häfen an. Es gibt keine direkte Autostraße zwischen den beiden Inselseiten."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kosten die Lidos von Marina Piccola?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Lido-Preise in Marina Piccola variieren erheblich. La Canzone del Mare, der historischste und renommierteste Club, hat Preise im gehobenen Segment (Eintritt + Liege kann in der Hochsaison 50 Euro pro Person übersteigen). Andere Einrichtungen sind erschwinglicher. Es gibt auch einen kleinen öffentlichen Strandbereich, der aber sehr begrenzt ist und sich früh morgens füllt. Eine Vorabreservierung im Juli und August wird dringend empfohlen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gibt es einen öffentlichen Strand in Marina Piccola?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, es gibt einen öffentlichen Strandbereich in Marina Piccola, der aber auf ein Minimum reduziert ist. In der Hochsaison (Juli–August) füllt er sich bis 9 Uhr morgens. Der größte Teil des Strandes ist von privaten Lidos belegt. Wer den öffentlichen Strand erleben möchte, sollte sehr früh ankommen oder Marina Piccola im Frühjahr oder September besuchen, wenn es weniger voll ist."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wann ist der beste Zeitpunkt für Marina Piccola ohne Gedränge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der beste Zeitpunkt ist früh morgens (vor 10 Uhr) oder im September, wenn weniger Touristen da sind, das Meer aber noch warm ist. Beachten Sie, dass Marina Piccola wegen der umliegenden Berge ab ca. 16 Uhr im Schatten liegt. Wer nachmittags Sonne möchte, muss das entsprechend planen. Juni und September sind die idealen Monate: perfektes Klima, warmes Meer, weniger Besucher."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann man noch die Via Krupp nehmen, um nach Marina Piccola zu gelangen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Via Krupp, die spektakuläre Serpentinenstraße, die 1902 vom deutschen Industriellen Friedrich Alfred Krupp gebaut wurde, verbindet die Giardini di Augusto mit Marina Piccola und ist eine der meistfotografierten Straßen der Welt. Sie ist leider periodisch wegen Erdrutschen und Konsolidierungsarbeiten gesperrt – den Status vor dem Besuch prüfen. Wenn sie geöffnet ist, bietet der Abstieg zu Fuß einen der dramatischsten Ausblicke auf Capri."
+      }
+    }
+  ]
+};
+
+const nearbyBeaches = [
+  { name: 'Faraglioni', href: '/de-de/strande/inseln/faraglioni-capri/', tag: 'Capri', desc: 'Die drei legendären Felsen, das Symbol der Insel.' },
+  { name: 'Spiaggia Grande Positano', href: '/de-de/strande/amalfikuste/spiaggia-grande-positano/', tag: 'Positano', desc: 'Das gesellschaftliche Zentrum der Amalfiküste.' },
+  { name: 'Cala del Pozzo Vecchio', href: '/de-de/strande/inseln/cala-del-pozzo-vecchio/', tag: 'Procida', desc: 'Der Postino-Strand mit schwarzem Vulkansand.' },
+  { name: 'Spiaggia Maronti', href: '/de-de/strande/inseln/spiaggia-maronti/', tag: 'Ischia', desc: 'Drei Kilometer heißer Sand, beheizt vom Vulkan.' },
+];
 ---
 
 <BaseLayout
   title="Marina Piccola Capri 2026: Reiseführer zum Faraglioni-Strand"
-  description="Marina Piccola ist Capris berühmteste Bucht. Reiseführer 2026 mit Lido-Preisen, Anreisemöglichkeiten und dem schönsten Faraglioni-Blick."
+  description="Marina Piccola ist Capris berühmteste Bucht. Reiseführer 2026 mit Lido-Preisen, Anreisemöglichkeiten, Schatten-Warnung und dem schönsten Faraglioni-Blick."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
- pageKey="marina-piccola-capri">
+  schema={[beachSchema, faqSchema]}
+  pageKey="marina-piccola-capri"
+>
 
   <!-- Hero -->
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
@@ -69,13 +129,15 @@ const beachSchema = {
 
       <!-- Haupttext -->
       <div class="lg:col-span-2 space-y-12">
+
+        <!-- Intro -->
         <div>
-          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Die Legende von Capri</h2>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Strand von Marina Piccola Capri</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Marina Piccola ist die geschützte Bucht mit Capris berühmtesten Lidos. Von hier erscheinen die Faraglioni - die drei ikonischen Felsen, die aus dem Meer ragen - zum Greifen nah: Es ist der dramatischste und meistfotografierte Blick der Insel.
+            Der <strong>Strand von Marina Piccola</strong> ist die windgeschützte Bucht mit den berühmtesten <strong>Lidos</strong> von <a href="/de-de/inseln/capri/" class="text-med-blue hover:underline">Capri</a>. Von hier erscheinen die Faraglioni – die drei ikonischen Felsen, die aus dem Meer ragen – zum Greifen nah: Es ist der dramatischste und meistfotografierte Blick der Insel. Marina Piccola liegt auf der Südseite der Insel, gegenüber <strong>Marina Grande</strong>, wo die Fähren anlegen.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            2026 ist der öffentliche Strandbereich minimal, daher empfiehlt sich die Reservierung in einem Lido wie <strong>La Canzone del Mare</strong> (dem historischsten, 1932 von Gracie Fields gegründet). Die Gewässer sind geschützt und ideal zum Schnorcheln.
+            2026 ist der öffentliche Strandbereich minimal, daher empfiehlt sich die Reservierung in Clubs wie <strong>La Canzone del Mare</strong> (dem historischsten, 1932 von Gracie Fields gegründet) dringend. Die Gewässer sind geschützt und ideal zum Schnorcheln. Die Besucherbewertungen bestätigen, dass es eines der exklusivsten Baaderlebnisse am Golf von Neapel ist.
           </p>
         </div>
 
@@ -90,22 +152,140 @@ const beachSchema = {
           </p>
         </div>
 
+        <!-- La Canzone del Mare und Gracie Fields -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Canzone del Mare: Ein Jahrhundert Geselligkeit</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            1932 gründete die britische Sängerin und Schauspielerin <strong>Gracie Fields</strong> <em>La Canzone del Mare</em> und verwandelte Marina Piccola in den mondänen Badetreffpunkt Capris. Der „Stern von Rochdale" – so Fields' Spitzname – hatte Europa bereits mit ihrer Stimme erobert und jetzt diese kleine Bucht mit ihrer Vision eines eleganten und zugleich ungezwungenen Beach Clubs.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Der Club wurde schnell zum Herzstück des goldenen Zeitalters Capris: <strong>Clark Gable, Sophia Loren und General Eisenhower</strong> gehörten zu den Stammgästen. Das in den Felsen gehauene Schwimmbecken, die gestreiften Sonnenschirme und der direkte Blick auf die Faraglioni schufen eine Ästhetik, die im gesamten Mittelmeer nachgeahmt wurde. Fast ein Jahrhundert später ist der Club noch geöffnet und hat seinen zeitlosen Charme bewahrt.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Eine Reservierung ist im Sommer unbedingt erforderlich. Der Eintritt beinhaltet den Zugang zum historischen Schwimmbecken und zum Strand, mit einem Service, der seine ursprüngliche Raffinesse nicht verloren hat.
+          </p>
+        </div>
+
+        <!-- Scoglio delle Sirene und Augustus -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Mythen, Sirenen und ein verzauberter Kaiser</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Vor Marina Piccola ragt aus dem Wasser der <strong>Scoglio delle Sirene</strong> (Sirenenriff). Der homerischen Überlieferung zufolge sangen hier die Sirenen, um Seemänner in den Tod zu locken – und Odysseus, an den Mast seines Schiffes gebunden, war der Einzige, der dem Gesang widerstand und davon berichten konnte. Der Felsen teilt die Bucht in zwei Buchten: Marina di Mulo im Osten und Marina di Pennauro im Westen, jede mit ihrem eigenen Charakter.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Die Geschichte belegt, dass Kaiser <strong>Augustus</strong> zum ersten Mal genau an Marina Piccola auf Capri an Land ging. Er war so von der Insel verzaubert, dass er einen von seinen Zeitgenossen für wahnsinnig gehaltenen Tausch vollzog: Er übergab die Insel <a href="/de-de/inseln/ischia/" class="text-med-blue hover:underline">Ischia</a> – größer, fruchtbarer, mit Thermalwässern – an Neapel, um Capri ganz für sich zu haben. Kein schlechtes Geschäft, wie die Geschichte zeigte.
+          </p>
+        </div>
+
+        <!-- Via Krupp und Unterwasserwelt -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <h3 class="text-xl font-bold">Via Krupp und Unterwasserwelt</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Die <strong>Via Krupp</strong> – die in den Fels gehauene Serpentinenstraße, 1902 vom deutschen Industriellen Friedrich Alfred Krupp erbaut – verbindet die Giardini di Augusto mit Marina Piccola auf einem der meistfotografierten Wege der Welt. Wenn sie geöffnet ist (sie ist wegen Erdrutschen geschlossen), bietet der Abstieg zu Fuß dramatische Ausblicke auf die Bucht und die Faraglioni.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            Unter Wasser verbergen die geschützten Gewässer von Marina Piccola <em>Posidonia oceanica</em>-Wiesen, in denen <strong>Seepferdchen</strong> leben, sowie felsigen Untergrund, bewohnt von Tintenfischen, Seeigeln und farbenfrohen Castagnole. Die Sichtweite übersteigt oft 20 Meter, was das Schnorcheln auch für Unerfahrene hervorragend macht.
+          </p>
+        </div>
+
+        <!-- Zahlen-Box -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1932</p>
+            <p class="text-white/60 text-sm mt-1">Eröffnung La Canzone del Mare</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1902</p>
+            <p class="text-white/60 text-sm mt-1">Bau der Via Krupp</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">20 m+</p>
+            <p class="text-white/60 text-sm mt-1">Unterwassersicht</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">16:00</p>
+            <p class="text-white/60 text-sm mt-1">Stunde des Schattens</p>
+          </div>
+        </div>
+
+        <!-- Tipps der Einheimischen -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Tipps der Einheimischen</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">La Canzone del Mare Wochen im Voraus im Juli und August reservieren: Es ist das gefragteste Lido der Insel und die Plätze sind online schnell ausgebucht.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Bis 9:30 Uhr für den öffentlichen Strand ankommen: Die wenigen verfügbaren Plätze werden schnell von Einheimischen und Frühaufstehern besetzt.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Vor dem Abstieg über die Via Krupp online prüfen, ob sie geöffnet ist: Sie ist häufig wegen Konsolidierungsarbeiten gesperrt und die Enttäuschung ist groß, wenn man sie verschlossen findet.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Für das beste Schnorcheln den Bereich rund um den Scoglio delle Sirene erkunden: Dort ist die Meeresfauna am konzentriertesten und das Wasser am klarsten.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Hochwertige Sonnencreme mitbringen und alle 2 Stunden erneuern: Die Reflexion der Sonne auf dem weißen Fels ist sehr intensiv und Sonnenbrand in Capri im August ist ohne ausreichenden Schutz garantiert.</span>
+            </li>
+          </ul>
+        </div>
+
         <!-- Anreise -->
         <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Anreise</h2>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Anreise nach Marina Piccola</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Um Marina Piccola von <strong>Marina Grande Capri</strong> (dem Hafen, wo Fähren und Tragflügelboote anlegen) zu erreichen, gibt es mehrere Möglichkeiten. Wer aus <a href="/de-de/sorrentinische-halbinsel/sorrent/" class="text-med-blue hover:underline">Sorrent</a> oder Neapel kommt, legt an Marina Grande an und fährt dann weiter nach Marina Piccola.
+          </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Orangener Bus ⭐</p>
-              <p class="text-slate-700 font-medium mb-1">Vom Zentrum Capri</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Direktlinie Marina Piccola. Günstig und häufig.</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus von der Piazzetta</p>
+              <p class="text-slate-700 font-medium mb-1">Vom Zentrum Capris</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Direktlinie nach Marina Piccola. Günstig und häufig, alle 15 Minuten.</p>
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
               <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Zu Fuß via Via Mulo</p>
               <p class="text-slate-700 font-medium mb-1">15 Minuten Abstieg</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Panoramisch. Die Insellandschaft während des gesamten Weges genießen.</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Panoramisch. Die Insellandschaft während des gesamten Weges genießen. Beschilderung ab der Piazzetta.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Via Krupp (wenn geöffnet)</p>
+              <p class="text-slate-700 font-medium mb-1">Von den Giardini di Augusto</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Spektakulärer Abstieg zwischen Felsen. Öffnungsstatus vor dem Besuch prüfen – oft wegen Arbeiten gesperrt.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Wassertaxi</p>
+              <p class="text-slate-700 font-medium mb-1">Von Marina Grande per Schiff</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Bequem und malerisch: Direktanlandung an Marina Piccola ohne Aufstieg ins Dorf. Kosten: 15–25 Euro pro Person.</p>
             </div>
           </div>
         </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Häufig Gestellte Fragen</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
       </div>
 
       <!-- Sidebar Kurzinfos -->
@@ -122,12 +302,21 @@ const beachSchema = {
               </div>
             ))}
           </div>
+          <!-- Tipps der Einheimischen -->
           <div class="mt-10 pt-8 border-t border-white/10">
+            <h4 class="text-med-gold text-xs font-bold uppercase tracking-wider mb-4">Tipps der Einheimischen</h4>
+            <ul class="space-y-3">
+              <li class="text-white/70 text-xs sm:text-sm leading-relaxed">La Canzone del Mare Wochen im Voraus buchen – Plätze sind schnell vergriffen.</li>
+              <li class="text-white/70 text-xs sm:text-sm leading-relaxed">Bis 9:30 Uhr ankommen für den öffentlichen Strand-Bereich.</li>
+              <li class="text-white/70 text-xs sm:text-sm leading-relaxed">Via Krupp-Status online prüfen, bevor man den Abstieg plant.</li>
+            </ul>
+          </div>
+          <div class="mt-8 pt-6 border-t border-white/10">
             <a
               href="/de-de/strande/"
               class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
             >
-              ← Alle Strände
+              &larr; Alle Strände
             </a>
           </div>
         </div>
@@ -136,17 +325,10 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="bg-med-blue py-16 text-center">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-white mb-4">Alles über Capri entdecken</h2>
-      <a
-        href="/de-de/inseln/capri/"
-        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
-      >
-        Vollständiger Capri-Reiseführer
-      </a>
-    </div>
-  </section>
+  <CorrelationSlider
+    lang="de-de"
+    heading="Weitere Strände in der Nähe"
+    items={nearbyBeaches}
+  />
 
 </BaseLayout>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'de-de';
 
@@ -11,12 +12,64 @@ const breadcrumbs = [
 ];
 
 const facts = [
-  { label: 'Untergrund', value: 'Weißer Kiesel' },
-  { label: 'Zugang', value: 'Nur per Boot (Taxi Boat)' },
+  { label: 'Untergrund', value: 'Weißer Kiesel (Kalkstein der Lattari)' },
+  { label: 'Zugang', value: 'Nur per Boot (Wassertaxi)' },
   { label: 'Schatten', value: 'Ab 16:00 Uhr' },
   { label: 'Ausstattung', value: '2 Restaurants mit Lido' },
   { label: 'Ideal für', value: 'Romantischer Ausflug, frischer Fisch' },
+  { label: 'Entfernung von Amalfi', value: 'Ca. 5 Minuten per Boot' },
+  { label: 'Wassertaxi-Kosten', value: '5–8 € Hin- und Rückfahrt' },
+  { label: 'Restaurant-Shuttle', value: 'Kostenlos für Restaurantgäste' },
+  { label: 'Schnorcheln', value: 'Ausgezeichnet (entlang der Felswände)' },
+  { label: 'Ursprünge', value: '10. Jh. (mittelalterliche Kirche)' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie kommt man zum Strand Santa Croce in Amalfi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Santa Croce ist ausschließlich per Boot erreichbar. Vom Hauptanleger in Amalfi fahren Wassertaxis ab, die etwa 5 Minuten benötigen. Die Kosten betragen ca. 5–8 € pro Person für Hin- und Rückfahrt. Alternativ bieten die Restaurants Da Teresa und Il Pirata einen kostenlosen Shuttle für ihre Gäste an: Einfach das Mittagessen im Voraus buchen, und das Boot ist inklusive."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet das Wassertaxi nach Santa Croce?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das Wassertaxi vom Anleger in Amalfi nach Santa Croce kostet ca. 5–8 € pro Person für Hin- und Rückfahrt. Die Preise können in der Hochsaison leicht variieren. Um zu sparen, das Mittagessen im Restaurant buchen: Der Shuttle für Restaurantgäste ist völlig kostenlos – und auch die malerischste Art, dort hinzugelangen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Restaurants gibt es in Santa Croce?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Am Strand von Santa Croce gibt es zwei historische Restaurants: Da Teresa (früher bekannt als Da Gemma), seit den 1950er Jahren in Betrieb mit traditionellen Fischrezepten, darunter die berühmten Scialatielli ai frutti di mare, und Il Pirata, das direkt in den Felsen der Klippe eingebaut ist. Beide haben private Lidos mit Liegen und Sonnenschirmen und bieten ihren Gästen einen kostenlosen Shuttle vom Anleger in Amalfi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist der Strand Santa Croce für Kinder geeignet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Santa Croce eignet sich für ältere Kinder und Erwachsene, erfordert jedoch etwas Aufmerksamkeit. Der Strand besteht aus weißem Kiesel (kein Sand), daher werden Wasserschuhe empfohlen. Das Wasser ist klar und relativ ruhig, aber die Bootsüberfahrt kann für Kleinkinder etwas unruhig sein. Für Kleinkinder besser Alternativen mit einfacherem Zugang in Betracht ziehen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie ist das Schnorcheln bei Santa Croce in Amalfi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das Schnorcheln bei Santa Croce ist ausgezeichnet. Der Felsboden entlang der Kliffwände beherbergt Posidonia-Wiesen, Goldbrassen, Tintenfische und Seeanemonen. Die Sicht ist dank des ruhigen und geschützten Wassers sehr gut. In den letzten Jahren wurden auch gelegentliche Sichtungen der Mönchsrobbe (Monachus monachus) in der Gegend gemeldet – ein äußerst seltenes Spektakel im Mittelmeer. Eigene Ausrüstung mitbringen, da vor Ort kein Verleih vorhanden."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
@@ -31,6 +84,13 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const nearbyBeaches = [
+  { name: 'Fiordo di Furore', href: '/de-de/strande/amalfikueste/fiordo-di-furore/', tag: 'Furore', desc: 'Italiens ikonischster Fjord.' },
+  { name: 'Marina di Praia', href: '/de-de/strande/amalfikueste/marina-di-praia/', tag: 'Praiano', desc: 'Wilder Strand mit perfektem Sonnenuntergang.' },
+  { name: 'Spiaggia Grande', href: '/de-de/strande/amalfikueste/spiaggia-grande-positano/', tag: 'Positano', desc: 'Das pulsierende Herz der Amalfiküste.' },
+  { name: 'Regina Giovanna', href: '/de-de/strande/sorrentinische-halbinsel/regina-giovanna/', tag: 'Sorrent', desc: 'Natürlicher Pool mit römischer Villa.' },
+];
 ---
 
 <BaseLayout
@@ -38,8 +98,8 @@ const beachSchema = {
   description="Santa Croce ist der perfekte Ausflug von Amalfi. Nur per Boot erreichbar, mit kristallklarem Wasser und historischen Restaurants mit kostenlosem Shuttle."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
- pageKey="santa-croce-amalfi">
+  schema={[beachSchema, faqSchema]}
+  pageKey="santa-croce-amalfi">
 
   <!-- Hero -->
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
@@ -50,7 +110,7 @@ const beachSchema = {
       loading="eager"
       referrerpolicy="no-referrer"
     />
-    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
       <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Amalfi · Nur per Boot</p>
       <h1 class="font-serif text-display text-white mb-6">Santa Croce</h1>
@@ -66,12 +126,12 @@ const beachSchema = {
       <!-- Haupttext -->
       <div class="lg:col-span-2 space-y-12">
         <div>
-          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Das perfekte Ausflugsziel von Amalfi</h2>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Die Perfekte Ausweich von Amalfi</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Santa Croce ist das Gegenmittel zum Gedränge in Amalfi im Juli und August. Nur wenige Minuten per Boot vom Hauptanleger entfernt, bietet dieser Strand außergewöhnlich klares Wasser über Felsengrund. Der Kieselstrand liegt geschützt zwischen hohen Klippen, die ihn vor dem Wind abschirmen.
+            Santa Croce ist die Antwort auf das Gedränge im Juli und August in <a href="/de-de/amalfikueste/amalfi/" class="text-med-blue hover:underline">Amalfi</a>. Nur wenige Minuten per Boot vom Hauptanleger entfernt, bietet dieser Strand außergewöhnlich klares Wasser über Felsengrund. Der Kieselstrand liegt geschützt zwischen hohen Klippen, die ihn vor dem Wind abschirmen.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            Die beiden historischen Restaurants - Da Gemma und La Caravella - betreiben private Lidos am Strand und bieten ihren Gästen einen kostenlosen Shuttle vom Anleger in Amalfi an. Ideal für alle, die einen „wilden" Strandtag mit dem Komfort eines exzellenten Fischmittags verbinden möchten.
+            Die beiden historischen Restaurants – Da Teresa und Il Pirata – betreiben private Lidos am Strand und bieten ihren Gästen einen kostenlosen Shuttle vom Anleger in Amalfi an. Ideal für alle, die einen „wilden" Strandtag mit dem Komfort eines exzellenten Fischmittags verbinden möchten.
           </p>
         </div>
 
@@ -82,8 +142,94 @@ const beachSchema = {
             <h3 class="text-xl font-bold">Lokaler Tipp</h3>
           </div>
           <p class="text-slate-600 leading-relaxed">
-            Reservieren Sie das Mittagessen im Restaurant im Voraus: Sie erhalten den <strong>kostenlosen Shuttle</strong> vom Anleger für ihre Gäste. Das ist die günstigste - und malerischste - Art, Santa Croce zu erreichen.
+            Reservieren Sie das Mittagessen im Restaurant im Voraus: Sie erhalten den <strong>kostenlosen Shuttle</strong> vom Anleger für ihre Gäste. Das ist die günstigste – und malerischste – Art, Santa Croce zu erreichen.
           </p>
+        </div>
+
+        <!-- Geschichte -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Geschichte: Die Geheime Bucht der Republik</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Die kleine Bucht verdankt ihren Namen der alten <strong>Kirche Santa Croce</strong>, die von amalfitanischen Mönchen um das 10. Jahrhundert auf den die Bucht überragenden Felsen errichtet wurde. In den Kliffwänden sind noch Überreste mittelalterlicher Bauwerke sichtbar: zugemauerte Bögen, Kalksteinfundamente und in den Fels gehauene Nischen.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Im Mittelalter war die Bucht strategisch wichtig für die <strong>Republik Amalfi</strong> (839–1137), eine der vier italienischen Seerepubliken und das pulsierende Herz der gesamten <a href="/de-de/amalfikueste/" class="text-med-blue hover:underline">Amalfiküste</a>. Geschützt vor Stürmen und für Piraten schwer einsehbar, diente sie als Nebenhafen und Werft für Handelsschiffe. Die geschützte Lage mit der engen Öffnung zum offenen Meer machte sie ideal für diskrete Operationen und für die Überwinterung der Schiffe.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Die weißen Kiesel, die den Strand bedecken, sind kein Sand, sondern <strong>Kalksteinbruchstücke</strong> der Monti Lattari – dasselbe Gestein, das die vertikalen Felswände des Fjords bildet –, jahrhundertelang von den Wellen geglättet, bis sie die fast kugelförmige Beschaffenheit annahmen, die sie heute charakterisiert.
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">X</p>
+            <p class="text-white/60 text-sm mt-1">Jh. – ursprüngliche Kirche</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">5'</p>
+            <p class="text-white/60 text-sm mt-1">per Boot von Amalfi</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">839</p>
+            <p class="text-white/60 text-sm mt-1">Gründung der Republik</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">2</p>
+            <p class="text-white/60 text-sm mt-1">historische Restaurants</p>
+          </div>
+        </div>
+
+        <!-- Meeresleben -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Schnorcheln und Meeresleben</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Der Meeresgrund von Santa Croce zählt zu den artenreichsten der Küste. Die versunkenen Felswände beherbergen dichte Bestände von <strong>Posidonia oceanica</strong> – der wichtigsten Meeresspflanze des Mittelmeers –, die als Kinderstube für Dutzende von Arten dienen. Entlang der Wände bewegen sich Schwärme von Goldbrassen (wilde Meeresbrassen), Tintenfische, die sich zwischen Felsenspalten tarnen, und lebhafte Seeanemonen.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Das Schnorcheln ist entlang der Kliffwände ausgezeichnet, wo die Sichtweite an ruhigen Tagen 15–20 Meter erreicht. In den letzten Jahren wurden gelegentliche Sichtungen der <strong>Mönchsrobbe</strong> (<em>Monachus monachus</em>) in der Gegend gemeldet – eines der seltensten Tiere des Mittelmeers, mit weniger als 600 geschätzten Exemplaren. Diese Präsenz zeigt die außergewöhnliche Wasserqualität dieser Küste, vergleichbar nur mit den wilden Buchten in der Umgebung von <a href="/de-de/amalfikueste/positano/" class="text-med-blue hover:underline">Positano</a>.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Eigene Schnorchelausrüstung mitbringen: Am Strand gibt es keinen Verleih. Flossen werden empfohlen, um die weiter von der Küste entfernten Bereiche zu erkunden.
+          </p>
+        </div>
+
+        <!-- Die Restaurants -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Die Historischen Restaurants</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            <strong>Da Teresa</strong> (ursprünglich als Da Gemma bekannt) ist seit den 1950er Jahren am Strand tätig. Die Familie hat von Generation zu Generation eine authentische Meeresküche weitergegeben, basierend auf dem Tagesfang. Das Symbolgerricht sind die <em>Scialatielli ai frutti di mare</em> – frische Eiernudeln mit Muscheln, Venusmuscheln und Garnelen – ein Rezept, das nach Einheimischen hier geboren wurde, in den Küchen mit Blick auf das Wasser.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            <strong>Il Pirata</strong> ist buchstäblich in den Fels eingebaut: Seine in die Klippe gehauenen Räume bieten eine einzigartige, fast höhlenartige Atmosphäre, mit dem Meeresgeruch, der durch die geöffneten Fenster über dem Wasser hereinweht. Beide Restaurants organisieren den Bootstransport für ihre Gäste – ein Service, der den Besuch noch unvergesslicher macht.
+          </p>
+        </div>
+
+        <!-- Tipps der Einheimischen -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Tipps der Einheimischen</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Das Restaurant mindestens 2–3 Tage im Voraus buchen: Der kostenlose Shuttle ist viel mehr wert als ein Wassertaxi.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Wasserschuhe mitbringen: Die weißen Kiesel sind schön anzuschauen, aber barfuß unangenehm.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Beim Schnorcheln die Felswände rechts vom Strand erkunden: Das ist die Zone mit der höchsten Konzentration an Meereslebewesen.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Bis 10 Uhr ankommen, wenn man einen Platz am Strand möchte: Die Bucht ist klein und die Liegen der Restaurants sind schnell belegt.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Die Rückfahrt nach Amalfi beim Sonnenuntergang, mit dem goldenen Licht auf den Klippen, ist einer der stimmungsvollsten Momente der gesamten Küste.</span>
+            </li>
+          </ul>
         </div>
 
         <!-- Anreise -->
@@ -91,24 +237,52 @@ const beachSchema = {
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Anreise</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Boat ⭐ Einziger Zugang</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Wassertaxi ⭐ Einziger Zugang</p>
               <p class="text-slate-700 font-medium mb-1">Vom Anleger Amalfi</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Ca. 5 Minuten Fahrt. Kosten: 5–8 € pro Person (Hin- und Rückfahrt).</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Ca. 5 Minuten Überfahrt. Kosten: 5–8 € pro Person (Hin- und Rückfahrt).</p>
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
               <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Restaurant-Shuttle</p>
-              <p class="text-slate-700 font-medium mb-1">Kostenlos für Gäste</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Mittagessen reservieren und die Überfahrt ist im Service inbegriffen.</p>
+              <p class="text-slate-700 font-medium mb-1">Kostenlos für Restaurantgäste</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Mittagessen reservieren und die Bootsüberfahrt ist im Service inbegriffen.</p>
             </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Kajak-Tour</p>
+              <p class="text-slate-700 font-medium mb-1">Von Amalfi oder Atrani</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Einige lokale Guides bieten Kajak-Touren mit Halt bei Santa Croce an.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Schlauchboot / Privatboot</p>
+              <p class="text-slate-700 font-medium mb-1">Verleih in Amalfi</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Mit Bootsführerschein ermöglicht ein Schlauchbootverleih die Kombination mehrerer Buchten.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Häufig Gestellte Fragen</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
 
-      <!-- Sidebar Kurzinfos -->
+      <!-- Sidebar Fast-Facts -->
       <aside class="lg:col-span-1">
         <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
           <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
-            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Kurzinfos
+            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Schnellfakten
           </h3>
           <div class="space-y-6">
             {facts.map((item) => (
@@ -131,6 +305,13 @@ const beachSchema = {
 
     </div>
   </section>
+
+  <!-- Nahe gelegene Strände -->
+  <CorrelationSlider
+    title="Nahe Strände bei Amalfi"
+    items={nearbyBeaches}
+    lang="de-de"
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">
