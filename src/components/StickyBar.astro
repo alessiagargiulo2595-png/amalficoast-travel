@@ -74,17 +74,35 @@ const t = config[lang] ?? config['en-us'];
 <div class="lg:hidden h-16 stickybar-spacer"></div>
 
 <style>
-  /* iOS safe area + GPU compositing to prevent detach on scroll-up */
   .stickybar-safe {
     padding-bottom: env(safe-area-inset-bottom, 0px);
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    will-change: transform;
   }
-  /* Spacer grows to match bar + safe area */
   .stickybar-spacer {
     height: calc(4rem + env(safe-area-inset-bottom, 0px));
   }
 </style>
+
+<script>
+  // iOS Safari: fixed bottom bar detaches when browser chrome animates.
+  // visualViewport tracks the *actual* visible area so we can reposition.
+  (function () {
+    const bar = document.querySelector('.stickybar-safe');
+    if (!bar || !window.visualViewport) return;
+
+    function pin() {
+      // offsetTop = how far the visual viewport is scrolled inside the layout viewport
+      // When iOS shows its bottom bar, offsetTop stays 0 but height shrinks,
+      // so bottom = window.innerHeight - (vv.height + vv.offsetTop) gives the gap.
+      const vv = window.visualViewport;
+      const diff = window.innerHeight - (vv.height + vv.offsetTop);
+      if (diff > 0) {
+        bar.style.transform = 'translate3d(0,-' + diff + 'px,0)';
+      } else {
+        bar.style.transform = 'translate3d(0,0,0)';
+      }
+    }
+
+    window.visualViewport.addEventListener('resize', pin);
+    window.visualViewport.addEventListener('scroll', pin);
+  })();
+</script>
