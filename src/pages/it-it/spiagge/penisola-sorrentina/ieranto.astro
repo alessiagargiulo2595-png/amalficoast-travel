@@ -1,28 +1,39 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'it-it';
 
 const breadcrumbs = [
   { name: 'Home', url: '/it-it/' },
   { name: 'Spiagge', url: '/it-it/spiagge/' },
-  { name: 'Ieranto', url: '/it-it/spiagge/penisola-sorrentina/ieranto' },
+  { name: 'Baia di Ieranto', url: '/it-it/spiagge/penisola-sorrentina/ieranto/' },
 ];
 
 const facts = [
-  { label: 'Composizione', value: 'Sabbia e ciottoli' },
-  { label: 'Accesso', value: 'Via trekking (45-60 min) o barca' },
-  { label: 'Ombra', value: 'Dalle 14:00' },
+  { label: 'Posizione', value: 'Massa Lubrense, NA' },
+  { label: 'Protezione', value: 'Area Marina Protetta Punta Campanella' },
+  { label: 'Gestione', value: 'FAI - Fondo Ambiente Italiano' },
+  { label: 'Composizione', value: 'Sabbia, ciottoli e scogli' },
+  { label: 'Accesso', value: 'Trekking 40-50 min da Nerano' },
+  { label: 'Dislivello', value: '~200 m in discesa' },
   { label: 'Servizi', value: 'Nessuno (spiaggia selvaggia)' },
-  { label: 'Ideale per', value: 'Trekking, snorkeling, solitudine' },
+  { label: 'Snorkeling', value: 'Eccezionale (area protetta)' },
+  { label: 'Vista', value: 'Faraglioni di Capri' },
+  { label: 'Periodo migliore', value: 'Mag-Giu / Set-Ott' },
 ];
 
 const beachSchema = {
   "@context": "https://schema.org",
   "@type": "Beach",
-  "name": "Ieranto",
-  "description": "La spiaggia più difficile da raggiungere della Penisola Sorrentina, accessibile solo via trekking o barca. Un'oasi di selvaggia bellezza circondata da falesie e boschi di pini.",
+  "name": "Baia di Ieranto",
+  "description": "Baia protetta dal FAI all'interno dell'Area Marina Protetta di Punta Campanella. Spiaggia selvaggia con vista sui Faraglioni di Capri, raggiungibile solo a piedi o via mare. Una delle baie piu belle del Mediterraneo.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "40.6050",
+    "longitude": "14.3350"
+  },
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Massa Lubrense",
@@ -30,14 +41,46 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si arriva alla Baia di Ieranto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Il sentiero principale parte dalla frazione di Nerano (Massa Lubrense). Si parcheggia a Nerano e si cammina per circa 40-50 minuti in discesa lungo un sentiero segnalato dal FAI, attraverso uliveti e macchia mediterranea. La discesa ha un dislivello di circa 200 metri. Il ritorno in salita richiede circa 60-70 minuti. In alternativa si raggiunge via mare con taxi boat da Marina del Cantone o Sorrento." }
+    },
+    {
+      "@type": "Question",
+      "name": "La Baia di Ieranto e davvero tra le 8 meraviglie del mondo?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La Baia di Ieranto e stata inserita nella lista delle 8 baie piu belle del mondo da diverse pubblicazioni internazionali di viaggio. Il riconoscimento e dovuto alla combinazione unica di paesaggio (i Faraglioni di Capri come sfondo), biodiversita marina protetta, assenza di urbanizzazione e la storia millenaria del sito. Il FAI la gestisce come bene naturale e culturale dal 1987." }
+    },
+    {
+      "@type": "Question",
+      "name": "Si puo pescare o raccogliere nella Baia di Ieranto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. La Baia di Ieranto fa parte dell'Area Marina Protetta di Punta Campanella (Zona B di riserva generale). E vietata la pesca, la raccolta di qualsiasi organismo marino, l'ancoraggio libero e l'uso di motori a combustione. Queste restrizioni hanno permesso un recupero straordinario della fauna marina." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quali pesci si possono vedere facendo snorkeling?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Grazie alla protezione dell'Area Marina Protetta, le acque di Ieranto ospitano una biodiversita eccezionale: cernie brune (fino a 60 cm), barracuda mediterranei, dentici, ricciole, saraghi, castagnole, donzelle, polpi, murene, stelle marine e ricci di mare. Le praterie di Posidonia oceanica sul fondale sono l'habitat perfetto per decine di specie. E comune avvistare banchi di centinaia di pesci a pochi metri dalla riva." }
+    },
+    {
+      "@type": "Question",
+      "name": "Il sentiero e adatto ai bambini?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Il sentiero e adatto a bambini dai 7-8 anni in su, abituati a camminare. Non presenta tratti esposti o pericolosi, ma e lungo (40-50 min in discesa, 60-70 in salita) e in alcuni punti ripido. Portare acqua abbondante (almeno 1,5 litri a testa), cappello, crema solare e scarpe chiuse. Non ci sono servizi ne ombra sulla spiaggia." }
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  title="Ieranto: La Spiaggia Più Selvaggia della Penisola Sorrentina"
-  description="Ieranto a Massa Lubrense: la spiaggia più difficile da raggiungere della Penisola Sorrentina, accessibile solo via trekking. Solitudine, natura selvaggia, acque cristalline lontano dalla civiltà."
+  title="Baia di Ieranto 2026: Area Marina Protetta, Trekking FAI e Snorkeling | Massa Lubrense"
+  description="Guida completa alla Baia di Ieranto a Massa Lubrense: area marina protetta di Punta Campanella, sentiero FAI, snorkeling con cernie e barracuda, storia dell'ex cava, vista Faraglioni di Capri. Come arrivare e consigli pratici."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
   pageKey="spiaggia-di-ieranto"
 >
 
@@ -45,16 +88,16 @@ const beachSchema = {
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
       src="/images/ieranto-hero.jpg"
-      alt="Ieranto, Massa Lubrense"
+      alt="Baia di Ieranto vista dall'alto - Area Marina Protetta Punta Campanella, Massa Lubrense"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
       referrerpolicy="no-referrer"
     />
-    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Massa Lubrense · Autentica e Selvaggia</p>
-      <h1 class="font-serif text-display text-white mb-6">Ieranto</h1>
-      <p class="text-lg md:text-xl font-light text-white/80">La spiaggia più difficile da raggiungere della Penisola Sorrentina. Raggiungibile solo via trekking o barca, un'oasi di solitudine e bellezza selvaggia.</p>
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Massa Lubrense · Area Marina Protetta · FAI</p>
+      <h1 class="font-serif text-display text-white mb-6">Baia di Ieranto</h1>
+      <p class="text-lg md:text-xl font-light text-white/80">Tra le 8 baie piu belle del mondo: natura protetta, Faraglioni di Capri e un mare dove i pesci non hanno paura dell'uomo.</p>
     </div>
     <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
@@ -64,29 +107,133 @@ const beachSchema = {
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
 
       <!-- Testo principale -->
-      <div class="lg:col-span-2 space-y-12">
+      <div class="lg:col-span-2 space-y-16">
+
+        <!-- Intro -->
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Solo per i Coraggiosi</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Ieranto non è una spiaggia per tutti. Non c'è strada, non ci sono servizi, non ci sono ombrelloni. C'è solo un sentiero escursionistico di circa 45-60 minuti che cala attraverso un bosco di pini marittimi fino a una cala nascosta di sabbia dorata e ciottoli, circondata da falesie bianche di quasi 100 metri.
+            Ieranto non e una spiaggia per tutti. Non c'e strada, non ci sono servizi, non ci sono ombrelloni. C'e solo un sentiero escursionistico di circa 40-50 minuti che cala attraverso un bosco di pini marittimi fino a una cala nascosta di sabbia dorata e ciottoli, circondata da falesie bianche di quasi 100 metri.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Se sei disposto a fare il trekking, troverai quello che pochi turisti vedranno mai: una spiaggia praticamente deserta, acque cristalline per lo snorkeling, e il suono delle cicale nelle pigne che scende fino all'orizzonte marino. E il luogo dove la Costiera ritorna selvaggia.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            Se sei disposto a fare il trekking, troverai quello che pochi turisti vedranno mai: una spiaggia praticamente deserta, acque cristalline per lo snorkeling, e il suono dei cicali nelle pigne che scendono fino all'orizzonte marino. È il luogo dove la Costiera ritorna selvaggia.
+            Protetta dal <strong>FAI - Fondo Ambiente Italiano</strong> dal 1987 e parte dell'<strong>Area Marina Protetta di Punta Campanella</strong>, questa baia e stata inserita nella lista delle <strong>8 baie piu belle del mondo</strong> da diverse pubblicazioni internazionali di viaggio. Il motivo e evidente appena arrivi: una mezzaluna incastonata tra falesie, con i <strong>Faraglioni di Capri</strong> proprio di fronte, cosi vicini da sembrare raggiungibili a nuoto. E i pesci - protetti dal divieto di pesca - nuotano a pochi centimetri dalla riva senza paura.
           </p>
         </div>
 
-        <!-- Trekking Note -->
-        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-          <div class="flex items-center gap-4 mb-4">
-            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-            <h3 class="text-xl font-bold">Il Trekking a Ieranto</h3>
+        <!-- Stats box -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Ieranto in numeri</p>
+          <div class="grid sm:grid-cols-4 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-med-gold">1987</p>
+              <p class="text-white/60 text-xs italic mt-1">Anno di acquisizione FAI</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-med-gold">49 ha</p>
+              <p class="text-white/60 text-xs italic mt-1">Superficie protetta</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-med-gold">200+</p>
+              <p class="text-white/60 text-xs italic mt-1">Specie marine censite</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-4xl font-bold text-med-gold">Top 8</p>
+              <p class="text-white/60 text-xs italic mt-1">Baie piu belle del mondo</p>
+            </div>
           </div>
-          <p class="text-slate-600 leading-relaxed mb-4">
-            Il sentiero parte da Massa Lubrense (frazione Termini) e scende per circa 45-60 minuti lungo i pini marittimi con vista costante del mare. È ben segnalato ma ripido in alcuni punti. La salita al ritorno è più faticosa. Scarpe da trekking consigliate, almeno 1 litro d'acqua per persona, protezione solare alta.
+        </div>
+
+        <!-- Storia -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Storia: Dal Mito alla Cava alla Rinascita</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Il nome "Ieranto" deriva dal greco antico <strong><em>Ieros</em></strong> (sacro). Secondo la tradizione, il promontorio era sacro alle <strong>Sirene</strong> della mitologia greca: e proprio qui, tra Ieranto e Punta Campanella, che Ulisse - legato all'albero maestro della sua nave - ascolto il canto irresistibile delle Sirene nel suo viaggio di ritorno da Troia.
           </p>
-          <p class="text-slate-600 font-medium">
-            Periodo migliore: <strong>maggio-ottobre</strong>. Evitare i mesi più caldi (luglio-agosto) per il caldo intenso durante la salita.
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            I Romani costruirono un <strong>Tempio di Athena</strong> (Minerva) sulla vicina Punta Campanella, a conferma della sacralita del luogo. Per secoli la baia rimase un luogo di pescatori e contadini, con i terrazzamenti coltivati a ulivi che ancora oggi segnano il paesaggio.
           </p>
+          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm my-8">
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">L'Ex Cava Italsider (1918-1952)</h3>
+            <p class="text-slate-600 leading-relaxed mb-4">
+              Nel 1918 la societa <strong>Italsider</strong> apri una cava di calcare dolomitico nella parte orientale della baia. Per 34 anni la cava estrae pietra dalla falesia, scaricandola direttamente sulle chiatte ormeggiate in baia tramite un sistema di teleferiche e imbuti. L'attivita trasformo radicalmente il paesaggio, lasciando cicatrici nella roccia ancora oggi visibili.
+            </p>
+            <p class="text-slate-600 leading-relaxed">
+              La cava chiuse nel 1952. I resti degli impianti industriali - piloni, binari, tramogge - furono gradualmente inglobati dalla vegetazione. Nel 1987 il <strong>FAI</strong> acquisto l'intera area (49 ettari) grazie a una donazione, avviando un programma di recupero ambientale che ha trasformato un sito industriale abbandonato in uno dei luoghi naturali piu preziosi d'Italia.
+            </p>
+          </div>
+        </div>
+
+        <!-- Area Marina Protetta -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Area Marina Protetta: Il Santuario Sottomarino</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La Baia di Ieranto rientra nella <strong>Zona B (riserva generale)</strong> dell'Area Marina Protetta di Punta Campanella, istituita nel 1997. Questo significa divieto assoluto di pesca, raccolta di organismi, ancoraggio libero e navigazione a motore. Il risultato, dopo quasi 30 anni di protezione, e un ecosistema marino di ricchezza straordinaria.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            Le acque di Ieranto sono diventate un vero <strong>laboratorio naturale</strong> che dimostra cosa succede quando il mare viene lasciato in pace. Le specie che altrove sono rare o scomparse, qui prosperano a pochi metri dalla riva.
+          </p>
+
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Cosa si Vede Facendo Snorkeling</h3>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Pesci di scogliera</p>
+              <p class="text-slate-700 font-medium mb-1">Cernie brune, saraghi, castagnole</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Le cernie brune raggiungono i 50-60 cm e si avvicinano ai nuotatori senza paura. I saraghi formano banchi di decine di esemplari tra le rocce. Le castagnole azzurre colorano l'acqua come coriandoli.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Predatori pelagici</p>
+              <p class="text-slate-700 font-medium mb-1">Barracuda mediterranei, dentici, ricciole</p>
+              <p class="text-slate-500 text-xs sm:text-sm">I barracuda mediterranei (fino a 1 metro) pattugliano l'ingresso della baia in piccoli branchi. Dentici e ricciole si avvistano nelle acque piu profonde, soprattutto la mattina presto.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Fondale</p>
+              <p class="text-slate-700 font-medium mb-1">Polpi, murene, stelle marine, ricci</p>
+              <p class="text-slate-500 text-xs sm:text-sm">I polpi sono comuni tra le rocce (non toccarli). Le murene si nascondono nelle fessure. Il fondale e ricco di ricci di mare, anemoni e nudibranchi colorati visibili a pochi metri di profondita.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Praterie di Posidonia</p>
+              <p class="text-slate-700 font-medium mb-1">L'ecosistema chiave del Mediterraneo</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Le praterie di <em>Posidonia oceanica</em> che ricoprono il fondale sono l'habitat che sostiene tutta questa biodiversita. Producono ossigeno, proteggono la costa dall'erosione e ospitano centinaia di specie.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Il sentiero -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Il Sentiero FAI: Da Nerano alla Baia</h2>
+          <div class="space-y-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">1</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Partenza da Nerano (0-10 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Si parte dalla piazzetta di Nerano (frazione di Massa Lubrense). Il sentiero inizia con una mulattiera lastricata tra muri a secco e uliveti. Pannelli FAI indicano la direzione. Primi scorci su Marina del Cantone.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">2</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">La macchia mediterranea (10-25 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Il sentiero entra nella macchia mediterranea: mirto, lentisco, rosmarino selvatico e pini marittimi. L'aria e profumatissima. Si inizia a intravedere la baia in lontananza e i Faraglioni di Capri all'orizzonte.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">3</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">I resti della cava (25-35 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Si attraversano i resti dell'ex cava Italsider: piloni di cemento inghiottiti dalla vegetazione, vecchi binari arrugginiti, tramogge. Un pezzo di archeologia industriale che il FAI ha scelto di conservare come testimonianza storica.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">4</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">La discesa finale e la baia (35-50 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">L'ultimo tratto scende ripido verso il mare. Ad un certo punto la baia si apre davanti in tutta la sua bellezza: sabbia chiara, acqua turchese, falesie bianche e i Faraglioni di Capri perfettamente allineati sull'orizzonte. L'impatto visivo e indimenticabile.</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Come arrivare -->
@@ -94,25 +241,76 @@ const beachSchema = {
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Arrivare</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Via Trekking</p>
-              <p class="text-slate-700 font-medium mb-1">Da Massa Lubrense (Termini)</p>
-              <p class="text-slate-500 text-xs sm:text-sm">45-60 minuti di discesa. Sentiero segnalato attraverso il bosco. Difficoltà media-alta. Consigliato con guida per la prima volta.</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Via trekking · Consigliato</p>
+              <p class="text-slate-700 font-medium mb-1">Da Nerano (Massa Lubrense)</p>
+              <p class="text-slate-500 text-xs sm:text-sm">40-50 min in discesa, 60-70 min in salita. Sentiero FAI segnalato. Parcheggio a Nerano (limitato in estate, arrivare presto). Difficolta: media.</p>
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Via Mare</p>
-              <p class="text-slate-700 font-medium mb-1">Da Sorrento o Marina Grande</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Taxi boat privato. Consigliato contattare in anticipo. Costo: €50-80 per barca. Possibile anche con i charter privati durante l'estate.</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Via mare</p>
+              <p class="text-slate-700 font-medium mb-1">Taxi boat o kayak</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Taxi boat da Marina del Cantone (~10 min, €50-80 per barca). Kayak a noleggio da Marina del Cantone. Motori a combustione vietati nella baia (area protetta).</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus + trekking</p>
+              <p class="text-slate-700 font-medium mb-1">Da Sorrento a Nerano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Bus SITA da Sorrento a Nerano (circa 30 min). Poi sentiero a piedi. Soluzione senza auto. Verificare orari su sitasudtrasporti.it.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">In auto</p>
+              <p class="text-slate-700 font-medium mb-1">Parcheggio a Nerano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Parcheggio limitato a Nerano (pochi posti lungo la strada). In estate arrivare prima delle 8:30. Da Sorrento circa 25 min in auto via SP45.</p>
             </div>
           </div>
         </div>
 
-        <!-- Snorkeling -->
-        <div>
-          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Snorkeling a Ieranto</h2>
-          <p class="text-slate-600 text-lg leading-relaxed">
-            Le acque intorno a Ieranto sono tra le più cristalline della Penisola Sorrentina. Non avrai folla che nuota sopra di te, e potrai avvistare dentici, ricciole, e occasionalmente gli altri pesci che abitano la fossa marina davanti alla spiaggia. La vicinanza alle falesie crea piccoli ecosistemi di corallo e posidonia.
-          </p>
+        <!-- Consigli pratici -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-6">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+            <h3 class="text-xl font-bold">5 Consigli dei Locali</h3>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-slate-900 mb-1">1. Porta tutto con te</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Non ci sono bar, ristoranti ne servizi di alcun tipo. Porta <strong>acqua (almeno 2 litri a testa)</strong>, cibo, crema solare, cappello, scarpe chiuse per il sentiero e scarpe da scoglio per l'acqua. Un sacchetto per i rifiuti e obbligatorio: non lasciare nulla.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">2. Maschera e boccaglio sono imprescindibili</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Venire a Ieranto senza maschera e come andare al Louvre bendati. Le cernie si avvicinano a meno di un metro. I barracuda pattugliano l'ingresso della baia. Le praterie di Posidonia pullulano di vita. E lo snorkeling piu bello della Penisola Sorrentina.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">3. Parti presto, torna prima delle 16</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">La salita di ritorno (60-70 min) sotto il sole del pomeriggio e durissima. Parti alle 8:00-8:30 da Nerano, goditi la baia fino alle 14-15, e risali nel tardo pomeriggio quando il sentiero e in ombra.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">4. Dopo la baia, pranzo a Nerano</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Nerano e famosa per gli <strong>spaghetti alla Nerano</strong> (zucchine fritte e provolone del Monaco), inventati qui nel 1952. Dopo il trekking, un piatto alla Taverna del Capitano o da Maria Grazia e la ricompensa perfetta.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">5. Rispetta l'area protetta</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Vietato pescare, raccogliere conchiglie, ricci o qualsiasi organismo. Vietato ancorare sulle praterie di Posidonia. Non toccare i pesci (anche se si avvicinano). Il rispetto delle regole e cio che rende questo posto cosi speciale.</p>
+            </div>
+          </div>
         </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
       </div>
 
       <!-- Sidebar Fast-Facts -->
@@ -129,7 +327,7 @@ const beachSchema = {
               </div>
             ))}
           </div>
-          <div class="mt-10 pt-8 border-t border-white/10">
+          <div class="mt-10 pt-8 border-t border-white/10 space-y-3">
             <a
               href="/it-it/spiagge/"
               class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
@@ -143,17 +341,14 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="bg-med-blue py-16 text-center">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-white mb-4">Scopri altre spiagge della Costiera</h2>
-      <a
-        href="/it-it/spiagge/"
-        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
-      >
-        Guida completa alle spiagge
-      </a>
-    </div>
-  </section>
+  <CorrelationSlider
+    heading="Altre spiagge della Penisola Sorrentina"
+    items={[
+      { name: 'Regina Giovanna',    href: '/it-it/spiagge/penisola-sorrentina/regina-giovanna/',    tag: 'Villa Romana',      desc: 'Piscina naturale tra le rovine romane di Pollio Felice a Punta del Capo, Sorrento.' },
+      { name: 'Marina del Cantone', href: '/it-it/spiagge/penisola-sorrentina/marina-del-cantone/', tag: 'Sabbia & Ristoranti', desc: 'La spiaggia piu grande della Penisola Sorrentina: sabbia e ciottoli, ristoranti sul mare.' },
+      { name: 'Cala di Mitigliano', href: '/it-it/spiagge/penisola-sorrentina/cala-mitigliano/',    tag: 'Selvaggia',         desc: 'Caletta di ciottoli bianchi sotto Massa Lubrense, raggiungibile con 300 scalini.' },
+      { name: 'Massa Lubrense',     href: '/it-it/penisola-sorrentina/massa-lubrense/',              tag: 'Il Borgo',          desc: 'Il comune che custodisce Ieranto, Nerano e le spiagge piu belle della penisola.' },
+    ]}
+  />
 
 </BaseLayout>

@@ -12,6 +12,17 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '14',
+    title: 'Giardini di Tiberio e Via Krupp: Il Sentiero Imperiale di Capri',
+    slug: 'giardini-tiberio-via-krupp',
+    excerpt: 'Due millenni di storia in un percorso mozzafiato: dai resti della villa di Augusto ai tornanti vertiginosi scavati nella roccia dall\'industriale tedesco Friedrich Alfred Krupp.',
+    category: 'SCOPERTE',
+    date: '20 Maggio 2026',
+    readTime: '9 min',
+    image: '/images/giardini-tiberio-via-krupp-hero.jpg',
+    path: '/it-it/blog/giardini-tiberio-via-krupp/',
+  },
+  {
     id: '13',
     title: 'Baia di Recommone: Il Rifugio Segreto tra Nerano e Crapolla',
     slug: 'baia-recommone',
