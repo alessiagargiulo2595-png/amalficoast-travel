@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'it-it';
 
@@ -11,18 +12,28 @@ const breadcrumbs = [
 ];
 
 const facts = [
-  { label: 'Composizione', value: 'Ciottoli e pietre' },
-  { label: 'Accesso', value: 'Sentiero ripido (30 min) o Barca' },
-  { label: 'Ombra', value: 'Dalle 17:00' },
+  { label: 'Posizione', value: 'Massa Lubrense, NA' },
+  { label: 'Composizione', value: 'Ciottoli bianchi e pietre' },
+  { label: 'Accesso', value: '~300 scalini (20-30 min)' },
+  { label: 'Dislivello', value: '~120 m' },
+  { label: 'Grotta naturale', value: 'Si, riparo dal sole' },
   { label: 'Vista', value: 'Faraglioni di Capri (frontale)' },
-  { label: 'Ideale per', value: 'Trekking, snorkeling, fotografia' },
+  { label: 'Ombra', value: 'Dalle 17:00 circa' },
+  { label: 'Servizi', value: 'Nessuno (spiaggia selvaggia)' },
+  { label: 'Snorkeling', value: 'Eccellente (fondali rocciosi)' },
+  { label: 'Periodo migliore', value: 'Mag-Giu / Set-Ott' },
 ];
 
 const beachSchema = {
   "@context": "https://schema.org",
   "@type": "Beach",
   "name": "Cala di Mitigliano",
-  "description": "Spiaggia selvaggia con vista frontale mozzafiato sui Faraglioni di Capri. Raggiungibile via sentiero da Massa Lubrense o in barca.",
+  "description": "Spiaggia selvaggia di ciottoli bianchi con la migliore vista frontale sui Faraglioni di Capri dal continente. Raggiungibile solo a piedi (300 scalini) o in barca. Grotta naturale, snorkeling eccezionale e totale assenza di strutture.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "40.6120",
+    "longitude": "14.3280"
+  },
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Massa Lubrense",
@@ -30,29 +41,61 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si arriva a Cala di Mitigliano?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Da Termini (frazione di Massa Lubrense) si segue il sentiero segnalato per Mitigliano. Si scendono circa 300 scalini attraverso la macchia mediterranea per un dislivello di circa 120 metri. La discesa richiede 20-30 minuti, la risalita 35-45 minuti. In alternativa si raggiunge via mare con taxi boat da Marina del Cantone o Sorrento. Scarpe chiuse obbligatorie per il sentiero." }
+    },
+    {
+      "@type": "Question",
+      "name": "Perche la vista sui Faraglioni e cosi speciale?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Cala di Mitigliano offre la vista frontale piu ravvicinata sui Faraglioni di Capri dalla terraferma. La cala si trova sulla punta estrema della Penisola Sorrentina, a soli 5 km in linea d'aria da Capri. Al tramonto la luce radente trasforma i Faraglioni in oro: e il punto fotografico piu spettacolare di tutta la penisola." }
+    },
+    {
+      "@type": "Question",
+      "name": "C'e ombra sulla spiaggia?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La grotta naturale sulla parte sinistra della spiaggia offre riparo dal sole per buona parte della giornata. Le falesie creano ombra naturale dalle 17:00 circa. Non ci sono ombrelloni a noleggio: porta un telo da usare come parasole se arrivi nelle ore centrali." }
+    },
+    {
+      "@type": "Question",
+      "name": "Il sentiero e pericoloso?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Il sentiero non e tecnicamente pericoloso ma e ripido e in alcuni punti scivoloso, soprattutto dopo la pioggia. I 300 scalini sono irregolari e in pietra naturale. Scarpe da trekking o scarpe chiuse con suola aderente sono obbligatorie. Sconsigliato con bambini molto piccoli o persone con problemi alle ginocchia. La risalita e impegnativa." }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa portare a Cala di Mitigliano?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Non ci sono servizi di alcun tipo. Portare: acqua (almeno 2 litri a testa), cibo, crema solare, cappello, scarpe chiuse per il sentiero, scarpe da scoglio per l'acqua, maschera e boccaglio per lo snorkeling, asciugamano e sacchetto per i rifiuti. Un piccolo telo parasole puo essere utile nelle ore centrali." }
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  title="Cala di Mitigliano: La Spiaggia Segreta vista Capri"
-  description="Cala di Mitigliano a Massa Lubrense: la spiaggia nascosta con la migliore vista frontale sui Faraglioni di Capri. Come arrivare via sentiero o in barca."
+  title="Cala di Mitigliano 2026: La Spiaggia Segreta con Vista Faraglioni | Massa Lubrense"
+  description="Guida completa a Cala di Mitigliano a Massa Lubrense: la spiaggia nascosta con la migliore vista frontale sui Faraglioni di Capri. 300 scalini, grotta naturale, snorkeling, storia e consigli pratici."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
   pageKey="cala-mitigliano"
 >
 
   <!-- Hero -->
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
-      src="/images/cala-mitigliano.jpg"
-      alt="Cala di Mitigliano, Massa Lubrense, con vista su Capri"
+      src="/images/cala-mitigliano-hero.jpg"
+      alt="Cala di Mitigliano - spiaggia di ciottoli bianchi con vista sui Faraglioni di Capri, Massa Lubrense"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
       referrerpolicy="no-referrer"
     />
-    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
     <div class="relative z-10 text-center px-6 max-w-4xl text-white">
-      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Massa Lubrense · Vista Capri</p>
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Massa Lubrense · Vista Capri · Spiaggia selvaggia</p>
       <h1 class="font-serif text-display text-white mb-6">Cala di Mitigliano</h1>
       <p class="text-lg md:text-xl font-light text-white/80">La spiaggia segreta con i Faraglioni di Capri davanti agli occhi.</p>
     </div>
@@ -64,26 +107,122 @@ const beachSchema = {
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
 
       <!-- Testo principale -->
-      <div class="lg:col-span-2 space-y-12">
+      <div class="lg:col-span-2 space-y-16">
+
+        <!-- Intro -->
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Una Perla Nascosta</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Cala di Mitigliano è una perla nascosta della Penisola Sorrentina. Poco frequentata a causa del sentiero d'accesso impegnativo, offre una vista frontale mozzafiato su Capri e i suoi Faraglioni - probabilmente la più bella vista di Capri dal continente. L'acqua è limpidissima, con fondali rocciosi ideali per lo snorkeling.
+            Cala di Mitigliano e una perla nascosta della Penisola Sorrentina. Poco frequentata a causa del sentiero d'accesso impegnativo - circa 300 scalini scavati nella roccia - offre una vista frontale mozzafiato su Capri e i suoi Faraglioni. Probabilmente la piu bella vista di Capri dal continente.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            L'acqua e limpidissima, con fondali rocciosi ideali per lo snorkeling. La grotta naturale sulla spiaggia offre riparo dal sole nelle ore piu calde. Al tramonto, la luce radente trasforma i Faraglioni in oro: porta la macchina fotografica, perche e la foto di Capri che non fanno i turisti - ci vuole un po' di gambe per arrivare qui.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            La grotta naturale sulla spiaggia offre riparo dal sole nelle ore più calde. Un vero paradiso per gli amanti del trekking e dell'esplorazione. Al tramonto, la luce radente trasforma i Faraglioni in oro: porta la macchina fotografica.
+            Niente bar, niente ombrelloni, niente musica. Solo ciottoli bianchi, il suono delle onde e l'isola di Capri cosi vicina da sembrare a portata di mano. E il luogo perfetto per chi cerca la Costiera prima che arrivassero le masse.
           </p>
         </div>
 
-        <!-- Vista Capri -->
-        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
-          <div class="flex items-center gap-4 mb-4">
-            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-            <h3 class="text-xl font-bold">La Vista più Bella su Capri</h3>
+        <!-- Stats -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Lo sapevi?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">300</p>
+              <p class="text-white/60 text-xs italic mt-1">scalini per raggiungere la cala</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">5 km</p>
+              <p class="text-white/60 text-xs italic mt-1">distanza in linea d'aria da Capri</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">120 m</p>
+              <p class="text-white/60 text-xs italic mt-1">dislivello dal parcheggio</p>
+            </div>
           </div>
-          <p class="text-slate-600 leading-relaxed">
-            Dalla spiaggia hai una vista <strong>frontale e ravvicinata</strong> sui tre Faraglioni. Al tramonto (dalle 17:30 circa) la luce è perfetta. È la foto di Capri che non fanno i turisti - perché ci vuole un po' di gambe per arrivare qui.
+        </div>
+
+        <!-- Storia e nome -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Le Origini: Tra Monaci e Pescatori</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Il nome "Mitigliano" deriva probabilmente dal latino <strong><em>Mytilus</em></strong> (mitilo, la cozza), a indicare l'abbondanza di molluschi che un tempo si raccoglievano sugli scogli della cala. Per secoli questa fu una spiaggia nota solo ai pescatori di <a href="/it-it/penisola-sorrentina/massa-lubrense/" class="text-med-blue hover:underline">Massa Lubrense</a>, che la usavano come approdo naturale riparato dai venti.
           </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La zona intorno alla cala era di proprieta dei monaci benedettini del Monastero di San Pietro, che coltivavano gli uliveti sui terrazzamenti ancora oggi visibili lungo il sentiero. I muri a secco che incontri durante la discesa - alcuni dei quali hanno centinaia di anni - sono opera loro.
+          </p>
+          <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm my-8">
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Le Torri di Avvistamento</h3>
+            <p class="text-slate-600 leading-relaxed">
+              Sulla scogliera sopra la cala si trovano i resti di una <strong>torre di avvistamento del XVI secolo</strong>, parte del sistema difensivo costiero costruito dai Vicere spagnoli contro le incursioni dei pirati saraceni. Da questa torre i vedette comunicavano con fuochi e segnali con le torri vicine di <a href="/it-it/spiagge/penisola-sorrentina/ieranto/" class="text-med-blue hover:underline">Ieranto</a> e Punta Campanella. I resti della torre sono visibili dal sentiero poco prima dell'ultimo tratto di discesa.
+            </p>
+          </div>
+        </div>
+
+        <!-- La grotta -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Grotta Naturale</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Sulla parte sinistra della spiaggia si apre una <strong>grotta naturale di roccia calcarea</strong> alta circa 4-5 metri e profonda una decina. E il riparo naturale piu prezioso della cala: nelle ore centrali della giornata, quando il sole batte a picco sui ciottoli, la grotta offre ombra fresca e una prospettiva unica sulla baia.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            All'interno della grotta il fondale marino e particolarmente ricco: la roccia crea anfratti dove si nascondono polpi, murene e piccoli crostacei. Con maschera e boccaglio si possono esplorare le pareti sommerse della grotta, dove la luce crea giochi di riflessi turchesi.
+          </p>
+        </div>
+
+        <!-- Snorkeling -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Snorkeling: Un Acquario Naturale</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-8">
+            Le acque di Cala di Mitigliano sono tra le piu limpide della Penisola Sorrentina. La vicinanza all'Area Marina Protetta di Punta Campanella e il difficile accesso tengono lontane le barche a motore, lasciando il mare in condizioni quasi incontaminate.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Zona rocciosa (0-3 m)</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Saraghi, castagnole azzurre, donzelle pavonine, bavose. Lungo le pareti rocciose a pelo d'acqua si vedono ricci, anemoni e piccole attinie. Ideale per principianti.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Fondale sabbioso (3-6 m)</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Triglie, sogliole, stelle marine e Posidonia oceanica. Nelle praterie di Posidonia si nascondono cavallucci marini, pipe-fish e nudibranchi colorati.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">La grotta sommersa</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Polpi, murene, gamberi rossi e piccole cernie. La luce che filtra dall'ingresso della grotta crea un effetto azzurro-turchese sulle pareti sommerse.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Acque aperte</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Banchi di salpe, occhiate e boghe passano regolarmente davanti alla cala. Con fortuna si avvistano barracuda mediterranei e piccoli dentici nelle prime ore del mattino.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Il sentiero -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Il Sentiero dei 300 Scalini</h2>
+          <div class="space-y-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">1</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Partenza da Termini (0-5 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Si parte dalla piazzetta di Termini (frazione di Massa Lubrense). Il sentiero inizia accanto a una cappella votiva. I primi minuti sono in leggera discesa su mulattiera lastricata tra muri a secco e uliveti.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">2</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">Gli uliveti e la torre (5-15 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Il sentiero attraversa uliveti centenari sui terrazzamenti dei monaci benedettini. A meta percorso si intravedono i resti della torre saracena e i primi scorci sulla cala e su Capri. L'aria profuma di rosmarino selvatico e mirto.</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex gap-5">
+              <div class="w-10 h-10 rounded-full bg-med-gold/10 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs sm:text-sm">3</div>
+              <div>
+                <h4 class="font-bold text-slate-900 mb-1">La discesa finale (15-30 min)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">L'ultimo tratto e il piu ripido: scalini in pietra irregolari che scendono attraverso la macchia mediterranea. I Faraglioni appaiono di fronte in tutta la loro maestosita. L'arrivo sulla spiaggia di ciottoli bianchi ripaga ogni goccia di sudore.</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 mt-4">La risalita richiede 35-45 minuti. Evitare le ore piu calde (12-15) per la salita.</p>
         </div>
 
         <!-- Come arrivare -->
@@ -91,17 +230,86 @@ const beachSchema = {
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Arrivare</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Sentiero a piedi</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Sentiero a piedi · Consigliato</p>
               <p class="text-slate-700 font-medium mb-1">Da Termini, Massa Lubrense</p>
-              <p class="text-slate-500 text-xs sm:text-sm">30 min di discesa ripida. Scarpe da trekking obbligatorie. Nessuna struttura in loco.</p>
+              <p class="text-slate-500 text-xs sm:text-sm">~300 scalini, 20-30 min in discesa. Scarpe chiuse obbligatorie. Parcheggio limitato a Termini (arrivare presto in estate).</p>
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
-              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Boat</p>
-              <p class="text-slate-700 font-medium mb-1">Da Sorrento o Marina del Cantone</p>
-              <p class="text-slate-500 text-xs sm:text-sm">L'opzione più comoda. Prenota un giro in barca con sosta alla cala.</p>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi boat</p>
+              <p class="text-slate-700 font-medium mb-1">Da Marina del Cantone o Sorrento</p>
+              <p class="text-slate-500 text-xs sm:text-sm">L'opzione piu comoda. Taxi boat da Marina del Cantone (~10 min, €40-60). Da Sorrento ~30 min. Prenota un giro con sosta alla cala.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus + sentiero</p>
+              <p class="text-slate-700 font-medium mb-1">Da Sorrento a Termini</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Bus SITA da Sorrento a Massa Lubrense, poi bus locale per Termini. Circa 40 min totali + sentiero. Verificare orari.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Kayak</p>
+              <p class="text-slate-700 font-medium mb-1">Da Marina del Cantone</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Noleggio kayak da Marina del Cantone (~15 min pagaiando). L'approccio dal mare permette di ammirare le falesie e la grotta dall'acqua.</p>
             </div>
           </div>
         </div>
+
+        <!-- Vista Capri box -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            <h3 class="text-xl font-bold">La Vista piu Bella su Capri</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Dalla spiaggia hai una vista <strong>frontale e ravvicinata</strong> sui tre Faraglioni di Capri, a soli 5 km in linea d'aria. Al tramonto (dalle 17:30 circa) la luce radente li trasforma in oro puro contro il cielo rosa.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            E la foto di Capri che non fanno i turisti - perche ci vuole un po' di gambe per arrivare qui. Il punto migliore per la foto e dalla parte destra della spiaggia, dove i tre Faraglioni si allineano perfettamente.
+          </p>
+        </div>
+
+        <!-- Consigli -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-6">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+            <h3 class="text-xl font-bold">4 Consigli dei Locali</h3>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <p class="font-bold text-slate-900 mb-1">1. Porta scarpe da scoglio</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">I ciottoli sono grandi e irregolari. Entrare e uscire dall'acqua senza scarpe da scoglio e doloroso. Portale nello zaino insieme a maschera e boccaglio - lo snorkeling qui e eccezionale.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">2. Arriva per il tramonto, non partire</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Il momento piu magico e dalle 17:00 alle 19:00, quando il sole illumina i Faraglioni di luce dorata e la cala entra in ombra naturale. Arriva nel primo pomeriggio, goditi il bagno, e resta per lo spettacolo.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">3. Rifugiati nella grotta</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Nelle ore centrali (12-15) il sole batte a picco sui ciottoli e fa caldissimo. La grotta naturale sulla sinistra e il tuo rifugio: ombra fresca e un punto perfetto per osservare la baia.</p>
+            </div>
+            <div>
+              <p class="font-bold text-slate-900 mb-1">4. Abbina con Ieranto per una giornata epica</p>
+              <p class="text-slate-600 leading-relaxed text-xs sm:text-sm">Se hai gambe forti, la mattina scendi a <a href="/it-it/spiagge/penisola-sorrentina/ieranto/" class="text-med-blue hover:underline">Ieranto</a> da Nerano, risali, pranzo con gli spaghetti alla Nerano, poi il pomeriggio scendi a Mitigliano da Termini. Due spiagge segrete in un giorno.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
       </div>
 
       <!-- Sidebar Fast-Facts -->
@@ -132,17 +340,14 @@ const beachSchema = {
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="bg-med-blue py-16 text-center">
-    <div class="max-w-2xl mx-auto px-6">
-      <h2 class="font-serif text-2xl font-bold text-white mb-4">Esplora la Penisola Sorrentina</h2>
-      <a
-        href="/it-it/penisola-sorrentina/"
-        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
-      >
-        Guida alla Penisola Sorrentina
-      </a>
-    </div>
-  </section>
+  <CorrelationSlider
+    heading="Altre spiagge della Penisola Sorrentina"
+    items={[
+      { name: 'Ieranto',            href: '/it-it/spiagge/penisola-sorrentina/ieranto/',             tag: 'Riserva FAI',       desc: 'Baia protetta dal FAI con vista sui Faraglioni, raggiungibile solo a piedi da Nerano.' },
+      { name: 'Regina Giovanna',    href: '/it-it/spiagge/penisola-sorrentina/regina-giovanna/',     tag: 'Villa Romana',      desc: 'Piscina naturale tra le rovine romane di Pollio Felice a Punta del Capo, Sorrento.' },
+      { name: 'Marina del Cantone', href: '/it-it/spiagge/penisola-sorrentina/marina-del-cantone/',  tag: 'Sabbia & Ristoranti', desc: 'La spiaggia piu grande della Penisola Sorrentina: sabbia e ciottoli, ristoranti sul mare.' },
+      { name: 'Massa Lubrense',     href: '/it-it/penisola-sorrentina/massa-lubrense/',               tag: 'Il Borgo',          desc: 'Il comune che custodisce Mitigliano, Ieranto e le spiagge piu belle della penisola.' },
+    ]}
+  />
 
 </BaseLayout>

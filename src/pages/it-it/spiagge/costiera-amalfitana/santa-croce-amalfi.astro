@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'it-it';
 
@@ -11,12 +12,64 @@ const breadcrumbs = [
 ];
 
 const facts = [
-  { label: 'Composizione', value: 'Ciottoli bianchi' },
+  { label: 'Composizione', value: 'Ciottoli bianchi (calcare dei Lattari)' },
   { label: 'Accesso', value: 'Solo via mare (Taxi Boat)' },
   { label: 'Ombra', value: 'Dalle 16:00' },
   { label: 'Servizi', value: '2 Ristoranti con lido' },
   { label: 'Ideale per', value: 'Fuga romantica, pesce fresco' },
+  { label: 'Distanza da Amalfi', value: 'Circa 5 minuti in barca' },
+  { label: 'Costo taxi boat', value: '€5–€8 a/r a persona' },
+  { label: 'Navetta ristorante', value: 'Gratuita per i clienti' },
+  { label: 'Snorkeling', value: 'Eccellente lungo le pareti' },
+  { label: 'Origini', value: 'X secolo (chiesa medievale)' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si arriva alla spiaggia di Santa Croce ad Amalfi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Santa Croce è raggiungibile esclusivamente via mare. Dal molo principale di Amalfi partono taxi boat che impiegano circa 5 minuti per arrivare. Il costo è di circa €5–€8 a persona per andata e ritorno. In alternativa, i ristoranti Da Teresa e Il Pirata offrono una navetta gratuita per i propri clienti: basta prenotare il pranzo con anticipo e la barca è inclusa."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costa il taxi boat per Santa Croce?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il taxi boat dal molo di Amalfi a Santa Croce costa circa €5–€8 a persona per l'andata e il ritorno. I prezzi possono variare leggermente in alta stagione. Per risparmiare, prenota il pranzo al ristorante: la navetta per i clienti è completamente gratuita ed è anche il modo più scenografico per arrivare."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quali ristoranti ci sono a Santa Croce?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sulla spiaggia di Santa Croce ci sono due ristoranti storici: Da Teresa (già nota come Da Gemma), attiva dagli anni '50 con ricette di pesce tradizionali tra cui i celebri scialatielli ai frutti di mare, e Il Pirata, ricavato direttamente nella roccia della scogliera. Entrambi hanno lidi privati con lettini e ombrelloni e offrono navetta gratuita dal molo di Amalfi per i propri clienti."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "È adatta ai bambini la spiaggia di Santa Croce?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Santa Croce è adatta ai bambini più grandi e agli adulti, ma richiede un po' di attenzione. La spiaggia è di ciottoli bianchi (non sabbia), quindi consigliamo le ciabatte da scoglio. L'acqua è limpida e relativamente calma, ma l'accesso in barca può risultare un po' movimentato con bambini piccoli. Per i bambini in età prescolare, meglio valutare alternative con ingresso più facile."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Come è lo snorkeling a Santa Croce Amalfi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lo snorkeling a Santa Croce è eccellente. Il fondale roccioso lungo le pareti della scogliera ospita prati di posidonia, saraghi, polpi e anemoni di mare. La visibilità è molto buona grazie alle acque calme e protette. In anni recenti sono stati segnalati anche avvistamenti della foca monaca (Monachus monachus) nell'area — uno spettacolo rarissimo nel Mediterraneo. Portate la vostra attrezzatura perché non ci sono noleggi in loco."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
@@ -31,6 +84,13 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const nearbyBeaches = [
+  { name: 'Fiordo di Furore', href: '/it-it/spiagge/costiera-amalfitana/fiordo-di-furore/', tag: 'Furore', desc: "Il fiordo più iconico d'Italia." },
+  { name: 'Marina di Praia', href: '/it-it/spiagge/costiera-amalfitana/marina-di-praia/', tag: 'Praiano', desc: 'Spiaggia selvaggia con tramonto perfetto.' },
+  { name: 'Spiaggia Grande', href: '/it-it/spiagge/costiera-amalfitana/spiaggia-grande-positano/', tag: 'Positano', desc: 'Il cuore mondano della Costiera.' },
+  { name: 'Regina Giovanna', href: '/it-it/spiagge/penisola-sorrentina/regina-giovanna/', tag: 'Sorrento', desc: 'Piscina naturale con villa romana.' },
+];
 ---
 
 <BaseLayout
@@ -38,13 +98,13 @@ const beachSchema = {
   description="Santa Croce è la fuga perfetta da Amalfi. Raggiungibile solo in barca, con acque cristalline e ristoranti storici con navetta gratuita."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
  pageKey="santa-croce-amalfi">
 
   <!-- Hero -->
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
-      src="/images/santa-croce-amalfi.jpg"
+      src="/images/santa-croce-hero.jpg"
       alt="Spiaggia di Santa Croce, Amalfi"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
@@ -68,10 +128,10 @@ const beachSchema = {
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">La Fuga Perfetta da Amalfi</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Santa Croce è la risposta al caos di luglio e agosto ad Amalfi. Raggiungibile solo con pochi minuti di barca dal molo principale, offre acque di una trasparenza incredibile su fondali rocciosi. La spiaggia di ciottoli bianchi è raccolta tra alte scogliere che la proteggono dal vento.
+            Santa Croce è la risposta al caos di luglio e agosto ad <a href="/it-it/costiera-amalfitana/amalfi/" class="text-med-blue hover:underline">Amalfi</a>. Raggiungibile solo con pochi minuti di barca dal molo principale, offre acque di una trasparenza incredibile su fondali rocciosi. La spiaggia di ciottoli bianchi è raccolta tra alte scogliere che la proteggono dal vento.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            I due ristoranti storici - Da Gemma e La Caravella - hanno lidi privati sulla spiaggia e offrono navette gratuite dal molo di Amalfi per i propri clienti. È l'ideale per chi vuole una giornata di mare "selvaggia" ma con il comfort di un ottimo pranzo a base di pesce freschissimo.
+            I due ristoranti storici - Da Teresa e Il Pirata - hanno lidi privati sulla spiaggia e offrono navette gratuite dal molo di Amalfi per i propri clienti. È l'ideale per chi vuole una giornata di mare "selvaggia" ma con il comfort di un ottimo pranzo a base di pesce freschissimo.
           </p>
         </div>
 
@@ -84,6 +144,92 @@ const beachSchema = {
           <p class="text-slate-600 leading-relaxed">
             Prenota il pranzo al ristorante con anticipo: ti offrono la navetta dal molo <strong>gratuitamente</strong> per i clienti. È il modo più economico (e più scenografico) per arrivare a Santa Croce.
           </p>
+        </div>
+
+        <!-- Storia -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Storia: La Cala Segreta della Repubblica</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La piccola insenatura prende il nome dall'antica <strong>chiesa di Santa Croce</strong>, costruita dai monaci amalfitani intorno al X secolo sulle rocce che dominano la cala. Nelle pareti della scogliera sono ancora visibili resti di strutture medievali: archi murati, fondamenta di pietra calcarea e nicchie scolpite nella roccia.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            In epoca medievale, la cala fu strategicamente importante per la <strong>Repubblica di Amalfi</strong> (839–1137), una delle quattro Repubbliche Marinare italiane e cuore pulsante dell'intera <a href="/it-it/costiera-amalfitana/" class="text-med-blue hover:underline">Costiera Amalfitana</a>. Protetta dalle tempeste e nascosta agli occhi dei pirati, serviva come porto secondario e cantiere navale per le imbarcazioni mercantili. La posizione riparata, con l'apertura stretta verso il mare aperto, la rendeva ideale per operazioni discrete e per il ricovero delle navi durante i mesi invernali.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            I ciottoli bianchi che ricoprono la spiaggia non sono sabbia ma <strong>frammenti di calcare</strong> distaccatisi dalle Monti Lattari nel corso dei secoli — la stessa roccia che forma le pareti verticali del fiordo — levigati da secoli di moto ondoso fino ad assumere la consistenza quasi sferica che li caratterizza oggi.
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">X</p>
+            <p class="text-white/60 text-sm mt-1">sec. – chiesa originale</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">5'</p>
+            <p class="text-white/60 text-sm mt-1">in barca da Amalfi</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">839</p>
+            <p class="text-white/60 text-sm mt-1">fondazione Repubblica</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">2</p>
+            <p class="text-white/60 text-sm mt-1">ristoranti storici</p>
+          </div>
+        </div>
+
+        <!-- Vita marina -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Snorkeling e Vita Sottomarina</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Il fondale di Santa Croce è tra i più ricchi della Costiera. Le pareti rocciose sommerse ospitano fitti prati di <strong>posidonia oceanica</strong> — la pianta marina più importante del Mediterraneo — che fungono da nursery per decine di specie. Lungo le pareti si muovono banchi di saraghi (orate selvatiche), polpi mimetizzati tra le anfrattuosità e vivaci anemoni di mare.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Lo snorkeling è eccellente lungo le pareti della scogliera, dove la visibilità raggiunge i 15–20 metri nelle giornate di bonaccia. In anni recenti, alcune segnalazioni certificano la presenza occasionale della <strong>foca monaca</strong> (<em>Monachus monachus</em>) nell'area — uno degli animali più rari del Mediterraneo, con meno di 600 esemplari stimati. La presenza indica la qualità eccezionale di queste acque, paragonabile solo alle calette selvagge nei dintorni di <a href="/it-it/costiera-amalfitana/positano/" class="text-med-blue hover:underline">Positano</a>.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Portate la vostra attrezzatura da snorkeling: sulla spiaggia non ci sono noleggi. Le pinne sono consigliate per esplorare le zone più lontane dalla riva.
+          </p>
+        </div>
+
+        <!-- I ristoranti -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">I Ristoranti Storici</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            <strong>Da Teresa</strong> (in origine conosciuta come Da Gemma) è attiva sulla spiaggia sin dagli anni '50. La famiglia ha tramandato di generazione in generazione una cucina di mare autentica, basata sul pescato del giorno. Il piatto simbolo sono gli <em>scialatielli ai frutti di mare</em> — pasta fresca all'uovo con cozze, vongole e gamberi — una ricetta che secondo i locali è nata proprio qui, nelle cucine affacciate sull'acqua.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            <strong>Il Pirata</strong> è invece letteralmente incastonato nella roccia: le sue sale ricavate nella scogliera offrono un'atmosfera unica, quasi grotta, con l'odore del mare che entra attraverso le finestre aperte sull'acqua. Entrambi i ristoranti prenotano il trasporto in barca per i propri clienti — un servizio che rende la visita ancora più speciale.
+          </p>
+        </div>
+
+        <!-- Consigli dei Locali -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consigli dei Locali</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Prenota il ristorante con almeno 2–3 giorni di anticipo in estate: la navetta gratuita vale molto più del taxi boat.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Porta ciabatte da scoglio: i ciottoli bianchi sono belli da guardare ma scomodi a piedi nudi.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Per lo snorkeling, esplora le pareti della scogliera a destra della spiaggia: è la zona con la maggiore concentrazione di fauna marina.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Arriva entro le 10 se vuoi un posto in spiaggia: la cala è piccola e i lettini dei ristoranti si esauriscono presto.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Il rientro ad Amalfi al tramonto, con la luce dorata sulle scogliere, è uno dei momenti più suggestivi dell'intera Costiera.</span>
+            </li>
+          </ul>
         </div>
 
         <!-- Come arrivare -->
@@ -100,6 +246,33 @@ const beachSchema = {
               <p class="text-slate-700 font-medium mb-1">Gratuita per clienti</p>
               <p class="text-slate-500 text-xs sm:text-sm">Prenota il pranzo e la barca è inclusa nel servizio.</p>
             </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Tour in Kayak</p>
+              <p class="text-slate-700 font-medium mb-1">Da Amalfi o Atrani</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Alcune guide locali offrono tour in kayak con sosta a Santa Croce.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Gommone / Barca privata</p>
+              <p class="text-slate-700 font-medium mb-1">Noleggio a Amalfi</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Con patente nautica, il noleggio di un gommone permette di combinare più calette.</p>
+            </div>
+          </div>
+        </div>
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
@@ -131,6 +304,13 @@ const beachSchema = {
 
     </div>
   </section>
+
+  <!-- Spiagge Vicine -->
+  <CorrelationSlider
+    title="Spiagge Vicine ad Amalfi"
+    items={nearbyBeaches}
+    lang="it-it"
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">

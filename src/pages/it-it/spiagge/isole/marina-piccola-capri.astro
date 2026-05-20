@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'it-it';
 
@@ -16,7 +17,58 @@ const facts = [
   { label: 'Ombra', value: 'Dalle 16:00 ⚠️' },
   { label: 'Vista', value: 'Faraglioni (la migliore dell\'isola)' },
   { label: 'Ideale per', value: 'Lidi esclusivi, fotografia, snorkeling' },
+  { label: 'Club storico', value: 'La Canzone del Mare (dal 1932)' },
+  { label: 'Scoglio iconico', value: 'Scoglio delle Sirene (Ulisse)' },
+  { label: 'Via panoramica', value: 'Via Krupp (costruita nel 1902)' },
+  { label: 'Legame imperiale', value: 'Augusto sbarcò qui per la prima volta' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si arriva a Marina Piccola da Marina Grande?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Da Marina Grande (dove attraccano traghetti e aliscafi) si può raggiungere Marina Piccola in bus dalla Piazzetta di Capri (linea diretta, ogni 15 minuti circa) o a piedi scendendo da Via Mulo in circa 15 minuti con un percorso panoramico. In alternativa, alcuni taxi nautici offrono il trasferimento via mare direttamente tra i due porti. Non c'è una strada diretta in auto tra i due versanti dell'isola."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costano i lidi di Marina Piccola?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I prezzi dei lidi a Marina Piccola variano sensibilmente. La Canzone del Mare, il club più storico e rinomato, ha prezzi nella fascia alta (ingresso + lettino può superare i €50 a persona in alta stagione). Altri stabilimenti hanno prezzi più accessibili. Esiste anche una piccola porzione di spiaggia libera, ma è molto limitata e si riempie presto al mattino. Si consiglia di prenotare in anticipo nei mesi di luglio e agosto."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "C'è spiaggia libera a Marina Piccola?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, c'è una porzione di spiaggia libera a Marina Piccola, ma è ridotta al minimo. In alta stagione (luglio–agosto) si riempie entro le 9 del mattino. La maggior parte della spiaggia è occupata dai lidi privati. Se desideri un'esperienza sulla spiaggia libera, arriva prestissimo oppure valuta di visitare Marina Piccola in primavera o settembre quando c'è meno affollamento."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual è il momento migliore per visitare Marina Piccola ed evitare la folla?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il momento migliore è al mattino presto (prima delle 10) oppure a settembre, quando i turisti sono meno ma il mare è ancora caldo. Ricorda che Marina Piccola entra in ombra intorno alle 16:00 per via dei monti circostanti, quindi chi vuole sole pomeridiano deve organizzarsi di conseguenza. Giugno e settembre sono i mesi ideali: clima perfetto, mare caldo, meno gente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Si può ancora percorrere la Via Krupp per arrivare a Marina Piccola?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La Via Krupp, la spettacolare strada a tornanti costruita nel 1902 dall'industriale tedesco Friedrich Alfred Krupp, collega i Giardini di Augusto con Marina Piccola ed è una delle strade più fotografate al mondo. Purtroppo è soggetta a chiusure periodiche per frana e lavori di consolidamento — verifica lo stato prima della tua visita. Quando è aperta, la discesa a piedi regala una delle viste più drammatiche di Capri."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
@@ -35,6 +87,13 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const nearbyBeaches = [
+  { name: 'Faraglioni', href: '/it-it/spiagge/isole/faraglioni-capri/', tag: 'Capri', desc: "Le tre rocce leggendarie simbolo dell'isola." },
+  { name: 'Spiaggia Grande', href: '/it-it/spiagge/costiera-amalfitana/spiaggia-grande-positano/', tag: 'Positano', desc: 'Il cuore mondano della Costiera Amalfitana.' },
+  { name: 'Cala del Pozzo Vecchio', href: '/it-it/spiagge/isole/cala-del-pozzo-vecchio/', tag: 'Procida', desc: 'La spiaggia del Postino con sabbia nera.' },
+  { name: 'Spiaggia Maronti', href: '/it-it/spiagge/isole/spiaggia-maronti/', tag: 'Ischia', desc: 'Tre km di sabbia calda riscaldata dal vulcano.' },
+];
 ---
 
 <BaseLayout
@@ -42,13 +101,13 @@ const beachSchema = {
   description="Guida alla spiaggia di Marina Piccola a Capri: bagni e lidi con prezzi, spiaggia libera, come arrivare da Marina Grande, recensioni e la migliore vista sui Faraglioni."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
  pageKey="marina-piccola-capri">
 
   <!-- Hero -->
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
-      src="/images/marina-piccola-capri.jpg"
+      src="/images/marina-piccola-capri-hero.jpg"
       alt="Marina Piccola, Capri, con i Faraglioni sullo sfondo"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
@@ -90,6 +149,92 @@ const beachSchema = {
           </p>
         </div>
 
+        <!-- La Canzone del Mare e Gracie Fields -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Canzone del Mare: Un Secolo di Mondanità</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Nel 1932 la cantante e attrice britannica <strong>Gracie Fields</strong> fondò <em>La Canzone del Mare</em>, trasformando Marina Piccola nel salotto balneare di Capri. La "Stella di Rochdale" — così era soprannominata Fields — aveva già conquistato l'Europa con la sua voce e ora conquistava questa piccola baia con la sua visione di beach club elegante e informale al tempo stesso.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Il club diventò rapidamente il cuore dell'età dell'oro di Capri: <strong>Clark Gable, Sofia Loren e il Generale Eisenhower</strong> erano tra gli habitué. La piscina scavata nella roccia, gli ombrelloni a righe e la vista diretta sui Faraglioni crearono un'estetica copiata in tutto il Mediterraneo. Oggi, quasi un secolo dopo, il club è ancora aperto e conserva intatto il suo fascino d'epoca.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            La prenotazione è indispensabile in estate. L'ingresso include l'accesso alla piscina storica e alla spiaggia, con un servizio che non ha perso la sua raffinatezza originale.
+          </p>
+        </div>
+
+        <!-- Scoglio delle Sirene e Augusto -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Miti, Sirene e un Imperatore Incantato</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Davanti a Marina Piccola emerge dallo specchio d'acqua lo <strong>Scoglio delle Sirene</strong>. Secondo la tradizione omerica, è qui che le Sirene cantavano per attirare i marinai verso la morte — e Ulisse, legato all'albero della sua nave, fu l'unico a resistere al canto e a raccontarlo. Lo scoglio divide la baia in due cove: Marina di Mulo a est e Marina di Pennauro a ovest, ciascuna con il suo carattere.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            La storia documenta che l'imperatore <strong>Augusto</strong> mise piede per la prima volta a Capri proprio a Marina Piccola. Rimase così incantato dall'isola che fece uno scambio considerato folle dai contemporanei: cedette l'isola di <a href="/it-it/isole/ischia/" class="text-med-blue hover:underline">Ischia</a> — più grande, più fertile, con acque termali — a Napoli, pur di avere Capri tutta per sé. Non un cattivo affare, visto come è andata a finire.
+          </p>
+        </div>
+
+        <!-- Via Krupp e Mondo Sottomarino -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <h3 class="text-xl font-bold">Via Krupp e Mondo Sottomarino</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            La <strong>Via Krupp</strong> — la serpentina scavata nella roccia nel 1902 dall'industriale tedesco Friedrich Alfred Krupp — collega i Giardini di Augusto con Marina Piccola in uno dei percorsi più fotografati al mondo. Quando è aperta (è soggetta a chiusure per frana), la discesa a piedi offre viste drammatiche sulla baia e sui Faraglioni.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            Sott'acqua, le acque protette di Marina Piccola nascondono praterie di <em>Posidonia oceanica</em> dove vivono <strong>cavallucci marini</strong> e fondo roccioso abitato da polpi, ricci di mare e vistose castagnole. La visibilità supera spesso i 20 metri, rendendo lo snorkeling eccellente anche per chi ha poca esperienza.
+          </p>
+        </div>
+
+        <!-- Stats Box -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1932</p>
+            <p class="text-white/60 text-sm mt-1">apertura La Canzone del Mare</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1902</p>
+            <p class="text-white/60 text-sm mt-1">costruzione Via Krupp</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">20m+</p>
+            <p class="text-white/60 text-sm mt-1">visibilità sott'acqua</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">16:00</p>
+            <p class="text-white/60 text-sm mt-1">ora dell'ombra</p>
+          </div>
+        </div>
+
+        <!-- Consigli dei Locali -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consigli dei Locali</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Prenota La Canzone del Mare con settimane di anticipo in luglio e agosto: è il lido più richiesto dell'isola e i posti si esauriscono rapidamente online.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Arriva entro le 9:30 per la spiaggia libera: i pochissimi spazi disponibili vengono occupati in fretta dai residenti e dai camminatori mattinieri.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Prima di scendere via Via Krupp, verifica online se è aperta: è frequentemente chiusa per lavori di consolidamento e la delusione di trovarla sbarrata è comune.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Per lo snorkeling migliore, esplora la zona intorno allo Scoglio delle Sirene: è lì che la fauna marina è più concentrata e le acque più limpide.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Porta crema solare ad alta protezione e rinforzala ogni 2 ore: il riflesso del sole sulla roccia bianca è intensissimo e le scottature a Capri in agosto sono garantite senza protezione adeguata.</span>
+            </li>
+          </ul>
+        </div>
+
         <!-- Come arrivare -->
         <div>
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Arrivare a Marina Piccola</h2>
@@ -107,6 +252,34 @@ const beachSchema = {
               <p class="text-slate-700 font-medium mb-1">15 minuti di discesa</p>
               <p class="text-slate-500 text-xs sm:text-sm">Panoramico. Si gode il paesaggio dell'isola lungo il percorso. Indicazioni stradali segnalate dalla Piazzetta.</p>
             </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Via Krupp (se aperta)</p>
+              <p class="text-slate-700 font-medium mb-1">Dai Giardini di Augusto</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Discesa spettacolare tra le rocce. Verificare l'apertura prima della visita — spesso chiusa per lavori.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi nautico</p>
+              <p class="text-slate-700 font-medium mb-1">Da Marina Grande via mare</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Opzione comoda e scenografica: approdo diretto a Marina Piccola senza salire in paese. Costo: €15–25 a persona.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
@@ -138,6 +311,13 @@ const beachSchema = {
 
     </div>
   </section>
+
+  <!-- Spiagge Vicine -->
+  <CorrelationSlider
+    lang="it-it"
+    items={nearbyBeaches}
+    title="Spiagge Vicine da Esplorare"
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">

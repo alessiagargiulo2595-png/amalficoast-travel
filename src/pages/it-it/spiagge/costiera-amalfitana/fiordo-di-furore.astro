@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'it-it';
 
@@ -16,12 +17,66 @@ const facts = [
   { label: 'Ombra', value: 'Dalle 14:30 ⚠️' },
   { label: 'Servizi', value: 'Spiaggia libera' },
   { label: 'Ideale per', value: 'Fotografia, Coppie' },
+  { label: 'Altezza ponte', value: '30 metri' },
+  { label: 'Evento annuale', value: 'MarMeeting (tuffi dal ponte)' },
+  { label: 'Arte', value: 'Paese dipinto – murales internazionali' },
+  { label: 'Ruscello', value: 'Torrente Schiato' },
+  { label: 'Ingresso', value: 'Gratuito' },
 ];
 
 const logistica = [
   { mezzo: 'Bus SITA', fermata: 'Furore Fiordo', note: 'Linea Amalfi–Positano' },
-  { mezzo: 'Scooter', fermata: 'Ponte Furore', note: 'Pochi posti bordo strada' },
+  { mezzo: 'Scooter / Auto', fermata: 'Ponte Furore', note: 'Pochi posti bordo strada – arriva presto' },
+  { mezzo: 'Traghetto + taxi boat', fermata: 'Da Praiano o Amalfi', note: 'Approdo diretto al fiordo via mare' },
+  { mezzo: 'Tour organizzato', fermata: 'Vari punti di partenza', note: 'Include trasporto e guida' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si arriva al Fiordo di Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il modo più comodo è il Bus SITA sulla linea Amalfi–Positano: scendi alla fermata 'Furore Fiordo', sul ponte stesso. In auto o scooter ci sono pochi posti di sosta lungo la SS163, quindi conviene arrivare presto al mattino. In alternativa, alcuni taxi boat da Praiano e Amalfi offrono l'approdo diretto al fiordo via mare."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quando è il momento migliore per fotografare il Fiordo di Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il sole illumina il fondo del fiordo solo tra le 11:00 e le 14:30. La luce migliore per le foto dell'acqua turchese è intorno alle 11:30. Prima e dopo questa finestra il fiordo è in ombra profonda. In estate arriva entro le 10 per trovare parcheggio e goderti la luce piena."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Si può nuotare al Fiordo di Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, si può nuotare nel fiordo. L'acqua è generalmente più fresca rispetto alla costa aperta perché il sole arriva solo per poche ore al giorno. La spiaggia è piccola e di ciottoli. Il tuffo dal ponte (30 m) è consentito solo ai partecipanti al MarMeeting e vietato ai turisti per ragioni di sicurezza."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cos'è il MarMeeting di Furore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il MarMeeting è una gara internazionale di tuffi acrobatici dal ponte del Fiordo di Furore, alto 30 metri. Si svolge ogni estate (di solito a luglio o agosto) e richiama tuffatori professionisti da tutto il mondo. I turisti non possono partecipare ma possono assistere gratuitamente sia dalla spiaggia che dal ponte."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "L'ingresso al Fiordo di Furore è a pagamento?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, il Fiordo di Furore è una spiaggia libera e l'accesso è gratuito. Per scendere alla spiaggia si percorrono circa 200 scalini dalla strada (SS163). Non ci sono servizi (bar, noleggio lettini, docce), quindi portate acqua, cibo e tutto il necessario."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
@@ -47,6 +102,13 @@ const beachSchema = {
     "value": "Dalle 14:30"
   }
 };
+
+const nearbyBeaches = [
+  { name: 'Santa Croce', href: '/it-it/spiagge/costiera-amalfitana/santa-croce-amalfi/', tag: 'Solo via mare', desc: 'La fuga segreta da Amalfi con ristoranti storici.' },
+  { name: 'Marina di Praia', href: '/it-it/spiagge/costiera-amalfitana/marina-di-praia/', tag: 'Praiano', desc: 'Spiaggia selvaggia con il tramonto più bello della Costiera.' },
+  { name: 'Spiaggia Grande', href: '/it-it/spiagge/costiera-amalfitana/spiaggia-grande-positano/', tag: 'Positano', desc: 'Il cuore mondano della Costiera Amalfitana.' },
+  { name: 'Ieranto', href: '/it-it/spiagge/penisola-sorrentina/ieranto/', tag: 'Area Marina Protetta', desc: 'La baia incontaminata ai piedi dei Lattari.' },
+];
 ---
 
 <BaseLayout
@@ -54,7 +116,7 @@ const beachSchema = {
   description="Come visitare il Fiordo di Furore nel 2026. Orari della luce, come arrivare in bus e consigli per lo scatto perfetto."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
  pageKey="fiordo-di-furore">
 
   <!-- Hero -->
@@ -84,7 +146,7 @@ const beachSchema = {
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Un'icona della Costiera</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Il Fiordo di Furore è una delle immagini più iconiche d'Italia. Non è una spiaggia tradizionale, ma una profonda spaccatura naturale dove il mare s'insinua sotto un ponte monumentale alto 30 metri. Nel 2026, l'accesso è regolamentato per preservare il sito: la spiaggia è piccola e l'acqua è solitamente più fresca rispetto alla costa aperta.
+            Il Fiordo di Furore è una delle immagini più iconiche d'Italia. Non è una spiaggia tradizionale, ma una profonda spaccatura naturale dove il mare s'insinua sotto un ponte monumentale alto 30 metri. Incastonato lungo la <a href="/it-it/costiera-amalfitana/" class="text-med-blue hover:underline">Costiera Amalfitana</a> tra <a href="/it-it/costiera-amalfitana/positano/" class="text-med-blue hover:underline">Positano</a> e <a href="/it-it/costiera-amalfitana/amalfi/" class="text-med-blue hover:underline">Amalfi</a>, nel 2026 l'accesso è regolamentato per preservare il sito: la spiaggia è piccola e l'acqua è solitamente più fresca rispetto alla costa aperta.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
             È il paradiso dei fotografi, ma attenzione alla luce: il sole illumina il fondo del fiordo solo nelle ore centrali della giornata. Arriva tra le 11 e le 13 per gli scatti migliori. Il tuffo dal ponte è una tradizione locale, ma è vietato ai turisti: goditi il panorama dall'alto prima di scendere i 200 scalini verso la spiaggia.
@@ -102,7 +164,98 @@ const beachSchema = {
           </p>
         </div>
 
-        <!-- Logistica -->
+        <!-- Storia e origini -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Storia: Il Fiordo e il Paese che Non C'è</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Il fiordo è stato scavato nel corso dei millenni dal torrente Schiato, che ancora oggi scorre tra le pareti di roccia calcarea fino al mare. Nel Medioevo, lungo il corso d'acqua operavano numerose cartiere — Amalfi fu la prima città europea a produrre carta secondo la tecnica araba, e Furore era parte di questo sistema produttivo che rese celebre la Repubblica.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Il borgo di Furore è noto come il <em>"paese che non c'è"</em>: un comune senza centro, senza piazza, senza un cuore riconoscibile. Le case sono sparse sulle pareti della valle, collegate da sentieri scoscesi. Questa particolarità ha alimentato per decenni la sua fama di luogo sospeso tra realtà e leggenda.
+          </p>
+        </div>
+
+        <!-- MarMeeting -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">MarMeeting: Tuffi dal Ponte</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Ogni estate — di solito a luglio o agosto — il ponte del fiordo si trasforma in un trampolino per il <strong>MarMeeting</strong>, gara internazionale di tuffi acrobatici nata negli anni '70. I tuffatori professionisti si lanciano da 30 metri di altezza davanti a una folla di spettatori assiepati sul ponte e sulle rocce circostanti.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Il pubblico può assistere gratuitamente sia dalla spiaggia che dall'alto. Il tuffo libero è rigorosamente vietato ai turisti per motivi di sicurezza: le correnti all'ingresso del fiordo possono essere imprevedibili.
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">30</p>
+            <p class="text-white/60 text-sm mt-1">metri (ponte)</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">200</p>
+            <p class="text-white/60 text-sm mt-1">scalini per scendere</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1970</p>
+            <p class="text-white/60 text-sm mt-1">primo MarMeeting</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">3½</p>
+            <p class="text-white/60 text-sm mt-1">ore di sole al giorno</p>
+          </div>
+        </div>
+
+        <!-- Paese Dipinto -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Furore: Il Paese Dipinto</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Dal basso del fiordo, guardando in alto, si scorgono le prime tracce di quello che rende Furore unico anche lontano dalla spiaggia: è un <strong>paese dipinto</strong>. Dagli anni '80, artisti internazionali hanno trasformato i muri delle case abbarbicate sulla rupe in tele a cielo aperto, creando una galleria d'arte en plein air che oggi conta decine di murales.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Ogni estate un nuovo artista viene invitato ad aggiungere la propria opera. Vale la pena risalire dal fiordo e camminare tra i vicoli del borgo per scoprire la collezione completa — è un'esperienza completamente diversa dalla spiaggia, ma altrettanto memorabile.
+          </p>
+        </div>
+
+        <!-- Vita marina -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Vita Marina e Snorkeling</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La conformazione stretta del fiordo canalizza acque ricche di nutrienti provenienti dal largo, favorendo un ecosistema marino particolarmente vivace. Tra le rocce sommerse vivono folti banchi di <strong>sarago</strong> (white seabream), polpi che si mimetizzano nelle fessure e ricci di mare aggrappati alle pareti. La visibilità è generalmente buona nelle ore centrali, quando la luce penetra fino al fondo.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Un fenomeno acustico rende la visita ancora più suggestiva: le pareti di roccia amplificano ogni suono, trasformando il rumore delle onde in un eco profondo e avvolgente — un effetto che i locali chiamano semplicemente "la voce del fiordo".
+          </p>
+        </div>
+
+        <!-- Consigli dei Locali -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consigli dei Locali</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Arriva entro le 9:30 in estate per trovare posto lungo la strada o nel piccolo slargo vicino al ponte.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">La finestra di luce solare è breve: programma la discesa alla spiaggia per le 11:00–11:30 per sfruttarla al massimo.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Non ci sono bar né docce: porta acqua, snack e ciabatte da scoglio. Le scarpe si tolgono sulla spiaggia, ma i ciottoli fanno male.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Dopo il bagno, risali al borgo e cerca i murales: dedica almeno un'ora alla passeggiata tra le case dipinte di Furore.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Per lo snorkeling porta maschera e pinne: il fondale roccioso vicino alle pareti del fiordo è pieno di vita marina.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Come arrivare espanso -->
         <div>
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Arrivare</h2>
           <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
@@ -124,6 +277,23 @@ const beachSchema = {
                 ))}
               </tbody>
             </table>
+          </div>
+        </div>
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
@@ -155,6 +325,13 @@ const beachSchema = {
 
     </div>
   </section>
+
+  <!-- Spiagge Vicine -->
+  <CorrelationSlider
+    title="Spiagge Vicine al Fiordo"
+    items={nearbyBeaches}
+    lang="it-it"
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">

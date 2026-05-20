@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'it-it';
 
@@ -16,7 +17,59 @@ const facts = [
   { label: 'Migliore vista', value: 'Da Marina Piccola' },
   { label: 'Visibilità', value: 'Tutto il giorno' },
   { label: 'Ideale per', value: 'Fotografia, snorkeling, escursioni' },
+  { label: 'Altezza massima', value: 'Faraglione di Terra 109 m' },
+  { label: 'Specie endemica', value: 'Lucertola azzurra di Capri' },
+  { label: 'Arco di Mezzo', value: '~40 metri di lunghezza' },
+  { label: 'Visibilità subacquea', value: 'Fino a 30+ metri' },
+  { label: 'Tradizione', value: 'Bacio sotto l\'arco (coppie)' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Qual è il punto migliore per fotografare i Faraglioni?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il punto più fotografato è Marina Piccola, dove i Faraglioni si stagliano frontalmente sul mare con luce ideale al mattino. Per una prospettiva diversa, Punta Tragara (raggiungibile a piedi da Capri centro in 20 minuti) offre una vista panoramica dall'alto. Il giro in barca intorno all'isola permette di vederli da ogni angolazione. Il tramonto da Marina Piccola regala colori spettacolari."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costa il giro in barca intorno ai Faraglioni?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il giro completo dell'isola di Capri in barca (che include i Faraglioni, la Grotta Azzurra dall'esterno, la Grotta Verde e altri punti panoramici) costa generalmente tra 20 e 35 euro a persona se si prenota un tour condiviso da Marina Grande. I gommoni e barche private costano di più ma permettono flessibilità. L'arco del Faraglione di Mezzo si attraversa con piccole imbarcazioni."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Si può scalare o avvicinarsi ai Faraglioni?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I Faraglioni non sono accessibili a piedi: sono formazioni rocciose che emergono dal mare e non hanno spiagge o sentieri. Si possono raggiungere solo via mare con imbarcazioni. Il nuoto fino ai Faraglioni è possibile per nuotatori esperti partendo da Marina Piccola, ma la distanza è considerevole e il traffico di barche può essere intenso. È vietato scalare le rocce."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Dove vive la lucertola azzurra di Capri?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La Podarcis sicula coerulea, o lucertola azzurra di Capri, vive esclusivamente sul Faraglione di Fuori (chiamato anche Scopolo), la roccia più lontana dalla costa. Questa colorazione azzurra si è evoluta per mimetismo in un ambiente isolato senza predatori terrestri. È una delle specie di rettili più rare d'Europa e gode di piena protezione legale. La si può osservare solo dalle barche che si avvicinano alla roccia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Si può fare immersione subacquea ai piedi dei Faraglioni?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, i fondali ai piedi dei Faraglioni sono tra i più ricchi del Mar Tirreno. Ci sono grotte subacquee accessibili solo ai subacquei esperti, con visibilità che raggiunge spesso i 30 metri. Si incontrano cernie, barracuda, murene, gorgonie e banchi di pesci. Diversi diving center di Capri organizzano immersioni guidate in questa zona. Lo snorkeling superficiale è possibile partendo da Marina Piccola ma i fondali più interessanti sono in profondità."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
@@ -42,7 +95,7 @@ const beachSchema = {
   description="I Faraglioni sono il simbolo di Capri. Guida 2026 con storie, come vederli al meglio e escursioni intorno alle tre rocce leggendarie."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
  pageKey="faraglioni-capri">
 
   <!-- Hero -->
@@ -72,10 +125,21 @@ const beachSchema = {
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Il Simbolo di Capri</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            I Faraglioni sono tre magnifiche formazioni rocciose che emergono dal mare di fronte a Marina Piccola. Sono il simbolo più riconoscibile di Capri, apparse in innumerevoli film, fotografie e dipinti. Ogni roccia ha un nome: Faraglione Grande (quello più grande), Faraglione di Mezzo (il più iconico, con una naturale arcata sottomarina) e Faraglione Scopolo.
+            I Faraglioni sono tre magnifiche formazioni rocciose che emergono dal mare di fronte a <a href="/it-it/spiagge/isole/marina-piccola-capri/" class="text-med-blue hover:underline">Marina Piccola</a>. Sono il simbolo più riconoscibile di <a href="/it-it/isole/capri/" class="text-med-blue hover:underline">Capri</a>, apparse in innumerevoli film, fotografie e dipinti. Ogni roccia ha un nome: Faraglione Grande (quello più grande), Faraglione di Mezzo (il più iconico, con una naturale arcata sottomarina) e Faraglione Scopolo.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            La leggenda narra che queste rocce siano i resti di un antico castello, ma la verità geologica è altrettanto affascinante: sono residui di antiche eruzioni vulcaniche, modellati dal mare e dal vento nel corso di milioni di anni.
+            La leggenda narra che queste rocce siano i resti di un antico castello, ma la verità geologica è altrettanto affascinante: sono residui di antiche eruzioni vulcaniche, modellati dal mare e dal vento nel corso di milioni di anni. La vista migliore si gode anche dalla terrazza di <a href="/it-it/isole/anacapri/" class="text-med-blue hover:underline">Anacapri</a>.
+          </p>
+        </div>
+
+        <!-- Dimensioni e nomi -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Tre Rocce, Tre Personalità</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Le dimensioni dei Faraglioni sono impressionanti da vicino: il <strong>Faraglione di Terra</strong> (ancora connesso alla costa) si erge per 109 metri. Il <strong>Faraglione di Mezzo</strong>, alto 82 metri, è quello con il famoso arco naturale di circa 40 metri attraverso cui passano le barche. Il <strong>Faraglione di Fuori</strong> (o Scopolo), il più distante dalla riva, raggiunge i 104 metri. Insieme, si estendono per circa 300 metri sul mare.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            La <strong>tradizione dell'arco</strong>: quando si attraversa l'arcata del Faraglione di Mezzo in barca, vuole che le coppie si bacino per portare buona fortuna. Ogni tour in barca intorno all'isola include questo rituale, tra gli applausi dei passeggeri.
           </p>
         </div>
 
@@ -121,6 +185,96 @@ const beachSchema = {
             </p>
           </div>
         </div>
+
+        <!-- Lucertola azzurra -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Lucertola Azzurra di Capri</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Sul Faraglione di Fuori (Scopolo) vive una delle specie di rettili più rare d'Europa: la <em>Podarcis sicula coerulea</em>, la <strong>lucertola azzurra di Capri</strong>. Il suo colore blu intenso — così diverso dalla lucertola comune verde-marrone — si è evoluto per isolamento. Senza predatori terrestri sulla roccia isolata, il mimetismo con la vegetazione non era più necessario; la colorazione azzurra si è affermata probabilmente per selezione sessuale. È protetta dalla legge italiana ed è osservabile solo avvicinandosi in barca al Faraglione di Fuori.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Lo scrittore britannico <strong>Norman Douglas</strong>, che visse a lungo a Capri, dedicò ai Faraglioni pagine memorabili nel suo "Siren Land" (1911), descrivendoli come "tre dita di roccia che puntano verso il cielo". Omero stesso, secondo alcuni studiosi, si sarebbe ispirato ai Faraglioni per le rocce lanciate dal Ciclope Polifemo contro la nave di Odisseo.
+          </p>
+        </div>
+
+        <!-- Vita marina -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 16.5a9 9 0 1 1-9-9"/><path d="M22 2L11 13"/><path d="M22 2h-5.5M22 2v5.5"/></svg>
+            <h3 class="text-xl font-bold">Vita Marina e Immersioni</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Alla base dei Faraglioni si aprono grotte subacquee accessibili solo a subacquei esperti. La visibilità raggiunge spesso i 30 metri, con fondali ricchi di <strong>cernie, barracuda, murene e gorgonie</strong>. I diving center di Capri organizzano immersioni guidate in questa zona. Per chi preferisce lo snorkeling, Marina Piccola offre buona visibilità nei pressi delle rocce superficiali.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            Le correnti marine che si creano tra le tre rocce attirano grandi quantità di plancton, che a sua volta richiama pesce di taglia. Non è raro avvistare delfini nelle acque intorno ai Faraglioni, specialmente all'alba o al tramonto.
+          </p>
+        </div>
+
+        <!-- Stats box -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">109</p>
+            <p class="text-white/60 text-sm mt-1">m Faraglione di Terra</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">40</p>
+            <p class="text-white/60 text-sm mt-1">m arco di Mezzo</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">30+</p>
+            <p class="text-white/60 text-sm mt-1">m visibilità sub</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">300</p>
+            <p class="text-white/60 text-sm mt-1">m estensione totale</p>
+          </div>
+        </div>
+
+        <!-- Consigli dei locali -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consigli dei Locali</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Per la miglior luce fotografica, vai a Marina Piccola tra le 16:00 e le 18:00: i Faraglioni si illuminano d'oro con il sole pomeridiano.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Prenota il giro in barca direttamente a Marina Grande al mattino presto, evitando le agenzie in centro che applicano commissioni.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Il sentiero per Punta Tragara è gratuito e panoramico: 20 minuti a piedi da Capri centro, zero turisti rispetto alla piazzetta.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Se fai il giro in barca, chiedi espressamente di passare sotto l'arco del Faraglione di Mezzo: non tutti i tour lo includono automaticamente.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Per vedere la lucertola azzurra, avvicinati lentamente in barca al Faraglione di Fuori al mattino, quando le lucertole si soleggiano sulle rocce.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
       </div>
 
       <!-- Sidebar Fast-Facts -->
@@ -150,6 +304,18 @@ const beachSchema = {
 
     </div>
   </section>
+
+  <!-- Spiagge vicine -->
+  <CorrelationSlider
+    lang="it-it"
+    title="Altre Spiagge delle Isole"
+    items={[
+      { name: 'Marina Piccola', href: '/it-it/spiagge/isole/marina-piccola-capri/', tag: 'Capri', desc: 'La spiaggia esclusiva ai piedi dei Faraglioni.' },
+      { name: 'Cala del Pozzo Vecchio', href: '/it-it/spiagge/isole/cala-del-pozzo-vecchio/', tag: 'Procida', desc: 'La spiaggia del Postino con sabbia nera.' },
+      { name: 'Spiaggia Maronti', href: '/it-it/spiagge/isole/spiaggia-maronti/', tag: 'Ischia', desc: 'Tre km di sabbia calda riscaldata dal vulcano.' },
+      { name: 'Ieranto', href: '/it-it/spiagge/penisola-sorrentina/ieranto/', tag: 'Area Marina Protetta', desc: 'La baia incontaminata ai piedi dei Lattari.' },
+    ]}
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'it-it';
 
@@ -16,7 +17,58 @@ const facts = [
   { label: 'Ombra', value: 'Dalle 18:30' },
   { label: 'Servizi', value: 'Lidi attrezzati, Ristoranti stellati' },
   { label: 'Ideale per', value: 'Famiglie, gastronomia, snorkeling' },
+  { label: 'Area Protetta', value: 'AMP Punta Campanella (dal 1997)' },
+  { label: 'Piatto tipico', value: 'Spaghetto alla Nerano (dal 1952)' },
+  { label: 'Tecnica pesca', value: 'Pignatte (pots) per polpi' },
+  { label: 'Storia romana', value: 'Piscinae (vasche) visibili sott\'acqua' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si arriva a Marina del Cantone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Marina del Cantone si raggiunge in bus EAV da Sorrento (scendere a Nerano, poi 10 minuti a piedi), in taxi boat da Sorrento con approdo diretto sulla spiaggia, o in auto seguendo le indicazioni per Massa Lubrense e poi Nerano. In alta stagione il parcheggio è limitato: meglio optare per bus o barca. Da Positano si può arrivare via mare con taxi boat stagionale."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual è il miglior ristorante per lo Spaghetto alla Nerano?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il ristorante Maria Grazia è il luogo dove lo Spaghetto alla Nerano è stato inventato nel 1952, ed è ancora gestito dalla stessa famiglia. La ricetta originale — zucchine fritte, provolone del Monaco, basilico e spaghetti — è considerata un segreto di famiglia. Anche Lo Cantone è molto apprezzato dai locali. Prenotare il mattino presto è indispensabile in estate: i tavoli si esauriscono velocemente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Marina del Cantone è adatta alle famiglie con bambini?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, Marina del Cantone è una delle spiagge più adatte alle famiglie della Penisola Sorrentina. L'accesso è completamente pianeggiante, le acque sono calme e protette dall'Area Marina Protetta di Punta Campanella, e ci sono lidi attrezzati con servizi completi. I bambini amano lo snorkeling grazie alla ricca fauna marina e alle acque limpidissime."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa sono le regole dell'Area Marina Protetta di Punta Campanella?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'Area Marina Protetta di Punta Campanella, istituita nel 1997, prevede diverse zone con diversi livelli di protezione. Nelle zone più protette è vietata la pesca, l'ancoraggio delle imbarcazioni a motore e la raccolta di organismi marini (ricci, conchiglie). Lo snorkeling è permesso ovunque. Le attività di immersione guidata sono consentite con operatori autorizzati. Rispettare queste regole è ciò che mantiene le acque tra le più pulite d'Italia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "C'è parcheggio a Marina del Cantone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il parcheggio a Marina del Cantone è limitato e in alta stagione (luglio–agosto) si riempie entro le 9:00. Esistono alcune aree di sosta a pagamento nel borgo di Nerano, a circa 10 minuti a piedi dalla spiaggia. La soluzione migliore è arrivare con il bus EAV da Sorrento o con il taxi boat, evitando così completamente il problema del parcheggio."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
@@ -30,6 +82,13 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const nearbyBeaches = [
+  { name: 'Ieranto', href: '/it-it/spiagge/penisola-sorrentina/ieranto/', tag: 'Area Marina Protetta', desc: 'La baia incontaminata ai piedi dei Lattari.' },
+  { name: 'Cala Mitigliano', href: '/it-it/spiagge/penisola-sorrentina/cala-mitigliano/', tag: 'Massa Lubrense', desc: 'Selvaggia e intima tra le scogliere.' },
+  { name: 'Regina Giovanna', href: '/it-it/spiagge/penisola-sorrentina/regina-giovanna/', tag: 'Sorrento', desc: 'Piscina naturale con villa romana.' },
+  { name: 'Marina Piccola', href: '/it-it/spiagge/isole/marina-piccola-capri/', tag: 'Capri', desc: 'La spiaggia esclusiva con vista Faraglioni.' },
+];
 ---
 
 <BaseLayout
@@ -37,7 +96,7 @@ const beachSchema = {
   description="La spiaggia più buona d'Italia: Marina del Cantone a Nerano unisce acque cristalline protette e lo Spaghetto alla Nerano originale. Guida 2026."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
   pageKey="marina-del-cantone"
 >
 
@@ -68,7 +127,7 @@ const beachSchema = {
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Mare e Cucina d'Autore</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            <strong>Nerano Marina del Cantone</strong> è uno dei posti più affascinanti della Penisola Sorrentina. <strong>Nerano dove si trova</strong>? Nel comune di Massa Lubrense, raggiungibile via mare o via terra. La <strong>spiaggia di Marina del Cantone</strong> è ampia, pulita e baciata dal sole fino a tarda sera, con <strong>Marina del Cantone Nerano</strong> come riferimento principale. Le acque sono tra le più cristalline della Campania, protette dall'Area Marina Protetta di Punta Campanella: lo snorkeling è eccellente, con praterie di posidonia e ricca fauna marina.
+            <strong>Nerano Marina del Cantone</strong> è uno dei posti più affascinanti della <a href="/it-it/penisola-sorrentina/" class="text-med-blue hover:underline">Penisola Sorrentina</a>. <strong>Nerano dove si trova</strong>? Nel comune di <a href="/it-it/penisola-sorrentina/massa-lubrense/" class="text-med-blue hover:underline">Massa Lubrense</a>, raggiungibile via mare o via terra. La <strong>spiaggia di Marina del Cantone</strong> è ampia, pulita e baciata dal sole fino a tarda sera, con <strong>Marina del Cantone Nerano</strong> come riferimento principale. Le acque sono tra le più cristalline della Campania, protette dall'Area Marina Protetta di Punta Campanella: lo snorkeling è eccellente, con praterie di posidonia e ricca fauna marina.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
             Ma la fama mondiale di <strong>Nerano Marina del Cantone</strong> è gastronomica. Qui è nato lo <strong>Spaghetto alla Nerano</strong> - zucchine fritte, provolone del Monaco, basilico - e tutti i ristoranti sul lungomare servono la versione originale. Perfetta per le famiglie e per chi vuole unire mare e alta cucina in una giornata sola.
@@ -86,6 +145,89 @@ const beachSchema = {
           </p>
         </div>
 
+        <!-- Origine dello Spaghetto alla Nerano -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Nascita di un Piatto Leggendario</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Era il 1952 quando <strong>Maria Grazia</strong>, fondatrice dell'omonimo ristorante sul lungomare di Nerano, inventò quello che sarebbe diventato uno dei piatti di pasta più imitati e amati del Meridione. La ricetta originale era semplice e geniale: zucchine tagliate a rondelle e fritte nell'olio d'oliva, poi mescolate con gli spaghetti al dente, provolone del Monaco grattugiato e foglie di basilico fresco.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Il segreto — ancora oggi gelosamente custodito dalla famiglia — sta nella proporzione tra i diversi formaggi e nel momento preciso in cui si aggiunge il burro per mantecare. Ogni ristorante di Nerano propone la sua versione, ma tutti concordano che la ricetta originale di Maria Grazia rimane imbattibile. Il ristorante è ancora aperto, ancora gestito dalla stessa famiglia.
+          </p>
+        </div>
+
+        <!-- Area Marina Protetta -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">L'Area Marina Protetta e le Piscinae Romane</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Le acque di Marina del Cantone rientrano nell'<strong>Area Marina Protetta di Punta Campanella</strong>, istituita nel 1997 e tra le meglio conservate d'Italia. Le praterie di <em>Posidonia oceanica</em> che ricoprono il fondo marino sono un habitat fondamentale per cavallucci marini, tartarughe marine (avvistate occasionalmente) e una varietà straordinaria di pesci. La visibilità sott'acqua supera spesso i 15 metri.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Ma Marina del Cantone ha radici ancora più antiche nell'acqua. I Romani costruirono lungo questa costa le loro <em>piscinae</em> — vasche per l'allevamento del pesce dedicate alle ville dei patrizi. Oggi i resti di queste strutture sono visibili sott'acqua ai margini rocciosi della baia, silenziosi testimoni di duemila anni di rapporto tra l'uomo e questo mare.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Alla punta estrema della penisola sorge Punta Campanella, dove in epoca greca e romana si trovava il <strong>Tempio di Athena/Minerva</strong>. I marinai pregavano qui prima di attraversare il canale di Capri, chiedendo protezione alla dea. I resti del tempio sono appena visibili, ma il luogo conserva ancora un'atmosfera di sacra ancestralità.
+          </p>
+        </div>
+
+        <!-- Tradizioni di Pesca -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+            <h3 class="text-xl font-bold">I Pescatori di Polpi di Nerano</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed">
+            I pescatori di Nerano sono famosi in tutta la Campania per una tecnica di pesca antichissima: le <strong>pignatte</strong>, piccole anfore di terracotta calate sul fondo dove i polpi si rifugiano credendole una tana. Questa tecnica, praticata nel Mediterraneo sin dall'antichità, è ancora in uso oggi. Al mattino presto puoi vedere le barche tornare al porto con le pignatte cariche. Il polpo alla luciana, cucinato con pomodorini, olive e capperi, è la risposta gastronomica locale a questa tradizione.
+          </p>
+        </div>
+
+        <!-- Stats Box -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1952</p>
+            <p class="text-white/60 text-sm mt-1">anno d'invenzione spaghetto</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1997</p>
+            <p class="text-white/60 text-sm mt-1">istituzione AMP</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">15m+</p>
+            <p class="text-white/60 text-sm mt-1">visibilità sott'acqua</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">2.000</p>
+            <p class="text-white/60 text-sm mt-1">anni di piscinae romane</p>
+          </div>
+        </div>
+
+        <!-- Consigli dei Locali -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consigli dei Locali</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Prenota il ristorante Maria Grazia via telefono il giorno prima: è il luogo dove lo Spaghetto alla Nerano è stato inventato, e i tavoli in riva al mare si esauriscono entro le 11 di mattina.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Per lo snorkeling, porta la tua maschera: il noleggio è disponibile ma le attrezzature migliori le avrai con la tua. Le praterie di posidonia iniziano a circa 30 metri dalla riva.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Arriva con il bus EAV da Sorrento: in luglio e agosto il parcheggio è esaurito entro le 8:30 e non vale la pena stressarsi in auto sulla strada tortuosa.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Nelle zone A dell'AMP è vietato raccogliere ricci di mare e conchiglie: rispetta le regole, sono ciò che mantiene queste acque così pulite e ricche.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Settembre è il mese migliore: meno folla, acqua ancora calda (25–26°C), e i ristoranti hanno ancora tutti i piatti estivi in menu.</span>
+            </li>
+          </ul>
+        </div>
+
         <!-- Come arrivare -->
         <div>
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Arrivare</h2>
@@ -93,13 +235,41 @@ const beachSchema = {
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
               <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus EAV</p>
               <p class="text-slate-700 font-medium mb-1">Da Sorrento via Massa Lubrense</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Scendere a Nerano. Poi 10 min a piedi verso la spiaggia.</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Da <a href="/it-it/penisola-sorrentina/sorrento/" class="text-med-blue hover:underline">Sorrento</a>, scendere a Nerano. Poi 10 min a piedi verso la spiaggia.</p>
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
               <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Via Mare</p>
               <p class="text-slate-700 font-medium mb-1">Taxi boat da Sorrento</p>
               <p class="text-slate-500 text-xs sm:text-sm">Approdo diretto sulla spiaggia. Scenografico e comodo.</p>
             </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Auto</p>
+              <p class="text-slate-700 font-medium mb-1">Via Massa Lubrense</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Parcheggio limitato a Nerano. In alta stagione: arriva prima delle 8:30 o opta per bus/barca.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">A piedi (trekking)</p>
+              <p class="text-slate-700 font-medium mb-1">Sentiero da Termini o Ieranto</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Per i camminatori: sentiero panoramico da Termini (45 min) o dalla baia di Ieranto (60 min).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
@@ -131,6 +301,13 @@ const beachSchema = {
 
     </div>
   </section>
+
+  <!-- Spiagge Vicine -->
+  <CorrelationSlider
+    lang="it-it"
+    items={nearbyBeaches}
+    title="Spiagge Vicine da Esplorare"
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">

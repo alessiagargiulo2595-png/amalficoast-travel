@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'it-it';
 
@@ -16,7 +17,58 @@ const facts = [
   { label: 'Ombra', value: 'Dalle 15:00' },
   { label: 'Servizi', value: 'Spiaggia libera' },
   { label: 'Ideale per', value: 'Tramonto, snorkeling, tranquillità' },
+  { label: 'Torre storica', value: 'Torre a Mare (XVI sec.)' },
+  { label: 'Profondità immersioni', value: 'Fino a 25 metri' },
+  { label: 'Locale notturno', value: 'Africana (grotta naturale, dal 1963)' },
+  { label: 'Nome originale', value: '"Plaga" (latino: riva del mare)' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si accede a Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Marina di Praia si raggiunge dal centro di Praiano scendendo circa 50 scalini scavati direttamente nella roccia, lungo via Mare. Il percorso dura circa 5 minuti a piedi. Si consiglia di indossare scarpe comode. In alternativa è possibile arrivare via mare con un taxi boat da Praiano o da Marina Grande di Positano (€15–20 a persona)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cos'è l'Africana Famous Club di Praiano?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'Africana Famous Club è una discoteca leggendaria ricavata in una grotta naturale nella scogliera accanto a Marina di Praia. Aperta nel 1963, è stata frequentata da Jackie Kennedy, Sophia Loren e Federico Fellini. La pista da ballo ha un pavimento di vetro che lascia vedere il mare sottostante. È ancora attiva in estate ed è una delle esperienze notturne più uniche della Costiera Amalfitana."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "A che ora è il tramonto migliore a Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il tramonto a Marina di Praia è uno dei più belli della Costiera. La spiaggia è esposta a ovest, quindi il sole scende direttamente sull'orizzonte marino. L'ora migliore è intorno alle 18:30–19:00 in estate (giugno–settembre), quando la luce illumina le pareti di roccia con sfumature di rosa e oro. Porta la macchina fotografica e arriva almeno 30 minuti prima."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Si può fare immersioni a Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, Marina di Praia è uno dei migliori spot per le immersioni dell'intera Costiera Amalfitana. La parete subacquea scende fino a 25 metri con grotte, murene, cernie e polpi. Le immersioni notturne sono molto popolari in estate. Alcuni diving center locali organizzano escursioni guidate sia per principianti che per subacquei esperti."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "C'è una spiaggia libera a Marina di Praia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, Marina di Praia è interamente spiaggia libera: non ci sono stabilimenti balneari né lettini a pagamento. Porta tutto il necessario con te (telo, ombrellone, cibo e acqua) perché i servizi sono minimi. Questa è la sua magia: ti regala un'esperienza autentica e lontana dalla folla commerciale della Costiera."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
@@ -30,6 +82,13 @@ const beachSchema = {
     "addressCountry": "IT"
   }
 };
+
+const nearbyBeaches = [
+  { name: 'Fiordo di Furore', href: '/it-it/spiagge/costiera-amalfitana/fiordo-di-furore/', tag: 'Furore', desc: 'Il fiordo più iconico incastonato nella roccia.' },
+  { name: 'Spiaggia Grande', href: '/it-it/spiagge/costiera-amalfitana/spiaggia-grande-positano/', tag: 'Positano', desc: 'Il cuore mondano della Costiera Amalfitana.' },
+  { name: 'Santa Croce', href: '/it-it/spiagge/costiera-amalfitana/santa-croce-amalfi/', tag: 'Solo via mare', desc: 'La fuga segreta con ristoranti storici.' },
+  { name: 'Cala Mitigliano', href: '/it-it/spiagge/penisola-sorrentina/cala-mitigliano/', tag: 'Massa Lubrense', desc: 'Selvaggia e intima, 300 scalini verso il paradiso.' },
+];
 ---
 
 <BaseLayout
@@ -37,7 +96,7 @@ const beachSchema = {
   description="Marina di Praia a Praiano: la spiaggia nascosta raggiungibile da scale nella roccia. Tramonto perfetto, acque cristalline, lontano dalla folla della Costiera."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
  pageKey="marina-di-praia">
 
   <!-- Hero -->
@@ -67,10 +126,10 @@ const beachSchema = {
         <div>
           <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Oltre la Folla</h2>
           <p class="text-slate-600 text-lg leading-relaxed mb-6">
-            Marina di Praia è il segreto meglio custodito di Praiano. Non la troverai sulla cartina turistica principale, perché è raggiungibile solo da una corta serie di scale creuse direttamente nella roccia. Quello che scopri dall'altra parte? Una spiaggia di sabbia dorata e ciottoli, con acque turchesi e quasi nessuno.
+            Marina di Praia è il segreto meglio custodito di <a href="/it-it/costiera-amalfitana/praiano/" class="text-med-blue hover:underline">Praiano</a>. Non la troverai sulla cartina turistica principale, perché è raggiungibile solo da una corta serie di scale creuse direttamente nella roccia. Quello che scopri dall'altra parte? Una spiaggia di sabbia dorata e ciottoli, con acque turchesi e quasi nessuno.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            È il luogo perfetto per sfuggire alla folla della Costiera senza rinunciare alle acque cristalline di Praiano. Al tramonto il sole illumina le pareti di roccia sopra la spiaggia: l'ora migliore è verso le 19:00 da aprile a settembre, quando la luce è quasi orizzontale e l'acqua riflette sfumature di rosa e oro.
+            È il luogo perfetto per sfuggire alla folla della <a href="/it-it/costiera-amalfitana/" class="text-med-blue hover:underline">Costiera Amalfitana</a> senza rinunciare alle acque cristalline di Praiano. Al tramonto il sole illumina le pareti di roccia sopra la spiaggia: l'ora migliore è verso le 19:00 da aprile a settembre, quando la luce è quasi orizzontale e l'acqua riflette sfumature di rosa e oro.
           </p>
         </div>
 
@@ -85,6 +144,92 @@ const beachSchema = {
           </p>
         </div>
 
+        <!-- Storia e Origini -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Storia: Torre, Pirati e un Nome Antico</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Nel Medioevo Marina di Praia era un vivace villaggio di pescatori, uno dei tanti approdi nascosti lungo la Costiera. Il nome "Praia" deriva dal latino <em>plaga</em> — riva, shore — e rappresenta uno dei toponimi più antichi della costa. Praiano stesso, secondo alcuni storici, deriva da <em>prai-ano</em>, ovvero "mare aperto".
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Nel XVI secolo venne eretta la <strong>Torre a Mare</strong>, una torre di avvistamento costruita per difendere la popolazione dalle incursioni dei pirati saraceni che scorazzavano lungo tutto il Tirreno. La torre è ancora visibile oggi, arroccata sulla scogliera sopra la spiaggia, e rimane uno dei segni più visibili della storia difensiva della Costiera Amalfitana.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            La conformazione geologica della baia è il risultato di millenni di erosione: l'insenatura stretta è stata scavata dal mare tra due pareti di roccia calcarea. La falesia aggettante crea un riparo naturale dal sole pomeridiano — un vantaggio non da poco nelle calde estati campane — e mostra nel suo profilo milioni di anni di storia geologica stratificata.
+          </p>
+        </div>
+
+        <!-- Africana -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            <h3 class="text-xl font-bold">L'Africana Famous Club: La Grotta dei VIP</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Accanto alla spiaggia, scavata nella roccia viva della scogliera, si trova una delle discoteche più leggendarie d'Italia: l'<strong>Africana Famous Club</strong>. Aperta nel 1963, diventò rapidamente il ritrovo preferito di Jackie Kennedy, Sophia Loren e Federico Fellini. La caratteristica più straordinaria? La pista da ballo ha un <strong>pavimento in vetro</strong> sotto cui si vede il mare che scorre.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            L'Africana è ancora operativa in estate e rimane un'esperienza notturna unica nel suo genere. L'accesso avviene via mare o attraverso un percorso nella roccia — il che aggiunge un ulteriore tocco di fascino a una serata già di per sé memorabile.
+          </p>
+        </div>
+
+        <!-- Immersioni -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Sotto la Superficie: Immersioni e Snorkeling</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Marina di Praia è considerata uno dei migliori spot per le immersioni dell'intera Costiera Amalfitana. La parete subacquea scende verticalmente fino a <strong>25 metri</strong>, offrendo grotte marine, formazioni rocciose e una biodiversità impressionante. Tra le specie più avvistate: murene, cernie, polpi e banchi di saraghi.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Le immersioni notturne sono particolarmente spettacolari in estate, quando la bioluminescenza illumina l'acqua scura e i predatori notturni diventano attivi. Alcuni diving center della zona organizzano uscite guidate sia per principianti con brevetto open water che per subacquei avanzati. Anche lo snorkeling in superficie è eccellente: le acque sono limpide e la fauna abbondante.
+          </p>
+        </div>
+
+        <!-- Stats Box -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">50</p>
+            <p class="text-white/60 text-sm mt-1">scalini nella roccia</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">25m</p>
+            <p class="text-white/60 text-sm mt-1">profondità max immersioni</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1963</p>
+            <p class="text-white/60 text-sm mt-1">apertura Africana Club</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">XVI sec.</p>
+            <p class="text-white/60 text-sm mt-1">Torre a Mare</p>
+          </div>
+        </div>
+
+        <!-- Consigli dei Locali -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consigli dei Locali</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Arriva entro le 10:00 per trovare posto sulla sabbia — nel pomeriggio la spiaggia si riempie nonostante le scale scoraggino i meno atletici.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Porta acqua e cibo: non ci sono bar o chioschi sulla spiaggia. Il bar più vicino è a Praiano centro, 5 minuti sopra le scale.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Per le immersioni, contatta i diving center di Praiano con almeno un giorno di anticipo in luglio e agosto: i posti si esauriscono in fretta.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">L'Africana è aperta solo d'estate (giugno–settembre). Verifica gli orari sul sito ufficiale prima di organizzare la serata.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Le scale di discesa sono ripide e senza ringhiera in alcuni tratti: con bambini piccoli o problemi motori, opta per il taxi boat.</span>
+            </li>
+          </ul>
+        </div>
+
         <!-- Come arrivare -->
         <div>
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Arrivare</h2>
@@ -96,9 +241,37 @@ const beachSchema = {
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
               <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Boat</p>
-              <p class="text-slate-700 font-medium mb-1">Da Praiano o Marina Grande</p>
-              <p class="text-slate-500 text-xs sm:text-sm">Non è un sbarco regolare, ma i taxi boat locali la conoscono. Costo: €15-20 a persona.</p>
+              <p class="text-slate-700 font-medium mb-1">Da Praiano o Positano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Non è un sbarco regolare, ma i taxi boat locali la conoscono. Costo: €15–20 a persona.</p>
             </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus SITA</p>
+              <p class="text-slate-700 font-medium mb-1">Da Amalfi o Positano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Fermata Praiano centro. Da lì 5 minuti a piedi fino all'imbocco delle scale per la spiaggia. Ideale arrivando da <a href="/it-it/costiera-amalfitana/positano/" class="text-med-blue hover:underline">Positano</a>.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Auto / Moto</p>
+              <p class="text-slate-700 font-medium mb-1">Parcheggio a Praiano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Parcheggio pubblico a pagamento nel centro di Praiano. In alta stagione conviene arrivare prima delle 9:00.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
@@ -130,6 +303,13 @@ const beachSchema = {
 
     </div>
   </section>
+
+  <!-- Spiagge Vicine -->
+  <CorrelationSlider
+    lang="it-it"
+    items={nearbyBeaches}
+    title="Spiagge Vicine da Esplorare"
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">

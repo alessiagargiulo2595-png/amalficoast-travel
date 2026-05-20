@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'it-it';
 
@@ -16,7 +17,59 @@ const facts = [
   { label: 'Speciale', value: 'Fumarole calde naturali' },
   { label: 'Ombra', value: 'Dalle 19:00' },
   { label: 'Ideale per', value: 'Terme naturali, famiglie, relax' },
+  { label: 'Vulcano', value: 'Monte Epomeo (788 m)' },
+  { label: 'Terme naturali', value: 'Canyon Cavascura' },
+  { label: 'Temperatura fumarole', value: 'Fino a 60°C' },
+  { label: 'Periodo migliore', value: 'Maggio–Giugno, Settembre' },
+  { label: 'Prima colonia greca', value: 'Pithecusae (VIII sec. a.C.)' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quanto sono calde le fumarole ai Maronti?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le fumarole nella zona centrale della spiaggia (area Fumarole Beach) raggiungono temperature fino a 60°C nella sabbia in superficie. I vapori sono più caldi. Non avvicinarsi ai getti di vapore con la pelle scoperta: la sabbia calda per seppellire i piedi è un'esperienza termale naturale gratuita e sicura se si mantiene una distanza di sicurezza dai punti di emissione più intensi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Come si accede al canyon termale di Cavascura?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Le terme di Cavascura si raggiungono percorrendo un breve sentiero dall'estremità orientale della spiaggia dei Maronti (circa 10 minuti a piedi). L'ingresso è a pagamento (intorno ai 10–15 euro). Al suo interno si trovano vasche naturali scavate nella roccia, una cascata d'acqua termale calda e cabine spogliatoio rustiche. L'impianto è aperto da maggio a ottobre."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "La spiaggia dei Maronti è adatta ai bambini?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, i Maronti sono ideali per le famiglie con bambini: le acque sono molto calme e basse (fondali digradanti dolcemente), la spiaggia è ampia e non sovraffollata anche in agosto. È necessario però sorvegliare i bambini nella zona delle fumarole dove la sabbia può essere molto calda. I taxi boat da Sant'Angelo sono pratici con bambini piccoli."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Come si arriva ai Maronti da Ischia Porto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ci sono due opzioni principali: il bus linea 5 da Ischia Porto fino a Barano, poi un sentiero in discesa di circa 15 minuti verso la spiaggia; oppure il taxi boat da Sant'Angelo (5 minuti, il modo più comodo e scenografico, con approdo diretto sulla spiaggia). Una terza opzione è noleggiare uno scooter e scendere fino al parcheggio vicino alla spiaggia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual è la parte migliore della spiaggia dei Maronti?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il tratto orientale è il più tranquillo e vicino alle terme di Cavascura: ideale per chi vuole combinare spiaggia e terme. Il tratto centrale ospita la zona delle fumarole (la più caratteristica). Il tratto occidentale vicino a Sant'Angelo è più animato con più servizi e stabilimenti. Per la massima tranquillità, puntare alle estremità della spiaggia, sempre meno frequentate."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
@@ -37,13 +90,13 @@ const beachSchema = {
   description="I Maronti sono la spiaggia più lunga di Ischia (3 km) con fumarole termali naturali. Guida 2026: come arrivare, cosa aspettarsi, consigli pratici."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
  pageKey="spiaggia-maronti">
 
   <!-- Hero -->
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
-      src="/images/spiaggia-maronti-ischia.jpg"
+      src="/images/spiaggia-maronti-hero.jpg"
       alt="Spiaggia dei Maronti, Ischia"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
@@ -70,7 +123,7 @@ const beachSchema = {
             I Maronti offrono un'esperienza unica in Italia. La spiaggia è enorme - tre chilometri di sabbia vulcanica scura - e la sabbia è riscaldata dal calore vulcanico del sottosuolo attraverso le <strong>fumarole</strong>: getti di vapore caldo che emergono dalla sabbia stessa, in alcuni punti a temperature che superano i 60°C.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            Perfetta per chi ama camminare e vuole sfuggire alla calca dei porti. La vasta lunghezza garantisce che anche in agosto si trovi sempre un angolo tranquillo. Le acque sono calme, ideali per famiglie con bambini piccoli.
+            Perfetta per chi ama camminare e vuole sfuggire alla calca dei porti di <a href="/it-it/isole/procida/" class="text-med-blue hover:underline">Procida</a> e <a href="/it-it/isole/capri/" class="text-med-blue hover:underline">Capri</a>. La vasta lunghezza garantisce che anche in agosto si trovi sempre un angolo tranquillo. Le acque sono calme, ideali per famiglie con bambini piccoli.
           </p>
         </div>
 
@@ -85,6 +138,86 @@ const beachSchema = {
           </p>
         </div>
 
+        <!-- Origine vulcanica -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Nata dal Fuoco: L'Origine Vulcanica</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La spiaggia dei Maronti deve la sua esistenza al <strong>Monte Epomeo</strong> (788 m), il vulcano dormiente che domina <a href="/it-it/isole/ischia/" class="text-med-blue hover:underline">Ischia</a>. Le eruzioni preistoriche hanno depositato strati di tufo vulcanico ricchi di minerali, che millenni di erosione marina hanno trasformato nella sabbia scura e pesante che calpestiamo oggi. Ischia è l'isola vulcanicamente più attiva del Mediterraneo: il calore del magma sottostante riscalda ancora il suolo e le acque, creando le sorgenti termali che hanno reso l'isola famosa fin dall'antichità.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Il terremoto del <strong>1883</strong> (magnitudo 5,8), che devastò il paese di Casamicciola sopra la spiaggia, provocò anche un piccolo maremoto che raggiunse i Maronti. Quella catastrofe spinse l'Italia a dotarsi dei primi codici edilizi antisismici della storia. Ancora oggi la zona è sismicamente attiva, ma sicura per i visitatori.
+          </p>
+        </div>
+
+        <!-- Canyon Cavascura -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <h3 class="text-xl font-bold">Il Canyon di Cavascura</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Nascosto dietro la spiaggia, accessibile dall'estremità orientale percorrendo un breve sentiero, si trova il <strong>canyon di Cavascura</strong>: una stretta gola rocciosa con sorgenti termali naturali e una rustica spa scavata nella roccia viva. Gli antichi Romani usavano già queste acque curative. Oggi puoi fare il bagno in acqua termale calda sotto una cascata naturale, circondato da rocce alte e vegetazione mediterranea. Un'esperienza completamente diversa dalla spiaggia, a pochi minuti di cammino.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            Il torrentello stagionale che raggiunge la spiaggia al suo centro era un tempo famoso per piante rare e micro-piscine termali naturali. Una frana nel 2017 ha parzialmente alterato il paesaggio, ma il recupero ambientale è in corso.
+          </p>
+        </div>
+
+        <!-- Storia greca -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">I Greci di Pithecusae</h2>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Ischia era chiamata <strong>Pithecusae</strong> dagli antichi Greci, che nell'VIII secolo a.C. vi fondarono la prima colonia greca nel Mediterraneo occidentale. Alcune teorie ipotizzano che i colonisti euboici sbarcarono proprio nei pressi della baia dei Maronti, attratti dalla sua posizione riparata. I reperti ceramici rinvenuti nell'entroterra risalgono a quell'epoca. Ischia precedette di decenni la fondazione di Cuma sul continente, diventando la porta d'ingresso della civiltà greca in Italia.
+          </p>
+        </div>
+
+        <!-- Stats box -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">3</p>
+            <p class="text-white/60 text-sm mt-1">km di spiaggia</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">60°C</p>
+            <p class="text-white/60 text-sm mt-1">fumarole max</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">788</p>
+            <p class="text-white/60 text-sm mt-1">m Monte Epomeo</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">VIII a.C.</p>
+            <p class="text-white/60 text-sm mt-1">prima colonia greca</p>
+          </div>
+        </div>
+
+        <!-- Consigli dei locali -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consigli dei Locali</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Prendi il taxi boat da Sant'Angelo: 5 minuti di traversata scenografica invece di 40 minuti di bus. Vale ogni centesimo.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Arriva prima delle 9:00 o dopo le 17:00 per trovare la spiaggia quasi deserta anche in agosto.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Per le terme di Cavascura, porta le infradito: il percorso sul sentiero è scomodo a piedi nudi.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Nella zona delle fumarole, testa prima la temperatura con la mano: la sabbia riscaldata può variare molto da punto a punto.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">I ristoranti sulla spiaggia servono ottimo pesce locale. Il pranzo a settembre, con meno turisti e prezzi più bassi, è l'esperienza migliore.</span>
+            </li>
+          </ul>
+        </div>
+
         <!-- Come arrivare -->
         <div>
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Arrivare</h2>
@@ -96,9 +229,37 @@ const beachSchema = {
             </div>
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
               <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Boat ⭐</p>
-              <p class="text-slate-700 font-medium mb-1">Da Sant'Angelo</p>
+              <p class="text-slate-700 font-medium mb-1">Da <a href="/it-it/isole/ischia/" class="text-med-blue hover:underline">Sant'Angelo</a></p>
               <p class="text-slate-500 text-xs sm:text-sm">5 minuti di barca. Scenografico e comodo. Approdo diretto sulla spiaggia.</p>
             </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Scooter / Auto</p>
+              <p class="text-slate-700 font-medium mb-1">Da Barano d'Ischia</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Parcheggio a pagamento vicino alla spiaggia. Comodo per chi soggiorna nell'entroterra.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">A piedi</p>
+              <p class="text-slate-700 font-medium mb-1">Da Sant'Angelo</p>
+              <p class="text-slate-500 text-xs sm:text-sm">30 minuti lungo il sentiero costiero. Panoramico, ma impegnativo al ritorno in salita.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
@@ -130,6 +291,18 @@ const beachSchema = {
 
     </div>
   </section>
+
+  <!-- Spiagge vicine -->
+  <CorrelationSlider
+    lang="it-it"
+    title="Altre Spiagge delle Isole"
+    items={[
+      { name: 'Cala del Pozzo Vecchio', href: '/it-it/spiagge/isole/cala-del-pozzo-vecchio/', tag: 'Procida', desc: 'La spiaggia del Postino con sabbia nera vulcanica.' },
+      { name: 'Marina Piccola', href: '/it-it/spiagge/isole/marina-piccola-capri/', tag: 'Capri', desc: 'La spiaggia esclusiva con vista Faraglioni.' },
+      { name: 'Faraglioni', href: '/it-it/spiagge/isole/faraglioni-capri/', tag: 'Capri', desc: "Le tre rocce leggendarie simbolo dell'isola." },
+      { name: 'Marina del Cantone', href: '/it-it/spiagge/penisola-sorrentina/marina-del-cantone/', tag: 'Nerano', desc: 'La capitale del gusto affacciata sul mare.' },
+    ]}
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
 
 const lang = 'it-it';
 
@@ -16,7 +17,59 @@ const facts = [
   { label: 'Accesso', value: '10 min a piedi dal bus' },
   { label: 'Ombra', value: 'Dalle 17:30' },
   { label: 'Ideale per', value: 'Cinema, poesia, relax autentico' },
+  { label: 'Isola', value: 'Procida (4 km²)' },
+  { label: 'Geologia', value: 'Tufo giallo napoletano' },
+  { label: 'Film', value: 'Il Postino (1994)' },
+  { label: 'Oscar', value: '5 nominations, 1 vittoria' },
+  { label: 'Fortress sopra', value: 'Terra Murata (medievale)' },
 ];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si raggiunge la Cala del Pozzo Vecchio da Napoli?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Da Napoli si prende il traghetto o l'aliscafo per Procida dal porto di Pozzuoli o da Molo Beverello (circa 35–80 minuti a seconda del mezzo). Dal porto di Procida si prende il bus linea C1 fino alla fermata Pozzo Vecchio, poi 10 minuti a piedi in discesa. In alternativa, si può raggiungere la spiaggia a piedi dal centro in circa 20–25 minuti attraverso le viuzze dell'isola."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "La Cala del Pozzo Vecchio è davvero la spiaggia del Postino?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì. La Cala del Pozzo Vecchio è la spiaggia principale utilizzata come set nel film Il Postino (1994), diretto da Michael Radford con Massimo Troisi e Philippe Noiret. Alcune scene furono girate anche in altre zone di Procida e nell'isola di Salina (per le riprese di Neruda). La spiaggia è riconoscibilissima dai fan del film."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ci sono servizi alla Cala del Pozzo Vecchio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La spiaggia ha servizi essenziali: qualche ombrellone e sdraio in affitto, un piccolo chiosco bevande. Non è una spiaggia attrezzata con lido completo, il che contribuisce al suo fascino autentico. Meglio portare acqua e cibo se si prevede di trascorrere l'intera giornata. Il vicino paese di Procida offre bar e ristoranti a pochi minuti a piedi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual è il periodo migliore per visitare Procida e la Cala del Pozzo Vecchio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Maggio, giugno e settembre sono i mesi ideali: il mare è già caldo (22–26°C), i turisti sono pochi rispetto ad agosto e l'atmosfera è la più autentica. Luglio e agosto la spiaggia si riempie, ma non raggiunge mai i livelli di sovraffollamento di Capri o Ischia. L'isola è gradevole anche in primavera per le passeggiate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Si può fare snorkeling alla Cala del Pozzo Vecchio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, le acque della Cala del Pozzo Vecchio sono limpide e adatte allo snorkeling. I fondali sabbiosi degradano dolcemente, con buona visibilità soprattutto al mattino prima che il vento pomeridiano muova la sabbia. Nella zona rocciosa ai lati della cala si trovano ricci di mare, polpi e piccoli branchi di pesci. Portare la propria attrezzatura poiché non ci sono noleggi in loco."
+      }
+    }
+  ]
+};
 
 const beachSchema = {
   "@context": "https://schema.org",
@@ -37,13 +90,13 @@ const beachSchema = {
   description="La spiaggia resa immortale dal film Il Postino. Sabbia nera vulcanica, acque smeraldo e il lato più autentico di Procida. Guida 2026."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[beachSchema]}
+  schema={[beachSchema, faqSchema]}
  pageKey="cala-del-pozzo-vecchio">
 
   <!-- Hero -->
   <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
     <img
-      src="/images/cala-pozzo-vecchio-procida.jpg"
+      src="/images/cala-pozzo-vecchio-hero.jpg"
       alt="Cala del Pozzo Vecchio, Procida - la spiaggia del Postino"
       class="absolute inset-0 w-full h-full object-cover"
       loading="eager"
@@ -70,7 +123,7 @@ const beachSchema = {
             La spiaggia resa immortale da Massimo Troisi ne <em>Il Postino</em> (1994). Una mezzaluna di sabbia nera vulcanica e acque color smeraldo che sembra uscita direttamente dal film. Quando ci entri, capisci immediatamente perché Troisi e Michael Radford la scelsero come set principale.
           </p>
           <p class="text-slate-600 text-lg leading-relaxed">
-            È il lato più autentico e meno turistico delle isole campane. Procida non ha mai avuto il turismo di massa di Capri o Ischia, e questa spiaggia ne conserva l'anima: pochi turisti, tanta poesia, acque pulitissime. Ideale per il relax totale e per chi ama le atmosfere cinematografiche.
+            È il lato più autentico e meno turistico delle isole campane. <a href="/it-it/isole/procida/" class="text-med-blue hover:underline">Procida</a> non ha mai avuto il turismo di massa di <a href="/it-it/isole/capri/" class="text-med-blue hover:underline">Capri</a> o <a href="/it-it/isole/ischia/" class="text-med-blue hover:underline">Ischia</a>, e questa spiaggia ne conserva l'anima: pochi turisti, tanta poesia, acque pulitissime. Ideale per il relax totale e per chi ama le atmosfere cinematografiche.
           </p>
         </div>
 
@@ -88,6 +141,86 @@ const beachSchema = {
           </p>
         </div>
 
+        <!-- La storia del film -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La Storia Dietro il Film</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Massimo Troisi interpretava Mario Ruoppolo, il postino dell'isola che diventa amico del poeta cileno Pablo Neruda (Philippe Noiret), esiliato nella sua villa. Il film fu girato nel 1994 in questa spiaggia e nei vicoli di Procida. La tragedia vera è che Troisi aveva una grave malattia cardiaca e rimandò l'operazione chirurgica per completare le riprese. Morì appena <strong>12 ore dopo la fine delle riprese</strong>, il 4 giugno 1994, ad appena 41 anni.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Il Postino fu nominato a 5 Oscar, vincendo quello per la <strong>miglior colonna sonora</strong> (Luis Bacalov). Fu il film in lingua straniera con il maggior numero di candidature agli Oscar nella storia fino ad allora. L'eredità di Troisi e di questa spiaggia è ancora vivissima.
+          </p>
+        </div>
+
+        <!-- Geologia e storia -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Il Pozzo Vecchio e la Geologia dell'Isola</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Il nome della cala deriva da un antico pozzo — il <strong>Pozzo Vecchio</strong> — che un tempo si trovava nei pressi e serviva pescatori e contadini per l'acqua dolce. Il pozzo non è più visibile, ma il suo nome è rimasto per secoli. La sabbia nera è <strong>tufo giallo napoletano</strong>: roccia vulcanica dei Campi Flegrei erosa dal mare in granuli scuri e pesanti. Le scogliere che bordano la cala mostrano chiaramente gli strati di depositi piroclastici delle antiche eruzioni.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Procida è la più piccola delle Isole Flegree (soli 4 km²). Dalla spiaggia si può vedere in alto la sagoma della <strong>Terra Murata</strong>, la cittadella medievale con l'abbazia di San Michele Arcangelo. Per secoli quella fortezza protesse i procidani dalle incursioni dei pirati saraceni.
+          </p>
+        </div>
+
+        <!-- Tradizione peschereccia -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 16.5a9 9 0 1 1-9-9"/><path d="M22 2L11 13"/><path d="M22 2h-5.5M22 2v5.5"/></svg>
+            <h3 class="text-xl font-bold">La Tradizione dei Pescatori</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed">
+            Procida vanta la tradizione peschereccia più forte di tutte le isole del Golfo. I pescatori procidani usano ancora metodi tradizionali e ogni anno la festa della <strong>Graziella</strong> celebra questa identità marinara. Il personaggio letterario di Graziella, creato da Alphonse de Lamartine nel 1852, era proprio una giovane pescatrice di Procida. Il pesce locale — vongole, polpi, totani — è tra il più fresco del Golfo di Napoli.
+          </p>
+        </div>
+
+        <!-- Stats box -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">4</p>
+            <p class="text-white/60 text-sm mt-1">km² Procida</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">5</p>
+            <p class="text-white/60 text-sm mt-1">nominations Oscar</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">12h</p>
+            <p class="text-white/60 text-sm mt-1">dopo le riprese</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">1994</p>
+            <p class="text-white/60 text-sm mt-1">anno del film</p>
+          </div>
+        </div>
+
+        <!-- Consigli dei locali -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consigli dei Locali</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Prendi l'aliscafo da Pozzuoli invece che da Napoli: costa meno e impiega quasi lo stesso tempo.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Visita la spiaggia al mattino presto per ritrovare l'atmosfera silenziosa e poetica del film.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Sali a piedi fino a Terra Murata dopo la spiaggia: la vista sul Golfo ripaga completamente la salita.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Porta le tue scarpe d'acqua: la sabbia vulcanica nera è più calda della sabbia normale sotto il sole di agosto.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Per il pranzo, cerca le trattorie nel paese vecchio: sono più economiche e più autentiche di quelle sul lungomare.</span>
+            </li>
+          </ul>
+        </div>
+
         <!-- Come arrivare -->
         <div>
           <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Arrivare</h2>
@@ -102,6 +235,34 @@ const beachSchema = {
               <p class="text-slate-700 font-medium mb-1">Dal centro di Procida</p>
               <p class="text-slate-500 text-sm">20–25 minuti. Panoramico e piacevole attraverso le viuzze dell'isola.</p>
             </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Traghetto da Napoli</p>
+              <p class="text-slate-700 font-medium mb-1">Molo Beverello o Pozzuoli</p>
+              <p class="text-slate-500 text-sm">35–80 min a seconda del mezzo. Aliscafo più rapido, traghetto più economico.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Scooter in affitto</p>
+              <p class="text-slate-700 font-medium mb-1">Dal porto</p>
+              <p class="text-slate-500 text-sm">Comodo per esplorare tutta l'isola. Parcheggio vicino alla cala.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </div>
@@ -133,6 +294,18 @@ const beachSchema = {
 
     </div>
   </section>
+
+  <!-- Spiagge vicine -->
+  <CorrelationSlider
+    lang="it-it"
+    title="Altre Spiagge delle Isole"
+    items={[
+      { name: 'Spiaggia Maronti', href: '/it-it/spiagge/isole/spiaggia-maronti/', tag: 'Ischia', desc: 'Tre km di sabbia calda riscaldata dal vulcano.' },
+      { name: 'Marina Piccola', href: '/it-it/spiagge/isole/marina-piccola-capri/', tag: 'Capri', desc: 'La spiaggia esclusiva con vista Faraglioni.' },
+      { name: 'Faraglioni', href: '/it-it/spiagge/isole/faraglioni-capri/', tag: 'Capri', desc: "Le tre rocce leggendarie simbolo dell'isola." },
+      { name: 'Spiaggia Grande', href: '/it-it/spiagge/costiera-amalfitana/spiaggia-grande-positano/', tag: 'Positano', desc: 'Il cuore mondano della Costiera Amalfitana.' },
+    ]}
+  />
 
   <!-- CTA -->
   <section class="bg-med-blue py-16 text-center">
