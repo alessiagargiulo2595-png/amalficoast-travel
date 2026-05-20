@@ -84,25 +84,46 @@ const t = config[lang] ?? config['en-us'];
 
 <script>
   // iOS Safari: fixed bottom bar detaches when browser chrome animates.
-  // visualViewport tracks the *actual* visible area so we can reposition.
+  // visualViewport events alone miss frames during the toolbar animation,
+  // so we also listen to scroll/touchmove and poll briefly with rAF.
   (function () {
     const bar = document.querySelector('.stickybar-safe');
-    if (!bar || !window.visualViewport) return;
+    if (!bar) return;
+    const vv = window.visualViewport;
+    if (!vv) return;
+
+    let raf = 0;
+    let polling = 0;
 
     function pin() {
-      // offsetTop = how far the visual viewport is scrolled inside the layout viewport
-      // When iOS shows its bottom bar, offsetTop stays 0 but height shrinks,
-      // so bottom = window.innerHeight - (vv.height + vv.offsetTop) gives the gap.
-      const vv = window.visualViewport;
       const diff = window.innerHeight - (vv.height + vv.offsetTop);
-      if (diff > 0) {
-        bar.style.transform = 'translate3d(0,-' + diff + 'px,0)';
+      if (diff > 1) {
+        bar.style.transform = 'translate3d(0,' + (-diff) + 'px,0)';
       } else {
-        bar.style.transform = 'translate3d(0,0,0)';
+        bar.style.transform = '';
       }
     }
 
-    window.visualViewport.addEventListener('resize', pin);
-    window.visualViewport.addEventListener('scroll', pin);
+    function schedulePin() {
+      if (!raf) raf = requestAnimationFrame(function () { raf = 0; pin(); });
+    }
+
+    // Poll for ~300ms after every scroll to catch Safari toolbar animation frames
+    function startPolling() {
+      clearTimeout(polling);
+      var count = 0;
+      (function poll() {
+        pin();
+        if (++count < 18) raf = requestAnimationFrame(poll);  // ~300ms at 60fps
+        else raf = 0;
+      })();
+      polling = setTimeout(function () { pin(); }, 400);
+    }
+
+    vv.addEventListener('resize', schedulePin);
+    vv.addEventListener('scroll', schedulePin);
+    window.addEventListener('scroll', startPolling, { passive: true });
+    window.addEventListener('touchmove', schedulePin, { passive: true });
+    window.addEventListener('touchend', startPolling, { passive: true });
   })();
 </script>
