@@ -53,7 +53,7 @@ const ui: Record<string, Record<string, string>> = {
   area_penisola: { it: 'Penisola Sorrentina', en: 'Sorrento Peninsula', de: 'Halbinsel Sorrent', es: 'Península Sorrentina', fr: 'Péninsule de Sorrente' },
   area_isole: { it: 'Isole del Golfo', en: 'Gulf Islands', de: 'Golfinseln', es: 'Islas del Golfo', fr: 'Îles du Golfe' },
   area_all: { it: 'Tutte le zone', en: 'All areas', de: 'Alle Gebiete', es: 'Todas las zonas', fr: 'Toutes les zones' },
-  preferred_city: { it: 'Città preferite (max 3, opzionale)', en: 'Preferred towns (max 3, optional)', de: 'Bevorzugte Orte (max 3, optional)', es: 'Ciudades preferidas (máx. 3, opcional)', fr: 'Villes préférées (max 3, optionnel)' },
+  preferred_city: { it: 'Città preferite (max 3)', en: 'Preferred towns (max 3)', de: 'Bevorzugte Orte (max 3)', es: 'Ciudades preferidas (máx. 3)', fr: 'Villes préférées (max 3)' },
   share_wa: { it: 'Condividi su WhatsApp', en: 'Share on WhatsApp', de: 'Auf WhatsApp teilen', es: 'Compartir en WhatsApp', fr: 'Partager sur WhatsApp' },
   download_pdf: { it: 'Scarica PDF', en: 'Download PDF', de: 'PDF herunterladen', es: 'Descargar PDF', fr: 'Télécharger PDF' },
   any_city: { it: 'Nessuna preferenza', en: 'No preference', de: 'Keine Präferenz', es: 'Sin preferencia', fr: 'Pas de préférence' },
@@ -77,8 +77,34 @@ function t(key: string): string {
   @keyframes planner-spin { to { transform: rotate(360deg); } }
   .planner-drag-ghost { opacity: 0.4; }
   .planner-drag-chosen { box-shadow: 0 0 0 2px #d4af37; border-radius: 12px; }
+
+  /* Glassmorphism */
+  .glass-card {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  }
+  .glass-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.10);
+    cursor: pointer;
+  }
+  .glass-btn:hover {
+    background: rgba(212,175,55,0.08);
+    border-color: rgba(212,175,55,0.35);
+    color: #fff;
+    box-shadow: 0 0 16px rgba(212,175,55,0.12);
+  }
+  .glass-btn--active, .glass-btn--active:hover {
+    background: rgba(212,175,55,0.15);
+    border-color: rgba(212,175,55,0.6);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(212,175,55,0.2);
+  }
 </style>
-<section class="bg-slate-900 pt-20 pb-12 md:pt-20 md:pb-16" id="trip-planner">
+<section class="relative overflow-hidden bg-slate-900 pt-20 pb-12 md:pt-20 md:pb-16" id="trip-planner" style="background: radial-gradient(ellipse at 0% 0%, rgba(212,175,55,0.30) 0%, rgba(212,175,55,0.10) 25%, transparent 55%), radial-gradient(ellipse at 100% 100%, rgba(212,175,55,0.35) 0%, rgba(212,175,55,0.12) 25%, transparent 55%), #0f172a">
   <div class="max-w-4xl mx-auto px-4 sm:px-6">
     <!-- Header -->
     <div class="text-center mb-10">
@@ -97,106 +123,133 @@ function t(key: string): string {
 
     <!-- Step 1: Starting point -->
     <div class="planner-step" data-planner-step="1">
-      <h3 class="text-xl font-semibold text-white mb-4">{t('step1')}: {t('from')}</h3>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-        <button class="hub-btn px-4 py-3 rounded-xl border-2 border-slate-600 text-center font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-hub="napoli">
-          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21"/></svg>
-          {t('napoli')}
-        </button>
-        <button class="hub-btn px-4 py-3 rounded-xl border-2 border-slate-600 text-center font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-hub="salerno">
-          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21"/></svg>
-          {t('salerno')}
-        </button>
-        <button class="hub-btn px-4 py-3 rounded-xl border-2 border-slate-600 text-center font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-hub="sorrento">
-          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21"/></svg>
-          {t('sorrento')}
-        </button>
-        <button class="hub-btn px-4 py-3 rounded-xl border-2 border-slate-600 text-center font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-hub="amalfi">
-          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21"/></svg>
-          {t('amalfi')}
-        </button>
+      <div class="grid md:grid-cols-[1fr_auto] gap-5 mb-6">
+        <div class="glass-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold text-white mb-4">{t('from')}</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <button class="hub-btn glass-btn px-4 py-4 rounded-xl text-center text-base font-medium text-slate-300 transition-all" data-hub="napoli">
+              <svg class="w-8 h-8 mx-auto mb-1.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3L8 10h8L12 3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M6.5 10c-1.5 2-3 5.5-3 8.5C3.5 20 4.5 21 6 21h12c1.5 0 2.5-1 2.5-2.5 0-3-1.5-6.5-3-8.5H6.5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M10 7c.5-1 1-2.5 2-3"/></svg>
+              {t('napoli')}
+            </button>
+            <button class="hub-btn glass-btn px-4 py-4 rounded-xl text-center text-base font-medium text-slate-300 transition-all" data-hub="salerno">
+              <svg class="w-8 h-8 mx-auto mb-1.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V11l7-8 7 8v10M9 21v-4h6v4"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 11h2m4 0h2M8 15h2m4 0h2"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v0"/></svg>
+              {t('salerno')}
+            </button>
+            <button class="hub-btn glass-btn px-4 py-4 rounded-xl text-center text-base font-medium text-slate-300 transition-all" data-hub="sorrento">
+              <svg class="w-8 h-8 mx-auto mb-1.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 4c-.5 2-1.5 3-2.5 4.5S7.5 11 7.5 13c0 2.5 2 4.5 4.5 4.5s4.5-2 4.5-4.5c0-2-1-3.5-2-5S12.5 6 12 4z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v-1.5M14.5 3.5l.5-1M9.5 3.5l-.5-1"/></svg>
+              {t('sorrento')}
+            </button>
+            <button class="hub-btn glass-btn px-4 py-4 rounded-xl text-center text-base font-medium text-slate-300 transition-all" data-hub="amalfi">
+              <svg class="w-8 h-8 mx-auto mb-1.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2L8 8h8l-4-6zM8 8L5 21h14l-3-13H8z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13M9 12h6M9 16h6"/><circle cx="12" cy="5.5" r="1"/></svg>
+              {t('amalfi')}
+            </button>
+          </div>
+        </div>
+        <div class="glass-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold text-white mb-4">{t('days')}</h3>
+          <div class="grid grid-cols-3 gap-2">
+            {[1,2,3,4,5,7].map(d => (
+              <button class="day-btn glass-btn w-14 h-14 rounded-xl text-lg font-semibold text-slate-300 transition-all" data-days={d}>
+                {d}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <h3 class="text-xl font-semibold text-white mb-4">{t('days')}</h3>
-      <div class="flex flex-wrap gap-2 mb-8">
-        {[1,2,3,4,5,7].map(d => (
-          <button class="day-btn w-11 h-11 sm:w-12 sm:h-12 rounded-xl border-2 border-slate-600 font-semibold text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-days={d}>
-            {d}
-          </button>
-        ))}
-      </div>
-
-      <button class="planner-next-btn px-6 py-3 bg-med-blue text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+      <button class="planner-next-btn px-8 py-3.5 bg-gradient-to-r from-med-gold to-yellow-600 text-slate-900 font-bold rounded-xl hover:shadow-[0_0_24px_rgba(212,175,55,0.4)] transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none" disabled>
         {t('next')} &rarr;
       </button>
     </div>
 
     <!-- Step 2: Preferences -->
     <div class="planner-step hidden" data-planner-step="2">
-      <h3 class="text-xl font-semibold text-white mb-4">{t('destination')}</h3>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-        <button class="area-btn px-4 py-3 rounded-xl border-2 border-slate-600 text-center font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-area="costiera">
-          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582"/></svg>
-          {t('area_costiera')}
-        </button>
-        <button class="area-btn px-4 py-3 rounded-xl border-2 border-slate-600 text-center font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-area="penisola">
-          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
-          {t('area_penisola')}
-        </button>
-        <button class="area-btn px-4 py-3 rounded-xl border-2 border-slate-600 text-center font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-area="isole">
-          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.893 13.393l-1.135-1.135a2.252 2.252 0 01-.421-.585l-1.08-2.16a.414.414 0 00-.663-.107.827.827 0 01-.812.21l-1.273-.363a.89.89 0 00-.738.145l-.92.815a1.177 1.177 0 01-1.002.229l-3.47-.776M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18"/></svg>
-          {t('area_isole')}
-        </button>
-        <button class="area-btn px-4 py-3 rounded-xl border-2 border-med-gold text-center font-medium text-white bg-med-gold/10 transition-colors" data-area="all">
-          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
-          {t('area_all')}
-        </button>
+
+      <!-- DOVE -->
+      <div class="glass-card rounded-2xl p-6 mb-5">
+        <h3 class="text-xl font-semibold text-white mb-3">{t('destination')}</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <button class="area-btn glass-btn px-4 py-3 rounded-xl text-center text-base font-medium text-slate-300 transition-all" data-area="costiera">
+            <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582"/></svg>
+            {t('area_costiera')}
+          </button>
+          <button class="area-btn glass-btn px-4 py-3 rounded-xl text-center text-base font-medium text-slate-300 transition-all" data-area="penisola">
+            <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
+            {t('area_penisola')}
+          </button>
+          <button class="area-btn glass-btn px-4 py-3 rounded-xl text-center text-base font-medium text-slate-300 transition-all" data-area="isole">
+            <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.893 13.393l-1.135-1.135a2.252 2.252 0 01-.421-.585l-1.08-2.16a.414.414 0 00-.663-.107.827.827 0 01-.812.21l-1.273-.363a.89.89 0 00-.738.145l-.92.815a1.177 1.177 0 01-1.002.229l-3.47-.776M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18"/></svg>
+            {t('area_isole')}
+          </button>
+          <button class="area-btn glass-btn glass-btn--active px-4 py-3 rounded-xl text-center text-base font-medium transition-all" data-area="all">
+            <svg class="w-5 h-5 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
+            {t('area_all')}
+          </button>
+        </div>
+        <div class="mt-4 pt-4 border-t border-white/10">
+          <p class="text-sm text-slate-400 mb-8">{t('preferred_city')}</p>
+          <div class="flex flex-wrap gap-2.5" id="city-list">
+            <button class="city-btn px-3 py-1.5 rounded-md border border-med-gold/40 text-sm font-medium text-med-gold bg-med-gold/10 transition-all" data-city="">
+              {t('any_city')}
+            </button>
+            {[
+              { city: 'Positano', area: 'costiera' }, { city: 'Amalfi', area: 'costiera' }, { city: 'Ravello', area: 'costiera' },
+              { city: 'Praiano', area: 'costiera' }, { city: 'Minori', area: 'costiera' }, { city: 'Maiori', area: 'costiera' },
+              { city: 'Cetara', area: 'costiera' }, { city: 'Vietri sul Mare', area: 'costiera' }, { city: 'Furore', area: 'costiera' },
+              { city: 'Sorrento', area: 'penisola' }, { city: "Sant'Agnello", area: 'penisola' },
+              { city: 'Massa Lubrense', area: 'penisola' }, { city: 'Vico Equense', area: 'penisola' },
+              { city: 'Capri', area: 'isole' }, { city: 'Anacapri', area: 'isole' },
+              { city: 'Ischia', area: 'isole' }, { city: 'Procida', area: 'isole' },
+            ].map(({ city, area }) => (
+              <button class="city-btn px-3 py-1.5 rounded-md border border-white/10 text-sm font-medium text-slate-400 hover:border-med-gold/50 hover:text-white transition-all" data-city={city} data-area-group={area}>
+                {city}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <h3 class="text-xl font-semibold text-white mb-4">{t('preferred_city')}</h3>
-      <div class="flex flex-wrap gap-2 mb-8">
-        <button class="city-btn px-3 py-1.5 rounded-lg border-2 border-med-gold text-sm font-medium text-white bg-med-gold/10 transition-colors" data-city="">
-          {t('any_city')}
-        </button>
-        {['Positano','Amalfi','Ravello','Praiano','Minori','Maiori','Cetara','Vietri sul Mare','Furore','Sorrento','Sant\'Agnello','Massa Lubrense','Vico Equense','Capri','Anacapri','Ischia','Procida'].map(city => (
-          <button class="city-btn px-3 py-1.5 rounded-lg border-2 border-slate-600 text-sm font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-city={city}>
-            {city}
-          </button>
-        ))}
+      <!-- QUANDO + BUDGET -->
+      <div class="grid md:grid-cols-2 gap-5 mb-5">
+        <div class="glass-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold text-white mb-3">{t('season')}</h3>
+          <div class="grid grid-cols-2 gap-2">
+            {['spring','summer','autumn','winter'].map(s => (
+              <button class="season-btn glass-btn px-3 py-2.5 rounded-xl text-base font-medium text-slate-300 transition-all" data-season={s}>
+                {t(s)}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div class="glass-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold text-white mb-3">{t('budget')}</h3>
+          <div class="grid grid-cols-1 gap-2">
+            {[1,2,3].map(b => (
+              <button class="budget-btn glass-btn px-4 py-2.5 rounded-xl font-medium text-slate-300 transition-all text-base" data-budget={b}>
+                {'€'.repeat(b)} {t(`budget_${b}`)}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <h3 class="text-xl font-semibold text-white mb-4">{t('budget')}</h3>
-      <div class="flex flex-wrap gap-2 sm:gap-3 mb-8">
-        {[1,2,3].map(b => (
-          <button class="budget-btn px-4 sm:px-5 py-3 rounded-xl border-2 border-slate-600 font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors text-sm sm:text-base" data-budget={b}>
-            {'€'.repeat(b)} {t(`budget_${b}`)}
-          </button>
-        ))}
-      </div>
-
-      <h3 class="text-xl font-semibold text-white mb-4">{t('season')}</h3>
-      <div class="flex flex-wrap gap-2 mb-8">
-        {['spring','summer','autumn','winter'].map(s => (
-          <button class="season-btn px-4 py-2 rounded-lg border-2 border-slate-600 text-sm font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-season={s}>
-            {t(s)}
-          </button>
-        ))}
-      </div>
-
-      <h3 class="text-xl font-semibold text-white mb-4">{t('types')}</h3>
-      <div class="flex flex-wrap gap-2 mb-8">
-        {['mare','cultura','trekking','gastronomia','relax','panorama','shopping'].map(tp => (
-          <button class="type-btn px-4 py-2 rounded-lg border-2 border-slate-600 text-sm font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-type={tp}>
-            {t(tp)}
-          </button>
-        ))}
+      <!-- INTERESSI -->
+      <div class="glass-card rounded-2xl p-6 mb-6">
+        <h3 class="text-xl font-semibold text-white mb-3">{t('types')}</h3>
+        <div class="flex flex-wrap gap-2">
+          {['mare','cultura','trekking','gastronomia','relax','panorama','shopping'].map(tp => (
+            <button class="type-btn glass-btn px-4 py-2.5 rounded-xl text-base font-medium text-slate-300 transition-all" data-type={tp}>
+              {t(tp)}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div class="flex gap-3">
-        <button class="planner-back-btn px-6 py-3 border-2 border-slate-500 text-slate-200 font-semibold rounded-xl hover:border-slate-300 transition-colors">
+        <button class="planner-back-btn px-6 py-3.5 border border-white/20 text-slate-200 font-semibold rounded-xl backdrop-blur-sm hover:border-white/40 hover:bg-white/5 transition-all">
           &larr; {t('back')}
         </button>
-        <button class="planner-generate-btn px-6 py-3 bg-med-blue text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+        <button class="planner-generate-btn px-8 py-3.5 bg-gradient-to-r from-med-gold to-yellow-600 text-slate-900 font-bold rounded-xl hover:shadow-[0_0_24px_rgba(212,175,55,0.4)] transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none" disabled>
           {t('generate')}
         </button>
       </div>
@@ -205,7 +258,7 @@ function t(key: string): string {
     <!-- Step 3: Results -->
     <div class="planner-step hidden" data-planner-step="3">
       <div id="planner-results"></div>
-      <button class="planner-restart-btn mt-8 px-6 py-3 border-2 border-slate-500 text-slate-200 font-semibold rounded-xl hover:border-slate-300 transition-colors">
+      <button class="planner-restart-btn mt-8 px-6 py-3.5 font-semibold rounded-xl transition-all text-white" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(12px)" onmouseover="this.style.borderColor='rgba(255,255,255,0.3)';this.style.background='rgba(255,255,255,0.10)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.background='rgba(255,255,255,0.06)'">
         &larr; {t('restart')}
       </button>
     </div>
@@ -245,12 +298,8 @@ function t(key: string): string {
   // Step 1: Hub selection
   document.querySelectorAll('.hub-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.hub-btn').forEach(b => {
-        b.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
-        b.classList.add('border-slate-600', 'text-slate-300');
-      });
-      btn.classList.remove('border-slate-600', 'text-slate-300');
-      btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+      document.querySelectorAll('.hub-btn').forEach(b => b.classList.remove('glass-btn--active'));
+      btn.classList.add('glass-btn--active');
       state.hub = btn.dataset.hub;
       checkStep1();
     });
@@ -259,12 +308,8 @@ function t(key: string): string {
   // Step 1: Days selection
   document.querySelectorAll('.day-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.day-btn').forEach(b => {
-        b.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
-        b.classList.add('border-slate-600', 'text-slate-300');
-      });
-      btn.classList.remove('border-slate-600', 'text-slate-300');
-      btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+      document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('glass-btn--active'));
+      btn.classList.add('glass-btn--active');
       state.days = parseInt(btn.dataset.days);
       checkStep1();
     });
@@ -288,48 +333,38 @@ function t(key: string): string {
   document.querySelectorAll('.city-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const city = btn.dataset.city;
-      // "No preference" resets all
       if (city === '') {
         state.cities = [];
-        document.querySelectorAll('.city-btn').forEach(b => {
-          b.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
-          b.classList.add('border-slate-600', 'text-slate-300');
-        });
-        btn.classList.remove('border-slate-600', 'text-slate-300');
-        btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+        document.querySelectorAll('.city-btn').forEach(b => { b.classList.remove('glass-btn--active'); b.style.borderColor = ''; b.style.color = ''; });
+        btn.classList.add('glass-btn--active');
         return;
       }
-      // Deselect "no preference" if selecting a city
       const noPrefBtn = document.querySelector('.city-btn[data-city=""]');
-      if (noPrefBtn) { noPrefBtn.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10'); noPrefBtn.classList.add('border-slate-600', 'text-slate-300'); }
-      // Toggle city
+      if (noPrefBtn) noPrefBtn.classList.remove('glass-btn--active');
       if (state.cities.includes(city)) {
         state.cities = state.cities.filter(c => c !== city);
-        btn.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
-        btn.classList.add('border-slate-600', 'text-slate-300');
+        btn.classList.remove('glass-btn--active');
       } else if (state.cities.length < 3) {
         state.cities.push(city);
-        btn.classList.remove('border-slate-600', 'text-slate-300');
-        btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+        btn.classList.add('glass-btn--active');
       }
-      // If none selected, re-highlight "no preference"
-      if (state.cities.length === 0 && noPrefBtn) {
-        noPrefBtn.classList.remove('border-slate-600', 'text-slate-300');
-        noPrefBtn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
-      }
+      if (state.cities.length === 0 && noPrefBtn) noPrefBtn.classList.add('glass-btn--active');
     });
   });
 
   // Step 2: Area selection (single select, default "all")
   document.querySelectorAll('.area-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.area-btn').forEach(b => {
-        b.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
-        b.classList.add('border-slate-600', 'text-slate-300');
-      });
-      btn.classList.remove('border-slate-600', 'text-slate-300');
-      btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+      document.querySelectorAll('.area-btn').forEach(b => b.classList.remove('glass-btn--active'));
+      btn.classList.add('glass-btn--active');
       state.area = btn.dataset.area;
+      state.cities = [];
+      document.querySelectorAll('.city-btn').forEach(cb => {
+        const group = cb.dataset.areaGroup;
+        cb.classList.remove('glass-btn--active');
+        if (!group) { cb.classList.add('glass-btn--active'); cb.style.display = ''; return; }
+        cb.style.display = (state.area === 'all' || group === state.area) ? '' : 'none';
+      });
       checkStep2();
     });
   });
@@ -337,12 +372,8 @@ function t(key: string): string {
   // Step 2: Budget (single select)
   document.querySelectorAll('.budget-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.budget-btn').forEach(b => {
-        b.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
-        b.classList.add('border-slate-600', 'text-slate-300');
-      });
-      btn.classList.remove('border-slate-600', 'text-slate-300');
-      btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+      document.querySelectorAll('.budget-btn').forEach(b => b.classList.remove('glass-btn--active'));
+      btn.classList.add('glass-btn--active');
       state.budget = parseInt(btn.dataset.budget);
       checkStep2();
     });
@@ -351,12 +382,8 @@ function t(key: string): string {
   // Step 2: Season (single select)
   document.querySelectorAll('.season-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.season-btn').forEach(b => {
-        b.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
-        b.classList.add('border-slate-600', 'text-slate-300');
-      });
-      btn.classList.remove('border-slate-600', 'text-slate-300');
-      btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+      document.querySelectorAll('.season-btn').forEach(b => b.classList.remove('glass-btn--active'));
+      btn.classList.add('glass-btn--active');
       state.season = btn.dataset.season;
       checkStep2();
     });
@@ -368,12 +395,10 @@ function t(key: string): string {
       const tp = btn.dataset.type;
       if (state.types.includes(tp)) {
         state.types = state.types.filter(x => x !== tp);
-        btn.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
-        btn.classList.add('border-slate-600', 'text-slate-300');
+        btn.classList.remove('glass-btn--active');
       } else {
         state.types.push(tp);
-        btn.classList.remove('border-slate-600', 'text-slate-300');
-        btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+        btn.classList.add('glass-btn--active');
       }
       checkStep2();
     });
@@ -417,14 +442,15 @@ function t(key: string): string {
   document.querySelector('.planner-restart-btn').addEventListener('click', () => {
     state.hub = null; state.days = null; state.budget = null; state.season = null; state.types = []; state.area = 'all'; state.cities = [];
     document.querySelectorAll('.hub-btn, .day-btn, .budget-btn, .season-btn, .type-btn, .area-btn, .city-btn').forEach(b => {
-      b.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
-      b.classList.add('border-slate-600', 'text-slate-300');
+      b.classList.remove('glass-btn--active');
     });
     // Re-select defaults
     const allBtn = document.querySelector('.area-btn[data-area="all"]');
-    if (allBtn) { allBtn.classList.remove('border-slate-600', 'text-slate-300'); allBtn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10'); }
+    if (allBtn) allBtn.classList.add('glass-btn--active');
     const noCityBtn = document.querySelector('.city-btn[data-city=""]');
-    if (noCityBtn) { noCityBtn.classList.remove('border-slate-600', 'text-slate-300'); noCityBtn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10'); }
+    if (noCityBtn) noCityBtn.classList.add('glass-btn--active');
+    // Show all cities again
+    document.querySelectorAll('.city-btn[data-area-group]').forEach(cb => { cb.style.display = ''; });
     document.querySelector('.planner-next-btn').disabled = true;
     document.querySelector('.planner-generate-btn').disabled = true;
     showStep(1);
@@ -732,14 +758,14 @@ function t(key: string): string {
   }
 
   // --- Map colors per day ---
-  const dayColors = ['#d4af37', '#2563eb', '#dc2626', '#16a34a', '#9333ea', '#ea580c', '#0891b2'];
+  const dayColors = ['#d4af37', '#7ca0c4', '#c9a96e', '#8bb5a2', '#b8956a', '#94a3b8', '#d4af37'];
 
   // --- Render results ---
   async function renderResults(itinerary) {
     const container = document.getElementById('planner-results');
 
     if (itinerary.length === 0) {
-      container.innerHTML = `<p class="text-slate-500 text-center py-8">${t('no_results')}</p>`;
+      container.innerHTML = `<p class="text-center py-8" style="color:rgba(255,255,255,0.5)">${t('no_results')}</p>`;
       return;
     }
 
@@ -750,20 +776,20 @@ function t(key: string): string {
     let html = '';
 
     // Action buttons row
-    html += `<div class="flex flex-wrap gap-2 mb-6 md:justify-end">`;
-    html += `<button id="regenerate-btn" class="inline-flex items-center gap-2 px-3 py-2 text-white text-sm font-semibold rounded-xl transition-colors bg-slate-600 hover:bg-slate-700">`;
+    html += `<div class="flex flex-wrap gap-3 mb-6 md:justify-end">`;
+    html += `<button id="regenerate-btn" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);backdrop-filter:blur(12px)" class="inline-flex items-center gap-2 px-4 py-2.5 text-white text-sm font-semibold rounded-xl transition-all hover:border-white/30 hover:bg-white/10">`;
     html += `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>`;
     html += `${t('regenerate')}</button>`;
-    html += `<button id="share-wa-btn" class="inline-flex items-center gap-2 px-3 py-2 text-white text-sm font-semibold rounded-xl transition-colors bg-med-gold hover:bg-yellow-700">`;
+    html += `<button id="share-wa-btn" style="background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.4)" class="inline-flex items-center gap-2 px-4 py-2.5 text-med-gold text-sm font-semibold rounded-xl transition-all hover:bg-[rgba(212,175,55,0.25)] hover:shadow-[0_0_16px_rgba(212,175,55,0.15)]">`;
     html += `<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
     html += `${t('share_wa')}</button>`;
-    html += `<button id="download-pdf-btn" class="inline-flex items-center gap-2 px-3 py-2 text-white text-sm font-semibold rounded-xl transition-colors bg-med-blue hover:bg-blue-800">`;
+    html += `<button id="download-pdf-btn" style="background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.4)" class="inline-flex items-center gap-2 px-4 py-2.5 text-blue-400 text-sm font-semibold rounded-xl transition-all hover:bg-[rgba(37,99,235,0.25)] hover:shadow-[0_0_16px_rgba(37,99,235,0.15)]">`;
     html += `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>`;
     html += `${t('download_pdf')}</button>`;
     html += `</div>`;
 
     // Map container
-    html += `<div id="planner-map" style="height:280px;border-radius:12px;margin-bottom:24px;z-index:1;position:relative"></div>`;
+    html += `<div id="planner-map" style="height:300px;border-radius:16px;margin-bottom:28px;z-index:1;position:relative;border:1px solid rgba(255,255,255,0.08);box-shadow:0 4px 24px rgba(0,0,0,0.3)"></div>`;
 
     // Day cards with sortable containers
     const slotLabels = { am: t('morning'), pm: t('afternoon'), full: t('morning') + ' + ' + t('afternoon') };
@@ -771,39 +797,39 @@ function t(key: string): string {
 
     itinerary.forEach((dayBlocks, i) => {
       const color = dayColors[i % dayColors.length];
-      html += `<div class="mb-6">`;
-      html += `<h3 class="font-display text-lg font-bold mb-3" style="color:${color}"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:${color};color:#fff;font-size:12px;margin-right:8px">${i + 1}</span>${t('day_label')} ${i + 1}</h3>`;
+      html += `<div class="mb-8">`;
+      html += `<h3 class="font-display text-xl font-bold mb-4 flex items-center gap-3" style="color:${color}"><span style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:${color};color:#fff;font-size:14px;font-weight:700">${i + 1}</span>${t('day_label')} ${i + 1}</h3>`;
       html += `<div class="sortable-day space-y-3" data-day="${i}">`;
 
       dayBlocks.forEach(block => {
         const transport = block.transport_from[state.hub];
         const transportHtml = transport && transport.time > 0
-          ? `<span class="inline-flex items-center gap-1 text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">${modeIcons[transport.mode] || ''} ${transport.time} ${t('time_min')} · €${transport.cost}</span>`
+          ? `<span style="display:inline-flex;align-items:center;gap:4px;font-size:12px;color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.06);padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.08)">${modeIcons[transport.mode] || ''} ${transport.time} ${t('time_min')} · €${transport.cost}</span>`
           : '';
 
         const slotLabel = block.slot ? (slotLabels[block.slot] || '') : '';
-        const slotBadge = slotLabel ? `<span class="slot-badge" style="display:inline-block;font-size:11px;font-weight:600;color:#d4af37;background:rgba(212,175,55,0.12);padding:2px 8px;border-radius:6px;margin-bottom:4px">${slotLabel}</span>` : '';
+        const slotBadge = slotLabel ? `<span class="slot-badge" style="display:inline-block;font-size:11px;font-weight:600;color:#d4af37;background:rgba(212,175,55,0.15);padding:3px 10px;border-radius:8px">${slotLabel}</span>` : '';
 
-        html += `<div class="bg-white rounded-xl border border-slate-100 shadow-sm p-4" data-block-id="${block.id}" style="cursor:grab">`;
+        html += `<div style="background:rgba(255,255,255,0.04);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.08);box-shadow:0 4px 24px rgba(0,0,0,0.2);cursor:grab" class="rounded-2xl p-5" data-block-id="${block.id}">`;
         html += `<div class="flex items-start justify-between gap-3">`;
-        html += `<div style="display:flex;align-items:center;padding:4px;color:#94a3b8;cursor:grab;touch-action:none" class="drag-handle">`;
+        html += `<div style="display:flex;align-items:center;padding:4px;color:rgba(255,255,255,0.3);cursor:grab;touch-action:none" class="drag-handle">`;
         html += `<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><circle cx="5" cy="3" r="1.5"/><circle cx="11" cy="3" r="1.5"/><circle cx="5" cy="8" r="1.5"/><circle cx="11" cy="8" r="1.5"/><circle cx="5" cy="13" r="1.5"/><circle cx="11" cy="13" r="1.5"/></svg>`;
         html += `</div>`;
         // Suggested time badge
-        const timeBadge = block.suggested_time ? `<span style="display:inline-block;font-size:10px;font-weight:500;color:#64748b;background:#f1f5f9;padding:2px 7px;border-radius:5px;margin-left:6px">${block.suggested_time}</span>` : '';
+        const timeBadge = block.suggested_time ? `<span style="display:inline-block;font-size:10px;font-weight:500;color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.08);padding:3px 8px;border-radius:6px;margin-left:6px">${block.suggested_time}</span>` : '';
         // Event badge
         const isEvent = block.types && block.types.includes('evento');
-        const eventBadge = isEvent ? `<span style="display:inline-block;font-size:10px;font-weight:600;color:#dc2626;background:rgba(220,38,38,0.08);padding:2px 7px;border-radius:5px;margin-left:6px">${t('event_label')}</span>` : '';
+        const eventBadge = isEvent ? `<span style="display:inline-block;font-size:10px;font-weight:600;color:#f87171;background:rgba(220,38,38,0.15);padding:3px 8px;border-radius:6px;margin-left:6px">${t('event_label')}</span>` : '';
         // Guide link
-        const guideHtml = block.guide_link ? `<a href="${block.guide_link}" style="display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#2563eb;font-weight:500;margin-top:6px;text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${t('discover')} →</a>` : '';
+        const guideHtml = block.guide_link ? `<a href="${block.guide_link}" style="display:inline-flex;align-items:center;gap:4px;font-size:13px;color:#d4af37;font-weight:500;margin-top:8px;text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${t('discover')} →</a>` : '';
 
         html += `<div class="flex-1">`;
-        html += `<div style="display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-bottom:2px">${slotBadge}${timeBadge}${eventBadge}</div>`;
-        html += `<h4 class="font-semibold text-slate-900">${block.name[langKey]}</h4>`;
-        html += `<p class="text-sm text-slate-600 mt-1">${block.description[langKey]}</p>`;
-        html += `<div class="flex flex-wrap gap-1.5 mt-2">`;
+        html += `<div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:4px">${slotBadge}${timeBadge}${eventBadge}</div>`;
+        html += `<h4 class="font-semibold text-white text-base">${block.name[langKey]}</h4>`;
+        html += `<p class="text-sm mt-1" style="color:rgba(255,255,255,0.6)">${block.description[langKey]}</p>`;
+        html += `<div class="flex flex-wrap gap-1.5 mt-3">`;
         block.highlights.forEach(h => {
-          html += `<span class="text-xs bg-blue-50 text-med-blue px-2 py-0.5 rounded-full">${h}</span>`;
+          html += `<span style="font-size:12px;background:rgba(30,41,59,0.6);color:rgba(255,255,255,0.7);padding:3px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.1)">${h}</span>`;
         });
         html += `</div>`;
         html += guideHtml;
@@ -817,8 +843,8 @@ function t(key: string): string {
     });
 
     // Total cost
-    html += `<div class="mt-6 p-4 bg-slate-50 rounded-xl border border-slate-200">`;
-    html += `<p class="font-semibold text-slate-800" id="planner-total-cost">${t('cost_label')}: ~€${totalCost} <span class="font-normal text-sm text-slate-500">(${t('transport')} + attività)</span></p>`;
+    html += `<div class="mt-8 p-5 rounded-2xl" style="background:rgba(255,255,255,0.04);backdrop-filter:blur(16px);border:1px solid rgba(212,175,55,0.2);box-shadow:0 4px 24px rgba(0,0,0,0.2)">`;
+    html += `<p class="font-semibold text-white text-lg" id="planner-total-cost">${t('cost_label')}: <span class="text-med-gold">~€${totalCost}</span> <span class="font-normal text-sm" style="color:rgba(255,255,255,0.4)">(${t('transport')} + attività)</span></p>`;
     html += `</div>`;
 
     container.innerHTML = html;
