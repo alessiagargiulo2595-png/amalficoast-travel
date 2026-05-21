@@ -1,0 +1,631 @@
+---
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+
+const langKey = lang.split('-')[0] as 'it' | 'en' | 'de' | 'es' | 'fr';
+
+const ui: Record<string, Record<string, string>> = {
+  title: { it: 'Pianifica il tuo viaggio', en: 'Plan your trip', de: 'Plane deine Reise', es: 'Planifica tu viaje', fr: 'Planifie ton voyage' },
+  subtitle: { it: 'Seleziona le tue preferenze e ottieni un itinerario personalizzato in pochi secondi.', en: 'Select your preferences and get a personalised itinerary in seconds.', de: 'Wähle deine Vorlieben und erhalte in Sekunden eine persönliche Reiseroute.', es: 'Selecciona tus preferencias y obtén un itinerario personalizado en segundos.', fr: 'Sélectionne tes préférences et obtiens un itinéraire personnalisé en quelques secondes.' },
+  step1: { it: 'Punto di partenza', en: 'Starting point', de: 'Ausgangspunkt', es: 'Punto de partida', fr: 'Point de départ' },
+  step2: { it: 'Preferenze', en: 'Preferences', de: 'Vorlieben', es: 'Preferencias', fr: 'Préférences' },
+  step3: { it: 'Il tuo itinerario', en: 'Your itinerary', de: 'Deine Reiseroute', es: 'Tu itinerario', fr: 'Ton itinéraire' },
+  from: { it: 'Da dove parti?', en: 'Where are you coming from?', de: 'Von wo startest du?', es: '¿Desde dónde sales?', fr: "D'où pars-tu?" },
+  days: { it: 'Quanti giorni?', en: 'How many days?', de: 'Wie viele Tage?', es: '¿Cuántos días?', fr: 'Combien de jours?' },
+  budget: { it: 'Budget', en: 'Budget', de: 'Budget', es: 'Presupuesto', fr: 'Budget' },
+  budget_1: { it: 'Economico', en: 'Budget', de: 'Günstig', es: 'Económico', fr: 'Économique' },
+  budget_2: { it: 'Medio', en: 'Mid-range', de: 'Mittel', es: 'Medio', fr: 'Moyen' },
+  budget_3: { it: 'Alto', en: 'High-end', de: 'Gehoben', es: 'Alto', fr: 'Haut de gamme' },
+  season: { it: 'Periodo', en: 'Season', de: 'Reisezeit', es: 'Temporada', fr: 'Saison' },
+  spring: { it: 'Primavera', en: 'Spring', de: 'Frühling', es: 'Primavera', fr: 'Printemps' },
+  summer: { it: 'Estate', en: 'Summer', de: 'Sommer', es: 'Verano', fr: 'Été' },
+  autumn: { it: 'Autunno', en: 'Autumn', de: 'Herbst', es: 'Otoño', fr: 'Automne' },
+  winter: { it: 'Inverno', en: 'Winter', de: 'Winter', es: 'Invierno', fr: 'Hiver' },
+  types: { it: 'Cosa ti interessa?', en: 'What interests you?', de: 'Was interessiert dich?', es: '¿Qué te interesa?', fr: "Qu'est-ce qui t'intéresse?" },
+  mare: { it: 'Mare', en: 'Beach', de: 'Strand', es: 'Playa', fr: 'Plage' },
+  cultura: { it: 'Cultura', en: 'Culture', de: 'Kultur', es: 'Cultura', fr: 'Culture' },
+  trekking: { it: 'Trekking', en: 'Hiking', de: 'Wandern', es: 'Senderismo', fr: 'Randonnée' },
+  gastronomia: { it: 'Gastronomia', en: 'Food & wine', de: 'Essen & Wein', es: 'Gastronomía', fr: 'Gastronomie' },
+  relax: { it: 'Relax', en: 'Relax', de: 'Entspannung', es: 'Relax', fr: 'Détente' },
+  panorama: { it: 'Panorama', en: 'Views', de: 'Aussicht', es: 'Panorama', fr: 'Panorama' },
+  shopping: { it: 'Shopping', en: 'Shopping', de: 'Shopping', es: 'Compras', fr: 'Shopping' },
+  next: { it: 'Avanti', en: 'Next', de: 'Weiter', es: 'Siguiente', fr: 'Suivant' },
+  back: { it: 'Indietro', en: 'Back', de: 'Zurück', es: 'Atrás', fr: 'Retour' },
+  generate: { it: 'Genera itinerario', en: 'Generate itinerary', de: 'Reiseroute erstellen', es: 'Generar itinerario', fr: 'Générer itinéraire' },
+  restart: { it: 'Ricomincia', en: 'Start over', de: 'Neu starten', es: 'Empezar de nuevo', fr: 'Recommencer' },
+  day_label: { it: 'Giorno', en: 'Day', de: 'Tag', es: 'Día', fr: 'Jour' },
+  transport: { it: 'Trasporto', en: 'Transport', de: 'Transport', es: 'Transporte', fr: 'Transport' },
+  time_min: { it: 'min', en: 'min', de: 'Min', es: 'min', fr: 'min' },
+  cost_label: { it: 'Costo stimato', en: 'Estimated cost', de: 'Geschätzte Kosten', es: 'Coste estimado', fr: 'Coût estimé' },
+  no_results: { it: 'Nessun blocco corrisponde ai tuoi criteri. Prova a modificare le preferenze.', en: 'No activities match your criteria. Try adjusting your preferences.', de: 'Keine Aktivitäten entsprechen deinen Kriterien. Versuche, deine Vorlieben anzupassen.', es: 'Ninguna actividad coincide con tus criterios. Intenta modificar tus preferencias.', fr: "Aucune activité ne correspond à tes critères. Essaie de modifier tes préférences." },
+  highlights_label: { it: 'Highlights', en: 'Highlights', de: 'Highlights', es: 'Destacados', fr: 'Points forts' },
+  napoli: { it: 'Napoli', en: 'Naples', de: 'Neapel', es: 'Nápoles', fr: 'Naples' },
+  salerno: { it: 'Salerno', en: 'Salerno', de: 'Salerno', es: 'Salerno', fr: 'Salerne' },
+  sorrento: { it: 'Sorrento', en: 'Sorrento', de: 'Sorrent', es: 'Sorrento', fr: 'Sorrente' },
+  amalfi: { it: 'Amalfi', en: 'Amalfi', de: 'Amalfi', es: 'Amalfi', fr: 'Amalfi' },
+  destination: { it: 'Dove vuoi andare?', en: 'Where do you want to go?', de: 'Wohin möchtest du?', es: '¿Adónde quieres ir?', fr: 'Où veux-tu aller?' },
+  area_costiera: { it: 'Costiera Amalfitana', en: 'Amalfi Coast', de: 'Amalfiküste', es: 'Costa Amalfitana', fr: 'Côte Amalfitaine' },
+  area_penisola: { it: 'Penisola Sorrentina', en: 'Sorrento Peninsula', de: 'Halbinsel Sorrent', es: 'Península Sorrentina', fr: 'Péninsule de Sorrente' },
+  area_isole: { it: 'Isole del Golfo', en: 'Gulf Islands', de: 'Golfinseln', es: 'Islas del Golfo', fr: 'Îles du Golfe' },
+  area_all: { it: 'Tutte le zone', en: 'All areas', de: 'Alle Gebiete', es: 'Todas las zonas', fr: 'Toutes les zones' },
+  preferred_city: { it: 'Città preferite (max 3, opzionale)', en: 'Preferred towns (max 3, optional)', de: 'Bevorzugte Orte (max 3, optional)', es: 'Ciudades preferidas (máx. 3, opcional)', fr: 'Villes préférées (max 3, optionnel)' },
+  share_wa: { it: 'Condividi su WhatsApp', en: 'Share on WhatsApp', de: 'Auf WhatsApp teilen', es: 'Compartir en WhatsApp', fr: 'Partager sur WhatsApp' },
+  download_pdf: { it: 'Scarica PDF', en: 'Download PDF', de: 'PDF herunterladen', es: 'Descargar PDF', fr: 'Télécharger PDF' },
+  any_city: { it: 'Nessuna preferenza', en: 'No preference', de: 'Keine Präferenz', es: 'Sin preferencia', fr: 'Pas de préférence' },
+};
+
+function t(key: string): string {
+  return ui[key]?.[langKey] || ui[key]?.['en'] || key;
+}
+---
+
+<section class="bg-slate-900 pt-28 pb-12 md:pt-36 md:pb-16" id="trip-planner">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <h1 class="font-display text-4xl md:text-5xl font-bold text-med-gold mb-3">{t('title')}</h1>
+      <p class="text-slate-300 text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
+    </div>
+
+    <!-- Step indicator -->
+    <div class="flex items-center justify-center gap-2 mb-8" id="step-indicator">
+      <div class="step-dot active w-3 h-3 rounded-full bg-med-gold transition-colors" data-step="1"></div>
+      <div class="w-8 h-0.5 bg-slate-600"></div>
+      <div class="step-dot w-3 h-3 rounded-full bg-slate-600 transition-colors" data-step="2"></div>
+      <div class="w-8 h-0.5 bg-slate-600"></div>
+      <div class="step-dot w-3 h-3 rounded-full bg-slate-600 transition-colors" data-step="3"></div>
+    </div>
+
+    <!-- Step 1: Starting point -->
+    <div class="planner-step" data-planner-step="1">
+      <h3 class="text-xl font-semibold text-white mb-4">{t('step1')}: {t('from')}</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        <button class="hub-btn px-4 py-3 rounded-xl border-2 border-slate-600 text-center font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-hub="napoli">
+          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21"/></svg>
+          {t('napoli')}
+        </button>
+        <button class="hub-btn px-4 py-3 rounded-xl border-2 border-slate-600 text-center font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-hub="salerno">
+          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21"/></svg>
+          {t('salerno')}
+        </button>
+        <button class="hub-btn px-4 py-3 rounded-xl border-2 border-slate-600 text-center font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-hub="sorrento">
+          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21"/></svg>
+          {t('sorrento')}
+        </button>
+        <button class="hub-btn px-4 py-3 rounded-xl border-2 border-slate-600 text-center font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-hub="amalfi">
+          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21"/></svg>
+          {t('amalfi')}
+        </button>
+      </div>
+
+      <h3 class="text-xl font-semibold text-white mb-4">{t('days')}</h3>
+      <div class="flex flex-wrap gap-2 mb-8">
+        {[1,2,3,4,5,7].map(d => (
+          <button class="day-btn w-11 h-11 sm:w-12 sm:h-12 rounded-xl border-2 border-slate-600 font-semibold text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-days={d}>
+            {d}
+          </button>
+        ))}
+      </div>
+
+      <button class="planner-next-btn px-6 py-3 bg-med-blue text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+        {t('next')} &rarr;
+      </button>
+    </div>
+
+    <!-- Step 2: Preferences -->
+    <div class="planner-step hidden" data-planner-step="2">
+      <h3 class="text-xl font-semibold text-white mb-4">{t('destination')}</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        <button class="area-btn px-4 py-3 rounded-xl border-2 border-slate-600 text-center font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-area="costiera">
+          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582"/></svg>
+          {t('area_costiera')}
+        </button>
+        <button class="area-btn px-4 py-3 rounded-xl border-2 border-slate-600 text-center font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-area="penisola">
+          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/></svg>
+          {t('area_penisola')}
+        </button>
+        <button class="area-btn px-4 py-3 rounded-xl border-2 border-slate-600 text-center font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-area="isole">
+          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.893 13.393l-1.135-1.135a2.252 2.252 0 01-.421-.585l-1.08-2.16a.414.414 0 00-.663-.107.827.827 0 01-.812.21l-1.273-.363a.89.89 0 00-.738.145l-.92.815a1.177 1.177 0 01-1.002.229l-3.47-.776M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18"/></svg>
+          {t('area_isole')}
+        </button>
+        <button class="area-btn px-4 py-3 rounded-xl border-2 border-med-gold text-center font-medium text-white bg-med-gold/10 transition-colors" data-area="all">
+          <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
+          {t('area_all')}
+        </button>
+      </div>
+
+      <h3 class="text-xl font-semibold text-white mb-4">{t('preferred_city')}</h3>
+      <div class="flex flex-wrap gap-2 mb-8">
+        <button class="city-btn px-3 py-1.5 rounded-lg border-2 border-med-gold text-sm font-medium text-white bg-med-gold/10 transition-colors" data-city="">
+          {t('any_city')}
+        </button>
+        {['Positano','Amalfi','Ravello','Praiano','Minori','Maiori','Cetara','Vietri sul Mare','Furore','Sorrento','Massa Lubrense','Vico Equense','Capri','Anacapri','Ischia','Procida'].map(city => (
+          <button class="city-btn px-3 py-1.5 rounded-lg border-2 border-slate-600 text-sm font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-city={city}>
+            {city}
+          </button>
+        ))}
+      </div>
+
+      <h3 class="text-xl font-semibold text-white mb-4">{t('budget')}</h3>
+      <div class="flex flex-wrap gap-2 sm:gap-3 mb-8">
+        {[1,2,3].map(b => (
+          <button class="budget-btn px-4 sm:px-5 py-3 rounded-xl border-2 border-slate-600 font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors text-sm sm:text-base" data-budget={b}>
+            {'€'.repeat(b)} {t(`budget_${b}`)}
+          </button>
+        ))}
+      </div>
+
+      <h3 class="text-xl font-semibold text-white mb-4">{t('season')}</h3>
+      <div class="flex flex-wrap gap-2 mb-8">
+        {['spring','summer','autumn','winter'].map(s => (
+          <button class="season-btn px-4 py-2 rounded-lg border-2 border-slate-600 text-sm font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-season={s}>
+            {t(s)}
+          </button>
+        ))}
+      </div>
+
+      <h3 class="text-xl font-semibold text-white mb-4">{t('types')}</h3>
+      <div class="flex flex-wrap gap-2 mb-8">
+        {['mare','cultura','trekking','gastronomia','relax','panorama','shopping'].map(tp => (
+          <button class="type-btn px-4 py-2 rounded-lg border-2 border-slate-600 text-sm font-medium text-slate-300 hover:border-med-gold hover:text-white transition-colors" data-type={tp}>
+            {t(tp)}
+          </button>
+        ))}
+      </div>
+
+      <div class="flex gap-3">
+        <button class="planner-back-btn px-6 py-3 border-2 border-slate-500 text-slate-200 font-semibold rounded-xl hover:border-slate-300 transition-colors">
+          &larr; {t('back')}
+        </button>
+        <button class="planner-generate-btn px-6 py-3 bg-med-blue text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed" disabled>
+          {t('generate')}
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 3: Results -->
+    <div class="planner-step hidden" data-planner-step="3">
+      <div id="planner-results"></div>
+      <button class="planner-restart-btn mt-8 px-6 py-3 border-2 border-slate-500 text-slate-200 font-semibold rounded-xl hover:border-slate-300 transition-colors">
+        &larr; {t('restart')}
+      </button>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ langKey, ui }}>
+  // Load dataset
+  let blocksData = null;
+
+  function t(key) {
+    return ui[key]?.[langKey] || ui[key]?.['en'] || key;
+  }
+
+  async function loadData() {
+    const resp = await fetch('/data/itinerary-blocks.json');
+    blocksData = await resp.json();
+  }
+
+  // State
+  const state = { hub: null, days: null, budget: null, season: null, types: [], area: 'all', cities: [] };
+
+  // DOM
+  const steps = document.querySelectorAll('.planner-step');
+  const dots = document.querySelectorAll('.step-dot');
+
+  function showStep(n) {
+    steps.forEach((s, i) => {
+      s.classList.toggle('hidden', i !== n - 1);
+    });
+    dots.forEach((d, i) => {
+      d.classList.toggle('bg-med-gold', i < n);
+      d.classList.toggle('bg-slate-600', i >= n);
+    });
+  }
+
+  // Step 1: Hub selection
+  document.querySelectorAll('.hub-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.hub-btn').forEach(b => {
+        b.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
+        b.classList.add('border-slate-600', 'text-slate-300');
+      });
+      btn.classList.remove('border-slate-600', 'text-slate-300');
+      btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+      state.hub = btn.dataset.hub;
+      checkStep1();
+    });
+  });
+
+  // Step 1: Days selection
+  document.querySelectorAll('.day-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.day-btn').forEach(b => {
+        b.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
+        b.classList.add('border-slate-600', 'text-slate-300');
+      });
+      btn.classList.remove('border-slate-600', 'text-slate-300');
+      btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+      state.days = parseInt(btn.dataset.days);
+      checkStep1();
+    });
+  });
+
+  function checkStep1() {
+    const btn = document.querySelector('.planner-next-btn');
+    btn.disabled = !(state.hub && state.days);
+  }
+
+  // Next button
+  document.querySelector('.planner-next-btn').addEventListener('click', () => {
+    showStep(2);
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'planner_step', { step: 1, hub: state.hub, days: state.days });
+    }
+  });
+
+  // Step 2: City selection (multi-select, max 3)
+  document.querySelectorAll('.city-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const city = btn.dataset.city;
+      // "No preference" resets all
+      if (city === '') {
+        state.cities = [];
+        document.querySelectorAll('.city-btn').forEach(b => {
+          b.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
+          b.classList.add('border-slate-600', 'text-slate-300');
+        });
+        btn.classList.remove('border-slate-600', 'text-slate-300');
+        btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+        return;
+      }
+      // Deselect "no preference" if selecting a city
+      const noPrefBtn = document.querySelector('.city-btn[data-city=""]');
+      if (noPrefBtn) { noPrefBtn.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10'); noPrefBtn.classList.add('border-slate-600', 'text-slate-300'); }
+      // Toggle city
+      if (state.cities.includes(city)) {
+        state.cities = state.cities.filter(c => c !== city);
+        btn.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
+        btn.classList.add('border-slate-600', 'text-slate-300');
+      } else if (state.cities.length < 3) {
+        state.cities.push(city);
+        btn.classList.remove('border-slate-600', 'text-slate-300');
+        btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+      }
+      // If none selected, re-highlight "no preference"
+      if (state.cities.length === 0 && noPrefBtn) {
+        noPrefBtn.classList.remove('border-slate-600', 'text-slate-300');
+        noPrefBtn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+      }
+    });
+  });
+
+  // Step 2: Area selection (single select, default "all")
+  document.querySelectorAll('.area-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.area-btn').forEach(b => {
+        b.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
+        b.classList.add('border-slate-600', 'text-slate-300');
+      });
+      btn.classList.remove('border-slate-600', 'text-slate-300');
+      btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+      state.area = btn.dataset.area;
+      checkStep2();
+    });
+  });
+
+  // Step 2: Budget (single select)
+  document.querySelectorAll('.budget-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.budget-btn').forEach(b => {
+        b.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
+        b.classList.add('border-slate-600', 'text-slate-300');
+      });
+      btn.classList.remove('border-slate-600', 'text-slate-300');
+      btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+      state.budget = parseInt(btn.dataset.budget);
+      checkStep2();
+    });
+  });
+
+  // Step 2: Season (single select)
+  document.querySelectorAll('.season-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.season-btn').forEach(b => {
+        b.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
+        b.classList.add('border-slate-600', 'text-slate-300');
+      });
+      btn.classList.remove('border-slate-600', 'text-slate-300');
+      btn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10');
+      state.season = btn.dataset.season;
+      checkStep2();
+    });
+  });
+
+  // Step 2: Types (multi select)
+  document.querySelectorAll('.type-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tp = btn.dataset.type;
+      if (state.types.includes(tp)) {
+        state.types = state.types.filter(x => x !== tp);
+        btn.classList.remove('border-med-blue', 'text-med-blue', 'bg-blue-50');
+        btn.classList.add('border-slate-200', 'text-slate-700');
+      } else {
+        state.types.push(tp);
+        btn.classList.remove('border-slate-200', 'text-slate-700');
+        btn.classList.add('border-med-blue', 'text-med-blue', 'bg-blue-50');
+      }
+      checkStep2();
+    });
+  });
+
+  function checkStep2() {
+    const btn = document.querySelector('.planner-generate-btn');
+    btn.disabled = !(state.budget && state.season && state.types.length > 0);
+  }
+
+  // Back button
+  document.querySelector('.planner-back-btn').addEventListener('click', () => {
+    showStep(1);
+  });
+
+  // Generate
+  document.querySelector('.planner-generate-btn').addEventListener('click', async () => {
+    if (!blocksData) await loadData();
+    generateItinerary();
+    showStep(3);
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'planner_complete', {
+        hub: state.hub, days: state.days, budget: state.budget,
+        season: state.season, types: state.types.join(','),
+        area: state.area, cities: state.cities.join(',')
+      });
+    }
+  });
+
+  // Restart
+  document.querySelector('.planner-restart-btn').addEventListener('click', () => {
+    state.hub = null; state.days = null; state.budget = null; state.season = null; state.types = []; state.area = 'all'; state.cities = [];
+    document.querySelectorAll('.hub-btn, .day-btn, .budget-btn, .season-btn, .type-btn, .area-btn, .city-btn').forEach(b => {
+      b.classList.remove('border-med-gold', 'text-white', 'bg-med-gold/10');
+      b.classList.add('border-slate-600', 'text-slate-300');
+    });
+    // Re-select defaults
+    const allBtn = document.querySelector('.area-btn[data-area="all"]');
+    if (allBtn) { allBtn.classList.remove('border-slate-600', 'text-slate-300'); allBtn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10'); }
+    const noCityBtn = document.querySelector('.city-btn[data-city=""]');
+    if (noCityBtn) { noCityBtn.classList.remove('border-slate-600', 'text-slate-300'); noCityBtn.classList.add('border-med-gold', 'text-white', 'bg-med-gold/10'); }
+    document.querySelector('.planner-next-btn').disabled = true;
+    document.querySelector('.planner-generate-btn').disabled = true;
+    showStep(1);
+  });
+
+  // Algorithm
+  function generateItinerary() {
+    const blocks = blocksData.blocks;
+
+    // Filter by area, season and budget
+    let candidates = blocks.filter(b => {
+      const areaOk = state.area === 'all' || b.area === state.area;
+      const seasonOk = b.season.includes(state.season) || b.season.includes('all');
+      const budgetOk = b.budget <= state.budget;
+      return areaOk && seasonOk && budgetOk;
+    });
+
+    // Score by type match + city preference boost
+    candidates = candidates.map(b => {
+      const typeScore = b.types.filter(tp => state.types.includes(tp)).length;
+      const cityBoost = (state.cities.length > 0 && state.cities.includes(b.location)) ? 10 : 0;
+      const transportData = b.transport_from[state.hub];
+      const transportTime = transportData ? transportData.time : 999;
+      return { ...b, typeScore, cityBoost, transportTime };
+    });
+
+    // Sort: city boost DESC, type relevance DESC, transport time ASC
+    candidates.sort((a, b) => {
+      if (b.cityBoost !== a.cityBoost) return b.cityBoost - a.cityBoost;
+      if (b.typeScore !== a.typeScore) return b.typeScore - a.typeScore;
+      return a.transportTime - b.transportTime;
+    });
+
+    // Assign to days: 2 half-blocks or 1 full per day, avoid duplicates
+    const itinerary = [];
+    const used = new Set();
+    const slotsPerDay = state.days;
+
+    for (let day = 0; day < slotsPerDay; day++) {
+      const dayBlocks = [];
+      let remaining = 2; // 2 half-slots per day
+
+      for (const c of candidates) {
+        if (used.has(c.id)) continue;
+        if (remaining <= 0) break;
+
+        // Check avoid_with
+        const conflicts = dayBlocks.some(db => c.avoid_with?.includes(db.id) || db.avoid_with?.includes(c.id));
+        if (conflicts) continue;
+
+        const slots = c.duration === 'full' ? 2 : 1;
+        if (slots > remaining) continue;
+
+        dayBlocks.push(c);
+        used.add(c.id);
+        remaining -= slots;
+      }
+      if (dayBlocks.length > 0) itinerary.push(dayBlocks);
+    }
+
+    renderResults(itinerary);
+  }
+
+  function renderResults(itinerary) {
+    const container = document.getElementById('planner-results');
+
+    if (itinerary.length === 0) {
+      container.innerHTML = `<p class="text-slate-500 text-center py-8">${t('no_results')}</p>`;
+      return;
+    }
+
+    let html = '';
+    itinerary.forEach((dayBlocks, i) => {
+      html += `<div class="mb-6">`;
+      html += `<h3 class="font-display text-lg font-bold text-med-gold mb-3">${t('day_label')} ${i + 1}</h3>`;
+      html += `<div class="space-y-3">`;
+
+      dayBlocks.forEach(block => {
+        const transport = block.transport_from[state.hub];
+        const modeIcons = { ferry: '⛴', bus: '🚌', train: '🚆', walk: '🚶' };
+        const transportHtml = transport && transport.time > 0
+          ? `<span class="inline-flex items-center gap-1 text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">${modeIcons[transport.mode] || ''} ${transport.time} ${t('time_min')} · €${transport.cost}</span>`
+          : '';
+
+        html += `<div class="bg-white rounded-xl border border-slate-100 shadow-sm p-4">`;
+        html += `<div class="flex items-start justify-between gap-3">`;
+        html += `<div class="flex-1">`;
+        html += `<h4 class="font-semibold text-slate-900">${block.name[langKey]}</h4>`;
+        html += `<p class="text-sm text-slate-600 mt-1">${block.description[langKey]}</p>`;
+        html += `<div class="flex flex-wrap gap-1.5 mt-2">`;
+        block.highlights.forEach(h => {
+          html += `<span class="text-xs bg-blue-50 text-med-blue px-2 py-0.5 rounded-full">${h}</span>`;
+        });
+        html += `</div>`;
+        html += `</div>`;
+        html += `<div class="text-right shrink-0">${transportHtml}</div>`;
+        html += `</div>`;
+        html += `</div>`;
+      });
+
+      html += `</div></div>`;
+    });
+
+    // Total estimated cost
+    let totalCost = 0;
+    itinerary.flat().forEach(block => {
+      const transport = block.transport_from[state.hub];
+      if (transport) totalCost += transport.cost;
+      totalCost += block.budget === 1 ? 20 : block.budget === 2 ? 50 : 90;
+    });
+
+    html += `<div class="mt-6 p-4 bg-slate-50 rounded-xl border border-slate-200">`;
+    html += `<p class="font-semibold text-slate-800">${t('cost_label')}: ~€${totalCost} <span class="font-normal text-sm text-slate-500">(${t('transport')} + attività)</span></p>`;
+    html += `</div>`;
+
+    // Share & Download buttons
+    html += `<div class="flex flex-wrap gap-3 mt-6">`;
+    html += `<button id="share-wa-btn" class="inline-flex items-center gap-2 px-5 py-3 bg-[#25D366] text-white font-semibold rounded-xl hover:bg-[#1da851] transition-colors">`;
+    html += `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
+    html += `${t('share_wa')}</button>`;
+    html += `<button id="download-pdf-btn" class="inline-flex items-center gap-2 px-5 py-3 bg-med-blue text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors">`;
+    html += `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>`;
+    html += `${t('download_pdf')}</button>`;
+    html += `</div>`;
+
+    container.innerHTML = html;
+
+    // WhatsApp share handler
+    document.getElementById('share-wa-btn').addEventListener('click', () => {
+      let text = `${t('title')}\n\n`;
+      itinerary.forEach((dayBlocks, i) => {
+        text += `📅 ${t('day_label')} ${i + 1}\n`;
+        dayBlocks.forEach(block => {
+          text += `• ${block.name[langKey]}\n`;
+        });
+        text += `\n`;
+      });
+      text += `💰 ${t('cost_label')}: ~€${totalCost}\n`;
+      text += `\n🌐 amalficoast-travel.com`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'planner_share', { method: 'whatsapp', days: state.days });
+      }
+    });
+
+    // PDF download handler
+    document.getElementById('download-pdf-btn').addEventListener('click', async () => {
+      // Load jsPDF dynamically
+      if (!window.jspdf) {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js';
+        document.head.appendChild(script);
+        await new Promise(resolve => script.onload = resolve);
+      }
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Header
+      doc.setFillColor(30, 41, 59); // slate-900
+      doc.rect(0, 0, 210, 35, 'F');
+      doc.setTextColor(212, 175, 55); // gold
+      doc.setFontSize(20);
+      doc.setFont('helvetica', 'bold');
+      doc.text(t('title'), 15, 22);
+      doc.setFontSize(10);
+      doc.setTextColor(200, 200, 200);
+      doc.text('amalficoast-travel.com', 15, 30);
+
+      let y = 45;
+      doc.setTextColor(30, 41, 59);
+
+      itinerary.forEach((dayBlocks, i) => {
+        // Day header
+        if (y > 260) { doc.addPage(); y = 20; }
+        doc.setFontSize(14);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(212, 175, 55);
+        doc.text(`${t('day_label')} ${i + 1}`, 15, y);
+        y += 8;
+
+        dayBlocks.forEach(block => {
+          if (y > 260) { doc.addPage(); y = 20; }
+          // Block name
+          doc.setFontSize(11);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(30, 41, 59);
+          doc.text(block.name[langKey], 20, y);
+          y += 5;
+          // Description
+          doc.setFontSize(9);
+          doc.setFont('helvetica', 'normal');
+          doc.setTextColor(80, 80, 80);
+          const descLines = doc.splitTextToSize(block.description[langKey], 165);
+          doc.text(descLines, 20, y);
+          y += descLines.length * 4 + 2;
+          // Transport
+          const transport = block.transport_from[state.hub];
+          if (transport && transport.time > 0) {
+            doc.setFontSize(8);
+            doc.setTextColor(120, 120, 120);
+            doc.text(`${t('transport')}: ${transport.time} ${t('time_min')} | €${transport.cost}`, 20, y);
+            y += 4;
+          }
+          y += 4;
+        });
+        y += 4;
+      });
+
+      // Total cost
+      if (y > 260) { doc.addPage(); y = 20; }
+      doc.setDrawColor(200, 200, 200);
+      doc.line(15, y, 195, y);
+      y += 8;
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(30, 41, 59);
+      doc.text(`${t('cost_label')}: ~€${totalCost}`, 15, y);
+
+      doc.save('itinerario-amalfi-coast.pdf');
+
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'planner_download', { format: 'pdf', days: state.days });
+      }
+    });
+  }
+
+  // Preload data
+  loadData();
+</script>

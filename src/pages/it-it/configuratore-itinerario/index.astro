@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import TripPlanner from '../../../components/TripPlanner.astro';
+
+const lang = 'it-it';
+const pageKey = 'planner';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Pianificazione', url: '/it-it/pianificazione/' },
+  { name: 'Configuratore Itinerario', url: '/it-it/configuratore-itinerario/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come funziona il pianificatore di viaggio?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Seleziona il tuo punto di partenza (Napoli, Salerno, Sorrento o Amalfi), il numero di giorni, il budget, la stagione e gli interessi. L'algoritmo combina automaticamente le migliori attività in un itinerario personalizzato." }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso personalizzare l'itinerario generato?",
+      "acceptedAnswer": { "@type": "Answer", "text": "L'itinerario generato è un suggerimento basato sui tuoi criteri. Puoi modificare le preferenze e rigenerarlo quante volte vuoi fino a trovare la combinazione perfetta." }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Pianifica il tuo viaggio in Costiera Amalfitana | Configuratore gratuito"
+  description="Crea il tuo itinerario personalizzato per la Costiera Amalfitana, Penisola Sorrentina e isole del Golfo. Scegli giorni, budget e interessi."
+  lang={lang}
+  pageKey={pageKey}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+  <!-- Trip Planner Component -->
+  <TripPlanner lang={lang} />
+
+  <!-- CTA -->
+  <section class="bg-white py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <h2 class="font-display text-2xl md:text-3xl font-bold text-slate-900 mb-4">Vuoi approfondire?</h2>
+      <p class="text-slate-600 mb-6">Esplora le nostre guide dettagliate su trasporti, itinerari e destinazioni.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/it-it/guida/come-arrivare/" class="px-5 py-3 bg-med-blue text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors">Come arrivare</a>
+        <a href="/it-it/pianificazione/itinerari/" class="px-5 py-3 border-2 border-slate-300 text-slate-700 font-semibold rounded-xl hover:border-slate-500 transition-colors">Itinerari pronti</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
