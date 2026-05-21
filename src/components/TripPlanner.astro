@@ -57,6 +57,19 @@ const ui: Record<string, Record<string, string>> = {
   share_wa: { it: 'Condividi su WhatsApp', en: 'Share on WhatsApp', de: 'Auf WhatsApp teilen', es: 'Compartir en WhatsApp', fr: 'Partager sur WhatsApp' },
   download_pdf: { it: 'Scarica PDF', en: 'Download PDF', de: 'PDF herunterladen', es: 'Descargar PDF', fr: 'Télécharger PDF' },
   any_city: { it: 'Nessuna preferenza', en: 'No preference', de: 'Keine Präferenz', es: 'Sin preferencia', fr: 'Pas de préférence' },
+  morning: { it: 'Mattina', en: 'Morning', de: 'Vormittag', es: 'Mañana', fr: 'Matin' },
+  afternoon: { it: 'Pomeriggio', en: 'Afternoon', de: 'Nachmittag', es: 'Tarde', fr: 'Après-midi' },
+  regenerate: { it: 'Rigenera itinerario', en: 'Regenerate', de: 'Neu generieren', es: 'Regenerar', fr: 'Régénérer' },
+  generating: { it: 'Stiamo creando il tuo itinerario...', en: 'Creating your itinerary...', de: 'Deine Reiseroute wird erstellt...', es: 'Creando tu itinerario...', fr: 'Création de ton itinéraire...' },
+  map_label: { it: 'Mappa del giorno', en: 'Day map', de: 'Tageskarte', es: 'Mapa del día', fr: 'Carte du jour' },
+  save_label: { it: 'Salva itinerario', en: 'Save itinerary', de: 'Reiseroute speichern', es: 'Guardar itinerario', fr: 'Sauvegarder itinéraire' },
+  saved_label: { it: 'Salvato!', en: 'Saved!', de: 'Gespeichert!', es: 'Guardado!', fr: 'Sauvegardé!' },
+  restored_label: { it: 'Itinerario ripristinato dal salvataggio precedente.', en: 'Itinerary restored from previous save.', de: 'Reiseroute aus vorherigem Speicherstand wiederhergestellt.', es: 'Itinerario restaurado desde guardado anterior.', fr: 'Itinéraire restauré depuis la sauvegarde précédente.' },
+  link_copied: { it: 'Link copiato!', en: 'Link copied!', de: 'Link kopiert!', es: 'Enlace copiado!', fr: 'Lien copié!' },
+  copy_link: { it: 'Copia link', en: 'Copy link', de: 'Link kopieren', es: 'Copiar enlace', fr: 'Copier le lien' },
+  discover: { it: 'Scopri di più', en: 'Discover more', de: 'Mehr entdecken', es: 'Descubrir más', fr: 'En savoir plus' },
+  schedule: { it: 'Orario', en: 'Schedule', de: 'Zeitplan', es: 'Horario', fr: 'Horaire' },
+  event_label: { it: 'Evento stagionale', en: 'Seasonal event', de: 'Saisonales Event', es: 'Evento estacional', fr: 'Événement saisonnier' },
 };
 
 function t(key: string): string {
@@ -64,7 +77,12 @@ function t(key: string): string {
 }
 ---
 
-<section class="bg-slate-900 pt-28 pb-12 md:pt-36 md:pb-16" id="trip-planner">
+<style>
+  @keyframes planner-spin { to { transform: rotate(360deg); } }
+  .planner-drag-ghost { opacity: 0.4; }
+  .planner-drag-chosen { box-shadow: 0 0 0 2px #d4af37; border-radius: 12px; }
+</style>
+<section class="bg-slate-900 pt-20 pb-12 md:pt-20 md:pb-16" id="trip-planner">
   <div class="max-w-4xl mx-auto px-4 sm:px-6">
     <!-- Header -->
     <div class="text-center mb-10">
@@ -375,12 +393,21 @@ function t(key: string): string {
     showStep(1);
   });
 
-  // Generate
+  // Generate with loading animation
   document.querySelector('.planner-generate-btn').addEventListener('click', async () => {
     if (!blocksData) await loadData();
-    generateItinerary();
+    // Show loading animation
     showStep(3);
     document.getElementById('trip-planner').scrollIntoView({ behavior: 'smooth' });
+    const container = document.getElementById('planner-results');
+    container.innerHTML = `
+      <div style="text-align:center;padding:60px 20px">
+        <div style="display:inline-block;width:48px;height:48px;border:4px solid rgba(212,175,55,0.2);border-top-color:#d4af37;border-radius:50%;animation:planner-spin 0.8s linear infinite"></div>
+        <p style="color:#cbd5e1;margin-top:16px;font-size:15px">${t('generating')}</p>
+      </div>`;
+    // Delay for animation effect, then generate
+    await new Promise(r => setTimeout(r, 1200));
+    generateItinerary();
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'planner_complete', {
         hub: state.hub, days: state.days, budget: state.budget,
@@ -408,11 +435,57 @@ function t(key: string): string {
     document.getElementById('trip-planner').scrollIntoView({ behavior: 'smooth' });
   });
 
-  // Algorithm
+  // --- Utility: Haversine distance in km ---
+  function haversine(c1, c2) {
+    const toRad = d => d * Math.PI / 180;
+    const [lat1, lon1] = c1;
+    const [lat2, lon2] = c2;
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+    return 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+
+  // --- Slot assignment: AM types vs PM types ---
+  const amTypes = new Set(['trekking', 'mare', 'relax']);
+  const pmTypes = new Set(['cultura', 'panorama', 'gastronomia', 'shopping']);
+
+  function slotPreference(block) {
+    // Use suggested_time if available: before 13:00 = AM, after 13:00 = PM
+    if (block.suggested_time) {
+      const startHour = parseInt(block.suggested_time.split(':')[0]);
+      if (startHour < 12) return 'am';
+      if (startHour >= 14) return 'pm';
+    }
+    const amScore = block.types.filter(t => amTypes.has(t)).length;
+    const pmScore = block.types.filter(t => pmTypes.has(t)).length;
+    if (amScore > pmScore) return 'am';
+    if (pmScore > amScore) return 'pm';
+    return 'any';
+  }
+
+  function assignSlots(dayBlocks) {
+    // For full-day blocks, label 'full'. For 2 half-day blocks, assign AM/PM intelligently.
+    if (dayBlocks.length === 1) {
+      return [{ ...dayBlocks[0], slot: dayBlocks[0].duration === 'full' ? 'full' : 'am' }];
+    }
+    const a = dayBlocks[0], b = dayBlocks[1];
+    const prefA = slotPreference(a), prefB = slotPreference(b);
+    // If one clearly wants AM and the other PM
+    if (prefA === 'am' && prefB !== 'am') return [{ ...a, slot: 'am' }, { ...b, slot: 'pm' }];
+    if (prefB === 'am' && prefA !== 'am') return [{ ...b, slot: 'am' }, { ...a, slot: 'pm' }];
+    if (prefA === 'pm' && prefB !== 'pm') return [{ ...b, slot: 'am' }, { ...a, slot: 'pm' }];
+    if (prefB === 'pm' && prefA !== 'pm') return [{ ...a, slot: 'am' }, { ...b, slot: 'pm' }];
+    // Default: keep original order
+    return [{ ...a, slot: 'am' }, { ...b, slot: 'pm' }];
+  }
+
+  // --- Algorithm v3 ---
   function generateItinerary() {
     const blocks = blocksData.blocks;
+    const hubCoords = blocksData.transport_hubs[state.hub].coordinates;
 
-    // Filter by area, season and budget
+    // 1. Filter by area, season, budget
     let candidates = blocks.filter(b => {
       const areaOk = state.area === 'all' || b.area === state.area;
       const seasonOk = b.season.includes(state.season) || b.season.includes('all');
@@ -420,53 +493,253 @@ function t(key: string): string {
       return areaOk && seasonOk && budgetOk;
     });
 
-    // Score by type match + city preference boost
+    // 2. Enrich with distance from hub and score
     candidates = candidates.map(b => {
       const typeScore = b.types.filter(tp => state.types.includes(tp)).length;
       const cityBoost = (state.cities.length > 0 && state.cities.includes(b.location)) ? 10 : 0;
-      const transportData = b.transport_from[state.hub];
-      const transportTime = transportData ? transportData.time : 999;
-      return { ...b, typeScore, cityBoost, transportTime };
+      const distFromHub = haversine(hubCoords, b.coordinates);
+      const rand = Math.random() * 1.5; // randomization for regeneration variety
+      return { ...b, score: cityBoost + typeScore * 2 + rand, distFromHub };
     });
 
-    // Sort: city boost DESC, type relevance DESC, transport time ASC
-    candidates.sort((a, b) => {
-      if (b.cityBoost !== a.cityBoost) return b.cityBoost - a.cityBoost;
-      if (b.typeScore !== a.typeScore) return b.typeScore - a.typeScore;
-      return a.transportTime - b.transportTime;
-    });
+    // 3. Sort by score DESC
+    candidates.sort((a, b) => b.score - a.score);
 
-    // Assign to days: 2 half-blocks or 1 full per day, avoid duplicates
+    // 4. Build days with progressive exploration + continuity + type variety
     const itinerary = [];
     const used = new Set();
-    const slotsPerDay = state.days;
+    let prevDayEndCoords = hubCoords; // day-to-day continuity: start from hub
 
-    for (let day = 0; day < slotsPerDay; day++) {
+    for (let day = 0; day < state.days; day++) {
       const dayBlocks = [];
-      let remaining = 2; // 2 half-slots per day
+      let remaining = 2;
 
+      // Progressive exploration: day 1 prefers near hub, later days can go farther
+      // Max allowed distance grows with day index
+      const maxDistFactor = 10 + day * 15; // day0: 10km, day1: 25km, day2: 40km...
+
+      // Pick anchor: best unused that respects distance progression + area variety
+      let anchor = null;
+      const prevArea = itinerary.length > 0 ? itinerary[itinerary.length - 1][0]?.area : null;
+
+      // First pass: respect distance + area variety
       for (const c of candidates) {
         if (used.has(c.id)) continue;
-        if (remaining <= 0) break;
-
-        // Check avoid_with
-        const conflicts = dayBlocks.some(db => c.avoid_with?.includes(db.id) || db.avoid_with?.includes(c.id));
-        if (conflicts) continue;
-
-        const slots = c.duration === 'full' ? 2 : 1;
-        if (slots > remaining) continue;
-
-        dayBlocks.push(c);
-        used.add(c.id);
-        remaining -= slots;
+        if (c.distFromHub > maxDistFactor && candidates.some(x => !used.has(x.id) && x.distFromHub <= maxDistFactor)) continue;
+        if (prevArea && prevArea === c.area && candidates.some(x => !used.has(x.id) && x.area !== prevArea && x.distFromHub <= maxDistFactor + 20)) continue;
+        anchor = c;
+        break;
       }
-      if (dayBlocks.length > 0) itinerary.push(dayBlocks);
+      // Second pass: relax area variety
+      if (!anchor) {
+        for (const c of candidates) {
+          if (used.has(c.id)) continue;
+          if (c.distFromHub > maxDistFactor && candidates.some(x => !used.has(x.id) && x.distFromHub <= maxDistFactor)) continue;
+          anchor = c;
+          break;
+        }
+      }
+      // Third pass: any unused
+      if (!anchor) anchor = candidates.find(c => !used.has(c.id));
+      if (!anchor) break;
+
+      const anchorSlots = anchor.duration === 'full' ? 2 : 1;
+      dayBlocks.push(anchor);
+      used.add(anchor.id);
+      remaining -= anchorSlots;
+
+      // Fill remaining slot: prefer nearby + different type + continuity from previous day
+      if (remaining > 0) {
+        const anchorTypes = new Set(anchor.types);
+
+        // Score fill candidates
+        const fillCandidates = candidates.filter(c => {
+          if (used.has(c.id)) return false;
+          if ((c.duration === 'full' ? 2 : 1) > remaining) return false;
+          if (dayBlocks.some(db => c.avoid_with?.includes(db.id) || db.avoid_with?.includes(c.id))) return false;
+          return true;
+        }).map(c => {
+          const dist = haversine(anchor.coordinates, c.coordinates);
+          const proximityScore = Math.max(0, 5 - dist / 5); // closer = better, max 5pts
+          const typeVariety = c.types.some(tp => !anchorTypes.has(tp)) ? 3 : 0; // reward different types
+          const continuity = haversine(prevDayEndCoords, c.coordinates) < 15 ? 2 : 0; // near prev day end
+          const combinedBonus = anchor.best_combined_with?.includes(c.id) ? 4 : 0;
+          const sameLocationBonus = c.location === anchor.location ? 3 : 0;
+          return { ...c, fillScore: c.score + proximityScore + typeVariety + continuity + combinedBonus + sameLocationBonus };
+        });
+
+        fillCandidates.sort((a, b) => b.fillScore - a.fillScore);
+
+        for (const opt of fillCandidates) {
+          if (remaining <= 0) break;
+          const slots = opt.duration === 'full' ? 2 : 1;
+          if (slots > remaining) continue;
+          dayBlocks.push(opt);
+          used.add(opt.id);
+          remaining -= slots;
+        }
+      }
+
+      if (dayBlocks.length > 0) {
+        // Assign AM/PM slots
+        const slotted = assignSlots(dayBlocks);
+        itinerary.push(slotted);
+        // Update continuity: last block's coordinates become the reference for next day
+        const lastBlock = slotted[slotted.length - 1];
+        prevDayEndCoords = lastBlock.coordinates;
+      }
     }
 
+    // Store itinerary for regeneration
+    lastItinerary = itinerary;
     renderResults(itinerary);
   }
 
-  function renderResults(itinerary) {
+  // Store for regeneration
+  let lastItinerary = null;
+
+  // --- Lazy load Leaflet and SortableJS ---
+  let leafletLoaded = false;
+  let sortableLoaded = false;
+
+  async function loadLeaflet() {
+    if (leafletLoaded) return;
+    // CSS
+    const link = document.createElement('link');
+    link.rel = 'stylesheet'; link.href = '/css/leaflet.css';
+    document.head.appendChild(link);
+    // JS
+    const script = document.createElement('script');
+    script.src = '/js/leaflet.js';
+    document.head.appendChild(script);
+    await new Promise((resolve, reject) => { script.onload = resolve; script.onerror = reject; });
+    leafletLoaded = true;
+  }
+
+  async function loadSortable() {
+    if (sortableLoaded) return;
+    const script = document.createElement('script');
+    script.src = '/js/sortablejs.min.js';
+    document.head.appendChild(script);
+    await new Promise((resolve, reject) => { script.onload = resolve; script.onerror = reject; });
+    sortableLoaded = true;
+  }
+
+  // --- Build block lookup from data ---
+  function getBlockById(id) {
+    return blocksData.blocks.find(b => b.id === id);
+  }
+
+  // --- Compute total cost from itinerary ---
+  function computeTotalCost(itinerary) {
+    let total = 0;
+    itinerary.flat().forEach(block => {
+      const transport = block.transport_from[state.hub];
+      if (transport) total += transport.cost;
+      total += block.budget === 1 ? 20 : block.budget === 2 ? 50 : 90;
+    });
+    return total;
+  }
+
+  // --- Save / Restore from localStorage ---
+  const STORAGE_KEY = 'planner_itinerary_v1';
+
+  function saveToLocalStorage(itinerary) {
+    const data = {
+      state: { hub: state.hub, days: state.days, budget: state.budget, season: state.season, types: state.types, area: state.area, cities: state.cities },
+      blocks: itinerary.map(day => day.map(b => ({ id: b.id, slot: b.slot }))),
+      ts: Date.now()
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+
+  function restoreFromLocalStorage() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      const data = JSON.parse(raw);
+      // Expire after 7 days
+      if (Date.now() - data.ts > 7 * 24 * 60 * 60 * 1000) { localStorage.removeItem(STORAGE_KEY); return null; }
+      return data;
+    } catch { return null; }
+  }
+
+  // --- Build shareable URL ---
+  function buildShareUrl(itinerary) {
+    const ids = itinerary.map(day => day.map(b => b.id).join('.')).join('_');
+    const params = new URLSearchParams({
+      h: state.hub, d: state.days, b: state.budget, s: state.season,
+      t: state.types.join('.'), a: state.area, i: ids
+    });
+    if (state.cities.length) params.set('c', state.cities.join('.'));
+    return `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+  }
+
+  // --- Restore from URL params ---
+  function restoreFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    if (!params.has('h') || !params.has('i')) return null;
+    return {
+      state: {
+        hub: params.get('h'), days: parseInt(params.get('d')), budget: parseInt(params.get('b')),
+        season: params.get('s'), types: params.get('t').split('.'), area: params.get('a') || 'all',
+        cities: params.has('c') ? params.get('c').split('.') : []
+      },
+      blockIds: params.get('i').split('_').map(day => day.split('.'))
+    };
+  }
+
+  // --- Rebuild itinerary from block IDs ---
+  function rebuildItinerary(blockIdsByDay) {
+    return blockIdsByDay.map(dayIds => {
+      const dayBlocks = dayIds.map(id => {
+        const block = getBlockById(id);
+        return block ? { ...block } : null;
+      }).filter(Boolean);
+      return assignSlots(dayBlocks);
+    }).filter(day => day.length > 0);
+  }
+
+  // --- Read itinerary from DOM after drag & drop ---
+  function readItineraryFromDom() {
+    const dayContainers = document.querySelectorAll('.sortable-day');
+    const newItinerary = [];
+    dayContainers.forEach(container => {
+      const cards = container.querySelectorAll('[data-block-id]');
+      const dayBlocks = [];
+      cards.forEach(card => {
+        const block = getBlockById(card.dataset.blockId);
+        if (block) dayBlocks.push({ ...block });
+      });
+      if (dayBlocks.length > 0) newItinerary.push(assignSlots(dayBlocks));
+    });
+    lastItinerary = newItinerary;
+    // Update slot badges in DOM
+    dayContainers.forEach((container, di) => {
+      if (!newItinerary[di]) return;
+      const cards = container.querySelectorAll('[data-block-id]');
+      cards.forEach((card, bi) => {
+        const block = newItinerary[di][bi];
+        if (!block) return;
+        const badge = card.querySelector('.slot-badge');
+        if (badge) {
+          const slotLabels = { am: t('morning'), pm: t('afternoon'), full: t('morning') + ' + ' + t('afternoon') };
+          badge.textContent = slotLabels[block.slot] || '';
+        }
+      });
+    });
+    // Update cost
+    const costEl = document.getElementById('planner-total-cost');
+    if (costEl) costEl.textContent = `${t('cost_label')}: ~€${computeTotalCost(newItinerary)}`;
+    // Auto-save
+    saveToLocalStorage(newItinerary);
+  }
+
+  // --- Map colors per day ---
+  const dayColors = ['#d4af37', '#2563eb', '#dc2626', '#16a34a', '#9333ea', '#ea580c', '#0891b2'];
+
+  // --- Render results ---
+  async function renderResults(itinerary) {
     const container = document.getElementById('planner-results');
 
     if (itinerary.length === 0) {
@@ -474,33 +747,68 @@ function t(key: string): string {
       return;
     }
 
+    // Load Leaflet + SortableJS in parallel
+    await Promise.all([loadLeaflet(), loadSortable()]);
+
+    const totalCost = computeTotalCost(itinerary);
     let html = '';
 
-    // Share & Download buttons (top-right on desktop)
-    html += `<div class="flex flex-wrap gap-3 mb-6 md:justify-end">`;
-    html += `<button id="share-wa-btn" class="inline-flex items-center gap-2 px-4 py-2.5 text-white text-sm font-semibold rounded-xl transition-colors" style="background-color:#25D366" onmouseover="this.style.backgroundColor='#1da851'" onmouseout="this.style.backgroundColor='#25D366'">`;
+    // Action buttons row
+    html += `<div class="flex flex-wrap gap-2 mb-6 md:justify-end">`;
+    html += `<button id="regenerate-btn" class="inline-flex items-center gap-2 px-3 py-2 text-white text-sm font-semibold rounded-xl transition-colors" style="background-color:#64748b" onmouseover="this.style.backgroundColor='#475569'" onmouseout="this.style.backgroundColor='#64748b'">`;
+    html += `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>`;
+    html += `${t('regenerate')}</button>`;
+    html += `<button id="save-btn" class="inline-flex items-center gap-2 px-3 py-2 text-white text-sm font-semibold rounded-xl transition-colors" style="background-color:#7c3aed" onmouseover="this.style.backgroundColor='#6d28d9'" onmouseout="this.style.backgroundColor='#7c3aed'">`;
+    html += `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"/></svg>`;
+    html += `${t('save_label')}</button>`;
+    html += `<button id="copy-link-btn" class="inline-flex items-center gap-2 px-3 py-2 text-white text-sm font-semibold rounded-xl transition-colors" style="background-color:#0ea5e9" onmouseover="this.style.backgroundColor='#0284c7'" onmouseout="this.style.backgroundColor='#0ea5e9'">`;
+    html += `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.54a4.5 4.5 0 00-1.242-7.244l-4.5-4.5a4.5 4.5 0 00-6.364 6.364L4.757 8.06"/></svg>`;
+    html += `${t('copy_link')}</button>`;
+    html += `<button id="share-wa-btn" class="inline-flex items-center gap-2 px-3 py-2 text-white text-sm font-semibold rounded-xl transition-colors" style="background-color:#25D366" onmouseover="this.style.backgroundColor='#1da851'" onmouseout="this.style.backgroundColor='#25D366'">`;
     html += `<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
     html += `${t('share_wa')}</button>`;
-    html += `<button id="download-pdf-btn" class="inline-flex items-center gap-2 px-4 py-2.5 text-white text-sm font-semibold rounded-xl transition-colors" style="background-color:#2563eb" onmouseover="this.style.backgroundColor='#1d4ed8'" onmouseout="this.style.backgroundColor='#2563eb'">`;
+    html += `<button id="download-pdf-btn" class="inline-flex items-center gap-2 px-3 py-2 text-white text-sm font-semibold rounded-xl transition-colors" style="background-color:#2563eb" onmouseover="this.style.backgroundColor='#1d4ed8'" onmouseout="this.style.backgroundColor='#2563eb'">`;
     html += `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>`;
     html += `${t('download_pdf')}</button>`;
     html += `</div>`;
 
+    // Map container
+    html += `<div id="planner-map" style="height:280px;border-radius:12px;margin-bottom:24px;z-index:1;position:relative"></div>`;
+
+    // Day cards with sortable containers
+    const slotLabels = { am: t('morning'), pm: t('afternoon'), full: t('morning') + ' + ' + t('afternoon') };
+    const modeIcons = { ferry: '⛴', bus: '🚌', train: '🚆', walk: '🚶' };
+
     itinerary.forEach((dayBlocks, i) => {
+      const color = dayColors[i % dayColors.length];
       html += `<div class="mb-6">`;
-      html += `<h3 class="font-display text-lg font-bold text-med-gold mb-3">${t('day_label')} ${i + 1}</h3>`;
-      html += `<div class="space-y-3">`;
+      html += `<h3 class="font-display text-lg font-bold mb-3" style="color:${color}"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:${color};color:#fff;font-size:12px;margin-right:8px">${i + 1}</span>${t('day_label')} ${i + 1}</h3>`;
+      html += `<div class="sortable-day space-y-3" data-day="${i}">`;
 
       dayBlocks.forEach(block => {
         const transport = block.transport_from[state.hub];
-        const modeIcons = { ferry: '⛴', bus: '🚌', train: '🚆', walk: '🚶' };
         const transportHtml = transport && transport.time > 0
           ? `<span class="inline-flex items-center gap-1 text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">${modeIcons[transport.mode] || ''} ${transport.time} ${t('time_min')} · €${transport.cost}</span>`
           : '';
 
-        html += `<div class="bg-white rounded-xl border border-slate-100 shadow-sm p-4">`;
+        const slotLabel = block.slot ? (slotLabels[block.slot] || '') : '';
+        const slotBadge = slotLabel ? `<span class="slot-badge" style="display:inline-block;font-size:11px;font-weight:600;color:#d4af37;background:rgba(212,175,55,0.12);padding:2px 8px;border-radius:6px;margin-bottom:4px">${slotLabel}</span>` : '';
+
+        html += `<div class="bg-white rounded-xl border border-slate-100 shadow-sm p-4" data-block-id="${block.id}" style="cursor:grab">`;
         html += `<div class="flex items-start justify-between gap-3">`;
+        html += `<div style="display:flex;align-items:center;padding:4px;color:#94a3b8;cursor:grab;touch-action:none" class="drag-handle">`;
+        html += `<svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><circle cx="5" cy="3" r="1.5"/><circle cx="11" cy="3" r="1.5"/><circle cx="5" cy="8" r="1.5"/><circle cx="11" cy="8" r="1.5"/><circle cx="5" cy="13" r="1.5"/><circle cx="11" cy="13" r="1.5"/></svg>`;
+        html += `</div>`;
+        // Suggested time badge
+        const timeBadge = block.suggested_time ? `<span style="display:inline-block;font-size:10px;font-weight:500;color:#64748b;background:#f1f5f9;padding:2px 7px;border-radius:5px;margin-left:6px">${block.suggested_time}</span>` : '';
+        // Event badge
+        const isEvent = block.types && block.types.includes('evento');
+        const eventBadge = isEvent ? `<span style="display:inline-block;font-size:10px;font-weight:600;color:#dc2626;background:rgba(220,38,38,0.08);padding:2px 7px;border-radius:5px;margin-left:6px">${t('event_label')}</span>` : '';
+        // Guide link
+        const guideHtml = block.guide_link ? `<a href="${block.guide_link}" style="display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#2563eb;font-weight:500;margin-top:6px;text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${t('discover')} →</a>` : '';
+
         html += `<div class="flex-1">`;
+        html += `<div style="display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-bottom:2px">${slotBadge}${timeBadge}${eventBadge}</div>`;
         html += `<h4 class="font-semibold text-slate-900">${block.name[langKey]}</h4>`;
         html += `<p class="text-sm text-slate-600 mt-1">${block.description[langKey]}</p>`;
         html += `<div class="flex flex-wrap gap-1.5 mt-2">`;
@@ -508,6 +816,7 @@ function t(key: string): string {
           html += `<span class="text-xs bg-blue-50 text-med-blue px-2 py-0.5 rounded-full">${h}</span>`;
         });
         html += `</div>`;
+        html += guideHtml;
         html += `</div>`;
         html += `<div class="text-right shrink-0">${transportHtml}</div>`;
         html += `</div>`;
@@ -517,31 +826,117 @@ function t(key: string): string {
       html += `</div></div>`;
     });
 
-    // Total estimated cost
-    let totalCost = 0;
-    itinerary.flat().forEach(block => {
-      const transport = block.transport_from[state.hub];
-      if (transport) totalCost += transport.cost;
-      totalCost += block.budget === 1 ? 20 : block.budget === 2 ? 50 : 90;
-    });
-
+    // Total cost
     html += `<div class="mt-6 p-4 bg-slate-50 rounded-xl border border-slate-200">`;
-    html += `<p class="font-semibold text-slate-800">${t('cost_label')}: ~€${totalCost} <span class="font-normal text-sm text-slate-500">(${t('transport')} + attività)</span></p>`;
+    html += `<p class="font-semibold text-slate-800" id="planner-total-cost">${t('cost_label')}: ~€${totalCost} <span class="font-normal text-sm text-slate-500">(${t('transport')} + attività)</span></p>`;
     html += `</div>`;
 
     container.innerHTML = html;
 
-    // WhatsApp share handler
+    // --- Init Leaflet map ---
+    const L = window.L;
+    const map = L.map('planner-map', { scrollWheelZoom: false, attributionControl: true });
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap',
+      maxZoom: 17
+    }).addTo(map);
+
+    const allMarkers = [];
+    itinerary.forEach((dayBlocks, di) => {
+      const color = dayColors[di % dayColors.length];
+      dayBlocks.forEach((block, bi) => {
+        const [lat, lng] = block.coordinates;
+        const icon = L.divIcon({
+          className: '',
+          html: `<div style="display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:${color};color:#fff;font-weight:700;font-size:12px;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)">${di + 1}</div>`,
+          iconSize: [28, 28],
+          iconAnchor: [14, 14]
+        });
+        const marker = L.marker([lat, lng], { icon }).addTo(map);
+        marker.bindPopup(`<b>${t('day_label')} ${di + 1}</b><br>${block.name[langKey]}`);
+        allMarkers.push([lat, lng]);
+      });
+      // Draw route line per day
+      if (dayBlocks.length > 1) {
+        const latlngs = dayBlocks.map(b => b.coordinates);
+        L.polyline(latlngs, { color, weight: 3, opacity: 0.6, dashArray: '8 4' }).addTo(map);
+      }
+    });
+
+    // Fit bounds
+    if (allMarkers.length > 0) {
+      map.fitBounds(allMarkers, { padding: [30, 30] });
+    }
+
+    // --- Init SortableJS drag & drop ---
+    const Sortable = window.Sortable;
+    document.querySelectorAll('.sortable-day').forEach(el => {
+      Sortable.create(el, {
+        group: 'itinerary-days',
+        animation: 200,
+        handle: '.drag-handle',
+        ghostClass: 'planner-drag-ghost',
+        chosenClass: 'planner-drag-chosen',
+        onEnd: () => readItineraryFromDom()
+      });
+    });
+
+    // --- Regenerate handler ---
+    document.getElementById('regenerate-btn').addEventListener('click', async () => {
+      container.innerHTML = `
+        <div style="text-align:center;padding:60px 20px">
+          <div style="display:inline-block;width:48px;height:48px;border:4px solid rgba(212,175,55,0.2);border-top-color:#d4af37;border-radius:50%;animation:planner-spin 0.8s linear infinite"></div>
+          <p style="color:#cbd5e1;margin-top:16px;font-size:15px">${t('generating')}</p>
+        </div>`;
+      await new Promise(r => setTimeout(r, 800));
+      generateItinerary();
+      document.getElementById('trip-planner').scrollIntoView({ behavior: 'smooth' });
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'planner_regenerate', { days: state.days });
+      }
+    });
+
+    // --- Save handler ---
+    document.getElementById('save-btn').addEventListener('click', () => {
+      saveToLocalStorage(lastItinerary);
+      const btn = document.getElementById('save-btn');
+      const origText = btn.innerHTML;
+      btn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>${t('saved_label')}`;
+      btn.style.backgroundColor = '#16a34a';
+      setTimeout(() => { btn.innerHTML = origText; btn.style.backgroundColor = '#7c3aed'; }, 2000);
+    });
+
+    // --- Copy link handler ---
+    document.getElementById('copy-link-btn').addEventListener('click', async () => {
+      const url = buildShareUrl(lastItinerary);
+      try {
+        await navigator.clipboard.writeText(url);
+      } catch {
+        // Fallback
+        const ta = document.createElement('textarea'); ta.value = url; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      }
+      const btn = document.getElementById('copy-link-btn');
+      const origText = btn.innerHTML;
+      btn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>${t('link_copied')}`;
+      btn.style.backgroundColor = '#16a34a';
+      setTimeout(() => { btn.innerHTML = origText; btn.style.backgroundColor = '#0ea5e9'; }, 2000);
+    });
+
+    // --- WhatsApp share handler ---
     document.getElementById('share-wa-btn').addEventListener('click', () => {
       let text = `${t('title')}\n\n`;
-      itinerary.forEach((dayBlocks, i) => {
+      const itin = lastItinerary || itinerary;
+      const cost = computeTotalCost(itin);
+      itin.forEach((dayBlocks, i) => {
         text += `📅 ${t('day_label')} ${i + 1}\n`;
         dayBlocks.forEach(block => {
-          text += `• ${block.name[langKey]}\n`;
+          const slotEmoji = block.slot === 'am' ? '🌅' : block.slot === 'pm' ? '🌇' : '📍';
+          const timeStr = block.suggested_time ? ` (${block.suggested_time})` : '';
+          text += `${slotEmoji} ${block.name[langKey]}${timeStr}\n`;
         });
         text += `\n`;
       });
-      text += `💰 ${t('cost_label')}: ~€${totalCost}\n`;
+      text += `💰 ${t('cost_label')}: ~€${cost}\n`;
       text += `\n🌐 amalficoast-travel.com`;
       window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
       if (typeof window.gtag === 'function') {
@@ -549,10 +944,11 @@ function t(key: string): string {
       }
     });
 
-    // PDF download handler
+    // --- PDF download handler ---
     document.getElementById('download-pdf-btn').addEventListener('click', async () => {
+      const itin = lastItinerary || itinerary;
+      const cost = computeTotalCost(itin);
       try {
-      // Load jsPDF dynamically (local copy, CSP-safe)
       if (!window.jspdf) {
         const script = document.createElement('script');
         script.src = '/js/jspdf.umd.min.js';
@@ -562,10 +958,9 @@ function t(key: string): string {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
 
-      // Header
-      doc.setFillColor(30, 41, 59); // slate-900
+      doc.setFillColor(30, 41, 59);
       doc.rect(0, 0, 210, 35, 'F');
-      doc.setTextColor(212, 175, 55); // gold
+      doc.setTextColor(212, 175, 55);
       doc.setFontSize(20);
       doc.setFont('helvetica', 'bold');
       doc.text(t('title'), 15, 22);
@@ -574,10 +969,8 @@ function t(key: string): string {
       doc.text('amalficoast-travel.com', 15, 30);
 
       let y = 45;
-      doc.setTextColor(30, 41, 59);
 
-      itinerary.forEach((dayBlocks, i) => {
-        // Day header
+      itin.forEach((dayBlocks, i) => {
         if (y > 260) { doc.addPage(); y = 20; }
         doc.setFontSize(14);
         doc.setFont('helvetica', 'bold');
@@ -587,20 +980,24 @@ function t(key: string): string {
 
         dayBlocks.forEach(block => {
           if (y > 260) { doc.addPage(); y = 20; }
-          // Block name
+          const slotText = block.slot === 'am' ? t('morning') : block.slot === 'pm' ? t('afternoon') : (t('morning') + ' + ' + t('afternoon'));
+          doc.setFontSize(8);
+          doc.setFont('helvetica', 'bold');
+          doc.setTextColor(212, 175, 55);
+          const timeLabel = block.suggested_time ? `  (${block.suggested_time})` : '';
+          doc.text(slotText.toUpperCase() + timeLabel, 20, y);
+          y += 4;
           doc.setFontSize(11);
           doc.setFont('helvetica', 'bold');
           doc.setTextColor(30, 41, 59);
           doc.text(block.name[langKey], 20, y);
           y += 5;
-          // Description
           doc.setFontSize(9);
           doc.setFont('helvetica', 'normal');
           doc.setTextColor(80, 80, 80);
           const descLines = doc.splitTextToSize(block.description[langKey], 165);
           doc.text(descLines, 20, y);
           y += descLines.length * 4 + 2;
-          // Transport
           const transport = block.transport_from[state.hub];
           if (transport && transport.time > 0) {
             doc.setFontSize(8);
@@ -613,7 +1010,6 @@ function t(key: string): string {
         y += 4;
       });
 
-      // Total cost
       if (y > 260) { doc.addPage(); y = 20; }
       doc.setDrawColor(200, 200, 200);
       doc.line(15, y, 195, y);
@@ -621,24 +1017,23 @@ function t(key: string): string {
       doc.setFontSize(12);
       doc.setFont('helvetica', 'bold');
       doc.setTextColor(30, 41, 59);
-      doc.text(`${t('cost_label')}: ~€${totalCost}`, 15, y);
+      doc.text(`${t('cost_label')}: ~€${cost}`, 15, y);
 
       doc.save('itinerario-amalfi-coast.pdf');
-
       if (typeof window.gtag === 'function') {
         window.gtag('event', 'planner_download', { format: 'pdf', days: state.days });
       }
       } catch (e) {
         console.error('PDF generation failed:', e);
-        // Fallback: download as text
         let content = `${t('title')}\n${'='.repeat(30)}\n\n`;
-        itinerary.forEach((dayBlocks, i) => {
+        itin.forEach((dayBlocks, i) => {
           content += `${t('day_label')} ${i + 1}\n${'-'.repeat(20)}\n`;
           dayBlocks.forEach(block => {
-            content += `- ${block.name[langKey]}\n  ${block.description[langKey]}\n\n`;
+            const slotText = block.slot === 'am' ? t('morning') : block.slot === 'pm' ? t('afternoon') : t('morning') + ' + ' + t('afternoon');
+            content += `[${slotText}] ${block.name[langKey]}\n  ${block.description[langKey]}\n\n`;
           });
         });
-        content += `${t('cost_label')}: ~€${totalCost}\namalficoast-travel.com`;
+        content += `${t('cost_label')}: ~€${cost}\namalficoast-travel.com`;
         const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -646,8 +1041,46 @@ function t(key: string): string {
         URL.revokeObjectURL(url);
       }
     });
+
+    // Auto-save
+    saveToLocalStorage(itinerary);
   }
 
-  // Preload data
-  loadData();
+  // --- Check URL params or localStorage on load ---
+  async function checkRestore() {
+    // URL params take priority
+    const urlData = restoreFromUrl();
+    if (urlData) {
+      if (!blocksData) await loadData();
+      Object.assign(state, urlData.state);
+      const restored = rebuildItinerary(urlData.blockIds);
+      if (restored.length > 0) {
+        lastItinerary = restored;
+        showStep(3);
+        await renderResults(restored);
+        return;
+      }
+    }
+    // Then localStorage
+    const saved = restoreFromLocalStorage();
+    if (saved) {
+      if (!blocksData) await loadData();
+      Object.assign(state, saved.state);
+      const restored = rebuildItinerary(saved.blocks.map(day => day.map(b => b.id)));
+      if (restored.length > 0) {
+        lastItinerary = restored;
+        showStep(3);
+        await renderResults(restored);
+        // Show toast
+        const toast = document.createElement('div');
+        toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e293b;color:#cbd5e1;padding:12px 20px;border-radius:12px;font-size:14px;z-index:50;box-shadow:0 4px 12px rgba(0,0,0,.3)';
+        toast.textContent = t('restored_label');
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3500);
+      }
+    }
+  }
+
+  // Preload data + check restore
+  loadData().then(() => checkRestore());
 </script>
