@@ -1,0 +1,289 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Costiera Amalfitana', url: '/it-it/costiera-amalfitana/' },
+  { name: 'Agerola', url: '/it-it/costiera-amalfitana/agerola/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Agerola",
+  "description": "Agerola e il balcone verde della Costiera Amalfitana, punto di partenza del Sentiero degli Dei e patria del Fior di Latte. A 600 m di altitudine, offre trekking, aria fresca e panorami mozzafiato.",
+  "url": "https://amalficoast-travel.com/it-it/costiera-amalfitana/agerola/",
+  "touristType": ["Trekking", "Natura", "Gastronomia", "Panorami"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Agerola", "addressRegion": "Napoli", "addressCountry": "IT", "postalCode": "80051" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.6383, "longitude": 14.5417 }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come arrivare ad Agerola?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In bus SITA da Amalfi (circa 40 min) o da Castellammare di Stabia/Gragnano (circa 30 min). In auto da Napoli: autostrada A3, uscita Castellammare di Stabia, poi SS366 verso Agerola. Parcheggio disponibile a Bomerano e San Lazzaro." }
+    },
+    {
+      "@type": "Question",
+      "name": "Il Sentiero degli Dei parte da Agerola?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Si, il percorso classico parte da Bomerano (frazione di Agerola) e arriva a Nocelle sopra Positano, circa 7.8 km, 3-4 ore di cammino. Il sentiero e classificato come difficolta media. Evitare nelle giornate di pioggia o nebbia fitta." }
+    },
+    {
+      "@type": "Question",
+      "name": "Che cos'e il Fior di Latte di Agerola?",
+      "acceptedAnswer": { "@type": "Answer", "text": "E una mozzarella fresca a pasta filata prodotta con latte vaccino delle mucche agerolesi. Ha un sapore delicato e una consistenza morbida unica. Ogni caseificio di Agerola ha la sua versione: il modo migliore per assaggiarla e comprarla direttamente dal produttore." }
+    },
+    {
+      "@type": "Question",
+      "name": "Agerola e adatta alle famiglie?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Si, l'altitudine (600 m) rende il clima fresco anche in estate. Ci sono sentieri facili, parchi giochi, agriturismi con animali e caseifici visitabili. E un'alternativa perfetta al caldo della costa per una giornata diversa." }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa mangiare ad Agerola?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Il Fior di Latte e i prodotti caseari sono il piatto forte. Da provare anche i fusilli al ragu di coniglio, la pizza con Fior di Latte locale, i dolci a base di ricotta e i formaggi stagionati. Gli agriturismi offrono menu completi a prezzi contenuti." }
+    }
+  ]
+};
+
+const schemas = [touristAttractionSchema, faqSchema];
+
+const fastFacts = [
+  { dt: 'Posizione', dd: 'Monti Lattari, NA' },
+  { dt: 'Altitudine', dd: '~600 m slm' },
+  { dt: 'Popolazione', dd: '~7.500 abitanti' },
+  { dt: 'Frazioni', dd: 'Bomerano, San Lazzaro, Pianillo' },
+  { dt: 'Da Amalfi', dd: '40 min (bus SITA)' },
+  { dt: 'Sentiero degli Dei', dd: 'Partenza da Bomerano' },
+  { dt: 'Specialita', dd: 'Fior di Latte, formaggi' },
+  { dt: 'Miglior periodo', dd: 'Apr-Ott (trekking)' },
+  { dt: 'Ideale per', dd: 'Trekking, famiglie, foodies' },
+];
+
+const tips = [
+  'Parti presto per il Sentiero degli Dei (prima delle 8:00): avrai il sentiero quasi per te e la luce migliore per le foto.',
+  'Compra il Fior di Latte direttamente nei caseifici di San Lazzaro: costa meno e lo mangi appena fatto, ancora tiepido.',
+  'Se il Sentiero degli Dei ti sembra troppo battuto, prova il Sentiero dei Tre Calli o il sentiero per la Grotta di Santa Barbara.',
+  'D\'estate Agerola e 8-10 gradi piu fresca della costa: porta una felpa leggera anche in agosto.',
+];
+---
+
+<BaseLayout
+  title="Agerola 2026: Sentiero degli Dei, Fior di Latte e Trekking"
+  description="Guida completa ad Agerola: punto di partenza del Sentiero degli Dei, patria del Fior di Latte, trekking sui Monti Lattari e panorami sulla Costiera Amalfitana a 600 m di altitudine."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={schemas}
+  pageKey="agerola"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/agerola-hero.webp" alt="Agerola, il balcone della Costiera Amalfitana" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Monti Lattari - 600 m slm</p>
+        <h1 class="font-serif text-display text-white mb-4">Agerola</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Il balcone verde della Costiera. Partenza del Sentiero degli Dei, patria del Fior di Latte e dei panorami piu vertiginosi della regione.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">Fast Facts</a>
+          <a href="#sentiero-degli-dei" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">Sentiero degli Dei</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Agerola e il segreto meglio custodito della Costiera Amalfitana. A 600 metri di altitudine, nascosta tra i Monti Lattari, questa comunita di pastori e contadini offre cio che la costa non puo dare: aria fresca, silenzio, sentieri spettacolari e una tradizione casearia che risale al Medioevo.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            E da qui che parte il celebre <strong>Sentiero degli Dei</strong>, uno dei trekking piu belli d'Europa. Ma Agerola non e solo il punto di partenza di un sentiero: e un mondo a parte, fatto di frazioni sparse (Bomerano, San Lazzaro, Pianillo), caseifici artigianali e trattorie dove si mangia ancora con i prodotti dell'orto.
+          </p>
+        </div>
+
+        <!-- Lo Sapevi -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Lo sapevi?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">7.8 km</p>
+              <p class="text-white/60 text-xs italic mt-1">il Sentiero degli Dei, da Bomerano a Nocelle</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">600 m</p>
+              <p class="text-white/60 text-xs italic mt-1">altitudine media, 8-10 gradi C piu fresco della costa</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">XII sec.</p>
+              <p class="text-white/60 text-xs italic mt-1">tradizione casearia documentata</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sentiero degli Dei -->
+        <div id="sentiero-degli-dei">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-6">Il Sentiero degli Dei</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Il trekking piu famoso della Costiera Amalfitana, un sentiero panoramico scavato nella roccia dei Monti Lattari a strapiombo sul mare.
+          </p>
+          <div class="bg-white p-6 rounded-2xl border border-slate-100 space-y-4">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div>
+                <p class="text-xs text-slate-400 uppercase tracking-wider">Partenza</p>
+                <p class="font-medium text-charcoal">Bomerano (Agerola)</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase tracking-wider">Arrivo</p>
+                <p class="font-medium text-charcoal">Nocelle (Positano)</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase tracking-wider">Distanza</p>
+                <p class="font-medium text-charcoal">~7.8 km</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase tracking-wider">Durata</p>
+                <p class="font-medium text-charcoal">3-4 ore</p>
+              </div>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              <strong>Difficolta:</strong> Media. Dislivello in discesa di circa 600 m. Scarpe da trekking obbligatorie, bastoncini consigliati. Portare almeno 1.5 litri d'acqua. <strong>Non percorribile in caso di pioggia o nebbia.</strong> Da Nocelle si scende a Positano con 1.500 scalini o con il bus locale.
+            </p>
+          </div>
+        </div>
+
+        <!-- Cosa Vedere -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Cosa vedere ad Agerola</h2>
+          <div class="space-y-8">
+            {[
+              { n: 1, title: 'Bomerano e la partenza del Sentiero', text: 'La frazione piu conosciuta, con la piazzetta da cui parte il Sentiero degli Dei. Bar, alimentari e il punto informativo del Parco dei Monti Lattari. Da qui il panorama su Capri e sulla costa e gia spettacolare.' },
+              { n: 2, title: 'Caseifici e Fior di Latte', text: 'Il Fior di Latte di Agerola e una mozzarella fresca prodotta con latte delle mucche agerolesi allevate in quota. Diversi caseifici accolgono visitatori per degustazioni. Da provare anche la provola affumicata e la ricotta fresca.' },
+              { n: 3, title: 'Sentiero dei Tre Calli', text: 'Alternativa meno affollata al Sentiero degli Dei. Collega Agerola a Positano attraverso un percorso che attraversa boschi di castagno e terrazzamenti di limoni. Piu lungo (5-6 ore) ma altrettanto panoramico.' },
+              { n: 4, title: 'Parco Regionale dei Monti Lattari', text: 'Agerola e nel cuore del parco: sentieri segnalati, boschi di leccio e castagno, grotte carsiche e una biodiversita unica. Il Centro Visite a San Lazzaro fornisce mappe e informazioni.' },
+              { n: 5, title: 'Grotta di Santa Barbara', text: 'Una grotta carsica raggiungibile con un\'escursione di circa 2 ore da San Lazzaro. All\'interno, stalattiti e un ambiente suggestivo. Visita libera, ma e consigliata una guida locale.' },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Consiglio Local -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20"><svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Consiglio Local</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">Fior di Latte dal caseificio</h3>
+              <p class="text-white/70 leading-relaxed">Fermati in un caseificio di San Lazzaro verso le 10:00 del mattino, quando il Fior di Latte esce ancora tiepido. Compralo, aggiungi un po' di pane locale e un pomodoro: il pranzo perfetto prima del sentiero.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Domande frequenti su Agerola</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts - Agerola</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-xs sm:text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Consigli degli insider</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Esplora la Costiera</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/it-it/costiera-amalfitana/furore/', label: 'Furore' },
+              { href: '/it-it/costiera-amalfitana/praiano/', label: 'Praiano' },
+              { href: '/it-it/costiera-amalfitana/positano/', label: 'Positano' },
+              { href: '/it-it/costiera-amalfitana/amalfi/', label: 'Amalfi' },
+              { href: '/it-it/costiera-amalfitana/tramonti/', label: 'Tramonti' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs sm:text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Esplora anche sulla Costiera"
+    items={[
+      { name: 'Furore',   href: '/it-it/costiera-amalfitana/furore/',   tag: 'Il borgo che non c\'e', desc: 'Il Fiordo spettacolare e il borgo dipinto senza centro.' },
+      { name: 'Praiano',  href: '/it-it/costiera-amalfitana/praiano/',  tag: 'Tramonto & Quiete',     desc: 'Il tramonto da San Gennaro e la silenziosa Marina di Praia.' },
+      { name: 'Positano', href: '/it-it/costiera-amalfitana/positano/', tag: 'Fashion & Vista',        desc: 'Le case colorate a picco sul mare e la spiaggia Fornillo.' },
+      { name: 'Tramonti', href: '/it-it/costiera-amalfitana/tramonti/', tag: 'Entroterra & Vino',      desc: 'Il polmone verde della Costiera, terra di vini e tradizioni.' },
+      { name: 'Amalfi',   href: '/it-it/costiera-amalfitana/amalfi/',   tag: 'Repubblica Marinara',    desc: 'La capitale storica con il Duomo e il Museo della Carta.' },
+    ]}
+    lang="it-it"
+  />
+
+</BaseLayout>

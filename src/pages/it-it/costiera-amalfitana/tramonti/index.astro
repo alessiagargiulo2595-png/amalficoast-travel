@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Costiera Amalfitana', url: '/it-it/costiera-amalfitana/' },
+  { name: 'Tramonti', url: '/it-it/costiera-amalfitana/tramonti/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Tramonti",
+  "description": "Tramonti e il polmone verde della Costiera Amalfitana, un comune sparso di 13 frazioni tra vigneti, limoneti e antiche chiese. Terra di vini Costa d'Amalfi DOC, pizza e tradizioni rurali.",
+  "url": "https://amalficoast-travel.com/it-it/costiera-amalfitana/tramonti/",
+  "touristType": ["Enogastronomia", "Natura", "Autenticita", "Tradizioni"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Tramonti", "addressRegion": "Salerno", "addressCountry": "IT", "postalCode": "84010" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.6933, "longitude": 14.6333 }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come arrivare a Tramonti?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In auto: dal Valico di Chiunzi (SS373) da Angri/Nocera, circa 20 min dall'autostrada A3. In bus SITA: da Amalfi o Maiori (circa 30 min). Non c'e stazione ferroviaria. L'auto e il mezzo piu comodo perche le 13 frazioni sono sparse." }
+    },
+    {
+      "@type": "Question",
+      "name": "Perche Tramonti e famosa per la pizza?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Tramonti e considerata una delle culle della pizza napoletana. Molti pizzaioli emigrati da Tramonti hanno aperto pizzerie in tutto il mondo. La tradizione locale prevede l'uso di ingredienti a km zero: pomodoro locale, Fior di Latte dei caseifici del territorio e olio d'oliva delle colline." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quali vini si producono a Tramonti?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Tramonti e la zona principale della DOC Costa d'Amalfi sottozona Tramonti. Si producono bianchi con uve Falanghina, Biancolella e Pepella, e rossi con Tintore di Tramonti (Piedirosso). Cantine come Apicella, Reale e Monte di Grazia offrono degustazioni su prenotazione." }
+    },
+    {
+      "@type": "Question",
+      "name": "Tramonti merita una visita?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Assolutamente si, soprattutto per chi cerca l'autenticita. Nessun turismo di massa, prezzi bassissimi, natura incontaminata e una gastronomia eccezionale. E l'antitesi della Costiera patinata: qui si vive come 50 anni fa." }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa vedere a Tramonti?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Il Conservatorio di San Giuseppe (affreschi del XVII sec.), le 13 frazioni sparse con le loro chiese, i vigneti terrazzati dove si produce il vino Costa d'Amalfi DOC, il Valico di Chiunzi con la vista panoramica, e i sentieri naturalistici verso i Monti Lattari." }
+    }
+  ]
+};
+
+const schemas = [touristAttractionSchema, faqSchema];
+
+const fastFacts = [
+  { dt: 'Posizione', dd: 'Entroterra Costiera, SA' },
+  { dt: 'Altitudine', dd: '300-800 m slm' },
+  { dt: 'Popolazione', dd: '~4.000 abitanti' },
+  { dt: 'Frazioni', dd: '13 borgate sparse' },
+  { dt: 'Da Amalfi', dd: '30 min (bus/auto)' },
+  { dt: 'Accesso auto', dd: 'Valico di Chiunzi' },
+  { dt: 'Specialita', dd: 'Vino DOC, pizza, Fior di Latte' },
+  { dt: 'Miglior periodo', dd: 'Apr-Ott' },
+  { dt: 'Ideale per', dd: 'Enogastronomia, natura' },
+];
+
+const tips = [
+  'Prenota una degustazione in cantina: Apicella (la piu antica della Costiera, dal 1870) o Monte di Grazia per il Tintore.',
+  'Il Valico di Chiunzi e il punto piu alto raggiungibile in auto: la vista sulla Valle del Sarno e sul Vesuvio e straordinaria.',
+  'Le pizzerie di Tramonti sono quelle preferite dai locali della Costiera, non dai turisti: prezzi bassi e qualita altissima.',
+  'In autunno (ottobre) si tiene la Sagra della Castagna: prodotti locali, vino e atmosfera autentica nelle frazioni.',
+];
+---
+
+<BaseLayout
+  title="Tramonti 2026: Il Polmone Verde della Costiera Amalfitana"
+  description="Guida a Tramonti: vini Costa d'Amalfi DOC, 13 frazioni autentiche, pizza tradizionale, sentieri sui Monti Lattari. L'entroterra segreto della Costiera Amalfitana."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={schemas}
+  pageKey="tramonti"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/tramonti-hero.webp" alt="Tramonti, il polmone verde della Costiera Amalfitana" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Entroterra della Costiera Amalfitana</p>
+        <h1 class="font-serif text-display text-white mb-4">Tramonti</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Il polmone verde della Costiera. Vini DOC, pizza autentica e 13 frazioni dove il tempo si e fermato.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">Fast Facts</a>
+          <a href="#vino" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">Vini DOC</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Tramonti e la Costiera Amalfitana che non ti aspetti. Niente mare, niente turisti, niente code: solo colline terrazzate, vigneti che sfidano la gravita, 13 frazioni sparse collegate da strade strette e una tradizione enogastronomica che rivaleggia con qualsiasi destinazione gourmet d'Italia.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Il nome stesso racconta la sua natura: <em>tra i monti</em>. Raggiungibile dal <strong>Valico di Chiunzi</strong> (uno dei passaggi piu scenografici della Campania), Tramonti e la culla del vino <strong>Costa d'Amalfi DOC</strong> e della tradizione pizzaiola che ha conquistato il mondo.
+          </p>
+        </div>
+
+        <!-- Lo Sapevi -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Lo sapevi?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">13</p>
+              <p class="text-white/60 text-xs italic mt-1">frazioni sparse, ognuna con la sua chiesa</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1870</p>
+              <p class="text-white/60 text-xs italic mt-1">anno di fondazione della Cantina Apicella</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">DOC</p>
+              <p class="text-white/60 text-xs italic mt-1">Costa d'Amalfi sottozona Tramonti</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vino -->
+        <div id="vino">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-6">I Vini di Tramonti</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Tramonti e il cuore della produzione vinicola della Costiera Amalfitana. I vigneti terrazzati, esposti a sud tra i 200 e i 600 m di altitudine, producono uve uniche.
+          </p>
+          <div class="space-y-6">
+            <div class="bg-med-gold/10 p-6 rounded-2xl border border-med-gold/20">
+              <h3 class="font-bold text-slate-900 mb-2 text-lg">Tintore di Tramonti</h3>
+              <p class="text-slate-600 leading-relaxed">Il vitigno autoctono rosso piu importante: produce vini intensi, tannici, dal colore profondo quasi nero. E un clone locale del Piedirosso, ma con caratteristiche uniche dovute all'altitudine e al terreno vulcanico.</p>
+            </div>
+            <div class="bg-med-gold/10 p-6 rounded-2xl border border-med-gold/20">
+              <h3 class="font-bold text-slate-900 mb-2 text-lg">Bianchi e Rosati</h3>
+              <p class="text-slate-600 leading-relaxed">Falanghina, Biancolella e la rara Pepella producono bianchi freschi e minerali. I rosati da Piedirosso sono perfetti con il pesce. Cantine da visitare: Apicella, Reale, Monte di Grazia, Tenuta San Francesco.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cosa Vedere -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Cosa vedere a Tramonti</h2>
+          <div class="space-y-8">
+            {[
+              { n: 1, title: 'Conservatorio di San Giuseppe e Teresa', text: 'Il monumento piu importante di Tramonti, con affreschi del XVII secolo e un organo storico. Si trova nella frazione di Polvica ed e visitabile su richiesta. Un gioiello dimenticato.' },
+              { n: 2, title: 'Le 13 frazioni', text: 'Ogni frazione ha la sua chiesa, la sua identita e le sue tradizioni. Le piu caratteristiche: Gete (panoramica), Corsano (con il castello), Campinola (con la chiesa di San Michele), Polvica (con il Conservatorio).' },
+              { n: 3, title: 'Valico di Chiunzi', text: 'Il passo montano a 656 m che separa la Costiera dall\'Agro Nocerino. La vista sulla Valle del Sarno, sul Vesuvio e sulla piana campana e spettacolare, soprattutto al tramonto.' },
+              { n: 4, title: 'Sentieri e natura', text: 'Tramonti e attraversata da sentieri CAI che collegano le frazioni e portano verso i Monti Lattari. Boschi di castagno, noccioleti e terrazzamenti: un paesaggio agricolo intatto.' },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Consiglio Local -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20"><svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Consiglio Local</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">La pizza di Tramonti</h3>
+              <p class="text-white/70 leading-relaxed">Tramonti e la patria dei pizzaioli: centinaia di famiglie tramontane gestiscono pizzerie in tutto il mondo. Le pizzerie locali usano Fior di Latte fresco e pomodoro dell'orto: qualita altissima a prezzi che sulla costa non esistono piu.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Domande frequenti su Tramonti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts - Tramonti</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-xs sm:text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Consigli degli insider</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Esplora la Costiera</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/it-it/costiera-amalfitana/agerola/', label: 'Agerola' },
+              { href: '/it-it/costiera-amalfitana/ravello/', label: 'Ravello' },
+              { href: '/it-it/costiera-amalfitana/maiori/', label: 'Maiori' },
+              { href: '/it-it/costiera-amalfitana/minori/', label: 'Minori' },
+              { href: '/it-it/costiera-amalfitana/amalfi/', label: 'Amalfi' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs sm:text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Esplora anche sulla Costiera"
+    items={[
+      { name: 'Agerola',  href: '/it-it/costiera-amalfitana/agerola/',  tag: 'Trekking & Natura',      desc: 'Sentiero degli Dei, Fior di Latte e panorami a 600 m.' },
+      { name: 'Ravello',  href: '/it-it/costiera-amalfitana/ravello/',  tag: 'Musica & Giardini',      desc: 'Villa Rufolo, Villa Cimbrone e il Festival Musicale.' },
+      { name: 'Maiori',   href: '/it-it/costiera-amalfitana/maiori/',   tag: 'Spiaggia & Relax',       desc: 'La spiaggia di sabbia piu lunga della costiera.' },
+      { name: 'Minori',   href: '/it-it/costiera-amalfitana/minori/',   tag: 'Sapori & Cultura',       desc: 'Villa romana e scialatielli freschi.' },
+      { name: 'Furore',   href: '/it-it/costiera-amalfitana/furore/',   tag: 'Il borgo che non c\'e',  desc: 'Il Fiordo spettacolare e il borgo dipinto.' },
+    ]}
+    lang="it-it"
+  />
+
+</BaseLayout>

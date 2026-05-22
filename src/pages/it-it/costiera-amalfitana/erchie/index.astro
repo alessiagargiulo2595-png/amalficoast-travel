@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Costiera Amalfitana', url: '/it-it/costiera-amalfitana/' },
+  { name: 'Erchie', url: '/it-it/costiera-amalfitana/erchie/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Erchie",
+  "description": "Erchie e un piccolo borgo marinaro della Costiera Amalfitana, frazione di Maiori, con una spiaggia di sabbia protetta da una torre saracena e un'atmosfera autentica lontana dal turismo di massa.",
+  "url": "https://amalficoast-travel.com/it-it/costiera-amalfitana/erchie/",
+  "touristType": ["Mare", "Relax", "Autenticita", "Famiglie"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Erchie", "addressRegion": "Salerno", "addressCountry": "IT", "postalCode": "84010" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.6278, "longitude": 14.6792 }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come arrivare a Erchie?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In auto: sulla SS163 tra Cetara e Maiori, c'e un bivio che scende verso il borgo (parcheggio limitato). In bus SITA: fermata Erchie sulla linea Salerno-Amalfi. In barca: raggiungibile via mare da Maiori o Cetara." }
+    },
+    {
+      "@type": "Question",
+      "name": "La spiaggia di Erchie e di sabbia?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Si, Erchie ha una delle poche spiagge di sabbia della Costiera Amalfitana. E una baia protetta, con acque calme e poco profonde, ideale per famiglie con bambini. C'e una parte libera e una attrezzata con lettini e ombrelloni." }
+    },
+    {
+      "@type": "Question",
+      "name": "Erchie e affollata in estate?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Molto meno delle spiagge di Positano o Amalfi. Erchie e conosciuta soprattutto dai locali e dai campani. In agosto puo essere frequentata ma mai sovraffollata. Arriva la mattina presto per il posto migliore." }
+    },
+    {
+      "@type": "Question",
+      "name": "Ci sono ristoranti a Erchie?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Si, ci sono alcune trattorie e ristoranti di pesce direttamente sulla spiaggia e nel borgo. Cucina di mare freschissima a prezzi contenuti rispetto ai ristoranti della costa principale." }
+    },
+    {
+      "@type": "Question",
+      "name": "Cos'e la Torre di Erchie?",
+      "acceptedAnswer": { "@type": "Answer", "text": "E una torre saracena del XVI secolo che domina la baia. Costruita per difendere il borgo dalle incursioni dei pirati, oggi e uno dei simboli piu fotografati della zona. Non e visitabile internamente ma e un elemento scenografico straordinario." }
+    }
+  ]
+};
+
+const schemas = [touristAttractionSchema, faqSchema];
+
+const fastFacts = [
+  { dt: 'Posizione', dd: 'Costiera Amalfitana, SA' },
+  { dt: 'Comune', dd: 'Frazione di Maiori' },
+  { dt: 'Da Salerno', dd: '25 min (auto/bus)' },
+  { dt: 'Da Amalfi', dd: '20 min (auto/bus)' },
+  { dt: 'Spiaggia', dd: 'Sabbia (rara in Costiera!)' },
+  { dt: 'Torre', dd: 'Torre saracena XVI sec.' },
+  { dt: 'Servizi', dd: 'Ristoranti, lidi, parcheggio' },
+  { dt: 'Miglior periodo', dd: 'Mag-Set' },
+  { dt: 'Ideale per', dd: 'Famiglie, relax, mare' },
+];
+
+const tips = [
+  'Erchie ha una delle pochissime spiagge di sabbia della Costiera: perfetta per le famiglie con bambini piccoli.',
+  'Il parcheggio e molto limitato: arriva presto o usa il bus SITA da Salerno o Maiori.',
+  'Pranza in una delle trattorie sulla spiaggia: pesce fresco a meta prezzo rispetto ad Amalfi.',
+  'La baia e protetta dai venti: anche quando il mare e mosso altrove, qui l\'acqua e spesso calma.',
+];
+---
+
+<BaseLayout
+  title="Erchie 2026: La Spiaggia di Sabbia Segreta della Costiera Amalfitana"
+  description="Guida a Erchie: la spiaggia di sabbia nascosta della Costiera Amalfitana, la torre saracena, le trattorie di pesce. Il borgo marinaro autentico tra Cetara e Maiori."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={schemas}
+  pageKey="erchie"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/erchie-hero.webp" alt="Erchie, borgo marinaro della Costiera Amalfitana" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Borgo Marinaro della Costiera</p>
+        <h1 class="font-serif text-display text-white mb-4">Erchie</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Un anfiteatro di case bianche su una baia di sabbia, protetto da una torre saracena. Il segreto meglio custodito della Costiera.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">Fast Facts</a>
+          <a href="#spiaggia" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">La Spiaggia</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Erchie e il borgo che i turisti non trovano. Nascosto in una baia tra <a href="/it-it/costiera-amalfitana/cetara/" class="text-med-blue hover:underline">Cetara</a> e <a href="/it-it/costiera-amalfitana/maiori/" class="text-med-blue hover:underline">Maiori</a>, questo piccolo anfiteatro di case bianche affacciato su una spiaggia di sabbia e il posto dove i campani vanno al mare quando vogliono evitare la folla.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Frazione di Maiori, Erchie conserva un'atmosfera da borgo di pescatori che il resto della Costiera ha perso da tempo. La torre saracena del XVI secolo domina la baia, le barche colorate sono tirate in secca sulla sabbia e i ristoranti servono pesce pescato la mattina stessa.
+          </p>
+        </div>
+
+        <!-- Lo Sapevi -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Lo sapevi?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">XVI sec.</p>
+              <p class="text-white/60 text-xs italic mt-1">la Torre saracena che domina la baia</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">Sabbia</p>
+              <p class="text-white/60 text-xs italic mt-1">una rarita sulla Costiera Amalfitana</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">~200</p>
+              <p class="text-white/60 text-xs italic mt-1">residenti nel borgo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- La Spiaggia -->
+        <div id="spiaggia">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-6">La Spiaggia di Erchie</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La spiaggia di Erchie e una delle pochissime spiagge di sabbia della Costiera Amalfitana. Una baia protetta con acque calme, poco profonde vicino alla riva, ideale per le famiglie.
+          </p>
+          <div class="space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Spiaggia principale</h3>
+              <p class="text-slate-600 text-sm">Sabbia fine con zona libera e zona attrezzata (lettini e ombrelloni a noleggio). La torre saracena fa da sfondo scenografico. Acqua calma grazie alla conformazione della baia.</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Caletta orientale</h3>
+              <p class="text-slate-600 text-sm">Una piccola caletta di ciottoli accessibile a piedi dal borgo, piu selvaggia e tranquilla. Ideale per chi cerca solitudine e snorkeling in acque limpide.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cosa Vedere -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Cosa vedere a Erchie</h2>
+          <div class="space-y-8">
+            {[
+              { n: 1, title: 'Torre Saracena', text: 'Il simbolo di Erchie: una torre di avvistamento del XVI secolo costruita per difendere la costa dalle incursioni dei pirati. Domina la baia con la sua mole imponente. Non visitabile internamente ma imperdibile come sfondo fotografico.' },
+              { n: 2, title: 'Abbazia di Santa Maria de Erchie', text: 'Un\'antica abbazia benedettina fondata nell\'XI secolo, arroccata sopra il borgo. I resti della struttura medievale sono parzialmente visitabili e offrono una vista panoramica sulla baia.' },
+              { n: 3, title: 'Il borgo dei pescatori', text: 'Passeggia tra le case bianche, le scalinate fiorite e le barche colorate tirate sulla sabbia. Erchie ha mantenuto l\'aspetto di un villaggio di pescatori grazie alla sua posizione appartata dalla strada principale.' },
+              { n: 4, title: 'Sentiero Erchie-Cetara', text: 'Un percorso costiero che collega Erchie a Cetara attraverso la macchia mediterranea. Circa 3 km, 1 ora di cammino, panorami sulla costa e sul mare. Difficolta facile.' },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Consiglio Local -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20"><svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Consiglio Local</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">Il segreto dei campani</h3>
+              <p class="text-white/70 leading-relaxed">Erchie e dove vanno i salernitani e i campani quando vogliono il mare senza la folla della Costiera. Sabbia vera, acqua calma, pesce fresco e prezzi onesti. In settimana fuori stagione potresti avere la spiaggia quasi per te.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Domande frequenti su Erchie</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts - Erchie</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-xs sm:text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Consigli degli insider</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Esplora la Costiera</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/it-it/costiera-amalfitana/cetara/', label: 'Cetara' },
+              { href: '/it-it/costiera-amalfitana/maiori/', label: 'Maiori' },
+              { href: '/it-it/costiera-amalfitana/vietri-sul-mare/', label: 'Vietri sul Mare' },
+              { href: '/it-it/costiera-amalfitana/minori/', label: 'Minori' },
+              { href: '/it-it/costiera-amalfitana/amalfi/', label: 'Amalfi' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs sm:text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Esplora anche sulla Costiera"
+    items={[
+      { name: 'Cetara',   href: '/it-it/costiera-amalfitana/cetara/',   tag: 'Borgo Marinaro',      desc: 'Il borgo dei pescatori e della colatura di alici DOP.' },
+      { name: 'Maiori',   href: '/it-it/costiera-amalfitana/maiori/',   tag: 'Spiaggia & Relax',    desc: 'La spiaggia di sabbia piu lunga della costiera: 300 m.' },
+      { name: 'Vietri',   href: '/it-it/costiera-amalfitana/vietri-sul-mare/', tag: 'Ceramiche',    desc: 'La porta della Costiera, famosa per le ceramiche artistiche.' },
+      { name: 'Minori',   href: '/it-it/costiera-amalfitana/minori/',   tag: 'Sapori & Cultura',    desc: 'Villa romana e scialatielli freschi.' },
+      { name: 'Amalfi',   href: '/it-it/costiera-amalfitana/amalfi/',   tag: 'Repubblica Marinara',  desc: 'La capitale storica con il Duomo e il Museo della Carta.' },
+    ]}
+    lang="it-it"
+  />
+
+</BaseLayout>
