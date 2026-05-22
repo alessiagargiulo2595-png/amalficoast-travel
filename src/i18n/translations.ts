@@ -474,6 +474,13 @@ export const slugMap: Record<string, SlugMap> = {
     'es-es': 'planificacion',
     'it-it': 'pianificazione',
   },
+  planner: {
+    'en-us': 'itinerary-planner',
+    'de-de': 'reiserouten-planer',
+    'fr-fr': 'planificateur-itineraire',
+    'es-es': 'planificador-itinerario',
+    'it-it': 'configuratore-itinerario',
+  },
   // Destination town pages (Amalfi Coast)
   amalfi: {
     'en-us': 'amalfi-coast/amalfi',

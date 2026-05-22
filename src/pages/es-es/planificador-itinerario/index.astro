@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import TripPlanner from '../../../components/TripPlanner.astro';
+
+const lang = 'es-es';
+const pageKey = 'planner';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Planificacion', url: '/es-es/planificacion/' },
+  { name: 'Planificador de Itinerario', url: '/es-es/planificador-itinerario/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Como funciona el planificador de viaje?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Selecciona tu punto de partida (Napoles, Salerno, Sorrento o Amalfi), el numero de dias, el presupuesto, la temporada y tus intereses. El algoritmo combina automaticamente las mejores actividades en un itinerario personalizado." }
+    },
+    {
+      "@type": "Question",
+      "name": "Puedo personalizar el itinerario generado?",
+      "acceptedAnswer": { "@type": "Answer", "text": "El itinerario generado es una sugerencia basada en tus criterios. Puedes modificar las preferencias y regenerarlo cuantas veces quieras hasta encontrar la combinacion perfecta." }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Planifica tu viaje a la Costa Amalfitana | Planificador gratuito"
+  description="Crea tu itinerario personalizado para la Costa Amalfitana, Peninsula Sorrentina e islas del Golfo. Elige dias, presupuesto e intereses."
+  lang={lang}
+  pageKey={pageKey}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+  <TripPlanner lang={lang} />
+
+  <section class="bg-white py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <h2 class="font-display text-2xl md:text-3xl font-bold text-slate-900 mb-4">Quieres saber mas?</h2>
+      <p class="text-slate-600 mb-6">Explora nuestras guias detalladas sobre transporte, itinerarios y destinos.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/es-es/guia/como-llegar/" class="px-5 py-3 bg-med-blue text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors">Como llegar</a>
+        <a href="/es-es/itinerarios/" class="px-5 py-3 border-2 border-slate-300 text-slate-700 font-semibold rounded-xl hover:border-slate-500 transition-colors">Itinerarios listos</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

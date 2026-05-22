@@ -53,6 +53,15 @@ export const manualHrefLangMappings: Record<string, Record<string, string>> = {
     'es-es': 'https://amalficoast-travel.com/es-es/guia/cuando-visitar/',
     'it-it': 'https://amalficoast-travel.com/it-it/guida/quando-visitare/',
   },
+
+  // Itinerary Planner / Configuratore
+  '/en-us/itinerary-planner/': {
+    'en-us': 'https://amalficoast-travel.com/en-us/itinerary-planner/',
+    'de-de': 'https://amalficoast-travel.com/de-de/reiserouten-planer/',
+    'fr-fr': 'https://amalficoast-travel.com/fr-fr/planificateur-itineraire/',
+    'es-es': 'https://amalficoast-travel.com/es-es/planificador-itinerario/',
+    'it-it': 'https://amalficoast-travel.com/it-it/configuratore-itinerario/',
+  },
 };
 
 /**

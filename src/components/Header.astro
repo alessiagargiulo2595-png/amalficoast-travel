@@ -12,11 +12,11 @@ const { lang, pageKey } = Astro.props;
 const t = getTranslations(lang);
 const locales: Locale[] = ['en-us', 'de-de', 'fr-fr', 'es-es', 'it-it'];
 const existingPages: Record<Locale, string[]> = {
-  'en-us': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning'],
-  'de-de': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning'],
-  'fr-fr': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning'],
-  'es-es': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning'],
-  'it-it': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning'],
+  'en-us': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning', 'planner'],
+  'de-de': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning', 'planner'],
+  'fr-fr': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning', 'planner'],
+  'es-es': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning', 'planner'],
+  'it-it': ['destinations', 'beaches', 'itineraries', 'getting-here', 'when-to-visit', 'planning', 'planner'],
 };
 
 const flagMap: Record<Locale, string> = {
@@ -80,6 +80,13 @@ const menuDescGuida = ({ 'en-us': 'Practical travel tips', 'de-de': 'Praktische 
 const menuDescEsperienze = ({ 'en-us': 'Experience unforgettable moments', 'de-de': 'Erleben Sie unvergessliche Momente', 'fr-fr': 'Vivez des moments inoubliables', 'es-es': 'Vive momentos inolvidables', 'it-it': 'Vivi momenti indimenticabili' } as const)[lang];
 const travelGuideLabel = ({ 'en-us': 'Travel | Guide', 'de-de': 'Reiseführer | Planung', 'fr-fr': 'Voyage | Guide', 'es-es': 'Viaje | Guía', 'it-it': 'Travel | Guide' } as const)[lang];
 const experiencesCollectionLabel = ({ 'en-us': 'Experiences | Collection', 'de-de': 'Erlebnisse | Kollektion', 'fr-fr': 'Expériences | Collection', 'es-es': 'Experiencias | Colección', 'it-it': 'Experiences | Collection' } as const)[lang];
+const plannerTitle = ({ 'en-us': 'Build your trip', 'de-de': 'Plane deine Reise', 'fr-fr': 'Crée ton voyage', 'es-es': 'Crea tu viaje', 'it-it': 'Crea il tuo itinerario' } as const)[lang];
+const plannerDesc = ({ 'en-us': 'Choose starting point, interests and duration: get a personalised itinerary in seconds.', 'de-de': 'Wähle Startpunkt, Interessen und Dauer: erhalte eine persönliche Reiseroute in Sekunden.', 'fr-fr': 'Choisis point de départ, intérêts et durée : obtiens un itinéraire personnalisé en quelques secondes.', 'es-es': 'Elige punto de partida, intereses y duración: obtén un itinerario personalizado en segundos.', 'it-it': 'Scegli punto di partenza, interessi e durata: ottieni un itinerario personalizzato in pochi secondi.' } as const)[lang];
+const plannerCta = ({ 'en-us': 'Start now', 'de-de': 'Jetzt starten', 'fr-fr': 'Commencer', 'es-es': 'Empezar ahora', 'it-it': 'Inizia ora' } as const)[lang];
+const plannerHref = ({ 'en-us': '/en-us/itinerary-planner/', 'de-de': '/de-de/reiserouten-planer/', 'fr-fr': '/fr-fr/planificateur-itineraire/', 'es-es': '/es-es/planificador-itinerario/', 'it-it': '/it-it/configuratore-itinerario/' } as const)[lang];
+const oneDayLabel = ({ 'en-us': '1 day', 'de-de': '1 Tag', 'fr-fr': '1 jour', 'es-es': '1 día', 'it-it': '1 giorno' } as const)[lang];
+const multiDayLabel = ({ 'en-us': '3–7 days', 'de-de': '3–7 Tage', 'fr-fr': '3–7 jours', 'es-es': '3–7 días', 'it-it': '3–7 giorni' } as const)[lang];
+const viewAllItLabel = ({ 'en-us': 'View all itineraries', 'de-de': 'Alle Reiserouten', 'fr-fr': 'Tous les itinéraires', 'es-es': 'Todos los itinerarios', 'it-it': 'Tutti gli itinerari' } as const)[lang];
 const amalfiCoastGuideAlt = ({ 'en-us': 'Amalfi Coast Travel Guide', 'de-de': 'Amalfiküste Reiseführer', 'fr-fr': 'Guide de Voyage de la Côte Amalfitaine', 'es-es': 'Guía de Viaje de la Costa Amalfitana', 'it-it': 'Guida di Viaggio della Costiera Amalfitana' } as const)[lang];
 
 /* ── Destinazioni: Costiera borghi ── */
@@ -178,6 +185,7 @@ const guidaPratica = ({
       { name: 'Getting Here',  href: '/en-us/guide/getting-here/' },
       { name: 'When to Visit', href: '/en-us/guide/when-to-visit/' },
       { name: 'Map',           href: '/en-us/guide/map/' },
+      { name: 'Build Your Itinerary', href: '/en-us/itinerary-planner/' },
     ],
     guides: [
       { name: 'Ferries & Hydrofoils', href: '/en-us/guide/ferries/' },
@@ -196,6 +204,7 @@ const guidaPratica = ({
       { name: 'Anreise',        href: '/de-de/ratgeber/anreise/' },
       { name: 'Beste Reisezeit', href: '/de-de/ratgeber/reisezeit/' },
       { name: 'Karte',          href: '/de-de/ratgeber/karte/' },
+      { name: 'Reiseroute erstellen', href: '/de-de/reiserouten-planer/' },
     ],
     guides: [
       { name: 'Fähren & Tragflügelboote', href: '/de-de/ratgeber/faehren/' },
@@ -214,6 +223,7 @@ const guidaPratica = ({
       { name: 'Comment venir', href: '/fr-fr/guide/comment-venir/' },
       { name: 'Quand Visiter',  href: '/fr-fr/guide/quand-visiter/' },
       { name: 'Carte',          href: '/fr-fr/guide/carte/' },
+      { name: 'Crée ton itinéraire', href: '/fr-fr/planificateur-itineraire/' },
     ],
     guides: [
       { name: 'Ferries & Hydroglisseurs', href: '/fr-fr/guide/ferries/' },
@@ -232,6 +242,7 @@ const guidaPratica = ({
       { name: 'Cómo llegar',     href: '/es-es/guia/como-llegar/' },
       { name: 'Cuándo Visitar',  href: '/es-es/guia/cuando-visitar/' },
       { name: 'Mapa',            href: '/es-es/guia/mapa/' },
+      { name: 'Crea tu itinerario', href: '/es-es/planificador-itinerario/' },
     ],
     guides: [
       { name: 'Ferries y Aliscafos',      href: '/es-es/guia/ferries/' },
@@ -250,6 +261,7 @@ const guidaPratica = ({
       { name: 'Come arrivare',  href: '/it-it/guida/come-arrivare/' },
       { name: 'Quando andare',  href: '/it-it/guida/quando-visitare/' },
       { name: 'Mappa',          href: '/it-it/guida/mappa/' },
+      { name: 'Crea il tuo itinerario', href: '/it-it/configuratore-itinerario/' },
     ],
     guides: [
       { name: 'Traghetti & Aliscafi', href: '/it-it/guida/traghetti/' },
@@ -782,7 +794,7 @@ const eventiGastronomia = ({
           </div>
           <!-- Content -->
           <div class="flex-grow p-8">
-            <div class="grid grid-cols-2 gap-x-20 gap-y-16">
+            <div class="grid grid-cols-[1fr_1fr_auto] gap-x-14 gap-y-16">
               {/* Esperienze */}
               <div class="flex flex-col space-y-3">
                 <a href={esperienzeHref} class="text-med-blue text-[10px] font-bold uppercase tracking-[0.3em] relative block pb-2">
@@ -802,25 +814,30 @@ const eventiGastronomia = ({
                   ))}
                 </ul>
               </div>
-              {/* Itinerari */}
+              {/* Itinerari — ridotti con sub-headers */}
               <div class="flex flex-col space-y-3">
                 <a href={itinerariHref} class="text-med-blue text-[10px] font-bold uppercase tracking-[0.3em] relative block pb-2">
                   {itinerariLabel}
                   <span class="absolute bottom-[-1px] left-0 w-8 h-px bg-med-gold"></span>
                 </a>
+                {/* 1 giorno — top 2 */}
+                <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-slate-400 pt-1">{oneDayLabel}</span>
                 <ul class="space-y-3">
-                  {itinerari1g.map(i => (
+                  {itinerari1g.slice(0, 2).map(i => (
                     <li>
                       <a href={i.href} class="group flex items-center gap-3 text-slate-500 hover:text-med-blue transition-all font-sans text-[11px] uppercase tracking-widest">
                         <div class="w-5 h-5 rounded-sm bg-slate-50 opacity-0 group-hover:opacity-100 -ml-8 group-hover:ml-0 transition-all flex items-center justify-center flex-shrink-0">
                           <LemonSlice class="w-3 h-3 text-med-gold" />
                         </div>
                         <span>{i.name}</span>
-                        <span class="ml-1 text-[9px] text-med-gold font-normal whitespace-nowrap">{itPeriods.d1}</span>
                       </a>
                     </li>
                   ))}
-                  {itinerari3g.length > 0 && itinerari3g.map(i => (
+                </ul>
+                {/* 3–7 giorni — top picks */}
+                <span class="text-[9px] font-bold uppercase tracking-[0.2em] text-slate-400 pt-2">{multiDayLabel}</span>
+                <ul class="space-y-3">
+                  {itinerari3g.slice(0, 1).map(i => (
                     <li>
                       <a href={i.href} class="group flex items-center gap-3 text-slate-500 hover:text-med-blue transition-all font-sans text-[11px] uppercase tracking-widest">
                         <div class="w-5 h-5 rounded-sm bg-slate-50 opacity-0 group-hover:opacity-100 -ml-8 group-hover:ml-0 transition-all flex items-center justify-center flex-shrink-0">
@@ -831,18 +848,7 @@ const eventiGastronomia = ({
                       </a>
                     </li>
                   ))}
-                  {itinerari4g.length > 0 && itinerari4g.map(i => (
-                    <li>
-                      <a href={i.href} class="group flex items-center gap-3 text-slate-500 hover:text-med-blue transition-all font-sans text-[11px] uppercase tracking-widest">
-                        <div class="w-5 h-5 rounded-sm bg-slate-50 opacity-0 group-hover:opacity-100 -ml-8 group-hover:ml-0 transition-all flex items-center justify-center flex-shrink-0">
-                          <LemonSlice class="w-3 h-3 text-med-gold" />
-                        </div>
-                        <span>{i.name}</span>
-                        <span class="ml-1 text-[9px] text-med-gold font-normal whitespace-nowrap">{itPeriods.d4}</span>
-                      </a>
-                    </li>
-                  ))}
-                  {itinerari7g.length > 0 && itinerari7g.map(i => (
+                  {itinerari7g.slice(0, 1).map(i => (
                     <li>
                       <a href={i.href} class="group flex items-center gap-3 text-slate-500 hover:text-med-blue transition-all font-sans text-[11px] uppercase tracking-widest">
                         <div class="w-5 h-5 rounded-sm bg-slate-50 opacity-0 group-hover:opacity-100 -ml-8 group-hover:ml-0 transition-all flex items-center justify-center flex-shrink-0">
@@ -854,12 +860,24 @@ const eventiGastronomia = ({
                     </li>
                   ))}
                 </ul>
+                <a href={itinerariHref} class="text-med-blue font-bold text-[10px] uppercase tracking-[0.2em] hover:text-med-blue/70 transition-colors inline-flex items-center gap-1.5 pt-2">
+                  {viewAllItLabel} <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
               </div>
-            </div>
-            <div class="mt-8 pt-4 border-t border-slate-100 text-right">
-              <a href={esperienzeHref} class="text-med-blue font-bold text-[11px] uppercase tracking-[0.3em] hover:text-med-blue/70 transition-colors inline-flex items-center gap-2">
-                {exploreMoreLabel} <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-              </a>
+              {/* Trip Planner CTA card */}
+              <div class="w-56 flex flex-col">
+                <a href={plannerHref} class="group flex flex-col justify-between h-full rounded-2xl p-6 bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all">
+                  <div>
+                    <svg class="w-8 h-8 text-white/90 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
+                    <h4 class="font-serif text-lg font-bold text-white leading-tight mb-2">{plannerTitle}</h4>
+                    <p class="text-[11px] leading-relaxed text-white/80">{plannerDesc}</p>
+                  </div>
+                  <div class="mt-5 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.15em] text-slate-900 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-lg px-4 py-2.5 group-hover:from-amber-300 group-hover:to-yellow-400 transition-all self-start">
+                    {plannerCta}
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -1101,8 +1119,16 @@ const eventiGastronomia = ({
                 <a href={itinerariHref} class="block pt-1 text-[11px] text-med-gold font-medium tracking-wide">{viewAllLabel} →</a>
               </div>
             </div>
-            <a href={esperienzeHref} class="inline-flex items-center gap-1.5 mt-3 text-[12px] tracking-wide uppercase text-med-gold font-medium">
-              {exploreMoreLabel} <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            {/* Trip Planner CTA — mobile */}
+            <a href={plannerHref} class="block mt-6 mb-16 rounded-xl p-4 bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 transition-all active:scale-[0.98]">
+              <div class="flex items-center gap-3">
+                <svg class="w-7 h-7 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
+                <div class="flex-1">
+                  <span class="block text-[13px] font-bold text-white">{plannerTitle}</span>
+                  <span class="block text-[11px] text-white/60 leading-snug mt-0.5">{plannerDesc}</span>
+                </div>
+                <svg class="w-4 h-4 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              </div>
             </a>
           </div>
 

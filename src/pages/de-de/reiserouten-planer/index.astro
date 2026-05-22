@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import TripPlanner from '../../../components/TripPlanner.astro';
+
+const lang = 'de-de';
+const pageKey = 'planner';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/de-de/' },
+  { name: 'Planung', url: '/de-de/planung/' },
+  { name: 'Reiserouten-Planer', url: '/de-de/reiserouten-planer/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie funktioniert der Reiseplaner?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Wähle deinen Ausgangspunkt (Neapel, Salerno, Sorrent oder Amalfi), die Anzahl der Tage, das Budget, die Jahreszeit und deine Interessen. Der Algorithmus kombiniert automatisch die besten Aktivitäten zu einer persönlichen Reiseroute." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich die generierte Reiseroute anpassen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die generierte Reiseroute ist ein Vorschlag basierend auf deinen Kriterien. Du kannst die Einstellungen ändern und so oft neu generieren, bis du die perfekte Kombination gefunden hast." }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Plane deine Reise an die Amalfiküste | Kostenloser Reiseplaner"
+  description="Erstelle deine persönliche Reiseroute für die Amalfiküste, Halbinsel Sorrent und die Golfinseln. Wähle Tage, Budget und Interessen."
+  lang={lang}
+  pageKey={pageKey}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+  <TripPlanner lang={lang} />
+
+  <section class="bg-white py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <h2 class="font-display text-2xl md:text-3xl font-bold text-slate-900 mb-4">Mehr erfahren?</h2>
+      <p class="text-slate-600 mb-6">Entdecke unsere detaillierten Ratgeber zu Transport, Reiserouten und Reisezielen.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/de-de/ratgeber/anreise/" class="px-5 py-3 bg-med-blue text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors">Anreise</a>
+        <a href="/de-de/reiserouten/" class="px-5 py-3 border-2 border-slate-300 text-slate-700 font-semibold rounded-xl hover:border-slate-500 transition-colors">Fertige Reiserouten</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

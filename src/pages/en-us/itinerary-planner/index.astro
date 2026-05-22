@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import TripPlanner from '../../../components/TripPlanner.astro';
+
+const lang = 'en-us';
+const pageKey = 'planner';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Planning', url: '/en-us/planning/' },
+  { name: 'Itinerary Planner', url: '/en-us/itinerary-planner/' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does the trip planner work?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Select your starting point (Naples, Salerno, Sorrento or Amalfi), number of days, budget, season and interests. The algorithm automatically combines the best activities into a personalised itinerary." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I customise the generated itinerary?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The generated itinerary is a suggestion based on your criteria. You can change your preferences and regenerate it as many times as you like until you find the perfect combination." }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Plan your Amalfi Coast trip | Free itinerary planner"
+  description="Create your personalised itinerary for the Amalfi Coast, Sorrento Peninsula and Gulf islands. Choose days, budget and interests."
+  lang={lang}
+  pageKey={pageKey}
+  breadcrumbs={breadcrumbs}
+  schema={[faqSchema]}
+>
+  <TripPlanner lang={lang} />
+
+  <section class="bg-white py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+      <h2 class="font-display text-2xl md:text-3xl font-bold text-slate-900 mb-4">Want to learn more?</h2>
+      <p class="text-slate-600 mb-6">Explore our detailed guides on transport, itineraries and destinations.</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/en-us/guide/getting-here/" class="px-5 py-3 bg-med-blue text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors">Getting Here</a>
+        <a href="/en-us/itineraries/" class="px-5 py-3 border-2 border-slate-300 text-slate-700 font-semibold rounded-xl hover:border-slate-500 transition-colors">Ready-made Itineraries</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
