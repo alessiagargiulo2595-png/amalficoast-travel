@@ -1065,8 +1065,7 @@ function t(key: string): string {
       }
     });
 
-    // Auto-save
-    saveToLocalStorage(itinerary);
+    // localStorage save removed — always start fresh
   }
 
   // --- Check URL params or localStorage on load ---
@@ -1084,24 +1083,8 @@ function t(key: string): string {
         return;
       }
     }
-    // Then localStorage
-    const saved = restoreFromLocalStorage();
-    if (saved) {
-      if (!blocksData) await loadData();
-      Object.assign(state, saved.state);
-      const restored = rebuildItinerary(saved.blocks.map(day => day.map(b => b.id)));
-      if (restored.length > 0) {
-        lastItinerary = restored;
-        showStep(3);
-        await renderResults(restored);
-        // Show toast
-        const toast = document.createElement('div');
-        toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e293b;color:#cbd5e1;padding:12px 20px;border-radius:12px;font-size:14px;z-index:50;box-shadow:0 4px 12px rgba(0,0,0,.3)';
-        toast.textContent = t('restored_label');
-        document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 3500);
-      }
-    }
+    // Clear any old localStorage data
+    try { localStorage.removeItem(STORAGE_KEY); } catch {}
   }
 
   // Preload data + check restore
