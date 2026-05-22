@@ -21,16 +21,44 @@ const existingPages: Record<Locale, string[]> = {
 };
 
 /* ── Town base paths per locale ── */
-const townBase: Record<Locale, string> = {
-  'it-it': '/it-it/costiera-amalfitana',
-  'en-us': '/en-us/amalfi-coast',
-  'de-de': '/de-de/amalfikueste',
-  'fr-fr': '/fr-fr/cote-amalfitaine',
-  'es-es': '/es-es/costa-amalfitana',
-};
 
-const towns = ['positano', 'amalfi', 'ravello', 'praiano', 'marina-di-praia', 'maiori', 'minori', 'vietri-sul-mare'];
-const townLabels = ['Positano', 'Amalfi', 'Ravello', 'Praiano', 'Marina di Praia', 'Maiori', 'Minori', 'Vietri sul Mare'];
+const footerTowns = ({
+  'it-it': [
+    { name: 'Positano', href: '/it-it/costiera-amalfitana/positano/' },
+    { name: 'Amalfi',   href: '/it-it/costiera-amalfitana/amalfi/' },
+    { name: 'Ravello',  href: '/it-it/costiera-amalfitana/ravello/' },
+    { name: 'Sorrento', href: '/it-it/penisola-sorrentina/sorrento/' },
+    { name: 'Capri',    href: '/it-it/isole/capri/' },
+  ],
+  'en-us': [
+    { name: 'Positano', href: '/en-us/amalfi-coast/positano/' },
+    { name: 'Amalfi',   href: '/en-us/amalfi-coast/amalfi/' },
+    { name: 'Ravello',  href: '/en-us/amalfi-coast/ravello/' },
+    { name: 'Sorrento', href: '/en-us/sorrento-peninsula/sorrento/' },
+    { name: 'Capri',    href: '/en-us/islands/capri/' },
+  ],
+  'de-de': [
+    { name: 'Positano', href: '/de-de/amalfikueste/positano/' },
+    { name: 'Amalfi',   href: '/de-de/amalfikueste/amalfi/' },
+    { name: 'Ravello',  href: '/de-de/amalfikueste/ravello/' },
+    { name: 'Sorrent',  href: '/de-de/sorrentinische-halbinsel/sorrent/' },
+    { name: 'Capri',    href: '/de-de/inseln/capri/' },
+  ],
+  'fr-fr': [
+    { name: 'Positano', href: '/fr-fr/cote-amalfitaine/positano/' },
+    { name: 'Amalfi',   href: '/fr-fr/cote-amalfitaine/amalfi/' },
+    { name: 'Ravello',  href: '/fr-fr/cote-amalfitaine/ravello/' },
+    { name: 'Sorrente', href: '/fr-fr/peninsule-sorrentine/sorrente/' },
+    { name: 'Capri',    href: '/fr-fr/iles/capri/' },
+  ],
+  'es-es': [
+    { name: 'Positano', href: '/es-es/costa-amalfitana/positano/' },
+    { name: 'Amalfi',   href: '/es-es/costa-amalfitana/amalfi/' },
+    { name: 'Ravello',  href: '/es-es/costa-amalfitana/ravello/' },
+    { name: 'Sorrento', href: '/es-es/peninsula-sorrentina/sorrento/' },
+    { name: 'Capri',    href: '/es-es/islas/capri/' },
+  ],
+} as const)[lang];
 
 /* ── Section headings per locale ── */
 type SectionKeys = 'territori' | 'guida' | 'esperienze' | 'itinerari';
@@ -91,6 +119,9 @@ const esperienzeLinks: Record<Locale, Record<EsperienzeKeys, { label: string; hr
   'fr-fr': { cooking: { label: 'Cours de Cuisine', href: '/fr-fr/experiences/cours-de-cuisine/' }, weddings: { label: 'Mariages', href: '/fr-fr/experiences/mariages/' }, restaurants: { label: 'Restaurants Étoilés', href: '/fr-fr/experiences/restaurants-etoiles/' }, limoncello: { label: 'Tour du Limoncello', href: '/fr-fr/experiences/tour-limoncello/' }, mozzarella: { label: 'Expérience Mozzarella', href: '/fr-fr/experiences/experience-mozzarella/' } },
   'es-es': { cooking: { label: 'Clase de Cocina', href: '/es-es/experiencias/clase-cocina/' }, weddings: { label: 'Bodas', href: '/es-es/experiencias/bodas/' }, restaurants: { label: 'Restaurantes Estrella', href: '/es-es/experiencias/restaurantes-estrella/' }, limoncello: { label: 'Tour del Limoncello', href: '/es-es/experiencias/tour-limoncello/' }, mozzarella: { label: 'Experiencia Mozzarella', href: '/es-es/experiencias/experiencia-mozzarella/' } },
 };
+
+const plannerLabel = ({ 'en-us': 'Build Your Itinerary', 'de-de': 'Erstelle deine Reiseroute', 'fr-fr': 'Crée ton itinéraire', 'es-es': 'Crea tu itinerario', 'it-it': 'Crea il tuo itinerario' } as const)[lang];
+const plannerHref = ({ 'en-us': '/en-us/itinerary-planner/', 'de-de': '/de-de/reiserouten-planer/', 'fr-fr': '/fr-fr/planificateur-itineraire/', 'es-es': '/es-es/planificador-itinerario/', 'it-it': '/it-it/configuratore-itinerario/' } as const)[lang];
 
 /* ── Itinerari links per locale ── */
 
@@ -186,7 +217,6 @@ const itinerari7g = ({
 const h = sectionHeadings[lang];
 const guida = Object.values(guidaLinks[lang]);
 const esperienze = Object.values(esperienzeLinks[lang]);
-const base = townBase[lang];
 ---
 
 <footer class="bg-slate-900 border-t border-white/5 text-white">
@@ -208,10 +238,10 @@ const base = townBase[lang];
       <div>
         <h3 class="font-serif font-bold text-med-gold text-sm uppercase tracking-[0.15em] mb-5">{h.territori}</h3>
         <ul class="space-y-2.5">
-          {towns.map((slug, i) => (
+          {footerTowns.map(town => (
             <li>
-              <a href={`${base}/${slug}/`} class="text-white/60 hover:text-med-gold text-sm transition-colors">
-                {townLabels[i]}
+              <a href={town.href} class="text-white/60 hover:text-med-gold text-sm transition-colors">
+                {town.name}
               </a>
             </li>
           ))}
@@ -306,6 +336,11 @@ const base = townBase[lang];
               </a>
             </li>
           ))}
+          <li class="pt-1">
+            <a href={plannerHref} class="text-med-gold hover:text-white text-sm font-semibold transition-colors">
+              {plannerLabel} →
+            </a>
+          </li>
         </ul>
       </div>
 
