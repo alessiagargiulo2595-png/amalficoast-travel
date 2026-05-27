@@ -1,0 +1,343 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'de-de';
+const post = {
+  title: 'Cuoppo Fritto',
+  subtitle: 'Das Street Food der Amalfiküste: Wo man es isst und was es enthält',
+  category: 'ESSEN',
+  date: '27. Mai 2026',
+  readTime: '7 Min.',
+  image: '/images/cuoppo-fritto-hero.jpg',
+  imageAlt: 'Cuoppo fritto di pesce - Street Food der Amalfiküste und Neapels',
+  path: '/de-de/blog/cuoppo-fritto/',
+};
+
+const metaTitle = 'Cuoppo Fritto: Wo man ihn in Neapel, Positano und Amalfi isst | Reiseführer 2026';
+const metaDescription = "Der Cuoppo Fritto ist das Street Food von Amalfi und Neapel: Cuoppo di mare, Cuoppo di terra, gemischter Cuoppo und Frittura del Golfo. Wo man in Positano, an der Cuopperia Amalfi, in Cetara und Salerno essen kann.";
+
+const breadcrumbs = [
+  { name: 'Startseite', url: '/de-de/' },
+  { name: 'Blog', url: '/de-de/blog/' },
+  { name: 'Cuoppo Fritto', url: '/de-de/blog/cuoppo-fritto/' },
+];
+
+const quickInfo = [
+  { label: 'Was ist es', value: 'Papiertüte mit gemischtem Frittiertem' },
+  { label: 'Varianten', value: 'Di mare, di terra, misto' },
+  { label: 'Durchschnittspreis', value: '5–10 Euro (2026)' },
+  { label: 'Wo zu finden', value: 'Friggitorie, Cuopperie, Strandkioske' },
+  { label: 'Cuoppo di mare', value: 'Tintenfisch, Garnelen, Sardellen, Paranza' },
+  { label: 'Cuoppo di terra', value: 'Kartoffelkroketten, Arancini, Frittatine, Zeppole' },
+  { label: 'Cuoppo d\'Amalfi', value: 'Mix aus Meer und Land mit Zitrone' },
+  { label: 'Bester Moment', value: 'Aperitivo beim Spaziergang am Meer' },
+];
+
+const faq = [
+  {
+    q: 'Was ist ein Cuoppo Fritto?',
+    a: 'Ein Cuoppo ist ein Papiertüte, gefüllt mit gemischtem Frittiertem. Es ist das verbreitetste Street Food der Amalfiküste und Neapels. Der Name kommt aus dem Neapolitanischen „cuoppo" (Becher, Tüte): Die Trichterform ermöglicht es, im Gehen zu essen, die Tüte in einer Hand haltend.',
+  },
+  {
+    q: 'Was ist der Unterschied zwischen Cuoppo di mare und Cuoppo di terra?',
+    a: "Der Cuoppo di mare enthält frittierte Meeresfrüchte: Tintenfischringe, Garnelen, Sardellen, Paranza (gemischte Kleinfische) und manchmal Calamari. Der Cuoppo di terra enthält typisch neapolitanische Frittiertes: Kartoffelkroketten, Reisarancini, Pasta-Frittatine, herzhafte Zeppole und Panzerotti. Der Cuoppo misto vereint beide.",
+  },
+  {
+    q: 'Was kostet ein Cuoppo an der Amalfiküste?',
+    a: "Im Jahr 2026 liegen die Preise zwischen 5 Euro für einen kleinen Cuoppo und 10–12 Euro für einen großen Cuoppo mit frischem Fisch. In Positano und Ravello sind die Preise etwas höher als in Maiori, Minori oder Salerno. Das beste Preis-Leistungs-Verhältnis findet man in den Friggitorie der weniger touristischen Dörfer.",
+  },
+  {
+    q: 'Wo isst man den besten Cuoppo in Positano?',
+    a: "In Positano bieten die Friggitorie in der Nähe des Hauptstrandes und am Abstieg zum Meer Cuoppi mit frischestem Fisch an. Das Geheimnis: Friggitorie suchen, wo man das Frittieren live mitverfolgen kann – der Fisch muss außen knusprig und innen zart sein.",
+  },
+  {
+    q: 'Ist der Cuoppo d\'Amalfi anders als der neapolitanische Cuoppo?',
+    a: "Der Cuoppo d'Amalfi ist eine lokale Variante, die oft Spezialitäten der Region enthält: frittierte Sardellen aus Cetara, Tintenfisch aus dem Golf und einen Spritzer g.g.A.-Zitrone von der Küste. In Neapel ist der Cuoppo hingegen stärker auf Frittiertes vom Land ausgerichtet (Kroketten, Frittatine). Der Hauptunterschied liegt in der Frische des lokalen Fischs.",
+  },
+  {
+    q: 'Wo isst man den besten Cuoppo Fritto in Neapel?',
+    a: "Die besten Gegenden für Cuoppo in Neapel sind: Quartieri Spagnoli (Cuoppo di terra ab 3–4 Euro), Via dei Tribunali (sehr knuspriger gemischter Cuoppo), La Pignasecca (Wochenmarkt mit Cuoppo di mare für 4–5 Euro) und der Borgo Marinari am Fuß des Castel dell'Ovo (Fisch-Cuoppo mit Blick auf den Golf).",
+  },
+  {
+    q: 'Kann man Cuoppo auch im Winter essen?',
+    a: "Unbedingt. Die Friggitorie an der Küste bleiben das ganze Jahr geöffnet. Im Winter ist der warme Cuoppo noch verlockender: Viele Friggitorie fügen Algenzeppole und frittiertes Stockfischbackalà hinzu, typisch für die kalte Jahreszeit.",
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Cetara-Sardellen', href: '/de-de/blog/cetara-sardellen/' },
+  { label: 'Scialatielli', href: '/de-de/blog/scialatielli/' },
+  { label: 'Limoncello Rezept', href: '/de-de/blog/limoncello-rezept/' },
+  { label: 'Zitronen-Köstlichkeit', href: '/de-de/blog/zitronen-koestlichkeit/' },
+  { label: 'Amalfi-Weine', href: '/de-de/blog/amalfi-weine/' },
+];
+
+const authorRole = 'Kulinarik & Reise-Spezialist · Amalfiküste';
+
+const relatedArticles = [
+  {
+    title: 'Cetara-Sardellen',
+    category: 'ESSEN',
+    date: '22. April 2026',
+    image: '/images/alici-cetara-hero.jpg',
+    imageAlt: 'Cetara-Sardellen und Colatura g.U.',
+    path: '/de-de/blog/cetara-sardellen/'
+  },
+  {
+    title: 'Scialatielli',
+    category: 'ESSEN',
+    date: '27. Mai 2026',
+    image: '/images/scialatielli-hero.jpg',
+    imageAlt: 'Frisch von Hand geschnittene Scialatielli auf dem Schneidebrett',
+    path: '/de-de/blog/scialatielli/'
+  }
+];
+
+const keyTakeaways = [
+  "Der Cuoppo ist eine Papiertüte mit gemischtem Frittiertem: das ikonischste Street Food der Amalfiküste und Neapels, perfekt für einen Aperitivo beim Strandspaziergang.",
+  "Drei Hauptvarianten: Cuoppo di mare (frittierter Fisch), Cuoppo di terra (Kroketten, Arancini, Frittatine) und Cuoppo misto (Kombination beider).",
+  "Der Cuoppo d'Amalfi zeichnet sich durch frittierte Sardellen aus Cetara, Tintenfisch aus dem Golf und einem Spritzer g.g.A.-Zitrone aus.",
+  "Preise 2026: ab 5 Euro (klein) bis 10–12 Euro (groß mit frischem Fisch). Bestes Preis-Leistungs-Verhältnis in den weniger touristischen Dörfern.",
+  "Das Geheimnis für den besten Cuoppo: Friggitorie suchen, wo man live frittieren sieht, mit sauberem Öl und knusprigem Fisch.",
+];
+---
+
+<BlogPostLayout
+  lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  breadcrumbs={breadcrumbs}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  relatedArticles={relatedArticles}
+>
+
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <div class="flex items-center gap-3 mb-6">
+      <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Key Takeaways</h2>
+    </div>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-xs sm:text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Einleitung -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      Wenn es ein Ritual gibt, das alle Besucher der <a href="/de-de/amalfikueste/" class="text-med-blue hover:underline">Amalfiküste</a> verbindet, dann ist es der <strong>Cuoppo Fritto</strong>. Diese Papiertüte randvoll mit goldbraun-knusprigem Frittiertem, im Gehen am Meer genossen mit einem Spritzer Zitrone. Es ist das beliebteste <strong>Street Food der Amalfiküste</strong> – das <strong>Amalfi Food</strong> schlechthin – und den perfekten zu finden ist eine Kunst für sich.
+    </p>
+  </div>
+
+  <!-- Was ist der Cuoppo -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Was ist der Cuoppo: Geschichte des kampanischen Street Foods</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Der <strong>Cuoppo</strong> (aus dem Neapolitanischen „coppa" oder „cono" – in manchen Gegenden auch <strong>Coppo di pesce</strong> geschrieben) ist eine Tradition, die mindestens bis ins 19. Jahrhundert zurückreicht, als ambulante Händler in den Straßen Neapels Fisch und Gemüse frittierten und in Papiertüten servierten. Jede <strong>Cuopperia</strong> hatte ihr eigenes Rezept. An der <strong>Amalfiküste</strong> hat der Cuoppo eine ganz eigene Note bekommen, die den frischen Tagesfang des Golfs nutzt. Die <strong>Cuoppi di pesce</strong> der Küste sind berühmt für den leichten Teig und die Frische des Fangs.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Heute ist der <strong>Cuoppo Amalfi</strong> zu einem ikonischen Gericht geworden: eine Tüte, die Meeresfrüchte, Fleisch oder einen <strong>gemischten Cuoppo</strong> aus beidem enthalten kann. Viele nennen ihn auch <strong>Frittura del Golfo</strong>: eine <strong>Fritto del Golfo</strong> in der Papiertüte, die das Beste des Meeres vereint. Der Unterschied zum klassischen neapolitanischen Cuoppo liegt in der Qualität des Fischs (am selben Tag gefangen) und dem unvermeidlichen Spritzer <strong>g.g.A.-Zitrone</strong> der Küste.
+    </p>
+  </div>
+
+  <!-- Die drei Varianten -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Die drei Varianten des Cuoppo</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-3">Cuoppo di Mare</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-3">Die Königsvariante der Küste:</p>
+        <ul class="space-y-1 text-slate-600 text-xs sm:text-sm">
+          <li>Tintenfischringe</li>
+          <li>Ganze Garnelen</li>
+          <li>Panierte Sardellen</li>
+          <li>Paranza (gemischte Kleinfische)</li>
+          <li>Calamari</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-3">Cuoppo di Terra</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-3">Die klassische neapolitanische Tradition:</p>
+        <ul class="space-y-1 text-slate-600 text-xs sm:text-sm">
+          <li>Kartoffelkroketten</li>
+          <li>Reisarancini</li>
+          <li>Pasta-Frittatine</li>
+          <li>Herzhafte Zeppole</li>
+          <li>Frittierte Panzerotti</li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-3">Cuoppo d'Amalfi</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-3">Das Beste aus Meer und Land:</p>
+        <ul class="space-y-1 text-slate-600 text-xs sm:text-sm">
+          <li>Mix Fisch + Kroketten</li>
+          <li>Frittierte Sardellen aus Cetara</li>
+          <li>Zucchiniblüten</li>
+          <li>Gepresste g.g.A.-Zitrone</li>
+          <li>Frittiertes Gemüse im Teig</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wo essen an der Küste -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Wo man Cuoppo Fritto an der Amalfiküste isst</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Hier die <strong>besten Orte für Cuoppo</strong> an der Küste, ausgewählt nach Qualität der Frittura, Frische des Fischs und Preis-Leistungs-Verhältnis.
+    </p>
+
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Ort</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Warum hier</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Amalfi</td>
+            <td class="p-5 text-slate-600">Die Friggitorie in der Altstadt und am Strandpromenade verwenden Fisch aus dem Golf, der morgens gefangen wird. Der <strong>Cuoppo d'Amalfi</strong> mit frittierter Sardelle und Zitrone ist der meistgefragte.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Positano</td>
+            <td class="p-5 text-slate-600">Wer wissen möchte, <strong>wo man in Positano günstig essen kann</strong>: Die Friggitorie am Abstieg zum Hauptstrand servieren Cuoppi di mare mit knusprigem Tintenfisch und Garnelen. Zu den beliebtesten <strong>günstigen Restaurants in Positano</strong> zählend: 8–12 Euro, aber exzellente Qualität.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Cetara</td>
+            <td class="p-5 text-slate-600">Der Cuoppo mit frittierter <a href="/de-de/blog/cetara-sardellen/" class="text-med-blue hover:underline">Cetara-Sardelle</a> ist ein einzigartiges Erlebnis: frischster Fisch vom Dorfhafen, frittiert und am Kai serviert.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Maiori</td>
+            <td class="p-5 text-slate-600">Die Strandpromenade von Maiori hat mehrere Friggitorie mit Cuoppi zu günstigeren Preisen (5–7 Euro). Hervorragendes Preis-Leistungs-Verhältnis und entspannte Atmosphäre.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Salerno</td>
+            <td class="p-5 text-slate-600">Der <strong>Cuoppo Salerno</strong> ist eine Institution: Die Lungomare Trieste und das historische Zentrum bieten historische Cuopperie mit jahrhundertelanger Tradition und ausgezeichneter <strong>Frittura del Golfo</strong>. Stadtpreise, keine Touristenpreise.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Wo in Neapel essen -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Wo man Cuoppo Fritto in Neapel isst</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Der <strong>Cuoppo Fritto in Neapel</strong> wurde hier geboren, in den Gassen der Quartieri Spagnoli und des historischen Zentrums. Wer auf dem Weg zur Küste durch Neapel kommt – oder einen Tagesausflug macht –, findet hier die besten Gegenden, um den Cuoppo in seiner Geburtsstadt zu kosten.
+    </p>
+
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Viertel in Neapel</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Warum hingehen</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Quartieri Spagnoli</td>
+            <td class="p-5 text-slate-600">Das Herz des neapolitanischen Street Foods: historische Friggitorie in jeder Gasse mit <strong>frittiertem Cuoppo Neapel</strong> ab 3–4 Euro. Hier sind Fisch-Cuoppo und Cuoppo di terra (Kroketten, Frittatine, Zeppole) unangefochtene Könige.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Via dei Tribunali</td>
+            <td class="p-5 text-slate-600">Die Straße der neapolitanischen Pizza beherbergt auch die besten Cuopperie der Stadt. Gemischter Cuoppo aus Meer und Land mit sehr knusprigem Frittiertem, perfekt zum Essen beim Spaziergang zum Dom.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">La Pignasecca</td>
+            <td class="p-5 text-slate-600">Der authentischste Wochenmarkt Neapels: Stände mit frittiertem Fisch und Cuopperie zu unschlagbaren Preisen. Der <strong>Cuoppo di mare</strong> kostet hier 4–5 Euro mit frischestem Kleinfisch.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Lungomare Caracciolo</td>
+            <td class="p-5 text-slate-600">Die Kioske an der Strandpromenade servieren Fisch-Cuoppi mit Blick auf den Vesuv und Castel dell'Ovo. Etwas höhere Preise (6–8 Euro), aber das Erlebnis ist einzigartig.</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Borgo Marinari</td>
+            <td class="p-5 text-slate-600">Am Fuß von Castel dell'Ovo servieren die Friggitorie des Fischerdorfs den frischesten Fisch-Cuoppo der Stadt: Tintenfisch, Garnelen und Sardellen, frittiert mit Blick auf den Golf.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Wie man einen guten Cuoppo erkennt -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Wie man einen guten Cuoppo erkennt</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Nicht alle Cuoppi sind gleich. Hier die Zeichen, um eine ausgezeichnete <strong>Frittura</strong> von einer mittelmäßigen zu unterscheiden:
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Live-Frittieren</strong>: Wenn man den Koch vor einem frittieren sieht, ist das ein gutes Zeichen. Ein vorfrittierter und warm gehaltener Cuoppo verliert jede Knusprigkeit.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Helles Goldbraun</strong>: Eine dunkle Frittura bedeutet altes Öl oder falsche Temperatur. Die Farbe muss gleichmäßig goldbraun sein.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Trockenes Papier</strong>: Wenn der Tütenboden bereits ölgetränkt ist, wurde die Frittura nicht gut abgetropft. Ein guter Cuoppo hat fast trockenes Papier.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">4</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Meeresduft, nicht Frittierduft</strong>: Ein guter Fisch-Cuoppo duftet nach Meer und Zitrone. Wenn man nur Ölgeruch wahrnimmt, lieber woanders hingehen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cuoppo als Erlebnis -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Der Cuoppo als Erlebnis: Mehr als nur Essen</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      An der Küste ist der <strong>Cuoppo Fritto</strong> nicht einfach ein Snack: Es ist ein Ritual. Man kauft ihn in der Friggitorie des Dorfes, spaziert am Meer entlang und isst ihn mit den Händen beim Betrachten des Sonnenuntergangs. Es ist der authentischste Weg, das <strong>Street Food</strong> der Küste zu erleben – jenes, das die Einheimischen schon immer gegessen haben.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Wer die Küste mit einer <a href="/de-de/amalfikueste/" class="text-med-blue hover:underline">Bootstour</a> erkundet, hält mancher Skipper auch in den Dörfern an, um einen Cuoppo zu kaufen und ihn an Bord zu essen – mit baumelnden Beinen über dem Wasser.
+    </p>
+
+    <blockquote class="border-l-4 border-med-gold pl-6 my-8">
+      <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+        "Den Cuoppo isst man heiß, im Gehen, mit fettigen Fingern und einem Lächeln. Jede andere Art ist falsch."
+      </p>
+    </blockquote>
+  </div>
+
+  <!-- Expertentipps -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold">Expertentipps</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Richtige Uhrzeit</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Der beste Moment für den Cuoppo ist zwischen 18:00 und 20:00 Uhr, wenn die Friggitorie frische Frittura für den Abend-Aperitivo zubereiten. Zur Mittagszeit ist die Qualität oft schlechter, weil der Andrang geringer ist und der Fisch vorher frittiert worden sein kann.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Immer mit Zitrone</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Immer um Zitrone bitten: Ein Spritzer g.g.A.-Zitrone der Küste auf die heiße Frittura macht einen enormen Unterschied. Entfettet, aromatisiert und balanciert die Würze des Fischs. Es ist der Akzent, der den Cuoppo amalfitano von allen anderen unterscheidet.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Vitrinencuoppi meiden</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Wenn man bereits fertige Cuoppi in einer Vitrine sieht, lieber weitergehen. Der perfekte Cuoppo ist frisch frittiert und heiß serviert: Die Knusprigkeit hält nur wenige Minuten, es ist ein Gericht, das nicht wartet.</p>
+      </div>
+    </div>
+  </div>
+
+</BlogPostLayout>
