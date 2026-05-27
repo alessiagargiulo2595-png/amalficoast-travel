@@ -1,0 +1,272 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Sorrento Peninsula', url: '/en-us/sorrento-peninsula/' },
+  { name: 'Meta', url: '/en-us/sorrento-peninsula/meta/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Meta di Sorrento",
+  "description": "Meta di Sorrento is an authentic village on the Sorrento Peninsula, famous for Alimuri beach, the Basilica of the Madonna del Lauro, its historic shipyards, and a local atmosphere far from mass tourism.",
+  "url": "https://amalficoast-travel.com/en-us/sorrento-peninsula/meta/",
+  "touristType": ["Beach", "Culture", "Authenticity", "Families"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Meta", "addressRegion": "Napoli", "addressCountry": "IT", "postalCode": "80062" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.6412, "longitude": 14.4097 }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you get to Meta di Sorrento?",
+      "acceptedAnswer": { "@type": "Answer", "text": "By train: the Circumvesuviana stops at Meta (one stop before Sorrento). From Naples approximately 65 minutes. By car: take the SS145 Sorrentina road. Meta is just 3 km from Sorrento and can also be reached on foot in about 30 minutes along Corso Italia." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Meta have beaches?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, Alimuri beach is the largest and most well-known: a strip of dark sand accessible by elevator or steps down the cliff. There is also the Marinai beach, smaller and quieter. Both have sun lounger and umbrella hire." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Meta better than Sorrento for accommodation?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For travellers looking for lower prices and a less touristy atmosphere, yes. Hotels and B&Bs in Meta cost 20-30% less than in Sorrento, and the Circumvesuviana connects you everywhere just as quickly. It is also quieter in the evenings." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is there to see in Meta di Sorrento?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The Basilica of the Madonna del Lauro (with its miraculous statue and frescoes), the historic centre with its noble palaces, Alimuri beach, and the Naval Museum (historic shipyards). The trail to Positano via the Colli di San Pietro also starts from Meta." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is Meta famous for seafaring?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Meta was the main shipbuilding centre on the Sorrento Peninsula. The Meta shipyards built sailing vessels and brigantines that sailed the Mediterranean and the Atlantic. The maritime tradition is still visible in the sea captains' palaces and the Naval Museum." }
+    }
+  ]
+};
+
+const schemas = [touristAttractionSchema, faqSchema];
+
+const fastFacts = [
+  { dt: 'Location', dd: 'Sorrento Peninsula, NA' },
+  { dt: 'Altitude', dd: '~100 m a.s.l.' },
+  { dt: 'Population', dd: '~8,000 residents' },
+  { dt: 'From Sorrento', dd: '3 km / 5 min' },
+  { dt: 'From Naples', dd: '65 min (Circumvesuviana)' },
+  { dt: 'Beach', dd: 'Alimuri (dark sand)' },
+  { dt: 'Specialities', dd: 'Limoncello, seafood, pasta' },
+  { dt: 'Best period', dd: 'Apr–Oct' },
+  { dt: 'Ideal for', dd: 'Budget base, families' },
+];
+
+const tips = [
+  'Meta is a perfect and cheaper base than Sorrento: the same Circumvesuviana stop, hotel prices 20-30% lower.',
+  'Alimuri beach is accessible by elevator from the clifftop — skip the stairs if you are travelling with young children or a pushchair.',
+  'Meta\'s artisan gelato is celebrated throughout the area: look for gelaterie in the historic centre along via Municipio.',
+  'The Colli di San Pietro trail starts from Meta and leads to Positano: a scenic trekking alternative to the SS163 coastal road.',
+];
+---
+
+<BaseLayout
+  title="Meta di Sorrento 2026: Alimuri Beach, Madonna del Lauro Basilica & Historic Shipyards"
+  description="Travel guide to Meta di Sorrento: Alimuri beach, the Basilica of the Madonna del Lauro, and the seafaring tradition. An authentic and affordable base for exploring the Sorrento Peninsula."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={schemas}
+  pageKey="meta"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/meta-hero.webp" alt="Meta di Sorrento, Sorrento Peninsula" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Sorrento Peninsula — Land of Seafarers</p>
+        <h1 class="font-serif text-display text-white mb-4">Meta di Sorrento</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Village of sea captains and historic shipyards. Alimuri beach, the Basilica del Lauro, and an authentic atmosphere just 3 km from Sorrento.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">Fast Facts</a>
+          <a href="#getting-there" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">Getting There</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Meta di Sorrento is the village that most tourists pass through on the Circumvesuviana without getting off — just one stop before <a href="/en-us/sorrento-peninsula/sorrento/" class="text-med-blue hover:underline">Sorrento</a>. Yet Meta has everything you need for a perfect holiday: a sandy beach, a spectacular basilica, a quiet historic centre, and prices more affordable than its famous neighbour.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Meta's history is written in the sea: for centuries it was the main shipbuilding centre on the Sorrento Peninsula. The Meta shipyards built sailing vessels that crossed the Mediterranean and the Atlantic. To this day, the sea captains' palaces in the historic centre bear witness to the wealth brought by maritime trade.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Did you know?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">3 km</p>
+              <p class="text-white/60 text-xs italic mt-1">from Sorrento, walkable in 30 min</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">18th c.</p>
+              <p class="text-white/60 text-xs italic mt-1">peak of Meta's shipbuilding tradition</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">-30%</p>
+              <p class="text-white/60 text-xs italic mt-1">hotel cost compared to Sorrento</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- What to See -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">What to See in Meta</h2>
+          <div class="space-y-8">
+            {[
+              { n: 1, title: 'Basilica of the Madonna del Lauro', text: 'The most important church in Meta, dedicated to the Madonna del Lauro venerated throughout the Peninsula. Baroque interior with frescoes, polychrome marbles, and the miraculous statue of the Virgin. The facade dominates the village\'s main square.' },
+              { n: 2, title: 'Alimuri Beach', text: 'Meta\'s main beach: a strip of dark volcanic sand below the cliff, reachable by elevator or steps. Sun loungers and umbrellas for hire alongside a free section. Clear water and views along the coast. Less crowded than the beaches of Sorrento.' },
+              { n: 3, title: 'Historic Centre and Captains\' Palaces', text: 'Via Municipio and the surrounding lanes are lined with the noble palaces of 18th- and 19th-century sea captains. Piperno stone doorways, interior courtyards, and wrought-iron balconies tell the story of Meta\'s seafaring prosperity.' },
+              { n: 4, title: 'Naval Museum', text: 'A small museum that traces Meta\'s shipbuilding heritage: model sailing ships, navigation instruments, nautical charts, and vintage photographs of the shipyards. Entry is free or by voluntary donation.' },
+              { n: 5, title: 'Colli di San Pietro Trail', text: 'A panoramic hiking route starting from Meta that crosses the hills all the way to Positano. Around 4 hours of walking through lemon groves, olive trees, and sweeping views of the Gulf. A spectacular alternative to the SS163 coastal road.' },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Getting There -->
+        <div id="getting-there">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-6">Getting to Meta</h2>
+          <div class="space-y-6">
+            <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+              <h3 class="font-semibold text-charcoal mb-3">Circumvesuviana</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">The "Meta" stop on the Naples–Sorrento line. From Naples Centrale approximately 65 minutes (~€3.90). One stop before Sorrento. Frequency: every 30–40 minutes.</p>
+            </div>
+            <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+              <h3 class="font-semibold text-charcoal mb-3">From Sorrento</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">On foot along Corso Italia in about 30 minutes. By Circumvesuviana just 3 minutes. By car 5 minutes on the SS145. Meta is effectively contiguous with Sorrento.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Local Tip -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20"><svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Local Tip</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">The secret base for the Peninsula</h3>
+              <p class="text-white/70 leading-relaxed">Stay in Meta instead of Sorrento: same Circumvesuviana connections, same access to Capri, the Amalfi Coast, and Naples, but hotels and restaurants cost 20-30% less. In the evenings, Meta's centre is peaceful and genuinely local.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Frequently Asked Questions about Meta</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts — Meta</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-xs sm:text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Insider Tips</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Sorrento Peninsula</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/en-us/sorrento-peninsula/sorrento/', label: 'Sorrento' },
+              { href: '/en-us/sorrento-peninsula/vico-equense/', label: 'Vico Equense' },
+              { href: '/en-us/sorrento-peninsula/massa-lubrense/', label: 'Massa Lubrense' },
+              { href: '/en-us/sorrento-peninsula/sant-agnello/', label: "Sant'Agnello" },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs sm:text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explore also"
+    items={[
+      { name: 'Sorrento',       href: '/en-us/sorrento-peninsula/sorrento/',       tag: 'Hub & Limoncello', desc: 'Piazza Tasso, the Cloister, and the gateway to Capri.' },
+      { name: 'Vico Equense',   href: '/en-us/sorrento-peninsula/vico-equense/',   tag: 'Pizza by the Metre', desc: 'Da Gigino\'s famous metre-long pizza and Castello Giusso.' },
+      { name: 'Massa Lubrense', href: '/en-us/sorrento-peninsula/massa-lubrense/', tag: 'Nature & Food',    desc: 'Punta Campanella and the celebrated spaghetti alla Nerano.' },
+      { name: 'Positano',       href: '/en-us/amalfi-coast/positano/',             tag: 'Fashion & Views',  desc: 'The colourful clifftop houses of the Amalfi Coast.' },
+      { name: 'Capri',          href: '/en-us/islands/capri/',                     tag: 'Most Iconic',      desc: 'Blue Grotto, Faraglioni rocks, and the famous Piazzetta.' },
+    ]}
+    lang="en-us"
+  />
+
+</BaseLayout>

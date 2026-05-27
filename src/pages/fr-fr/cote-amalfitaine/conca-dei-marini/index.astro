@@ -1,0 +1,292 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Côte Amalfitaine', url: '/fr-fr/cote-amalfitaine/' },
+  { name: 'Conca dei Marini', url: '/fr-fr/cote-amalfitaine/conca-dei-marini/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Conca dei Marini",
+  "description": "Conca dei Marini est un bourg exclusif de la Côte Amalfitaine, célèbre pour la Grotte d'Émeraude, la sfogliatella Santa Rosa et les villas privées à pic sur la mer.",
+  "url": "https://amalficoast-travel.com/fr-fr/cote-amalfitaine/conca-dei-marini/",
+  "touristType": ["Mer", "Culture", "Gastronomie", "Exclusivité"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Conca dei Marini", "addressRegion": "Salerne", "addressCountry": "IT", "postalCode": "84010" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.6192, "longitude": 14.5739 }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment visiter la Grotte d'Émeraude ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "On y accède par ascenseur depuis la SS163 (entrée payante environ 5 euros) ou en bateau depuis Amalfi (environ 10 euros avec excursion). À l'intérieur, on navigue sur de petites barques à rames en admirant l'eau couleur émeraude illuminée par la lumière naturelle qui filtre depuis une cavité sous-marine. Ouverte toute l'année, météo permettant." }
+    },
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce que la sfogliatella Santa Rosa ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "C'est le dessert originaire de Conca dei Marini, inventé par les moniales du Couvent de Santa Rosa au XVIIe siècle. Contrairement à la sfogliatella napolitaine, la Santa Rosa est plus grande, garnie de crème pâtissière, de ricotta et d'amarena, avec une pâte feuilletée croustillante. C'est l'ancêtre de la sfogliatella napolitaine." }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment se rendre à Conca dei Marini ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "En bus SITA sur la ligne Amalfi-Positano (arrêt Conca dei Marini). En voiture sur la SS163, entre Amalfi et Furore. En bateau depuis Amalfi (service privé ou taxi boat). Le bourg est petit et se visite facilement à pied une fois arrivé." }
+    },
+    {
+      "@type": "Question",
+      "name": "Y a-t-il des plages à Conca dei Marini ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui, la plage de Capo di Conca est accessible par un long escalier. C'est une crique de galets à l'eau cristalline, peu fréquentée. Il y a aussi le Lido Capo di Conca avec service équipé (chaises longues, bar). La baie est abritée et l'eau est parmi les plus limpides de la côte." }
+    },
+    {
+      "@type": "Question",
+      "name": "Conca dei Marini mérite-t-elle une visite ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui, surtout si vous cherchez exclusivité et tranquillité. C'est l'une des plus petites communes de la Côte (environ 700 habitants), avec des villas élégantes, la Grotte d'Émeraude et une atmosphère raffinée. Combinez-la avec la visite d'Amalfi ou Furore pour une demi-journée parfaite." }
+    }
+  ]
+};
+
+const schemas = [touristAttractionSchema, faqSchema];
+
+const fastFacts = [
+  { dt: 'Emplacement', dd: 'Côte Amalfitaine, SA' },
+  { dt: 'Altitude', dd: '0-400 m' },
+  { dt: 'Population', dd: '~700 habitants' },
+  { dt: 'Depuis Amalfi', dd: '10 min (voiture/bus)' },
+  { dt: 'Grotte d\'Émeraude', dd: 'Ouverte toute l\'année' },
+  { dt: 'Plage', dd: 'Capo di Conca (galets)' },
+  { dt: 'Spécialités', dd: 'Sfogliatella Santa Rosa' },
+  { dt: 'Meilleure période', dd: 'Avr-Oct' },
+  { dt: 'Idéal pour', dd: 'Exclusivité, culture, mer' },
+];
+
+const tips = [
+  'La Grotte d\'Émeraude est plus suggestive aux heures centrales quand la lumière solaire filtre dans l\'eau. Évitez les jours nuageux.',
+  'Cherchez la sfogliatella Santa Rosa à la Pasticceria Pansa à Amalfi ou directement à Conca : elle est différente de la sfogliatella napolitaine.',
+  'Le Lido Capo di Conca est l\'un des rares beach clubs accessibles de la zone : réservez en été.',
+  'Conca dei Marini est le lieu de villégiature préféré des célébrités pour leurs vacances privées : villas avec piscine à pic sur la mer, loin des touristes.',
+];
+---
+
+<BaseLayout
+  title="Conca dei Marini 2026 : Grotte d'Émeraude et Sfogliatella Santa Rosa"
+  description="Guide de Conca dei Marini : la Grotte d'Émeraude, la sfogliatella Santa Rosa, les plages cachées et les villas exclusives. Le bourg le plus discret de la Côte Amalfitaine."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={schemas}
+  pageKey="conca-dei-marini"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/conca-dei-marini-hero.webp" alt="Conca dei Marini et la Grotte d'Émeraude" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">La Perle Cachée de la Côte</p>
+        <h1 class="font-serif text-display text-white mb-4">Conca dei Marini</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          La Grotte d'Émeraude, la sfogliatella Santa Rosa et des villas exclusives à pic sur la mer. Le bourg le plus discret de la Côte.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">Infos Pratiques</a>
+          <a href="#grotte" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">Grotte d'Émeraude</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Conca dei Marini est le bourg de la Côte qui préfère le silence à la célébrité. Avec à peine 700 habitants, sans front de mer ni agitation touristique, cette petite commune perchée entre <a href="/fr-fr/cote-amalfitaine/amalfi/" class="text-med-blue hover:underline">Amalfi</a> et <a href="/fr-fr/cote-amalfitaine/furore/" class="text-med-blue hover:underline">Furore</a> cache deux trésors : la <strong>Grotte d'Émeraude</strong> et la <strong>sfogliatella Santa Rosa</strong>.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Autrefois centre de commerce maritime, les marins de Conca dei Marini naviguaient jusqu'en Afrique et en Orient. Aujourd'hui les anciennes maisons des capitaines de mer sont devenues des villas exclusives, choisies par ceux qui cherchent la Côte la plus authentique et la plus discrète.
+          </p>
+        </div>
+
+        <!-- Le saviez-vous ? -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Le saviez-vous ?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">XVIIe s.</p>
+              <p class="text-white/60 text-xs italic mt-1">invention de la sfogliatella Santa Rosa</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">24 m</p>
+              <p class="text-white/60 text-xs italic mt-1">profondeur de la Grotte d'Émeraude</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">~700</p>
+              <p class="text-white/60 text-xs italic mt-1">habitants, l'un des plus petits bourgs de la Côte</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            La sfogliatella Santa Rosa fut inventée au Couvent de Santa Rosa par des moniales dominicaines qui replièrent la pâte restante avec de la crème, de la ricotta et des cerises à l'eau-de-vie. C'est de là que naquit aussi la sfogliatella napolitaine.
+          </p>
+        </div>
+
+        <!-- La Grotte -->
+        <div id="grotte">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-6">La Grotte d'Émeraude</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Découverte en 1932 par un pêcheur local, la <strong>Grotte d'Émeraude</strong> est une cavité karstique semi-immergée où la lumière solaire filtre par une fissure sous-marine, colorant l'eau d'un vert émeraude intense.
+          </p>
+          <div class="bg-white p-6 rounded-2xl border border-slate-100 space-y-4">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div>
+                <p class="text-xs text-slate-400 uppercase tracking-wider">Entrée</p>
+                <p class="font-medium text-charcoal">~5 euros</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase tracking-wider">Accès</p>
+                <p class="font-medium text-charcoal">Ascenseur ou bateau</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase tracking-wider">Durée de visite</p>
+                <p class="font-medium text-charcoal">~15-20 min</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase tracking-wider">Ouverture</p>
+                <p class="font-medium text-charcoal">Toute l'année</p>
+              </div>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              À l'intérieur, on navigue sur de petites barques à rames. Au fond, une crèche sous-marine en céramique déposée dans les années 1960. La grotte est accessible depuis la SS163 par ascenseur, ou par la mer depuis <a href="/fr-fr/cote-amalfitaine/amalfi/" class="text-med-blue hover:underline">Amalfi</a> en excursion en bateau (~10 euros).
+            </p>
+          </div>
+        </div>
+
+        <!-- Que voir -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Que voir à Conca dei Marini</h2>
+          <div class="space-y-8">
+            {[
+              { n: 1, title: 'Grotte d\'Émeraude', text: 'L\'attraction principale : une grotte marine à l\'eau couleur émeraude, visitable en bateau. Ouverte toute l\'année (météo permettant). À ne pas manquer par beau temps quand la lumière est la plus intense.' },
+              { n: 2, title: 'Couvent de Santa Rosa', text: 'Le monastère du XVIIe siècle où les moniales inventèrent la sfogliatella Santa Rosa. Aujourd\'hui c\'est un hôtel de luxe (Hotel Monastero Santa Rosa), mais l\'extérieur et l\'église sont visibles depuis la route.' },
+              { n: 3, title: 'Plage de Capo di Conca', text: 'Une crique de galets accessible par escalier. Eau cristalline, peu de touristes. Le Lido Capo di Conca propose un service équipé avec chaises longues, parasols et bar.' },
+              { n: 4, title: 'Église San Pancrazio', text: 'L\'église paroissiale du bourg, avec un dôme en majolique visible depuis la route. Intérieur baroque avec peintures des XVIIe-XVIIIe siècles. Ouverte pour les offices.' },
+              { n: 5, title: 'Tour de Capo di Conca', text: 'Tour de guet côtière du XVIe siècle, en position panoramique au-dessus de la plage. Accessible à pied en 10 minutes depuis le centre.' },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Conseil Local -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20"><svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Conseil Local</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">La vraie sfogliatella Santa Rosa</h3>
+              <p class="text-white/70 leading-relaxed">La sfogliatella Santa Rosa est différente de la napolitaine : plus grande, avec crème pâtissière, ricotta et cerises à l'eau-de-vie. Cherchez-la dans les pâtisseries de la Côte (pas à Naples). C'est le dessert qui a inspiré toute la tradition des sfogliatelle campanaises.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Questions fréquentes sur Conca dei Marini</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Infos Pratiques - Conca dei Marini</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-xs sm:text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Conseils d'initiés</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Explorer la Côte</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/fr-fr/cote-amalfitaine/furore/', label: 'Furore' },
+              { href: '/fr-fr/cote-amalfitaine/amalfi/', label: 'Amalfi' },
+              { href: '/fr-fr/cote-amalfitaine/praiano/', label: 'Praiano' },
+              { href: '/fr-fr/cote-amalfitaine/positano/', label: 'Positano' },
+              { href: '/fr-fr/cote-amalfitaine/ravello/', label: 'Ravello' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs sm:text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explorer aussi sur la Côte Amalfitaine"
+    items={[
+      { name: 'Furore',   href: '/fr-fr/cote-amalfitaine/furore/',   tag: 'Le village qui n\'existe pas', desc: 'Le Fjord spectaculaire et les fresques du Village Peint.' },
+      { name: 'Amalfi',   href: '/fr-fr/cote-amalfitaine/amalfi/',   tag: 'République Maritime',          desc: 'La capitale historique avec la Cathédrale et le Musée du Papier.' },
+      { name: 'Praiano',  href: '/fr-fr/cote-amalfitaine/praiano/',  tag: 'Coucher de Soleil & Calme',    desc: 'Le coucher de soleil depuis San Gennaro et la plage Gavitella.' },
+      { name: 'Ravello',  href: '/fr-fr/cote-amalfitaine/ravello/',  tag: 'Musique & Jardins',            desc: 'Villa Rufolo, Villa Cimbrone et le Festival de Musique.' },
+      { name: 'Positano', href: '/fr-fr/cote-amalfitaine/positano/', tag: 'Mode & Vues',                  desc: 'Les maisons colorées perchées sur la mer et la plage Fornillo.' },
+    ]}
+    lang="fr-fr"
+  />
+
+</BaseLayout>

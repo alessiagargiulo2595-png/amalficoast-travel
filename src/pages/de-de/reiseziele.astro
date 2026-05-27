@@ -13,6 +13,9 @@ const t = getTranslations(lang);
 const content = homeContent[lang];
 const metaDescription = 'Entdecken Sie jeden Ort der Amalfiküste: Positano, Amalfi, Ravello, Praiano, Cetara, Vietri sul Mare. Erfahren Sie mehr über Strände, Geschichte, Gastronomie und Anreise.';
 
+const slugOverrides: Record<string, string> = { sorrento: 'sorrent' };
+const s = (slug: string) => slugOverrides[slug] ?? slug;
+
 const costieraDestinations = content.towns.filter(town => town.area === 'costiera-amalfitana');
 const isoleDestinations = content.towns.filter(town => town.area === 'isole');
 const penisolaDestinations = content.towns.filter(town => town.area === 'penisola-sorrentina');
@@ -32,6 +35,13 @@ const townImages: Record<string, string> = {
   sorrento: '/images/sorrento-hero.jpg',
   'vico-equense': '/images/vico-equense-hero.jpg',
   'massa-lubrense': '/images/massa-lubrense-hero.jpg',
+  'salerno': '/images/salerno-hero.webp',
+  'agerola': '/images/agerola-hero.webp',
+  'tramonti': '/images/tramonti-hero.webp',
+  'furore': '/images/fiordo-furore-hero.webp',
+  'erchie': '/images/erchie-hero.webp',
+  'conca-dei-marini': '/images/conca-dei-marini-hero.webp',
+  'meta': '/images/meta-hero.webp',
 };
 ---
 
@@ -128,7 +138,7 @@ const townImages: Record<string, string> = {
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {penisolaDestinations.map((town) => (
-          <a href={`/de-de/sorrentiner-halbinsel/${town.slug}/`} class="group block hover:opacity-80 transition-opacity">
+          <a href={`/de-de/sorrentinische-halbinsel/${s(town.slug)}/`} class="group block hover:opacity-80 transition-opacity">
             <div class="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-4 shadow-xl">
               <img
                 src={townImages[town.slug] ?? '/images/costiera-hero.jpg'}

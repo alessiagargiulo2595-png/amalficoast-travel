@@ -1,0 +1,298 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'es-es';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Costa Amalfitana', url: '/es-es/costa-amalfitana/' },
+  { name: 'Salerno', url: '/es-es/costa-amalfitana/salerno/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Salerno",
+  "description": "Salerno es la puerta de entrada a la Costa Amalfitana, ciudad universitaria con la Catedral normanda, el Lungomare Trieste, el centro histórico medieval y las célebres Luci d'Artista en invierno.",
+  "url": "https://amalficoast-travel.com/es-es/costa-amalfitana/salerno/",
+  "touristType": ["Cultura", "Historia", "Gastronomía", "Base de viaje"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Salerno", "addressRegion": "Salerno", "addressCountry": "IT", "postalCode": "84121" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.6824, "longitude": 14.7681 }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo llegar a Salerno desde Nápoles?",
+      "acceptedAnswer": { "@type": "Answer", "text": "En tren Trenitalia Regional desde Nápoles Central a Salerno en aproximadamente 35-40 minutos (unos 4-7 euros). Frecce e Italo en unos 25 minutos. En coche, unos 60 km por la A3 Nápoles-Salerno (peaje de unos 3 euros)." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué ver en Salerno en un día?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La Catedral y la Cripta de San Mateo, el centro histórico medieval con la Via dei Mercanti, el Jardín de Minerva, el Lungomare Trieste y el Castillo Arechi para el panorama. En invierno (noviembre-enero) las Luci d'Artista son imprescindibles." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es Salerno una buena base para la Costa Amalfitana?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, es la base más práctica y económica. Desde Salerno salen ferrys Travelmar hacia Amalfi, Positano, Minori y Maiori (abril-octubre). Los autobuses SITA conectan toda la costa. Los hoteles cuestan entre un 40-50% menos que en Amalfi o Positano." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuándo visitar Salerno?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Abril-junio y septiembre-octubre por el clima y la proximidad a la costa. Noviembre-enero por las Luci d'Artista, la instalación luminosa que atrae a más de 2 millones de visitantes. Julio y agosto son calurosos, pero la ciudad no está tan masificada como la Costa." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué comer en Salerno?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La milza imbottita (bocadillo de bazo), la scazzetta del cardinale (dulce de bizcocho, crema y fresas), la pizza salernitana y el pescado fresco del Mercado de Via Roma. La Via dei Mercanti está repleta de trattorias auténticas." }
+    }
+  ]
+};
+
+const schemas = [touristAttractionSchema, faqSchema];
+
+const fastFacts = [
+  { dt: 'Ubicación', dd: 'Golfo de Salerno, SA' },
+  { dt: 'Altitud', dd: '0-300 m s.n.m.' },
+  { dt: 'Población', dd: '~130.000 habitantes' },
+  { dt: 'Desde Nápoles', dd: '35 min (tren regional)' },
+  { dt: 'Puerto de ferrys', dd: 'Piazza della Concordia' },
+  { dt: 'Hasta Amalfi', dd: '75 min (ferry)' },
+  { dt: 'Mejor época', dd: 'Abr-Jun / Nov-Ene' },
+  { dt: 'Especialidades', dd: 'Milza, scazzetta, pescado' },
+  { dt: 'Evento estrella', dd: 'Luci d\'Artista (Nov-Ene)' },
+];
+
+const tips = [
+  'El Jardín de Minerva es el primer jardín botánico de Europa (siglo XIII) y está poco visitado: una joya escondida en el centro histórico.',
+  'La Via dei Mercanti es el alma auténtica de Salerno: tiendas, trattorias y pastelerías a precios locales, no turísticos.',
+  'Toma el ferry hacia Amalfi bien por la mañana: el panorama de la Costa visto desde el mar es incomparable.',
+  'El Castillo Arechi (accesible en autobús o a pie en 30 minutos desde el centro) ofrece la vista más espectacular del Golfo y la ciudad.',
+];
+---
+
+<BaseLayout
+  title="Salerno 2026: Guia Completa | Puerta de la Costa Amalfitana"
+  description="Guía completa de Salerno: Catedral normanda, Jardín de Minerva, Luci d'Artista, Lungomare Trieste. La puerta de entrada a la Costa Amalfitana con ferrys hacia Amalfi y Positano."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={schemas}
+  pageKey="salerno"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/salerno-hero.webp" alt="Salerno, puerta de la Costa Amalfitana" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Puerta de la Costa Amalfitana</p>
+        <h1 class="font-serif text-display text-white mb-4">Salerno</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Ciudad universitaria milenaria y base ideal para la Costa. Catedral normanda, Luci d'Artista y el paseo marítimo más bello de Campania.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">Datos Rápidos</a>
+          <a href="#como-llegar" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">Cómo llegar</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Salerno es la ciudad que todos atraviesan pero pocos se detienen a conocer. Sin embargo, con su centro histórico medieval, la Catedral normanda que custodia las reliquias de San Mateo y uno de los paseos marítimos más bellos de Italia, merece al menos una jornada entera.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Fundada como colonia romana en 197 a.C., Salerno alcanzó su apogeo con la <strong>Scuola Medica Salernitana</strong>, la primera e más importante institución médica de Europa en la Edad Media. Hoy es una ciudad animada y a escala humana, con un puerto que conecta directamente con <a href="/es-es/costa-amalfitana/amalfi/" class="text-med-blue hover:underline">Amalfi</a>, <a href="/es-es/costa-amalfitana/positano/" class="text-med-blue hover:underline">Positano</a> y <a href="/es-es/costa-amalfitana/minori/" class="text-med-blue hover:underline">Minori</a> en ferry.
+          </p>
+        </div>
+
+        <!-- Sabias que -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">¿Sabías que?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">S. XI</p>
+              <p class="text-white/60 text-xs italic mt-1">Scuola Medica Salernitana, primera de Europa</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">2M+</p>
+              <p class="text-white/60 text-xs italic mt-1">visitantes para las Luci d'Artista cada año</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">1,5 km</p>
+              <p class="text-white/60 text-xs italic mt-1">el Lungomare Trieste peatonal</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            Roberto el Guiscardo, caudillo normando, convirtió Salerno en la capital del Ducado en 1077. La Catedral que mandó construir sigue siendo el corazón de la ciudad.
+          </p>
+        </div>
+
+        <!-- Que ver -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Qué ver en Salerno</h2>
+          <div class="space-y-8">
+            {[
+              { n: 1, title: 'Catedral de San Mateo', text: 'El símbolo de Salerno, fundada en 1080 por Roberto el Guiscardo. La fachada románica con portal de bronce del siglo XI da paso a un interior barroco con la Cripta que custodia las reliquias del apóstol Mateo. El Cuadripórtico con columnas romanas de espolia es uno de los más bellos del sur de Italia. Entrada gratuita.' },
+              { n: 2, title: 'Jardín de Minerva', text: 'El primer jardín botánico de Europa, fundado en el siglo XIII por el médico Matteo Silvatico de la Scuola Medica Salernitana. En terrazas sobre la colina del centro histórico, con plantas medicinales, fuentes y vistas espectaculares al Golfo. Entrada unos 3 euros. Imprescindible.' },
+              { n: 3, title: 'Lungomare Trieste', text: '1,5 km de paseo peatonal frente al Golfo de Salerno, considerado uno de los paseos marítimos más bellos de Italia. Palmeras, bancos, bares y vistas a Capri en los días despejados. Perfecto para el aperitivo al atardecer.' },
+              { n: 4, title: 'Castillo Arechi', text: 'La fortaleza lombarda a 300 m de altitud domina la ciudad y el golfo. Accesible en autobús (línea 19) o a pie en 30 minutos desde el centro. Alberga un museo con cerámicas medievales y ofrece la vista panorámica más amplia de la zona. Entrada unos 5 euros.' },
+              { n: 5, title: 'Via dei Mercanti y centro histórico', text: 'La arteria medieval del comercio salernitano, un desfile de tiendas, trattorias e iglesias. Recórrela desde Piazza Sedile del Campo hasta el Arco di Arechi. Las callejuelas laterales esconden pastelerías históricas y patios secretos.' },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Como llegar -->
+        <div id="como-llegar">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-6">Cómo llegar a Salerno</h2>
+          <div class="space-y-6">
+            <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+              <h3 class="font-semibold text-charcoal mb-3">Tren (desde Nápoles)</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Trenitalia Regional desde Nápoles Central: ~35-40 min, unos 4-7 euros. Frecce e Italo: ~25 min. La estación de Salerno está a 10 minutos a pie del centro histórico y del puerto de ferrys.</p>
+            </div>
+            <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+              <h3 class="font-semibold text-charcoal mb-3">Ferrys a la Costa</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Desde el puerto de Piazza della Concordia (5 min de la estación), Travelmar conecta Salerno con <a href="/es-es/costa-amalfitana/cetara/" class="text-med-blue hover:underline">Cetara</a>, <a href="/es-es/costa-amalfitana/maiori/" class="text-med-blue hover:underline">Maiori</a>, <a href="/es-es/costa-amalfitana/minori/" class="text-med-blue hover:underline">Minori</a>, <a href="/es-es/costa-amalfitana/amalfi/" class="text-med-blue hover:underline">Amalfi</a> y <a href="/es-es/costa-amalfitana/positano/" class="text-med-blue hover:underline">Positano</a> (abril-octubre). Billete unos 8-10 euros.</p>
+            </div>
+            <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+              <h3 class="font-semibold text-charcoal mb-3">Bus SITA</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Los buses SITA salen de la estación y recorren toda la SS163 hasta <a href="/es-es/costa-amalfitana/amalfi/" class="text-med-blue hover:underline">Amalfi</a> (unos 75 min, 2,50 euros). Servicio todo el año, frecuencia cada 60-90 min.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fuera de los circuitos -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-6">Salerno lejos de los turistas</h2>
+          <div class="grid sm:grid-cols-2 gap-6">
+            {[
+              { title: 'Complejo de San Pietro a Corte', text: 'Un yacimiento arqueológico único con restos romanos, paleocristianos y lombardos superpuestos. La Capilla Palatina del siglo VIII es una joya oculta bajo el nivel de la calle. Entrada gratuita o casi.' },
+              { title: 'Barrio Fornelle', text: 'El barrio más antiguo de Salerno, encaramado en la colina bajo el Castillo Arechi. Callejuelas estrechas, escalinatas infinitas y arte urbano contemporáneo. Prácticamente desconocido para los turistas, lleno de vida local.' },
+              { title: 'Mercado de Via Roma', text: 'El mercado cubierto de Salerno, donde los salernitanos compran pescado fresco, fruta y verdura cada mañana. Colores, olores y precios locales. Abierto por la mañana, cerrado los domingos.' },
+              { title: 'Acueducto Medieval', text: 'Los restos del acueducto que abastecía los monasterios benedictinos, visibles al cruzar la Via Arce en el centro histórico. Una estructura de arcos impresionante y prácticamente desconocida.' },
+            ].map(({ title, text }) => (
+              <div class="bg-white rounded-[3rem] p-8 border border-slate-100 hover:shadow-xl transition-all duration-300">
+                <h3 class="font-semibold text-charcoal mb-2">{title}</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Consejo Local -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20"><svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Consejo Local</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">Base perfecta para la Costa</h3>
+              <p class="text-white/70 leading-relaxed">Duerme en Salerno y toma el ferry matutino hacia Amalfi: ahorras entre un 40-50% en hoteles y disfrutas del panorama costero desde el mar. Por la noche, el centro histórico de Salerno ofrece restaurantes auténticos a precios locales.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Preguntas frecuentes sobre Salerno</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Datos Rápidos - Salerno</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-xs sm:text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Consejos de los expertos</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Explorar la Costa</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/es-es/costa-amalfitana/amalfi/', label: 'Amalfi' },
+              { href: '/es-es/costa-amalfitana/positano/', label: 'Positano' },
+              { href: '/es-es/costa-amalfitana/ravello/', label: 'Ravello' },
+              { href: '/es-es/costa-amalfitana/cetara/', label: 'Cetara' },
+              { href: '/es-es/costa-amalfitana/vietri-sul-mare/', label: 'Vietri sul Mare' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs sm:text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    lang="es-es"
+    heading="Explora también en la Costa"
+    items={[
+      { name: 'Amalfi',   href: '/es-es/costa-amalfitana/amalfi/',   tag: 'República Marítima', desc: 'La capital histórica con la Catedral de Sant\'Andrea y el Museo del Papel.' },
+      { name: 'Cetara',   href: '/es-es/costa-amalfitana/cetara/',   tag: 'Pueblo Marinero',    desc: 'El pueblo de pescadores y cuna de la colatura di alici DOP.' },
+      { name: 'Vietri sul Mare', href: '/es-es/costa-amalfitana/vietri-sul-mare/', tag: 'Cerámica', desc: 'La puerta de la Costa, famosa por sus cerámicas artísticas.' },
+      { name: 'Ravello',  href: '/es-es/costa-amalfitana/ravello/',  tag: 'Música & Jardines',  desc: 'Villa Rufolo, Villa Cimbrone y el Festival Musical a 350 m.' },
+      { name: 'Positano', href: '/es-es/costa-amalfitana/positano/', tag: 'Moda & Vistas',       desc: 'Las casas de colores encaramadas en el mar y la playa de Fornillo.' },
+    ]}
+  />
+
+</BaseLayout>

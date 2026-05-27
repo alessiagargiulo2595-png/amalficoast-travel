@@ -1,0 +1,292 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Amalfi Coast', url: '/en-us/amalfi-coast/' },
+  { name: 'Conca dei Marini', url: '/en-us/amalfi-coast/conca-dei-marini/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Conca dei Marini",
+  "description": "Conca dei Marini is an exclusive village on the Amalfi Coast, celebrated for the Emerald Grotto, the sfogliatella Santa Rosa pastry, and private villas perched above the sea.",
+  "url": "https://amalficoast-travel.com/en-us/amalfi-coast/conca-dei-marini/",
+  "touristType": ["Sea", "Culture", "Gastronomy", "Exclusivity"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Conca dei Marini", "addressRegion": "Salerno", "addressCountry": "IT", "postalCode": "84010" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.6192, "longitude": 14.5739 }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you visit the Emerald Grotto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It is reached by lift from the SS163 (entry approx. €5) or by boat from Amalfi (approx. €10 with an excursion). Inside you ride small rowing boats admiring the emerald-green water lit by natural light filtering through an underwater opening. Open year-round, weather permitting." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the sfogliatella Santa Rosa?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It is the pastry originating from Conca dei Marini, invented by the nuns of the Convent of Santa Rosa in the 17th century. Unlike the Neapolitan sfogliatella, the Santa Rosa is larger, filled with pastry cream, ricotta, and sour cherry, with a crispy puff pastry shell. It is the ancestor of the Neapolitan sfogliatella." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you get to Conca dei Marini?",
+      "acceptedAnswer": { "@type": "Answer", "text": "By SITA bus on the Amalfi–Positano line (stop: Conca dei Marini). By car on the SS163, between Amalfi and Furore. By boat from Amalfi (private service or water taxi). The village is small and easily explored on foot once you arrive." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there beaches in Conca dei Marini?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, Capo di Conca beach is reached by a long staircase. It is a pebble cove with crystal-clear water, lightly visited. The Lido Capo di Conca also offers an equipped service (sunbeds, bar). The bay is sheltered and the water is among the clearest on the coast." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Conca dei Marini worth visiting?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, especially if you are looking for exclusivity and tranquillity. It is one of the smallest municipalities on the coast (about 700 residents), with elegant villas, the Emerald Grotto, and a refined atmosphere. Combine it with a visit to Amalfi or Furore for a perfect half day." }
+    }
+  ]
+};
+
+const schemas = [touristAttractionSchema, faqSchema];
+
+const fastFacts = [
+  { dt: 'Location', dd: 'Amalfi Coast, SA' },
+  { dt: 'Altitude', dd: '0–400 m' },
+  { dt: 'Population', dd: '~700' },
+  { dt: 'From Amalfi', dd: '10 min (car/bus)' },
+  { dt: 'Emerald Grotto', dd: 'Open year-round' },
+  { dt: 'Beach', dd: 'Capo di Conca (pebbles)' },
+  { dt: 'Specialty', dd: 'Sfogliatella Santa Rosa' },
+  { dt: 'Best period', dd: 'Apr–Oct' },
+  { dt: 'Ideal for', dd: 'Exclusivity, culture, sea' },
+];
+
+const tips = [
+  'The Emerald Grotto is most magical in the middle of the day when the sunlight filters into the water. Avoid cloudy days.',
+  'Look for the sfogliatella Santa Rosa at Pasticceria Pansa in Amalfi or in Conca itself — it is quite different from the Neapolitan version.',
+  'The Lido Capo di Conca is one of the few accessible beach clubs in the area: book in advance in summer.',
+  'Conca dei Marini is a favourite retreat for VIPs: private cliff-top villas with pools, well away from the tourist bustle.',
+];
+---
+
+<BaseLayout
+  title="Conca dei Marini 2026: Emerald Grotto & Sfogliatella Santa Rosa"
+  description="Guide to Conca dei Marini: the Emerald Grotto, the sfogliatella Santa Rosa, hidden beaches, and exclusive villas. The most discreet village on the Amalfi Coast."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={schemas}
+  pageKey="conca-dei-marini"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/conca-dei-marini-hero.webp" alt="Conca dei Marini and the Emerald Grotto" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">The Hidden Jewel of the Coast</p>
+        <h1 class="font-serif text-display text-white mb-4">Conca dei Marini</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          The Emerald Grotto, the sfogliatella Santa Rosa, and exclusive villas above the sea. The most discreet village on the coast.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">Fast Facts</a>
+          <a href="#emerald-grotto" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">Emerald Grotto</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Conca dei Marini is the Amalfi Coast village that prefers silence to fame. With barely 700 residents, no seafront promenade, and no tourist chaos, this small municipality nestled between <a href="/en-us/amalfi-coast/amalfi/" class="text-med-blue hover:underline">Amalfi</a> and <a href="/en-us/amalfi-coast/furore/" class="text-med-blue hover:underline">Furore</a> conceals two treasures: the <strong>Emerald Grotto</strong> and the <strong>sfogliatella Santa Rosa</strong>.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Once a centre of maritime trade, the mariners of Conca dei Marini sailed as far as Africa and the Orient. Today the old sea captains' houses have become exclusive villas, chosen by those who seek the most authentic and private corner of the coast.
+          </p>
+        </div>
+
+        <!-- Did You Know -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Did you know?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">XVII cent.</p>
+              <p class="text-white/60 text-xs italic mt-1">invention of the sfogliatella Santa Rosa</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">24 m</p>
+              <p class="text-white/60 text-xs italic mt-1">depth of the Emerald Grotto</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">~700</p>
+              <p class="text-white/60 text-xs italic mt-1">residents — one of the smallest villages on the coast</p>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-6 italic">
+            The sfogliatella Santa Rosa was invented in the Convent of Santa Rosa by Dominican nuns who folded leftover pastry with cream, ricotta, and sour cherry. This is also the origin of the Neapolitan sfogliatella.
+          </p>
+        </div>
+
+        <!-- Emerald Grotto -->
+        <div id="emerald-grotto">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-6">The Emerald Grotto</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Discovered in 1932 by a local fisherman, the <strong>Emerald Grotto</strong> is a semi-submerged karst cave where sunlight filters through an underwater fissure, turning the water an intense emerald green.
+          </p>
+          <div class="bg-white p-6 rounded-2xl border border-slate-100 space-y-4">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div>
+                <p class="text-xs text-slate-400 uppercase tracking-wider">Entry</p>
+                <p class="font-medium text-charcoal">~€5</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase tracking-wider">Access</p>
+                <p class="font-medium text-charcoal">Lift or boat</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase tracking-wider">Visit duration</p>
+                <p class="font-medium text-charcoal">~15–20 min</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400 uppercase tracking-wider">Opening</p>
+                <p class="font-medium text-charcoal">Year-round</p>
+              </div>
+            </div>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Inside you navigate in small rowing boats. On the floor, an underwater ceramic nativity scene placed there in the 1960s. The grotto is accessible from the SS163 via lift, or by sea from <a href="/en-us/amalfi-coast/amalfi/" class="text-med-blue hover:underline">Amalfi</a> with boat excursions (approx. €10).
+            </p>
+          </div>
+        </div>
+
+        <!-- What to See -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">What to See in Conca dei Marini</h2>
+          <div class="space-y-8">
+            {[
+              { n: 1, title: 'Emerald Grotto', text: 'The main attraction: a sea cave with emerald-green water, explored by rowing boat. Open year-round (weather permitting). Not to be missed on sunny days when the light is at its most intense.' },
+              { n: 2, title: 'Convent of Santa Rosa', text: 'The 17th-century monastery where the nuns invented the sfogliatella Santa Rosa. Today it is a luxury hotel (Hotel Monastero Santa Rosa), but the exterior and the church are visible from the road.' },
+              { n: 3, title: 'Capo di Conca Beach', text: 'A pebble cove reached by a staircase. Crystal-clear water and very few visitors. The Lido Capo di Conca provides an equipped service with sunbeds, umbrellas, and a bar.' },
+              { n: 4, title: 'Church of San Pancrazio', text: 'The village parish church, with a majolica-tiled dome visible from the road. Baroque interior with 17th–18th-century paintings. Open for services.' },
+              { n: 5, title: 'Tower of Capo di Conca', text: 'A 16th-century coastal watchtower in a panoramic position above the beach. Reachable on foot in 10 minutes from the centre.' },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Local Tip -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20"><svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Local Tip</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">The real sfogliatella Santa Rosa</h3>
+              <p class="text-white/70 leading-relaxed">The sfogliatella Santa Rosa is very different from the Neapolitan version: larger, with pastry cream, ricotta, and sour cherry. Seek it out at pastry shops on the coast (not in Naples). It is the pastry that inspired all of Campania's sfogliatella tradition.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Frequently Asked Questions about Conca dei Marini</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Fast Facts - Conca dei Marini</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-xs sm:text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Insider Tips</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Explore the Coast</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/en-us/amalfi-coast/furore/', label: 'Furore' },
+              { href: '/en-us/amalfi-coast/amalfi/', label: 'Amalfi' },
+              { href: '/en-us/amalfi-coast/praiano/', label: 'Praiano' },
+              { href: '/en-us/amalfi-coast/positano/', label: 'Positano' },
+              { href: '/en-us/amalfi-coast/ravello/', label: 'Ravello' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs sm:text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Explore More on the Amalfi Coast"
+    items={[
+      { name: 'Furore',   href: '/en-us/amalfi-coast/furore/',   tag: 'The Village That Doesn\'t Exist', desc: 'The spectacular Fjord and the murals of the Painted Village.' },
+      { name: 'Amalfi',   href: '/en-us/amalfi-coast/amalfi/',   tag: 'Maritime Republic',                desc: 'The historic capital with the Cathedral and the Paper Museum.' },
+      { name: 'Praiano',  href: '/en-us/amalfi-coast/praiano/',  tag: 'Sunset & Quiet',                  desc: 'The sunset from San Gennaro and Gavitella beach.' },
+      { name: 'Ravello',  href: '/en-us/amalfi-coast/ravello/',  tag: 'Music & Gardens',                 desc: 'Villa Rufolo, Villa Cimbrone, and the Music Festival.' },
+      { name: 'Positano', href: '/en-us/amalfi-coast/positano/', tag: 'Fashion & Views',                 desc: 'Colourful houses perched on the sea and Fornillo beach.' },
+    ]}
+    lang="en-us"
+  />
+
+</BaseLayout>

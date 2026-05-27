@@ -1,0 +1,279 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'es-es';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Costa Amalfitana', url: '/es-es/costa-amalfitana/' },
+  { name: 'Furore', url: '/es-es/costa-amalfitana/furore/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Furore",
+  "description": "Furore es el pueblo que no existe de la Costa Amalfitana: sin un centro real, las casas se aferran a la montaña alrededor del célebre Fiordo de Furore, un espectacular cañón que se sumerge en el mar.",
+  "url": "https://amalficoast-travel.com/es-es/costa-amalfitana/furore/",
+  "touristType": ["Naturaleza", "Fotografía", "Arte", "Mar"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Furore", "addressRegion": "Salerno", "addressCountry": "IT", "postalCode": "84010" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.6264, "longitude": 14.5525 }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es el Fiordo de Furore?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Es una profunda ensenada natural (un fiordo kárstico) donde el torrente Schiato se precipita al mar a través de un cañón de 30 metros. Un pequeño puente de carretera lo cruza, creando una de las imágenes más icónicas de la Costa. La pequeña playa al pie del fiordo es accesible por una escalinata." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo llegar al Fiordo de Furore?",
+      "acceptedAnswer": { "@type": "Answer", "text": "En autobús SITA en la línea Amalfi-Positano (parada Furore Fiordo). En coche, el fiordo está en la SS163 entre Praiano y Conca dei Marini: hay un pequeño aparcamiento antes del puente. A pie, una escalinata de unos 200 escalones baja a la playa." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por qué Furore se llama el pueblo que no existe?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Porque Furore no tiene un centro histórico tradicional: las casas, las iglesias y las tiendas están diseminadas por la carretera y aferradas a la montaña sin formar un núcleo compacto. Es un municipio disperso donde cada rincón es un pequeño pueblo en sí mismo." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Se puede bañar en el Fiordo de Furore?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, la pequeña playa de guijarros al pie del fiordo es apta para el baño. El agua es clara y fresca gracias al torrente. Llega pronto: el espacio es muy limitado y en verano se llena rápidamente. No hay servicios (ni bar, ni alquiler de sombrillas)." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué son los murales de Furore?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Furore es un pueblo pintado (Paese Dipinto). Desde los años 80 artistas italianos e internacionales han realizado murales en las paredes de las casas a lo largo de la carretera. Hoy se cuentan más de 100, convirtiendo el pueblo en una galería de arte al aire libre." }
+    }
+  ]
+};
+
+const schemas = [touristAttractionSchema, faqSchema];
+
+const fastFacts = [
+  { dt: 'Ubicación', dd: 'Costa Amalfitana, SA' },
+  { dt: 'Altitud', dd: '0-650 m s.n.m.' },
+  { dt: 'Población', dd: '~800 habitantes' },
+  { dt: 'Desde Amalfi', dd: '15 min (coche/bus)' },
+  { dt: 'Desde Positano', dd: '10 min (coche/bus)' },
+  { dt: 'Playa', dd: 'Guijarros (Fiordo)' },
+  { dt: 'Especialidades', dd: 'Murales, Fiordo, vino' },
+  { dt: 'Mejor época', dd: 'Abr-Oct' },
+  { dt: 'Ideal para', dd: 'Fotos, naturaleza, arte' },
+];
+
+const tips = [
+  'La foto más bonita del Fiordo se toma desde el puente de carretera: llega por la mañana temprano cuando el sol ilumina el cañón.',
+  'La playa del Fiordo es minúscula: en verano llega antes de las 9:00 o no encontrarás sitio.',
+  'Pasea por la SS163 buscando los murales: son más de 100 y cuentan la historia del pueblo.',
+  'Cada año en julio se celebra la Mediterranean Cup: saltadores profesionales se lanzan desde el puente del Fiordo (14 m).',
+];
+---
+
+<BaseLayout
+  title="Furore 2026: El Fiordo, los Murales y el Pueblo que No Existe"
+  description="Guía de Furore: el célebre Fiordo, los murales del Pueblo Pintado, la pequeña playa escondida. El pueblo más singular de la Costa Amalfitana, sin centro pero con un alma única."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={schemas}
+  pageKey="furore"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/fiordo-furore-hero.webp" alt="El Fiordo de Furore, Costa Amalfitana" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">El Pueblo Pintado de la Costa</p>
+        <h1 class="font-serif text-display text-white mb-4">Furore</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          El pueblo que no existe. Un fiordo espectacular, más de 100 murales y casas aferradas a la montaña sin centro.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">Datos Rápidos</a>
+          <a href="#fiordo" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">El Fiordo</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Furore es una paradoja: un municipio de la Costa Amalfitana que no tiene centro, un pueblo famoso por un fiordo que en realidad es un cañón, un lugar de 800 almas que atrae fotógrafos de todo el mundo. Es el lugar más insólito y sorprendente de toda la costa.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Las casas de Furore están diseminadas por la SS163 y aferradas a las terrazas que descienden hacia el mar. No hay plaza, no hay paseo marítimo: solo la roca, los limoneros, los murales y ese fiordo que parece sacado de una película. El propio nombre proviene del latín <em>furor</em>, el estruendo del mar que rompe en la garganta.
+          </p>
+        </div>
+
+        <!-- Sabias que -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">¿Sabías que?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">100+</p>
+              <p class="text-white/60 text-xs italic mt-1">murales en las casas del pueblo</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">30 m</p>
+              <p class="text-white/60 text-xs italic mt-1">profundidad del cañón del Fiordo</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">~800</p>
+              <p class="text-white/60 text-xs italic mt-1">habitantes, uno de los municipios más pequeños de Italia</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- El Fiordo -->
+        <div id="fiordo">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-6">El Fiordo de Furore</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            El <strong>Fiordo de Furore</strong> es la atracción natural más fotografiada de la Costa después de Positano. Un cañón kárstico donde el torrente Schiato encuentra el mar, excavando una garganta de 30 metros de profundidad en la roca caliza.
+          </p>
+          <div class="space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">La playa del Fiordo</h3>
+              <p class="text-slate-600 text-sm">Una pequeña lengua de guijarros al pie del cañón, accesible por una escalinata de unos 200 escalones desde la SS163. Agua cristalina y fresca, sin servicios. Espacio muy limitado: se recomienda llegar antes de las 9:00 en verano.</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">El puente y la vista</h3>
+              <p class="text-slate-600 text-sm">El puente de carretera que cruza el fiordo ofrece la vista desde arriba más icónica. Por la mañana temprano la luz entra en el cañón iluminando los barcos en seco. Cada año en julio, durante la Mediterranean Cup, saltadores profesionales se lanzan desde el puente (14 m).</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Las antiguas casas de los pescadores</h3>
+              <p class="text-slate-600 text-sm">Al pie del fiordo aún se ven las antiguas casas-cueva donde vivían los pescadores de Furore, excavadas en la roca y conectadas por escaleras empinadas. Algunas han sido restauradas y hoy acogen talleres y residencias artísticas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Que ver -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Qué ver en Furore</h2>
+          <div class="space-y-8">
+            {[
+              { n: 1, title: 'Los Murales del Pueblo Pintado', text: 'Desde los años 80, artistas italianos e internacionales han transformado Furore en una galería al aire libre. Más de 100 murales decoran muros, fachadas y escalinatas a lo largo de toda la carretera. Un recorrido artístico espontáneo y gratuito.' },
+              { n: 2, title: 'Iglesia de San Giacomo', text: 'La iglesia principal de Furore, encaramada en lo alto con una vista panorámica al mar y a los viñedos. Sencilla y evocadora, representa el corazón espiritual de un pueblo sin centro.' },
+              { n: 3, title: 'Sendero de la Volpe Pescatrice', text: 'Un sendero que conecta el nivel del mar con la parte alta del pueblo a través de las antiguas terrazas. Panoramas espectaculares de la costa y del Fiordo visto desde arriba. Duración unas 1-2 horas.' },
+              { n: 4, title: 'Viñedos de Furore', text: 'El vino de Furore está entre los más apreciados de la DOC Costa d\'Amalfi. Los viñedos extremos, colgados en la roca a pico sobre el mar, producen el célebre Fiorduva de Marisa Cuomo, uno de los blancos más buscados de Italia.' },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Consejo Local -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20"><svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Consejo Local</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">El Fiorduva de Marisa Cuomo</h3>
+              <p class="text-white/70 leading-relaxed">Si te gusta el vino, busca el Fiorduva: un blanco elaborado con uvas recogidas a mano en las terrazas a pico sobre el Fiordo. Está entre los vinos más premiados de Campania y se encuentra solo aquí y en pocas enotecas seleccionadas.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Preguntas frecuentes sobre Furore</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Datos Rápidos - Furore</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-xs sm:text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Consejos de los expertos</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Explorar la Costa</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/es-es/costa-amalfitana/conca-dei-marini/', label: 'Conca dei Marini' },
+              { href: '/es-es/costa-amalfitana/praiano/', label: 'Praiano' },
+              { href: '/es-es/costa-amalfitana/agerola/', label: 'Agerola' },
+              { href: '/es-es/costa-amalfitana/amalfi/', label: 'Amalfi' },
+              { href: '/es-es/costa-amalfitana/positano/', label: 'Positano' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs sm:text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    lang="es-es"
+    heading="Explora también en la Costa"
+    items={[
+      { name: 'Conca dei Marini', href: '/es-es/costa-amalfitana/conca-dei-marini/', tag: 'Gruta & Sfogliatella', desc: 'La Gruta de la Esmeralda y la cuna de la sfogliatella Santa Rosa.' },
+      { name: 'Praiano',  href: '/es-es/costa-amalfitana/praiano/',  tag: 'Atardecer & Calma',         desc: 'El atardecer desde San Gennaro y la tranquila Marina di Praia.' },
+      { name: 'Agerola',  href: '/es-es/costa-amalfitana/agerola/',  tag: 'Senderismo & Naturaleza',   desc: 'Sendero de los Dioses, Fior di Latte y panoramas a 600 m.' },
+      { name: 'Positano', href: '/es-es/costa-amalfitana/positano/', tag: 'Moda & Vistas',              desc: 'Las casas de colores encaramadas en el mar de la Costa.' },
+      { name: 'Amalfi',   href: '/es-es/costa-amalfitana/amalfi/',   tag: 'República Marítima',         desc: 'La capital histórica con la Catedral y el Museo del Papel.' },
+    ]}
+  />
+
+</BaseLayout>

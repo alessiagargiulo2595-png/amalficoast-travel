@@ -1,0 +1,279 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'de-de';
+
+const breadcrumbs = [
+  { name: 'Startseite', url: '/de-de/' },
+  { name: 'Amalfiküste', url: '/de-de/amalfikueste/' },
+  { name: 'Furore', url: '/de-de/amalfikueste/furore/' },
+];
+
+const touristAttractionSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  "name": "Furore",
+  "description": "Furore ist das Dorf, das es nicht gibt, an der Amalfiküste: ohne ein echtes Zentrum, klammern sich die Häuser an den Berg rund um den berühmten Fjord von Furore, eine spektakuläre Schlucht, die ins Meer stürzt.",
+  "url": "https://amalficoast-travel.com/de-de/amalfikueste/furore/",
+  "touristType": ["Natur", "Fotografie", "Kunst", "Meer"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Furore", "addressRegion": "Salerno", "addressCountry": "IT", "postalCode": "84010" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.6264, "longitude": 14.5525 }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ist der Fjord von Furore?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Es ist eine tiefe natürliche Bucht (ein Karstfjord), in der der Bach Schiato durch eine 30 Meter tiefe Schlucht ins Meer mündet. Eine kleine Straßenbrücke überspannt ihn und schafft eines der ikonischsten Bilder der Küste. Das kleine Strandchen am Fuß des Fjords ist über eine Treppe erreichbar." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie kommt man zum Fjord von Furore?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Mit dem SITA-Bus auf der Linie Amalfi-Positano (Haltestelle Furore Fiordo). Mit dem Auto liegt der Fjord auf der SS163 zwischen Praiano und Conca dei Marini: Es gibt einen kleinen Parkplatz vor der Brücke. Zu Fuß führt eine Treppe mit ca. 200 Stufen zum Strand hinunter." }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum heisst Furore das Dorf das es nicht gibt?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Weil Furore kein traditionelles historisches Zentrum hat: Die Häuser, Kirchen und Läden sind entlang der Straße und an den Hängen verstreut, ohne einen kompakten Kern zu bilden. Es ist eine Streugemeinde, in der jeder Winkel ein kleiner Weiler für sich ist." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann man im Fjord von Furore schwimmen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, der kleine Kieselstrand am Fuß des Fjords ist zum Baden geeignet. Das Wasser ist klar und frisch dank des Baches. Kommt früh: Der Platz ist sehr begrenzt und im Sommer schnell belegt. Es gibt keine Einrichtungen (weder Bar noch Liegestuhlverleih)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was sind die Wandmalereien von Furore?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Furore ist ein bemaltes Dorf (Paese Dipinto). Seit den 1980er Jahren haben italienische und internationale Künstler Wandmalereien an den Hauswänden entlang der Straße geschaffen. Heute zählt man über 100, was das Dorf in eine Freilichtgalerie verwandelt." }
+    }
+  ]
+};
+
+const schemas = [touristAttractionSchema, faqSchema];
+
+const fastFacts = [
+  { dt: 'Lage', dd: 'Amalfiküste, SA' },
+  { dt: 'Höhe', dd: '0–650 m ü. M.' },
+  { dt: 'Einwohner', dd: '~800' },
+  { dt: 'Ab Amalfi', dd: '15 Min. (Auto/Bus)' },
+  { dt: 'Ab Positano', dd: '10 Min. (Auto/Bus)' },
+  { dt: 'Strand', dd: 'Kiesel (Fjord)' },
+  { dt: 'Spezialitäten', dd: 'Wandmalereien, Fjord, Wein' },
+  { dt: 'Beste Reisezeit', dd: 'Apr–Okt' },
+  { dt: 'Ideal für', dd: 'Fotos, Natur, Kunst' },
+];
+
+const tips = [
+  'Das schönste Foto des Fjords macht man von der Straßenbrücke: Komm früh morgens, wenn die Sonne in die Schlucht fällt.',
+  'Der Fjordstrand ist winzig: Im Sommer musst du vor 9:00 Uhr da sein, sonst findest du keinen Platz.',
+  'Spaziere entlang der SS163 und suche die Wandmalereien: Es sind über 100 und sie erzählen die Geschichte des Dorfes.',
+  'Jeden Juli findet der Mediterranean Cup statt: Profitaucher springen von der Fjordbrücke (14 m).',
+];
+---
+
+<BaseLayout
+  title="Furore 2026: Der Fjord, Wandmalereien & Das Dorf das nicht existiert"
+  description="Reiseführer zu Furore: der berühmte Fjord, die Wandmalereien des bemalten Dorfes, der versteckte Strand. Das ungewöhnlichste Dorf der Amalfiküste, ohne Zentrum aber mit einzigartiger Seele."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={schemas}
+  pageKey="furore"
+>
+
+  <!-- Hero -->
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/fiordo-furore-hero.webp" alt="Der Fjord von Furore, Amalfiküste" class="absolute inset-0 w-full h-full object-cover" loading="eager" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80 z-10"></div>
+    <div class="relative z-20 max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Das bemalte Dorf der Amalfikueste</p>
+        <h1 class="font-serif text-display text-white mb-4">Furore</h1>
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+          Das Dorf, das es nicht gibt. Ein spektakulärer Fjord, 100+ Wandmalereien und Häuser, die ohne Zentrum an den Berg geklammert sind.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#fast-facts" class="px-5 py-2.5 bg-med-gold text-white text-xs sm:text-sm font-semibold rounded-full hover:scale-105 hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)] transition-all duration-300">Schnellinfos</a>
+          <a href="#fjord" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">Der Fjord</a>
+          <a href="#faq" class="px-5 py-2.5 bg-white/10 backdrop-blur text-white text-xs sm:text-sm font-medium rounded-full border border-white/20 hover:bg-white/20 transition-colors">FAQ</a>
+        </div>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid lg:grid-cols-[1fr_320px] gap-12">
+
+      <div class="space-y-16">
+
+        <div class="prose-editorial">
+          <p class="text-xl leading-relaxed text-charcoal">
+            Furore ist ein Paradox: eine Gemeinde der Amalfiküste ohne Zentrum, ein Dorf das für einen Fjord berühmt ist, der eigentlich eine Schlucht ist, und eine Ortschaft mit 800 Einwohnern, die Fotografen aus aller Welt anzieht. Es ist der ungewöhnlichste und überraschendste Ort der gesamten Küste.
+          </p>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Die Häuser von Furore sind entlang der SS163 verstreut und klammern sich an die Terrassen, die zum Meer hinabführen. Es gibt keinen Platz, keine Strandpromenade: nur den Felsen, die Zitronen, die Wandmalereien und diesen Fjord, der wie aus einem Film wirkt. Der Name selbst kommt vom lateinischen <em>furor</em> — das Tosen des Meeres, das in die Schlucht dringt.
+          </p>
+        </div>
+
+        <!-- Wusstest du? -->
+        <div class="bg-slate-900 border border-white/10 rounded-[3rem] p-8">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Wusstest du?</p>
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">100+</p>
+              <p class="text-white/60 text-xs italic mt-1">Wandmalereien an den Hauswänden</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">30 m</p>
+              <p class="text-white/60 text-xs italic mt-1">Tiefe der Fjordschlucht</p>
+            </div>
+            <div class="text-center">
+              <p class="font-serif text-5xl font-bold text-med-gold">~800</p>
+              <p class="text-white/60 text-xs italic mt-1">Einwohner, einer der kleinsten Orte Italiens</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Der Fjord -->
+        <div id="fjord">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-6">Der Fjord von Furore</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Der <strong>Fjord von Furore</strong> ist die meistfotografierte Natursensation der Amalfiküste nach Positano. Eine Karstschlucht, in der der Bach Schiato auf das Meer trifft und eine 30 Meter tiefe Rinne ins Kalkgestein gräbt.
+          </p>
+          <div class="space-y-6">
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Der Strand des Fjords</h3>
+              <p class="text-slate-600 text-sm">Ein kleiner Kieselstreifen am Fuß der Schlucht, über eine Treppe mit ca. 200 Stufen ab der SS163 erreichbar. Kristallklares, frisches Wasser, keine Einrichtungen. Sehr begrenzter Platz: Ankunft im Sommer vor 9:00 Uhr empfohlen.</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Die Bruecke und der Ausblick</h3>
+              <p class="text-slate-600 text-sm">Die Straßenbrücke, die den Fjord überspannt, bietet den ikonischsten Blick von oben. Früh morgens fällt das Licht in die Schlucht und beleuchtet die auf dem Trockenen liegenden Boote. Jeden Juli, beim Mediterranean Cup, springen Profi-Taucher von der Brücke (14 m).</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-slate-100">
+              <h3 class="font-bold text-slate-900 mb-2">Die alten Fischerhaeuser</h3>
+              <p class="text-slate-600 text-sm">Am Fuß des Fjords sind noch die alten Höhlenhäuser der Fischer von Furore zu sehen, in den Fels gehauen und durch steile Treppen verbunden. Einige wurden restauriert und beherbergen heute Ateliers und Künstlerresidenzen.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sehenswürdigkeiten -->
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Sehenswuerdigkeiten in Furore</h2>
+          <div class="space-y-8">
+            {[
+              { n: 1, title: 'Die Wandmalereien des bemalten Dorfes', text: 'Seit den 1980er Jahren haben italienische und internationale Künstler Furore in eine Freilichtgalerie verwandelt. Über 100 Wandmalereien schmücken Mauern, Fassaden und Treppen entlang der gesamten Straße. Ein spontaner und kostenloser Kunstweg.' },
+              { n: 2, title: 'Kirche San Giacomo', text: 'Die Hauptkirche von Furore, hoch oben gelegen mit Panoramablick auf Meer und Weinberge. Schlicht und eindrucksvoll, sie verkörpert das spirituelle Herz eines Dorfes ohne Zentrum.' },
+              { n: 3, title: 'Wanderweg Sentiero della Volpe Pescatrice', text: 'Ein Wanderweg, der vom Meeresniveau in den oberen Teil des Dorfes führt, durch die alten Terrassen. Spektakuläre Ausblicke auf die Küste und den Fjord von oben. Dauer ca. 1–2 Stunden.' },
+              { n: 4, title: 'Weinberge von Furore', text: 'Der Wein von Furore gehört zu den besten des DOC Costa d&apos;Amalfi. Die extremen Weinberge, senkrecht auf den Fels über dem Meer gehängt, bringen den berühmten Fiorduva von Marisa Cuomo hervor, einen der gefragtesten Weißweine Italiens.' },
+            ].map(({ n, title, text }) => (
+              <div class="grid sm:grid-cols-[auto_1fr] gap-4">
+                <div class="w-14 h-14 rounded-[1rem] bg-med-gold/10 flex items-center justify-center flex-shrink-0 text-med-gold font-serif font-bold text-xl">{n}</div>
+                <div>
+                  <h3 class="font-semibold text-charcoal text-lg mb-1">{title}</h3>
+                  <p class="text-slate-600 leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Lokaler Tipp -->
+        <div class="relative overflow-hidden rounded-[3rem] bg-med-blue p-10 md:p-14 text-white shadow-2xl">
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-8">
+            <div class="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/20"><svg class="w-10 h-10 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg></div>
+            <div>
+              <p class="text-med-gold text-xs font-bold uppercase tracking-[0.3em] mb-2">Lokaler Tipp</p>
+              <h3 class="font-serif text-2xl font-bold text-white mb-3 tracking-tight">Der Fiorduva von Marisa Cuomo</h3>
+              <p class="text-white/70 leading-relaxed">Wenn du Wein liebst, suche nach dem Fiorduva: ein Weißwein aus handgepflückten Trauben von den Terrassen senkrecht über dem Fjord. Er gehört zu den meistprämierten Weinen Kampaniens und ist nur hier und in wenigen ausgesuchten Weinhandlungen erhältlich.</p>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-80 h-80 bg-med-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+        </div>
+
+        <!-- FAQ -->
+        <div id="faq">
+          <h2 class="font-serif text-3xl font-semibold text-slate-900 mb-8">Haeufig gestellte Fragen zu Furore</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="space-y-6 lg:sticky lg:top-24 self-start">
+        <div id="fast-facts" class="bg-slate-900 text-white rounded-[3rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Schnellinfos - Furore</p>
+          <dl class="space-y-3">
+            {fastFacts.map(({ dt, dd }, i) => (
+              <>
+                <div class="flex justify-between items-start gap-3">
+                  <dt class="text-white/40 text-xs sm:text-sm font-light flex-shrink-0">{dt}</dt>
+                  <dd class="text-white font-medium text-xs sm:text-sm text-right">{dd}</dd>
+                </div>
+                {i < fastFacts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+        </div>
+
+        <div class="bg-med-cream border border-med-gold/30 rounded-[2rem] p-6">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-3">Insider-Tipps</p>
+          <ul class="space-y-3">
+            {tips.map(tip => (
+              <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-gold mt-1.5 flex-shrink-0"></span>
+                <span>{tip}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-medium mb-3">Erkunde die Amalfikueste</p>
+          <nav class="space-y-1">
+            {[
+              { href: '/de-de/amalfikueste/conca-dei-marini/', label: 'Conca dei Marini' },
+              { href: '/de-de/amalfikueste/praiano/', label: 'Praiano' },
+              { href: '/de-de/amalfikueste/agerola/', label: 'Agerola' },
+              { href: '/de-de/amalfikueste/amalfi/', label: 'Amalfi' },
+              { href: '/de-de/amalfikueste/positano/', label: 'Positano' },
+            ].map(({ href, label }) => (
+              <a href={href} class="flex items-center gap-2 px-3 py-2 rounded-xl text-xs sm:text-sm text-charcoal hover:bg-med-blue/5 hover:text-med-blue transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full bg-med-blue/30"></span> {label}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    heading="Entdecke mehr an der Amalfikueste"
+    items={[
+      { name: 'Conca dei Marini', href: '/de-de/amalfikueste/conca-dei-marini/', tag: 'Smaragdgrotte & Sfogliatella', desc: 'Die Smaragdgrotte und die Heimat der Sfogliatella Santa Rosa.' },
+      { name: 'Praiano',  href: '/de-de/amalfikueste/praiano/',  tag: 'Sonnenuntergang & Ruhe', desc: 'Der Sonnenuntergang von San Gennaro und die ruhige Marina di Praia.' },
+      { name: 'Agerola',  href: '/de-de/amalfikueste/agerola/',  tag: 'Wandern & Natur', desc: 'Götterweg, Fior di Latte und Panoramen auf 600 m.' },
+      { name: 'Positano', href: '/de-de/amalfikueste/positano/', tag: 'Mode & Aussichten', desc: 'Bunte Häuser senkrecht auf dem Meer der Küste.' },
+      { name: 'Amalfi',   href: '/de-de/amalfikueste/amalfi/',   tag: 'Seerepublik', desc: 'Die historische Hauptstadt mit dem Dom und dem Papiermuseum.' },
+    ]}
+    lang="de-de"
+  />
+
+</BaseLayout>

@@ -279,6 +279,24 @@ function t(key: string): string {
     return ui[key]?.[langKey] || ui[key]?.['en'] || key;
   }
 
+  // Localize guide_link from /it-it/... to current language
+  const guideLinkMap = {
+    en: { locale: 'en-us', areas: { 'costiera-amalfitana': 'amalfi-coast', 'penisola-sorrentina': 'sorrento-peninsula', 'isole': 'islands' }, towns: {} },
+    de: { locale: 'de-de', areas: { 'costiera-amalfitana': 'amalfikueste', 'penisola-sorrentina': 'sorrentinische-halbinsel', 'isole': 'inseln' }, towns: { 'sorrento': 'sorrent' } },
+    es: { locale: 'es-es', areas: { 'costiera-amalfitana': 'costa-amalfitana', 'penisola-sorrentina': 'peninsula-sorrentina', 'isole': 'islas' }, towns: {} },
+    fr: { locale: 'fr-fr', areas: { 'costiera-amalfitana': 'cote-amalfitaine', 'penisola-sorrentina': 'peninsule-sorrentine', 'isole': 'iles' }, towns: { 'salerno': 'salerne', 'sorrento': 'sorrente' } },
+  };
+  function localizeGuideLink(link) {
+    if (!link || langKey === 'it') return link;
+    const m = guideLinkMap[langKey];
+    if (!m) return link;
+    const parts = link.split('/');
+    parts[1] = m.locale;
+    if (m.areas[parts[2]]) parts[2] = m.areas[parts[2]];
+    if (parts[3] && m.towns[parts[3]]) parts[3] = m.towns[parts[3]];
+    return parts.join('/');
+  }
+
   async function loadData() {
     const resp = await fetch('/data/itinerary-blocks.json');
     blocksData = await resp.json();
@@ -847,8 +865,9 @@ function t(key: string): string {
         // --- Footer: divider + guide & transport ---
         html += `<div style="margin:16px 24px 0;border-top:1px solid rgba(255,255,255,0.06)"></div>`;
         html += `<div style="padding:12px 24px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">`;
-        if (block.guide_link) {
-          html += `<a href="${block.guide_link}" style="display:inline-flex;align-items:center;gap:5px;font-size:13px;color:${accentColor};font-weight:600;text-decoration:none;transition:opacity 0.2s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">${t('discover')} <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>`;
+        const localLink = localizeGuideLink(block.guide_link);
+        if (localLink) {
+          html += `<a href="${localLink}" style="display:inline-flex;align-items:center;gap:5px;font-size:13px;color:${accentColor};font-weight:600;text-decoration:none;transition:opacity 0.2s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">${t('discover')} <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>`;
         } else {
           html += `<span></span>`;
         }
