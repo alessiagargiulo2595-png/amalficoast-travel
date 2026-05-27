@@ -555,6 +555,13 @@ export const slugMap: Record<string, SlugMap> = {
     'es-es': 'islas/ischia',
     'it-it': 'isole/ischia',
   },
+  anacapri: {
+    'en-us': 'islands/anacapri',
+    'de-de': 'inseln/anacapri',
+    'fr-fr': 'iles/anacapri',
+    'es-es': 'islas/anacapri',
+    'it-it': 'isole/anacapri',
+  },
   procida: {
     'en-us': 'islands/procida',
     'en-gb': 'islands/procida',
@@ -595,6 +602,55 @@ export const slugMap: Record<string, SlugMap> = {
     'fr-fr': 'peninsule-sorrentine/sant-agnello',
     'es-es': 'peninsula-sorrentina/sant-agnello',
     'it-it': 'penisola-sorrentina/sant-agnello',
+  },
+  meta: {
+    'en-us': 'sorrento-peninsula/meta',
+    'de-de': 'sorrentinische-halbinsel/meta',
+    'fr-fr': 'peninsule-sorrentine/meta',
+    'es-es': 'peninsula-sorrentina/meta',
+    'it-it': 'penisola-sorrentina/meta',
+  },
+  salerno: {
+    'en-us': 'amalfi-coast/salerno',
+    'de-de': 'amalfikueste/salerno',
+    'fr-fr': 'cote-amalfitaine/salerne',
+    'es-es': 'costa-amalfitana/salerno',
+    'it-it': 'costiera-amalfitana/salerno',
+  },
+  agerola: {
+    'en-us': 'amalfi-coast/agerola',
+    'de-de': 'amalfikueste/agerola',
+    'fr-fr': 'cote-amalfitaine/agerola',
+    'es-es': 'costa-amalfitana/agerola',
+    'it-it': 'costiera-amalfitana/agerola',
+  },
+  tramonti: {
+    'en-us': 'amalfi-coast/tramonti',
+    'de-de': 'amalfikueste/tramonti',
+    'fr-fr': 'cote-amalfitaine/tramonti',
+    'es-es': 'costa-amalfitana/tramonti',
+    'it-it': 'costiera-amalfitana/tramonti',
+  },
+  furore: {
+    'en-us': 'amalfi-coast/furore',
+    'de-de': 'amalfikueste/furore',
+    'fr-fr': 'cote-amalfitaine/furore',
+    'es-es': 'costa-amalfitana/furore',
+    'it-it': 'costiera-amalfitana/furore',
+  },
+  erchie: {
+    'en-us': 'amalfi-coast/erchie',
+    'de-de': 'amalfikueste/erchie',
+    'fr-fr': 'cote-amalfitaine/erchie',
+    'es-es': 'costa-amalfitana/erchie',
+    'it-it': 'costiera-amalfitana/erchie',
+  },
+  'conca-dei-marini': {
+    'en-us': 'amalfi-coast/conca-dei-marini',
+    'de-de': 'amalfikueste/conca-dei-marini',
+    'fr-fr': 'cote-amalfitaine/conca-dei-marini',
+    'es-es': 'costa-amalfitana/conca-dei-marini',
+    'it-it': 'costiera-amalfitana/conca-dei-marini',
   },
   // Region hub pages
   'amalfi-coast': {
@@ -760,6 +816,9 @@ export const slugMap: Record<string, SlugMap> = {
   'baia-recommone': { 'en-us': 'blog/baia-recommone', 'de-de': 'blog/baia-recommone', 'fr-fr': 'blog/baia-recommone', 'es-es': 'blog/baia-recommone', 'it-it': 'blog/baia-recommone' },
   'punta-campanella': { 'en-us': 'blog/punta-campanella', 'de-de': 'blog/punta-campanella', 'fr-fr': 'blog/punta-campanella', 'es-es': 'blog/punta-campanella', 'it-it': 'blog/punta-campanella' },
   'fiordo-di-crapolla': { 'en-us': 'blog/fiordo-di-crapolla', 'de-de': 'blog/fiordo-di-crapolla', 'fr-fr': 'blog/fiordo-di-crapolla', 'es-es': 'blog/fiordo-di-crapolla', 'it-it': 'blog/fiordo-di-crapolla' },
+  'limoncello-recipe': { 'en-us': 'blog/limoncello-recipe', 'de-de': 'blog/limoncello-rezept', 'fr-fr': 'blog/recette-limoncello', 'es-es': 'blog/receta-limoncello', 'it-it': 'blog/ricetta-limoncello' },
+  'scialatielli': { 'en-us': 'blog/scialatielli', 'de-de': 'blog/scialatielli', 'fr-fr': 'blog/scialatielli', 'es-es': 'blog/scialatielli', 'it-it': 'blog/scialatielli' },
+  'cuoppo-fritto': { 'en-us': 'blog/cuoppo-fritto', 'de-de': 'blog/cuoppo-fritto', 'fr-fr': 'blog/cuoppo-frit', 'es-es': 'blog/cuoppo-fritto', 'it-it': 'blog/cuoppo-fritto' },
   // NOTE: Sorrento peninsula events only exist in non-English locales (de-de, fr-fr, es-es, it-it)
   // They are handled by pattern-matching in the hreflang generation script
 
@@ -848,6 +907,9 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'lemon-delight',                     'de-de': 'zitronen-koestlichkeit',              'fr-fr': 'delice-citron',                     'es-es': 'delizia-limon',                     'it-it': 'delizia-al-limone'                 },
   { 'en-us': 'atrani',                            'de-de': 'atrani',                             'fr-fr': 'atrani',                            'es-es': 'atrani',                            'it-it': 'atrani'                            },
   { 'en-us': 'sorrento-vs-praiano',                'de-de': 'sorrento-vs-praiano',                 'fr-fr': 'sorrento-vs-praiano',               'es-es': 'sorrento-vs-praiano',               'it-it': 'sorrento-vs-praiano'               },
+  { 'en-us': 'limoncello-recipe',                 'de-de': 'limoncello-rezept',                   'fr-fr': 'recette-limoncello',                'es-es': 'receta-limoncello',                 'it-it': 'ricetta-limoncello'                },
+  { 'en-us': 'scialatielli',                      'de-de': 'scialatielli',                        'fr-fr': 'scialatielli',                      'es-es': 'scialatielli',                      'it-it': 'scialatielli'                      },
+  { 'en-us': 'cuoppo-fritto',                     'de-de': 'cuoppo-fritto',                       'fr-fr': 'cuoppo-frit',                       'es-es': 'cuoppo-fritto',                     'it-it': 'cuoppo-fritto'                     },
   // Destination town slugs (same in all languages)
   { 'en-us': 'positano',                          'de-de': 'positano',                           'fr-fr': 'positano',                          'es-es': 'positano',                          'it-it': 'positano'                          },
   { 'en-us': 'amalfi',                            'de-de': 'amalfi',                             'fr-fr': 'amalfi',                            'es-es': 'amalfi',                            'it-it': 'amalfi'                            },
