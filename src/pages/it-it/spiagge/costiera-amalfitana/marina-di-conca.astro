@@ -1,0 +1,333 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Spiagge', url: '/it-it/spiagge/' },
+  { name: 'Marina di Conca', url: '/it-it/spiagge/costiera-amalfitana/marina-di-conca/' },
+];
+
+const facts = [
+  { label: 'Composizione', value: 'Ciottoli e sabbia fine' },
+  { label: 'Accesso', value: 'Scalinata (circa 100 gradini)' },
+  { label: 'Ombra', value: 'Dalle 15:30 (pareti calcaree alle spalle)' },
+  { label: 'Servizi', value: 'Beach club + spiaggia libera' },
+  { label: 'Ideale per', value: 'Tranquillità, snorkeling, autenticità' },
+  { label: 'Vicino a', value: 'Grotta dello Smeraldo (2 km)' },
+  { label: 'Lettino + ombrellone', value: '€20–€30 a persona' },
+  { label: 'Punto storico', value: 'Antico porto dei pescatori di Conca' },
+  { label: 'Periodo migliore', value: 'Maggio–giugno, settembre' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si raggiunge Marina di Conca?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Marina di Conca si trova a Conca dei Marini, sulla Strada Statale Amalfitana (SS163) tra Amalfi e Praiano. Dal centro del paese si scende verso il mare tramite una scalinata di circa 100 gradini scolpita nella roccia. In auto: parcheggio limitato lungo la SS163 (a pagamento in estate). In autobus: SITA linea Amalfi–Sorrento, fermata Conca dei Marini centro, poi 5 minuti a piedi. Via mare: taxi boat da Amalfi o Positano."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa rende Marina di Conca speciale rispetto alle altre spiagge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Marina di Conca è una delle spiagge più autentiche della Costiera Amalfitana: piccola (circa 100 metri), incastonata tra due falesie calcaree, con il colore del mare turchese tipico di Conca dei Marini. È meno turistica delle spiagge di Positano e Amalfi, ed è ancora frequentata dai pescatori locali. Si trova a 2 km dalla famosa Grotta dello Smeraldo, ed è perfetta per chi vuole abbinare visita alla grotta e mezza giornata di spiaggia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costano i lettini a Marina di Conca?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Marina di Conca offre uno dei rapporti qualità-prezzo migliori della Costiera Amalfitana. I beach club della baia hanno lettino + ombrellone a partire da €20–30 a persona (contro €35–60 di Positano). C'è anche una zona libera ampia: porta il telo e l'ombrellone. Il ristorante La Tonnarella, sulla spiaggia, è una tradizione storica - pesce fresco e prezzi onesti."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Si può fare snorkeling a Marina di Conca?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì. Le acque di Marina di Conca sono cristalline e i fondali rocciosi alle estremità della baia ospitano una fauna marina varia: saraghi, polpi, donzelle. La parete a est, sotto la falesia che porta verso la Grotta dello Smeraldo, è particolarmente bella. Le mattine sono il momento migliore: acqua più calma, maggiore visibilità subacquea, meno barche di passaggio."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Si può visitare la Grotta dello Smeraldo da Marina di Conca?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì. La Grotta dello Smeraldo dista circa 2 km da Marina di Conca lungo la SS163. Puoi raggiungerla a piedi (20 min di salita lungo la statale, senza marciapiede), in auto, oppure via mare con i taxi boat locali che fanno il giro combinato. L'ingresso alla grotta è dalla SS163, poi un ascensore o le scale ti portano al livello del mare; da lì si visita la grotta in barca a remi (durata 10 min, biglietto €5 + €5 ascensore)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Marina di Conca è adatta a famiglie con bambini?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Parzialmente. Il mare è calmo e poco profondo nei primi metri, ideale per bambini. Ma l'accesso tramite circa 100 gradini è impegnativo con passeggini o bambini molto piccoli. Se viaggi con bambini sotto i 3 anni, valuta di arrivare via taxi boat invece di a piedi. I beach club della spiaggia hanno servizi essenziali (docce, bagni)."
+      }
+    }
+  ]
+};
+
+const beachSchema = {
+  "@context": "https://schema.org",
+  "@type": "Beach",
+  "name": "Marina di Conca",
+  "description": "La spiaggia autentica di Conca dei Marini: piccola baia di pescatori incastonata tra falesie calcaree, a 2 km dalla Grotta dello Smeraldo.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "40.6126",
+    "longitude": "14.5660"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Conca dei Marini",
+    "addressRegion": "SA",
+    "addressCountry": "IT"
+  },
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Beach Club", "value": "Sì" },
+    { "@type": "LocationFeatureSpecification", "name": "Spiaggia libera", "value": "Sì" },
+    { "@type": "LocationFeatureSpecification", "name": "Ristoranti", "value": "Sì" }
+  ]
+};
+
+const nearbyBeaches = [
+  { name: 'Fiordo di Furore', href: '/it-it/spiagge/costiera-amalfitana/fiordo-di-furore/', tag: 'Furore', desc: 'Il fiordo più iconico incastonato nella roccia.' },
+  { name: 'Spiaggia della Gavitella', href: '/it-it/spiagge/costiera-amalfitana/gavitella-praiano/', tag: 'Praiano', desc: "L'unica spiaggia di Praiano al sole tutto il giorno." },
+  { name: 'Marina di Praia', href: '/it-it/spiagge/costiera-amalfitana/marina-di-praia/', tag: 'Praiano', desc: 'Spiaggia selvaggia con il tramonto perfetto.' },
+  { name: 'Santa Croce', href: '/it-it/spiagge/costiera-amalfitana/santa-croce-amalfi/', tag: 'Amalfi', desc: 'Solo via mare, ristoranti storici.' },
+];
+---
+
+<BaseLayout
+  title="Marina di Conca: La Spiaggia Autentica di Conca dei Marini"
+  description="Marina di Conca: piccola spiaggia di pescatori a Conca dei Marini, vicino alla Grotta dello Smeraldo. Come arrivare, prezzi 2026, snorkeling e tranquillità."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[beachSchema, faqSchema]}
+ pageKey="marina-di-conca">
+
+  <!-- Hero -->
+  <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
+    <img
+      src="/images/marina-di-conca-hero.webp"
+      alt="Marina di Conca, Conca dei Marini"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager" fetchpriority="high" decoding="sync" referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Conca dei Marini · Costiera Amalfitana</p>
+      <h1 class="font-serif text-display text-white mb-6">Marina di Conca</h1>
+      <p class="text-lg md:text-xl font-light text-white/80">Il porto storico dei pescatori, una piccola baia turchese sotto la Grotta dello Smeraldo.</p>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <!-- Contenuto + Sidebar -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+
+      <div class="lg:col-span-2 space-y-12">
+        <div>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">La Baia dei Pescatori</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Marina di Conca è la spiaggia autentica di <strong>Conca dei Marini</strong>, uno dei borghi più discreti della <a href="/it-it/costiera-amalfitana/" class="text-med-blue hover:underline">Costiera Amalfitana</a>. Incastonata tra due alte falesie calcaree e raggiungibile attraverso una scalinata scavata nella roccia, è il porto storico dei pescatori locali - una scena marittima che mantiene il suo carattere originale, lontano dal jet-set di Positano e dalla folla di Amalfi.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Il colore del mare qui assume sfumature turchese profondo, frutto dei fondali calcarei chiari che riflettono la luce del Mediterraneo. È la stessa luce che dà il nome alla vicina <strong>Grotta dello Smeraldo</strong>, a soli 2 km da qui.
+          </p>
+        </div>
+
+        <!-- Box Grotta Smeraldo -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <h3 class="text-xl font-bold">La Grotta dello Smeraldo a 2 km</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Marina di Conca è la base perfetta per visitare la <a href="/it-it/blog/grotta-dello-smeraldo/" class="text-med-blue hover:underline">Grotta dello Smeraldo</a>, una delle attrazioni naturali più celebri della costa. Scoperta nel 1932 da Luigi Buonocore, la grotta deve il suo nome alla luce verde smeraldo che si crea quando i raggi del sole penetrano da un'apertura subacquea e illuminano l'acqua interna.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            Itinerario consigliato: mattina alla grotta, pranzo di pesce a Marina di Conca, pomeriggio in spiaggia. Da maggio a settembre la grotta è aperta tutti i giorni (9:00–17:00), biglietto €5 + €5 per l'ascensore.
+          </p>
+        </div>
+
+        <!-- Storia -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Storia: Saraceni, Tonnara e Sofia Loren</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Il nome <em>Conca dei Marini</em> deriva direttamente dalla professione storica dei suoi abitanti: <strong>marinai</strong>. Dal Medioevo fino al XX secolo, il borgo era una piccola repubblica marinara satellite di Amalfi, e Marina di Conca era il suo porto. Le barche da pesca - in particolare le caratteristiche <em>gozzi</em> in legno - venivano alate ogni inverno sulla spiaggia per la manutenzione, e le reti venivano stese ad asciugare sui ciottoli, una scena che si è ripetuta praticamente identica per secoli.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La <strong>Torre di Capo di Conca</strong>, visibile a est della baia, fu costruita nel XVI secolo come parte del sistema difensivo contro le incursioni saracene. La storia racconta che proprio qui vennero respinti diversi tentativi di sbarco da parte dei pirati di Khayr al-Din Barbarossa, l'ammiraglio ottomano che terrorizzò il Tirreno nel '500.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Negli anni '60, Conca dei Marini divenne uno dei rifugi preferiti dell'élite del cinema italiano. <strong>Sofia Loren</strong>, Carlo Ponti, Gianni Agnelli, Jacqueline Kennedy frequentarono la zona attratti dalla sua autenticità riservata. È in questo periodo che la piccola Marina di Conca trovò la sua identità: non come spiaggia da turismo di massa, ma come rifugio per chi voleva fuggire dal proprio successo.
+          </p>
+        </div>
+
+        <!-- Box La Tonnarella -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 18l4-4 4 4 6-6 4 4"/><path d="M3 6h18v12H3z"/></svg>
+            <h3 class="text-xl font-bold">La Tonnarella: il Ristorante sul Mare</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            Direttamente sulla spiaggia, da decenni, opera <strong>La Tonnarella</strong> - un ristorante semplice e di tradizione, gestito dalla stessa famiglia di pescatori. Spaghetti alle vongole, frittura di paranza, polpo verace alla griglia: il menu è cortissimo, ma il pesce arriva direttamente dai gozzi alati sulla spiaggia. Prezzi onesti (€35–50 a persona), tavoli a meno di un metro dall'acqua. Prenotare nei weekend estivi è obbligatorio.
+          </p>
+          <p class="text-slate-600 leading-relaxed">
+            Per chi pranza al ristorante, il servizio lettino è incluso - una formula praticamente impossibile da trovare in altre zone della Costiera ai prezzi di Conca dei Marini.
+          </p>
+        </div>
+
+        <!-- Stats Box -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">2 km</p>
+            <p class="text-white/60 text-sm mt-1">dalla Grotta dello Smeraldo</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">100</p>
+            <p class="text-white/60 text-sm mt-1">gradini di accesso</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">XVI</p>
+            <p class="text-white/60 text-sm mt-1">sec. – Torre di Capo</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">€20</p>
+            <p class="text-white/60 text-sm mt-1">lettino (da)</p>
+          </div>
+        </div>
+
+        <!-- Consigli dei Locali -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consigli dei Locali</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Combina la giornata in spiaggia con la visita alla <a href="/it-it/blog/grotta-dello-smeraldo/" class="text-med-blue hover:underline">Grotta dello Smeraldo</a>: mattina alla grotta (apertura ore 9), pranzo a Marina di Conca, pomeriggio in spiaggia.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Prenota La Tonnarella con almeno 24 ore di anticipo nei weekend tra giugno e settembre. I tavoli a bordo acqua si esauriscono per primi.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Lo snorkeling migliore è lungo la parete est, verso Capo di Conca. Maschera e pinne più mezza giornata = un sacco di fauna marina visibile.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Il parcheggio lungo la SS163 è limitato: arriva entro le 9 in luglio e agosto, o usa il bus SITA dalla fermata Conca centro (5 minuti a piedi).</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Periodo migliore: settembre. Acqua ancora calda (22-23°C), pochissimi turisti, ristorante con tavoli liberi anche senza prenotazione.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Come arrivare -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Arrivare</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus SITA ⭐</p>
+              <p class="text-slate-700 font-medium mb-1">Linea Amalfi–Sorrento</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Fermata "Conca dei Marini centro", poi 5 min a piedi lungo la scalinata. Vedi <a href="/it-it/guida/bus-sita/" class="text-med-blue hover:underline">orari SITA</a>.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Auto</p>
+              <p class="text-slate-700 font-medium mb-1">SS163 Amalfitana</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Parcheggio limitato lungo la statale, a pagamento. Arrivo entro le 9 in alta stagione. <a href="/it-it/guida/parcheggi-ztl/" class="text-med-blue hover:underline">Guida parcheggi</a>.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Boat</p>
+              <p class="text-slate-700 font-medium mb-1">Da Amalfi o Positano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">€15–25 a persona. Arrivo diretto sulla spiaggia, soluzione consigliata in alta stagione.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">A piedi</p>
+              <p class="text-slate-700 font-medium mb-1">Dal centro di Conca</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Circa 100 gradini scavati nella roccia. Indossa scarpe comode. Non adatto a passeggini.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Fast-Facts -->
+      <aside class="lg:col-span-1">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
+            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Fast-Facts
+          </h3>
+          <div class="space-y-6">
+            {facts.map((item) => (
+              <div class="border-b border-white/5 pb-4 last:border-0">
+                <span class="text-white/40 text-xs sm:text-sm font-light block mb-1">{item.label}</span>
+                <span class="text-white font-medium text-xs sm:text-sm">{item.value}</span>
+              </div>
+            ))}
+          </div>
+          <div class="mt-10 pt-8 border-t border-white/10">
+            <a
+              href="/it-it/spiagge/"
+              class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
+            >
+              ← Tutte le spiagge
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    lang="it-it"
+    items={nearbyBeaches}
+    title="Spiagge Vicine da Esplorare"
+  />
+
+  <section class="bg-med-blue py-16 text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="font-serif text-2xl font-bold text-white mb-4">Scopri altre spiagge della Costiera</h2>
+      <a
+        href="/it-it/spiagge/"
+        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
+      >
+        Guida completa alle spiagge
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

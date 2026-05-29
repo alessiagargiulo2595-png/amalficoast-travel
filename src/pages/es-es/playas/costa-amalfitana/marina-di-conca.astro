@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'es-es';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Playas', url: '/es-es/playas/' },
+  { name: 'Marina di Conca', url: '/es-es/playas/costa-amalfitana/marina-di-conca/' },
+];
+
+const facts = [
+  { label: 'Composición', value: 'Guijarros y arena fina' },
+  { label: 'Acceso', value: 'Escalera (unos 100 escalones)' },
+  { label: 'Sombra', value: 'Desde las 15:30 (acantilados calcáreos)' },
+  { label: 'Servicios', value: 'Club de playa + zona libre' },
+  { label: 'Ideal para', value: 'Tranquilidad, snorkel, autenticidad' },
+  { label: 'Cerca de', value: 'Gruta Esmeralda (2 km)' },
+  { label: 'Hamaca + sombrilla', value: '€20–€30 por persona' },
+  { label: 'Punto histórico', value: 'Antiguo puerto de pescadores de Conca' },
+  { label: 'Mejor temporada', value: 'Mayo–junio, septiembre' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "¿Cómo se llega a Marina di Conca?", "acceptedAnswer": { "@type": "Answer", "text": "Marina di Conca se encuentra en Conca dei Marini, sobre la Strada Statale Amalfitana (SS163) entre Amalfi y Praiano. Desde el centro del pueblo se baja al mar por una escalera de unos 100 escalones tallada en la roca. En coche: aparcamiento limitado de pago a lo largo de la SS163 en verano. En autobús: SITA línea Amalfi–Sorrento, parada Conca dei Marini centro, luego 5 minutos a pie. Por mar: taxi boat desde Amalfi o Positano." } },
+    { "@type": "Question", "name": "¿Qué hace especial a Marina di Conca?", "acceptedAnswer": { "@type": "Answer", "text": "Marina di Conca es una de las playas más auténticas de la Costa Amalfitana: pequeña (unos 100 metros), encajada entre dos acantilados calcáreos, con el agua turquesa típica de Conca dei Marini. Es menos turística que las playas de Positano y Amalfi, y aún frecuentada por pescadores locales. Está a 2 km de la famosa Gruta Esmeralda, perfecta para combinar visita a la gruta y media jornada de playa." } },
+    { "@type": "Question", "name": "¿Cuánto cuestan las hamacas en Marina di Conca?", "acceptedAnswer": { "@type": "Answer", "text": "Marina di Conca ofrece una de las mejores relaciones calidad-precio de la Costa Amalfitana. Los clubs de playa tienen hamaca + sombrilla desde €20–30 por persona (vs €35–60 en Positano). También hay una zona libre amplia: lleva la toalla y la sombrilla. El restaurante La Tonnarella, en la playa, es una tradición histórica: pescado fresco a precios honestos." } },
+    { "@type": "Question", "name": "¿Se puede hacer snorkel en Marina di Conca?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Las aguas de Marina di Conca son cristalinas y los fondos rocosos en los extremos de la bahía albergan una fauna marina variada: sargos, pulpos, doncellas. La pared este, bajo el acantilado hacia la Gruta Esmeralda, es particularmente bonita. Las mañanas son el mejor momento: aguas más calmas, mayor visibilidad submarina, menos barcos." } },
+    { "@type": "Question", "name": "¿Se puede visitar la Gruta Esmeralda desde Marina di Conca?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. La Gruta Esmeralda dista unos 2 km de Marina di Conca por la SS163. Puedes ir a pie (20 min de subida por la estatal, sin acera), en coche o en taxi boat con circuito combinado. El acceso a la gruta es desde la SS163, luego un ascensor o escaleras te llevan al nivel del mar; de allí se visita en barca de remos (10 min, entrada €5 + €5 ascensor)." } },
+    { "@type": "Question", "name": "¿Es Marina di Conca adecuada para familias con niños?", "acceptedAnswer": { "@type": "Answer", "text": "Parcialmente. El mar es calmo y poco profundo en los primeros metros, ideal para niños. Pero el acceso por unos 100 escalones es complicado con carritos o niños muy pequeños. Si viajas con menores de 3 años, valora llegar en taxi boat. Los clubs de playa tienen servicios esenciales (duchas, baños)." } }
+  ]
+};
+
+const beachSchema = {
+  "@context": "https://schema.org", "@type": "Beach",
+  "name": "Marina di Conca",
+  "description": "La playa auténtica de Conca dei Marini: pequeña cala de pescadores entre acantilados calcáreos, a 2 km de la Gruta Esmeralda.",
+  "geo": { "@type": "GeoCoordinates", "latitude": "40.6126", "longitude": "14.5660" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Conca dei Marini", "addressRegion": "SA", "addressCountry": "IT" },
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Beach Club", "value": "Sí" },
+    { "@type": "LocationFeatureSpecification", "name": "Playa libre", "value": "Sí" },
+    { "@type": "LocationFeatureSpecification", "name": "Restaurantes", "value": "Sí" }
+  ]
+};
+
+const nearbyBeaches = [
+  { name: 'Fiordo di Furore', href: '/es-es/playas/costa-amalfitana/fiordo-di-furore/', tag: 'Furore', desc: 'El fiordo icónico entre acantilados.' },
+  { name: 'Playa de Gavitella', href: '/es-es/playas/costa-amalfitana/gavitella-praiano/', tag: 'Praiano', desc: 'La única playa de Praiano al sol todo el día.' },
+  { name: 'Marina di Praia', href: '/es-es/playas/costa-amalfitana/marina-di-praia/', tag: 'Praiano', desc: 'Playa salvaje con atardecer perfecto.' },
+  { name: 'Santa Croce', href: '/es-es/playas/costa-amalfitana/santa-croce-amalfi/', tag: 'Amalfi', desc: 'Solo por mar, restaurantes históricos.' },
+];
+---
+
+<BaseLayout title="Marina di Conca: la Playa Auténtica de Conca dei Marini" description="Marina di Conca: pequeña playa de pescadores cerca de la Gruta Esmeralda. Cómo llegar, precios 2026, snorkel y tranquilidad." lang={lang} breadcrumbs={breadcrumbs} schema={[beachSchema, faqSchema]} pageKey="marina-di-conca">
+
+  <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
+    <img src="/images/marina-di-conca-hero.webp" alt="Marina di Conca, Conca dei Marini" class="absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high" decoding="sync" referrerpolicy="no-referrer" />
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Conca dei Marini · Costa Amalfitana</p>
+      <h1 class="font-serif text-display text-white mb-6">Marina di Conca</h1>
+      <p class="text-lg md:text-xl font-light text-white/80">El puerto histórico de los pescadores, una pequeña bahía turquesa bajo la Gruta Esmeralda.</p>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+      <div class="lg:col-span-2 space-y-12">
+        <div>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">La Bahía de los Pescadores</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">Marina di Conca es la playa auténtica de <strong>Conca dei Marini</strong>, uno de los pueblos más discretos de la <a href="/es-es/costa-amalfitana/" class="text-med-blue hover:underline">Costa Amalfitana</a>. Encajada entre dos altos acantilados calcáreos y accesible por una escalera tallada en la roca, es el puerto histórico de los pescadores locales — una escena marítima que mantiene su carácter original, lejos del jet-set de Positano y la multitud de Amalfi.</p>
+          <p class="text-slate-600 text-lg leading-relaxed">El color del mar aquí asume tonos turquesa profundo, gracias a los fondos calcáreos claros que reflejan la luz del Mediterráneo. Es la misma luz que da nombre a la cercana <strong>Gruta Esmeralda</strong>, a solo 2 km de aquí.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <h3 class="text-xl font-bold">La Gruta Esmeralda a 2 km</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">Marina di Conca es la base perfecta para visitar la <a href="/es-es/blog/gruta-esmeralda/" class="text-med-blue hover:underline">Gruta Esmeralda</a>, una de las atracciones naturales más célebres de la costa. Descubierta en 1932 por Luigi Buonocore, debe su nombre a la luz verde esmeralda que se crea cuando los rayos del sol penetran por una abertura submarina e iluminan el agua interior.</p>
+          <p class="text-slate-600 leading-relaxed">Itinerario recomendado: mañana en la gruta, almuerzo de pescado en Marina di Conca, tarde en la playa. De mayo a septiembre la gruta abre todos los días (9:00–17:00), entrada €5 + €5 ascensor.</p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Historia: Sarracenos, Tonnara y Sophia Loren</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">El nombre <em>Conca dei Marini</em> proviene directamente de la profesión histórica de sus habitantes: <strong>marineros</strong>. Desde la Edad Media hasta el siglo XX, el pueblo era una pequeña república marinera satélite de Amalfi, y Marina di Conca era su puerto. Las barcas de pesca — en particular los característicos <em>gozzi</em> de madera — se varaban cada invierno en la playa para mantenimiento, y las redes se extendían a secar sobre los guijarros, una escena que se repitió prácticamente idéntica durante siglos.</p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">La <strong>Torre di Capo di Conca</strong>, visible al este de la bahía, fue construida en el siglo XVI como parte del sistema defensivo contra las incursiones sarracenas. La historia cuenta que aquí mismo se rechazaron varios intentos de desembarco de los piratas de Khayr al-Din Barbarossa, el almirante otomano que aterrorizó el Tirreno en el siglo XVI.</p>
+          <p class="text-slate-600 text-lg leading-relaxed">En los años '60, Conca dei Marini se convirtió en uno de los refugios preferidos de la élite del cine italiano. <strong>Sophia Loren</strong>, Carlo Ponti, Gianni Agnelli, Jacqueline Kennedy frecuentaron la zona, atraídos por su autenticidad reservada. Es en este período cuando la pequeña Marina di Conca encontró su identidad: no como playa de turismo masivo, sino como refugio para quien quería escapar del propio éxito.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 18l4-4 4 4 6-6 4 4"/><path d="M3 6h18v12H3z"/></svg>
+            <h3 class="text-xl font-bold">La Tonnarella: el Restaurante en la Playa</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">Directamente en la playa, desde hace décadas, opera <strong>La Tonnarella</strong> — un restaurante sencillo y tradicional gestionado por la misma familia de pescadores. Spaghetti alle vongole, fritura de pescado, pulpo a la brasa: el menú es muy corto, pero el pescado llega directamente de los gozzi varados en la playa. Precios honestos (€35–50 por persona), mesas a menos de un metro del agua. Reservar en fines de semana de verano es obligatorio.</p>
+          <p class="text-slate-600 leading-relaxed">Para quien come en el restaurante, el servicio de hamaca está incluido — una fórmula prácticamente imposible de encontrar en otras zonas de la costa a los precios de Conca dei Marini.</p>
+        </div>
+
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div><p class="text-med-gold text-3xl font-bold">2 km</p><p class="text-white/60 text-sm mt-1">de la Gruta Esmeralda</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">100</p><p class="text-white/60 text-sm mt-1">escalones de acceso</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">XVI</p><p class="text-white/60 text-sm mt-1">siglo – Torre Capo</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">€20</p><p class="text-white/60 text-sm mt-1">hamaca (desde)</p></div>
+        </div>
+
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consejos de los Locales</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Combina la jornada de playa con la visita a la <a href="/es-es/blog/gruta-esmeralda/" class="text-med-blue hover:underline">Gruta Esmeralda</a>: mañana en la gruta (apertura 9h), almuerzo en Marina di Conca, tarde en la playa.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Reserva La Tonnarella con al menos 24 horas de antelación los fines de semana entre junio y septiembre. Las mesas frente al agua se agotan primero.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">El mejor snorkel está a lo largo de la pared este, hacia Capo di Conca. Máscara y aletas más medio día = mucha fauna marina visible.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">El aparcamiento en la SS163 es limitado: llega antes de las 9 en julio y agosto, o usa el bus SITA desde la parada Conca centro (5 min a pie).</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Mejor temporada: septiembre. Agua todavía caliente (22-23°C), poquísimos turistas, restaurante con mesas libres sin reserva.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Cómo Llegar</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus SITA ⭐</p><p class="text-slate-700 font-medium mb-1">Línea Amalfi–Sorrento</p><p class="text-slate-500 text-xs sm:text-sm">Parada "Conca dei Marini centro", luego 5 min a pie por la escalera. Ver <a href="/es-es/guia/bus-sita/" class="text-med-blue hover:underline">horarios SITA</a>.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">En coche</p><p class="text-slate-700 font-medium mb-1">SS163 Amalfitana</p><p class="text-slate-500 text-xs sm:text-sm">Aparcamiento de pago limitado a lo largo de la estatal. Llega antes de las 9 en temporada alta. <a href="/es-es/guia/aparcamiento-ztl/" class="text-med-blue hover:underline">Guía aparcamiento</a>.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Boat</p><p class="text-slate-700 font-medium mb-1">Desde Amalfi o Positano</p><p class="text-slate-500 text-xs sm:text-sm">€15–25 por persona. Llegada directa a la playa, solución aconsejada en temporada alta.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">A pie</p><p class="text-slate-700 font-medium mb-1">Desde el centro de Conca</p><p class="text-slate-500 text-xs sm:text-sm">Unos 100 escalones tallados en la roca. Lleva calzado cómodo. No apto para carritos.</p></div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Preguntas Frecuentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <aside class="lg:col-span-1">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
+            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Datos Rápidos
+          </h3>
+          <div class="space-y-6">{facts.map((item) => (<div class="border-b border-white/5 pb-4 last:border-0"><span class="text-white/40 text-xs sm:text-sm font-light block mb-1">{item.label}</span><span class="text-white font-medium text-xs sm:text-sm">{item.value}</span></div>))}</div>
+          <div class="mt-10 pt-8 border-t border-white/10"><a href="/es-es/playas/" class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors">← Todas las playas</a></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CorrelationSlider lang="es-es" items={nearbyBeaches} title="Playas Cercanas para Explorar" />
+
+  <section class="bg-med-blue py-16 text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="font-serif text-2xl font-bold text-white mb-4">Descubre más playas de la Costa</h2>
+      <a href="/es-es/playas/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors">Guía completa de playas</a>
+    </div>
+  </section>
+
+</BaseLayout>

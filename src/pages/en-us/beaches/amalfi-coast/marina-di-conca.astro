@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Beaches', url: '/en-us/beaches/' },
+  { name: 'Marina di Conca', url: '/en-us/beaches/amalfi-coast/marina-di-conca/' },
+];
+
+const facts = [
+  { label: 'Composition', value: 'Pebbles and fine sand' },
+  { label: 'Access', value: 'Stone steps (~100 steps)' },
+  { label: 'Shade', value: 'From 3:30 PM (limestone cliffs)' },
+  { label: 'Facilities', value: 'Beach club + free section' },
+  { label: 'Best for', value: 'Tranquility, snorkeling, authenticity' },
+  { label: 'Near', value: "Emerald Grotto (2 km)" },
+  { label: 'Sun lounger + umbrella', value: '€20–€30 per person' },
+  { label: 'Historic point', value: "Conca's old fishermen's port" },
+  { label: 'Best season', value: 'May–June, September' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do you reach Marina di Conca?", "acceptedAnswer": { "@type": "Answer", "text": "Marina di Conca is located in Conca dei Marini, on the SS163 Amalfi coast road between Amalfi and Praiano. From the village center you descend to the sea via a 100-step stone staircase carved into the rock. By car: limited paid parking along the SS163 in summer. By bus: SITA Amalfi–Sorrento line, Conca dei Marini stop, then 5 min walk. By sea: taxi boat from Amalfi or Positano." } },
+    { "@type": "Question", "name": "What makes Marina di Conca special?", "acceptedAnswer": { "@type": "Answer", "text": "Marina di Conca is one of the most authentic beaches on the Amalfi Coast: small (about 100 meters), tucked between limestone cliffs, with the turquoise water typical of Conca dei Marini. It's less touristy than Positano and Amalfi beaches and is still used by local fishermen. It's 2 km from the famous Emerald Grotto, perfect for combining a grotto visit with a beach afternoon." } },
+    { "@type": "Question", "name": "How much do sun loungers cost at Marina di Conca?", "acceptedAnswer": { "@type": "Answer", "text": "Marina di Conca offers one of the best price-quality ratios on the Amalfi Coast. The bay's beach clubs have sun lounger + umbrella starting at €20–30 per person (vs €35–60 in Positano). There's also a free section: bring towel and umbrella. La Tonnarella restaurant on the beach is a historic tradition — fresh seafood at fair prices." } },
+    { "@type": "Question", "name": "Can you snorkel at Marina di Conca?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The waters at Marina di Conca are crystal clear and the rocky seabeds at the bay's edges host varied marine life: bream, octopus, wrasse. The eastern wall below the cliff toward the Emerald Grotto is particularly beautiful. Mornings are the best time: calmer water, better visibility, fewer passing boats." } },
+    { "@type": "Question", "name": "Can you visit the Emerald Grotto from Marina di Conca?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Emerald Grotto is 2 km from Marina di Conca along the SS163. You can reach it on foot (20 min uphill along the road, no sidewalk), by car, or by taxi boat with combined tours. Entrance is from the SS163, then an elevator or stairs take you to sea level; from there you visit the grotto by rowboat (10 min, €5 ticket + €5 elevator)." } },
+    { "@type": "Question", "name": "Is Marina di Conca family-friendly?", "acceptedAnswer": { "@type": "Answer", "text": "Partially. The sea is calm and shallow in the first meters, ideal for children. But access via 100 steps is challenging with strollers or very young children. If traveling with under-3s, consider arriving by taxi boat instead. Beach clubs have essential services (showers, restrooms)." } }
+  ]
+};
+
+const beachSchema = {
+  "@context": "https://schema.org", "@type": "Beach",
+  "name": "Marina di Conca",
+  "description": "The authentic beach of Conca dei Marini: small fishermen's cove between limestone cliffs, 2 km from the Emerald Grotto.",
+  "geo": { "@type": "GeoCoordinates", "latitude": "40.6126", "longitude": "14.5660" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Conca dei Marini", "addressRegion": "SA", "addressCountry": "IT" },
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Beach Club", "value": "Yes" },
+    { "@type": "LocationFeatureSpecification", "name": "Free section", "value": "Yes" },
+    { "@type": "LocationFeatureSpecification", "name": "Restaurants", "value": "Yes" }
+  ]
+};
+
+const nearbyBeaches = [
+  { name: 'Fiordo di Furore', href: '/en-us/beaches/amalfi-coast/fiordo-di-furore/', tag: 'Furore', desc: 'The iconic fjord set in the cliffs.' },
+  { name: 'Gavitella Beach', href: '/en-us/beaches/amalfi-coast/gavitella-praiano/', tag: 'Praiano', desc: "Praiano's only sun-all-day beach." },
+  { name: 'Marina di Praia', href: '/en-us/beaches/amalfi-coast/marina-di-praia/', tag: 'Praiano', desc: 'Wild beach with the perfect sunset.' },
+  { name: 'Santa Croce', href: '/en-us/beaches/amalfi-coast/santa-croce-amalfi/', tag: 'Amalfi', desc: 'Boat access only, historic restaurants.' },
+];
+---
+
+<BaseLayout title="Marina di Conca: The Authentic Beach of Conca dei Marini" description="Marina di Conca: small fishermen's beach near the Emerald Grotto. How to get there, 2026 prices, snorkeling and tranquility." lang={lang} breadcrumbs={breadcrumbs} schema={[beachSchema, faqSchema]} pageKey="marina-di-conca">
+
+  <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
+    <img src="/images/marina-di-conca-hero.webp" alt="Marina di Conca, Conca dei Marini" class="absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high" decoding="sync" referrerpolicy="no-referrer" />
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Conca dei Marini · Amalfi Coast</p>
+      <h1 class="font-serif text-display text-white mb-6">Marina di Conca</h1>
+      <p class="text-lg md:text-xl font-light text-white/80">The historic fishermen's port, a small turquoise bay below the Emerald Grotto.</p>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+      <div class="lg:col-span-2 space-y-12">
+        <div>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">The Fishermen's Bay</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">Marina di Conca is the authentic beach of <strong>Conca dei Marini</strong>, one of the most discreet villages on the <a href="/en-us/amalfi-coast/" class="text-med-blue hover:underline">Amalfi Coast</a>. Tucked between two tall limestone cliffs and reached via stone steps carved into the rock, it's the historic port of local fishermen — a maritime scene that retains its original character, far from Positano's jet-set and Amalfi's crowds.</p>
+          <p class="text-slate-600 text-lg leading-relaxed">The sea here takes on deep turquoise tones, thanks to bright limestone seabeds reflecting Mediterranean light. It's the same light that gives the nearby <strong>Emerald Grotto</strong> its name, just 2 km away.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <h3 class="text-xl font-bold">The Emerald Grotto, 2 km Away</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">Marina di Conca is the perfect base to visit the <a href="/en-us/blog/emerald-grotto/" class="text-med-blue hover:underline">Emerald Grotto</a>, one of the coast's most famous natural attractions. Discovered in 1932 by Luigi Buonocore, the grotto gets its name from the emerald-green light created when sunrays enter through an underwater opening and illuminate the inside water.</p>
+          <p class="text-slate-600 leading-relaxed">Suggested itinerary: morning at the grotto, seafood lunch at Marina di Conca, afternoon at the beach. From May to September the grotto is open daily (9 AM–5 PM), ticket €5 + €5 for the elevator.</p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">History: Saracens, Tonnara and Sophia Loren</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">The name <em>Conca dei Marini</em> derives directly from its inhabitants' historic profession: <strong>sailors</strong>. From the Middle Ages until the 20th century, the village was a small maritime republic satellite of Amalfi, and Marina di Conca was its port. Fishing boats — particularly the characteristic wooden <em>gozzi</em> — were hauled onto the beach each winter for maintenance, and nets were spread to dry on the pebbles, a scene that repeated almost identically for centuries.</p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">The <strong>Torre di Capo di Conca</strong>, visible east of the bay, was built in the 16th century as part of the defensive system against Saracen raids. Legend says several landing attempts by the pirates of Khayr al-Din Barbarossa, the Ottoman admiral who terrorized the Tyrrhenian in the 1500s, were repelled right here.</p>
+          <p class="text-slate-600 text-lg leading-relaxed">In the 1960s, Conca dei Marini became a favorite hideaway of Italian cinema elite. <strong>Sophia Loren</strong>, Carlo Ponti, Gianni Agnelli, Jacqueline Kennedy all frequented the area, drawn by its reserved authenticity. It's in this period that little Marina di Conca found its identity: not as a mass tourism beach, but as a refuge for those wanting to escape their own success.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 18l4-4 4 4 6-6 4 4"/><path d="M3 6h18v12H3z"/></svg>
+            <h3 class="text-xl font-bold">La Tonnarella: The Beachside Restaurant</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">Right on the beach, for decades, operates <strong>La Tonnarella</strong> — a simple, traditional restaurant run by the same fishing family. Spaghetti alle vongole, mixed fried fish, char-grilled octopus: the menu is very short, but the fish comes directly from the gozzi hauled onto the beach. Honest prices (€35–50 per person), tables less than a meter from the water. Reserving on summer weekends is mandatory.</p>
+          <p class="text-slate-600 leading-relaxed">For diners, sun lounger service is included — a formula practically impossible to find elsewhere on the coast at Conca's prices.</p>
+        </div>
+
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div><p class="text-med-gold text-3xl font-bold">2 km</p><p class="text-white/60 text-sm mt-1">to the Emerald Grotto</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">100</p><p class="text-white/60 text-sm mt-1">access steps</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">16th</p><p class="text-white/60 text-sm mt-1">cent. – Capo Tower</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">€20</p><p class="text-white/60 text-sm mt-1">lounger (from)</p></div>
+        </div>
+
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Local Tips</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Combine the beach day with a visit to the <a href="/en-us/blog/emerald-grotto/" class="text-med-blue hover:underline">Emerald Grotto</a>: morning at the grotto (opens at 9 AM), lunch at Marina di Conca, afternoon at the beach.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Book La Tonnarella at least 24 hours ahead for summer weekends. Waterfront tables sell out first.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Best snorkeling is along the east wall, toward Capo di Conca. Mask and fins plus a half day = tons of marine life visible.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Parking along the SS163 is limited: arrive by 9 AM in July/August, or take the SITA bus from Conca center stop (5 min walk).</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Best season: September. Water still warm (22-23°C), very few tourists, free restaurant tables without reservation.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">How to Get There</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">SITA Bus ⭐</p><p class="text-slate-700 font-medium mb-1">Amalfi–Sorrento line</p><p class="text-slate-500 text-xs sm:text-sm">"Conca dei Marini center" stop, then 5 min walk down the stairs. See <a href="/en-us/guide/sita-bus/" class="text-med-blue hover:underline">SITA schedule</a>.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">By Car</p><p class="text-slate-700 font-medium mb-1">SS163 Amalfitana</p><p class="text-slate-500 text-xs sm:text-sm">Limited paid parking along the state road. Arrive by 9 AM in peak season. <a href="/en-us/guide/parking-ztl/" class="text-med-blue hover:underline">Parking guide</a>.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Boat</p><p class="text-slate-700 font-medium mb-1">From Amalfi or Positano</p><p class="text-slate-500 text-xs sm:text-sm">€15–25 per person. Direct beach arrival, recommended in peak season.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">On foot</p><p class="text-slate-700 font-medium mb-1">From Conca center</p><p class="text-slate-500 text-xs sm:text-sm">About 100 stone steps carved into the rock. Comfortable shoes. Not stroller-friendly.</p></div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <aside class="lg:col-span-1">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
+            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Fast Facts
+          </h3>
+          <div class="space-y-6">{facts.map((item) => (<div class="border-b border-white/5 pb-4 last:border-0"><span class="text-white/40 text-xs sm:text-sm font-light block mb-1">{item.label}</span><span class="text-white font-medium text-xs sm:text-sm">{item.value}</span></div>))}</div>
+          <div class="mt-10 pt-8 border-t border-white/10"><a href="/en-us/beaches/" class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors">← All beaches</a></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CorrelationSlider lang="en-us" items={nearbyBeaches} title="Nearby Beaches to Explore" />
+
+  <section class="bg-med-blue py-16 text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="font-serif text-2xl font-bold text-white mb-4">Discover more Amalfi Coast beaches</h2>
+      <a href="/en-us/beaches/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors">Complete beaches guide</a>
+    </div>
+  </section>
+
+</BaseLayout>

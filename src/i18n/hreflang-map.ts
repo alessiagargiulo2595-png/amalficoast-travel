@@ -7011,5 +7011,5 @@ export function getXDefault(url: string): string | null {
 export const hrefLangStats = {
   totalUrls: 536,
   locales: ["en-us","de-de","fr-fr","es-es","it-it"],
-  generatedAt: '2026-05-29T07:27:04.010Z',
+  generatedAt: '2026-05-29T11:42:48.669Z',
 };

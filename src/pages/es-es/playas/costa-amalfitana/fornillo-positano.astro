@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'es-es';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Playas', url: '/es-es/playas/' },
+  { name: 'Playa de Fornillo', url: '/es-es/playas/costa-amalfitana/fornillo-positano/' },
+];
+
+const facts = [
+  { label: 'Composición', value: 'Guijarros y arena gruesa' },
+  { label: 'Acceso', value: 'Sendero peatonal (5 min de Spiaggia Grande)' },
+  { label: 'Sombra', value: 'Desde las 16:00 (orientación oeste)' },
+  { label: 'Servicios', value: 'Club de playa + zona libre' },
+  { label: 'Ideal para', value: 'Atardecer, snorkel, escapar de la multitud' },
+  { label: 'Torres históricas', value: 'Torre Trasita, Clavel, Sponda' },
+  { label: 'Hamaca + sombrilla', value: '€25–€45 por persona' },
+  { label: 'Mejor temporada', value: 'Mayo–junio, septiembre' },
+  { label: 'Distancia de Spiaggia Grande', value: "300 metros por Via Positanesi d'America" },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "¿Cómo se llega a la Playa de Fornillo desde Positano?", "acceptedAnswer": { "@type": "Answer", "text": "La Playa de Fornillo se alcanza a pie desde la Spiaggia Grande de Positano recorriendo Via Positanesi d'America, un sendero peatonal panorámico de unos 300 metros tallado en la roca que pasa junto a la histórica Torre Trasita. El recorrido dura 5–7 minutos y es uno de los más escénicos de Positano. También puedes llegar en taxi boat desde el puerto de Marina Grande (€5–10 por persona) o en barco privado." } },
+    { "@type": "Question", "name": "¿Qué diferencia a Fornillo de la Spiaggia Grande?", "acceptedAnswer": { "@type": "Answer", "text": "Fornillo es la segunda playa de Positano: más pequeña, tranquila y menos mundana que la Spiaggia Grande. Es preferida por los locales y por quienes buscan un ambiente más relajado. Los clubs de playa de Fornillo (Pupetto, Da Ferdinando) tienen precios más bajos, el agua es más limpia por estar lejos del puerto de ferries, y el atardecer es excepcional gracias a la orientación oeste." } },
+    { "@type": "Question", "name": "¿Hay playa libre en Fornillo?", "acceptedAnswer": { "@type": "Answer", "text": "Sí, el extremo este de la Playa de Fornillo es libre y gratuito: lleva tu toalla y sombrilla. La sección central y oeste la gestionan los clubs de playa Pupetto y Da Ferdinando. La playa libre se llena rápido en julio y agosto: llega antes de las 9:30 para asegurar un buen sitio." } },
+    { "@type": "Question", "name": "¿Cuánto cuestan las hamacas en Fornillo?", "acceptedAnswer": { "@type": "Answer", "text": "Los clubs de playa de Fornillo ofrecen hamaca + sombrilla desde €25–45 por persona, sensiblemente menos que en Spiaggia Grande (€35–60). El precio incluye ducha, baños y bar/restaurante. Pupetto, el histórico restaurante en la playa, incluye la hamaca con el almuerzo." } },
+    { "@type": "Question", "name": "¿Se puede hacer snorkel en Fornillo?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Fornillo ofrece aguas cristalinas y fondos rocosos en los extremos de la bahía, ideales para snorkel. La mejor zona es junto a las rocas bajo la Torre Trasita, donde fácilmente se ven sargos, pulpos, doncellas y meros ocasionales. Las mañanas son el mejor momento: agua más calma y mayor visibilidad submarina." } },
+    { "@type": "Question", "name": "¿Qué es la Torre Trasita visible desde la playa?", "acceptedAnswer": { "@type": "Answer", "text": "La Torre Trasita es una torre de vigilancia costera del siglo XVI construida para defender Positano de las incursiones de piratas sarracenos. Es la más grande de las tres torres de Positano (con Torre Clavel y Torre Sponda) y hoy es una residencia privada, pero su perfil icónico domina la vista desde Fornillo. Junto a la cúpula mayólica de Santa Maria Assunta forma una de las vistas más fotografiadas de la Costa Amalfitana." } }
+  ]
+};
+
+const beachSchema = {
+  "@context": "https://schema.org", "@type": "Beach",
+  "name": "Playa de Fornillo",
+  "description": "La segunda playa de Positano: pequeña, tranquila y querida por los locales. Accesible a pie desde la Spiaggia Grande por Via Positanesi d'America.",
+  "geo": { "@type": "GeoCoordinates", "latitude": "40.6276", "longitude": "14.4820" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Positano", "addressRegion": "SA", "addressCountry": "IT" },
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Beach Club", "value": "Sí" },
+    { "@type": "LocationFeatureSpecification", "name": "Playa libre", "value": "Sí (zona este)" },
+    { "@type": "LocationFeatureSpecification", "name": "Restaurantes", "value": "Sí" }
+  ]
+};
+
+const nearbyBeaches = [
+  { name: 'Spiaggia Grande', href: '/es-es/playas/costa-amalfitana/spiaggia-grande-positano/', tag: 'Positano', desc: 'El corazón mundano de la Costa Amalfitana.' },
+  { name: 'Marina di Praia', href: '/es-es/playas/costa-amalfitana/marina-di-praia/', tag: 'Praiano', desc: 'Playa salvaje con atardecer perfecto.' },
+  { name: 'Playa de Gavitella', href: '/es-es/playas/costa-amalfitana/gavitella-praiano/', tag: 'Praiano', desc: 'La única playa de Praiano al sol todo el día.' },
+  { name: 'Marina di Conca', href: '/es-es/playas/costa-amalfitana/marina-di-conca/', tag: 'Conca dei Marini', desc: 'Pequeña cala de pescadores cerca de la Gruta Esmeralda.' },
+];
+---
+
+<BaseLayout title="Playa de Fornillo, Positano: Guía 2026 | Cómo llegar y precios" description="Fornillo: la segunda playa de Positano, más tranquila que la Spiaggia Grande. Cómo llegar a pie desde Marina Grande, precios 2026, clubs de playa y atardecer." lang={lang} breadcrumbs={breadcrumbs} schema={[beachSchema, faqSchema]} pageKey="fornillo-positano">
+
+  <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
+    <img src="/images/fornillo-hero.webp" alt="Playa de Fornillo, Positano" class="absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high" decoding="sync" referrerpolicy="no-referrer" />
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3"><a href="/es-es/costa-amalfitana/positano/" class="text-med-gold hover:underline">Positano</a> · La playa tranquila</p>
+      <h1 class="font-serif text-display text-white mb-6">Playa de Fornillo</h1>
+      <p class="text-lg md:text-xl font-light text-white/80">La segunda playa de Positano, accesible desde la Spiaggia Grande por un sendero tallado en la roca.</p>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+      <div class="lg:col-span-2 space-y-12">
+        <div>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">La Playa Amada por los Locales</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">La Playa de Fornillo es la <strong>segunda playa de <a href="/es-es/costa-amalfitana/positano/" class="text-med-blue hover:underline">Positano</a></strong>, escondida en una bahía separada justo al oeste de la Spiaggia Grande. Más pequeña, menos mundana y con aguas más cristalinas por estar lejos del puerto de ferries, es la playa preferida por los locales y por quienes desean vivir Positano lejos de la multitud.</p>
+          <p class="text-slate-600 text-lg leading-relaxed">El sendero peatonal que conecta las dos playas — <strong>Via Positanesi d'America</strong> — es un paseo de 5 minutos esculpido en la roca, con vistas al mar y la histórica Torre Trasita a media altura. Solo este tramo merece la visita.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+            <h3 class="text-xl font-bold">Fornillo vs Spiaggia Grande</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">Las dos playas de Positano son complementarias, no rivales. La <strong><a href="/es-es/playas/costa-amalfitana/spiaggia-grande-positano/" class="text-med-blue hover:underline">Spiaggia Grande</a></strong> es el centro mundano: puerto de ferries, clubs de playa exclusivos, precios altos y ambiente animado. <strong>Fornillo</strong> es la versión íntima: un 30% menos de afluencia, precios un 20-30% más bajos, agua más limpia y una vista impresionante de la ciudad vertical.</p>
+          <p class="text-slate-600 leading-relaxed">Si vienes a Positano por el glamour, elige la Spiaggia Grande. Si buscas un día de playa auténtico — con los locales — ven a Fornillo.</p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Via Positanesi d'America: El Sendero de la Memoria</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">El sendero que conecta Spiaggia Grande y Fornillo no es una simple pasarela: es un monumento a la memoria de los <strong>positanenses que emigraron a Estados Unidos</strong> entre finales del XIX y principios del XX. Miles de habitantes buscaron fortuna en Nueva York y Nueva Jersey, fundando comunidades que aún hoy mantienen vínculos con Positano. El nombre del sendero — "Via Positanesi d'America" — celebra estos viajes.</p>
+          <p class="text-slate-600 text-lg leading-relaxed">Por el camino encontrarás las tres torres costeras de Positano. La <strong>Torre Trasita</strong> (siglo XVI) es la más grande y mejor conservada: hoy es residencia privada de lujo, pero su perfil iconográfico domina cada foto de Fornillo. <strong>Torre Sponda</strong> y <strong>Torre Clavel</strong>, ligeramente al este, completan el sistema defensivo contra las incursiones de piratas sarracenos del Tirreno meridional.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/><line x1="6" y1="17" x2="18" y2="17"/></svg>
+            <h3 class="text-xl font-bold">Hotel Pupetto: el Club de Playa Histórico</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">Sobre la playa de Fornillo, desde hace más de 60 años, reina <strong>Hotel Pupetto</strong>: un club de playa y restaurante que es parte de la identidad de la bahía. El servicio de hamaca está incluido con el almuerzo en el restaurante, donde los platos de pescado son sencillos, frescos y de excelente calidad. Por la tarde, sus cócteles con vista a la cúpula son el mejor modo de cerrar el día.</p>
+          <p class="text-slate-600 leading-relaxed"><strong>Da Ferdinando</strong>, la segunda estructura en la playa, es igualmente histórica y ofrece un ambiente más informal, perfecto para el almuerzo con "spaghetti alle vongole" sin pretensiones.</p>
+        </div>
+
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div><p class="text-med-gold text-3xl font-bold">300m</p><p class="text-white/60 text-sm mt-1">de Spiaggia Grande</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">5 min</p><p class="text-white/60 text-sm mt-1">a pie (sendero)</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">XVI</p><p class="text-white/60 text-sm mt-1">siglo – Torre Trasita</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">€25</p><p class="text-white/60 text-sm mt-1">hamaca (desde)</p></div>
+        </div>
+
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consejos de los Locales</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Llega a Fornillo a las 10 de la mañana: la luz es perfecta, el agua más tranquila y encuentras sitio en la playa libre sin problemas.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Quédate hasta el atardecer: la orientación oeste y la silueta de la Torre Trasita hacen del sunset de Fornillo uno de los mejores de la costa. Pico a las 18:30 en verano.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Para el almuerzo: reserva Pupetto la noche anterior (las mesas con vista al mar se agotan). Da Ferdinando es más informal, posible sin reserva fuera de los fines de semana.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">El mejor snorkel está a lo largo de las rocas bajo la Torre Trasita: máscara + aletas + una hora de mañana = mucha fauna visible.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">El sendero Via Positanesi d'America cierra solo excepcionalmente por mal tiempo. Accesible con niños, pero lleva calzado cerrado: el suelo de piedra puede ser resbaladizo.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Cómo Llegar</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">A pie ⭐</p><p class="text-slate-700 font-medium mb-1">Desde Spiaggia Grande</p><p class="text-slate-500 text-xs sm:text-sm">5 minutos por Via Positanesi d'America. Sendero panorámico en la roca. Calzado cerrado recomendado.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Boat</p><p class="text-slate-700 font-medium mb-1">Desde el puerto de Positano</p><p class="text-slate-500 text-xs sm:text-sm">€5–10 por persona, 3 minutos de navegación. Cómodo en días muy calurosos.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Desde Sponda (SITA)</p><p class="text-slate-700 font-medium mb-1">Bus SITA + escalera</p><p class="text-slate-500 text-xs sm:text-sm">Desde la parada Sponda baja a Marina Grande (10 min), luego sigue por Via Positanesi d'America.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">En coche</p><p class="text-slate-700 font-medium mb-1">Parking Fornillo</p><p class="text-slate-500 text-xs sm:text-sm">Parking privado cerca del sendero (mucho tráfico en verano, precios altos). No recomendado.</p></div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Preguntas Frecuentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <aside class="lg:col-span-1">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
+            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Datos Rápidos
+          </h3>
+          <div class="space-y-6">{facts.map((item) => (<div class="border-b border-white/5 pb-4 last:border-0"><span class="text-white/40 text-xs sm:text-sm font-light block mb-1">{item.label}</span><span class="text-white font-medium text-xs sm:text-sm">{item.value}</span></div>))}</div>
+          <div class="mt-10 pt-8 border-t border-white/10"><a href="/es-es/playas/" class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors">← Todas las playas</a></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CorrelationSlider lang="es-es" items={nearbyBeaches} title="Playas Cercanas para Explorar" />
+
+  <section class="bg-med-blue py-16 text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="font-serif text-2xl font-bold text-white mb-4">Descubre más playas de la Costa</h2>
+      <a href="/es-es/playas/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors">Guía completa de playas</a>
+    </div>
+  </section>
+
+</BaseLayout>

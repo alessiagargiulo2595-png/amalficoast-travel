@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'de-de';
+
+const breadcrumbs = [
+  { name: 'Startseite', url: '/de-de/' },
+  { name: 'Strände', url: '/de-de/strande/' },
+  { name: 'Marina di Conca', url: '/de-de/strande/amalfikueste/marina-di-conca/' },
+];
+
+const facts = [
+  { label: 'Beschaffenheit', value: 'Kiesel und feiner Sand' },
+  { label: 'Zugang', value: 'Treppe (ca. 100 Stufen)' },
+  { label: 'Schatten', value: 'Ab 15:30 Uhr (Kalksteinfelsen)' },
+  { label: 'Einrichtungen', value: 'Beach Club + freier Bereich' },
+  { label: 'Ideal für', value: 'Ruhe, Schnorcheln, Authentizität' },
+  { label: 'In der Nähe von', value: 'Smaragdgrotte (2 km)' },
+  { label: 'Liege + Sonnenschirm', value: '€20–€30 pro Person' },
+  { label: 'Historischer Ort', value: 'Alter Fischerhafen von Conca' },
+  { label: 'Beste Saison', value: 'Mai–Juni, September' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Wie erreicht man Marina di Conca?", "acceptedAnswer": { "@type": "Answer", "text": "Marina di Conca liegt in Conca dei Marini, an der Strada Statale Amalfitana (SS163) zwischen Amalfi und Praiano. Vom Dorfzentrum steigt man über eine in den Fels gehauene Treppe von etwa 100 Stufen ans Meer hinab. Mit dem Auto: begrenzte gebührenpflichtige Parkplätze entlang der SS163 im Sommer. Mit dem Bus: SITA Amalfi–Sorrent, Haltestelle Conca dei Marini Zentrum, dann 5 Min zu Fuß. Vom Meer: Taxiboot von Amalfi oder Positano." } },
+    { "@type": "Question", "name": "Was macht Marina di Conca besonders?", "acceptedAnswer": { "@type": "Answer", "text": "Marina di Conca ist einer der authentischsten Strände der Amalfiküste: klein (ca. 100 Meter), zwischen zwei Kalksteinfelsen eingebettet, mit dem türkisfarbenen Wasser, das für Conca dei Marini typisch ist. Weniger touristisch als die Strände von Positano und Amalfi, und immer noch von lokalen Fischern frequentiert. 2 km von der berühmten Smaragdgrotte entfernt, perfekt für die Kombination von Grottenbesuch und halbem Strandtag." } },
+    { "@type": "Question", "name": "Was kosten die Liegen in Marina di Conca?", "acceptedAnswer": { "@type": "Answer", "text": "Marina di Conca bietet eines der besten Preis-Leistungs-Verhältnisse der Amalfiküste. Die Beach Clubs der Bucht bieten Liege + Sonnenschirm ab €20–30 pro Person (gegenüber €35–60 in Positano). Es gibt auch einen großen freien Bereich: Handtuch und Sonnenschirm mitbringen. Das Restaurant La Tonnarella am Strand ist eine historische Tradition – frischer Fisch zu fairen Preisen." } },
+    { "@type": "Question", "name": "Kann man in Marina di Conca schnorcheln?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Das Wasser von Marina di Conca ist kristallklar und die felsigen Meeresgründe an den Enden der Bucht beherbergen vielfältiges Meeresleben: Brachsen, Tintenfische, Lippfische. Die Ostwand unter dem Felsen Richtung Smaragdgrotte ist besonders schön. Die Morgenstunden sind am besten: ruhigeres Wasser, bessere Sicht, weniger vorbeifahrende Boote." } },
+    { "@type": "Question", "name": "Kann man von Marina di Conca aus die Smaragdgrotte besuchen?", "acceptedAnswer": { "@type": "Answer", "text": "Ja. Die Smaragdgrotte ist etwa 2 km von Marina di Conca entlang der SS163 entfernt. Sie können sie zu Fuß erreichen (20 Min Aufstieg entlang der Landstraße ohne Bürgersteig), mit dem Auto oder mit kombinierten Taxiboot-Touren. Der Eingang ist von der SS163, dann bringt Sie ein Aufzug oder Treppen auf Meereshöhe; von dort besucht man die Grotte mit dem Ruderboot (10 Min, Eintritt €5 + €5 Aufzug)." } },
+    { "@type": "Question", "name": "Ist Marina di Conca familienfreundlich?", "acceptedAnswer": { "@type": "Answer", "text": "Teilweise. Das Meer ist in den ersten Metern ruhig und flach, ideal für Kinder. Aber der Zugang über ca. 100 Stufen ist mit Kinderwagen oder Kleinkindern schwierig. Wenn Sie mit Kindern unter 3 Jahren reisen, sollten Sie das Taxiboot nutzen. Die Beach Clubs verfügen über grundlegende Einrichtungen (Duschen, Toiletten)." } }
+  ]
+};
+
+const beachSchema = {
+  "@context": "https://schema.org", "@type": "Beach",
+  "name": "Marina di Conca",
+  "description": "Der authentische Strand von Conca dei Marini: kleine Fischerbucht zwischen Kalksteinfelsen, 2 km von der Smaragdgrotte entfernt.",
+  "geo": { "@type": "GeoCoordinates", "latitude": "40.6126", "longitude": "14.5660" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Conca dei Marini", "addressRegion": "SA", "addressCountry": "IT" },
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Beach Club", "value": "Ja" },
+    { "@type": "LocationFeatureSpecification", "name": "Freier Strand", "value": "Ja" },
+    { "@type": "LocationFeatureSpecification", "name": "Restaurants", "value": "Ja" }
+  ]
+};
+
+const nearbyBeaches = [
+  { name: 'Fiordo di Furore', href: '/de-de/strande/amalfikueste/fiordo-di-furore/', tag: 'Furore', desc: 'Der ikonische Fjord im Felsen.' },
+  { name: 'Gavitella-Strand', href: '/de-de/strande/amalfikueste/gavitella-praiano/', tag: 'Praiano', desc: 'Der einzige Strand Praianos mit Sonne den ganzen Tag.' },
+  { name: 'Marina di Praia', href: '/de-de/strande/amalfikueste/marina-di-praia/', tag: 'Praiano', desc: 'Wilder Strand mit perfektem Sonnenuntergang.' },
+  { name: 'Santa Croce', href: '/de-de/strande/amalfikueste/santa-croce-amalfi/', tag: 'Amalfi', desc: 'Nur per Boot erreichbar, historische Restaurants.' },
+];
+---
+
+<BaseLayout title="Marina di Conca: der authentische Strand von Conca dei Marini" description="Marina di Conca: kleiner Fischerstrand nahe der Smaragdgrotte. Anfahrt, Preise 2026, Schnorcheln und Ruhe." lang={lang} breadcrumbs={breadcrumbs} schema={[beachSchema, faqSchema]} pageKey="marina-di-conca">
+
+  <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
+    <img src="/images/marina-di-conca-hero.webp" alt="Marina di Conca, Conca dei Marini" class="absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high" decoding="sync" referrerpolicy="no-referrer" />
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Conca dei Marini · Amalfiküste</p>
+      <h1 class="font-serif text-display text-white mb-6">Marina di Conca</h1>
+      <p class="text-lg md:text-xl font-light text-white/80">Der historische Fischerhafen, eine kleine türkisfarbene Bucht unterhalb der Smaragdgrotte.</p>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+      <div class="lg:col-span-2 space-y-12">
+        <div>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">Die Bucht der Fischer</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">Marina di Conca ist der authentische Strand von <strong>Conca dei Marini</strong>, einem der diskretesten Dörfer der <a href="/de-de/amalfikueste/" class="text-med-blue hover:underline">Amalfiküste</a>. Eingebettet zwischen zwei hohen Kalksteinfelsen und über eine in den Fels gehauene Treppe erreichbar, ist es der historische Hafen der lokalen Fischer — eine maritime Szene, die ihren ursprünglichen Charakter bewahrt, fern vom Jet-Set Positanos und der Menge in Amalfi.</p>
+          <p class="text-slate-600 text-lg leading-relaxed">Die Farbe des Meeres nimmt hier tiefe Türkistöne an, dank der hellen Kalksteinböden, die das Mittelmeerlicht reflektieren. Es ist dasselbe Licht, das der nahen <strong>Smaragdgrotte</strong> ihren Namen gibt, nur 2 km entfernt.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <h3 class="text-xl font-bold">Die Smaragdgrotte 2 km Entfernt</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">Marina di Conca ist die perfekte Basis, um die <a href="/de-de/blog/smaragd-grotte/" class="text-med-blue hover:underline">Smaragdgrotte</a> zu besuchen, eine der berühmtesten Naturattraktionen der Küste. 1932 von Luigi Buonocore entdeckt, verdankt die Grotte ihren Namen dem smaragdgrünen Licht, das entsteht, wenn Sonnenstrahlen durch eine Unterwasseröffnung dringen und das innere Wasser beleuchten.</p>
+          <p class="text-slate-600 leading-relaxed">Empfohlene Route: Vormittag in der Grotte, Fischmittagessen in Marina di Conca, Nachmittag am Strand. Von Mai bis September ist die Grotte täglich geöffnet (9–17 Uhr), Eintritt €5 + €5 für den Aufzug.</p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Geschichte: Sarazenen, Tonnara und Sophia Loren</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">Der Name <em>Conca dei Marini</em> leitet sich direkt vom historischen Beruf seiner Bewohner ab: <strong>Seeleute</strong>. Vom Mittelalter bis zum 20. Jahrhundert war das Dorf eine kleine Seerepublik im Satelliten von Amalfi, und Marina di Conca war sein Hafen. Die Fischerboote — insbesondere die charakteristischen hölzernen <em>gozzi</em> — wurden jeden Winter zur Wartung an den Strand gezogen, und die Netze wurden zum Trocknen auf den Kieseln ausgebreitet, eine Szene, die sich jahrhundertelang nahezu identisch wiederholte.</p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">Der <strong>Torre di Capo di Conca</strong>, östlich der Bucht sichtbar, wurde im 16. Jahrhundert als Teil des Verteidigungssystems gegen sarazenische Überfälle erbaut. Die Geschichte erzählt, dass genau hier mehrere Landungsversuche der Piraten Khayr al-Din Barbarossas, des osmanischen Admirals, der das Tyrrhenische Meer im 16. Jahrhundert terrorisierte, abgewehrt wurden.</p>
+          <p class="text-slate-600 text-lg leading-relaxed">In den 1960er Jahren wurde Conca dei Marini zu einem der bevorzugten Rückzugsorte der italienischen Filmelite. <strong>Sophia Loren</strong>, Carlo Ponti, Gianni Agnelli, Jacqueline Kennedy frequentierten die Gegend, angezogen von ihrer zurückhaltenden Authentizität. In dieser Zeit fand das kleine Marina di Conca seine Identität: nicht als Massentourismusstrand, sondern als Zufluchtsort für jene, die ihrem eigenen Erfolg entkommen wollten.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 18l4-4 4 4 6-6 4 4"/><path d="M3 6h18v12H3z"/></svg>
+            <h3 class="text-xl font-bold">La Tonnarella: das Strandrestaurant</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed mb-4">Direkt am Strand betreibt seit Jahrzehnten <strong>La Tonnarella</strong> — ein einfaches, traditionelles Restaurant, das von derselben Fischerfamilie geführt wird. Spaghetti alle vongole, Frittura di Paranza, gegrillter Tintenfisch: die Karte ist sehr kurz, aber der Fisch kommt direkt von den am Strand verankerten Gozzi. Faire Preise (€35–50 pro Person), Tische weniger als einen Meter vom Wasser entfernt. Reservieren an Sommerwochenenden ist Pflicht.</p>
+          <p class="text-slate-600 leading-relaxed">Für Gäste, die im Restaurant essen, ist der Liegeservice inbegriffen — eine Formel, die in anderen Küstenregionen zu Concas Preisen praktisch unmöglich zu finden ist.</p>
+        </div>
+
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div><p class="text-med-gold text-3xl font-bold">2 km</p><p class="text-white/60 text-sm mt-1">zur Smaragdgrotte</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">100</p><p class="text-white/60 text-sm mt-1">Zugangsstufen</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">XVI</p><p class="text-white/60 text-sm mt-1">Jh. – Torre Capo</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">€20</p><p class="text-white/60 text-sm mt-1">Liege (ab)</p></div>
+        </div>
+
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Tipps der Einheimischen</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Kombinieren Sie den Strandtag mit dem Besuch der <a href="/de-de/blog/smaragd-grotte/" class="text-med-blue hover:underline">Smaragdgrotte</a>: morgens in der Grotte (Öffnung 9 Uhr), Mittagessen in Marina di Conca, nachmittags am Strand.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Reservieren Sie La Tonnarella mindestens 24 Stunden im Voraus an Wochenenden zwischen Juni und September. Die Wassertische sind zuerst weg.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Das beste Schnorcheln entlang der Ostwand Richtung Capo di Conca. Maske und Flossen plus halber Tag = viel Meeresfauna sichtbar.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Parkplätze entlang der SS163 sind begrenzt: kommen Sie im Juli/August vor 9 Uhr an, oder nehmen Sie den SITA-Bus von der Haltestelle Conca Zentrum (5 Min zu Fuß).</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Beste Saison: September. Wasser noch warm (22-23°C), nur wenige Touristen, freie Tische im Restaurant ohne Reservierung.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Anfahrt</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">SITA-Bus ⭐</p><p class="text-slate-700 font-medium mb-1">Linie Amalfi–Sorrent</p><p class="text-slate-500 text-xs sm:text-sm">Haltestelle "Conca dei Marini Zentrum", dann 5 Min zu Fuß über die Treppe. Siehe <a href="/de-de/ratgeber/sita-bus/" class="text-med-blue hover:underline">SITA-Fahrplan</a>.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Mit dem Auto</p><p class="text-slate-700 font-medium mb-1">SS163 Amalfitana</p><p class="text-slate-500 text-xs sm:text-sm">Begrenzte gebührenpflichtige Parkplätze entlang der Landstraße. In der Hochsaison vor 9 Uhr ankommen. <a href="/de-de/ratgeber/parken-ztl/" class="text-med-blue hover:underline">Parkleitfaden</a>.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxiboot</p><p class="text-slate-700 font-medium mb-1">Von Amalfi oder Positano</p><p class="text-slate-500 text-xs sm:text-sm">€15–25 pro Person. Direkte Anlandung am Strand, in der Hochsaison empfohlen.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Zu Fuß</p><p class="text-slate-700 font-medium mb-1">Vom Zentrum von Conca</p><p class="text-slate-500 text-xs sm:text-sm">Etwa 100 in den Fels gehauene Stufen. Bequeme Schuhe tragen. Nicht für Kinderwagen geeignet.</p></div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Häufig gestellte Fragen</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <aside class="lg:col-span-1">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
+            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Kurzinfos
+          </h3>
+          <div class="space-y-6">{facts.map((item) => (<div class="border-b border-white/5 pb-4 last:border-0"><span class="text-white/40 text-xs sm:text-sm font-light block mb-1">{item.label}</span><span class="text-white font-medium text-xs sm:text-sm">{item.value}</span></div>))}</div>
+          <div class="mt-10 pt-8 border-t border-white/10"><a href="/de-de/strande/" class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors">← Alle Strände</a></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CorrelationSlider lang="de-de" items={nearbyBeaches} title="Strände in der Nähe" />
+
+  <section class="bg-med-blue py-16 text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="font-serif text-2xl font-bold text-white mb-4">Entdecke mehr Strände</h2>
+      <a href="/de-de/strande/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors">Vollständiger Strand-Reiseführer</a>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Plages', url: '/fr-fr/plages/' },
+  { name: 'Plage de Gavitella', url: '/fr-fr/plages/cote-amalfitaine/gavitella-praiano/' },
+];
+
+const facts = [
+  { label: 'Composition', value: 'Galets' },
+  { label: 'Accès', value: 'Escalier de 400 marches OU taxi boat' },
+  { label: 'Exposition', value: 'Ouest – soleil toute la journée' },
+  { label: 'Services', value: 'Beach club Gavitella + restaurants' },
+  { label: 'Idéal pour', value: 'Soleil l\'après-midi, coucher de soleil, vue Positano' },
+  { label: 'Vue', value: 'Faraglioni de Capri + côte jusqu\'à Punta Campanella' },
+  { label: 'Transat + parasol', value: '€30–€45 par personne' },
+  { label: 'Caractéristique unique', value: 'Seule plage sud-Côte au soleil toute la journée' },
+  { label: 'Meilleure saison', value: 'Mai–juin, septembre' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Comment rejoindre la plage de Gavitella ?", "acceptedAnswer": { "@type": "Answer", "text": "Il y a deux moyens : (1) À pied depuis le centre de Praiano en descendant un escalier panoramique d'environ 400 marches taillé dans la falaise (15–20 minutes). (2) En taxi boat depuis Praiano, Positano ou le port de Conca dei Marini (€10–20 par personne). Les beach clubs de Gavitella proposent aussi une navette depuis le centre de Praiano en haute saison. La remontée à pied est exigeante : beaucoup choisissent de remonter en taxi boat." } },
+    { "@type": "Question", "name": "Pourquoi Gavitella est-elle la seule plage de Praiano au soleil toute la journée ?", "acceptedAnswer": { "@type": "Answer", "text": "La Côte Amalfitaine est exposée au sud, et la plupart des plages perdent le soleil en fin d'après-midi à cause des hautes falaises derrière. Gavitella a une orientation exceptionnelle : elle est exposée à l'ouest, donc elle reçoit le soleil du matin jusqu'au coucher. C'est la seule plage du versant sud de la Côte où l'on peut bronzer à 18h en été. Cette caractéristique, avec la vue frontale sur Positano, en fait une exception unique." } },
+    { "@type": "Question", "name": "Peut-on voir le coucher de soleil depuis la plage de Gavitella ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, et le coucher de soleil de Gavitella est considéré comme l'un des plus spectaculaires de toute la Côte Amalfitaine. L'exposition ouest permet de voir le soleil descendre directement sur la mer, avec la silhouette de Positano et des Faraglioni de Capri en arrière-plan. Meilleure période : de mai à septembre, avec pic vers 20h30 en juin-juillet. De nombreux beach clubs proposent un apéritif au coucher de soleil — réservez la veille." } },
+    { "@type": "Question", "name": "Combien coûtent les transats à la plage de Gavitella ?", "acceptedAnswer": { "@type": "Answer", "text": "Les beach clubs de Gavitella (Gavitella Beach Club, La Gavitella Restaurant) proposent transat + parasol à partir de €30–45 par personne. Il y a une zone libre limitée, mais le taxi boat pour arriver et l'effort de l'escalier font que la plupart des visiteurs optent pour le beach club. Le prix inclut les toilettes, douches, bar/restaurant. Déjeuner : €40–60 par personne avec service transat inclus dans certains restaurants." } },
+    { "@type": "Question", "name": "La plage de Gavitella est-elle adaptée aux familles avec enfants ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, avec précaution. La mer est calme et peu profonde dans les premiers mètres, idéale pour les enfants. Cependant, l'accès par 400 marches est déconseillé avec poussettes ou très jeunes enfants — mieux vaut arriver en taxi boat. Les beach clubs offrent des transats, parasols et les enfants peuvent trouver de l'ombre dans la journée. Maître-nageur présent en haute saison." } },
+    { "@type": "Question", "name": "Que voit-on depuis la plage de Gavitella ?", "acceptedAnswer": { "@type": "Answer", "text": "La vue depuis Gavitella est unique : devant, à l'horizon, les Faraglioni de Capri et la silhouette de l'île qui change de couleur au fil de la journée. À droite, la baie de Positano avec le dôme en majolique de Santa Maria Assunta parfaitement cadré. À gauche, la côte jusqu'à Punta Campanella. Les îles Li Galli (les \"îles des Sirènes\" d'Homère) sont visibles au large. C'est l'une des vues panoramiques les plus complètes de toute la Côte Amalfitaine." } }
+  ]
+};
+
+const beachSchema = {
+  "@context": "https://schema.org", "@type": "Beach",
+  "name": "Plage de Gavitella",
+  "description": "La seule plage de la Côte Amalfitaine exposée à l'ouest, au soleil toute la journée. Vue frontale sur Positano, Capri et coucher de soleil légendaire.",
+  "geo": { "@type": "GeoCoordinates", "latitude": "40.6101", "longitude": "14.5273" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Praiano", "addressRegion": "SA", "addressCountry": "IT" },
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Beach Club", "value": "Oui" },
+    { "@type": "LocationFeatureSpecification", "name": "Restaurants", "value": "Oui" },
+    { "@type": "LocationFeatureSpecification", "name": "Soleil toute la journée", "value": "Oui" }
+  ]
+};
+
+const nearbyBeaches = [
+  { name: 'Marina di Praia', href: '/fr-fr/plages/cote-amalfitaine/marina-di-praia/', tag: 'Praiano', desc: "L'autre plage de Praiano, sauvage et intime." },
+  { name: 'Spiaggia Grande', href: '/fr-fr/plages/cote-amalfitaine/spiaggia-grande-positano/', tag: 'Positano', desc: 'Le cœur mondain de la Côte Amalfitaine.' },
+  { name: 'Plage de Fornillo', href: '/fr-fr/plages/cote-amalfitaine/fornillo-positano/', tag: 'Positano', desc: 'La deuxième plage de Positano, tranquille.' },
+  { name: 'Fiordo di Furore', href: '/fr-fr/plages/cote-amalfitaine/fiordo-di-furore/', tag: 'Furore', desc: 'Le fjord encastré dans la roche.' },
+];
+---
+
+<BaseLayout title="Plage de Gavitella, Praiano : la Plage au Soleil toute la Journée" description="La Gavitella de Praiano : la seule plage de la Côte au soleil du matin au coucher. Comment y aller, prix 2026, vue sur Positano et Capri." lang={lang} breadcrumbs={breadcrumbs} schema={[beachSchema, faqSchema]} pageKey="gavitella-praiano">
+
+  <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
+    <img src="/images/gavitella-hero.jpg" alt="Plage de Gavitella, Praiano" class="absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high" decoding="sync" referrerpolicy="no-referrer" />
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3"><a href="/fr-fr/cote-amalfitaine/praiano/" class="text-med-gold hover:underline">Praiano</a> · La plage du soleil</p>
+      <h1 class="font-serif text-display text-white mb-6">Plage de Gavitella</h1>
+      <p class="text-lg md:text-xl font-light text-white/80">La seule plage de la Côte Amalfitaine au soleil du matin au coucher, avec vue frontale sur Positano et Capri.</p>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+      <div class="lg:col-span-2 space-y-12">
+        <div>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">L'Exception de la Côte</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">La plage de Gavitella — ou simplement <strong>"La Gavitella"</strong> pour ceux qui la connaissent — est la plage qui brise toutes les règles de la <a href="/fr-fr/cote-amalfitaine/" class="text-med-blue hover:underline">Côte Amalfitaine</a>. Alors que toutes les autres plages de la côte perdent le soleil vers 16-17h — éclipsées par les hautes falaises derrière elles — Gavitella, exposée à l'ouest, profite du plein soleil du matin jusqu'au coucher.</p>
+          <p class="text-slate-600 text-lg leading-relaxed">Cette unicité, combinée à une <strong>vue frontale spectaculaire</strong> sur <a href="/fr-fr/cote-amalfitaine/positano/" class="text-med-blue hover:underline">Positano</a>, les Faraglioni de <a href="/fr-fr/iles/capri/" class="text-med-blue hover:underline">Capri</a> à l'horizon et les îles Li Galli au large, en fait l'une des plages les plus recherchées par les connaisseurs de la côte.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+            <h3 class="text-xl font-bold">La Vue Panoramique</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed">Devant, à l'horizon, les <strong>Faraglioni de Capri</strong>. À droite, la baie de Positano avec le dôme en majolique de <strong>Santa Maria Assunta</strong> encadré entre les maisons pastel. À gauche, la <strong>Punta Campanella</strong> à l'extrémité de la <a href="/fr-fr/peninsule-sorrentine/" class="text-med-blue hover:underline">Péninsule Sorrentine</a>. Au large, les trois rochers des <strong>îles Li Galli</strong>, les "îles des Sirènes" citées par Homère dans l'Odyssée. C'est l'une des vues les plus complètes de toute la Côte.</p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Le Coucher de Soleil de Gavitella</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">Quand le soleil commence à descendre vers l'ouest, la plage de Gavitella se transforme. La lumière dorée illumine les falaises calcaires derrière, l'eau passe à travers une palette de couleurs — du turquoise au rose ancien — et la silhouette des Faraglioni de Capri devient le sujet parfait pour toute photographie. En été, le soleil se couche vers <strong>20h30</strong> ; au printemps et en automne, vers 19h.</p>
+          <p class="text-slate-600 text-lg leading-relaxed">Les beach clubs de Gavitella — en particulier le restaurant La Gavitella Beach Restaurant — organisent des apéritifs au coucher de soleil avec vue. Cocktails, entrées de la mer et le soleil qui plonge dans la Tyrrhénienne : difficile de trouver meilleure combinaison dans toute la Campanie.</p>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">D'Accostage de Pêcheurs à Plage Culte</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">Le nom <em>Gavitella</em> vient du dialecte local pour désigner un petit abri. Jusqu'au XXe siècle, la plage était utilisée exclusivement par les pêcheurs de Praiano pour haler les barques et pour la pêche à la palangre (le poisson estival typique de la Côte). L'accès était si difficile que la plage resta pratiquement inconnue du tourisme jusqu'aux années 1970.</p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">Le tournant arriva quand le <strong>coucher de soleil de Gavitella</strong> commença à être photographié par les premiers photographes touristiques. La renommée grandit lentement, alimentée par le bouche-à-oreille et la révélation des qualités "uniques" de la plage : soleil toute la journée, vue incomparable, éloignement de la foule. Dans les années 2000 naquirent les premiers beach clubs organisés, mais le caractère authentique de la plage reste intact.</p>
+          <p class="text-slate-600 text-lg leading-relaxed">Aujourd'hui Gavitella est considérée par beaucoup comme la "plage secrète" la plus connue de la Côte — un paradoxe qui est lui-même partie du charme.</p>
+        </div>
+
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div><p class="text-med-gold text-3xl font-bold">400</p><p class="text-white/60 text-sm mt-1">marches d'accès</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">100%</p><p class="text-white/60 text-sm mt-1">soleil toute la journée</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">3</p><p class="text-white/60 text-sm mt-1">îles Li Galli visibles</p></div>
+          <div><p class="text-med-gold text-3xl font-bold">€30</p><p class="text-white/60 text-sm mt-1">transat (à partir de)</p></div>
+        </div>
+
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Conseils des Locaux</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Descendez à pied le matin quand il fait frais (15-20 min, 400 marches), puis remontez en taxi boat pour éviter la montée sous le soleil de l'après-midi.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Pour le coucher de soleil : réservez une table à La Gavitella Restaurant la veille. L'apéritif au coucher de soleil est une expérience à ne pas manquer.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Crème solaire en plus : le soleil tape fort et il n'y a pas de falaises pour créer de l'ombre naturelle. Chapeau obligatoire.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Les beach clubs ont moins de places qu'à Positano : réservez au moins 2-3 jours à l'avance les week-ends de juillet et août.</span></li>
+            <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-600">Meilleure saison : juin ou septembre. Soleil fort mais supportable, eau chaude, pas de foule.</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Comment Y Aller</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Boat ⭐</p><p class="text-slate-700 font-medium mb-1">Depuis Praiano ou Positano</p><p class="text-slate-500 text-xs sm:text-sm">€10–20 par personne. Solution recommandée pour la remontée et pour les familles avec enfants.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">À pied</p><p class="text-slate-700 font-medium mb-1">Depuis le centre de Praiano</p><p class="text-slate-500 text-xs sm:text-sm">400 marches en descente (15-20 min), montée de 25-30 min. Baskets, eau suffisante.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus SITA</p><p class="text-slate-700 font-medium mb-1">Arrêt Praiano centre</p><p class="text-slate-500 text-xs sm:text-sm">De là les escaliers pour la plage. Voir <a href="/fr-fr/guide/bus-sita/" class="text-med-blue hover:underline">horaires SITA</a>.</p></div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm"><p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">En voiture</p><p class="text-slate-700 font-medium mb-1">Parking Praiano</p><p class="text-slate-500 text-xs sm:text-sm">Parkings payants limités dans le centre de Praiano. <a href="/fr-fr/guide/parking-ztl/" class="text-med-blue hover:underline">Guide parking</a>.</p></div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Questions Fréquentes</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">{q.acceptedAnswer.text}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <aside class="lg:col-span-1">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
+            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Infos Clés
+          </h3>
+          <div class="space-y-6">{facts.map((item) => (<div class="border-b border-white/5 pb-4 last:border-0"><span class="text-white/40 text-xs sm:text-sm font-light block mb-1">{item.label}</span><span class="text-white font-medium text-xs sm:text-sm">{item.value}</span></div>))}</div>
+          <div class="mt-10 pt-8 border-t border-white/10"><a href="/fr-fr/plages/" class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors">← Toutes les plages</a></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CorrelationSlider lang="fr-fr" items={nearbyBeaches} title="Plages Voisines à Explorer" />
+
+  <section class="bg-med-blue py-16 text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="font-serif text-2xl font-bold text-white mb-4">Découvrez plus de plages</h2>
+      <a href="/fr-fr/plages/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors">Guide complet des plages</a>
+    </div>
+  </section>
+
+</BaseLayout>

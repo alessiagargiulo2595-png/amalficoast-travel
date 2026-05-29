@@ -1,0 +1,327 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Spiagge', url: '/it-it/spiagge/' },
+  { name: 'Spiaggia della Gavitella', url: '/it-it/spiagge/costiera-amalfitana/gavitella-praiano/' },
+];
+
+const facts = [
+  { label: 'Composizione', value: 'Ciottoli' },
+  { label: 'Accesso', value: 'Scalinata di 400 gradini OR taxi boat' },
+  { label: 'Esposizione', value: 'Ovest – sole tutto il giorno' },
+  { label: 'Servizi', value: 'Beach club Gavitella + ristoranti' },
+  { label: 'Ideale per', value: 'Sole pomeridiano, tramonto, vista Positano' },
+  { label: 'Vista', value: 'Faraglioni di Capri + costiera fino a Punta Campanella' },
+  { label: 'Lettino + ombrellone', value: '€30–€45 a persona' },
+  { label: 'Caratteristica unica', value: "Unica spiaggia sud-Costiera al sole tutto il giorno" },
+  { label: 'Periodo migliore', value: 'Maggio–giugno, settembre' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come si raggiunge la Spiaggia della Gavitella?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ci sono due modi: (1) A piedi dal centro di Praiano scendendo una scalinata panoramica di circa 400 gradini scolpita nella scogliera (15–20 minuti). (2) In taxi boat da Praiano, Positano o dal porto di Conca dei Marini (€10–20 a persona). I beach club della Gavitella offrono anche un servizio navetta dal centro di Praiano in alta stagione. Il ritorno a piedi è impegnativo: in molti scelgono di salire in taxi boat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Perché la Gavitella è l'unica spiaggia di Praiano al sole tutto il giorno?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La Costiera Amalfitana è esposta a sud, e la maggior parte delle spiagge perde il sole nel tardo pomeriggio a causa delle alte falesie alle spalle. La Gavitella ha un orientamento eccezionale: è esposta a ovest, quindi riceve il sole dal mattino fino al tramonto. È l'unica spiaggia del versante sud della Costiera dove puoi prendere il sole alle 18 di sera in estate. Questa caratteristica, insieme alla vista frontale su Positano, la rende un'eccezione unica."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Si può vedere il tramonto dalla Spiaggia della Gavitella?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, e il tramonto della Gavitella è considerato uno dei più spettacolari di tutta la Costiera Amalfitana. L'esposizione a ovest permette di vedere il sole scendere direttamente sul mare, con la silhouette di Positano e dei Faraglioni di Capri sullo sfondo. Periodo migliore: da maggio a settembre, con picco intorno alle 20:30 in giugno-luglio. Molti beach club offrono aperitivo al tramonto - prenotare la sera prima."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costano i lettini alla Spiaggia della Gavitella?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I beach club della Gavitella (Gavitella Beach Club, La Gavitella Restaurant) offrono lettini + ombrellone a partire da €30–45 a persona. C'è una zona libera limitata, ma il taxi boat per arrivare e l'effort della scalinata fanno che la maggior parte dei visitatori opta per il beach club. Il prezzo include accesso ai bagni, docce, bar/ristorante. Pranzo: €40–60 a persona con servizio lettino incluso in alcuni ristoranti."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "La Spiaggia della Gavitella è adatta a famiglie con bambini?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sì, ma con cautela. Il mare è calmo e poco profondo nei primi metri, ideale per bambini. Tuttavia, l'accesso tramite 400 gradini è sconsigliato con passeggini o bambini molto piccoli - meglio arrivare in taxi boat. I beach club offrono lettini, ombrelloni e i bambini possono trovare ombra durante la giornata. Bagnino presente in alta stagione."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cosa si vede dalla Spiaggia della Gavitella?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La vista dalla Gavitella è unica: davanti, all'orizzonte, i Faraglioni di Capri e la silhouette dell'isola che cambia colore durante la giornata. A destra, la baia di Positano con la cupola maiolicata di Santa Maria Assunta perfettamente incorniciata. A sinistra, la costa fino a Punta Campanella. Le isole Li Galli (le \"isole delle Sirene\" di Omero) sono visibili al largo. È una delle viste panoramiche più complete di tutta la Costiera Amalfitana."
+      }
+    }
+  ]
+};
+
+const beachSchema = {
+  "@context": "https://schema.org",
+  "@type": "Beach",
+  "name": "Spiaggia della Gavitella",
+  "description": "L'unica spiaggia della Costiera Amalfitana esposta a ovest, al sole tutto il giorno. Vista frontale su Positano, Capri e tramonto leggendario.",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "40.6101",
+    "longitude": "14.5273"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Praiano",
+    "addressRegion": "SA",
+    "addressCountry": "IT"
+  },
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Beach Club", "value": "Sì" },
+    { "@type": "LocationFeatureSpecification", "name": "Ristoranti", "value": "Sì" },
+    { "@type": "LocationFeatureSpecification", "name": "Sole tutto il giorno", "value": "Sì" }
+  ]
+};
+
+const nearbyBeaches = [
+  { name: 'Marina di Praia', href: '/it-it/spiagge/costiera-amalfitana/marina-di-praia/', tag: 'Praiano', desc: "L'altra spiaggia di Praiano, selvaggia e intima." },
+  { name: 'Spiaggia Grande', href: '/it-it/spiagge/costiera-amalfitana/spiaggia-grande-positano/', tag: 'Positano', desc: 'Il cuore mondano della Costiera Amalfitana.' },
+  { name: 'Spiaggia di Fornillo', href: '/it-it/spiagge/costiera-amalfitana/fornillo-positano/', tag: 'Positano', desc: 'La seconda spiaggia di Positano, tranquilla.' },
+  { name: 'Fiordo di Furore', href: '/it-it/spiagge/costiera-amalfitana/fiordo-di-furore/', tag: 'Furore', desc: 'Il fiordo incastonato nella roccia.' },
+];
+---
+
+<BaseLayout
+  title="Spiaggia della Gavitella, Praiano: la Spiaggia al Sole tutto il Giorno"
+  description="La Gavitella di Praiano: l'unica spiaggia della Costiera al sole dal mattino al tramonto. Come arrivare, prezzi 2026, vista su Positano e Capri."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[beachSchema, faqSchema]}
+ pageKey="gavitella-praiano">
+
+  <!-- Hero -->
+  <section class="relative h-[52.5vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
+    <img
+      src="/images/gavitella-hero.jpg"
+      alt="Spiaggia della Gavitella, Praiano"
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager" fetchpriority="high" decoding="sync" referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 hidden sm:block bg-gradient-to-b from-black/20 via-black/35 to-black/70"></div>
+    <div class="relative z-10 text-center px-6 max-w-4xl text-white">
+      <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3"><a href="/it-it/costiera-amalfitana/praiano/" class="text-med-gold hover:underline">Praiano</a> · La spiaggia del sole</p>
+      <h1 class="font-serif text-display text-white mb-6">Spiaggia della Gavitella</h1>
+      <p class="text-lg md:text-xl font-light text-white/80">L'unica spiaggia della Costiera Amalfitana al sole dal mattino al tramonto, con vista frontale su Positano e Capri.</p>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <!-- Contenuto + Sidebar -->
+  <section class="bg-med-cream py-24 px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+
+      <div class="lg:col-span-2 space-y-12">
+        <div>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-6">L'Eccezione della Costiera</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La Spiaggia della Gavitella - o semplicemente <strong>"La Gavitella"</strong> per chi la conosce - è la spiaggia che rompe tutte le regole della <a href="/it-it/costiera-amalfitana/" class="text-med-blue hover:underline">Costiera Amalfitana</a>. Mentre tutte le altre spiagge della costa perdono il sole entro le 16-17 del pomeriggio - oscurate dalle alte falesie alle spalle - la Gavitella, esposta a ovest, gode di sole pieno dal mattino fino al tramonto.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Questa unicità, combinata con una <strong>vista frontale spettacolare</strong> su <a href="/it-it/costiera-amalfitana/positano/" class="text-med-blue hover:underline">Positano</a>, i Faraglioni di <a href="/it-it/isole/capri/" class="text-med-blue hover:underline">Capri</a> all'orizzonte e le isole Li Galli al largo, la rende una delle spiagge più ricercate dai conoscitori della costa.
+          </p>
+        </div>
+
+        <!-- Box: Vista -->
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+          <div class="flex items-center gap-4 mb-4">
+            <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+            <h3 class="text-xl font-bold">La Vista Panoramica</h3>
+          </div>
+          <p class="text-slate-600 leading-relaxed">
+            Davanti, all'orizzonte, i <strong>Faraglioni di Capri</strong>. A destra, la baia di Positano con la cupola maiolicata di <strong>Santa Maria Assunta</strong> incorniciata tra le case color pastello. A sinistra, la <strong>Punta Campanella</strong> all'estremità della <a href="/it-it/penisola-sorrentina/" class="text-med-blue hover:underline">Penisola Sorrentina</a>. Al largo, i tre scogli delle <strong>isole Li Galli</strong>, le "isole delle Sirene" citate da Omero nell'Odissea. È una delle viste più complete di tutta la Costiera.
+          </p>
+        </div>
+
+        <!-- Tramonto -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Il Tramonto della Gavitella</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Quando il sole inizia a scendere verso ovest, la Spiaggia della Gavitella si trasforma. La luce dorata illumina le falesie calcaree alle spalle, l'acqua passa attraverso una tavolozza di colori - dal turchese al rosa antico - e la silhouette dei Faraglioni di Capri diventa il soggetto perfetto per qualsiasi fotografia. In estate, il sole scende intorno alle <strong>20:30</strong>; in primavera e autunno, già verso le 19:00.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            I beach club della Gavitella - in particolare il ristorante La Gavitella Beach Restaurant - organizzano aperitivi serali con vista tramonto. Cocktail, antipasti di mare e il sole che si tuffa nel Tirreno: difficile trovare combinazione migliore in tutta la Campania.
+          </p>
+        </div>
+
+        <!-- Storia -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Da Approdo di Pescatori a Cult Beach</h2>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            Il nome <em>Gavitella</em> deriva dal dialetto locale per indicare un piccolo approdo riparato. Fino al XX secolo, la spiaggia era utilizzata esclusivamente dai pescatori di Praiano per alare le barche e per la pesca al palamito (il pesce tipico estivo della Costiera). L'accesso era così difficile che la spiaggia rimase praticamente sconosciuta al turismo fino agli anni '70.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+            La svolta arrivò quando il <strong>tramonto della Gavitella</strong> iniziò a essere fotografato dai primi fotografi turistici. La fama crebbe lentamente, alimentata dal passaparola e dalla rivelazione delle qualità "uniche" della spiaggia: sole tutto il giorno, vista incomparabile, lontananza dalla folla. Negli anni 2000 nacquero i primi beach club organizzati, ma il carattere autentico della spiaggia rimane intatto.
+          </p>
+          <p class="text-slate-600 text-lg leading-relaxed">
+            Oggi la Gavitella è considerata da molti la "spiaggia segreta" più conosciuta della Costiera - un paradosso che è esso stesso parte del fascino.
+          </p>
+        </div>
+
+        <!-- Stats Box -->
+        <div class="bg-slate-900 text-white p-8 rounded-[2rem] grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+          <div>
+            <p class="text-med-gold text-3xl font-bold">400</p>
+            <p class="text-white/60 text-sm mt-1">gradini di accesso</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">100%</p>
+            <p class="text-white/60 text-sm mt-1">sole tutto il giorno</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">3</p>
+            <p class="text-white/60 text-sm mt-1">isole Li Galli visibili</p>
+          </div>
+          <div>
+            <p class="text-med-gold text-3xl font-bold">€30</p>
+            <p class="text-white/60 text-sm mt-1">lettino (da)</p>
+          </div>
+        </div>
+
+        <!-- Consigli dei Locali -->
+        <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+          <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">Consigli dei Locali</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Scendi a piedi al mattino quando fa fresco (15-20 minuti, 400 gradini), poi sali in taxi boat per evitare la salita sotto il sole pomeridiano.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Per il tramonto: prenota un tavolo a La Gavitella Restaurant la sera prima. L'aperitivo al tramonto è un'esperienza imperdibile.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Crema solare extra: il sole picchia forte e non ci sono falesie a creare ombra naturale. Cappello d'obbligo.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">I beach club hanno meno posti rispetto a Positano: prenota almeno 2-3 giorni prima nei weekend di luglio e agosto.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+              <span class="text-slate-600">Periodo migliore: giugno o settembre. Sole forte ma non insopportabile, acqua calda, niente folla.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Come arrivare -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Come Arrivare</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Taxi Boat ⭐</p>
+              <p class="text-slate-700 font-medium mb-1">Da Praiano o Positano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">€10–20 a persona. Soluzione consigliata per la salita di ritorno e per famiglie con bambini.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">A piedi</p>
+              <p class="text-slate-700 font-medium mb-1">Dal centro di Praiano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">400 gradini in discesa (15-20 min), salita di 25-30 min. Scarpe da ginnastica, acqua sufficiente.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Bus SITA</p>
+              <p class="text-slate-700 font-medium mb-1">Fermata Praiano centro</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Da lì le scalinate per la spiaggia. Vedi <a href="/it-it/guida/bus-sita/" class="text-med-blue hover:underline">orari SITA</a>.</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+              <p class="text-med-gold text-xs font-bold uppercase tracking-wider mb-2">Auto</p>
+              <p class="text-slate-700 font-medium mb-1">Parcheggio Praiano</p>
+              <p class="text-slate-500 text-xs sm:text-sm">Parcheggi a pagamento limitati nel centro di Praiano. <a href="/it-it/guida/parcheggi-ztl/" class="text-med-blue hover:underline">Guida parcheggi</a>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div>
+          <h2 class="font-serif text-3xl font-bold text-slate-900 mb-8">Domande Frequenti</h2>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map((q) => (
+              <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+                  {q.name}
+                  <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+                  {q.acceptedAnswer.text}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Fast-Facts -->
+      <aside class="lg:col-span-1">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32">
+          <h3 class="font-serif text-2xl font-bold mb-8 flex items-center gap-3">
+            <svg class="w-6 h-6 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg> Fast-Facts
+          </h3>
+          <div class="space-y-6">
+            {facts.map((item) => (
+              <div class="border-b border-white/5 pb-4 last:border-0">
+                <span class="text-white/40 text-xs sm:text-sm font-light block mb-1">{item.label}</span>
+                <span class="text-white font-medium text-xs sm:text-sm">{item.value}</span>
+              </div>
+            ))}
+          </div>
+          <div class="mt-10 pt-8 border-t border-white/10">
+            <a
+              href="/it-it/spiagge/"
+              class="inline-flex items-center gap-2 text-med-gold text-xs sm:text-sm font-medium hover:text-white transition-colors"
+            >
+              ← Tutte le spiagge
+            </a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <CorrelationSlider
+    lang="it-it"
+    items={nearbyBeaches}
+    title="Spiagge Vicine da Esplorare"
+  />
+
+  <section class="bg-med-blue py-16 text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="font-serif text-2xl font-bold text-white mb-4">Scopri altre spiagge della Costiera</h2>
+      <a
+        href="/it-it/spiagge/"
+        class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-med-cream transition-colors"
+      >
+        Guida completa alle spiagge
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
