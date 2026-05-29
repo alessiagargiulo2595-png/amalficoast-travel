@@ -78,6 +78,16 @@ function t(key: string): string {
   .planner-drag-ghost { opacity: 0.4; }
   .planner-drag-chosen { box-shadow: 0 0 0 2px #d4af37; border-radius: 12px; }
 
+  /* Stabilize stacking + rendering on mobile zoom (Safari iOS) */
+  #trip-planner {
+    isolation: isolate;
+    contain: paint;
+  }
+  .planner-glow {
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+  }
+
   /* Glassmorphism */
   .glass-card {
     background: rgba(255,255,255,0.04);
@@ -85,6 +95,15 @@ function t(key: string): string {
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255,255,255,0.08);
     box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+    transform: translateZ(0);
+  }
+  /* Reduce backdrop-filter on mobile — Safari iOS struggles with heavy blur during pinch-zoom */
+  @media (max-width: 768px) {
+    .glass-card {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
   }
   .glass-btn {
     background: rgba(255,255,255,0.05);
@@ -104,10 +123,10 @@ function t(key: string): string {
     box-shadow: 0 0 20px rgba(212,175,55,0.2);
   }
 </style>
-<section class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 pt-20 pb-12 md:pt-20 md:pb-16" id="trip-planner">
-  <!-- Ambient glow -->
-  <div class="absolute -top-20 -left-20 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
-  <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+<section class="relative overflow-clip bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 pt-20 pb-12 md:pt-20 md:pb-16" id="trip-planner">
+  <!-- Ambient glow (hidden on small screens to avoid mobile-zoom paint glitches) -->
+  <div class="planner-glow hidden sm:block absolute -top-20 -left-20 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="planner-glow hidden sm:block absolute -bottom-20 -right-20 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
   <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
     <!-- Header -->
