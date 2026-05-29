@@ -97,19 +97,24 @@ const destinationSchema = {
         <p class="text-xs sm:text-sm text-slate-400 hidden sm:block">Golf von Neapel, Kampanien</p>
       </div>
       <div class="grid sm:grid-cols-2 gap-6">
-        {borghi.map(b => (
-          <a href={b.href} class="group bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm hover:border-med-blue/30 hover:shadow-xl transition-all duration-300">
-            <div class="flex items-start justify-between mb-3">
-              <h3 class="font-serif text-xl font-semibold text-slate-900 group-hover:text-med-blue transition-colors">{b.name}</h3>
-              <span class="text-[10px] uppercase tracking-wide bg-med-blue/5 text-med-blue px-2 py-1 rounded-full font-medium flex-shrink-0 ml-2">{b.tag}</span>
-            </div>
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">{b.desc}</p>
-            <p class="text-med-blue text-xs sm:text-sm font-medium mt-4 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-              {b.name} entdecken
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
-            </p>
-          </a>
-        ))}
+        {borghi.map((b, i) => {
+          const stripeColors = ['#D4AF37', '#E2725B', '#005B96', '#40E0D0'];
+          const stripeColor = stripeColors[i % stripeColors.length];
+          return (
+            <a href={b.href} class="group relative overflow-hidden bg-white border border-slate-100 rounded-[2rem] p-6 pl-7 shadow-sm hover:border-med-blue/30 hover:shadow-xl transition-all duration-300">
+              <span class="absolute left-0 top-0 bottom-0 w-1.5" style={`background-color: ${stripeColor}`}></span>
+              <div class="flex items-start justify-between mb-3">
+                <h3 class="font-serif text-xl font-semibold text-slate-900 group-hover:text-med-blue transition-colors">{b.name}</h3>
+                <span class="text-[10px] uppercase tracking-wide px-2 py-1 rounded-full font-semibold flex-shrink-0 ml-2 text-white" style={`background-color: ${stripeColor}`}>{b.tag}</span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">{b.desc}</p>
+              <p class="text-med-blue text-xs sm:text-sm font-medium mt-4 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                {b.name} entdecken
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+              </p>
+            </a>
+          );
+        })}
       </div>
     </section>
 
