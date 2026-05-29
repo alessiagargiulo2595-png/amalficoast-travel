@@ -511,6 +511,13 @@ function t(key: string): string {
     return 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   }
 
+  // --- Island grouping: same physical island even if location differs ---
+  // Capri/Anacapri share an island; Ischia/Forio share an island; Procida is alone.
+  const ISLAND_OF = { 'Capri': 'capri', 'Anacapri': 'capri', 'Ischia': 'ischia', 'Forio': 'ischia', 'Procida': 'procida' };
+  function getIsland(block) {
+    return block.area === 'isole' ? (ISLAND_OF[block.location] || null) : null;
+  }
+
   // --- Slot assignment: AM types vs PM types ---
   const amTypes = new Set(['trekking', 'mare', 'relax']);
   const pmTypes = new Set(['cultura', 'panorama', 'gastronomia', 'shopping']);
@@ -535,7 +542,11 @@ function t(key: string): string {
   function assignSlots(dayBlocks) {
     // For full-day blocks, label 'full'. For 2 half-day blocks, assign AM/PM intelligently.
     if (dayBlocks.length === 1) {
-      return [{ ...dayBlocks[0], slot: dayBlocks[0].duration === 'full' ? 'full' : 'am' }];
+      const only = dayBlocks[0];
+      // Islands require a full ferry day even if the block is technically half-day:
+      // the round-trip transfer makes a half-day stop on the island impractical.
+      const forceFullDay = only.duration === 'full' || getIsland(only) !== null;
+      return [{ ...only, slot: forceFullDay ? 'full' : 'am' }];
     }
     const a = dayBlocks[0], b = dayBlocks[1];
     const prefA = slotPreference(a), prefB = slotPreference(b);
@@ -629,12 +640,18 @@ function t(key: string): string {
       // Fill remaining slot: prefer nearby + different type + continuity from previous day
       if (remaining > 0) {
         const anchorTypes = new Set(anchor.types);
+        const anchorIsland = getIsland(anchor);
 
         // Score fill candidates
         const fillCandidates = candidates.filter(c => {
           if (used.has(c.id)) return false;
           if ((c.duration === 'full' ? 2 : 1) > remaining) return false;
           if (dayBlocks.some(db => c.avoid_with?.includes(db.id) || db.avoid_with?.includes(c.id))) return false;
+          // Island rule: if anchor is on an island, the fill MUST be on the same island.
+          // Mixing island + mainland in the same day is impractical due to ferry transfer time.
+          if (anchorIsland && getIsland(c) !== anchorIsland) return false;
+          // Reverse rule: mainland anchor cannot be combined with island block.
+          if (!anchorIsland && getIsland(c) !== null) return false;
           return true;
         }).map(c => {
           const dist = haversine(anchor.coordinates, c.coordinates);
