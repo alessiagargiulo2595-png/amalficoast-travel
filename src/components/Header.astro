@@ -95,12 +95,18 @@ const costieraBorghi = [
   { name: 'Amalfi',    href: `${costieraBase}/amalfi/` },
   { name: 'Ravello',   href: `${costieraBase}/ravello/` },
   { name: 'Praiano',   href: `${costieraBase}/praiano/` },
-  { name: 'Marina di Praia', href: `${costieraBase}/marina-di-praia/` },
   { name: 'Maiori',    href: `${costieraBase}/maiori/` },
   { name: 'Minori',    href: `${costieraBase}/minori/` },
   { name: 'Vietri sul Mare', href: `${costieraBase}/vietri-sul-mare/` },
   { name: 'Cetara',    href: `${costieraBase}/cetara/` },
-  { name: 'Atrani',   href: `${costieraBase}/atrani/` },
+  { name: 'Atrani',    href: `${costieraBase}/atrani/` },
+  { name: 'Marina di Praia', href: `${costieraBase}/marina-di-praia/` },
+  { name: lang === 'fr-fr' ? 'Salerne' : 'Salerno', href: lang === 'fr-fr' ? `${costieraBase}/salerne/` : `${costieraBase}/salerno/` },
+  { name: 'Agerola',   href: `${costieraBase}/agerola/` },
+  { name: 'Tramonti',  href: `${costieraBase}/tramonti/` },
+  { name: 'Furore',    href: `${costieraBase}/furore/` },
+  { name: 'Erchie',    href: `${costieraBase}/erchie/` },
+  { name: 'Conca dei Marini', href: `${costieraBase}/conca-dei-marini/` },
 ];
 
 /* ── Destinazioni: Sorrentina ── */
@@ -110,29 +116,35 @@ const sorrentinaBorghi =
     { name: 'Vico Equense',   href: '/it-it/penisola-sorrentina/vico-equense/' },
     { name: 'Massa Lubrense', href: '/it-it/penisola-sorrentina/massa-lubrense/' },
     { name: "Sant'Agnello",   href: '/it-it/penisola-sorrentina/sant-agnello/' },
+    { name: 'Meta',           href: '/it-it/penisola-sorrentina/meta/' },
   ] : lang === 'en-us' ? [
     { name: 'Sorrento',       href: '/en-us/sorrento-peninsula/sorrento/' },
     { name: 'Vico Equense',   href: '/en-us/sorrento-peninsula/vico-equense/' },
     { name: 'Massa Lubrense', href: '/en-us/sorrento-peninsula/massa-lubrense/' },
     { name: "Sant'Agnello",   href: '/en-us/sorrento-peninsula/sant-agnello/' },
+    { name: 'Meta',           href: '/en-us/sorrento-peninsula/meta/' },
   ] : lang === 'es-es' ? [
     { name: 'Sorrento',       href: '/es-es/peninsula-sorrentina/sorrento/' },
     { name: 'Vico Equense',   href: '/es-es/peninsula-sorrentina/vico-equense/' },
     { name: 'Massa Lubrense', href: '/es-es/peninsula-sorrentina/massa-lubrense/' },
     { name: "Sant'Agnello",   href: '/es-es/peninsula-sorrentina/sant-agnello/' },
+    { name: 'Meta',           href: '/es-es/peninsula-sorrentina/meta/' },
   ] : lang === 'fr-fr' ? [
     { name: 'Sorrente',       href: '/fr-fr/peninsule-sorrentine/sorrente/' },
     { name: 'Vico Equense',   href: '/fr-fr/peninsule-sorrentine/vico-equense/' },
     { name: 'Massa Lubrense', href: '/fr-fr/peninsule-sorrentine/massa-lubrense/' },
     { name: "Sant'Agnello",   href: '/fr-fr/peninsule-sorrentine/sant-agnello/' },
+    { name: 'Meta',           href: '/fr-fr/peninsule-sorrentine/meta/' },
   ] : lang === 'de-de' ? [
     { name: 'Sorrent',        href: '/de-de/sorrentinische-halbinsel/sorrent/' },
     { name: 'Vico Equense',   href: '/de-de/sorrentinische-halbinsel/vico-equense/' },
     { name: 'Massa Lubrense', href: '/de-de/sorrentinische-halbinsel/massa-lubrense/' },
     { name: "Sant'Agnello",   href: '/de-de/sorrentinische-halbinsel/sant-agnello/' },
+    { name: 'Meta',           href: '/de-de/sorrentinische-halbinsel/meta/' },
   ] : [
     { name: 'Sorrento', href: '#' }, { name: 'Vico Equense', href: '#' },
     { name: 'Massa Lubrense', href: '#' }, { name: "Sant'Agnello", href: '#' },
+    { name: 'Meta', href: '#' },
   ];
 
 /* ── Destinazioni: Isole ── */
@@ -588,7 +600,7 @@ const eventiGastronomia = ({
                   <span class="absolute bottom-[-1px] left-0 w-8 h-px bg-med-gold"></span>
                 </a>
                 <ul class="space-y-3">
-                  {costieraBorghi.map(b => (
+                  {costieraBorghi.slice(0, 5).map(b => (
                     <li>
                       <a href={b.href} class="group flex items-center gap-3 text-slate-500 hover:text-med-blue transition-all font-sans text-[11px] uppercase tracking-widest">
                         <div class="w-5 h-5 rounded-sm bg-slate-50 opacity-0 group-hover:opacity-100 -ml-8 group-hover:ml-0 transition-all flex items-center justify-center flex-shrink-0">
@@ -598,6 +610,11 @@ const eventiGastronomia = ({
                       </a>
                     </li>
                   ))}
+                  <li>
+                    <a href={`${costieraBase}/`} class="text-med-gold hover:text-med-blue transition-colors font-sans text-[11px] uppercase tracking-widest font-semibold">
+                      {viewAllLabel} →
+                    </a>
+                  </li>
                 </ul>
               </div>
               {/* Penisola */}
@@ -855,7 +872,7 @@ const eventiGastronomia = ({
                     </li>
                   ))}
                 </ul>
-                <a href={itinerariHref} class="text-med-blue font-bold text-[10px] uppercase tracking-[0.2em] hover:text-med-blue/70 transition-colors inline-flex items-center gap-1.5 pt-2">
+                <a href={itinerariHref} class="text-med-gold font-bold text-[10px] uppercase tracking-[0.2em] hover:text-med-blue transition-colors inline-flex items-center gap-1.5 pt-2">
                   {viewAllItLabel} <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </a>
               </div>
