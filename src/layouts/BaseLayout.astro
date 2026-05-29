@@ -163,6 +163,35 @@ const allSchemas = [websiteSchema, organizationSchema, ...(schema || []), ...(br
         'ad_user_data': 'denied',
         'ad_personalization': 'denied'
       });
+      // AI assistant referrers are not in GA4's default channel grouping, so they
+      // arrive as "(not set)" medium. Override before config so the auto page_view
+      // carries proper source/medium.
+      var aiHosts = {
+        'chatgpt.com': 'chatgpt',
+        'chat.openai.com': 'chatgpt',
+        'openai.com': 'openai',
+        'copilot.microsoft.com': 'copilot',
+        'copilot.com': 'copilot',
+        'perplexity.ai': 'perplexity',
+        'gemini.google.com': 'gemini',
+        'bard.google.com': 'gemini',
+        'claude.ai': 'claude',
+        'you.com': 'you',
+        'meta.ai': 'meta_ai'
+      };
+      var aiSource = null;
+      if (document.referrer) {
+        try {
+          var refHost = new URL(document.referrer).hostname.replace(/^www\./, '');
+          if (aiHosts[refHost]) aiSource = aiHosts[refHost];
+        } catch (e) {}
+      }
+      if (aiSource) {
+        gtag('set', 'campaign', {
+          source: aiSource,
+          medium: 'ai_assistant'
+        });
+      }
       gtag('js', new Date());
       gtag('config', 'G-C9MBPN3GKX', {
         'anonymize_ip': true,
