@@ -1,0 +1,183 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'fr-fr';
+const post = {
+  title: 'Maiori ou Minori',
+  subtitle: 'Les deux villages-sœurs de la côte amalfitaine',
+  category: 'GUIDES',
+  date: '1 juin 2026',
+  readTime: '10 min',
+  image: '/images/maiori-vs-minori-hero.webp',
+  imageAlt: 'Maiori et Minori : deux villages-sœurs de la côte amalfitaine basse',
+  path: '/fr-fr/blog/maiori-vs-minori/',
+};
+
+const metaTitle = 'Maiori ou Minori 2026 : Quel Village-sœur ? | Guide Honnête';
+const metaDescription = "Maiori ou Minori : guide 2026. Plus grande plage de sable + budget vs petit village authentique + héritage pâtes. Familles, foodies, slow travel.";
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Blog', url: '/fr-fr/blog/' },
+  { name: 'Maiori ou Minori', url: '/fr-fr/blog/maiori-vs-minori/' },
+];
+
+const quickInfo = [
+  { label: 'Distance', value: "1,5 km, à pied en 20 min" },
+  { label: 'Temps de trajet', value: 'À pied, 5 min bus, 10 min bateau' },
+  { label: 'Maiori', value: '~5 500 habitants, plus grande plage de la côte' },
+  { label: 'Minori', value: '~3 000 habitants, foyer des pâtes artisanales' },
+  { label: 'Prix hôtel', value: 'Maiori 90-260 € / Minori 100-280 €' },
+  { label: 'Pour familles', value: 'Maiori' },
+  { label: 'Pour foodies', value: 'Minori' },
+];
+
+const faq = [
+  { q: 'Maiori ou Minori pour familles avec enfants ?', a: "Maiori, clairement. Maiori a la plus grande plage de sable de toute la côte amalfitaine (environ 1 km), promenade plate, grands supermarchés, pharmacie anglophone et hôtels familiaux avec piscines. Minori a une plage plus petite. Les deux ont des centres plats, 10x plus faciles avec poussettes que Positano ou Ravello." },
+  { q: 'Maiori ou Minori pour foodies ?', a: "Minori. Minori est le foyer des pâtes artisanales : Pastificio Sant'Egidio (ex Vicidomini) expédie dans toute l'Italie. Le village a la pâtisserie Sal De Riso (la plus célèbre de la côte, où la delizia al limone a été inventée), un wine-bar avec petites séries et restaurants familiaux authentiques." },
+  { q: 'Maiori ou Minori comme base pour la côte ?', a: "Les deux fonctionnent également : ils sont à 1 km l'un de l'autre, tous deux sur la ligne de bus SITA. Depuis l'un et l'autre tu rejoins Amalfi en 15 min, Salerno en 35 min en ferry, Ravello en 30-40 min en bus." },
+  { q: 'Maiori ou Minori : lequel est moins cher ?', a: "Maiori est légèrement moins cher pour les hôtels (plus d'options resort font baisser les prix) : 90-180 € vs 100-220 € pour 3★. Les restaurants sont similaires. Le grand avantage : tous deux facturent espresso 1,30 €, pâtes 14 €, prix côte amalfitaine sans la surtaxe Positano." },
+  { q: 'Maiori ou Minori pour la plage de sable ?', a: "Maiori, sans comparaison. La plage de Maiori est longue d'environ 1 km, principalement sable doux (rare sur la côte amalfitaine). La plage de Minori est plus petite (environ 200 mètres) et mixte sable/galets." },
+  { q: 'Maiori ou Minori pour slow travel et authenticité ?', a: "Minori. Minori a environ 3 000 habitants (vs 5 500 de Maiori). La rue principale étroite, les boutiques de pâtes artisanales, les caves familiales donnent à Minori une sensation 'Italie vraie' plus forte. Maiori est sympa mais plus resort." },
+  { q: 'Dois-je visiter les deux ?', a: "Oui, facilement. Ils sont à 1 km l'un de l'autre sur un sentier côtier. Tu peux loger dans l'un et aller dans l'autre pour déjeuner ou dîner. Itinéraire le plus commun en 1 semaine : séjour à Maiori (moins cher, plage), balades à Minori pour dîner (pâtes)." },
+];
+
+const sidebarLinks = [
+  { label: 'Guide Maiori', href: '/fr-fr/cote-amalfitaine/maiori/' },
+  { label: 'Guide Minori', href: '/fr-fr/cote-amalfitaine/minori/' },
+  { label: 'Guide Amalfi', href: '/fr-fr/cote-amalfitaine/amalfi/' },
+  { label: 'Guide Ravello', href: '/fr-fr/cote-amalfitaine/ravello/' },
+  { label: 'Bus SITA', href: '/fr-fr/guide/bus-sita/' },
+  { label: 'Ferries', href: '/fr-fr/guide/ferries/' },
+];
+
+const authorRole = 'Expert en logistique de voyage, côte amalfitaine';
+
+const relatedArticles = [
+  { title: 'Positano ou Amalfi', category: 'GUIDES', date: '29 mai 2026', image: '/images/positano-vs-amalfi-hero.webp', imageAlt: 'Positano et Amalfi', path: '/fr-fr/blog/positano-vs-amalfi/' },
+  { title: 'Sorrente ou Amalfi', category: 'GUIDES', date: '29 mai 2026', image: '/images/sorrento-vs-amalfi-hero.webp', imageAlt: 'Sorrente et Amalfi', path: '/fr-fr/blog/sorrento-vs-amalfi/' },
+];
+
+const compareSchema = {
+  '@context': 'https://schema.org', '@type': 'Article',
+  headline: 'Maiori ou Minori : deux villages-sœurs de la côte amalfitaine',
+  about: [
+    { '@type': 'Place', name: 'Maiori', address: { '@type': 'PostalAddress', addressLocality: 'Maiori', addressRegion: 'SA', addressCountry: 'IT' } },
+    { '@type': 'Place', name: 'Minori', address: { '@type': 'PostalAddress', addressLocality: 'Minori', addressRegion: 'SA', addressCountry: 'IT' } },
+  ],
+};
+---
+
+<BlogPostLayout lang={lang} post={post} metaTitle={metaTitle} metaDescription={metaDescription} breadcrumbs={breadcrumbs} quickInfo={quickInfo} faq={faq} sidebarLinks={sidebarLinks} authorRole={authorRole} relatedArticles={relatedArticles} extraSchema={[compareSchema]}>
+
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      <strong>Maiori ou Minori ?</strong> Les deux villages-sœurs de la côte amalfitaine basse sont à 1 km l'un de l'autre et partagent une vallée de plage entre deux falaises. Ils se ressemblent depuis la fenêtre du bus : maisons pastel, clocher, palmiers sur la promenade. Mais ils ont des personnalités très différentes. <a href="/fr-fr/cote-amalfitaine/maiori/" class="text-med-blue hover:underline">Maiori</a> est le village resort avec la plus grande plage de la côte. <a href="/fr-fr/cote-amalfitaine/minori/" class="text-med-blue hover:underline">Minori</a> est le village artisanal de la nourriture, où les pâtes faites à la main sont un métier depuis des siècles.
+    </p>
+  </div>
+
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La géographie : sœurs, pas jumelles</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">Maiori et Minori partagent la vallée la plus large de la côte amalfitaine basse (la portion à l'est d'Amalfi, avant Cetara et Vietri). Ils sont reliés par un sentier côtier de 1 km parcouru en 15-20 minutes à pied, ou par le bus SITA toutes les 30 minutes, ou par un petit bateau en été.</p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">Maiori est plus grande (5 500 habitants vs 3 000) et plus développée pour le tourisme resort. Elle a la plage de sable de 1 km, la promenade, les hôtels plus grands avec piscines. Minori est plus petite, plus dense, avec une atmosphère plus authentique et italienne : familles italiennes en vacances, restaurants familiaux, célèbre pâtisserie Sal De Riso.</p>
+  </div>
+
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Pour les familles : Maiori</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">Maiori est le choix famille. La plage de sable de 1 km est la plus longue de toute la côte amalfitaine. Les enfants peuvent vraiment courir sur le sable au lieu des galets. La promenade plate fonctionne pour poussettes, trottinettes et tout-petits fatigués traînés vers l'hôtel.</p>
+    <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Logistique famille comparée</h3>
+      <table class="w-full text-sm">
+        <tbody class="divide-y divide-med-gold/20">
+          <tr><td class="py-2 font-semibold">Longueur plage de sable</td><td class="py-2">Maiori 1 km ⭐ / Minori 0,2 km</td></tr>
+          <tr><td class="py-2 font-semibold">Piscines hôtel</td><td class="py-2">Maiori communes / Minori rares</td></tr>
+          <tr><td class="py-2 font-semibold">Grand supermarché</td><td class="py-2">Maiori ✓ (Conad) / Minori plus petit</td></tr>
+          <tr><td class="py-2 font-semibold">Compatible poussette</td><td class="py-2">Les deux ✓</td></tr>
+          <tr><td class="py-2 font-semibold">Capacité restaurant familles</td><td class="py-2">Maiori ✓ / Minori limitée</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Pour les foodies : Minori</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">Minori est la ville des pâtes faites à la main. Le surnom du village est "Città del Gusto" (ville du goût). Trois choses font de Minori le choix foodie :</p>
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Pourquoi les amateurs de cuisine restent à Minori</h3>
+      <ul class="space-y-4 text-slate-600">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Pastificio Sant'Egidio (Vicidomini historique).</strong> Familial depuis 1812. Ils font scialatielli, ndunderi et fusilli al ferretto et expédient dans toute l'Italie.</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Pâtisserie Sal De Riso.</strong> La plus célèbre pâtisserie de la côte amalfitaine. La delizia al limone a été inventée ici. La boutique est un pèlerinage pour les foodies italiens.</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Restaurants familiaux.</strong> L'Arsenale, Il Giardiniello, Vino Pané, petits établissements où le propriétaire connaît la table. Walk-in possible même en août.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Pour slow travel et authenticité : Minori</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">Minori, c'est là où les Italiens en vacances dans le sud de l'Italie vont vraiment. L'après-midi au bar avec le journal local, les enfants qui jouent sur la place de l'église à 19h, la conversation avec le vieux pêcheur qui vend des oursins dans une glacière.</p>
+  </div>
+
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Pour voyageurs budget : les deux pas chers</h2>
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <table class="w-full text-sm">
+        <thead class="bg-slate-900 text-white"><tr><th class="text-left p-4 font-bold text-med-gold">Poste (mai 2026)</th><th class="text-left p-4 font-bold text-med-gold">Maiori</th><th class="text-left p-4 font-bold text-med-gold">Minori</th></tr></thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Hôtel 3★, double</td><td class="p-4">90-180 €</td><td class="p-4">100-220 €</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">4★ vue mer</td><td class="p-4">170-260 €</td><td class="p-4">180-280 €</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Transat + parasol</td><td class="p-4">12-18 €</td><td class="p-4">12-18 €</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Pâtes restaurant</td><td class="p-4">12-16 €</td><td class="p-4">14-18 €</td></tr>
+          <tr><td class="p-4 font-semibold">Espresso au bar</td><td class="p-4">1,20 €</td><td class="p-4">1,30 €</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Le verdict en 30 secondes</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Choisis Maiori si :</p>
+        <ul class="space-y-3 text-slate-600 text-sm">
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Famille avec enfants et vraie journée plage compte</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Tu veux hôtel avec piscine</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Budget moins de 180 €/nuit vue mer</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>4-7 nuits comme base, matinées plage paresseuses</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Tu préfères stations balnéaires aux villages médiévaux étroits</span></li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Choisis Minori si :</p>
+        <ul class="space-y-3 text-slate-600 text-sm">
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>La nourriture est la raison principale du voyage</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Tu veux atmosphère Italie authentique</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Tu es déjà allé à Positano/Amalfi</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Couple ou petit groupe, pas d'enfants de moins de 10 ans</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Slow travel, minimum 4-5 nuits</span></li>
+        </ul>
+      </div>
+    </div>
+    <blockquote class="border-l-4 border-med-gold pl-6 mb-8">
+      <p class="text-slate-700 text-lg font-serif italic leading-relaxed">"💡 Astuce locale : choisis l'un, mange dans les deux. Loge à Maiori pour l'accès à la plage et le prix d'hôtel plus bas, puis prends la balade côtière de 20 minutes vers Minori pour 2-3 dîners pendant la semaine. Tu obtiens la base resort balnéaire plus l'expérience nourriture artisanale."</p>
+    </blockquote>
+  </div>
+
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Tableau comparatif rapide</h2>
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-sm">
+        <thead class="bg-slate-900 text-white"><tr><th class="text-left p-4 font-bold text-med-gold">Caractéristique</th><th class="text-left p-4 font-bold text-med-gold">Maiori</th><th class="text-left p-4 font-bold text-med-gold">Minori</th></tr></thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Population</td><td class="p-4">~5 500</td><td class="p-4">~3 000</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Atmosphère</td><td class="p-4">Village resort balnéaire, familial</td><td class="p-4">Village artisanal authentique</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Plage</td><td class="p-4">1 km sable ⭐ (plus grande de la côte)</td><td class="p-4">0,2 km mixte sable/galets</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Identité culinaire</td><td class="p-4">Restaurants resort</td><td class="p-4">Pâtes artisanales + Sal De Riso ⭐</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Coût hôtel moyen</td><td class="p-4">90-260 €</td><td class="p-4">100-280 €</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Distance Amalfi</td><td class="p-4">15 min bus</td><td class="p-4">10 min bus</td></tr>
+          <tr><td class="p-4 font-semibold">Idéal pour</td><td class="p-4">Familles, amateurs plage, budget</td><td class="p-4">Foodies, slow travelers, Italie authentique</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</BlogPostLayout>

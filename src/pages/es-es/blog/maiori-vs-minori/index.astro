@@ -1,0 +1,186 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'es-es';
+const post = {
+  title: 'Maiori o Minori',
+  subtitle: 'Los dos pueblos hermanos de la Costa Amalfitana',
+  category: 'GUÍAS',
+  date: '1 de junio de 2026',
+  readTime: '10 min',
+  image: '/images/maiori-vs-minori-hero.webp',
+  imageAlt: 'Maiori y Minori: los dos pueblos hermanos de la Costa baja',
+  path: '/es-es/blog/maiori-vs-minori/',
+};
+
+const metaTitle = 'Maiori o Minori 2026: ¿Qué Pueblo Elegir? | Guía Honesta';
+const metaDescription = 'Maiori o Minori: guía 2026. Playa de arena + presupuesto vs pequeño pueblo auténtico + pasta artesanal. Casos de uso para familias, foodies, slow travelers.';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Blog', url: '/es-es/blog/' },
+  { name: 'Maiori o Minori', url: '/es-es/blog/maiori-vs-minori/' },
+];
+
+const quickInfo = [
+  { label: 'Distancia', value: '1,5 km — caminables en 20 min' },
+  { label: 'Tiempo de viaje', value: 'A pie, 5 min bus, 10 min barco' },
+  { label: 'Maiori', value: '~5.500 habitantes · playa más grande de la Costa' },
+  { label: 'Minori', value: '~3.000 habitantes · patria de la pasta artesanal' },
+  { label: 'Rango hotel', value: 'Maiori €90-260 · Minori €100-280' },
+  { label: 'Para familias', value: 'Maiori' },
+  { label: 'Para foodies', value: 'Minori' },
+];
+
+const faq = [
+  { q: '¿Maiori o Minori para familias con niños?', a: "Maiori, claramente. Maiori tiene la playa de arena más grande de toda la Costa Amalfitana (unos 1 km), paseo marítimo plano, supermercados grandes, farmacia con personal que habla inglés y hoteles familiares con piscina. Minori tiene una playa más pequeña y es más compacta. Ambas tienen centros planos, 10x más fáciles con carritos que Positano o Ravello." },
+  { q: '¿Maiori o Minori para foodies?', a: "Minori. Minori es la patria de la pasta artesanal: Pastificio Sant'Egidio (ex Vicidomini) envía por toda Italia. El pueblo tiene la pastelería Sal De Riso (la más famosa de la Costa, donde se inventó la delizia al limone), enoteca artesanal y restaurantes familiares donde ves a la abuela amasar scialatielli frescos. Maiori tiene buena comida pero le falta la identidad food-artesanal." },
+  { q: '¿Maiori o Minori como base para la Costa?', a: "Cualquiera funciona igual: están a 1 km de distancia, ambas en la línea bus SITA. Desde ambas llegas a Amalfi en 15 min, Salerno en 35 min en ferry, Ravello en 30-40 min en bus (vía Amalfi). La elección depende del ambiente: Maiori para base resort-balnearia, Minori para base pueblo-auténtico." },
+  { q: '¿Maiori o Minori: cuál es más barata?', a: "Maiori es ligeramente más barata para hoteles (más opciones resort bajan los precios): €90-180 vs €100-220 para 3★. Los restaurantes son similares. El gran ahorro: ambas cobran €1,30 por espresso, €14 por pasta — precios de Costa sin el sobrecargo Positano." },
+  { q: '¿Maiori o Minori para playa de arena?', a: "Maiori, sin discusión. La playa de Maiori mide unos 1 km, mayormente arena fina (raro en la Costa), con tramos libres y clubs de playa. La playa de Minori es más pequeña (unos 200 metros) mixto arena/guijarros." },
+  { q: '¿Maiori o Minori para slow travel y autenticidad?', a: "Minori. Minori tiene unos 3.000 habitantes (vs 5.500 de Maiori). La calle principal estrecha, las tiendas de pasta artesanal, las bodegas familiares dan a Minori una sensación 'Italia real' más fuerte. Maiori es amistosa pero más resort." },
+  { q: '¿Conviene visitar ambas?', a: "Sí, fácilmente. Están a 1 km de distancia en un sendero costero peatonal. Puedes alojarte en una y caminar a la otra para almorzar o cenar. Itinerario más común: alojamiento en Maiori (más barato, playa), cenas en Minori (pasta), bus ocasional a Amalfi, excursión a Ravello." },
+];
+
+const sidebarLinks = [
+  { label: 'Guía Maiori', href: '/es-es/costa-amalfitana/maiori/' },
+  { label: 'Guía Minori', href: '/es-es/costa-amalfitana/minori/' },
+  { label: 'Guía Amalfi', href: '/es-es/costa-amalfitana/amalfi/' },
+  { label: 'Guía Ravello', href: '/es-es/costa-amalfitana/ravello/' },
+  { label: 'Bus SITA', href: '/es-es/guia/bus-sita/' },
+  { label: 'Ferries', href: '/es-es/guia/ferries/' },
+];
+
+const authorRole = 'Experto logística de viajes · Costa Amalfitana';
+
+const relatedArticles = [
+  { title: 'Positano o Amalfi', category: 'GUÍAS', date: '29 de mayo de 2026', image: '/images/positano-vs-amalfi-hero.webp', imageAlt: 'Positano y Amalfi', path: '/es-es/blog/positano-vs-amalfi/' },
+  { title: 'Sorrento o Amalfi', category: 'GUÍAS', date: '29 de mayo de 2026', image: '/images/sorrento-vs-amalfi-hero.webp', imageAlt: 'Sorrento y Amalfi', path: '/es-es/blog/sorrento-vs-amalfi/' },
+];
+
+const compareSchema = {
+  '@context': 'https://schema.org', '@type': 'Article',
+  headline: 'Maiori o Minori: los dos pueblos hermanos de la Costa Amalfitana',
+  about: [
+    { '@type': 'Place', name: 'Maiori', address: { '@type': 'PostalAddress', addressLocality: 'Maiori', addressRegion: 'SA', addressCountry: 'IT' } },
+    { '@type': 'Place', name: 'Minori', address: { '@type': 'PostalAddress', addressLocality: 'Minori', addressRegion: 'SA', addressCountry: 'IT' } },
+  ],
+};
+---
+
+<BlogPostLayout lang={lang} post={post} metaTitle={metaTitle} metaDescription={metaDescription} breadcrumbs={breadcrumbs} quickInfo={quickInfo} faq={faq} sidebarLinks={sidebarLinks} authorRole={authorRole} relatedArticles={relatedArticles} extraSchema={[compareSchema]}>
+
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      <strong>¿Maiori o Minori?</strong> Los dos pueblos hermanos de la Costa Amalfitana baja están a 1 km de distancia, compartiendo un valle balneario entre dos acantilados. Se parecen desde la ventana del bus: casas color pastel, campanario, palmeras en el paseo marítimo. Pero tienen personalidades muy distintas. <a href="/es-es/costa-amalfitana/maiori/" class="text-med-blue hover:underline">Maiori</a> es el pueblo balneario con la playa más grande de la Costa. <a href="/es-es/costa-amalfitana/minori/" class="text-med-blue hover:underline">Minori</a> es el pueblo del food artesanal donde la pasta hecha a mano es profesión desde hace siglos.
+    </p>
+  </div>
+
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La geografía: hermanas, no gemelas</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">Maiori y Minori comparten el valle más amplio de la Costa Amalfitana baja (la sección al este de Amalfi, antes de Cetara y Vietri). Están conectadas por un sendero costero peatonal de 1 km recorrible en 15-20 minutos a pie, por el bus SITA cada 30 minutos, o por una pequeña barca en verano.</p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">Maiori es más grande (5.500 habitantes vs 3.000) y más desarrollada para el turismo balneario. Tiene la playa de arena de 1 km, el paseo marítimo, hoteles más grandes con piscina, atmósfera familiar. Minori es más pequeña, más densa, con atmósfera más auténtica e italiana: familias italianas en vacaciones, restaurantes familiares, la famosa pastelería Sal De Riso donde se inventó la "delizia al limone".</p>
+    <p class="text-slate-600 text-lg leading-relaxed">Ambas son aproximadamente 60% más baratas que Positano. Ambas tienen ferry directo a Amalfi (15 min) y Salerno (35 min).</p>
+  </div>
+
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Para familias: Maiori</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">Maiori es la elección familiar. La playa de arena de 1 km es la más larga de toda la Costa Amalfitana: los niños pueden correr de verdad en la arena. El paseo marítimo plano se adapta a carritos, patinetes y niños cansados arrastrados de vuelta al hotel. Hay un Conad grande a dos calles de la playa, farmacia y hoteles familiares con piscina.</p>
+    <div class="bg-med-cream p-8 rounded-[2rem] border border-med-gold/20">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Logística familiar, cara a cara</h3>
+      <table class="w-full text-sm">
+        <tbody class="divide-y divide-med-gold/20">
+          <tr><td class="py-2 font-semibold">Longitud playa de arena</td><td class="py-2">Maiori 1 km ⭐ · Minori 0,2 km</td></tr>
+          <tr><td class="py-2 font-semibold">Hoteles con piscina</td><td class="py-2">Maiori común · Minori raro</td></tr>
+          <tr><td class="py-2 font-semibold">Supermercado grande</td><td class="py-2">Maiori ✓ (Conad) · Minori más pequeños</td></tr>
+          <tr><td class="py-2 font-semibold">Apto carritos</td><td class="py-2">Ambas ✓</td></tr>
+          <tr><td class="py-2 font-semibold">Capacidad restaurantes familias</td><td class="py-2">Maiori ✓ · Minori limitada</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Para foodies: Minori</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">Minori es la ciudad de la pasta artesanal. El apodo del pueblo es "Città del Gusto" (Ciudad del Sabor). Tres cosas hacen de Minori la elección foodie:</p>
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-4">Por qué los amantes del food se alojan en Minori</h3>
+      <ul class="space-y-4 text-slate-600">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Pastificio Sant'Egidio (histórico Vicidomini).</strong> Familia activa desde 1812. Producen scialatielli, ndunderi y fusilli al ferretto, y envían por toda Italia. Los puedes ver trabajar desde la vitrina.</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Pastelería Sal De Riso.</strong> La pastelería más famosa de la Costa Amalfitana. La delizia al limone (cúpula de bizcocho con crema de limón) se inventó aquí. La tienda es destino de peregrinaje para foodies italianos.</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Restaurantes familiares.</strong> L'Arsenale, Il Giardiniello, Vino Pané — pequeños locales donde el propietario conoce la mesa. Walk-in posible incluso en agosto.</span></li>
+      </ul>
+    </div>
+    <p class="text-slate-600 text-lg leading-relaxed">Bono food: el Festival del Limone se celebra aquí cada julio, y Minori es el único lugar de la Costa donde compras limoncello fresco y mozzarella sobre hojas de limón de la misma familia artesana.</p>
+  </div>
+
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Para slow travel y autenticidad: Minori</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">Minori es donde los italianos en vacaciones en el sur van de verdad. La tarde en el bar con el periódico local, los niños jugando en la plaza a las 19, la conversación con el viejo pescador vendiendo erizos de mar desde una nevera portátil: estas escenas ocurren cada día en Minori, no como espectáculo turístico.</p>
+    <p class="text-slate-600 text-lg leading-relaxed">Maiori es amistosa y acogedora pero más declaradamente turística. Si viniste específicamente por "Italia real", Minori está más cerca de ello.</p>
+  </div>
+
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Para viajeros con presupuesto: ambas baratas</h2>
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <table class="w-full text-sm">
+        <thead class="bg-slate-900 text-white"><tr><th class="text-left p-4 font-bold text-med-gold">Concepto (mayo 2026)</th><th class="text-left p-4 font-bold text-med-gold">Maiori</th><th class="text-left p-4 font-bold text-med-gold">Minori</th></tr></thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Hotel 3★, doble</td><td class="p-4">€90-180</td><td class="p-4">€100-220</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">4★ vista al mar</td><td class="p-4">€170-260</td><td class="p-4">€180-280</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Hamaca + sombrilla</td><td class="p-4">€12-18</td><td class="p-4">€12-18</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Pasta restaurante</td><td class="p-4">€12-16</td><td class="p-4">€14-18</td></tr>
+          <tr><td class="p-4 font-semibold">Espresso en el bar</td><td class="p-4">€1,20</td><td class="p-4">€1,30</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">El veredicto en 30 segundos</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Elige Maiori si:</p>
+        <ul class="space-y-3 text-slate-600 text-sm">
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Familia con niños y cuenta un día real en la playa</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Quieres hotel con piscina</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Presupuesto bajo €180/noche con vista al mar</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>4-7 noches como base, mañanas pigras en playa</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Prefieres pueblos balnearios a pueblos medievales estrechos</span></li>
+        </ul>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Elige Minori si:</p>
+        <ul class="space-y-3 text-slate-600 text-sm">
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>La comida es la razón principal del viaje</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Quieres atmósfera Italia auténtica</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Ya has estado en Positano/Amalfi</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Pareja o grupo pequeño, sin niños menores de 10</span></li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2 flex-shrink-0"></span><span>Slow travel, mínimo 4-5 noches</span></li>
+        </ul>
+      </div>
+    </div>
+    <blockquote class="border-l-4 border-med-gold pl-6 mb-8">
+      <p class="text-slate-700 text-lg font-serif italic leading-relaxed">"💡 Consejo local: elige una, cena en ambas. Aloja en Maiori por el acceso a la playa y el precio hotel más bajo, luego haz el paseo costero de 20 minutos a Minori para cenar 2-3 veces durante la semana. Tienes la base balnearia más la experiencia food-artesanal, costo total semanal bajo €1.000 por hoteles + comida. El regreso a medianoche por el mar es lo gratis más bonito de la Costa."</p>
+    </blockquote>
+  </div>
+
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Tabla de comparación rápida</h2>
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-sm">
+        <thead class="bg-slate-900 text-white"><tr><th class="text-left p-4 font-bold text-med-gold">Característica</th><th class="text-left p-4 font-bold text-med-gold">Maiori</th><th class="text-left p-4 font-bold text-med-gold">Minori</th></tr></thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Población</td><td class="p-4">~5.500</td><td class="p-4">~3.000</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Ambiente</td><td class="p-4">Pueblo balneario, familiar</td><td class="p-4">Pueblo artesanal auténtico</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Playa</td><td class="p-4">1 km arena ⭐ (más grande de la Costa)</td><td class="p-4">0,2 km mixto arena/guijarros</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Identidad food</td><td class="p-4">Restaurantes balnearios</td><td class="p-4">Pasta artesanal + Sal De Riso ⭐</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Coste medio hotel</td><td class="p-4">€90-260</td><td class="p-4">€100-280</td></tr>
+          <tr class="border-b border-slate-100"><td class="p-4 font-semibold">Distancia Amalfi</td><td class="p-4">15 min bus</td><td class="p-4">10 min bus</td></tr>
+          <tr><td class="p-4 font-semibold">Ideal para</td><td class="p-4">Familias, amantes de playa, presupuesto</td><td class="p-4">Foodies, slow travelers, Italia auténtica</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</BlogPostLayout>

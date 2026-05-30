@@ -385,6 +385,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/limoncello-recipe/',
     source: 'slugMap',
   },
+  '/de-de/blog/maiori-vs-minori/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/maiori-vs-minori/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/maiori-vs-minori/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/maiori-vs-minori/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/maiori-vs-minori/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/maiori-vs-minori/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+    source: 'slugMap',
+  },
   '/de-de/blog/positano-vs-amalfi/': {
     url: 'https://amalficoast-travel.com/de-de/blog/positano-vs-amalfi/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
@@ -396,6 +409,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/positano-vs-amalfi/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    source: 'slugMap',
+  },
+  '/de-de/blog/praiano-vs-positano/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/praiano-vs-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/praiano-vs-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/praiano-vs-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/praiano-vs-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/praiano-vs-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+    source: 'slugMap',
+  },
+  '/de-de/blog/procida-vs-ischia/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/procida-vs-ischia/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/procida-vs-ischia/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/procida-vs-ischia/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/procida-vs-ischia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/procida-vs-ischia/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
     source: 'slugMap',
   },
   '/de-de/blog/punta-campanella/': {
@@ -2100,6 +2139,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/limoncello-recipe/',
     source: 'slugMap',
   },
+  '/en-us/blog/maiori-vs-minori/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/maiori-vs-minori/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/maiori-vs-minori/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/maiori-vs-minori/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/maiori-vs-minori/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+    source: 'slugMap',
+  },
   '/en-us/blog/positano-vs-amalfi/': {
     url: 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
@@ -2111,6 +2163,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/positano-vs-amalfi/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/praiano-vs-positano/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/praiano-vs-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/praiano-vs-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/praiano-vs-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/praiano-vs-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/procida-vs-ischia/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/procida-vs-ischia/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/procida-vs-ischia/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/procida-vs-ischia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/procida-vs-ischia/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
     source: 'slugMap',
   },
   '/en-us/blog/punta-campanella/': {
@@ -3124,6 +3202,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/emerald-grotto/',
     source: 'slugMap',
   },
+  '/es-es/blog/maiori-vs-minori/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/maiori-vs-minori/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/maiori-vs-minori/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/maiori-vs-minori/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/maiori-vs-minori/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/maiori-vs-minori/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+    source: 'slugMap',
+  },
   '/es-es/blog/oasis-salvajes-playas/': {
     url: 'https://amalficoast-travel.com/es-es/blog/oasis-salvajes-playas/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
@@ -3161,6 +3252,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/positano-vs-amalfi/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/praiano-vs-positano/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/praiano-vs-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/praiano-vs-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/praiano-vs-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/praiano-vs-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/praiano-vs-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/procida-vs-ischia/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/procida-vs-ischia/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/procida-vs-ischia/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/procida-vs-ischia/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/procida-vs-ischia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/procida-vs-ischia/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
     source: 'slugMap',
   },
   '/es-es/blog/puesta-de-sol-playas/': {
@@ -4618,6 +4735,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/emerald-grotto/',
     source: 'slugMap',
   },
+  '/fr-fr/blog/maiori-vs-minori/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/maiori-vs-minori/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/maiori-vs-minori/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/maiori-vs-minori/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/maiori-vs-minori/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/maiori-vs-minori/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+    source: 'slugMap',
+  },
   '/fr-fr/blog/oasis-sauvages-plages/': {
     url: 'https://amalficoast-travel.com/fr-fr/blog/oasis-sauvages-plages/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
@@ -4655,6 +4785,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/positano-vs-amalfi/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/praiano-vs-positano/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/praiano-vs-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/praiano-vs-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/praiano-vs-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/praiano-vs-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/praiano-vs-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/procida-vs-ischia/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/procida-vs-ischia/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/procida-vs-ischia/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/procida-vs-ischia/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/procida-vs-ischia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/procida-vs-ischia/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
     source: 'slugMap',
   },
   '/fr-fr/blog/punta-campanella/': {
@@ -6084,6 +6240,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/emerald-grotto/',
     source: 'slugMap',
   },
+  '/it-it/blog/maiori-vs-minori/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/maiori-vs-minori/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/maiori-vs-minori/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/maiori-vs-minori/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/maiori-vs-minori/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/maiori-vs-minori/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+    source: 'slugMap',
+  },
   '/it-it/blog/oasi-selvagge-spiagge-mare/': {
     url: 'https://amalficoast-travel.com/it-it/blog/oasi-selvagge-spiagge-mare/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
@@ -6108,6 +6277,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/positano-vs-amalfi/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/praiano-vs-positano/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/praiano-vs-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/praiano-vs-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/praiano-vs-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/praiano-vs-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/praiano-vs-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/procida-vs-ischia/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/procida-vs-ischia/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/procida-vs-ischia/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/procida-vs-ischia/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/procida-vs-ischia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/procida-vs-ischia/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/procida-vs-ischia/',
     source: 'slugMap',
   },
   '/it-it/blog/punta-campanella/': {
@@ -7464,7 +7659,7 @@ export function getXDefault(url: string): string | null {
  * Map statistics
  */
 export const hrefLangStats = {
-  totalUrls: 571,
+  totalUrls: 586,
   locales: ["en-us","de-de","fr-fr","es-es","it-it"],
-  generatedAt: '2026-05-30T12:17:44.504Z',
+  generatedAt: '2026-05-30T12:44:03.332Z',
 };
