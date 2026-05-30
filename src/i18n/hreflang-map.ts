@@ -294,6 +294,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
     source: 'slugMap',
   },
+  '/de-de/blog/capri-vs-ischia/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/capri-vs-ischia/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/capri-vs-ischia/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/capri-vs-ischia/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/capri-vs-ischia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/capri-vs-ischia/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+    source: 'slugMap',
+  },
   '/de-de/blog/cetara-sardellen/': {
     url: 'https://amalficoast-travel.com/de-de/blog/cetara-sardellen/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/cetara-anchovies/',
@@ -372,6 +385,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/limoncello-recipe/',
     source: 'slugMap',
   },
+  '/de-de/blog/positano-vs-amalfi/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/positano-vs-amalfi/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/positano-vs-amalfi/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/positano-vs-amalfi/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/positano-vs-amalfi/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/positano-vs-amalfi/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    source: 'slugMap',
+  },
   '/de-de/blog/punta-campanella/': {
     url: 'https://amalficoast-travel.com/de-de/blog/punta-campanella/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
@@ -422,6 +448,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/tramonto-spiaggia-costiera/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/sunset-beaches/',
+    source: 'slugMap',
+  },
+  '/de-de/blog/sorrento-vs-amalfi/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/sorrento-vs-amalfi/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/sorrento-vs-amalfi/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sorrento-vs-amalfi/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sorrento-vs-amalfi/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-amalfi/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+    source: 'slugMap',
+  },
+  '/de-de/blog/sorrento-vs-positano/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/sorrento-vs-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/sorrento-vs-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sorrento-vs-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sorrento-vs-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
     source: 'slugMap',
   },
   '/de-de/blog/sorrento-vs-praiano/': {
@@ -1931,6 +1983,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
     source: 'slugMap',
   },
+  '/en-us/blog/capri-vs-ischia/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/capri-vs-ischia/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/capri-vs-ischia/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/capri-vs-ischia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/capri-vs-ischia/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+    source: 'slugMap',
+  },
   '/en-us/blog/cetara-anchovies/': {
     url: 'https://amalficoast-travel.com/en-us/blog/cetara-anchovies/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/cetara-anchovies/',
@@ -2035,6 +2100,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/limoncello-recipe/',
     source: 'slugMap',
   },
+  '/en-us/blog/positano-vs-amalfi/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/positano-vs-amalfi/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/positano-vs-amalfi/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/positano-vs-amalfi/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/positano-vs-amalfi/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    source: 'slugMap',
+  },
   '/en-us/blog/punta-campanella/': {
     url: 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
@@ -2059,6 +2137,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/scialatielli/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/scialatielli/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/sorrento-vs-amalfi/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/sorrento-vs-amalfi/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sorrento-vs-amalfi/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sorrento-vs-amalfi/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-amalfi/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/sorrento-vs-positano/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/sorrento-vs-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sorrento-vs-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sorrento-vs-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
     source: 'slugMap',
   },
   '/en-us/blog/sorrento-vs-praiano/': {
@@ -2955,6 +3059,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
     source: 'slugMap',
   },
+  '/es-es/blog/capri-vs-ischia/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/capri-vs-ischia/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/capri-vs-ischia/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/capri-vs-ischia/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/capri-vs-ischia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/capri-vs-ischia/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+    source: 'slugMap',
+  },
   '/es-es/blog/cuoppo-fritto/': {
     url: 'https://amalficoast-travel.com/es-es/blog/cuoppo-fritto/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/cuoppo-fritto/',
@@ -3033,6 +3150,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
     source: 'slugMap',
   },
+  '/es-es/blog/positano-vs-amalfi/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/positano-vs-amalfi/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/positano-vs-amalfi/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/positano-vs-amalfi/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/positano-vs-amalfi/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/positano-vs-amalfi/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    source: 'slugMap',
+  },
   '/es-es/blog/puesta-de-sol-playas/': {
     url: 'https://amalficoast-travel.com/es-es/blog/puesta-de-sol-playas/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/sunset-beaches/',
@@ -3083,6 +3213,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/scialatielli/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/scialatielli/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/sorrento-vs-amalfi/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/sorrento-vs-amalfi/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/sorrento-vs-amalfi/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sorrento-vs-amalfi/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sorrento-vs-amalfi/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-amalfi/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/sorrento-vs-positano/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/sorrento-vs-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/sorrento-vs-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sorrento-vs-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sorrento-vs-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
     source: 'slugMap',
   },
   '/es-es/blog/sorrento-vs-praiano/': {
@@ -4384,6 +4540,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
     source: 'slugMap',
   },
+  '/fr-fr/blog/capri-vs-ischia/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/capri-vs-ischia/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/capri-vs-ischia/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/capri-vs-ischia/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/capri-vs-ischia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/capri-vs-ischia/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+    source: 'slugMap',
+  },
   '/fr-fr/blog/coucher-soleil-plages/': {
     url: 'https://amalficoast-travel.com/fr-fr/blog/coucher-soleil-plages/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/sunset-beaches/',
@@ -4475,6 +4644,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
     source: 'slugMap',
   },
+  '/fr-fr/blog/positano-vs-amalfi/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/positano-vs-amalfi/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/positano-vs-amalfi/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/positano-vs-amalfi/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/positano-vs-amalfi/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/positano-vs-amalfi/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    source: 'slugMap',
+  },
   '/fr-fr/blog/punta-campanella/': {
     url: 'https://amalficoast-travel.com/fr-fr/blog/punta-campanella/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
@@ -4512,6 +4694,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/scialatielli/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/scialatielli/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/sorrento-vs-amalfi/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/sorrento-vs-amalfi/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/sorrento-vs-amalfi/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sorrento-vs-amalfi/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sorrento-vs-amalfi/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-amalfi/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/sorrento-vs-positano/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/sorrento-vs-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/sorrento-vs-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sorrento-vs-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sorrento-vs-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
     source: 'slugMap',
   },
   '/fr-fr/blog/sorrento-vs-praiano/': {
@@ -5811,6 +6019,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
     source: 'slugMap',
   },
+  '/it-it/blog/capri-vs-ischia/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/capri-vs-ischia/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/capri-vs-ischia/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/capri-vs-ischia/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/capri-vs-ischia/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/capri-vs-ischia/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+    source: 'slugMap',
+  },
   '/it-it/blog/cuoppo-fritto/': {
     url: 'https://amalficoast-travel.com/it-it/blog/cuoppo-fritto/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/cuoppo-fritto/',
@@ -5876,6 +6097,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
     source: 'slugMap',
   },
+  '/it-it/blog/positano-vs-amalfi/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/positano-vs-amalfi/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/positano-vs-amalfi/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/positano-vs-amalfi/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/positano-vs-amalfi/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/positano-vs-amalfi/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
+    source: 'slugMap',
+  },
   '/it-it/blog/punta-campanella/': {
     url: 'https://amalficoast-travel.com/it-it/blog/punta-campanella/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/punta-campanella/',
@@ -5913,6 +6147,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/scialatielli/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/scialatielli/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/sorrento-vs-amalfi/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-amalfi/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/sorrento-vs-amalfi/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sorrento-vs-amalfi/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sorrento-vs-amalfi/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-amalfi/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/sorrento-vs-positano/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/sorrento-vs-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sorrento-vs-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sorrento-vs-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-positano/',
     source: 'slugMap',
   },
   '/it-it/blog/sorrento-vs-praiano/': {
@@ -7204,7 +7464,7 @@ export function getXDefault(url: string): string | null {
  * Map statistics
  */
 export const hrefLangStats = {
-  totalUrls: 551,
+  totalUrls: 571,
   locales: ["en-us","de-de","fr-fr","es-es","it-it"],
-  generatedAt: '2026-05-29T20:29:45.342Z',
+  generatedAt: '2026-05-30T06:36:05.456Z',
 };
