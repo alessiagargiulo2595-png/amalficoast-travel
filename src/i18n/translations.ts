@@ -870,6 +870,10 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'trekking',                         'de-de': 'trekking',                           'fr-fr': 'trekking',                          'es-es': 'trekking',                          'it-it': 'trekking'                          },
   // Itineraries hub
   { 'en-us': 'itineraries',          'de-de': 'reiserouten',         'fr-fr': 'itineraires',          'es-es': 'itinerarios',          'it-it': 'itinerari'            },
+  // Itinerary planner (interactive tool)
+  { 'en-us': 'itinerary-planner',    'de-de': 'reiserouten-planer',  'fr-fr': 'planificateur-itineraire', 'es-es': 'planificador-itinerario', 'it-it': 'configuratore-itinerario' },
+  // Salerno town slug (FR uses salerne)
+  { 'en-us': 'salerno',              'de-de': 'salerno',             'fr-fr': 'salerne',              'es-es': 'salerno',              'it-it': 'salerno'              },
   // Getting here
   { 'en-us': 'getting-here',         'de-de': 'anreise',             'fr-fr': 'comment-venir',        'es-es': 'como-llegar',          'it-it': 'come-arrivare'        },
   // When to visit
