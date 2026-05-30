@@ -17,9 +17,10 @@ interface Props {
   breadcrumbs?: { name: string; url: string }[];
   schema?: object[];
   ogImage?: string;
+  heroImage?: string;
 }
 
-const { title, description, lang, pageKey, breadcrumbs, schema, ogImage = '/images/costiera-hero.webp' } = Astro.props;
+const { title, description, lang, pageKey, breadcrumbs, schema, ogImage = '/images/costiera-hero.webp', heroImage } = Astro.props;
 const t = getTranslations(lang);
 const site = 'https://amalficoast-travel.com';
 
@@ -129,6 +130,10 @@ const allSchemas = [websiteSchema, organizationSchema, ...(schema || []), ...(br
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={`${site}${ogImage}`} />
+
+    {heroImage && (
+      <link rel="preload" as="image" href={heroImage} fetchpriority="high" />
+    )}
 
     <!-- Google Fonts – preload to remove render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
