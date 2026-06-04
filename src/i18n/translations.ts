@@ -829,6 +829,12 @@ export const slugMap: Record<string, SlugMap> = {
   'limoncello-recipe': { 'en-us': 'blog/limoncello-recipe', 'de-de': 'blog/limoncello-rezept', 'fr-fr': 'blog/recette-limoncello', 'es-es': 'blog/receta-limoncello', 'it-it': 'blog/ricetta-limoncello' },
   'scialatielli': { 'en-us': 'blog/scialatielli', 'de-de': 'blog/scialatielli', 'fr-fr': 'blog/scialatielli', 'es-es': 'blog/scialatielli', 'it-it': 'blog/scialatielli' },
   'cuoppo-fritto': { 'en-us': 'blog/cuoppo-fritto', 'de-de': 'blog/cuoppo-fritto', 'fr-fr': 'blog/cuoppo-frit', 'es-es': 'blog/cuoppo-fritto', 'it-it': 'blog/cuoppo-fritto' },
+  // Blog posts: June 2026 batch
+  'films-made-in-sorrento': { 'en-us': 'blog/films-made-in-sorrento', 'de-de': 'blog/filme-in-sorrent', 'fr-fr': 'blog/films-tournes-a-sorrente', 'es-es': 'blog/peliculas-rodadas-en-sorrento', 'it-it': 'blog/film-fatti-a-sorrento' },
+  'study-abroad-sorrento': { 'en-us': 'blog/study-abroad-sorrento', 'de-de': 'blog/auslandsstudium-sorrent', 'fr-fr': 'blog/study-abroad-sorrente', 'es-es': 'blog/estudiar-en-sorrento', 'it-it': 'blog/study-abroad-sorrento' },
+  'piazzetta-capri': { 'en-us': 'blog/piazzetta-capri', 'de-de': 'blog/piazzetta-capri', 'fr-fr': 'blog/piazzetta-capri', 'es-es': 'blog/piazzetta-capri', 'it-it': 'blog/piazzetta-capri' },
+  'lemon-path': { 'en-us': 'blog/lemon-path', 'de-de': 'blog/zitronenweg', 'fr-fr': 'blog/sentier-des-citrons', 'es-es': 'blog/sendero-de-los-limones', 'it-it': 'blog/sentiero-dei-limoni' },
+  'torre-dello-ziro': { 'en-us': 'blog/torre-dello-ziro', 'de-de': 'blog/torre-dello-ziro', 'fr-fr': 'blog/torre-dello-ziro', 'es-es': 'blog/torre-dello-ziro', 'it-it': 'blog/torre-dello-ziro' },
   // NOTE: Sorrento peninsula events only exist in non-English locales (de-de, fr-fr, es-es, it-it)
   // They are handled by pattern-matching in the hreflang generation script
 
@@ -968,6 +974,12 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'sorrento-meeting-cultura',          'de-de': 'sorrento-meeting-cultura',           'fr-fr': 'sorrento-meeting-cultura',          'es-es': 'sorrento-meeting-cultura',          'it-it': 'sorrento-meeting-cultura'         },
   // Blog post: Tiberius Gardens & Via Krupp
   { 'en-us': 'tiberius-gardens-via-krupp',         'de-de': 'tiberius-gaerten-via-krupp',          'fr-fr': 'jardins-tibere-via-krupp',            'es-es': 'jardines-tiberio-via-krupp',          'it-it': 'giardini-tiberio-via-krupp'        },
+  // Blog posts: June 2026 batch
+  { 'en-us': 'films-made-in-sorrento',             'de-de': 'filme-in-sorrent',                    'fr-fr': 'films-tournes-a-sorrente',            'es-es': 'peliculas-rodadas-en-sorrento',       'it-it': 'film-fatti-a-sorrento'             },
+  { 'en-us': 'study-abroad-sorrento',              'de-de': 'auslandsstudium-sorrent',             'fr-fr': 'study-abroad-sorrente',               'es-es': 'estudiar-en-sorrento',                'it-it': 'study-abroad-sorrento'             },
+  { 'en-us': 'piazzetta-capri',                    'de-de': 'piazzetta-capri',                     'fr-fr': 'piazzetta-capri',                     'es-es': 'piazzetta-capri',                     'it-it': 'piazzetta-capri'                   },
+  { 'en-us': 'lemon-path',                         'de-de': 'zitronenweg',                         'fr-fr': 'sentier-des-citrons',                 'es-es': 'sendero-de-los-limones',              'it-it': 'sentiero-dei-limoni'               },
+  { 'en-us': 'torre-dello-ziro',                   'de-de': 'torre-dello-ziro',                    'fr-fr': 'torre-dello-ziro',                    'es-es': 'torre-dello-ziro',                    'it-it': 'torre-dello-ziro'                  },
   // Beach name translations
   { 'en-us': 'spiaggia-di-ieranto',               'de-de': 'spiaggia-di-ieranto',                'fr-fr': 'spiaggia-di-ieranto',               'es-es': 'spiaggia-di-ieranto',               'it-it': 'ieranto'                          },
   { 'en-us': 'cala-mitigliano',                   'de-de': 'cala-mitigliano',                    'fr-fr': 'cala-mitigliano',                  'es-es': 'cala-mitigliano',                  'it-it': 'cala-mitigliano'                 },

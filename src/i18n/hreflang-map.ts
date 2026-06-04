@@ -281,6 +281,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/atrani/',
     source: 'slugMap',
   },
+  '/de-de/blog/auslandsstudium-sorrent/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/auslandsstudium-sorrent/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/auslandsstudium-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/study-abroad-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/estudiar-en-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/study-abroad-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+    source: 'slugMap',
+  },
   '/de-de/blog/baia-recommone/': {
     url: 'https://amalficoast-travel.com/de-de/blog/baia-recommone/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
@@ -346,6 +359,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/ferriere-valley/',
     source: 'slugMap',
   },
+  '/de-de/blog/filme-in-sorrent/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/filme-in-sorrent/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/filme-in-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/films-tournes-a-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/peliculas-rodadas-en-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/film-fatti-a-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+    source: 'slugMap',
+  },
   '/de-de/blog/fiordo-di-crapolla/': {
     url: 'https://amalficoast-travel.com/de-de/blog/fiordo-di-crapolla/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
@@ -396,6 +422,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/maiori-vs-minori/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+    source: 'slugMap',
+  },
+  '/de-de/blog/piazzetta-capri/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/piazzetta-capri/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/piazzetta-capri/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/piazzetta-capri/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/piazzetta-capri/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/piazzetta-capri/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
     source: 'slugMap',
   },
   '/de-de/blog/positano-vs-amalfi/': {
@@ -528,6 +567,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-praiano/',
     source: 'slugMap',
   },
+  '/de-de/blog/torre-dello-ziro/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/torre-dello-ziro/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/torre-dello-ziro/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/torre-dello-ziro/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/torre-dello-ziro/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/torre-dello-ziro/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
+    source: 'slugMap',
+  },
   '/de-de/blog/wilde-abgelegene-strande/': {
     url: 'https://amalficoast-travel.com/de-de/blog/wilde-abgelegene-strande/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
@@ -552,6 +604,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/delizia-al-limone/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
+    source: 'slugMap',
+  },
+  '/de-de/blog/zitronenweg/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/zitronenweg/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/zitronenweg/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sentier-des-citrons/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sendero-de-los-limones/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sentiero-dei-limoni/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
     source: 'slugMap',
   },
   '/de-de/cookie-policy/': {
@@ -2100,6 +2165,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/ferriere-valley/',
     source: 'slugMap',
   },
+  '/en-us/blog/films-made-in-sorrento/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/filme-in-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/films-tournes-a-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/peliculas-rodadas-en-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/film-fatti-a-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+    source: 'slugMap',
+  },
   '/en-us/blog/fiordo-di-crapolla/': {
     url: 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
@@ -2126,6 +2204,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
     source: 'slugMap',
   },
+  '/en-us/blog/lemon-path/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/zitronenweg/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sentier-des-citrons/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sendero-de-los-limones/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sentiero-dei-limoni/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+    source: 'slugMap',
+  },
   '/en-us/blog/limoncello-recipe/': {
     url: 'https://amalficoast-travel.com/en-us/blog/limoncello-recipe/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/limoncello-recipe/',
@@ -2150,6 +2241,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/maiori-vs-minori/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/piazzetta-capri/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/piazzetta-capri/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/piazzetta-capri/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/piazzetta-capri/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/piazzetta-capri/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
     source: 'slugMap',
   },
   '/en-us/blog/positano-vs-amalfi/': {
@@ -2256,6 +2360,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-praiano/',
     source: 'slugMap',
   },
+  '/en-us/blog/study-abroad-sorrento/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/auslandsstudium-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/study-abroad-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/estudiar-en-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/study-abroad-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+    source: 'slugMap',
+  },
   '/en-us/blog/sunset-beaches/': {
     url: 'https://amalficoast-travel.com/en-us/blog/sunset-beaches/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/sunset-beaches/',
@@ -2267,6 +2384,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/tramonto-spiaggia-costiera/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/sunset-beaches/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/torre-dello-ziro/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/torre-dello-ziro/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/torre-dello-ziro/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/torre-dello-ziro/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/torre-dello-ziro/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
     source: 'slugMap',
   },
   '/en-us/blog/wild-remote-beaches/': {
@@ -3176,6 +3306,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
     source: 'slugMap',
   },
+  '/es-es/blog/estudiar-en-sorrento/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/estudiar-en-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/auslandsstudium-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/study-abroad-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/estudiar-en-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/study-abroad-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+    source: 'slugMap',
+  },
   '/es-es/blog/fiordo-di-crapolla/': {
     url: 'https://amalficoast-travel.com/es-es/blog/fiordo-di-crapolla/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
@@ -3226,6 +3369,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/oasi-selvagge-spiagge-mare/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/peliculas-rodadas-en-sorrento/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/peliculas-rodadas-en-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/filme-in-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/films-tournes-a-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/peliculas-rodadas-en-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/film-fatti-a-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/piazzetta-capri/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/piazzetta-capri/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/piazzetta-capri/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/piazzetta-capri/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/piazzetta-capri/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/piazzetta-capri/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
     source: 'slugMap',
   },
   '/es-es/blog/playas-comodas-equipadas/': {
@@ -3332,6 +3501,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/scialatielli/',
     source: 'slugMap',
   },
+  '/es-es/blog/sendero-de-los-limones/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/sendero-de-los-limones/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/zitronenweg/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sentier-des-citrons/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sendero-de-los-limones/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sentiero-dei-limoni/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+    source: 'slugMap',
+  },
   '/es-es/blog/sorrento-vs-amalfi/': {
     url: 'https://amalficoast-travel.com/es-es/blog/sorrento-vs-amalfi/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
@@ -3369,6 +3551,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-praiano/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-praiano/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/torre-dello-ziro/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/torre-dello-ziro/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/torre-dello-ziro/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/torre-dello-ziro/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/torre-dello-ziro/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/torre-dello-ziro/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
     source: 'slugMap',
   },
   '/es-es/blog/valle-ferriere/': {
@@ -4709,6 +4904,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
     source: 'slugMap',
   },
+  '/fr-fr/blog/films-tournes-a-sorrente/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/films-tournes-a-sorrente/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/filme-in-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/films-tournes-a-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/peliculas-rodadas-en-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/film-fatti-a-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+    source: 'slugMap',
+  },
   '/fr-fr/blog/fiordo-di-crapolla/': {
     url: 'https://amalficoast-travel.com/fr-fr/blog/fiordo-di-crapolla/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
@@ -4759,6 +4967,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/oasi-selvagge-spiagge-mare/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/piazzetta-capri/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/piazzetta-capri/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/piazzetta-capri/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/piazzetta-capri/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/piazzetta-capri/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/piazzetta-capri/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
     source: 'slugMap',
   },
   '/fr-fr/blog/plages-confortables-equipees/': {
@@ -4852,6 +5073,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/scialatielli/',
     source: 'slugMap',
   },
+  '/fr-fr/blog/sentier-des-citrons/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/sentier-des-citrons/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/zitronenweg/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sentier-des-citrons/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sendero-de-los-limones/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sentiero-dei-limoni/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+    source: 'slugMap',
+  },
   '/fr-fr/blog/sorrento-vs-amalfi/': {
     url: 'https://amalficoast-travel.com/fr-fr/blog/sorrento-vs-amalfi/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
@@ -4889,6 +5123,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-praiano/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-praiano/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/study-abroad-sorrente/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/study-abroad-sorrente/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/auslandsstudium-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/study-abroad-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/estudiar-en-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/study-abroad-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/torre-dello-ziro/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/torre-dello-ziro/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/torre-dello-ziro/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/torre-dello-ziro/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/torre-dello-ziro/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/torre-dello-ziro/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
     source: 'slugMap',
   },
   '/fr-fr/blog/vallee-des-ferriere/': {
@@ -6214,6 +6474,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
     source: 'slugMap',
   },
+  '/it-it/blog/film-fatti-a-sorrento/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/film-fatti-a-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/filme-in-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/films-tournes-a-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/peliculas-rodadas-en-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/film-fatti-a-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
+    source: 'slugMap',
+  },
   '/it-it/blog/fiordo-di-crapolla/': {
     url: 'https://amalficoast-travel.com/it-it/blog/fiordo-di-crapolla/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
@@ -6264,6 +6537,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/oasi-selvagge-spiagge-mare/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/piazzetta-capri/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/piazzetta-capri/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/piazzetta-capri/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/piazzetta-capri/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/piazzetta-capri/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/piazzetta-capri/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
     source: 'slugMap',
   },
   '/it-it/blog/positano-vs-amalfi/': {
@@ -6344,6 +6630,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/scialatielli/',
     source: 'slugMap',
   },
+  '/it-it/blog/sentiero-dei-limoni/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/sentiero-dei-limoni/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/zitronenweg/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/sentier-des-citrons/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/sendero-de-los-limones/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/sentiero-dei-limoni/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-path/',
+    source: 'slugMap',
+  },
   '/it-it/blog/sorrento-vs-amalfi/': {
     url: 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-amalfi/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-amalfi/',
@@ -6394,6 +6693,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/spiagge-comode-attrezzate/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/study-abroad-sorrento/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/study-abroad-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/auslandsstudium-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/study-abroad-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/estudiar-en-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/study-abroad-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/torre-dello-ziro/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/torre-dello-ziro/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/torre-dello-ziro/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/torre-dello-ziro/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/torre-dello-ziro/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/torre-dello-ziro/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
     source: 'slugMap',
   },
   '/it-it/blog/tramonto-spiaggia-costiera/': {
@@ -7659,7 +7984,7 @@ export function getXDefault(url: string): string | null {
  * Map statistics
  */
 export const hrefLangStats = {
-  totalUrls: 586,
+  totalUrls: 611,
   locales: ["en-us","de-de","fr-fr","es-es","it-it"],
-  generatedAt: '2026-05-30T12:44:03.332Z',
+  generatedAt: '2026-06-04T18:07:25.788Z',
 };
