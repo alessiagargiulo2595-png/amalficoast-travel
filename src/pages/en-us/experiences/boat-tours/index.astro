@@ -198,7 +198,7 @@ const tips = [
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {tours.map((t) => (
+        {tours.map((t, i) => (
           <a href="https://gyg.me/XJThZqw1" target="_blank" rel="sponsored noopener" class="group cursor-pointer bg-transparent">
             <div class="relative aspect-square md:aspect-[4/5] overflow-hidden rounded-[3rem] mb-6 sm:shadow-none md:shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
               <img
@@ -206,8 +206,9 @@ const tips = [
                 alt={t.name}
                 referrerpolicy="no-referrer"
                 class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                loading="lazy"
-                decoding="async"
+                loading={i < 3 ? "eager" : "lazy"}
+                fetchpriority={i < 3 ? "high" : "auto"}
+                decoding={i < 3 ? "sync" : "async"}
               />
               <div class="absolute inset-0 hidden xl:block bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
               <div class="absolute top-6 right-6">
