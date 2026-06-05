@@ -61,6 +61,25 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   walk:  { label: 'ZU FUSS', cls: 'bg-gray-100 text-slate-500' },
   visit: { label: '', cls: '' },
 };
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Amalfiküste von Salerno",
+  "description": "Tagesausflug vom östlichen Eingang der Amalfiküste: Amalfi, Maiori, Minori und Vietri sul Mare ab Salerno. Fähr- und SITA-Busfahrpläne für 2026.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/de-de/reiserouten/1-tag/amalfikueste-von-salerno/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": schedule.length,
+    "itemListElement": schedule.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${s.time} \u00b7 ${s.place}`,
+      "description": s.action
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -68,7 +87,7 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   description="Tagesausflug vom östlichen Eingang der Amalfiküste: Amalfi, Maiori, Minori und Vietri sul Mare ab Salerno. Fähr- und SITA-Busfahrpläne für 2026."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="amalfikueste-von-salerno"
   heroImage="/images/costiera-hero.jpg"
 >

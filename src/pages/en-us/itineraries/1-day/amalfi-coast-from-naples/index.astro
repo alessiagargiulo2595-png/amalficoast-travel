@@ -69,6 +69,25 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   walk:  { label: 'WALK', cls: 'bg-gray-100 text-slate-500' },
   visit: { label: '', cls: '' },
 };
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "1 Day from Naples",
+  "description": "1-day itinerary on the Amalfi Coast from Naples: Amalfi, Ravello and Positano by train, ferry and SITA bus. Timetables, prices and practical tips.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/en-us/itineraries/1-day/amalfi-coast-from-naples/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": schedule.length,
+    "itemListElement": schedule.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${s.time} \u00b7 ${s.place}`,
+      "description": s.action
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -76,7 +95,7 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   description="1-day itinerary on the Amalfi Coast from Naples: Amalfi, Ravello and Positano by train, ferry and SITA bus. Timetables, prices and practical tips."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
   pageKey="amalfi-coast-from-naples"
   heroImage="/images/costiera-hero.jpg"
 >

@@ -66,6 +66,25 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   walk:  { label: 'ZU FUSS', cls: 'bg-gray-100 text-slate-500' },
   visit: { label: '', cls: '' },
 };
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Capri von Sorrent",
+  "description": "Tagesausflug nach Capri von Sorrent: Blaue Grotte, Anacapri, Monte Solaro, Faraglioni. Tragflügelboot, Wanderungen, Tipps.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/de-de/reiserouten/1-tag/capri-von-sorrent/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": schedule.length,
+    "itemListElement": schedule.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${s.time} \u00b7 ${s.place}`,
+      "description": s.action
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -73,7 +92,7 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   description="Tagesausflug nach Capri von Sorrent: Blaue Grotte, Anacapri, Monte Solaro, Faraglioni. Tragflügelboot, Wanderungen, Tipps."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="capri-von-sorrent"
   heroImage="/images/costiera-hero.jpg"
 >

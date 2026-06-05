@@ -36,6 +36,25 @@ const days = [
   { day: 'Tag 6', title: 'Valle delle Ferriere', highlight: 'Geheime Wanderung durch Wasserfälle und tropische Farne', items: ['Morgens: Wanderung Valle delle Ferriere ab Amalfi (7 km hin und zurück, 3 Std., leicht–mittel). Wasserfälle und tropische Farne.', 'Nachmittag: Schwimmen in abgeschiedenen Buchten bei Amalfi oder Kajakausflug.', 'Frischer Fisch zum Abendessen in Amalfi.', 'Lokaler Tipp: Die Wanderung Valle delle Ferriere ist um 10:00 überlaufen. Beginnen Sie um 8:00, um allein zu sein.'] },
   { day: 'Tag 7', title: 'Markt und Abreise', highlight: 'Bringen Sie die Aromen der Küste mit nach Hause', items: ['Freier Morgen auf dem lokalen Markt. Typische Produkte kaufen: handgemachter Limoncello, Sardellen, Keramik.', 'Langes Mittagessen in einer Trattoria. Abschied.', 'SITA-Bus nach Salerno (60 Min.) oder Sorrent (90 Min.) für Züge oder Flughafen.', 'Lokaler Tipp: Kaufen Sie Limoncello bei kleinen Produzenten in Minori, nicht in Positano (5x teurer).'] },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Slow Travel - 7 Tage",
+  "description": "7-Tage-Slow-Travel-Reiseroute an der Amalfiküste: Praiano, Furore, Cetara, Valle delle Ferriere und Götterweg. Authentische Dörfer, lokale Märkte und Gastronomie.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/de-de/reiserouten/7-tage/slow-travel-doerfer-kulinarik/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -43,7 +62,7 @@ const days = [
   description="7-Tage-Slow-Travel-Reiseroute an der Amalfiküste: Praiano, Furore, Cetara, Valle delle Ferriere und Götterweg. Authentische Dörfer, lokale Märkte und Gastronomie."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="slow-travel-doerfer-kulinarik"
   heroImage="/images/costiera-hero.jpg"
 >

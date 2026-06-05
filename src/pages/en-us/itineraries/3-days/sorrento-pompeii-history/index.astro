@@ -59,6 +59,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Sorrento, Pompeii & History - 3 days",
+  "description": "3-day itinerary combining history and the sea: Sorrento, Herculaneum, Vesuvius and Pompeii. Circumvesuviana timetables, ticket prices and practical tips.",
+  "image": "https://amalficoast-travel.com/images/sorrento-hero.jpg",
+  "url": "https://amalficoast-travel.com/en-us/itineraries/3-days/sorrento-pompeii-history/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -66,7 +85,7 @@ const days = [
   description="3-day itinerary combining history and the sea: Sorrento, Herculaneum, Vesuvius and Pompeii. Circumvesuviana timetables, ticket prices and practical tips."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
 
   heroImage="/images/sorrento-hero.jpg"
 >

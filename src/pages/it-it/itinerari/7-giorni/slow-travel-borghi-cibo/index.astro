@@ -135,6 +135,25 @@ const days = [
     ]
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Slow Travel - 7 giorni",
+  "description": "Itinerario slow travel di 7 giorni sulla Costiera Amalfitana: Praiano, Furore, Cetara, Valle delle Ferriere e Sentiero degli Dei. Borghi autentici, mercati e cibo locale.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/it-it/itinerari/7-giorni/slow-travel-borghi-cibo/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -142,7 +161,7 @@ const days = [
   description="Itinerario slow travel di 7 giorni sulla Costiera Amalfitana: Praiano, Furore, Cetara, Valle delle Ferriere e Sentiero degli Dei. Borghi autentici, mercati e cibo locale."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="slow-travel-borghi-cibo"
   heroImage="/images/costiera-hero.jpg"
 >

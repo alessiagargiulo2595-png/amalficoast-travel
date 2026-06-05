@@ -86,6 +86,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Isole: Ischia e Procida",
+  "description": "Itinerario di 3 giorni alle isole del Golfo: Ischia con terme termali, Castello Aragonese, Forio e Sant",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/it-it/itinerari/3-giorni/isole-ischia-procida/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -93,7 +112,7 @@ const days = [
   description="Itinerario di 3 giorni alle isole del Golfo: Ischia con terme termali, Castello Aragonese, Forio e Sant'Angelo + escursione a Procida (Marina Corricella, Il Postino)."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="isole-ischia-procida"
   heroImage="/images/costiera-hero.jpg"
 >

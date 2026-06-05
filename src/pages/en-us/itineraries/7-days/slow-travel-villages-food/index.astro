@@ -36,6 +36,25 @@ const days = [
   { day: 'Day 6', title: 'Valle delle Ferriere', items: ['Morning: Valle delle Ferriere hike from Amalfi (7 km return, 3h, easy–moderate). Waterfalls and tropical ferns.', 'Afternoon: swimming in the secluded coves near Amalfi or kayak tour.', 'Fresh fish dinner in Amalfi.'] },
   { day: 'Day 7', title: 'Market and Departure', items: ['Free morning at the local market. Buy typical products: artisan limoncello, anchovies, ceramics.', 'Long lunch in a trattoria. Farewells.', 'SITA bus to Salerno (60 min) or Sorrento (90 min) to reach trains or airport.'] },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Slow Travel - 7 days",
+  "description": "7-day slow travel itinerary on the Amalfi Coast: Praiano, Furore, Cetara, Valle delle Ferriere and Path of the Gods. Authentic villages, local markets and food.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/en-us/itineraries/7-days/slow-travel-villages-food/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -43,7 +62,7 @@ const days = [
   description="7-day slow travel itinerary on the Amalfi Coast: Praiano, Furore, Cetara, Valle delle Ferriere and Path of the Gods. Authentic villages, local markets and food."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
 
   heroImage="/images/costiera-hero.jpg"
 >

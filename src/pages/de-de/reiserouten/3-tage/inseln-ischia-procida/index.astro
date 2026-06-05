@@ -66,6 +66,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Inseln: Ischia & Procida - 3 Tage",
+  "description": "3-Tage-Reiseroute auf Ischia und Procida: Thermalbäder, Vulkanstrände, Marina Corricella und Aragonisches Kastell. Anreise, Unterkunft und Sehenswürdigkeiten.",
+  "image": "https://amalficoast-travel.com/images/isole-hero.jpg",
+  "url": "https://amalficoast-travel.com/de-de/reiserouten/3-tage/inseln-ischia-procida/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -73,7 +92,7 @@ const days = [
   description="3-Tage-Reiseroute auf Ischia und Procida: Thermalbäder, Vulkanstrände, Marina Corricella und Aragonisches Kastell. Anreise, Unterkunft und Sehenswürdigkeiten."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="inseln-ischia-procida"
   heroImage="/images/isole-hero.jpg"
 >

@@ -59,6 +59,25 @@ const destinationHighlights = [
   { name: 'Massa Lubrense', desc: '', url: '/en-us/' },
   { name: "Sant'Agnello", desc: '', url: '/en-us/' },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Sorrentine Peninsula from Naples",
+  "description": "1-day itinerary on the Sorrentine Peninsula from Naples: Sorrento, Massa Lubrense, Sant",
+  "image": "https://amalficoast-travel.com/images/sorrento-hero.jpg",
+  "url": "https://amalficoast-travel.com/en-us/itineraries/1-day/sorrentine-peninsula-from-naples/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": schedule.length,
+    "itemListElement": schedule.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${s.time} \u00b7 ${s.place}`,
+      "description": s.action
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -66,7 +85,7 @@ const destinationHighlights = [
   description="1-day itinerary on the Sorrentine Peninsula from Naples: Sorrento, Massa Lubrense, Sant'Agata sui Due Golfi. Circumvesuviana, SITA bus and Gulf panoramas."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="sorrentine-peninsula-from-naples"
   heroImage="/images/sorrento-hero.jpg"
 >

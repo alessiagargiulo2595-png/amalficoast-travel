@@ -65,6 +65,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Sorrento, Pompei e Storia",
+  "description": "Itinerario di 3 giorni: Sorrento, Ercolano, Vesuvio e Pompei. Siti archeologici, storia romana e Circumvesuviana.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/it-it/itinerari/3-giorni/sorrento-pompei-storia/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -72,7 +91,7 @@ const days = [
   description="Itinerario di 3 giorni: Sorrento, Ercolano, Vesuvio e Pompei. Siti archeologici, storia romana e Circumvesuviana."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="sorrento-pompei-storia"
   heroImage="/images/costiera-hero.jpg"
 >

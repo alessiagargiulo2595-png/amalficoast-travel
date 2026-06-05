@@ -65,6 +65,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Sorrent, Pompeji & Geschichte - 3 Tage",
+  "description": "3-Tage-Reiseroute mit Geschichte und Meer: Sorrent, Herculaneum, Vesuv und Pompeji. Circumvesuviana-Fahrplan, Eintrittspreise und praktische Tipps.",
+  "image": "https://amalficoast-travel.com/images/sorrento-hero.jpg",
+  "url": "https://amalficoast-travel.com/de-de/reiserouten/3-tage/sorrent-pompeji-geschichte/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -72,7 +91,7 @@ const days = [
   description="3-Tage-Reiseroute mit Geschichte und Meer: Sorrent, Herculaneum, Vesuv und Pompeji. Circumvesuviana-Fahrplan, Eintrittspreise und praktische Tipps."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="sorrent-pompeji-geschichte"
   heroImage="/images/sorrento-hero.jpg"
 >

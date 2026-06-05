@@ -60,6 +60,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Islands: Ischia & Procida - 3 days",
+  "description": "3-day itinerary across Ischia and Procida: thermal spas, volcanic beaches, Marina Corricella and Aragonese Castle. How to get there, where to stay and what to see.",
+  "image": "https://amalficoast-travel.com/images/isole-hero.jpg",
+  "url": "https://amalficoast-travel.com/en-us/itineraries/3-days/islands-ischia-procida/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -67,7 +86,7 @@ const days = [
   description="3-day itinerary across Ischia and Procida: thermal spas, volcanic beaches, Marina Corricella and Aragonese Castle. How to get there, where to stay and what to see."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
 
   heroImage="/images/isole-hero.jpg"
 >

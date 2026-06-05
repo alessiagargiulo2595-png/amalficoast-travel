@@ -66,6 +66,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Côte Amalfitaine classique - 3 jours",
+  "description": "Itinéraire classique de 3 jours sur la Côte Amalfitaine : Positano, Amalfi, Ravello et Grotte Émeraude. Où dormir, que voir et comment se déplacer.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/fr-fr/itineraires/3-jours/cote-amalfitaine-classique/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -73,7 +92,7 @@ const days = [
   description="Itinéraire classique de 3 jours sur la Côte Amalfitaine : Positano, Amalfi, Ravello et Grotte Émeraude. Où dormir, que voir et comment se déplacer."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="cote-amalfitaine-classique"
   heroImage="/images/costiera-hero.jpg"
 >

@@ -91,6 +91,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Complete Coast - 4 days",
+  "description": "4-day Amalfi Coast itinerary: Amalfi, Ravello, Positano, Path of the Gods, Atrani and Praiano. Day-by-day programme with transport and tips.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/en-us/itineraries/4-days/complete-amalfi-coast/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -98,7 +117,7 @@ const days = [
   description="4-day Amalfi Coast itinerary: Amalfi, Ravello, Positano, Path of the Gods, Atrani and Praiano. Day-by-day programme with transport and tips."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
   pageKey="costiera-amalfitana-4-giorni"
   heroImage="/images/costiera-hero.jpg"
 >

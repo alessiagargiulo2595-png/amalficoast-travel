@@ -69,6 +69,25 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   walk:  { label: 'À PIED', cls: 'bg-gray-100 text-slate-500' },
   visit: { label: '', cls: '' },
 };
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Côte Amalfitaine depuis Naples",
+  "description": "Itinéraire d",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/fr-fr/itineraires/1-jour/cote-amalfitaine-depuis-naples/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": schedule.length,
+    "itemListElement": schedule.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${s.time} \u00b7 ${s.place}`,
+      "description": s.action
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -76,7 +95,7 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   description="Itinéraire d'une journée sur la Côte Amalfitaine depuis Naples : Amalfi, Ravello et Positano par train, ferry et bus SITA. Horaires, tarifs et conseils."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="cote-amalfitaine-depuis-naples"
   heroImage="/images/costiera-hero.jpg"
 >

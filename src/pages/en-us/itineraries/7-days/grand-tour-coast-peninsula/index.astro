@@ -36,6 +36,25 @@ const days = [
   { day: 'Day 6', title: 'Positano and Boat Tour', items: ['SITA bus to Positano (45 min from Amalfi). Free morning on the beach.', 'Boat tour from Positano (Emerald Grotto, coves, ~€50–80, 4h).', 'Return to Amalfi or Positano. Dinner at the harbour.'] },
   { day: 'Day 7', title: 'Ischia or Procida and Departure', items: ['Ferry Amalfi/Naples→Ischia or Procida (half-day excursion).', 'Procida: Marina Corricella, Terra Murata, Pozzo Vecchio beach.', 'Return to Naples for departure.'] },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Grand Tour - 7 days",
+  "description": "Complete 7-day itinerary: Naples, Amalfi Coast, Capri and the Gulf Islands. Pompeii, Sorrento, Positano, Amalfi, Ravello - the Grand Tour of Southern Italy.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/en-us/itineraries/7-days/grand-tour-coast-peninsula/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -43,7 +62,7 @@ const days = [
   description="Complete 7-day itinerary: Naples, Amalfi Coast, Capri and the Gulf Islands. Pompeii, Sorrento, Positano, Amalfi, Ravello - the Grand Tour of Southern Italy."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
 
   heroImage="/images/costiera-hero.jpg"
 >

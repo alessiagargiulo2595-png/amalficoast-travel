@@ -36,6 +36,25 @@ const days = [
   { day: 'Jour 6', title: 'Valle delle Ferriere', highlight: 'Randonnée secrète à travers cascades et fougères tropicales', items: ['Matin : randonnée Valle delle Ferriere depuis Amalfi (7 km aller-retour, 3h, facile–modéré). Cascades et fougères tropicales.', 'Après-midi : baignade dans les criques isolées près d\'Amalfi ou tour en kayak.', 'Dîner de poisson frais à Amalfi.', 'Conseil local: La randonnée Valle delle Ferriere est prise d\'assaut à 10h00. Partez à 8h00 pour être seul.'] },
   { day: 'Jour 7', title: 'Marché et départ', highlight: 'Emportez les saveurs de la côte', items: ['Matin libre au marché local. Acheter des produits typiques : limoncello artisanal, anchois, céramiques.', 'Long déjeuner dans une trattoria. Au revoir.', 'Bus SITA vers Salerne (60 min) ou Sorrente (90 min) pour trains ou aéroport.', 'Conseil local: Achetez le limoncello dans les petits producteurs de Minori, pas à Positano (5 fois plus cher).'] },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Slow Travel - 7 jours",
+  "description": "Itinéraire slow travel de 7 jours sur la Côte Amalfitaine : Praiano, Furore, Cetara, Valle delle Ferriere et Sentier des Dieux. Villages authentiques, marchés locaux et gastronomie.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/fr-fr/itineraires/7-jours/slow-travel-villages-gastronomie/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -43,7 +62,7 @@ const days = [
   description="Itinéraire slow travel de 7 jours sur la Côte Amalfitaine : Praiano, Furore, Cetara, Valle delle Ferriere et Sentier des Dieux. Villages authentiques, marchés locaux et gastronomie."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="slow-travel-villages-gastronomie"
   heroImage="/images/costiera-hero.jpg"
 >

@@ -91,6 +91,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Komplette Kueste - 4 Tage",
+  "description": "4-Tage-Reiseplan fuer die Amalfikueste: Amalfi, Ravello, Positano, Goetterweg, Atrani und Praiano. Tag-fuer-Tag-Programm mit Transport und Tipps.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/de-de/reiserouten/4-tage/komplette-amalfikueste/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -98,7 +117,7 @@ const days = [
   description="4-Tage-Reiseplan fuer die Amalfikueste: Amalfi, Ravello, Positano, Goetterweg, Atrani und Praiano. Tag-fuer-Tag-Programm mit Transport und Tipps."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
   pageKey="costiera-amalfitana-4-giorni"
   heroImage="/images/costiera-hero.jpg"
 >

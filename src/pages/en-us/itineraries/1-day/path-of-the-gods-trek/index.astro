@@ -100,6 +100,25 @@ const destinationHighlights = [
   { name: 'Praiano', desc: '', url: '/en-us/amalfi-coast/praiano/' },
   { name: 'Amalfi', desc: '', url: '/en-us/amalfi-coast/amalfi/' },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Path of the Gods Trek",
+  "description": "Complete guide to the Path of the Gods (Sentiero degli Dei): trail map, difficulty level, is it dangerous?, booking, how to get there from Naples. 7.8 km Bomerano→Nocelle hike on the Amalfi Coast.",
+  "image": "https://amalficoast-travel.com/images/trekking-hero.jpg",
+  "url": "https://amalficoast-travel.com/en-us/itineraries/1-day/path-of-the-gods-trek/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": schedule.length,
+    "itemListElement": schedule.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${s.time} \u00b7 ${s.place}`,
+      "description": s.action
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -107,7 +126,7 @@ const destinationHighlights = [
   description="Complete guide to the Path of the Gods (Sentiero degli Dei): trail map, difficulty level, is it dangerous?, booking, how to get there from Naples. 7.8 km Bomerano→Nocelle hike on the Amalfi Coast."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema, hikingTrailSchema]}
+  schema={[faqSchema, hikingTrailSchema, touristTripSchema]}
  pageKey="path-of-the-gods-trek"
   heroImage="/images/trekking-hero.jpg"
 >

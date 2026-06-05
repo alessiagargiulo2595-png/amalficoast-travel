@@ -101,6 +101,25 @@ const destinationHighlights = [
   { name: 'Amalfi', desc: 'Base per accesso al Sentiero degli Dei via Agerola', url: '/it-it/costiera-amalfitana/amalfi/' },
   { name: 'Ravello', desc: 'Terrazza dell\'Infinito, panorami mozzafiato', url: '/it-it/costiera-amalfitana/ravello/' },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Trekking Sentiero degli Dei",
+  "description": "Guida completa al Sentiero degli Dei: mappa del percorso, difficoltà, è pericoloso?, prenotazione, come arrivare da Napoli. Trek 7,8 km Bomerano→Nocelle con vista Costiera Amalfitana.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/it-it/itinerari/1-giorno/trekking-sentiero-degli-dei/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": schedule.length,
+    "itemListElement": schedule.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${s.time} \u00b7 ${s.place}`,
+      "description": s.action
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -108,7 +127,7 @@ const destinationHighlights = [
   description="Guida completa al Sentiero degli Dei: mappa del percorso, difficoltà, è pericoloso?, prenotazione, come arrivare da Napoli. Trek 7,8 km Bomerano→Nocelle con vista Costiera Amalfitana."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema, hikingTrailSchema]}
+  schema={[faqSchema, hikingTrailSchema, touristTripSchema]}
  pageKey="trekking-sentiero-degli-dei"
   heroImage="/images/costiera-hero.jpg"
 >

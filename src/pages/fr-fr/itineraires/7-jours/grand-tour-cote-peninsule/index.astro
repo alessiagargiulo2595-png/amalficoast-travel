@@ -36,6 +36,25 @@ const days = [
   { day: 'Jour 6', title: 'Positano et tour en bateau', items: ['Bus SITA vers Positano (45 min depuis Amalfi). Matin libre sur la plage.', 'Tour en bateau depuis Positano (Grotte Émeraude, criques, ~€50–80, 4h).', 'Retour à Amalfi ou Positano. Dîner au bord du port.'] },
   { day: 'Jour 7', title: 'Ischia ou Procida et départ', items: ['Ferry Amalfi/Naples→Ischia ou Procida (excursion demi-journée).', 'Procida : Marina Corricella, Terra Murata, plage du Pozzo Vecchio.', 'Retour à Naples pour le départ.'] },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Grand Tour - 7 jours",
+  "description": "Itinéraire complet de 7 jours : Naples, Côte Amalfitaine, Capri et îles du Golfe. Pompéi, Sorrente, Positano, Amalfi, Ravello - le Grand Tour du sud de l",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/fr-fr/itineraires/7-jours/grand-tour-cote-peninsule/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -43,7 +62,7 @@ const days = [
   description="Itinéraire complet de 7 jours : Naples, Côte Amalfitaine, Capri et îles du Golfe. Pompéi, Sorrente, Positano, Amalfi, Ravello - le Grand Tour du sud de l'Italie."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="grand-tour-cote-peninsule"
   heroImage="/images/costiera-hero.jpg"
 >

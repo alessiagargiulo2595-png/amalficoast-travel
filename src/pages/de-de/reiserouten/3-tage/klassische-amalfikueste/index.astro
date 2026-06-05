@@ -66,6 +66,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Klassische Amalfiküste - 3 Tage",
+  "description": "Klassische 3-Tage-Reiseroute an der Amalfiküste: Positano, Amalfi, Ravello und Smaragdgrotte. Wo übernachten, was besichtigen und wie man sich fortbewegt.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/de-de/reiserouten/3-tage/klassische-amalfikueste/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -73,7 +92,7 @@ const days = [
   description="Klassische 3-Tage-Reiseroute an der Amalfiküste: Positano, Amalfi, Ravello und Smaragdgrotte. Wo übernachten, was besichtigen und wie man sich fortbewegt."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="klassische-amalfikueste"
   heroImage="/images/costiera-hero.jpg"
 >

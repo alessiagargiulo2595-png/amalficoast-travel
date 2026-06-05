@@ -91,6 +91,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Costa Completa - 4 dias",
+  "description": "Itinerario de 4 dias en la Costa Amalfitana: Amalfi, Ravello, Positano, Sendero de los Dioses, Atrani y Praiano. Programa dia a dia con transporte y consejos.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/es-es/itinerarios/4-dias/costa-amalfitana-completa/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -98,7 +117,7 @@ const days = [
   description="Itinerario de 4 dias en la Costa Amalfitana: Amalfi, Ravello, Positano, Sendero de los Dioses, Atrani y Praiano. Programa dia a dia con transporte y consejos."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
   pageKey="costiera-amalfitana-4-giorni"
   heroImage="/images/costiera-hero.jpg"
 >

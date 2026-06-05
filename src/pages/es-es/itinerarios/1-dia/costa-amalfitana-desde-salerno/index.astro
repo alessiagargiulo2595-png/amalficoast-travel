@@ -57,6 +57,25 @@ const destinationHighlights = [
   { name: 'Amalfi', desc: 'Puerto histórico con Catedral, Claustro del Paraíso, museo del Papel', url: '/es-es/costa-amalfitana/amalfi/' },
   { name: 'Vietri sul Mare', desc: 'Centro de la cerámica italiana con museo y tiendas artesanales', url: '/es-es/costa-amalfitana/vietri-sul-mare/' },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Costa Amalfitana desde Salerno",
+  "description": "Itinerario de 1 día por la puerta este de la Costa Amalfitana: Amalfi, Maiori, Minori y Vietri sul Mare desde Salerno. Horarios de ferries y bus SITA.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/es-es/itinerarios/1-dia/costa-amalfitana-desde-salerno/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": schedule.length,
+    "itemListElement": schedule.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${s.time} \u00b7 ${s.place}`,
+      "description": s.action
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -64,7 +83,7 @@ const destinationHighlights = [
   description="Itinerario de 1 día por la puerta este de la Costa Amalfitana: Amalfi, Maiori, Minori y Vietri sul Mare desde Salerno. Horarios de ferries y bus SITA."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="costa-amalfitana-desde-salerno"
   heroImage="/images/costiera-hero.jpg"
 >

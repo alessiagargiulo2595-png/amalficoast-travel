@@ -59,6 +59,25 @@ const destinationHighlights = [
   { name: 'Minori', desc: '', url: '/it-it/costiera-amalfitana/minori/' },
   { name: 'Vietri', desc: '', url: '/it-it/costiera-amalfitana/vietri-sul-mare/' },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "1 Giorno da Salerno",
+  "description": "Itinerario di un giorno da Salerno: Amalfi, Maiori, Minori, Vietri sul Mare. Traghetto, ceramiche, lungomare.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/it-it/itinerari/1-giorno/costiera-amalfitana-da-salerno/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": schedule.length,
+    "itemListElement": schedule.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${s.time} \u00b7 ${s.place}`,
+      "description": s.action
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -66,7 +85,7 @@ const destinationHighlights = [
   description="Itinerario di un giorno da Salerno: Amalfi, Maiori, Minori, Vietri sul Mare. Traghetto, ceramiche, lungomare."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="costiera-amalfitana-da-salerno"
   heroImage="/images/costiera-hero.jpg"
 >

@@ -36,6 +36,25 @@ const days = [
   { day: 'Día 6', title: 'Valle delle Ferriere', highlight: 'Senderismo de cascadas y calas escondidas', items: ['Mañana: senderismo Valle delle Ferriere desde Amalfi (7 km ida y vuelta, 3h, fácil–moderado). Helechos subtropicales, cascadas, cañón de río.', 'Baño en los estanques de esmeralda (lleva bañador y toalla).', 'Tarde: tour en kayak desde el puerto de Amalfi (opcional, ~€60 por persona) a lo largo de calas escondidas, cuevas, acantilados.', 'Cena de pescado fresco en Amalfi: captura del día, pasta ai frutti di mare.', 'Consejo local: Valle delle Ferriere: lleva zapatillas de agua (rocas resbaladizas), trae una chaqueta impermeable ligera (spray de cascadas).'] },
   { day: 'Día 7', title: 'Mercado y partida', highlight: 'Productos locales y almuerzo de despedida', items: ['Mañana libre en el mercado local. Compra productos típicos: limoncello artesanal, anchoas en tarros de vidrio, cerámica de Vietri, miel.', 'Almuerzo en una trattoria familiar con el dueño. Despedidas.', 'Empacar y prepararse para la partida.', 'Autobús SITA a Salerno (60 min desde Amalfi) o Sorrento (90 min) para trenes o aeropuerto.', 'Consejo local: Limoncello y salsa de anchoa viajan bien. Cerámica es frágil: pide al vendedor un embalaje adecuado o cómprala en el aeropuerto.'] },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Slow Travel - 7 días",
+  "description": "Itinerario slow travel de 7 días por la Costa Amalfitana: Praiano, Furore, Cetara, Valle delle Ferriere y Sendero de los Dioses. Pueblos auténticos, mercados locales y gastronomía.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/es-es/itinerarios/7-dias/slow-travel-pueblos-gastronomia/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -43,7 +62,7 @@ const days = [
   description="Itinerario slow travel de 7 días por la Costa Amalfitana: Praiano, Furore, Cetara, Valle delle Ferriere y Sendero de los Dioses. Pueblos auténticos, mercados locales y gastronomía."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="slow-travel-pueblos-gastronomia"
   heroImage="/images/costiera-hero.jpg"
 >

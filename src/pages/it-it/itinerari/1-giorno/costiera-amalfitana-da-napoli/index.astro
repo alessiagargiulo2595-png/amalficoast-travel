@@ -69,6 +69,25 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   walk:  { label: 'PIEDI', cls: 'bg-gray-100 text-slate-500' },
   visit: { label: '', cls: '' },
 };
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "1 Giorno da Napoli",
+  "description": "Itinerario completo da Napoli alla Costiera Amalfitana: distanza Napoli Amalfi, itinerari 5 e 7 giorni. Amalfi, Ravello, Positano con traghetto e bus SITA.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/it-it/itinerari/1-giorno/costiera-amalfitana-da-napoli/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": schedule.length,
+    "itemListElement": schedule.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${s.time} \u00b7 ${s.place}`,
+      "description": s.action
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -76,7 +95,7 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   description="Itinerario completo da Napoli alla Costiera Amalfitana: distanza Napoli Amalfi, itinerari 5 e 7 giorni. Amalfi, Ravello, Positano con traghetto e bus SITA."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="costiera-amalfitana-da-napoli"
   heroImage="/images/costiera-hero.jpg"
 >

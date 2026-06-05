@@ -66,6 +66,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Costa Amalfitana clásica - 3 días",
+  "description": "Itinerario clásico de 3 días por la Costa Amalfitana: Positano, Amalfi, Ravello y Gruta Esmeralda. Dónde dormir, qué ver y cómo moverse.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/es-es/itinerarios/3-dias/costa-amalfitana-clasica/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -73,7 +92,7 @@ const days = [
   description="Itinerario clásico de 3 días por la Costa Amalfitana: Positano, Amalfi, Ravello y Gruta Esmeralda. Dónde dormir, qué ver y cómo moverse."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="costa-amalfitana-clasica"
   heroImage="/images/costiera-hero.jpg"
 >

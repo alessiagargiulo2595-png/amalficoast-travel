@@ -59,6 +59,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Classic Amalfi Coast - 3 days",
+  "description": "Classic 3-day itinerary on the Amalfi Coast: Positano, Amalfi, Ravello and the Emerald Grotto. Where to stay, what to see and how to get around.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/en-us/itineraries/3-days/classic-amalfi-coast/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -66,7 +85,7 @@ const days = [
   description="Classic 3-day itinerary on the Amalfi Coast: Positano, Amalfi, Ravello and the Emerald Grotto. Where to stay, what to see and how to get around."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
 
   heroImage="/images/costiera-hero.jpg"
 >

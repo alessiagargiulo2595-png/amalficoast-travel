@@ -36,6 +36,25 @@ const days = [
   { day: 'Tag 6', title: 'Positano und Bootsausflug', items: ['SITA-Bus nach Positano (45 Min. von Amalfi). Freier Morgen am Strand.', 'Bootsausflug ab Positano (Smaragdgrotte, Buchten, ~€50–80, 4 Std.).', 'Rückkehr nach Amalfi oder Positano. Abendessen am Hafen.'] },
   { day: 'Tag 7', title: 'Ischia oder Procida und Abreise', items: ['Fähre Amalfi/Neapel→Ischia oder Procida (halbtägiger Ausflug).', 'Procida: Marina Corricella, Terra Murata, Strand Pozzo Vecchio.', 'Rückkehr nach Neapel zur Abreise.'] },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Grand Tour - 7 Tage",
+  "description": "Vollständige 7-Tage-Reiseroute: Neapel, Amalfiküste, Capri und Golfinseln. Pompeji, Sorrent, Positano, Amalfi, Ravello - der Grand Tour Süditaliens.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/de-de/reiserouten/7-tage/grand-tour-kueste-halbinsel/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -43,7 +62,7 @@ const days = [
   description="Vollständige 7-Tage-Reiseroute: Neapel, Amalfiküste, Capri und Golfinseln. Pompeji, Sorrent, Positano, Amalfi, Ravello - der Grand Tour Süditaliens."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="grand-tour-kueste-halbinsel"
   heroImage="/images/costiera-hero.jpg"
 >

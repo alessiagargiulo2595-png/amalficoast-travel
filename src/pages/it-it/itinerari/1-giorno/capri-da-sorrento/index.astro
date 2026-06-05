@@ -63,6 +63,25 @@ const destinationHighlights = [
   { name: 'Capri', desc: 'Isola con Grotta Azzurra, Anacapri, Faraglioni, Monte Solaro', url: '/it-it/isole/capri/' },
   { name: 'Marina Piccola Capri', desc: 'Spiaggia esclusiva con vista dei Faraglioni', url: '/it-it/spiagge/isole/marina-piccola-capri/' },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Capri da Sorrento",
+  "description": "Itinerario di un giorno da Sorrento a Capri: Grotta Azzurra, Anacapri, Monte Solaro, Faraglioni. Aliscafo, orari, prezzi e consigli pratici.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/it-it/itinerari/1-giorno/capri-da-sorrento/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": schedule.length,
+    "itemListElement": schedule.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${s.time} \u00b7 ${s.place}`,
+      "description": s.action
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -70,7 +89,7 @@ const destinationHighlights = [
   description="Itinerario di un giorno da Sorrento a Capri: Grotta Azzurra, Anacapri, Monte Solaro, Faraglioni. Aliscafo, orari, prezzi e consigli pratici."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="capri-da-sorrento"
   heroImage="/images/costiera-hero.jpg"
 >

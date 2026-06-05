@@ -52,6 +52,25 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   walk:  { label: 'À PIED', cls: 'bg-gray-100 text-slate-500' },
   visit: { label: '', cls: '' },
 };
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Capri depuis Sorrente",
+  "description": "Excursion d",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/fr-fr/itineraires/1-jour/capri-depuis-sorrente/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": schedule.length,
+    "itemListElement": schedule.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${s.time} \u00b7 ${s.place}`,
+      "description": s.action
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -59,7 +78,7 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   description="Excursion d'une journée à Capri depuis Sorrente : Grotte Bleue, Anacapri, Monte Solaro, Faraglioni. Hydroglisseur, randonnées, conseils."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="capri-depuis-sorrente"
   heroImage="/images/costiera-hero.jpg"
 >

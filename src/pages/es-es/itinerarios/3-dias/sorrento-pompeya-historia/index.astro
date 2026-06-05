@@ -67,6 +67,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Sorrento, Pompeya e Historia - 3 días",
+  "description": "Itinerario de 3 días combinando historia y mar: Sorrento, Herculano, Vesubio y Pompeya. Horarios de la Circumvesuviana, precios de entradas y consejos prácticos.",
+  "image": "https://amalficoast-travel.com/images/sorrento-hero.jpg",
+  "url": "https://amalficoast-travel.com/es-es/itinerarios/3-dias/sorrento-pompeya-historia/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -74,7 +93,7 @@ const days = [
   description="Itinerario de 3 días combinando historia y mar: Sorrento, Herculano, Vesubio y Pompeya. Horarios de la Circumvesuviana, precios de entradas y consejos prácticos."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="sorrento-pompeya-historia"
   heroImage="/images/sorrento-hero.jpg"
 >

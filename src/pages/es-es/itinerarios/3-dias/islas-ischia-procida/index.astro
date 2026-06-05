@@ -69,6 +69,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Islas: Ischia y Procida - 3 días",
+  "description": "Itinerario de 3 días por Ischia y Procida: termas, playas volcánicas, Marina Corricella y Castillo Aragonés. Cómo llegar, dónde dormir y qué ver.",
+  "image": "https://amalficoast-travel.com/images/isole-hero.jpg",
+  "url": "https://amalficoast-travel.com/es-es/itinerarios/3-dias/islas-ischia-procida/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -76,7 +95,7 @@ const days = [
   description="Itinerario de 3 días por Ischia y Procida: termas, playas volcánicas, Marina Corricella y Castillo Aragonés. Cómo llegar, dónde dormir y qué ver."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="islas-ischia-procida"
   heroImage="/images/isole-hero.jpg"
 >

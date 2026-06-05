@@ -85,6 +85,25 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   walk:  { label: 'A PIE', cls: 'bg-red-100 text-red-700' },
   visit: { label: '', cls: '' },
 };
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Trekking Sendero de los Dioses",
+  "description": "Guía completa del Sendero de los Dioses (Sentiero degli Dei): mapa del recorrido, dificultad, ¿es peligroso?, reserva, cómo llegar desde Nápoles. 7,8 km Bomerano→Nocelle en la Costa Amalfitana.",
+  "image": "https://amalficoast-travel.com/images/trekking-hero.jpg",
+  "url": "https://amalficoast-travel.com/es-es/itinerarios/1-dia/sendero-de-los-dioses-trek/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": schedule.length,
+    "itemListElement": schedule.map((s, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${s.time} \u00b7 ${s.place}`,
+      "description": s.action
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -92,7 +111,7 @@ const transportBadge: Record<string, { label: string; cls: string }> = {
   description="Guía completa del Sendero de los Dioses (Sentiero degli Dei): mapa del recorrido, dificultad, ¿es peligroso?, reserva, cómo llegar desde Nápoles. 7,8 km Bomerano→Nocelle en la Costa Amalfitana."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema, hikingTrailSchema]}
+  schema={[faqSchema, hikingTrailSchema, touristTripSchema]}
   pageKey="sendero-de-los-dioses-trek"
   heroImage="/images/trekking-hero.jpg"
 >

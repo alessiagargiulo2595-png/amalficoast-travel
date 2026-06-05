@@ -66,6 +66,25 @@ const days = [
     ],
   },
 ];
+const touristTripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": "Classico Costiera - 3 giorni",
+  "description": "Itinerario di 3 giorni sulla Costiera Amalfitana: Positano, Amalfi, Ravello, Praiano. Traghetto, bus SITA e borghi autentici.",
+  "image": "https://amalficoast-travel.com/images/costiera-hero.jpg",
+  "url": "https://amalficoast-travel.com/it-it/itinerari/3-giorni/classico-costiera-amalfitana/",
+  "itinerary": {
+    "@type": "ItemList",
+    "numberOfItems": days.length,
+    "itemListElement": days.map((d, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": `${d.day}: ${d.title}`,
+      "description": d.items.join(' \u00b7 ')
+    }))
+  },
+  "touristType": "Sightseeing"
+};
 ---
 
 <BaseLayout
@@ -73,7 +92,7 @@ const days = [
   description="Itinerario di 3 giorni sulla Costiera Amalfitana: Positano, Amalfi, Ravello, Praiano. Traghetto, bus SITA e borghi autentici."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, touristTripSchema]}
  pageKey="classico-costiera-amalfitana"
   heroImage="/images/costiera-hero.jpg"
 >
