@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import type { Locale } from '../i18n/translations';
+import { parseLocalizedDate } from '../utils/blog-date';
 
 interface Props {
   lang: Locale;
@@ -22,6 +23,10 @@ interface Props {
   sidebarLinks: { label: string; href: string }[];
   author?: string;
   authorRole?: string;
+  authorUrl?: string;
+  datePublishedISO?: string;
+  dateModifiedISO?: string;
+  keywords?: string[];
   extraSchema?: object[];
   relatedArticles?: { title: string; category: string; date: string; image: string; imageAlt: string; path: string }[];
   pageKey?: string;
@@ -32,6 +37,10 @@ const {
   breadcrumbs, quickInfo, faq, sidebarLinks,
   author = 'Amalfi Coast Travel',
   authorRole,
+  authorUrl,
+  datePublishedISO,
+  dateModifiedISO,
+  keywords,
   extraSchema = [],
   relatedArticles = [],
   pageKey,
@@ -40,6 +49,7 @@ const {
 const site = 'https://amalficoast-travel.com';
 
 const localeLabel: Record<Locale, string> = {
+  'en-us': 'en-US', 'de-de': 'de-DE',
   'fr-fr': 'fr-FR', 'es-es': 'es-ES', 'it-it': 'it-IT',
 };
 
@@ -66,19 +76,52 @@ const defaultAuthorRole: Record<Locale, string> = {
 };
 const resolvedAuthorRole = authorRole ?? defaultAuthorRole[lang];
 
-const schemaArticle = {
+const isOrgAuthor = author === 'Amalfi Coast Travel';
+const authorSchema = isOrgAuthor
+  ? {
+      "@type": "Organization",
+      "name": "Amalfi Coast Travel",
+      "url": authorUrl ?? site,
+      "description": "Independent editorial team covering the Amalfi Coast, Sorrento Peninsula and Gulf of Naples islands."
+    }
+  : {
+      "@type": "Person",
+      "name": author,
+      "jobTitle": resolvedAuthorRole,
+      "worksFor": { "@type": "Organization", "name": "Amalfi Coast Travel", "url": site },
+      ...(authorUrl ? { "url": authorUrl } : {})
+    };
+
+const schemaArticle: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": post.title,
   "description": metaDescription,
-  "image": `${site}${post.image}`,
-  "datePublished": "2026-04-22",
-  "dateModified": "2026-04-22",
-  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
-  "publisher": { "@type": "Organization", "name": "Amalfi Coast Travel", "url": site },
+  "image": [`${site}${post.image}`],
+  "author": authorSchema,
+  "publisher": {
+    "@type": "Organization",
+    "name": "Amalfi Coast Travel",
+    "url": site,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${site}/logo-footer.svg`
+    }
+  },
   "url": `${site}${post.path}`,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `${site}${post.path}`
+  },
+  "articleSection": post.category,
   "inLanguage": localeLabel[lang],
 };
+
+const resolvedPublishedISO = datePublishedISO ?? parseLocalizedDate(post.date, lang);
+const resolvedModifiedISO = dateModifiedISO ?? resolvedPublishedISO;
+if (resolvedPublishedISO) schemaArticle.datePublished = resolvedPublishedISO;
+if (resolvedModifiedISO) schemaArticle.dateModified = resolvedModifiedISO;
+if (keywords && keywords.length > 0) schemaArticle.keywords = keywords.join(', ');
 
 const schemaFaq = faq.length > 0 ? {
   "@context": "https://schema.org",

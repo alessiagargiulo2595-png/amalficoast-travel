@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { blogPostsFr } from '../../../data/blog-fr';
+import { parseLocalizedDate } from '../../../utils/blog-date';
 
 const lang = 'fr-fr';
 
@@ -22,13 +23,16 @@ const schemaBlog = {
   "description": "Histoires, guides et curiosités de la Côte Amalfitaine : grottes marines, villages cachés, cuisine locale et conseils pour voyager comme un local.",
   "url": "https://amalficoast-travel.com/fr-fr/blog/",
   "inLanguage": "fr-FR",
-  "blogPost": sortedPosts.map(post => ({
-    "@type": "BlogPosting",
-    "headline": post.title,
-    "url": `https://amalficoast-travel.com${post.path}`,
-    "datePublished": post.date,
-    "image": post.image,
-  })),
+  "blogPost": sortedPosts.map(post => {
+    const iso = parseLocalizedDate(post.date, lang);
+    return {
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "url": `https://amalficoast-travel.com${post.path}`,
+      ...(iso ? { "datePublished": iso } : {}),
+      "image": `https://amalficoast-travel.com${post.image}`,
+    };
+  }),
 };
 ---
 

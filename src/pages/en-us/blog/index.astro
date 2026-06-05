@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { blogPostsEn } from '../../../data/blog-en';
+import { parseLocalizedDate } from '../../../utils/blog-date';
 
 const lang = 'en-us';
 
@@ -19,13 +20,16 @@ const schemaBlog = {
   "description": "Stories, guides and curiosities about the Amalfi Coast: sea caves, hidden villages, local cuisine and tips to travel like a local.",
   "url": "https://amalficoast-travel.com/en-us/blog/",
   "inLanguage": "en-US",
-  "blogPost": sortedPosts.map(post => ({
-    "@type": "BlogPosting",
-    "headline": post.title,
-    "url": `https://amalficoast-travel.com${post.path}`,
-    "datePublished": post.date,
-    "image": post.image,
-  })),
+  "blogPost": sortedPosts.map(post => {
+    const iso = parseLocalizedDate(post.date, lang);
+    return {
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "url": `https://amalficoast-travel.com${post.path}`,
+      ...(iso ? { "datePublished": iso } : {}),
+      "image": `https://amalficoast-travel.com${post.image}`,
+    };
+  }),
 };
 ---
 
