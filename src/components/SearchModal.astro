@@ -10,11 +10,11 @@ const { lang } = Astro.props;
 const searchIndex = buildSearchIndex(lang);
 
 const ui = ({
-  'it-it': { placeholder: 'Cerca destinazioni, spiagge, esperienze...', noResults: 'Nessun risultato trovato', quickLinks: 'Link Rapidi' },
-  'en-us': { placeholder: 'Search destinations, beaches, experiences...', noResults: 'No results found', quickLinks: 'Quick Links' },
-  'de-de': { placeholder: 'Suche Reiseziele, Strande, Erlebnisse...', noResults: 'Keine Ergebnisse gefunden', quickLinks: 'Schnellzugriff' },
-  'fr-fr': { placeholder: 'Chercher destinations, plages, experiences...', noResults: 'Aucun resultat', quickLinks: 'Liens Rapides' },
-  'es-es': { placeholder: 'Buscar destinos, playas, experiencias...', noResults: 'Sin resultados', quickLinks: 'Enlaces Rapidos' },
+  'it-it': { placeholder: 'Cerca destinazioni, spiagge, esperienze...', noResults: 'Nessun risultato trovato', quickLinks: 'Link Rapidi', recents: 'Recenti', clear: 'Cancella', resultsSingular: 'risultato', resultsPlural: 'risultati' },
+  'en-us': { placeholder: 'Search destinations, beaches, experiences...', noResults: 'No results found', quickLinks: 'Quick Links', recents: 'Recent', clear: 'Clear', resultsSingular: 'result', resultsPlural: 'results' },
+  'de-de': { placeholder: 'Suche Reiseziele, Strande, Erlebnisse...', noResults: 'Keine Ergebnisse gefunden', quickLinks: 'Schnellzugriff', recents: 'Zuletzt gesucht', clear: 'Löschen', resultsSingular: 'Ergebnis', resultsPlural: 'Ergebnisse' },
+  'fr-fr': { placeholder: 'Chercher destinations, plages, experiences...', noResults: 'Aucun resultat', quickLinks: 'Liens Rapides', recents: 'Récents', clear: 'Effacer', resultsSingular: 'résultat', resultsPlural: 'résultats' },
+  'es-es': { placeholder: 'Buscar destinos, playas, experiencias...', noResults: 'Sin resultados', quickLinks: 'Enlaces Rapidos', recents: 'Recientes', clear: 'Borrar', resultsSingular: 'resultado', resultsPlural: 'resultados' },
 } as const)[lang];
 ---
 
@@ -49,13 +49,26 @@ const ui = ({
       </div>
 
       <!-- Results Area -->
-      <div id="search-results" class="max-h-[55vh] overflow-y-auto overscroll-contain scroll-smooth">
+      <div id="search-results" class="max-h-[55vh] overflow-y-auto overscroll-contain scroll-smooth"
+           data-label-recents={ui.recents} data-label-clear={ui.clear}
+           data-label-results-singular={ui.resultsSingular} data-label-results-plural={ui.resultsPlural}>
+        <!-- Recents -->
+        <div id="search-recents" class="py-2 px-2 hidden">
+          <div class="flex items-center justify-between px-3 py-2">
+            <p class="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-300" id="search-recents-label">{ui.recents}</p>
+            <button id="search-recents-clear" class="text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-300 hover:text-med-blue transition-colors">{ui.clear}</button>
+          </div>
+          <div id="search-recents-list"></div>
+        </div>
         <!-- Default state: Quick links -->
         <div id="search-default" class="py-2 px-2">
           <p class="px-3 py-2 text-[10px] font-bold uppercase tracking-[0.25em] text-slate-300">{ui.quickLinks}</p>
         </div>
         <!-- Search results -->
-        <div id="search-hits" class="py-2 px-2 hidden"></div>
+        <div id="search-hits" class="py-2 px-2 hidden">
+          <p id="search-hits-counter" class="px-3 py-2 text-[10px] font-bold uppercase tracking-[0.25em] text-slate-300"></p>
+          <div id="search-hits-list"></div>
+        </div>
         <!-- No results -->
         <div id="search-empty" class="hidden py-16 text-center">
           <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-100 flex items-center justify-center">
@@ -107,19 +120,80 @@ const ui = ({
   const panel = document.getElementById('search-panel')!;
   const input = document.getElementById('search-input') as HTMLInputElement;
   const hitsEl = document.getElementById('search-hits')!;
+  const hitsListEl = document.getElementById('search-hits-list')!;
+  const hitsCounterEl = document.getElementById('search-hits-counter')!;
   const defaultEl = document.getElementById('search-default')!;
   const emptyEl = document.getElementById('search-empty')!;
+  const recentsEl = document.getElementById('search-recents')!;
+  const recentsListEl = document.getElementById('search-recents-list')!;
+  const recentsClearBtn = document.getElementById('search-recents-clear');
+  const resultsContainer = document.getElementById('search-results')!;
   const closeBtn = document.getElementById('search-close-btn');
   const backdrop = document.getElementById('search-backdrop');
 
+  const labelResultsSingular = resultsContainer.dataset.labelResultsSingular || 'result';
+  const labelResultsPlural = resultsContainer.dataset.labelResultsPlural || 'results';
+
+  const RECENTS_KEY = 'acm_recent_searches';
+  const RECENTS_MAX = 5;
+
   let activeIndex = -1;
 
-  function createResultEl(item: SearchItem, idx: number): HTMLAnchorElement {
+  function escapeHtml(s: string): string {
+    return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+  }
+
+  function highlightMatch(text: string, query: string): string {
+    const safe = escapeHtml(text);
+    if (!query || query.length < 2) return safe;
+    const tokens = query.trim().split(/\s+/).filter(t => t.length >= 2).map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    if (!tokens.length) return safe;
+    const re = new RegExp(`(${tokens.join('|')})`, 'gi');
+    return safe.replace(re, '<mark class="bg-med-gold/30 text-slate-900 rounded-sm px-0.5">$1</mark>');
+  }
+
+  function loadRecents(): SearchItem[] {
+    try {
+      const raw = localStorage.getItem(RECENTS_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch { return []; }
+  }
+
+  function saveRecent(item: SearchItem) {
+    try {
+      const current = loadRecents().filter(r => r.url !== item.url);
+      current.unshift(item);
+      localStorage.setItem(RECENTS_KEY, JSON.stringify(current.slice(0, RECENTS_MAX)));
+    } catch {}
+  }
+
+  function clearRecents() {
+    try { localStorage.removeItem(RECENTS_KEY); } catch {}
+    renderRecents();
+  }
+
+  function renderRecents() {
+    const recents = loadRecents();
+    recentsListEl.innerHTML = '';
+    if (recents.length === 0) {
+      recentsEl.classList.add('hidden');
+      return;
+    }
+    recentsEl.classList.remove('hidden');
+    recents.forEach((item, idx) => recentsListEl.appendChild(createResultEl(item, idx, '')));
+  }
+
+  function createResultEl(item: SearchItem, idx: number, query: string = ''): HTMLAnchorElement {
     const el = document.createElement('a');
     el.href = item.url;
     el.className = 'search-result flex items-center gap-3 px-3 py-2.5 mx-1 rounded-xl text-left transition-all duration-100 hover:bg-med-blue/5 group cursor-pointer';
     el.dataset.index = String(idx);
-    el.addEventListener('click', () => trackSearchClick(input.value.trim(), item.url));
+    el.addEventListener('click', () => {
+      saveRecent(item);
+      trackSearchClick(input.value.trim(), item.url);
+    });
+    const titleHtml = highlightMatch(item.title, query);
+    const descHtml = highlightMatch(item.description, query);
     el.innerHTML = `
       <div class="w-9 h-9 rounded-lg bg-slate-50 group-hover:bg-med-blue/10 flex items-center justify-center flex-shrink-0 transition-colors border border-slate-100 group-hover:border-med-blue/20">
         <svg class="w-4 h-4 text-slate-400 group-hover:text-med-blue transition-colors" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
@@ -127,23 +201,22 @@ const ui = ({
         </svg>
       </div>
       <div class="flex-1 min-w-0">
-        <p class="text-[13px] font-medium text-slate-700 group-hover:text-med-blue truncate transition-colors">${item.title}</p>
-        <p class="text-[11px] text-slate-400 truncate mt-0.5">${item.description}</p>
+        <p class="text-[13px] font-medium text-slate-700 group-hover:text-med-blue truncate transition-colors">${titleHtml}</p>
+        <p class="text-[11px] text-slate-400 truncate mt-0.5">${descHtml}</p>
       </div>
-      <span class="text-[9px] uppercase tracking-[0.15em] font-semibold text-slate-300 group-hover:text-med-blue/50 flex-shrink-0 hidden sm:block transition-colors">${item.category}</span>
+      <span class="text-[9px] uppercase tracking-[0.15em] font-semibold text-slate-300 group-hover:text-med-blue/50 flex-shrink-0 hidden sm:block transition-colors">${escapeHtml(item.category)}</span>
       <svg class="w-4 h-4 text-slate-200 group-hover:text-med-blue/40 flex-shrink-0 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
     `;
     return el;
   }
 
-  function renderResults(items: SearchItem[], container: HTMLElement) {
-    items.forEach((item, idx) => {
-      container.appendChild(createResultEl(item, idx));
-    });
+  function renderResults(items: SearchItem[], container: HTMLElement, query: string = '') {
+    items.forEach((item, idx) => container.appendChild(createResultEl(item, idx, query)));
   }
 
-  // Build quick links
+  // Build quick links (default state)
   renderResults(data.slice(0, 8), defaultEl);
+  recentsClearBtn?.addEventListener('click', clearRecents);
 
   function setActive(idx: number) {
     const items = document.querySelectorAll('.search-result');
@@ -159,6 +232,7 @@ const ui = ({
   }
 
   function openModal() {
+    renderRecents();
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
     requestAnimationFrame(() => {
@@ -183,6 +257,7 @@ const ui = ({
     hitsEl.classList.add('hidden');
     emptyEl.classList.add('hidden');
     defaultEl.classList.remove('hidden');
+    renderRecents();
     activeIndex = -1;
   }
 
@@ -254,14 +329,16 @@ const ui = ({
     searchDebounce = setTimeout(() => trackSearch(q, results.length), 800);
 
     defaultEl.classList.add('hidden');
+    recentsEl.classList.add('hidden');
     if (results.length === 0) {
       hitsEl.classList.add('hidden');
       emptyEl.classList.remove('hidden');
     } else {
       emptyEl.classList.add('hidden');
       hitsEl.classList.remove('hidden');
-      hitsEl.innerHTML = '';
-      renderResults(results.map(r => r.item), hitsEl);
+      hitsListEl.innerHTML = '';
+      hitsCounterEl.textContent = `${results.length} ${results.length === 1 ? labelResultsSingular : labelResultsPlural}`;
+      renderResults(results.map(r => r.item), hitsListEl, q);
       activeIndex = -1;
     }
   });
