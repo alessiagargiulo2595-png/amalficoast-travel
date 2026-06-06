@@ -1,0 +1,119 @@
+---
+interface Stop {
+  name: string;
+  lat: number;
+  lon: number;
+}
+interface Props {
+  stops: Stop[];
+  title?: string;
+}
+const { stops, title = 'Itinerary map' } = Astro.props;
+const data = stops.map((s, i) => ({ ...s, n: i + 1 }));
+---
+
+{stops.length >= 2 && (
+  <section>
+    <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">{title}</h2>
+    <div
+      id="itinerary-map"
+      class="relative w-full rounded-2xl overflow-hidden border border-slate-100 shadow-sm bg-slate-50"
+      style="aspect-ratio: 16/9; min-height: 380px; isolation: isolate; z-index: 0;"
+      data-stops={JSON.stringify(data)}
+      aria-label="Itinerary route map"
+    >
+      <div id="itinerary-map-placeholder" class="absolute inset-0 flex items-center justify-center text-slate-400 text-sm pointer-events-none">
+        Loading map…
+      </div>
+    </div>
+  </section>
+)}
+
+<style is:global>
+  .acm-stop-marker {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: #1e6091; color: #fff;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 12px;
+    cursor: pointer;
+  }
+  .acm-route-line { stroke: #1e6091; stroke-width: 3; stroke-dasharray: 6 6; opacity: 0.7; }
+  .acm-stop-popup-name { font-weight: 700; color: #0f172a; font-size: 13px; }
+</style>
+
+<script>
+  interface Stop { name: string; lat: number; lon: number; n: number; }
+
+  const LEAFLET_CSS = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+  const LEAFLET_JS  = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+
+  const container = document.getElementById('itinerary-map');
+  if (container) {
+    const stops: Stop[] = JSON.parse(container.dataset.stops || '[]');
+
+    function loadLeaflet(): Promise<void> {
+      if ((window as any).L) return Promise.resolve();
+      return new Promise(resolve => {
+        if (!document.querySelector(`link[href="${LEAFLET_CSS}"]`)) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet'; link.href = LEAFLET_CSS;
+          document.head.appendChild(link);
+        }
+        const existing = document.querySelector(`script[src="${LEAFLET_JS}"]`) as HTMLScriptElement | null;
+        if (existing) {
+          if ((window as any).L) resolve();
+          else existing.addEventListener('load', () => resolve());
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = LEAFLET_JS;
+        script.onload = () => resolve();
+        document.head.appendChild(script);
+      });
+    }
+
+    function init() {
+      const L = (window as any).L;
+      document.getElementById('itinerary-map-placeholder')?.remove();
+
+      const map = L.map(container, { scrollWheelZoom: false });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18,
+      }).addTo(map);
+
+      const latlngs: [number, number][] = [];
+      for (const s of stops) {
+        const icon = L.divIcon({
+          className: '',
+          html: `<div class="acm-stop-marker">${s.n}</div>`,
+          iconSize: [26, 26],
+          iconAnchor: [13, 13],
+        });
+        const m = L.marker([s.lat, s.lon], { icon }).addTo(map);
+        m.bindPopup(`<div class="acm-stop-popup-name">${s.n}. ${s.name.replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'})[c]!)}</div>`);
+        latlngs.push([s.lat, s.lon]);
+      }
+      if (latlngs.length >= 2) {
+        L.polyline(latlngs, { className: 'acm-route-line' }).addTo(map);
+      }
+      const bounds = L.latLngBounds(latlngs);
+      map.fitBounds(bounds, { padding: [40, 40] });
+      map.once('click', () => map.scrollWheelZoom.enable());
+    }
+
+    const obs = new IntersectionObserver(async (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          obs.disconnect();
+          await loadLeaflet();
+          init();
+          break;
+        }
+      }
+    }, { rootMargin: '200px' });
+    obs.observe(container);
+  }
+</script>
