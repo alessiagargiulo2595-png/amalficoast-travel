@@ -570,6 +570,13 @@ export const slugMap: Record<string, SlugMap> = {
     'es-es': 'islas/procida',
     'it-it': 'isole/procida',
   },
+  forio: {
+    'en-us': 'islands/forio',
+    'de-de': 'inseln/forio',
+    'fr-fr': 'iles/forio',
+    'es-es': 'islas/forio',
+    'it-it': 'isole/forio',
+  },
   // Peninsula town pages
   sorrento: {
     'en-us': 'sorrento-peninsula/sorrento',
@@ -651,6 +658,13 @@ export const slugMap: Record<string, SlugMap> = {
     'fr-fr': 'cote-amalfitaine/conca-dei-marini',
     'es-es': 'costa-amalfitana/conca-dei-marini',
     'it-it': 'costiera-amalfitana/conca-dei-marini',
+  },
+  cetara: {
+    'en-us': 'amalfi-coast/cetara',
+    'de-de': 'amalfikueste/cetara',
+    'fr-fr': 'cote-amalfitaine/cetara',
+    'es-es': 'costa-amalfitana/cetara',
+    'it-it': 'costiera-amalfitana/cetara',
   },
   // Region hub pages
   'amalfi-coast': {

@@ -2,6 +2,7 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
 import CorrelationSlider from '../../../../components/CorrelationSlider.astro';
+import InteractiveMap from '../../../../components/InteractiveMap.astro';
 
 const lang = 'fr-fr';
 
@@ -57,17 +58,6 @@ const distances = [
   { from: 'Sorrente', to: 'Positano', km: '18', bus: '50 min', ferry: '35 min' },
 ];
 
-const towns = [
-  { name: 'Positano', desc: 'Maisons colorees en cascade sur la falaise. Spiaggia Grande, Fornillo, mode balneaire.', type: 'Cote Ouest', url: '/fr-fr/cote-amalfitaine/positano/' },
-  { name: 'Praiano', desc: 'Coucher de soleil depuis San Gennaro, Marina di Praia, tranquillite. Point de depart du Sentier des Dieux.', type: 'Cote Ouest', url: '/fr-fr/cote-amalfitaine/praiano/' },
-  { name: 'Amalfi', desc: 'Cathedrale Saint-Andre, Musee du Papier, port central. La base la plus pratique.', type: 'Centre', url: '/fr-fr/cote-amalfitaine/amalfi/' },
-  { name: 'Atrani', desc: 'Le plus petit village d\'Italie. Placette face a la mer, authentique, a 700 m d\'Amalfi.', type: 'Centre', url: '/fr-fr/cote-amalfitaine/atrani/' },
-  { name: 'Ravello', desc: 'Villa Rufolo, Villa Cimbrone, Festival de musique. A 350 m d\'altitude.', type: 'Colline', url: '/fr-fr/cote-amalfitaine/ravello/' },
-  { name: 'Minori', desc: 'Villa romaine du Ier siecle, patisseries historiques, scialatielli frais.', type: 'Cote Est', url: '/fr-fr/cote-amalfitaine/minori/' },
-  { name: 'Maiori', desc: 'La plus longue plage de sable de la cote (300 m). Prix abordables.', type: 'Cote Est', url: '/fr-fr/cote-amalfitaine/maiori/' },
-  { name: 'Cetara', desc: 'Village de pecheurs, colatura di alici DOP, thon rouge. Gastronomie pure.', type: 'Cote Est', url: '/fr-fr/cote-amalfitaine/cetara/' },
-  { name: 'Vietri sul Mare', desc: 'Capitale de la ceramique. Porte d\'entree orientale de la Cote Amalfitaine.', type: 'Cote Est', url: '/fr-fr/cote-amalfitaine/vietri-sul-mare/' },
-];
 ---
 
 <BaseLayout
@@ -98,36 +88,43 @@ const towns = [
   <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 space-y-16">
 
     <!-- Carte interactive -->
-    <section>
-      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Carte interactive</h2>
-      <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-        <iframe
-          src="https://www.openstreetmap.org/export/embed.html?bbox=14.35%2C40.58%2C14.75%2C40.68&layer=mapnik"
-          class="w-full h-[350px] sm:h-[500px]"
-          loading="lazy"
-          title="Carte de la Cote Amalfitaine"
-          style="border:0"
-        ></iframe>
-      </div>
-      <p class="text-xs text-slate-400 mt-2">Carte OpenStreetMap. Zoomez et faites glisser pour explorer. De Positano (ouest) a Vietri sul Mare (est), environ 50 km de cote.</p>
-    </section>
+    <InteractiveMap lang={lang} />
 
-    <!-- Les villages de la Cote -->
+    <!-- BANNER: Planificateur d'itinéraire -->
     <section>
-      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Les villages de la Cote Amalfitaine</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {towns.map(t => (
-          <a href={t.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
-            <div class="flex items-center gap-2 mb-2">
-              <h3 class="font-semibold text-charcoal group-hover:text-med-blue transition-colors">{t.name}</h3>
-              <span class="text-[10px] bg-med-cream text-med-gold px-2 py-0.5 rounded-full font-medium">{t.type}</span>
+      <div class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 px-6 sm:px-10 md:px-14 py-10 md:py-14 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+        <div class="absolute -top-20 -left-20 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 grid md:grid-cols-[3fr_2fr] md:items-center gap-8">
+          <div>
+            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase bg-med-gold/15 text-med-gold border border-med-gold/25 mb-6">Nouveau : Voyage sur Mesure</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight mb-2">Concevez votre</h2>
+            <p class="font-serif text-3xl md:text-4xl italic text-med-blue mb-5">itinéraire idéal</p>
+            <p class="text-white/60 text-base md:text-lg leading-relaxed max-w-xl mb-8">
+              Répondez à quelques questions simples - point de départ, jours et intérêts - et recevez un itinéraire personnalisé avec transports, coûts et horaires.
+            </p>
+            <div class="flex flex-wrap gap-6">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <span class="text-white/50 text-sm">30 secondes pour configurer</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
+                </div>
+                <span class="text-white/50 text-sm">Conseils anti-foule inclus</span>
+              </div>
             </div>
-            <p class="text-xs text-slate-500 leading-relaxed mb-3">{t.desc}</p>
-            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-              Decouvrir →
-            </span>
-          </a>
-        ))}
+          </div>
+          <div class="mt-8 md:mt-0 md:flex md:justify-center">
+            <a href="/fr-fr/planificateur-itineraire/" class="inline-flex items-center gap-2.5 px-7 py-3.5 bg-gradient-to-r from-med-gold to-yellow-600 text-slate-900 font-bold rounded-xl hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 12l4 0 0 6 4 0 0-4 4 0 0 4 4 0 0-6 4 0L12 2z"/></svg>
+              Configurer maintenant
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 

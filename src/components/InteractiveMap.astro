@@ -1,0 +1,175 @@
+---
+import type { Locale } from '../i18n/translations';
+import { mapDestinations, categoryColors, getDestinationUrl } from '../data/map-destinations';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+
+const ui = ({
+  'it-it': { exploreLabel: 'Scopri', legendCostiera: 'Costiera Amalfitana', legendPenisola: 'Penisola Sorrentina', legendIsole: 'Isole del Golfo', loadingLabel: 'Caricamento mappa…', resetLabel: 'Centra' },
+  'en-us': { exploreLabel: 'Explore', legendCostiera: 'Amalfi Coast',         legendPenisola: 'Sorrento Peninsula',  legendIsole: 'Gulf Islands',     loadingLabel: 'Loading map…',     resetLabel: 'Reset' },
+  'de-de': { exploreLabel: 'Entdecken', legendCostiera: 'Amalfiküste',        legendPenisola: 'Sorrentinische Halbinsel', legendIsole: 'Golfinseln',  loadingLabel: 'Karte wird geladen…', resetLabel: 'Zentrieren' },
+  'fr-fr': { exploreLabel: 'Découvrir', legendCostiera: 'Côte Amalfitaine',    legendPenisola: 'Péninsule Sorrentine', legendIsole: 'Îles du Golfe',  loadingLabel: 'Chargement…',     resetLabel: 'Recentrer' },
+  'es-es': { exploreLabel: 'Descubrir', legendCostiera: 'Costa Amalfitana',    legendPenisola: 'Península Sorrentina',  legendIsole: 'Islas del Golfo', loadingLabel: 'Cargando mapa…',  resetLabel: 'Centrar' },
+})[lang];
+
+const destWithUrls = mapDestinations.map(d => ({
+  ...d,
+  url: getDestinationUrl(d, lang),
+}));
+---
+
+<section class="bg-white">
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <div class="flex items-start justify-between flex-wrap gap-6 mb-8">
+      <div>
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.3em] mb-3">{ui.legendCostiera} · {ui.legendPenisola} · {ui.legendIsole}</p>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900">
+          {lang === 'it-it' && 'Mappa delle destinazioni'}
+          {lang === 'en-us' && 'Destination map'}
+          {lang === 'de-de' && 'Karte der Reiseziele'}
+          {lang === 'fr-fr' && 'Carte des destinations'}
+          {lang === 'es-es' && 'Mapa de destinos'}
+        </h2>
+      </div>
+      <div class="flex items-center gap-4 text-xs">
+        <span class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full" style={`background:${categoryColors.costiera}`}></span>
+          <span class="text-slate-600">{ui.legendCostiera}</span>
+        </span>
+        <span class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full" style={`background:${categoryColors.penisola}`}></span>
+          <span class="text-slate-600">{ui.legendPenisola}</span>
+        </span>
+        <span class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full" style={`background:${categoryColors.isole}`}></span>
+          <span class="text-slate-600">{ui.legendIsole}</span>
+        </span>
+      </div>
+    </div>
+
+    <div
+      id="interactive-map"
+      class="relative w-full rounded-2xl overflow-hidden border border-slate-100 shadow-sm bg-slate-50"
+      style="aspect-ratio: 16/9; min-height: 380px; isolation: isolate; z-index: 0;"
+      aria-label="Interactive map"
+      data-destinations={JSON.stringify(destWithUrls)}
+      data-colors={JSON.stringify(categoryColors)}
+      data-explore-label={ui.exploreLabel}
+      data-reset-label={ui.resetLabel}
+    >
+      <div id="map-placeholder" class="absolute inset-0 flex items-center justify-center text-slate-400 text-sm pointer-events-none">
+        <span>{ui.loadingLabel}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .acm-marker {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    cursor: pointer;
+    transition: transform .15s ease;
+  }
+  .acm-marker:hover { transform: scale(1.3); }
+  .leaflet-popup-content-wrapper {
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .leaflet-popup-content {
+    margin: 12px 14px; font-family: inherit;
+  }
+  .acm-popup-name { font-weight: 700; color: #0f172a; font-size: 14px; margin-bottom: 4px; }
+  .acm-popup-link {
+    color: #1e6091; font-size: 12px; font-weight: 600;
+    text-decoration: none; letter-spacing: 0.05em;
+  }
+  .acm-popup-link:hover { color: #c9a45c; }
+</style>
+
+<script>
+  type Cat = 'costiera' | 'penisola' | 'isole';
+  interface Dest { slug: string; name: string; cat: Cat; lat: number; lon: number; url: string; }
+
+  const LEAFLET_CSS = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+  const LEAFLET_JS  = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+
+  const container = document.getElementById('interactive-map');
+  if (container) {
+    const dests: Dest[] = JSON.parse(container.dataset.destinations || '[]');
+    const colors: Record<Cat, string> = JSON.parse(container.dataset.colors || '{}');
+    const exploreLabel = container.dataset.exploreLabel || 'Explore';
+
+    let leafletLoaded = false;
+    function loadLeaflet(): Promise<void> {
+      if (leafletLoaded || (window as any).L) {
+        leafletLoaded = true;
+        return Promise.resolve();
+      }
+      return new Promise(resolve => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet'; link.href = LEAFLET_CSS;
+        document.head.appendChild(link);
+        const script = document.createElement('script');
+        script.src = LEAFLET_JS;
+        script.onload = () => { leafletLoaded = true; resolve(); };
+        document.head.appendChild(script);
+      });
+    }
+
+    function initMap() {
+      const L = (window as any).L;
+      const placeholder = document.getElementById('map-placeholder');
+      placeholder?.remove();
+
+      const map = L.map(container, {
+        center: [40.65, 14.35],
+        zoom: 10,
+        scrollWheelZoom: false,
+      });
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 18,
+      }).addTo(map);
+
+      const bounds = L.latLngBounds([]);
+      for (const d of dests) {
+        const icon = L.divIcon({
+          className: '',
+          html: `<div class="acm-marker" style="background:${colors[d.cat]}"></div>`,
+          iconSize: [14, 14],
+          iconAnchor: [7, 7],
+        });
+        const marker = L.marker([d.lat, d.lon], { icon }).addTo(map);
+        const safeName = d.name.replace(/"/g, '&quot;');
+        marker.bindPopup(`
+          <div class="acm-popup-name">${safeName}</div>
+          <a href="${d.url}" class="acm-popup-link">${exploreLabel} →</a>
+        `);
+        bounds.extend([d.lat, d.lon]);
+      }
+      map.fitBounds(bounds, { padding: [40, 40] });
+
+      // Enable scroll-zoom on click (better mobile UX)
+      map.once('click', () => map.scrollWheelZoom.enable());
+    }
+
+    // Lazy load when map enters viewport
+    const obs = new IntersectionObserver(async (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          obs.disconnect();
+          await loadLeaflet();
+          initMap();
+          break;
+        }
+      }
+    }, { rootMargin: '200px' });
+    obs.observe(container);
+  }
+</script>
