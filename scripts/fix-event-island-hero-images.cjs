@@ -35,6 +35,9 @@ const ISLAND_HERO_BY_NAME = {
 // 2. All event island pages get LocalitySlider + Related Events fixed
 const islandEventPages = glob.sync('src/pages/*/{events/islands,eventi/isole,veranstaltungen/inseln,evenements/iles,eventos/islas}/*/index.astro');
 
+// 3. All event pages (coast/peninsula/islands) get Related Events img alignment
+const allEventPages = glob.sync('src/pages/*/{events,eventi,veranstaltungen,evenements,eventos}/*/*/index.astro');
+
 function patchLocalitySlider(src) {
   const re = /(\{\s*name:\s*"(\w+)",\s*href:\s*'[^']+',\s*image:\s*')\/images\/capri-hero\.jpg('[^}]*\})/g;
   let count = 0;
@@ -56,17 +59,18 @@ function readHeroImage(file) {
   } catch { return null; }
 }
 
-function patchRelatedEvents(src, fileDir) {
+function patchRelatedEvents(src, opts = {}) {
   // <a href="..."> ... <img src="..." ...>
   const re = /<a href="([^"]+)"[^>]*>\s*<img\s+src="([^"]+)"/g;
   let count = 0;
   const next = src.replace(re, (m, href, currentImg) => {
-    if (currentImg !== '/images/capri-hero.jpg') return m;
     if (!href.startsWith('/')) return m;
+    // Only operate on Related Events cards (event hub or event detail link).
+    if (!/\/(events|eventi|veranstaltungen|evenements|eventos)\//.test(href)) return m;
     const targetFile = path.join('src/pages', href, 'index.astro').replace(/\\/g, '/');
     const heroImage = readHeroImage(targetFile);
     if (!heroImage) return m;
-    if (heroImage === '/images/capri-hero.jpg') return m;
+    if (heroImage === currentImg) return m;
     count++;
     return m.replace(currentImg, heroImage);
   });
@@ -86,17 +90,29 @@ for (const f of anacapriPages) {
   summary.push(`heroImage updated: ${f}`);
 }
 
-// Step 2: patch each event islands page
+// Step 2: patch each event islands page (LocalitySlider + Related Events)
 for (const f of islandEventPages) {
   const original = fs.readFileSync(f, 'utf8');
   let src = original;
   const a = patchLocalitySlider(src); src = a.src;
-  const b = patchRelatedEvents(src, path.dirname(f)); src = b.src;
+  const b = patchRelatedEvents(src); src = b.src;
   const changes = a.count + b.count;
   if (changes === 0) continue;
   if (!DRY) fs.writeFileSync(f, src);
   totalChanges += changes;
   summary.push(`${f}: slider=${a.count}, related=${b.count}`);
+}
+
+// Step 3: patch Related Events across ALL event pages (coast + peninsula + islands)
+const seen = new Set(islandEventPages);
+for (const f of allEventPages) {
+  if (seen.has(f)) continue; // already covered in Step 2
+  const original = fs.readFileSync(f, 'utf8');
+  const b = patchRelatedEvents(original);
+  if (b.count === 0) continue;
+  if (!DRY) fs.writeFileSync(f, b.src);
+  totalChanges += b.count;
+  summary.push(`${f}: related=${b.count}`);
 }
 
 console.log(`\nEvent island hero fix ${DRY ? '(DRY RUN)' : ''}`);
