@@ -85,6 +85,8 @@ const touristTripSchema = {
   },
   "touristType": "Sightseeing"
 };
+
+const planningTips = [];
 ---
 
 <BaseLayout
@@ -115,52 +117,18 @@ const touristTripSchema = {
 
   <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 space-y-10">
 
-    <!-- Intro Section -->
-    <section class="text-center mb-2 -mt-3">
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 mb-6 overflow-x-auto snap-x snap-mandatory sm:overflow-visible pb-2 sm:pb-0">
-        <!-- Box 1: Duration -->
-        <div class="bg-slate-900 rounded-2xl p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
-          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Dauer</p>
-          <p class="font-serif text-lg font-semibold text-med-gold">3 Tage</p>
-        </div>
-        <!-- Box 2: Bases -->
-        <div class="bg-slate-900 rounded-2xl p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
-          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Stützpunkte</p>
-          <p class="font-serif text-lg font-semibold text-med-gold">Amalfi<br/>Positano</p>
-        </div>
-        <!-- Box 3: Transport -->
-        <div class="bg-slate-900 rounded-2xl p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
-          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M6 9l6-6 6 6M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9M9 14h6"/></svg>
-          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Verkehr</p>
-          <p class="font-serif text-lg font-semibold text-med-gold">SITA-Bus<br/>Fähre</p>
-        </div>
-        <!-- Box 4: Budget -->
-        <div class="bg-slate-900 rounded-2xl p-6 hover:shadow-md transition-shadow flex flex-col items-center justify-center aspect-square snap-start">
-          <svg class="w-8 h-8 text-med-gold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
-          <p class="text-xs text-white/60 font-semibold uppercase tracking-wide mb-2">Budget</p>
-          <p class="font-serif text-lg font-semibold text-med-gold">€50–100<br/><span class="text-xs">p.P.</span></p>
-        </div>
-      </div>
-
-      <!-- SEO paragraph -->
-      <div>
-        <p class="text-lg text-slate-700 leading-relaxed">
-          Ein perfektes <strong>3-Tage-Klassik-Itinerarium</strong> an der <strong>Amalfiküste</strong>: Erkunden Sie <strong>Positano</strong> mit seinen farbenfrohen Häusern, <strong>Amalfi</strong> mit seinem historischen Dom, <strong>Ravello</strong> mit seinen Villen und Panoramablicken sowie die spektakuläre <strong>Smaragdgrotte</strong>. Alles mit öffentlichen Verkehrsmitteln erreichbar.
-        </p>
-      </div>
-    </section>
-
     <!-- Day by Day Itinerary -->
     <section>
-      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Tagesplan</h2>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Programm Tag für Tag</h2>
       <div class="space-y-6">
-        {days.map((d, idx) => (
+        {days.map((d) => (
           <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
             <div class="bg-slate-900 px-6 py-6 flex items-start gap-4 sm:items-center sm:gap-3">
               <span class="text-[10px] uppercase tracking-wide bg-white/15 text-white px-3 py-1.5 rounded-full font-bold flex-shrink-0">{d.day}</span>
-              <h3 class="font-serif font-semibold text-white text-lg">{d.title}</h3>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-serif font-semibold text-white text-lg">{d.title}</h3>
+                {d.highlight && <p class="text-xs text-med-gold mt-1 font-medium">{d.highlight}</p>}
+              </div>
             </div>
             <ul class="px-6 py-5 space-y-3">
               {d.items.map((item, itemIdx) => {
@@ -168,7 +136,7 @@ const touristTripSchema = {
                 const displayText = item.replace('Local tip: ', '');
                 const isLastItem = itemIdx === d.items.length - 1;
                 return (
-                  <li key={itemIdx} class={`flex gap-3 text-sm relative ${isLocalTip ? 'bg-med-gold/10 p-3 rounded-lg border border-med-gold/20' : ''}`}>
+                  <li class={`flex gap-3 text-sm relative ${isLocalTip ? 'bg-med-gold/10 p-3 rounded-lg border border-med-gold/20' : ''}`}>
                     <div class="flex flex-col items-center">
                       {isLocalTip ? (
                         <svg class="w-5 h-5 text-med-gold flex-shrink-0 self-center" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
@@ -194,44 +162,40 @@ const touristTripSchema = {
       </div>
     </section>
 
-    <!-- Destinations Highlighted -->
-    <section>
-      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Höhepunkte der Reiseroute</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {destinationHighlights.map((dest) => (
-          <a href={dest.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
-            <h3 class="font-semibold text-charcoal mb-2 group-hover:text-med-blue transition-colors">{dest.name}</h3>
-            <p class="text-xs text-slate-500 leading-relaxed mb-3">{dest.desc}</p>
-            <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-              Entdecken →
-            </span>
-          </a>
-        ))}
-      </div>
-    </section>
+    {destinationHighlights.length > 0 && (
+      <section>
+        <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Reiseziele der Route</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          {destinationHighlights.map((dest) => (
+            <a href={dest.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
+              <h3 class="font-semibold text-charcoal mb-2 group-hover:text-med-blue transition-colors">{dest.name}</h3>
+              <p class="text-xs text-slate-500 leading-relaxed mb-3">{dest.desc}</p>
+              <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                Entdecken →
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
 
-    <!-- Planning Tips -->
-    <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
-      <h2 class="font-serif text-xl font-semibold text-charcoal mb-6">Praktische Tipps</h2>
-      <ul class="space-y-4">
-        {[
-          { num: '❶', text: 'Basis in Amalfi: zentrale Lage, günstiger als Positano, gute Bus- und Fährverbindungen.' },
-          { num: '❷', text: 'SITA-Fahrkarten in der Tabak-Trafik en bloc kaufen: spart morgens Zeit.' },
-          { num: '❸', text: 'Ravello hat keine Strände, bietet aber den schönsten Aussichtspunkt der Küste: mindestens einen halben Tag einplanen.' },
-          { num: '❹', text: 'Bootsausflug an Tag 3 ist optional, aber ein Erlebnis: am Vortag buchen.' },
-          { num: '❺', text: 'Im Sommer: bis 9:00 Uhr losfahren, um überfüllte Busse und Warteschlangen zu vermeiden.' },
-        ].map(({ num, text }) => (
-          <li class="flex items-start gap-4 text-sm text-charcoal">
-            <span class="text-2xl font-bold text-white flex-shrink-0 leading-none mt-0.5 bg-[#E2725B] w-9 h-9 flex items-center justify-center rounded-full">{num}</span>
-            <span class="leading-relaxed">{text}</span>
-          </li>
-        ))}
-      </ul>
-    </section>
+    {planningTips.length > 0 && (
+      <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+        <h2 class="font-serif text-xl font-semibold text-charcoal mb-6">Praktische Tipps</h2>
+        <ul class="space-y-4">
+          {planningTips.map(({ num, text }) => (
+            <li class="flex items-start gap-4 text-sm text-charcoal">
+              <span class="text-2xl font-bold text-white flex-shrink-0 leading-none mt-0.5 bg-[#E2725B] w-9 h-9 flex items-center justify-center rounded-full">{num}</span>
+              <span class="leading-relaxed">{text}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
 
     <!-- FAQ -->
     <section id="faq">
-      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Häufig gestellte Fragen</h2>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Häufige Fragen</h2>
       <div class="space-y-4">
         {faqSchema.mainEntity.map((q) => (
           <details class="group border border-slate-200 rounded-2xl overflow-hidden">
@@ -247,20 +211,35 @@ const touristTripSchema = {
       </div>
     </section>
 
-    <!-- BANNER: Reiserouten-Planer -->
-    <section class="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 px-6 sm:px-10 py-8 md:py-10 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+    <!-- Banner: Itinerary Planner -->
+    <section class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 px-6 sm:px-10 md:px-14 py-10 md:py-14 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
       <div class="absolute -top-20 -left-20 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="relative z-10 md:flex md:items-center md:justify-between gap-8">
+      <div class="relative z-10 grid md:grid-cols-[3fr_2fr] md:items-center gap-8">
         <div>
-          <span class="inline-block px-3 py-1 rounded-full text-[10px] font-semibold tracking-wide uppercase bg-med-gold/15 text-med-gold border border-med-gold/25 mb-4">Neu: Reiseplaner</span>
-          <h2 class="text-2xl md:text-3xl font-bold text-white leading-tight mb-2">Gestalte deine <span class="font-serif italic text-med-blue">perfekte Reiseroute</span></h2>
-          <p class="text-white/60 text-sm md:text-base leading-relaxed max-w-xl">Beantworte ein paar einfache Fragen und erhalte eine personalisierte Reiseroute mit Transport, Kosten und Zeiten.</p>
+          <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase bg-med-gold/15 text-med-gold border border-med-gold/25 mb-6">Neu: Maßgeschneiderte Reise</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight mb-2">Gestalte deinen</h2>
+          <p class="font-serif text-3xl md:text-4xl italic text-med-blue mb-5">idealen Reiseplan</p>
+          <p class="text-white/60 text-base md:text-lg leading-relaxed max-w-xl mb-8">Beantworte ein paar einfache Fragen - Startpunkt, Tage und Interessen - und erhalte einen personalisierten Reiseplan mit Transport, Kosten und Zeiten.</p>
+          <div class="flex flex-wrap gap-6">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                <svg class="w-4 h-4 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <span class="text-white/50 text-sm">30 Sekunden zur Konfiguration</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                <svg class="w-4 h-4 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
+              </div>
+              <span class="text-white/50 text-sm">Anti-Crowd-Tipps inklusive</span>
+            </div>
+          </div>
         </div>
-        <div class="mt-6 md:mt-0 flex-shrink-0">
+        <div class="mt-8 md:mt-0 md:flex md:justify-center">
           <a href="/de-de/reiserouten-planer/" class="inline-flex items-center gap-2.5 px-7 py-3.5 bg-gradient-to-r from-med-gold to-yellow-600 text-slate-900 font-bold rounded-xl hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 12l4 0 0 6 4 0 0-4 4 0 0 4 4 0 0-6 4 0L12 2z"/></svg>
-            Jetzt planen
+            Jetzt konfigurieren
           </a>
         </div>
       </div>
@@ -270,10 +249,10 @@ const touristTripSchema = {
     <section class="bg-gradient-to-r from-med-blue to-med-blue/80 rounded-2xl p-10 text-center text-white">
       <h2 class="font-serif text-3xl font-bold mb-3">Bereit zur Abreise?</h2>
       <p class="text-white/90 mb-6 max-w-2xl mx-auto">
-        Lesen Sie den vollständigen Leitfaden zu öffentlichen Verkehrsmitteln an der Küste: Wie man anreist, Zeitpläne, Fahrkarten und Geldspartipps.
+        Lies den kompletten Reiseführer zu den öffentlichen Verkehrsmitteln der Amalfiküste: Anreise, Fahrpläne, Tickets und Spartipps.
       </p>
       <a href="/de-de/ratgeber/anreise/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">
-        Verkehrsleitfaden →
+        Transportführer →
       </a>
     </section>
 

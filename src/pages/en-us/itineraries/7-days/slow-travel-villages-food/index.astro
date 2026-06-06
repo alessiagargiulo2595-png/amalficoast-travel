@@ -55,6 +55,9 @@ const touristTripSchema = {
   },
   "touristType": "Sightseeing"
 };
+
+const destinationHighlights = [];
+const planningTips = [];
 ---
 
 <BaseLayout
@@ -67,15 +70,15 @@ const touristTripSchema = {
   heroImage="/images/costiera-hero.jpg"
 >
 
-  <section class="relative bg-charcoal overflow-hidden">
+  <!-- Hero Section -->
+  <section class="relative bg-charcoal overflow-hidden min-h-[70vh] sm:min-h-[75vh] flex items-center justify-center">
     <img src="/images/costiera-hero.jpg" alt="Slow travel Amalfi Coast" class="absolute inset-0 w-full h-full object-cover opacity-30" loading="eager" fetchpriority="high" decoding="sync" referrerpolicy="no-referrer"/>
-
-    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
-    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <div class="max-w-3xl">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/40 to-black/70"></div>
+    <div class="relative max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="max-w-3xl mx-auto">
         <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Itinerary · 7 days</p>
         <h1 class="font-serif text-display text-white mb-4">Slow Travel: Villages & Food</h1>
-        <p class="text-xl text-white/80 leading-relaxed max-w-2xl">
+        <p class="text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
           Seven days of slow travel: villages, local food, Amalfi wines and peaceful nights.
         </p>
       </div>
@@ -83,75 +86,87 @@ const touristTripSchema = {
     <Breadcrumbs breadcrumbs={breadcrumbs} />
   </section>
 
-  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-10 space-y-10">
 
-    <section class="max-w-text">
-      <div class="grid sm:grid-cols-4 gap-4">
-        <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100">
-          <p class="text-xs text-slate-400 mb-1">Duration</p>
-          <p class="font-semibold text-charcoal">7 days / 6 nights</p>
-        </div>
-        <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100">
-          <p class="text-xs text-slate-400 mb-1">Base</p>
-          <p class="font-semibold text-charcoal">Praiano or Amalfi</p>
-        </div>
-        <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100">
-          <p class="text-xs text-slate-400 mb-1">Best season</p>
-          <p class="font-semibold text-charcoal">May–June / Sep–Oct</p>
-        </div>
-        <div class="bg-med-cream rounded-2xl p-4 text-center border border-slate-100">
-          <p class="text-xs text-slate-400 mb-1">Pace</p>
-          <p class="font-semibold text-charcoal">Slow</p>
-        </div>
-      </div>
-    </section>
-
+    <!-- Day by Day Itinerary -->
     <section>
-      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Day-by-Day Schedule</h2>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Day-by-day programme</h2>
       <div class="space-y-6">
-        {days.map(d => (
-          <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
-            <div class="bg-med-blue/5 px-6 py-4 flex items-center gap-3">
-              <span class="text-[10px] uppercase tracking-wide bg-med-blue text-white px-2 py-1 rounded-full font-medium">{d.day}</span>
-              <h3 class="font-semibold text-charcoal">{d.title}</h3>
+        {days.map((d) => (
+          <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+            <div class="bg-slate-900 px-6 py-6 flex items-start gap-4 sm:items-center sm:gap-3">
+              <span class="text-[10px] uppercase tracking-wide bg-white/15 text-white px-3 py-1.5 rounded-full font-bold flex-shrink-0">{d.day}</span>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-serif font-semibold text-white text-lg">{d.title}</h3>
+                {d.highlight && <p class="text-xs text-med-gold mt-1 font-medium">{d.highlight}</p>}
+              </div>
             </div>
-            <ul class="px-6 py-4 space-y-2">
-              {d.items.map(item => (
-                <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
-                  <span class="w-1.5 h-1.5 rounded-full bg-med-blue/50 mt-1.5 flex-shrink-0"></span>
-                  <span>{item}</span>
-                </li>
-              ))}
+            <ul class="px-6 py-5 space-y-3">
+              {d.items.map((item, itemIdx) => {
+                const isLocalTip = item.includes('Local tip:');
+                const displayText = item.replace('Local tip: ', '');
+                const isLastItem = itemIdx === d.items.length - 1;
+                return (
+                  <li class={`flex gap-3 text-sm relative ${isLocalTip ? 'bg-med-gold/10 p-3 rounded-lg border border-med-gold/20' : ''}`}>
+                    <div class="flex flex-col items-center">
+                      {isLocalTip ? (
+                        <svg class="w-5 h-5 text-med-gold flex-shrink-0 self-center" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                          <circle cx="12" cy="8" r="5"/>
+                          <path d="M12 13v2"/>
+                          <rect x="10" y="15" width="4" height="3" rx="0.5"/>
+                        </svg>
+                      ) : (
+                        <span class="w-2 h-2 rounded-full bg-med-blue flex-shrink-0"></span>
+                      )}
+                      {!isLastItem && <div class="w-0.5 h-6 bg-med-blue/30 mt-1"></div>}
+                    </div>
+                    <span class={`leading-relaxed ${isLocalTip ? 'font-semibold text-slate-800' : 'text-slate-700'}`}>
+                      {isLocalTip && <strong>Local tip: </strong>}
+                      {displayText}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ))}
       </div>
     </section>
 
-    <section class="bg-charcoal text-white rounded-[2rem] p-8">
-      <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-4">Products not to miss</p>
-      <div class="grid sm:grid-cols-2 gap-6 text-xs sm:text-sm">
-        <div>
-          <p class="font-semibold mb-1">Sfusato amalfitano lemon PGI</p>
-          <p class="text-white/70">The Coast's enormous lemons: unique aroma, thick peel. Buy them directly from growers in Amalfi or Minori.</p>
+    {destinationHighlights.length > 0 && (
+      <section>
+        <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-8">Itinerary destinations</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          {destinationHighlights.map((dest) => (
+            <a href={dest.url} class="group block bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-lg hover:border-med-blue/30 transition-all">
+              <h3 class="font-semibold text-charcoal mb-2 group-hover:text-med-blue transition-colors">{dest.name}</h3>
+              <p class="text-xs text-slate-500 leading-relaxed mb-3">{dest.desc}</p>
+              <span class="text-xs font-semibold text-med-blue inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                Discover →
+              </span>
+            </a>
+          ))}
         </div>
-        <div>
-          <p class="font-semibold mb-1">Cetara anchovy sauce (colatura) DOP</p>
-          <p class="text-white/70">Modern garum: an amber liquid of fermented anchovies. Cetara produces Italy's finest DOP version.</p>
-        </div>
-        <div>
-          <p class="font-semibold mb-1">Ravello wine</p>
-          <p class="text-white/70">High-altitude vineyards produce a light, fragrant red. Tasting in Ravello's cellars.</p>
-        </div>
-        <div>
-          <p class="font-semibold mb-1">Vietri sul Mare ceramics</p>
-          <p class="text-white/70">Italy's ceramics capital: tiles, plates and artworks painted by hand. Choose local craft workshops.</p>
-        </div>
-      </div>
-    </section>
+      </section>
+    )}
 
+    {planningTips.length > 0 && (
+      <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-6">
+        <h2 class="font-serif text-xl font-semibold text-charcoal mb-6">Practical tips</h2>
+        <ul class="space-y-4">
+          {planningTips.map(({ num, text }) => (
+            <li class="flex items-start gap-4 text-sm text-charcoal">
+              <span class="text-2xl font-bold text-white flex-shrink-0 leading-none mt-0.5 bg-[#E2725B] w-9 h-9 flex items-center justify-center rounded-full">{num}</span>
+              <span class="leading-relaxed">{text}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <!-- FAQ -->
     <section id="faq">
-      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Frequently Asked Questions</h2>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Frequently asked questions</h2>
       <div class="space-y-4">
         {faqSchema.mainEntity.map((q) => (
           <details class="group border border-slate-200 rounded-2xl overflow-hidden">
@@ -159,7 +174,7 @@ const touristTripSchema = {
               {q.name}
               <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
             </summary>
-            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4">
               {q.acceptedAnswer.text}
             </div>
           </details>
@@ -167,23 +182,49 @@ const touristTripSchema = {
       </div>
     </section>
 
-    <!-- BANNER: Itinerary Planner -->
-    <section class="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 px-6 sm:px-10 py-8 md:py-10 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+    <!-- Banner: Itinerary Planner -->
+    <section class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 px-6 sm:px-10 md:px-14 py-10 md:py-14 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
       <div class="absolute -top-20 -left-20 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="relative z-10 md:flex md:items-center md:justify-between gap-8">
+      <div class="relative z-10 grid md:grid-cols-[3fr_2fr] md:items-center gap-8">
         <div>
-          <span class="inline-block px-3 py-1 rounded-full text-[10px] font-semibold tracking-wide uppercase bg-med-gold/15 text-med-gold border border-med-gold/25 mb-4">New: Custom Trip Planner</span>
-          <h2 class="text-2xl md:text-3xl font-bold text-white leading-tight mb-2">Design your <span class="font-serif italic text-med-blue">perfect itinerary</span></h2>
-          <p class="text-white/60 text-sm md:text-base leading-relaxed max-w-xl">Answer a few simple questions and get a personalised itinerary with transport, costs and times.</p>
+          <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase bg-med-gold/15 text-med-gold border border-med-gold/25 mb-6">New: Custom Trip</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight mb-2">Design your</h2>
+          <p class="font-serif text-3xl md:text-4xl italic text-med-blue mb-5">ideal itinerary</p>
+          <p class="text-white/60 text-base md:text-lg leading-relaxed max-w-xl mb-8">Answer a few simple questions - starting point, days and interests - and get a personalized itinerary with transport, costs and times.</p>
+          <div class="flex flex-wrap gap-6">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                <svg class="w-4 h-4 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <span class="text-white/50 text-sm">30 seconds to set up</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                <svg class="w-4 h-4 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
+              </div>
+              <span class="text-white/50 text-sm">Anti-crowd tips included</span>
+            </div>
+          </div>
         </div>
-        <div class="mt-6 md:mt-0 flex-shrink-0">
+        <div class="mt-8 md:mt-0 md:flex md:justify-center">
           <a href="/en-us/itinerary-planner/" class="inline-flex items-center gap-2.5 px-7 py-3.5 bg-gradient-to-r from-med-gold to-yellow-600 text-slate-900 font-bold rounded-xl hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 12l4 0 0 6 4 0 0-4 4 0 0 4 4 0 0-6 4 0L12 2z"/></svg>
-            Plan Now
+            Configure Now
           </a>
         </div>
       </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-gradient-to-r from-med-blue to-med-blue/80 rounded-2xl p-10 text-center text-white">
+      <h2 class="font-serif text-3xl font-bold mb-3">Ready to go?</h2>
+      <p class="text-white/90 mb-6 max-w-2xl mx-auto">
+        Read the complete public transport guide for the Amalfi Coast: how to get there, schedules, tickets and saving strategies.
+      </p>
+      <a href="/en-us/guide/getting-here/" class="inline-block bg-white text-med-blue font-semibold px-8 py-3 rounded-full hover:bg-slate-100 transition-colors">
+        Transport guide →
+      </a>
     </section>
 
   </div>
