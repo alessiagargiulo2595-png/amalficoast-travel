@@ -115,6 +115,35 @@ for (const f of allEventPages) {
   summary.push(`${f}: related=${b.count}`);
 }
 
+// Step 4: align LocalitySlider items on Coast/Peninsula event pages so each
+// item.image matches the heroImage of the page it links to.
+function patchSliderByHref(src) {
+  // Capture entire item object so we can rewrite image safely.
+  const re = /(\{\s*name:\s*[\"'][^\"']+[\"'],\s*href:\s*[\"'])([^\"']+)([\"'],\s*image:\s*[\"'])([^\"']+)([\"'])/g;
+  let count = 0;
+  const next = src.replace(re, (m, p1, href, p3, currentImg, p5) => {
+    if (!href.startsWith('/')) return m;
+    const targetFile = path.join('src/pages', href, 'index.astro').replace(/\\/g, '/');
+    const heroImage = readHeroImage(targetFile);
+    if (!heroImage || heroImage === currentImg) return m;
+    count++;
+    return `${p1}${href}${p3}${heroImage}${p5}`;
+  });
+  return { src: next, count };
+}
+
+const coastPenPages = allEventPages.filter(f =>
+  !seen.has(f) && /\/(costiera-amalfitana|amalfi-coast|amalfikueste|cote-amalfitaine|costa-amalfitana|penisola-sorrentina|sorrento-peninsula|sorrentinische-halbinsel|peninsule-sorrentine|peninsula-sorrentina)\//.test(f)
+);
+for (const f of coastPenPages) {
+  const original = fs.readFileSync(f, 'utf8');
+  const b = patchSliderByHref(original);
+  if (b.count === 0) continue;
+  if (!DRY) fs.writeFileSync(f, b.src);
+  totalChanges += b.count;
+  summary.push(`${f}: slider-href=${b.count}`);
+}
+
 console.log(`\nEvent island hero fix ${DRY ? '(DRY RUN)' : ''}`);
 console.log(`  total changes: ${totalChanges}`);
 summary.forEach(s => console.log('  ' + s));
