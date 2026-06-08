@@ -92,11 +92,11 @@ const destWithUrls = mapDestinations.map(d => ({
 </style>
 
 <script>
+  import L from 'leaflet';
+  import 'leaflet/dist/leaflet.css';
+
   type Cat = 'costiera' | 'penisola' | 'isole';
   interface Dest { slug: string; name: string; cat: Cat; lat: number; lon: number; url: string; }
-
-  const LEAFLET_CSS = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-  const LEAFLET_JS  = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
 
   const container = document.getElementById('interactive-map');
   if (container) {
@@ -104,29 +104,10 @@ const destWithUrls = mapDestinations.map(d => ({
     const colors: Record<Cat, string> = JSON.parse(container.dataset.colors || '{}');
     const exploreLabel = container.dataset.exploreLabel || 'Explore';
 
-    let leafletLoaded = false;
-    function loadLeaflet(): Promise<void> {
-      if (leafletLoaded || (window as any).L) {
-        leafletLoaded = true;
-        return Promise.resolve();
-      }
-      return new Promise(resolve => {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet'; link.href = LEAFLET_CSS;
-        document.head.appendChild(link);
-        const script = document.createElement('script');
-        script.src = LEAFLET_JS;
-        script.onload = () => { leafletLoaded = true; resolve(); };
-        document.head.appendChild(script);
-      });
-    }
-
     function initMap() {
-      const L = (window as any).L;
-      const placeholder = document.getElementById('map-placeholder');
-      placeholder?.remove();
+      document.getElementById('map-placeholder')?.remove();
 
-      const map = L.map(container, {
+      const map = L.map(container!, {
         center: [40.65, 14.35],
         zoom: 10,
         scrollWheelZoom: false,
@@ -154,22 +135,38 @@ const destWithUrls = mapDestinations.map(d => ({
         bounds.extend([d.lat, d.lon]);
       }
       map.fitBounds(bounds, { padding: [40, 40] });
-
-      // Enable scroll-zoom on click (better mobile UX)
+      requestAnimationFrame(() => map.invalidateSize());
       map.once('click', () => map.scrollWheelZoom.enable());
     }
 
-    // Lazy load when map enters viewport
-    const obs = new IntersectionObserver(async (entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) {
-          obs.disconnect();
-          await loadLeaflet();
-          initMap();
-          break;
-        }
+    let triggered = false;
+    function start() {
+      if (triggered) return;
+      triggered = true;
+      try {
+        initMap();
+      } catch (err) {
+        console.error('[InteractiveMap]', err);
+        const ph = document.getElementById('map-placeholder');
+        if (ph) ph.textContent = 'Map unavailable';
       }
-    }, { rootMargin: '200px' });
-    obs.observe(container);
+    }
+
+    const rect = container.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight + 200 && rect.bottom > -200;
+    if (inView) {
+      start();
+    } else {
+      const obs = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            obs.disconnect();
+            start();
+            break;
+          }
+        }
+      }, { rootMargin: '200px' });
+      obs.observe(container);
+    }
   }
 </script>
