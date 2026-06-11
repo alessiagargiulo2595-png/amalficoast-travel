@@ -905,6 +905,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/guide/sita-bus/',
     source: 'slugMap',
   },
+  '/de-de/ratgeber/wechselkennzeichen/': {
+    url: 'https://amalficoast-travel.com/de-de/ratgeber/wechselkennzeichen/',
+    canonical: 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+      'de-de': 'https://amalficoast-travel.com/de-de/ratgeber/wechselkennzeichen/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/guide/circulation-alternee/',
+      'es-es': 'https://amalficoast-travel.com/es-es/guia/matriculas-alternas/',
+      'it-it': 'https://amalficoast-travel.com/it-it/guida/targhe-alterne/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+    source: 'slugMap',
+  },
   '/de-de/reiserouten/': {
     url: 'https://amalficoast-travel.com/de-de/reiserouten/',
     canonical: 'https://amalficoast-travel.com/en-us/itineraries/',
@@ -2812,6 +2825,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/experiences/weddings/',
     source: 'slugMap',
   },
+  '/en-us/guide/alternate-license-plates/': {
+    url: 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+    canonical: 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+      'de-de': 'https://amalficoast-travel.com/de-de/ratgeber/wechselkennzeichen/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/guide/circulation-alternee/',
+      'es-es': 'https://amalficoast-travel.com/es-es/guia/matriculas-alternas/',
+      'it-it': 'https://amalficoast-travel.com/it-it/guida/targhe-alterne/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+    source: 'slugMap',
+  },
   '/en-us/guide/ferries/': {
     url: 'https://amalficoast-travel.com/en-us/guide/ferries/',
     canonical: 'https://amalficoast-travel.com/en-us/guide/ferries/',
@@ -4253,6 +4279,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     },
     'x-default': 'https://amalficoast-travel.com/en-us/guide/ferries/',
     source: 'pattern-match',
+  },
+  '/es-es/guia/matriculas-alternas/': {
+    url: 'https://amalficoast-travel.com/es-es/guia/matriculas-alternas/',
+    canonical: 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+      'de-de': 'https://amalficoast-travel.com/de-de/ratgeber/wechselkennzeichen/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/guide/circulation-alternee/',
+      'es-es': 'https://amalficoast-travel.com/es-es/guia/matriculas-alternas/',
+      'it-it': 'https://amalficoast-travel.com/it-it/guida/targhe-alterne/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+    source: 'slugMap',
   },
   '/es-es/islas/': {
     url: 'https://amalficoast-travel.com/es-es/islas/',
@@ -5783,6 +5822,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/guida/bus-sita/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/guide/sita-bus/',
+    source: 'slugMap',
+  },
+  '/fr-fr/guide/circulation-alternee/': {
+    url: 'https://amalficoast-travel.com/fr-fr/guide/circulation-alternee/',
+    canonical: 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+      'de-de': 'https://amalficoast-travel.com/de-de/ratgeber/wechselkennzeichen/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/guide/circulation-alternee/',
+      'es-es': 'https://amalficoast-travel.com/es-es/guia/matriculas-alternas/',
+      'it-it': 'https://amalficoast-travel.com/it-it/guida/targhe-alterne/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
     source: 'slugMap',
   },
   '/fr-fr/guide/comment-venir/': {
@@ -7409,6 +7461,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/guide/when-to-visit/',
     source: 'slugMap',
   },
+  '/it-it/guida/targhe-alterne/': {
+    url: 'https://amalficoast-travel.com/it-it/guida/targhe-alterne/',
+    canonical: 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+      'de-de': 'https://amalficoast-travel.com/de-de/ratgeber/wechselkennzeichen/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/guide/circulation-alternee/',
+      'es-es': 'https://amalficoast-travel.com/es-es/guia/matriculas-alternas/',
+      'it-it': 'https://amalficoast-travel.com/it-it/guida/targhe-alterne/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/guide/alternate-license-plates/',
+    source: 'slugMap',
+  },
   '/it-it/guida/traghetti/': {
     url: 'https://amalficoast-travel.com/it-it/guida/traghetti/',
     canonical: 'https://amalficoast-travel.com/en-us/guide/ferries/',
@@ -7984,7 +8049,7 @@ export function getXDefault(url: string): string | null {
  * Map statistics
  */
 export const hrefLangStats = {
-  totalUrls: 611,
+  totalUrls: 616,
   locales: ["en-us","de-de","fr-fr","es-es","it-it"],
-  generatedAt: '2026-06-04T18:07:25.788Z',
+  generatedAt: '2026-06-11T12:19:50.550Z',
 };

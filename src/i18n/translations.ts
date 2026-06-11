@@ -807,6 +807,7 @@ export const slugMap: Record<string, SlugMap> = {
   ferries: { 'en-us': 'guide/ferries', 'de-de': 'ratgeber/faehren', 'fr-fr': 'guide/ferries', 'es-es': 'guia/ferries', 'it-it': 'guida/traghetti' },
   'sita-bus': { 'en-us': 'guide/sita-bus', 'de-de': 'ratgeber/sita-bus', 'fr-fr': 'guide/bus-sita', 'es-es': 'guia/bus-sita', 'it-it': 'guida/bus-sita' },
   'parking-ztl': { 'en-us': 'guide/parking-ztl', 'de-de': 'ratgeber/parken-ztl', 'fr-fr': 'guide/parking-ztl', 'es-es': 'guia/aparcamiento-ztl', 'it-it': 'guida/parcheggi-ztl' },
+  'targhe-alterne': { 'en-us': 'guide/alternate-license-plates', 'de-de': 'ratgeber/wechselkennzeichen', 'fr-fr': 'guide/circulation-alternee', 'es-es': 'guia/matriculas-alternas', 'it-it': 'guida/targhe-alterne' },
   // Event hub pages (with language-specific paths)
   events: { 'en-us': 'events', 'de-de': 'veranstaltungen', 'fr-fr': 'evenements', 'es-es': 'eventos', 'it-it': 'eventi' },
   // NOTE: marina-di-praia-dest entries removed (destination pages deleted, 301 redirects to beach pages)
@@ -904,6 +905,7 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'ferries',              'de-de': 'faehren',             'fr-fr': 'ferries',              'es-es': 'ferries',              'it-it': 'traghetti'            },
   { 'en-us': 'sita-bus',             'de-de': 'sita-bus',            'fr-fr': 'bus-sita',             'es-es': 'bus-sita',             'it-it': 'bus-sita'             },
   { 'en-us': 'parking-ztl',          'de-de': 'parken-ztl',          'fr-fr': 'parking-ztl',          'es-es': 'aparcamiento-ztl',     'it-it': 'parcheggi-ztl'        },
+  { 'en-us': 'alternate-license-plates', 'de-de': 'wechselkennzeichen', 'fr-fr': 'circulation-alternee', 'es-es': 'matriculas-alternas', 'it-it': 'targhe-alterne'      },
   // Guide sub-page: map
   { 'en-us': 'map',                  'de-de': 'karte',               'fr-fr': 'carte',                'es-es': 'mapa',                 'it-it': 'mappa'                },
   // Itinerary duration folders

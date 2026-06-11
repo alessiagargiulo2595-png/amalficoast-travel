@@ -1,0 +1,328 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'fr-fr';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/fr-fr/' },
+  { name: 'Planification', url: '/fr-fr/planification/' },
+  { name: 'Circulation Alternée 2026', url: '/fr-fr/guide/circulation-alternee/' },
+];
+
+const costieraData = [
+  { tratto: 'Pâques et pont du 25 avril', orario: '10h00–18h00', validita: '30 mars–6 avr · 25 avr–2 mai 2026', note: 'Tous les jours pendant les deux "ponts".' },
+  { tratto: 'Juin–juillet', orario: '10h00–18h00', validita: 'Samedi, dimanche et jours fériés', note: 'Uniquement les week-ends et jours fériés en début d\'été.' },
+  { tratto: 'Août–septembre', orario: '10h00–18h00', validita: '1er août – 30 sep 2026', note: 'Tous les jours de la semaine, week-ends inclus.' },
+  { tratto: 'Octobre', orario: '10h00–18h00', validita: 'Samedi, dimanche et jours fériés (jusqu\'au 31)', note: 'Dernière phase, uniquement week-ends.' },
+];
+
+const costieraComuni = ['Vietri sul Mare', 'Cetara', 'Maiori', 'Minori', 'Ravello', 'Atrani', 'Amalfi', 'Conca dei Marini', 'Furore', 'Praiano', 'Positano'];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment fonctionne la circulation alternée 2026 en Côte Amalfitaine et péninsule sorrentine ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Deux régimes parallèles. Sur la SS163 Côte Amalfitaine (Arrêté ANAS 340/2019) règle standard : jours impairs du calendrier → plaques se terminant par chiffre impair (1, 3, 5, 7, 9) ; jours pairs → plaques paires (0, 2, 4, 6, 8), horaire 10h00-18h00, principalement tous les jours en août-septembre, plus Pâques, 25 avril et week-ends en juin-juillet et octobre. Sur la SS145 et dans les communes de la péninsule sorrentine s'appliquent des arrêtés municipaux : Meta (Arrêté 37/2026) applique la règle INVERSÉE (jour impair → plaque paire) de 8h00 à 19h00, de mars à octobre avec intensité croissante." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quels véhicules sont exemptés en 2026 ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Généralement exemptés : résidents des communes concernées, véhicules de secours, taxis et NCC, voitures électriques et hybrides rechargeables (péninsule sorrentine), véhicules au service d'hôtels avec réservation, personnes handicapées avec carte, transports publics. Sur la SS163 (ANAS) : les deux-roues (motos et scooters) sont exemptés. Dans l'arrêté de Meta : scooters et motos ne sont PAS exemptés. Vérifiez toujours l'arrêté en vigueur." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quel est le montant de l'amende ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "L'amende administrative pour violation de la circulation alternée est de 87 € à 344 € (Art. 7 al. 13 du Code de la Route italien). Les contrôles sont effectués par la Polizia Locale et les Carabinieri avec barrages et caméras. L'amende est envoyée au titulaire de la carte grise (ou à l'agence de location qui la répercute au client avec majoration)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment visiter la Côte Amalfitaine et la péninsule sorrentine les jours restreints ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Garez-vous hors de la zone : parking-relais à Vico Equense ou Castellammare di Stabia, puis Circumvesuviana jusqu'à Sorrente (15-25 min). Depuis Naples : hydroptère NLG/Alilauro direct vers Sorrente (35 min). Bus SITA Sud relient Sorrente à Amalfi et Positano. Ferries Travelmar de Salerne vers Amalfi/Positano. Aucun de ces moyens n'est concerné par la circulation alternée." }
+    },
+    {
+      "@type": "Question",
+      "name": "La circulation alternée s'applique-t-elle aux scooters et motos ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Cela dépend du lieu. L'arrêté de la SS163 Côte Amalfitaine (ANAS 340/2019) EXEMPTE les deux-roues. En revanche, l'arrêté de Meta (37/2026) INCLUT EXPLICITEMENT les motos et scooters de plus de 50cc. Vérifiez toujours l'arrêté local." }
+    }
+  ]
+};
+
+const tratteData = [
+  { tratto: 'Meta (centre – Arr. 37/2026) ⚠️ règle inversée', orario: '8h00–19h00', validita: '28-29 mars · Avr/Oct (Sam/Dim+fériés) · Mai/Juin/Sep (Ven-Dim+fériés) · Juil/Août (tous les jours)', note: "À Meta : jours PAIRS, plaques IMPAIRES (et vice-versa). Aux carrefours Via S. E. De Martino / Via G. Marconi et Via Caracciolo / Via A. Cosenza. Concerne aussi motos et cyclomoteurs." },
+  { tratto: 'SS145 Sorrentine (tronçons urbains)', orario: 'Sam/Dim + fériés (9h00–19h00)', validita: 'Juin–sep 2026', note: 'De Castellammare di Stabia à Sorrente. Barrages principaux à Vico Equense et Meta.' },
+  { tratto: 'Centre de Sorrente', orario: 'Sam/Dim + fériés (10h00–22h00)', validita: 'Juin–sep 2026', note: 'Coordonné avec la ZTL centrale : accès résidents et hôtels avec réservation.' },
+  { tratto: "Sant'Agnello / Piano di Sorrento", orario: 'Sam/Dim + fériés (10h00–19h00)', validita: 'Juin–sep 2026', note: 'Aligné sur Sorrente pour empêcher les contournements via le Corso Italia.' },
+  { tratto: 'Vico Equense', orario: 'Sam/Dim (10h00–19h00)', validita: 'Juil–août 2026', note: 'Contrôles ciblés les week-ends de haute saison.' },
+  { tratto: 'Massa Lubrense', orario: 'Fériés uniquement (9h00–20h00)', validita: 'Juil–août 2026', note: 'Restrictions sur Termini–Nerano et Marina del Cantone.' },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Circulation alternée 2026 : Côte Amalfitaine SS163 (ANAS 340/2019) et péninsule sorrentine SS145",
+  "description": "Guide 2026 de la circulation alternée en Côte Amalfitaine (Arrêté ANAS 340/2019 sur la SS163, 11 communes de Vietri à Positano) et péninsule sorrentine (arrêtés municipaux SS145 : Meta Arr. 37/2026, Sorrente, Sant'Agnello, Piano di Sorrento, Vico Equense, Massa Lubrense). Calendrier, horaires, exemptions, amendes de 87 € à 344 €.",
+  "image": "https://amalficoast-travel.com/images/targhe-alterne-hero.webp",
+  "datePublished": "2026-06-11",
+  "dateModified": "2026-06-11",
+  "inLanguage": "fr-FR",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel Guide", "url": "https://amalficoast-travel.com/" },
+  "publisher": { "@type": "Organization", "name": "Amalfi Coast Travel Guide", "url": "https://amalficoast-travel.com/", "logo": { "@type": "ImageObject", "url": "https://amalficoast-travel.com/logo-footer.svg" } },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://amalficoast-travel.com/fr-fr/guide/circulation-alternee/" },
+  "about": [
+    { "@type": "Thing", "name": "Circulation alternée" },
+    { "@type": "Thing", "name": "Arrêté ANAS 340/2019" },
+    { "@type": "Place", "name": "Côte Amalfitaine" },
+    { "@type": "Place", "name": "SS163 Amalfitana" },
+    { "@type": "Place", "name": "Péninsule sorrentine" },
+    { "@type": "Place", "name": "SS145 Sorrentina" }
+  ]
+};
+
+const specialAnnouncementSchema = {
+  "@context": "https://schema.org",
+  "@type": "SpecialAnnouncement",
+  "name": "Circulation alternée 2026 : Côte Amalfitaine (SS163) et péninsule sorrentine (SS145)",
+  "text": "Côte Amalfitaine : Arrêté ANAS 340/2019 sur la SS163. Circulation alternée 10h-18h tous les jours du 1er août au 30 septembre 2026 ; Pâques (30/3-6/4) et 25 avril (25/4-2/5) ; week-ends et fériés juin-juillet et octobre. Règle : jour impair → plaque impaire. Motos et scooters exemptés. Péninsule sorrentine : arrêtés municipaux SS145 et centres-villes. Meta : Arr. 37/2026, 8h-19h, RÈGLE INVERSÉE (jour impair → plaque paire), mars-octobre. Amende 87 €-344 €.",
+  "datePosted": "2026-03-18",
+  "expires": "2026-10-31",
+  "category": "https://www.wikidata.org/wiki/Q57415",
+  "url": "https://amalficoast-travel.com/fr-fr/guide/circulation-alternee/",
+  "inLanguage": "fr-FR",
+  "spatialCoverage": [
+    { "@type": "AdministrativeArea", "name": "Sorrente" },
+    { "@type": "AdministrativeArea", "name": "Sant'Agnello" },
+    { "@type": "AdministrativeArea", "name": "Piano di Sorrento" },
+    { "@type": "AdministrativeArea", "name": "Meta" },
+    { "@type": "AdministrativeArea", "name": "Vico Equense" },
+    { "@type": "AdministrativeArea", "name": "Massa Lubrense" },
+    { "@type": "AdministrativeArea", "name": "Vietri sul Mare" },
+    { "@type": "AdministrativeArea", "name": "Cetara" },
+    { "@type": "AdministrativeArea", "name": "Maiori" },
+    { "@type": "AdministrativeArea", "name": "Minori" },
+    { "@type": "AdministrativeArea", "name": "Ravello" },
+    { "@type": "AdministrativeArea", "name": "Atrani" },
+    { "@type": "AdministrativeArea", "name": "Amalfi" },
+    { "@type": "AdministrativeArea", "name": "Conca dei Marini" },
+    { "@type": "AdministrativeArea", "name": "Furore" },
+    { "@type": "AdministrativeArea", "name": "Praiano" },
+    { "@type": "AdministrativeArea", "name": "Positano" }
+  ]
+};
+---
+
+<BaseLayout
+  title="Circulation Alternée 2026 Côte Amalfitaine & Péninsule Sorrentine"
+  description="Guide complet 2026 de la circulation alternée : Arrêté ANAS 340/2019 sur la SS163 Côte Amalfitaine (Vietri-Positano) et arrêtés municipaux SS145 péninsule sorrentine (Meta, Sorrente, Vico). Calendrier, horaires, exemptions et amendes."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[articleSchema, specialAnnouncementSchema, faqSchema]}
+ pageKey="targhe-alterne"
+  heroImage="/images/targhe-alterne-hero.webp"
+>
+
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/targhe-alterne-hero.webp" alt="Côte Amalfitaine et péninsule sorrentine, circulation alternée 2026" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 80%;" loading="eager" fetchpriority="high" decoding="sync" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Guide Pratique</p>
+        <h1 class="font-serif text-display text-white mb-4">Circulation Alternée 2026 : Côte Amalfitaine et péninsule sorrentine</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Deux arrêtés, une logique pair/impair. SS145 (Meta, Sorrente, Vico) et SS163 ANAS (Vietri-Positano) : calendrier 2026, horaires, exemptions et amendes. Comment visiter la Côte et la péninsule sans amende.
+        </p>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-4 space-y-12">
+
+    <section class="max-w-editorial">
+      <div style="background-color: #E2725B; border-color: #E2725B; padding: 6px 12px 6px 12px;" class="border rounded-[2rem] mb-6 mt-8">
+        <p class="font-semibold mb-0 mt-0 text-white text-sm leading-tight" style="margin-top: -2px;">⚠️ Deux arrêtés, un piège</p>
+        <p class="text-xs text-white/95 leading-tight">SS163 Côte Amalfitaine : règle standard (jour impair → plaque impaire, 10h-18h). Meta (péninsule) : règle INVERSÉE (jour impair → plaque paire, 8h-19h). Amende de 87 € à 344 €.</p>
+      </div>
+      <p class="text-xl leading-relaxed text-charcoal text-justify">
+        En 2026 le régime de <strong>circulation alternée</strong> revient sur les deux versants : la <strong>Côte Amalfitaine</strong> applique l'<strong>Arrêté ANAS 340/2019</strong> sur la SS163 (de Vietri sul Mare à Positano, ~60 km, 11 communes), tandis que les communes de la <strong>péninsule sorrentine</strong> émettent leurs propres arrêtés sur la SS145 et dans les centres urbains. Meta, avec l'<strong>Arrêté N° 37 du 18 mars 2026</strong>, introduit un calendrier spécifique (mars-octobre) avec une règle de parité <strong>inversée</strong> par rapport à la SS163.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Péninsule sorrentine : SS145 et arrêtés municipaux</h2>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Zone</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Horaire</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Validité</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {tratteData.map(r => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3 font-semibold text-charcoal text-xs sm:text-sm">{r.tratto}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-600 text-xs sm:text-sm">{r.orario}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-500 text-sm">{r.validita}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-600 text-sm">{r.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-2">Côte Amalfitaine : Arrêté ANAS sur la SS163</h2>
+      <p class="text-sm text-slate-600 mb-6">
+        Sur la <strong>SS163 "Amalfitana"</strong>, seule route reliant les villages de la Côte, s'applique l'<strong>Arrêté ANAS n° 340/2019</strong> : circulation alternée <strong>tous les jours de 10h00 à 18h00</strong> sur les périodes indiquées, règle "standard" (jour impair → plaque impaire). <strong>Motos et scooters exemptés.</strong> Concerne 11 communes : {costieraComuni.join(', ')}.
+      </p>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Période 2026</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Horaire</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Dates</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {costieraData.map(r => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3 font-semibold text-charcoal text-xs sm:text-sm">{r.tratto}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-600 text-xs sm:text-sm">{r.orario}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-500 text-sm">{r.validita}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-600 text-sm">{r.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3 italic">Base juridique : Arrêtés ANAS 340/2019 (voitures) et 337/2019 (poids lourds).</p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Qui est exempté ?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {[
+          { title: 'Résidents', desc: 'Les résidents des communes concernées peuvent circuler avec n\'importe quelle plaque en présentant leur pièce d\'identité.' },
+          { title: 'Véhicules électriques et hybrides rechargeables', desc: 'Voitures zéro émission et hybrides rechargeables exemptés (péninsule sorrentine).' },
+          { title: 'Taxis, NCC et autocars touristiques', desc: 'Services de transport public de personnes exclus, y compris transports publics locaux.' },
+          { title: 'Hôtel/restaurant/établissement balnéaire avec réservation', desc: "Les clients d'hôtels, restaurants et établissements balnéaires peuvent demander un permis temporaire (limite 24-72h)." },
+          { title: 'Personnes handicapées avec carte', desc: 'Véhicules au service de personnes handicapées (Loi 104) avec carte visible toujours exemptés.' },
+          { title: 'Véhicules de secours et forces de l\'ordre', desc: 'Ambulances, pompiers, Carabinieri, Police et véhicules de service municipal circulent sans restrictions.' },
+        ].map((s, i) => {
+          const stripeColors = ['#D4AF37', '#E2725B', '#005B96', '#40E0D0'];
+          const stripeColor = stripeColors[i % stripeColors.length];
+          return (
+          <div class="relative overflow-hidden bg-white rounded-[2rem] p-5 sm:p-6 pl-7 border border-slate-100 shadow-sm">
+            <span class="absolute left-0 top-0 bottom-0 w-1.5" style={`background-color: ${stripeColor}`}></span>
+            <h3 class="font-semibold text-charcoal text-sm mb-2">{s.title}</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-snug">{s.desc}</p>
+          </div>
+        );})}
+      </div>
+    </section>
+
+    <section class="bg-white">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Les 3 meilleures stratégies pour éviter la restriction</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        {[
+          { title: 'Voiture à Castellammare + Circumvesuviana', desc: 'Parking-relais à Castellammare di Stabia ou Vico Equense (~8 €/jour). Train EAV Circumvesuviana jusqu\'à Sorrente en 20 min, toutes les 30 min, ~2,80 €.', badge: 'La plus économique' },
+          { title: 'Hydroptère depuis Naples ou Salerne', desc: 'NLG / Alilauro de Napoli Beverello à Sorrente (35 min, ~18 €). Ferries Travelmar de Salerne à Amalfi/Positano.', badge: 'La plus scénique' },
+          { title: 'Base à Sorrente ou Salerne + bus', desc: "Laissez la voiture en garage et utilisez les bus SITA Sud. Zéro stress de plaque.", badge: 'La plus polyvalente' },
+        ].map(s => (
+          <div class="bg-slate-900 rounded-[2rem] p-5 sm:p-6 border border-white/5">
+            <span class="text-[10px] uppercase tracking-wide bg-med-gold/15 text-med-gold px-2 py-1 rounded-full font-medium">{s.badge}</span>
+            <h3 class="font-semibold text-med-gold text-sm mt-2 sm:mt-3 mb-2">{s.title}</h3>
+            <p class="text-xs sm:text-sm text-white/70 leading-snug">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Peut-on payer pour entrer ?</h2>
+      <p class="text-base sm:text-lg text-slate-700 leading-relaxed mb-4">
+        <strong>Non, il n'existe pas de permis payant pour les touristes</strong> permettant de contourner la circulation alternée. Contrairement à certaines ZTL urbaines (Rome, Florence), les arrêtés (ANAS et municipaux) sont <strong>purement sanctionnels</strong> : soit vous entrez dans une catégorie exemptée, soit vous ne pouvez pas circuler.
+      </p>
+      <p class="text-base sm:text-lg text-slate-700 leading-relaxed mb-4">Un canal gratuit existe cependant pour les visiteurs avec réservation :</p>
+      <div class="bg-slate-900 rounded-[2rem] p-5 sm:p-6 border border-med-gold/30 mb-4">
+        <h3 class="font-semibold text-med-gold text-base mb-2">Permis temporaire "client hôtel/restaurant/lido"</h3>
+        <p class="text-sm text-white/80 leading-relaxed mb-2">
+          Avec une réservation confirmée : permis temporaire <strong class="text-white">gratuit</strong> (24-72h) :
+        </p>
+        <ul class="list-disc pl-5 text-sm text-white/80 space-y-1 marker:text-med-gold">
+          <li>directement sur place au check-in ;</li>
+          <li>arrivée jour restreint : <strong class="text-white">prévenez par e-mail avec données véhicule et heure d'arrivée</strong> ;</li>
+          <li>conservez la confirmation écrite : c'est le document qui évite l'amende.</li>
+        </ul>
+      </div>
+      <p class="text-sm text-slate-500 leading-relaxed italic">
+        Pour d'autres besoins (livraisons, travaux urgents, visites médicales) la Polizia Municipale peut délivrer une autorisation ponctuelle gratuite sur demande écrite 48h à l'avance.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-2">Contacts Polizia Locale et arrêtés</h2>
+      <p class="text-sm text-slate-600 mb-6">Coordonnées à jour des Polizia Municipale pour les informations sur la circulation alternée, exemptions et permis temporaires :</p>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Commune</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Polizia Municipale</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Site officiel</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {[
+              { comune: 'Sorrente',           tel: '081 807 4433',  sito: 'comune.sorrento.na.it' },
+              { comune: "Sant'Agnello",       tel: '081 533 2244',  sito: 'comune.sant-agnello.na.it' },
+              { comune: 'Piano di Sorrento',  tel: '081 532 1486',  sito: 'comune.pianodisorrento.na.it' },
+              { comune: 'Meta',               tel: '081 808 8020',  sito: 'comune.meta.na.it' },
+              { comune: 'Vico Equense',       tel: '081 801 9400',  sito: 'comune.vicoequense.na.it' },
+              { comune: 'Massa Lubrense',     tel: '081 878 9165',  sito: 'comune.massalubrense.na.it' },
+            ].map(c => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3 font-semibold text-charcoal text-xs sm:text-sm">{c.comune}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-700 text-xs sm:text-sm">
+                  <a href={`tel:+39${c.tel.replace(/\s/g, '')}`} class="text-med-blue hover:underline font-medium">{c.tel}</a>
+                </td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-600 text-sm">
+                  <a href={`https://www.${c.sito}/`} target="_blank" rel="noopener" class="text-med-blue hover:underline">{c.sito}</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3 italic">En cas d'urgence appelez le <strong>112</strong> (numéro d'urgence européen).</p>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Questions fréquentes</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>

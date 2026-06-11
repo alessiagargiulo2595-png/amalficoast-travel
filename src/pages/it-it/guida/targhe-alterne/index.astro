@@ -1,0 +1,483 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'it-it';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Pianificazione', url: '/it-it/pianificazione/' },
+  { name: 'Targhe Alterne 2026', url: '/it-it/guida/targhe-alterne/' },
+];
+
+const costieraData = [
+  { tratto: 'Pasqua e ponte 25 aprile', orario: '10:00–18:00', validita: '30 mar–6 apr · 25 apr–2 mag 2026', note: 'Tutti i giorni durante i due "ponti".' },
+  { tratto: 'Giugno–luglio', orario: '10:00–18:00', validita: 'Sabato, domenica e festivi', note: 'Solo nei weekend e festività della prima parte dell\'estate.' },
+  { tratto: 'Agosto–settembre', orario: '10:00–18:00', validita: '1 ago – 30 set 2026', note: 'Tutti i giorni della settimana, weekend compresi.' },
+  { tratto: 'Ottobre', orario: '10:00–18:00', validita: 'Sabato, domenica e festivi (fino al 31)', note: 'Ultima fase del provvedimento, solo nei weekend.' },
+];
+
+const costieraComuni = ['Vietri sul Mare', 'Cetara', 'Maiori', 'Minori', 'Ravello', 'Atrani', 'Amalfi', 'Conca dei Marini', 'Furore', 'Praiano', 'Positano'];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Come funzionano le targhe alterne nel 2026 in Costiera e Penisola Sorrentina?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Esistono due regimi paralleli. Sulla SS163 Costiera Amalfitana (Ordinanza ANAS 340/2019) vale la regola standard: giorni dispari del calendario → targhe con ultima cifra dispari (1, 3, 5, 7, 9); giorni pari → targhe pari (0, 2, 4, 6, 8), orario 10:00–18:00, principalmente agosto–settembre tutti i giorni più Pasqua, 25 aprile e weekend di giugno-luglio e ottobre. Sulla SS145 e nei centri della Penisola Sorrentina valgono ordinanze comunali: Meta (Ord. 37/2026) applica la regola INVERTITA (giorno dispari → targa pari) dalle 08:00 alle 19:00, da marzo a ottobre con intensità crescente." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quali veicoli sono esenti dalle targhe alterne 2026?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sono generalmente esenti: residenti dei comuni interessati, veicoli di soccorso, taxi e NCC, auto elettriche e ibride, mezzi a servizio degli hotel con prenotazione, veicoli con disabili a bordo (con contrassegno) e mezzi di servizio pubblico. Controlla sempre l\'ordinanza vigente del tuo comune prima di partire: le esenzioni possono variare." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quanto costa la multa per chi viola le targhe alterne?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La sanzione amministrativa per la violazione del divieto di circolazione targhe alterne va da €87 a €344 (art. 7 del Codice della Strada). I controlli sono effettuati da Polizia Locale e Carabinieri con posti di blocco e telecamere ai principali ingressi della penisola. La multa arriva all\'intestatario del veicolo (o all\'autonoleggio, che la gira al cliente con maggiorazione)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Come visitare la Penisola Sorrentina nei giorni di targhe alterne?",
+      "acceptedAnswer": { "@type": "Answer", "text": "L\'opzione migliore è lasciare l\'auto fuori dal perimetro: parcheggio di scambio a Vico Equense o Castellammare di Stabia, poi Circumvesuviana fino a Sorrento (15-25 minuti). In alternativa, da Napoli puoi prendere l\'aliscafo NLG/Alilauro diretto a Sorrento (35 min). Bus SITA Sud collega Sorrento ad Amalfi e Positano. Tutti questi mezzi non sono soggetti alle limitazioni delle targhe alterne." }
+    },
+    {
+      "@type": "Question",
+      "name": "Le targhe alterne valgono anche per gli scooter e le moto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sì, di norma le ordinanze sulle targhe alterne in Penisola Sorrentina si applicano a tutti i veicoli a motore con targa, incluse moto e scooter sopra i 50cc. I ciclomotori 50cc con targa pari/dispari rientrano nel provvedimento. Sono escluse le biciclette (anche elettriche) e i monopattini. Controlla l\'ordinanza specifica del comune che attraversi: alcune amministrazioni esentano i mezzi a due ruote." }
+    }
+  ]
+};
+
+const tratteData = [
+  { tratto: 'Meta (centro – Ord. 37/2026) ⚠️ regola invertita', orario: '08:00–19:00', validita: '28–29 mar · Apr/Ott (Sab/Dom+festivi) · Mag/Giu/Set (Ven–Dom+festivi) · Lug/Ago (tutti i giorni)', note: 'A Meta: nei giorni PARI circolano le targhe DISPARI (e viceversa). Punti di applicazione: incrocio Via S. E. De Martino / Via G. Marconi e incrocio Via Caracciolo / Via A. Cosenza. Estesa anche a moto e ciclomotori.' },
+  { tratto: 'SS145 Sorrentina (tratti urbani)', orario: 'Sab/Dom + festivi (9:00–19:00)', validita: 'Giu–Set 2026', note: 'Da Castellammare di Stabia a Sorrento. Posti di blocco principali a Vico Equense e Meta.' },
+  { tratto: 'Centro Sorrento', orario: 'Sab/Dom + festivi (10:00–22:00)', validita: 'Giu–Set 2026', note: 'Allineata alla ZTL centrale: ingresso solo per residenti e hotel con prenotazione.' },
+  { tratto: 'Sant\'Agnello / Piano di Sorrento', orario: 'Sab/Dom + festivi (10:00–19:00)', validita: 'Giu–Set 2026', note: 'Allineato a Sorrento per evitare aggiramenti via Corso Italia.' },
+  { tratto: 'Vico Equense', orario: 'Sab/Dom (10:00–19:00)', validita: 'Lug–Ago 2026', note: 'Controlli mirati nei weekend di alta stagione. Pochi parcheggi liberi sul lungomare.' },
+  { tratto: 'Massa Lubrense', orario: 'Solo festivi (9:00–20:00)', validita: 'Lug–Ago 2026', note: 'Restrizioni su Termini–Nerano e Marina del Cantone, particolarmente intense in agosto.' },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Targhe Alterne 2026 Costiera Amalfitana SS163 (ANAS 340/2019) e Penisola Sorrentina SS145",
+  "description": "Guida 2026 alle targhe alterne in Costiera Amalfitana (Ordinanza ANAS 340/2019 sulla SS163, 11 comuni da Vietri a Positano) e Penisola Sorrentina (ordinanze comunali SS145: Meta Ord. 37/2026, Sorrento, Sant'Agnello, Piano di Sorrento, Vico Equense, Massa Lubrense). Calendario, orari, esenzioni e multe da €87 a €344.",
+  "image": "https://amalficoast-travel.com/images/targhe-alterne-hero.webp",
+  "datePublished": "2026-06-11",
+  "dateModified": "2026-06-11",
+  "inLanguage": "it-IT",
+  "author": {
+    "@type": "Organization",
+    "name": "Amalfi Coast Travel Guide",
+    "url": "https://amalficoast-travel.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Amalfi Coast Travel Guide",
+    "url": "https://amalficoast-travel.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://amalficoast-travel.com/logo-footer.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://amalficoast-travel.com/it-it/guida/targhe-alterne/"
+  },
+  "about": [
+    { "@type": "Thing", "name": "Targhe alterne" },
+    { "@type": "Thing", "name": "Ordinanza ANAS 340/2019" },
+    { "@type": "Thing", "name": "Codice della Strada" },
+    { "@type": "Place", "name": "Costiera Amalfitana" },
+    { "@type": "Place", "name": "SS163 Amalfitana" },
+    { "@type": "Place", "name": "Penisola Sorrentina" },
+    { "@type": "Place", "name": "SS145 Sorrentina" }
+  ]
+};
+
+const specialAnnouncementSchema = {
+  "@context": "https://schema.org",
+  "@type": "SpecialAnnouncement",
+  "name": "Targhe alterne 2026: Costiera Amalfitana (SS163) e Penisola Sorrentina (SS145)",
+  "text": "Costiera Amalfitana: Ord. ANAS 340/2019 sulla SS163. Targhe alterne 10:00-18:00 tutti i giorni dal 1 agosto al 30 settembre 2026; nei ponti Pasqua (30 mar–6 apr) e 25 aprile (25 apr–2 mag); weekend e festivi giugno-luglio e ottobre. Regola: giorno dispari→targa dispari. Moto e scooter esenti. Penisola Sorrentina: ordinanze comunali SS145 e centri urbani (Sorrento, Sant'Agnello, Piano di Sorrento, Vico Equense, Massa Lubrense, weekend giu-set). Meta: Ord. 37/2026, 08:00-19:00, REGOLA INVERTITA (giorno dispari→targa pari), marzo-ottobre con intensità crescente. Sanzione €87-€344. Esenti: residenti, elettriche e plug-in, taxi/NCC, bus, soccorso, disabili con contrassegno, ospiti hotel con permesso.",
+  "datePosted": "2026-03-18",
+  "expires": "2026-10-31",
+  "category": "https://www.wikidata.org/wiki/Q57415",
+  "url": "https://amalficoast-travel.com/it-it/guida/targhe-alterne/",
+  "inLanguage": "it-IT",
+  "spatialCoverage": [
+    { "@type": "AdministrativeArea", "name": "Sorrento" },
+    { "@type": "AdministrativeArea", "name": "Sant'Agnello" },
+    { "@type": "AdministrativeArea", "name": "Piano di Sorrento" },
+    { "@type": "AdministrativeArea", "name": "Meta" },
+    { "@type": "AdministrativeArea", "name": "Vico Equense" },
+    { "@type": "AdministrativeArea", "name": "Massa Lubrense" },
+    { "@type": "AdministrativeArea", "name": "Vietri sul Mare" },
+    { "@type": "AdministrativeArea", "name": "Cetara" },
+    { "@type": "AdministrativeArea", "name": "Maiori" },
+    { "@type": "AdministrativeArea", "name": "Minori" },
+    { "@type": "AdministrativeArea", "name": "Ravello" },
+    { "@type": "AdministrativeArea", "name": "Atrani" },
+    { "@type": "AdministrativeArea", "name": "Amalfi" },
+    { "@type": "AdministrativeArea", "name": "Conca dei Marini" },
+    { "@type": "AdministrativeArea", "name": "Furore" },
+    { "@type": "AdministrativeArea", "name": "Praiano" },
+    { "@type": "AdministrativeArea", "name": "Positano" }
+  ],
+  "announcementLocation": {
+    "@type": "GovernmentOffice",
+    "name": "Comando Polizia Municipale Sorrento",
+    "telephone": "+390818074433",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Corso Italia, 236",
+      "addressLocality": "Sorrento",
+      "postalCode": "80067",
+      "addressRegion": "NA",
+      "addressCountry": "IT"
+    }
+  },
+  "publicTransportClosuresInfo": "Non interessati dal provvedimento: bus SITA Sud, treno Circumvesuviana EAV, aliscafi NLG/Alilauro per Sorrento. Permangono come alternativa principale alle restrizioni veicolari.",
+  "governmentBenefitsInfo": "Permesso temporaneo gratuito per ospiti di strutture ricettive (hotel, B&B): la struttura comunica il numero di targa al comune al momento del check-in. Validità 24–72h."
+};
+---
+
+<BaseLayout
+  title="Targhe Alterne 2026 Penisola Sorrentina e Costiera Amalfitana"
+  description="Guida completa targhe alterne 2026: ordinanza ANAS 340/2019 sulla SS163 Costiera Amalfitana (Vietri–Positano) e ordinanze comunali SS145 Penisola Sorrentina (Meta, Sorrento, Vico). Calendario, orari, esenzioni e multe."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[articleSchema, specialAnnouncementSchema, faqSchema]}
+ pageKey="targhe-alterne"
+  heroImage="/images/targhe-alterne-hero.webp"
+>
+
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/targhe-alterne-hero.webp" alt="Penisola Sorrentina, targhe alterne 2026" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 80%;" loading="eager" fetchpriority="high" decoding="sync" referrerpolicy="no-referrer"/>
+
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Guida Pratica</p>
+        <h1 class="font-serif text-display text-white mb-4">Targhe Alterne 2026: Penisola Sorrentina e Costiera Amalfitana</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Due ordinanze, un'unica logica pari/dispari. SS145 (Meta, Sorrento, Vico) e SS163 ANAS (Vietri–Positano): calendario 2026, orari, esenzioni e multe. Come visitare Costiera e Penisola senza prendere multe.
+        </p>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-4 space-y-12">
+
+    <section class="max-w-editorial">
+      <div style="background-color: #E2725B; border-color: #E2725B; padding: 6px 12px 6px 12px;" class="border rounded-[2rem] mb-6 mt-8">
+        <p class="font-semibold mb-0 mt-0 text-white text-sm leading-tight" style="margin-top: -2px;">⚠️ Attenzione: targa pari/dispari</p>
+        <p class="text-xs text-white/95 leading-tight">Nei giorni di calendario dispari (1, 3, 5...) circolano solo le targhe che terminano con cifra dispari. Nei giorni pari circolano le targhe pari (0 incluso). La multa va da €87 a €344 e arriva direttamente all'intestatario o all'autonoleggio.</p>
+      </div>
+      <p class="text-xl leading-relaxed text-charcoal text-justify">
+        Nel 2026 il regime delle <strong>targhe alterne</strong> torna su entrambi i versanti: la <strong>Costiera Amalfitana</strong> applica l'<strong>Ordinanza ANAS 340/2019</strong> sulla SS163 (da Vietri sul Mare a Positano, ~60 km, 11 comuni), mentre i comuni della <strong>Penisola Sorrentina</strong> emettono ordinanze proprie sulla SS145 e nei centri urbani. Meta, ad esempio, con l'<strong>Ordinanza N. 37 del 18 marzo 2026</strong> introduce un calendario specifico (marzo–ottobre) con regola di parità <strong>invertita</strong> rispetto alla SS163.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Penisola Sorrentina: SS145 e ordinanze comunali</h2>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Tratto</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Orario</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Validità</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Note</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {tratteData.map(r => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3 font-semibold text-charcoal text-xs sm:text-sm">{r.tratto}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-600 text-xs sm:text-sm">{r.orario}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-500 text-sm">{r.validita}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-600 text-sm">{r.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3 italic">Le ordinanze comunali della Penisola sono pubblicate da Sorrento, Sant'Agnello, Piano di Sorrento, Meta, Vico Equense e Massa Lubrense all'inizio della stagione. Verifica sempre il calendario aggiornato prima di partire.</p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-2">Costiera Amalfitana: ordinanza ANAS sulla SS163</h2>
+      <p class="text-sm text-slate-600 mb-6">
+        Sulla <strong>SS163 "Amalfitana"</strong>, l'unica strada che collega i borghi della Costiera, vige l'<strong>Ordinanza ANAS n. 340/2019</strong>: targhe alterne <strong>tutti i giorni dalle 10:00 alle 18:00</strong> nei periodi indicati, con regola "standard" (giorno dispari → targa dispari, giorno pari → targa pari). Le <strong>moto e gli scooter sono esenti</strong>. Riguarda 11 comuni: {costieraComuni.join(', ')}.
+      </p>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Periodo 2026</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Orario</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Date</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Note</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {costieraData.map(r => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3 font-semibold text-charcoal text-xs sm:text-sm">{r.tratto}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-600 text-xs sm:text-sm">{r.orario}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-500 text-sm">{r.validita}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-600 text-sm">{r.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3 italic">
+        Base normativa: Ordinanze ANAS 340/2019 (auto a targhe alterne) e 337/2019 (mezzi pesanti). Le ordinanze comunali della Costiera possono apportare deroghe locali: verifica anche sui siti dei singoli comuni.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Chi è esente dalle targhe alterne</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {[
+          { title: 'Residenti', desc: 'I residenti dei comuni interessati circolano liberamente con qualsiasi targa, presentando il documento ai posti di blocco.' },
+          { title: 'Veicoli elettrici e ibridi plug-in', desc: 'Le auto a zero emissioni e gli ibridi ricaricabili sono esentati per favorire la mobilità sostenibile.' },
+          { title: 'Taxi, NCC e bus turistici', desc: 'I servizi pubblici di trasporto persone sono esclusi dal provvedimento, inclusi i mezzi del trasporto pubblico locale.' },
+          { title: 'Hotel con prenotazione', desc: 'Gli ospiti di strutture ricettive nel perimetro possono richiedere il permesso temporaneo direttamente all\'albergo (limite 24-48h).' },
+          { title: 'Disabili con contrassegno', desc: 'I veicoli al servizio di persone con disabilità (legge 104) con contrassegno esposto sono sempre esenti.' },
+          { title: 'Mezzi di soccorso e forze dell\'ordine', desc: 'Ambulanze, vigili del fuoco, Carabinieri, Polizia e mezzi di servizio comunale circolano senza restrizioni.' },
+        ].map((s, i) => {
+          const stripeColors = ['#D4AF37', '#E2725B', '#005B96', '#40E0D0'];
+          const stripeColor = stripeColors[i % stripeColors.length];
+          return (
+          <div class="relative overflow-hidden bg-white rounded-[2rem] p-5 sm:p-6 pl-7 border border-slate-100 shadow-sm">
+            <span class="absolute left-0 top-0 bottom-0 w-1.5" style={`background-color: ${stripeColor}`}></span>
+            <h3 class="font-semibold text-charcoal text-sm mb-2">{s.title}</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-snug">{s.desc}</p>
+          </div>
+        );})}
+      </div>
+    </section>
+
+    <section class="bg-white">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Le 3 strategie migliori per evitare le targhe alterne</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        {[
+          {
+            title: 'Auto a Castellammare + Circumvesuviana',
+            desc: 'Parcheggio di scambio a Castellammare di Stabia o Vico Equense (~€8/giorno). Treno EAV Circumvesuviana fino a Sorrento in 20 minuti. Frequenza ogni 30 min, biglietto ~€2,80.',
+            badge: 'Più economica',
+          },
+          {
+            title: 'Aliscafo da Napoli',
+            desc: 'Aliscafi NLG / Alilauro da Napoli Beverello a Sorrento (35 min, ~€18). Sbarchi diretti al porto, da cui si raggiunge il centro a piedi in 10 min con l\'ascensore Marina Piccola.',
+            badge: 'Più scenografica',
+          },
+          {
+            title: 'Base a Sorrento + bus SITA',
+            desc: 'Se dormi a Sorrento, lascia l\'auto in garage (Achille Lauro o EAV) per tutta la vacanza. Da lì: bus SITA Sud per Positano e Amalfi, aliscafo per Capri. Zero stress di targhe.',
+            badge: 'Più versatile',
+          },
+        ].map(s => (
+          <div class="bg-slate-900 rounded-[2rem] p-5 sm:p-6 border border-white/5">
+            <span class="text-[10px] uppercase tracking-wide bg-med-gold/15 text-med-gold px-2 py-1 rounded-full font-medium">{s.badge}</span>
+            <h3 class="font-semibold text-med-gold text-sm mt-2 sm:mt-3 mb-2">{s.title}</h3>
+            <p class="text-xs sm:text-sm text-white/70 leading-snug">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Si può pagare un'integrazione per entrare?</h2>
+      <p class="text-base sm:text-lg text-slate-700 leading-relaxed mb-4">
+        <strong>No, per i turisti non esiste un permesso a pagamento</strong> che consenta di aggirare le targhe alterne in Penisola Sorrentina. A differenza di alcune ZTL cittadine (Roma, Firenze) dove è possibile acquistare un pass giornaliero, le ordinanze sulle targhe alterne sono <strong>esclusivamente sanzionatorie</strong>: o rientri in una categoria esente o non puoi circolare nei giorni vietati.
+      </p>
+      <p class="text-base sm:text-lg text-slate-700 leading-relaxed mb-4">
+        Esiste però un canale gratuito riservato a chi soggiorna sul territorio:
+      </p>
+      <div class="bg-slate-900 rounded-[2rem] p-5 sm:p-6 border border-med-gold/30 mb-4">
+        <h3 class="font-semibold text-med-gold text-base mb-2">Permesso temporaneo "ospite hotel"</h3>
+        <p class="text-sm text-white/80 leading-relaxed mb-2">
+          Se hai una prenotazione confermata in un hotel, B&B o struttura ricettiva del comune interessato, puoi richiedere <strong class="text-white">gratuitamente</strong> un permesso temporaneo (di norma valido 24–72h) per raggiungere la struttura e ripartire. Il permesso si ottiene:
+        </p>
+        <ul class="list-disc pl-5 text-sm text-white/80 space-y-1 marker:text-med-gold">
+          <li>direttamente in hotel al check-in (la struttura lo comunica al comune con il numero di targa);</li>
+          <li>per arrivi in giornata vietata: <strong class="text-white">preavvisa la struttura via email con dati auto + orario di arrivo</strong>, così l'hotel registra la targa prima dei controlli;</li>
+          <li>conserva la conferma scritta della prenotazione: se fermato a un posto di blocco, è il documento che evita la multa.</li>
+        </ul>
+      </div>
+      <p class="text-sm text-slate-500 leading-relaxed italic">
+        Per esigenze diverse (consegne commerciali, lavori urgenti, visite mediche specialistiche) il Comando di Polizia Municipale del comune competente può rilasciare un'autorizzazione una tantum gratuita: serve farne richiesta scritta con almeno 48h di anticipo.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-2">Contatti Polizia Locale e info ordinanze</h2>
+      <p class="text-sm text-slate-600 mb-6">
+        I numeri e gli orari delle ordinanze cambiano ogni stagione. Per informazioni aggiornate sulle targhe alterne, esenzioni e permessi temporanei, contatta il Comando di Polizia Municipale del comune che vuoi attraversare.
+      </p>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Comune</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Polizia Municipale</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Sito ufficiale ordinanze</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {[
+              { comune: 'Sorrento',           tel: '081 807 4433',  sito: 'comune.sorrento.na.it' },
+              { comune: 'Sant\'Agnello',      tel: '081 533 2244',  sito: 'comune.sant-agnello.na.it' },
+              { comune: 'Piano di Sorrento',  tel: '081 532 1486',  sito: 'comune.pianodisorrento.na.it' },
+              { comune: 'Meta',               tel: '081 808 8020',  sito: 'comune.meta.na.it' },
+              { comune: 'Vico Equense',       tel: '081 801 9400',  sito: 'comune.vicoequense.na.it' },
+              { comune: 'Massa Lubrense',     tel: '081 878 9165',  sito: 'comune.massalubrense.na.it' },
+            ].map(c => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3 font-semibold text-charcoal text-xs sm:text-sm">{c.comune}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-700 text-xs sm:text-sm">
+                  <a href={`tel:+39${c.tel.replace(/\s/g, '')}`} class="text-med-blue hover:underline font-medium">{c.tel}</a>
+                </td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-600 text-sm">
+                  <a href={`https://www.${c.sito}/`} target="_blank" rel="noopener" class="text-med-blue hover:underline">{c.sito}</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3 italic">
+        I numeri telefonici si riferiscono ai centralini dei Comandi di Polizia Municipale. Verifica sempre sul sito ufficiale del comune l'ordinanza in vigore: i provvedimenti vengono pubblicati all'albo pretorio all'inizio della stagione estiva e possono essere aggiornati durante l'anno. Per emergenze, chiama il <strong>112</strong> (numero unico europeo).
+      </p>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Domande frequenti</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="py-16 bg-white">
+      <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Tutto quello che serve</h2>
+          <div class="w-20 h-1 bg-med-gold mx-auto rounded-full"></div>
+        </div>
+
+        <div class="swiper swiper-guides md:hidden">
+          <div class="swiper-wrapper pb-12">
+            <div class="swiper-slide">
+              <a href="/it-it/guida/parcheggi-ztl/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300 h-full">
+                <h3 class="font-serif text-xl font-bold text-med-gold mb-2">Parcheggi e ZTL</h3>
+                <p class="text-white text-sm mb-3">Dove lasciare l'auto e cosa fare</p>
+                <p class="text-white/70 text-xs leading-relaxed mb-4">Guida ai parcheggi e alle ZTL della costiera</p>
+                <span class="text-med-gold font-semibold text-sm">Leggi la guida →</span>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="/it-it/guida/bus-sita/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300 h-full">
+                <h3 class="font-serif text-xl font-bold text-med-gold mb-2">Bus SITA</h3>
+                <p class="text-white text-sm mb-3">Orari, tariffe e percorsi principali</p>
+                <p class="text-white/70 text-xs leading-relaxed mb-4">Muoversi sulla costiera in bus: tutte le linee e fermate</p>
+                <span class="text-med-gold font-semibold text-sm">Leggi →</span>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="/it-it/guida/traghetti/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300 h-full">
+                <h3 class="font-serif text-xl font-bold text-med-gold mb-2">Traghetti</h3>
+                <p class="text-white text-sm mb-3">Come raggiungere la costiera via mare</p>
+                <p class="text-white/70 text-xs leading-relaxed mb-4">Orari, tariffe e rotte principali da Napoli e Salerno</p>
+                <span class="text-med-gold font-semibold text-sm">Leggi →</span>
+              </a>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <a href="/it-it/guida/parcheggi-ztl/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300">
+            <h3 class="font-serif text-xl font-bold text-med-gold mb-2">Parcheggi e ZTL</h3>
+            <p class="text-white text-sm mb-3">Dove lasciare l'auto e cosa fare</p>
+            <p class="text-white/70 text-xs leading-relaxed mb-4">Guida ai parcheggi e alle ZTL della costiera</p>
+            <span class="text-med-gold font-semibold text-sm">Leggi la guida →</span>
+          </a>
+
+          <a href="/it-it/guida/bus-sita/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300">
+            <h3 class="font-serif text-xl font-bold text-med-gold mb-2">Bus SITA</h3>
+            <p class="text-white text-sm mb-3">Orari, tariffe e percorsi principali</p>
+            <p class="text-white/70 text-xs leading-relaxed mb-4">Muoversi sulla costiera in bus: tutte le linee e fermate</p>
+            <span class="text-med-gold font-semibold text-sm">Leggi →</span>
+          </a>
+
+          <a href="/it-it/guida/traghetti/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300">
+            <h3 class="font-serif text-xl font-bold text-med-gold mb-2">Traghetti</h3>
+            <p class="text-white text-sm mb-3">Come raggiungere la costiera via mare</p>
+            <p class="text-white/70 text-xs leading-relaxed mb-4">Orari, tariffe e rotte principali da Napoli e Salerno</p>
+            <span class="text-med-gold font-semibold text-sm">Leggi →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Pagination } from 'swiper/modules';
+
+  const base = {
+    modules: [Pagination],
+    slidesPerView: 1.15,
+    spaceBetween: 16,
+    watchSlidesProgress: true,
+    resistanceRatio: 0,
+    touchReleaseOnEdges: true,
+  };
+
+  new Swiper('.swiper-guides', { ...base, pagination: { el: '.swiper-guides .swiper-pagination', clickable: true } });
+</script>
+
+<style is:global>
+  @import 'swiper/css';
+  @import 'swiper/css/pagination';
+
+  :root {
+    --swiper-pagination-color: #D4AF37;
+  }
+
+  .swiper-pagination-bullet {
+    background-color: var(--swiper-pagination-color);
+    opacity: 0.5;
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
+
+  @media (min-width: 768px) {
+    .swiper {
+      display: none !important;
+    }
+  }
+</style>
+
+</BaseLayout>

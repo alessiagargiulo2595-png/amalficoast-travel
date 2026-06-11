@@ -1,0 +1,367 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'en-us';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Planning', url: '/en-us/planning/' },
+  { name: 'Alternate License Plates 2026', url: '/en-us/guide/alternate-license-plates/' },
+];
+
+const costieraData = [
+  { tratto: 'Easter and 25 April long weekend', orario: '10:00–18:00', validita: '30 Mar–6 Apr · 25 Apr–2 May 2026', note: 'Every day during the two "ponti" (long weekends).' },
+  { tratto: 'June–July', orario: '10:00–18:00', validita: 'Saturday, Sunday and public holidays', note: 'Only on weekends and holidays in the first part of the summer.' },
+  { tratto: 'August–September', orario: '10:00–18:00', validita: '1 Aug – 30 Sep 2026', note: 'Every day of the week, weekends included.' },
+  { tratto: 'October', orario: '10:00–18:00', validita: 'Saturday, Sunday and public holidays (through 31 Oct)', note: 'Final phase of the measure, weekends only.' },
+];
+
+const costieraComuni = ['Vietri sul Mare', 'Cetara', 'Maiori', 'Minori', 'Ravello', 'Atrani', 'Amalfi', 'Conca dei Marini', 'Furore', 'Praiano', 'Positano'];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do alternate license plate restrictions work in 2026 on the Amalfi Coast and Sorrento Peninsula?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Two parallel regimes apply. On the SS163 Amalfi Coast (ANAS Ordinance 340/2019) the standard rule is in force: on odd calendar days plates ending in odd digits (1, 3, 5, 7, 9) may circulate; on even days even plates (0, 2, 4, 6, 8), hours 10:00-18:00, mainly daily in August-September plus Easter, 25 April, and weekends in June-July and October. On the SS145 and in the Sorrento Peninsula towns, municipal ordinances apply: Meta (Ord. 37/2026) follows the INVERTED rule (odd day → even plate) from 08:00 to 19:00, March to October with escalating intensity." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which vehicles are exempt from the 2026 alternate plate rule?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Generally exempt: residents of the affected municipalities, emergency vehicles, taxis and NCC (chauffeur-driven cars), electric and plug-in hybrid cars (Sorrento Peninsula), vehicles serving hotel guests with confirmed bookings, disabled drivers with the EU badge, public service vehicles. On the SS163 (ANAS): two-wheeled vehicles (motorcycles and scooters) are exempt. On Meta's ordinance: scooters and motorbikes are NOT exempt. Always check the current ordinance of the town you intend to cross." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much is the fine for violating the alternate plate rule?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The administrative fine for violating the alternate plate restriction is €87 to €344 (Article 7, paragraph 13 of the Italian Highway Code). Checks are carried out by Polizia Locale and Carabinieri with roadblocks and cameras at the main entry points. The fine is sent to the vehicle's registered owner (or to the rental company, which passes it on with a surcharge)." }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I visit the Amalfi Coast and Sorrento Peninsula on restricted days?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Park outside the restricted area and use public transport: park-and-ride at Vico Equense or Castellammare di Stabia, then the Circumvesuviana train to Sorrento (15-25 minutes). From Naples, the NLG/Alilauro hydrofoil goes directly to Sorrento (35 min). SITA Sud buses connect Sorrento to Amalfi and Positano. Travelmar ferries connect Salerno to Amalfi and Positano. None of these options are affected by the alternate plate rule." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do alternate plate restrictions apply to scooters and motorbikes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It depends on the location. The SS163 Amalfi Coast ordinance (ANAS 340/2019) EXEMPTS two-wheeled vehicles. Meta's ordinance (37/2026), however, EXPLICITLY INCLUDES motorbikes and 50cc+ scooters. Other Sorrento Peninsula municipalities can adopt either approach: always check the local ordinance before crossing." }
+    }
+  ]
+};
+
+const tratteData = [
+  { tratto: 'Meta (centre – Ord. 37/2026) ⚠️ inverted rule', orario: '08:00–19:00', validita: '28–29 Mar · Apr/Oct (Sat/Sun+holidays) · May/Jun/Sep (Fri–Sun+holidays) · Jul/Aug (every day)', note: 'In Meta: on EVEN days ODD plates may circulate (and vice versa). Enforced at the intersections of Via S. E. De Martino / Via G. Marconi and Via Caracciolo / Via A. Cosenza. Also applies to motorbikes and mopeds.' },
+  { tratto: 'SS145 Sorrentina (urban stretches)', orario: 'Sat/Sun + holidays (9:00–19:00)', validita: 'Jun–Sep 2026', note: 'From Castellammare di Stabia to Sorrento. Main roadblocks at Vico Equense and Meta.' },
+  { tratto: 'Sorrento centre', orario: 'Sat/Sun + holidays (10:00–22:00)', validita: 'Jun–Sep 2026', note: 'Stacks with the central ZTL: entry only for residents and hotel guests with booking.' },
+  { tratto: "Sant'Agnello / Piano di Sorrento", orario: 'Sat/Sun + holidays (10:00–19:00)', validita: 'Jun–Sep 2026', note: 'Aligned with Sorrento to prevent diversion via Corso Italia.' },
+  { tratto: 'Vico Equense', orario: 'Sat/Sun (10:00–19:00)', validita: 'Jul–Aug 2026', note: 'Targeted checks on peak-season weekends. Very few free parking spots on the seafront.' },
+  { tratto: 'Massa Lubrense', orario: 'Holidays only (9:00–20:00)', validita: 'Jul–Aug 2026', note: 'Restrictions on Termini–Nerano and Marina del Cantone, especially intense in August.' },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Alternate License Plates 2026: Amalfi Coast SS163 (ANAS 340/2019) and Sorrento Peninsula SS145",
+  "description": "2026 guide to alternate license plate restrictions on the Amalfi Coast (ANAS Ordinance 340/2019, SS163, 11 municipalities from Vietri to Positano) and Sorrento Peninsula (municipal ordinances on SS145: Meta Ord. 37/2026, Sorrento, Sant'Agnello, Piano di Sorrento, Vico Equense, Massa Lubrense). Calendar, hours, exemptions, fines €87 to €344.",
+  "image": "https://amalficoast-travel.com/images/targhe-alterne-hero.webp",
+  "datePublished": "2026-06-11",
+  "dateModified": "2026-06-11",
+  "inLanguage": "en-US",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel Guide", "url": "https://amalficoast-travel.com/" },
+  "publisher": { "@type": "Organization", "name": "Amalfi Coast Travel Guide", "url": "https://amalficoast-travel.com/", "logo": { "@type": "ImageObject", "url": "https://amalficoast-travel.com/logo-footer.svg" } },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://amalficoast-travel.com/en-us/guide/alternate-license-plates/" },
+  "about": [
+    { "@type": "Thing", "name": "Alternate license plate restriction" },
+    { "@type": "Thing", "name": "ANAS Ordinance 340/2019" },
+    { "@type": "Thing", "name": "Italian Highway Code" },
+    { "@type": "Place", "name": "Amalfi Coast" },
+    { "@type": "Place", "name": "SS163 Amalfitana" },
+    { "@type": "Place", "name": "Sorrento Peninsula" },
+    { "@type": "Place", "name": "SS145 Sorrentina" }
+  ]
+};
+
+const specialAnnouncementSchema = {
+  "@context": "https://schema.org",
+  "@type": "SpecialAnnouncement",
+  "name": "Alternate License Plates 2026: Amalfi Coast (SS163) and Sorrento Peninsula (SS145)",
+  "text": "Amalfi Coast: ANAS Ordinance 340/2019 on the SS163. Alternate plates 10:00-18:00 daily from 1 August to 30 September 2026; during the Easter (30 Mar-6 Apr) and 25 April (25 Apr-2 May) long weekends; weekends and holidays in June-July and October. Rule: odd day → odd plate. Motorbikes and scooters are exempt. Sorrento Peninsula: municipal ordinances on the SS145 and urban centres (Sorrento, Sant'Agnello, Piano di Sorrento, Vico Equense, Massa Lubrense, weekends Jun-Sep). Meta: Ord. 37/2026, 08:00-19:00, INVERTED RULE (odd day → even plate), March-October with escalating intensity. Fine €87-€344. Exempt: residents, electric and plug-in hybrids, taxis/NCC, buses, emergency vehicles, disabled drivers with badge, hotel guests with permit.",
+  "datePosted": "2026-03-18",
+  "expires": "2026-10-31",
+  "category": "https://www.wikidata.org/wiki/Q57415",
+  "url": "https://amalficoast-travel.com/en-us/guide/alternate-license-plates/",
+  "inLanguage": "en-US",
+  "spatialCoverage": [
+    { "@type": "AdministrativeArea", "name": "Sorrento" },
+    { "@type": "AdministrativeArea", "name": "Sant'Agnello" },
+    { "@type": "AdministrativeArea", "name": "Piano di Sorrento" },
+    { "@type": "AdministrativeArea", "name": "Meta" },
+    { "@type": "AdministrativeArea", "name": "Vico Equense" },
+    { "@type": "AdministrativeArea", "name": "Massa Lubrense" },
+    { "@type": "AdministrativeArea", "name": "Vietri sul Mare" },
+    { "@type": "AdministrativeArea", "name": "Cetara" },
+    { "@type": "AdministrativeArea", "name": "Maiori" },
+    { "@type": "AdministrativeArea", "name": "Minori" },
+    { "@type": "AdministrativeArea", "name": "Ravello" },
+    { "@type": "AdministrativeArea", "name": "Atrani" },
+    { "@type": "AdministrativeArea", "name": "Amalfi" },
+    { "@type": "AdministrativeArea", "name": "Conca dei Marini" },
+    { "@type": "AdministrativeArea", "name": "Furore" },
+    { "@type": "AdministrativeArea", "name": "Praiano" },
+    { "@type": "AdministrativeArea", "name": "Positano" }
+  ],
+  "publicTransportClosuresInfo": "Not affected by the ordinance: SITA Sud buses, Circumvesuviana EAV train, NLG/Alilauro hydrofoils to Sorrento, Travelmar ferries. These remain the main alternatives to vehicle restrictions.",
+  "governmentBenefitsInfo": "Free temporary permit for guests of accommodation facilities (hotels, B&Bs): the property submits the plate number to the town hall at check-in. Valid 24–72h."
+};
+---
+
+<BaseLayout
+  title="Alternate License Plates 2026 Amalfi Coast & Sorrento Peninsula"
+  description="Full 2026 guide to alternate license plate restrictions: ANAS Ordinance 340/2019 on the SS163 Amalfi Coast (Vietri–Positano) and municipal ordinances on the SS145 Sorrento Peninsula (Meta, Sorrento, Vico). Schedule, hours, exemptions and fines."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[articleSchema, specialAnnouncementSchema, faqSchema]}
+ pageKey="targhe-alterne"
+  heroImage="/images/targhe-alterne-hero.webp"
+>
+
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/targhe-alterne-hero.webp" alt="Amalfi Coast and Sorrento Peninsula, alternate license plates 2026" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 80%;" loading="eager" fetchpriority="high" decoding="sync" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Practical Guide</p>
+        <h1 class="font-serif text-display text-white mb-4">Alternate License Plates 2026: Amalfi Coast and Sorrento Peninsula</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Two ordinances, one odd/even logic. SS145 (Meta, Sorrento, Vico) and SS163 ANAS (Vietri–Positano): 2026 calendar, hours, exemptions and fines. How to visit the Coast and Peninsula without picking up a ticket.
+        </p>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-4 space-y-12">
+
+    <section class="max-w-editorial">
+      <div style="background-color: #E2725B; border-color: #E2725B; padding: 6px 12px 6px 12px;" class="border rounded-[2rem] mb-6 mt-8">
+        <p class="font-semibold mb-0 mt-0 text-white text-sm leading-tight" style="margin-top: -2px;">⚠️ Two ordinances, one trap</p>
+        <p class="text-xs text-white/95 leading-tight">SS163 Amalfi Coast: standard rule (odd day → odd plate, 10:00-18:00). Meta (Sorrento Peninsula): INVERTED rule (odd day → even plate, 08:00-19:00). Fine from €87 to €344, sent directly to the registered owner or rental company.</p>
+      </div>
+      <p class="text-xl leading-relaxed text-charcoal text-justify">
+        In 2026 the <strong>alternate license plate</strong> regime returns on both sides of the peninsula: the <strong>Amalfi Coast</strong> applies <strong>ANAS Ordinance 340/2019</strong> on the SS163 (from Vietri sul Mare to Positano, ~60 km, 11 municipalities), while the <strong>Sorrento Peninsula</strong> towns issue their own ordinances on the SS145 and in their urban centres. Meta, with <strong>Ordinance No. 37 of 18 March 2026</strong>, introduces a specific calendar (March–October) with an <strong>inverted</strong> parity rule compared to the SS163.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Sorrento Peninsula: SS145 and municipal ordinances</h2>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Area</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Hours</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Validity</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {tratteData.map(r => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3 font-semibold text-charcoal text-xs sm:text-sm">{r.tratto}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-600 text-xs sm:text-sm">{r.orario}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-500 text-sm">{r.validita}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-600 text-sm">{r.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3 italic">Sorrento Peninsula municipal ordinances are published by Sorrento, Sant'Agnello, Piano di Sorrento, Meta, Vico Equense and Massa Lubrense at the start of each season. Always check the latest calendar before you set off.</p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-2">Amalfi Coast: ANAS ordinance on the SS163</h2>
+      <p class="text-sm text-slate-600 mb-6">
+        On the <strong>SS163 "Amalfitana"</strong> — the only road that links the villages of the coast — <strong>ANAS Ordinance no. 340/2019</strong> applies: alternate plates <strong>every day from 10:00 to 18:00</strong> in the listed periods, with the "standard" rule (odd day → odd plate, even day → even plate). <strong>Motorbikes and scooters are exempt.</strong> It covers 11 municipalities: {costieraComuni.join(', ')}.
+      </p>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">2026 period</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Hours</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Dates</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {costieraData.map(r => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3 font-semibold text-charcoal text-xs sm:text-sm">{r.tratto}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-600 text-xs sm:text-sm">{r.orario}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-500 text-sm">{r.validita}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-600 text-sm">{r.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3 italic">
+        Legal basis: ANAS Ordinances 340/2019 (cars on alternate plates) and 337/2019 (heavy vehicles). Local council ordinances on the Amalfi Coast can introduce additional exemptions: check the individual municipality websites too.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Who is exempt from the alternate plate rule</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {[
+          { title: 'Residents', desc: 'Residents of the affected municipalities may circulate with any plate, presenting their ID at roadblocks.' },
+          { title: 'Electric and plug-in hybrid vehicles', desc: 'Zero-emission cars and rechargeable hybrids are exempt to encourage sustainable mobility (Sorrento Peninsula ordinances).' },
+          { title: 'Taxis, NCC and tour buses', desc: 'Public passenger transport services are excluded from the measure, including local public transport vehicles.' },
+          { title: 'Hotel/restaurant/lido guests with booking', desc: "Guests at accommodation, restaurants and bathing facilities inside the perimeter can request a temporary permit (24-72h limit)." },
+          { title: 'Disabled drivers with badge', desc: 'Vehicles serving people with disabilities (Law 104) with the badge displayed are always exempt.' },
+          { title: "Emergency and law enforcement vehicles", desc: 'Ambulances, fire brigade, Carabinieri, Police and municipal service vehicles circulate without restrictions.' },
+        ].map((s, i) => {
+          const stripeColors = ['#D4AF37', '#E2725B', '#005B96', '#40E0D0'];
+          const stripeColor = stripeColors[i % stripeColors.length];
+          return (
+          <div class="relative overflow-hidden bg-white rounded-[2rem] p-5 sm:p-6 pl-7 border border-slate-100 shadow-sm">
+            <span class="absolute left-0 top-0 bottom-0 w-1.5" style={`background-color: ${stripeColor}`}></span>
+            <h3 class="font-semibold text-charcoal text-sm mb-2">{s.title}</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-snug">{s.desc}</p>
+          </div>
+        );})}
+      </div>
+    </section>
+
+    <section class="bg-white">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">The 3 best strategies to avoid the restriction</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        {[
+          { title: 'Car at Castellammare + Circumvesuviana', desc: 'Park-and-ride at Castellammare di Stabia or Vico Equense (~€8/day). Then the EAV Circumvesuviana train to Sorrento in 20 minutes. Every 30 min, ticket ~€2.80.', badge: 'Most economical' },
+          { title: 'Hydrofoil from Naples or Salerno', desc: "NLG / Alilauro hydrofoils from Naples Beverello to Sorrento (35 min, ~€18). Travelmar ferries from Salerno to Amalfi/Positano in summer.", badge: 'Most scenic' },
+          { title: 'Base in Sorrento or Salerno + bus', desc: "Leave the car in a garage and use SITA Sud buses (Sorrento for the peninsula, Salerno for the Amalfi Coast). Zero plate stress.", badge: 'Most versatile' },
+        ].map(s => (
+          <div class="bg-slate-900 rounded-[2rem] p-5 sm:p-6 border border-white/5">
+            <span class="text-[10px] uppercase tracking-wide bg-med-gold/15 text-med-gold px-2 py-1 rounded-full font-medium">{s.badge}</span>
+            <h3 class="font-semibold text-med-gold text-sm mt-2 sm:mt-3 mb-2">{s.title}</h3>
+            <p class="text-xs sm:text-sm text-white/70 leading-snug">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Can you pay a fee to enter?</h2>
+      <p class="text-base sm:text-lg text-slate-700 leading-relaxed mb-4">
+        <strong>No, there is no paid permit for tourists</strong> that lets you bypass the alternate plate rule. Unlike some city ZTLs (Rome, Florence) where you can buy a daily pass, the alternate plate ordinances (both ANAS and municipal) are <strong>purely sanctioning</strong>: either you fit one of the exempt categories or you cannot circulate on the restricted days.
+      </p>
+      <p class="text-base sm:text-lg text-slate-700 leading-relaxed mb-4">There is, however, one free channel reserved for visitors with a booking:</p>
+      <div class="bg-slate-900 rounded-[2rem] p-5 sm:p-6 border border-med-gold/30 mb-4">
+        <h3 class="font-semibold text-med-gold text-base mb-2">"Hotel/restaurant/lido guest" temporary permit</h3>
+        <p class="text-sm text-white/80 leading-relaxed mb-2">
+          If you have a confirmed booking at a hotel, B&B, restaurant or beach club in one of the affected municipalities, you can request a temporary permit <strong class="text-white">free of charge</strong> (normally valid 24–72h) to reach the property and leave again. The permit is obtained:
+        </p>
+        <ul class="list-disc pl-5 text-sm text-white/80 space-y-1 marker:text-med-gold">
+          <li>directly at the venue at check-in (the property submits the plate number to the town hall);</li>
+          <li>for arrivals on a restricted day: <strong class="text-white">tell the property by email with vehicle details and arrival time</strong>, so the venue registers the plate before the checks;</li>
+          <li>keep your written booking confirmation: if stopped at a roadblock, it is the document that avoids the fine.</li>
+        </ul>
+      </div>
+      <p class="text-sm text-slate-500 leading-relaxed italic">
+        For other needs (commercial deliveries, urgent works, specialist medical visits) the Polizia Municipale HQ of the relevant municipality can issue a free one-off authorisation: file a written request at least 48h in advance.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-2">Polizia Locale contacts and ordinance info</h2>
+      <p class="text-sm text-slate-600 mb-6">
+        Phone numbers and ordinance hours change each season. For up-to-date info on alternate plates, exemptions and temporary permits, contact the Polizia Municipale HQ of the municipality you intend to cross.
+      </p>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Municipality</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Polizia Municipale</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Official website</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {[
+              { comune: 'Sorrento',           tel: '081 807 4433',  sito: 'comune.sorrento.na.it' },
+              { comune: "Sant'Agnello",       tel: '081 533 2244',  sito: 'comune.sant-agnello.na.it' },
+              { comune: 'Piano di Sorrento',  tel: '081 532 1486',  sito: 'comune.pianodisorrento.na.it' },
+              { comune: 'Meta',               tel: '081 808 8020',  sito: 'comune.meta.na.it' },
+              { comune: 'Vico Equense',       tel: '081 801 9400',  sito: 'comune.vicoequense.na.it' },
+              { comune: 'Massa Lubrense',     tel: '081 878 9165',  sito: 'comune.massalubrense.na.it' },
+            ].map(c => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3 font-semibold text-charcoal text-xs sm:text-sm">{c.comune}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-700 text-xs sm:text-sm">
+                  <a href={`tel:+39${c.tel.replace(/\s/g, '')}`} class="text-med-blue hover:underline font-medium">{c.tel}</a>
+                </td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-600 text-sm">
+                  <a href={`https://www.${c.sito}/`} target="_blank" rel="noopener" class="text-med-blue hover:underline">{c.sito}</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3 italic">
+        Phone numbers are the central switchboards of the Polizia Municipale HQs. Always check the current ordinance on the municipality's official website: the measures are posted to the public notice board at the start of each summer season and may be updated during the year. In an emergency, call <strong>112</strong> (European single emergency number).
+      </p>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Frequently asked questions</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="py-16 bg-white">
+      <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Everything you need</h2>
+          <div class="w-20 h-1 bg-med-gold mx-auto rounded-full"></div>
+        </div>
+        <div class="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <a href="/en-us/guide/parking-ztl/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300">
+            <h3 class="font-serif text-xl font-bold text-med-gold mb-2">Parking & ZTL</h3>
+            <p class="text-white text-sm mb-3">Where to leave the car</p>
+            <p class="text-white/70 text-xs leading-relaxed mb-4">Guide to parking and limited-traffic zones on the coast</p>
+            <span class="text-med-gold font-semibold text-sm">Read the guide →</span>
+          </a>
+          <a href="/en-us/guide/sita-bus/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300">
+            <h3 class="font-serif text-xl font-bold text-med-gold mb-2">SITA Bus</h3>
+            <p class="text-white text-sm mb-3">Timetables, fares and main routes</p>
+            <p class="text-white/70 text-xs leading-relaxed mb-4">Getting around the coast by bus: every line and stop</p>
+            <span class="text-med-gold font-semibold text-sm">Read →</span>
+          </a>
+          <a href="/en-us/guide/ferries/" class="block bg-slate-900 rounded-[2rem] p-6 border-0 hover:shadow-lg transition-all duration-300">
+            <h3 class="font-serif text-xl font-bold text-med-gold mb-2">Ferries</h3>
+            <p class="text-white text-sm mb-3">How to reach the coast by sea</p>
+            <p class="text-white/70 text-xs leading-relaxed mb-4">Schedules, fares and routes from Naples and Salerno</p>
+            <span class="text-med-gold font-semibold text-sm">Read →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>

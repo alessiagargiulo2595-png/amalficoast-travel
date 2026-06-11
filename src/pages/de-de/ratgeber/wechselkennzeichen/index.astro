@@ -1,0 +1,331 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+
+const lang = 'de-de';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/de-de/' },
+  { name: 'Planung', url: '/de-de/planung/' },
+  { name: 'Wechselkennzeichen 2026', url: '/de-de/ratgeber/wechselkennzeichen/' },
+];
+
+const costieraData = [
+  { tratto: 'Ostern und 25.-April-Brücke', orario: '10:00–18:00', validita: '30. März–6. April · 25. April–2. Mai 2026', note: 'Täglich an beiden „ponti".' },
+  { tratto: 'Juni–Juli', orario: '10:00–18:00', validita: 'Samstag, Sonntag und Feiertage', note: 'Nur an Wochenenden und Feiertagen im ersten Sommerteil.' },
+  { tratto: 'August–September', orario: '10:00–18:00', validita: '1. Aug – 30. Sep 2026', note: 'Jeden Tag der Woche, Wochenenden inklusive.' },
+  { tratto: 'Oktober', orario: '10:00–18:00', validita: 'Samstag, Sonntag und Feiertage (bis 31. Okt)', note: 'Letzte Phase der Maßnahme, nur an Wochenenden.' },
+];
+
+const costieraComuni = ['Vietri sul Mare', 'Cetara', 'Maiori', 'Minori', 'Ravello', 'Atrani', 'Amalfi', 'Conca dei Marini', 'Furore', 'Praiano', 'Positano'];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie funktionieren die Wechselkennzeichen 2026 an der Amalfiküste und sorrentinischen Halbinsel?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Es gibt zwei parallele Regelungen. Auf der SS163 Amalfiküste (ANAS-Verordnung 340/2019) gilt die Standardregel: an ungeraden Kalendertagen dürfen Kennzeichen mit ungerader Endziffer (1, 3, 5, 7, 9) fahren; an geraden Tagen gerade Endziffern (0, 2, 4, 6, 8), Zeit 10:00-18:00, hauptsächlich täglich im August-September plus Ostern, 25. April und Wochenenden im Juni-Juli und Oktober. Auf der SS145 und in den Städten der sorrentinischen Halbinsel gelten Gemeindeverordnungen: Meta (Ord. 37/2026) wendet die UMGEKEHRTE Regel an (ungerader Tag → gerade Endziffer) von 08:00 bis 19:00, März-Oktober mit zunehmender Intensität." }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Fahrzeuge sind 2026 von der Wechselkennzeichen-Regelung ausgenommen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In der Regel ausgenommen: Anwohner der betroffenen Gemeinden, Einsatzfahrzeuge, Taxis und NCC, Elektro- und Plug-in-Hybridfahrzeuge (sorrentinische Halbinsel), Fahrzeuge von Hotelgästen mit Buchung, Behinderte mit Ausweis, ÖPNV. Auf der SS163 (ANAS): Zweiräder (Motorräder und Roller) sind ausgenommen. In Metas Verordnung: Roller und Motorräder sind NICHT ausgenommen. Prüfen Sie immer die aktuelle Verordnung." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie hoch ist das Bußgeld bei Verstoß?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Das Bußgeld liegt zwischen €87 und €344 (Art. 7 Abs. 13 italienische StVO). Kontrollen durch Polizia Locale und Carabinieri mit Sperren und Kameras. Das Bußgeld geht an den Halter (oder die Autovermietung mit Aufschlag)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie kann ich Amalfiküste und sorrentinische Halbinsel an Sperrtagen besuchen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Parken Sie außerhalb der Sperrzone: Park-and-Ride in Vico Equense oder Castellammare di Stabia, dann mit der Circumvesuviana nach Sorrent (15-25 Min). Aus Neapel: NLG/Alilauro-Tragflügelboot nach Sorrent (35 Min). SITA-Sud-Busse verbinden Sorrent mit Amalfi und Positano. Travelmar-Fähren von Salerno nach Amalfi und Positano. Keine dieser Optionen ist von der Regelung betroffen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Gilt die Regelung auch für Roller und Motorräder?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Es kommt auf den Ort an. Die SS163-Verordnung der Amalfiküste (ANAS 340/2019) NIMMT Zweiräder AUS. Metas Verordnung (37/2026) hingegen ERFASST Motorräder und 50ccm+-Roller AUSDRÜCKLICH. Andere Gemeinden der sorrentinischen Halbinsel können beides handhaben: prüfen Sie immer die örtliche Verordnung." }
+    }
+  ]
+};
+
+const tratteData = [
+  { tratto: 'Meta (Zentrum – Verord. 37/2026) ⚠️ umgekehrte Regel', orario: '08:00–19:00', validita: '28.-29. März · Apr/Okt (Sa/So+Feiertage) · Mai/Jun/Sep (Fr-So+Feiertage) · Jul/Aug (täglich)', note: 'In Meta: an GERADEN Tagen dürfen UNGERADE Kennzeichen fahren (und umgekehrt). Anwendung an den Kreuzungen Via S. E. De Martino / Via G. Marconi und Via Caracciolo / Via A. Cosenza. Gilt auch für Motorräder und Mopeds.' },
+  { tratto: 'SS145 Sorrentina (Stadtabschnitte)', orario: 'Sa/So + Feiertage (9:00–19:00)', validita: 'Jun–Sep 2026', note: 'Von Castellammare di Stabia bis Sorrent. Hauptsperren in Vico Equense und Meta.' },
+  { tratto: 'Sorrent Zentrum', orario: 'Sa/So + Feiertage (10:00–22:00)', validita: 'Jun–Sep 2026', note: 'Zusammen mit zentraler ZTL: Zufahrt nur für Anwohner und Hotelgäste mit Buchung.' },
+  { tratto: "Sant'Agnello / Piano di Sorrento", orario: 'Sa/So + Feiertage (10:00–19:00)', validita: 'Jun–Sep 2026', note: 'Mit Sorrent abgestimmt, um Umfahrungen über Corso Italia zu verhindern.' },
+  { tratto: 'Vico Equense', orario: 'Sa/So (10:00–19:00)', validita: 'Jul–Aug 2026', note: 'Gezielte Kontrollen an Hochsaison-Wochenenden. Wenige freie Parkplätze.' },
+  { tratto: 'Massa Lubrense', orario: 'Nur Feiertage (9:00–20:00)', validita: 'Jul–Aug 2026', note: 'Einschränkungen auf Termini–Nerano und Marina del Cantone, besonders streng im August.' },
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Wechselkennzeichen 2026: Amalfiküste SS163 (ANAS 340/2019) und sorrentinische Halbinsel SS145",
+  "description": "Ratgeber 2026 zu den Wechselkennzeichen an der Amalfiküste (ANAS-Verordnung 340/2019, SS163, 11 Gemeinden von Vietri bis Positano) und sorrentinischen Halbinsel (Gemeindeverordnungen SS145: Meta Ord. 37/2026, Sorrent, Sant'Agnello, Piano, Vico Equense, Massa Lubrense). Kalender, Zeiten, Ausnahmen, Bußgelder €87 bis €344.",
+  "image": "https://amalficoast-travel.com/images/targhe-alterne-hero.webp",
+  "datePublished": "2026-06-11",
+  "dateModified": "2026-06-11",
+  "inLanguage": "de-DE",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel Guide", "url": "https://amalficoast-travel.com/" },
+  "publisher": { "@type": "Organization", "name": "Amalfi Coast Travel Guide", "url": "https://amalficoast-travel.com/", "logo": { "@type": "ImageObject", "url": "https://amalficoast-travel.com/logo-footer.svg" } },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://amalficoast-travel.com/de-de/ratgeber/wechselkennzeichen/" },
+  "about": [
+    { "@type": "Thing", "name": "Wechselkennzeichen-Regelung" },
+    { "@type": "Thing", "name": "ANAS-Verordnung 340/2019" },
+    { "@type": "Place", "name": "Amalfiküste" },
+    { "@type": "Place", "name": "SS163 Amalfitana" },
+    { "@type": "Place", "name": "Sorrentinische Halbinsel" },
+    { "@type": "Place", "name": "SS145 Sorrentina" }
+  ]
+};
+
+const specialAnnouncementSchema = {
+  "@context": "https://schema.org",
+  "@type": "SpecialAnnouncement",
+  "name": "Wechselkennzeichen 2026: Amalfiküste (SS163) und sorrentinische Halbinsel (SS145)",
+  "text": "Amalfiküste: ANAS-Verordnung 340/2019 auf der SS163. Wechselkennzeichen 10:00-18:00 täglich vom 1. August bis 30. September 2026; an Oster- (30.3.-6.4.) und 25.-April-Brücke (25.4.-2.5.); Wochenenden und Feiertage im Juni-Juli und Oktober. Regel: ungerader Tag → ungerades Kennzeichen. Motorräder und Roller ausgenommen. Sorrentinische Halbinsel: Gemeindeverordnungen SS145 und Stadtkerne (Sorrent, Sant'Agnello, Piano, Vico Equense, Massa Lubrense, WE Jun-Sep). Meta: Verord. 37/2026, 08:00-19:00, UMGEKEHRTE REGEL (ungerader Tag → gerades Kennzeichen), März-Oktober. Bußgeld €87-€344.",
+  "datePosted": "2026-03-18",
+  "expires": "2026-10-31",
+  "category": "https://www.wikidata.org/wiki/Q57415",
+  "url": "https://amalficoast-travel.com/de-de/ratgeber/wechselkennzeichen/",
+  "inLanguage": "de-DE",
+  "spatialCoverage": [
+    { "@type": "AdministrativeArea", "name": "Sorrent" },
+    { "@type": "AdministrativeArea", "name": "Sant'Agnello" },
+    { "@type": "AdministrativeArea", "name": "Piano di Sorrento" },
+    { "@type": "AdministrativeArea", "name": "Meta" },
+    { "@type": "AdministrativeArea", "name": "Vico Equense" },
+    { "@type": "AdministrativeArea", "name": "Massa Lubrense" },
+    { "@type": "AdministrativeArea", "name": "Vietri sul Mare" },
+    { "@type": "AdministrativeArea", "name": "Cetara" },
+    { "@type": "AdministrativeArea", "name": "Maiori" },
+    { "@type": "AdministrativeArea", "name": "Minori" },
+    { "@type": "AdministrativeArea", "name": "Ravello" },
+    { "@type": "AdministrativeArea", "name": "Atrani" },
+    { "@type": "AdministrativeArea", "name": "Amalfi" },
+    { "@type": "AdministrativeArea", "name": "Conca dei Marini" },
+    { "@type": "AdministrativeArea", "name": "Furore" },
+    { "@type": "AdministrativeArea", "name": "Praiano" },
+    { "@type": "AdministrativeArea", "name": "Positano" }
+  ]
+};
+---
+
+<BaseLayout
+  title="Wechselkennzeichen 2026 Amalfiküste und Sorrent"
+  description="Vollständiger Ratgeber 2026 zur Wechselkennzeichen-Regelung: ANAS-Verordnung 340/2019 auf der SS163 Amalfiküste (Vietri–Positano) und Gemeindeverordnungen auf der SS145 sorrentinische Halbinsel (Meta, Sorrent, Vico). Kalender, Zeiten, Ausnahmen und Bußgelder."
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[articleSchema, specialAnnouncementSchema, faqSchema]}
+ pageKey="targhe-alterne"
+  heroImage="/images/targhe-alterne-hero.webp"
+>
+
+  <section class="relative h-[75vh] sm:h-[90vh] flex items-center bg-charcoal overflow-hidden">
+    <img src="/images/targhe-alterne-hero.webp" alt="Amalfiküste und sorrentinische Halbinsel, Wechselkennzeichen 2026" class="absolute inset-0 w-full h-full object-cover" style="object-position: center 80%;" loading="eager" fetchpriority="high" decoding="sync" referrerpolicy="no-referrer"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/25 via-black/40 to-black/75"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
+      <div class="max-w-3xl">
+        <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Praktischer Ratgeber</p>
+        <h1 class="font-serif text-display text-white mb-4">Wechselkennzeichen 2026: Amalfiküste und sorrentinische Halbinsel</h1>
+        <p class="text-xl text-white/80 leading-relaxed">
+          Zwei Verordnungen, eine gerade/ungerade-Logik. SS145 (Meta, Sorrent, Vico) und SS163 ANAS (Vietri–Positano): Kalender 2026, Zeiten, Ausnahmen und Bußgelder. Wie Sie Küste und Halbinsel ohne Strafzettel besuchen.
+        </p>
+      </div>
+    </div>
+    <Breadcrumbs breadcrumbs={breadcrumbs} />
+  </section>
+
+  <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-4 space-y-12">
+
+    <section class="max-w-editorial">
+      <div style="background-color: #E2725B; border-color: #E2725B; padding: 6px 12px 6px 12px;" class="border rounded-[2rem] mb-6 mt-8">
+        <p class="font-semibold mb-0 mt-0 text-white text-sm leading-tight" style="margin-top: -2px;">⚠️ Zwei Verordnungen, eine Falle</p>
+        <p class="text-xs text-white/95 leading-tight">SS163 Amalfiküste: Standardregel (ungerader Tag → ungerades Kennzeichen, 10:00-18:00). Meta (sorrentinische Halbinsel): UMGEKEHRTE Regel (ungerader Tag → gerades Kennzeichen, 08:00-19:00). Bußgeld €87 bis €344.</p>
+      </div>
+      <p class="text-xl leading-relaxed text-charcoal text-justify">
+        2026 kehrt das <strong>Wechselkennzeichen</strong>-Regime auf beiden Seiten zurück: die <strong>Amalfiküste</strong> wendet die <strong>ANAS-Verordnung 340/2019</strong> auf der SS163 an (von Vietri sul Mare bis Positano, ~60 km, 11 Gemeinden), während die Gemeinden der <strong>sorrentinischen Halbinsel</strong> eigene Verordnungen auf der SS145 und in den Stadtkernen erlassen. Meta führt mit der <strong>Verordnung Nr. 37 vom 18. März 2026</strong> einen spezifischen Kalender (März-Oktober) mit <strong>umgekehrter</strong> Paritätsregel gegenüber der SS163 ein.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Sorrentinische Halbinsel: SS145 und Gemeindeverordnungen</h2>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Gebiet</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Uhrzeit</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Gültigkeit</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Hinweise</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {tratteData.map(r => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3 font-semibold text-charcoal text-xs sm:text-sm">{r.tratto}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-600 text-xs sm:text-sm">{r.orario}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-500 text-sm">{r.validita}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-600 text-sm">{r.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3 italic">Die Gemeindeverordnungen werden zu Beginn der Saison von Sorrent, Sant'Agnello, Piano, Meta, Vico Equense und Massa Lubrense veröffentlicht. Vor der Abfahrt aktuellen Kalender prüfen.</p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-2">Amalfiküste: ANAS-Verordnung auf der SS163</h2>
+      <p class="text-sm text-slate-600 mb-6">
+        Auf der <strong>SS163 „Amalfitana"</strong> — der einzigen Straße, die die Orte der Küste verbindet — gilt die <strong>ANAS-Verordnung Nr. 340/2019</strong>: Wechselkennzeichen <strong>täglich von 10:00 bis 18:00</strong> in den angegebenen Zeiträumen, mit der „Standardregel" (ungerader Tag → ungerades Kennzeichen). <strong>Motorräder und Roller ausgenommen.</strong> Betrifft 11 Gemeinden: {costieraComuni.join(', ')}.
+      </p>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Zeitraum 2026</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Uhrzeit</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Daten</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Hinweise</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {costieraData.map(r => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3 font-semibold text-charcoal text-xs sm:text-sm">{r.tratto}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-600 text-xs sm:text-sm">{r.orario}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-500 text-sm">{r.validita}</td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-600 text-sm">{r.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3 italic">
+        Rechtsgrundlage: ANAS-Verordnungen 340/2019 (Pkw mit Wechselkennzeichen) und 337/2019 (Schwerverkehr). Lokale Gemeindeverordnungen können weitere Ausnahmen vorsehen.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Wer ist von der Regelung ausgenommen</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {[
+          { title: 'Anwohner', desc: 'Anwohner der betroffenen Gemeinden dürfen mit jedem Kennzeichen fahren und müssen den Ausweis vorzeigen.' },
+          { title: 'Elektro- und Plug-in-Hybridfahrzeuge', desc: 'Zero-Emissions-Fahrzeuge und Plug-in-Hybride sind ausgenommen (Halbinsel-Verordnungen).' },
+          { title: 'Taxis, NCC und Reisebusse', desc: 'Öffentliche Personenbeförderungen sind ausgenommen, einschließlich ÖPNV.' },
+          { title: 'Hotel/Restaurant/Strandbad mit Buchung', desc: 'Gäste von Unterkünften, Restaurants und Strandbädern können eine Sondergenehmigung beantragen (24-72 Std.).' },
+          { title: 'Behinderte mit Ausweis', desc: 'Fahrzeuge im Dienst von Personen mit Behinderung (Gesetz 104) mit Ausweis sind immer ausgenommen.' },
+          { title: 'Einsatz- und Polizeifahrzeuge', desc: 'Krankenwagen, Feuerwehr, Carabinieri, Polizei und Gemeindefahrzeuge fahren ohne Einschränkungen.' },
+        ].map((s, i) => {
+          const stripeColors = ['#D4AF37', '#E2725B', '#005B96', '#40E0D0'];
+          const stripeColor = stripeColors[i % stripeColors.length];
+          return (
+          <div class="relative overflow-hidden bg-white rounded-[2rem] p-5 sm:p-6 pl-7 border border-slate-100 shadow-sm">
+            <span class="absolute left-0 top-0 bottom-0 w-1.5" style={`background-color: ${stripeColor}`}></span>
+            <h3 class="font-semibold text-charcoal text-sm mb-2">{s.title}</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-snug">{s.desc}</p>
+          </div>
+        );})}
+      </div>
+    </section>
+
+    <section class="bg-white">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Die 3 besten Strategien, um die Wechselkennzeichen-Regelung zu umgehen</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        {[
+          { title: 'Auto in Castellammare + Circumvesuviana', desc: 'Park-and-Ride in Castellammare di Stabia oder Vico Equense (~€8/Tag). EAV Circumvesuviana nach Sorrent in 20 Min, alle 30 Min, ~€2,80.', badge: 'Am günstigsten' },
+          { title: 'Tragflügelboot aus Neapel oder Salerno', desc: 'NLG / Alilauro von Napoli Beverello nach Sorrent (35 Min, ~€18). Travelmar-Fähren von Salerno nach Amalfi/Positano.', badge: 'Am szenischsten' },
+          { title: 'Basis in Sorrent oder Salerno + Bus', desc: 'Auto in Garage und mit SITA-Sud-Bus (Sorrent für die Halbinsel, Salerno für die Amalfiküste). Null Kennzeichen-Stress.', badge: 'Am vielseitigsten' },
+        ].map(s => (
+          <div class="bg-slate-900 rounded-[2rem] p-5 sm:p-6 border border-white/5">
+            <span class="text-[10px] uppercase tracking-wide bg-med-gold/15 text-med-gold px-2 py-1 rounded-full font-medium">{s.badge}</span>
+            <h3 class="font-semibold text-med-gold text-sm mt-2 sm:mt-3 mb-2">{s.title}</h3>
+            <p class="text-xs sm:text-sm text-white/70 leading-snug">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Kann man eine Gebühr zahlen, um einzufahren?</h2>
+      <p class="text-base sm:text-lg text-slate-700 leading-relaxed mb-4">
+        <strong>Nein, für Touristen gibt es keine kostenpflichtige Sondergenehmigung</strong>, mit der man die Wechselkennzeichen-Regelung umgehen kann. Im Gegensatz zu manchen Stadt-ZTLs (Rom, Florenz) sind diese Verordnungen (ANAS und kommunal) <strong>rein sanktionierend</strong>: entweder fallen Sie unter eine Ausnahme oder Sie dürfen nicht fahren.
+      </p>
+      <p class="text-base sm:text-lg text-slate-700 leading-relaxed mb-4">Es gibt aber einen kostenlosen Kanal für Buchungsinhaber:</p>
+      <div class="bg-slate-900 rounded-[2rem] p-5 sm:p-6 border border-med-gold/30 mb-4">
+        <h3 class="font-semibold text-med-gold text-base mb-2">Sondergenehmigung „Hotel-/Restaurant-/Strandbad-Gäste"</h3>
+        <p class="text-sm text-white/80 leading-relaxed mb-2">
+          Mit bestätigter Buchung in Hotel, B&B, Restaurant oder Strandbad: <strong class="text-white">kostenlose</strong> Sondergenehmigung (in der Regel 24–72 Std.):
+        </p>
+        <ul class="list-disc pl-5 text-sm text-white/80 space-y-1 marker:text-med-gold">
+          <li>direkt beim Check-in (die Unterkunft meldet das Kennzeichen);</li>
+          <li>bei Ankunft an Sperrtag: <strong class="text-white">per E-Mail vorab Fahrzeugdaten + Ankunftszeit mitteilen</strong>;</li>
+          <li>schriftliche Buchungsbestätigung bei sich tragen.</li>
+        </ul>
+      </div>
+      <p class="text-sm text-slate-500 leading-relaxed italic">
+        Für sonstige Bedürfnisse (gewerbliche Lieferungen, dringende Arbeiten, fachärztliche Besuche) kann die Polizia Municipale eine kostenlose Einzelgenehmigung ausstellen: schriftlicher Antrag 48 Std. im Voraus.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-2">Polizia-Locale-Kontakte und Verordnungsinfos</h2>
+      <p class="text-sm text-slate-600 mb-6">Aktuelle Telefonnummern der Polizia Municipale für Informationen zu Wechselkennzeichen, Ausnahmen und Sondergenehmigungen:</p>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Gemeinde</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Polizia Municipale</th>
+              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Offizielle Website</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {[
+              { comune: 'Sorrent',            tel: '081 807 4433',  sito: 'comune.sorrento.na.it' },
+              { comune: "Sant'Agnello",       tel: '081 533 2244',  sito: 'comune.sant-agnello.na.it' },
+              { comune: 'Piano di Sorrento',  tel: '081 532 1486',  sito: 'comune.pianodisorrento.na.it' },
+              { comune: 'Meta',               tel: '081 808 8020',  sito: 'comune.meta.na.it' },
+              { comune: 'Vico Equense',       tel: '081 801 9400',  sito: 'comune.vicoequense.na.it' },
+              { comune: 'Massa Lubrense',     tel: '081 878 9165',  sito: 'comune.massalubrense.na.it' },
+            ].map(c => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3 font-semibold text-charcoal text-xs sm:text-sm">{c.comune}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-700 text-xs sm:text-sm">
+                  <a href={`tel:+39${c.tel.replace(/\s/g, '')}`} class="text-med-blue hover:underline font-medium">{c.tel}</a>
+                </td>
+                <td class="hidden sm:table-cell px-4 py-3 text-slate-600 text-sm">
+                  <a href={`https://www.${c.sito}/`} target="_blank" rel="noopener" class="text-med-blue hover:underline">{c.sito}</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3 italic">In Notfällen <strong>112</strong> wählen (europäische Notrufnummer).</p>
+    </section>
+
+    <section id="faq">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Häufige Fragen</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((q) => (
+          <details class="group border border-slate-200 rounded-2xl overflow-hidden">
+            <summary class="flex items-center justify-between px-6 py-4 cursor-pointer select-none text-charcoal font-medium hover:bg-slate-50 transition-colors">
+              {q.name}
+              <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0 ml-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-6 pb-5 text-slate-600 leading-relaxed text-xs sm:text-sm border-t border-slate-100 pt-4">
+              {q.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>
