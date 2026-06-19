@@ -12,21 +12,69 @@ const breadcrumbs = [
   { name: 'Configuratore Itinerario', url: '/it-it/configuratore-itinerario/' },
 ];
 
+const linkCls = "text-med-blue underline decoration-med-gold/40 underline-offset-2 hover:decoration-med-gold transition-colors";
+
+const faqs = [
+  {
+    q: "Come funziona il configuratore di itinerario per la Costiera Amalfitana?",
+    a: "Scegli il punto di partenza (Napoli, Salerno, Sorrento o Amalfi), il numero di giorni a disposizione, il budget, la stagione di viaggio e i tuoi interessi (mare, cultura, trekking, gastronomia). L'algoritmo combina destinazioni, trasporti pubblici e attività in un itinerario giorno per giorno con tempi di percorrenza realistici e suggerimenti di soste.",
+    html: `Scegli il punto di partenza (Napoli, <a href="/it-it/costiera-amalfitana/salerno/" class="${linkCls}">Salerno</a>, <a href="/it-it/penisola-sorrentina/sorrento/" class="${linkCls}">Sorrento</a> o <a href="/it-it/costiera-amalfitana/amalfi/" class="${linkCls}">Amalfi</a>), il numero di giorni a disposizione, il budget, la stagione di viaggio e i tuoi interessi (mare, cultura, <a href="/it-it/esperienze/trekking/" class="${linkCls}">trekking</a>, <a href="/it-it/esperienze/cooking-class/" class="${linkCls}">gastronomia</a>). L'algoritmo combina destinazioni, trasporti pubblici e attività in un itinerario giorno per giorno con tempi di percorrenza realistici e suggerimenti di soste.`
+  },
+  {
+    q: "Quanti giorni servono per visitare la Costiera Amalfitana?",
+    a: "Il minimo consigliato è 3 giorni per vedere Positano, Amalfi e Ravello senza correre. Con 5 giorni includi Capri o la Penisola Sorrentina. Con 7 giorni copri anche Procida, Ischia o un trekking sul Sentiero degli Dei. Per un grand tour completo della Campania costiera servono 10 giorni.",
+    html: `Il minimo consigliato è <a href="/it-it/itinerari/3-giorni/classico-costiera-amalfitana/" class="${linkCls}">3 giorni</a> per vedere <a href="/it-it/costiera-amalfitana/positano/" class="${linkCls}">Positano</a>, <a href="/it-it/costiera-amalfitana/amalfi/" class="${linkCls}">Amalfi</a> e <a href="/it-it/costiera-amalfitana/ravello/" class="${linkCls}">Ravello</a> senza correre. Con <a href="/it-it/itinerari/4-giorni/costiera-amalfitana-completa/" class="${linkCls}">4 giorni</a> includi <a href="/it-it/isole/capri/" class="${linkCls}">Capri</a> o la <a href="/it-it/penisola-sorrentina/" class="${linkCls}">Penisola Sorrentina</a>. Con <a href="/it-it/itinerari/7-giorni/grand-tour-costiera-penisola/" class="${linkCls}">7 giorni</a> copri anche <a href="/it-it/isole/procida/" class="${linkCls}">Procida</a>, <a href="/it-it/isole/ischia/" class="${linkCls}">Ischia</a> o un <a href="/it-it/itinerari/1-giorno/trekking-sentiero-degli-dei/" class="${linkCls}">trekking sul Sentiero degli Dei</a>.`
+  },
+  {
+    q: "Qual è il periodo migliore per visitare la Costiera Amalfitana?",
+    a: "Maggio, giugno e settembre offrono il miglior compromesso: temperature gradevoli, mare già caldo e meno folla rispetto a luglio e agosto. Aprile e ottobre sono ideali per trekking e cultura. In bassa stagione (novembre, febbraio) molte attività turistiche, traghetti e ristoranti chiudono.",
+    html: `Maggio, giugno e settembre offrono il miglior compromesso: temperature gradevoli, mare già caldo e meno folla rispetto a luglio e agosto. Aprile e ottobre sono ideali per <a href="/it-it/esperienze/trekking/" class="${linkCls}">trekking</a> e cultura. In bassa stagione (novembre, febbraio) molte attività turistiche, traghetti e ristoranti chiudono. Approfondisci nella guida <a href="/it-it/guida/quando-visitare/" class="${linkCls}">Quando visitare la Costiera Amalfitana</a>.`
+  },
+  {
+    q: "Come muoversi in Costiera Amalfitana senza auto?",
+    a: "I bus SITA Sud collegano tutti i borghi costieri (Sorrento, Positano, Amalfi, Ravello, Salerno) con corse frequenti. In alta stagione i traghetti e aliscafi NLG, Travelmar e Alicost sono spesso più veloci e panoramici. Per Capri, Procida e Ischia il traghetto è l'unica opzione. La SS163 è soggetta a ZTL e targhe alterne in estate.",
+    html: `I <a href="/it-it/guida/bus-sita/" class="${linkCls}">bus SITA Sud</a> collegano tutti i borghi costieri (Sorrento, Positano, Amalfi, Ravello, Salerno) con corse frequenti. In alta stagione i <a href="/it-it/guida/traghetti/" class="${linkCls}">traghetti e aliscafi</a> NLG, Travelmar e Alicost sono spesso più veloci e panoramici. Per <a href="/it-it/isole/capri/" class="${linkCls}">Capri</a>, <a href="/it-it/isole/procida/" class="${linkCls}">Procida</a> e <a href="/it-it/isole/ischia/" class="${linkCls}">Ischia</a> il traghetto è l'unica opzione. La SS163 è soggetta a <a href="/it-it/guida/parcheggi-ztl/" class="${linkCls}">ZTL</a> e <a href="/it-it/guida/targhe-alterne/" class="${linkCls}">targhe alterne</a> in estate.`
+  },
+  {
+    q: "È meglio partire da Napoli, Salerno o Sorrento?",
+    a: "Napoli è il punto di partenza ideale se arrivi in aereo o treno alta velocità. Salerno è più vicina ad Amalfi e Ravello, con traghetti diretti e parcheggio più economico. Sorrento è la base perfetta se vuoi combinare Costiera Amalfitana, Penisola Sorrentina e Capri in un solo viaggio.",
+    html: `Napoli è il punto di partenza ideale se arrivi in aereo o treno alta velocità: leggi la guida <a href="/it-it/guida/come-arrivare/" class="${linkCls}">Come arrivare in Costiera Amalfitana</a>. <a href="/it-it/costiera-amalfitana/salerno/" class="${linkCls}">Salerno</a> è più vicina ad <a href="/it-it/costiera-amalfitana/amalfi/" class="${linkCls}">Amalfi</a> e <a href="/it-it/costiera-amalfitana/ravello/" class="${linkCls}">Ravello</a>, con traghetti diretti e parcheggio più economico. <a href="/it-it/penisola-sorrentina/sorrento/" class="${linkCls}">Sorrento</a> è la base perfetta se vuoi combinare Costiera Amalfitana, <a href="/it-it/penisola-sorrentina/" class="${linkCls}">Penisola Sorrentina</a> e <a href="/it-it/isole/capri/" class="${linkCls}">Capri</a> in un solo viaggio.`
+  },
+  {
+    q: "Quanto costa un viaggio di una settimana in Costiera Amalfitana?",
+    a: "Un budget medio per persona è 900 / 1.400 € a settimana in alta stagione: 80 / 150 € a notte in hotel 3 stelle, 35 € al giorno per pasti, 60 / 100 € per trasporti (bus, traghetti) e 100 / 150 € per attività (boat tour, ingressi, escursioni). Sotto i 700 € è possibile in bassa stagione o con B&B.",
+    html: `Un budget medio per persona è 900 / 1.400 € a settimana in alta stagione: 80 / 150 € a notte in hotel 3 stelle, 35 € al giorno per pasti, 60 / 100 € per trasporti (<a href="/it-it/guida/bus-sita/" class="${linkCls}">bus</a>, <a href="/it-it/guida/traghetti/" class="${linkCls}">traghetti</a>) e 100 / 150 € per attività (<a href="/it-it/esperienze/tour-barca/" class="${linkCls}">boat tour</a>, ingressi, escursioni). Sotto i 700 € è possibile in bassa stagione o con B&B.`
+  },
+  {
+    q: "Posso visitare Capri in giornata partendo dalla Costiera?",
+    a: "Sì. Da Positano e Amalfi partono aliscafi diretti per Capri (40 / 60 minuti) tra aprile e ottobre. Il giro dell'isola in barca dura 2 ore, la Grotta Azzurra richiede 30 / 40 minuti di coda. Per Anacapri e Monte Solaro meglio dedicare l'intera giornata, partendo entro le 8:30 e rientrando con l'ultimo aliscafo del pomeriggio.",
+    html: `Sì. Da <a href="/it-it/costiera-amalfitana/positano/" class="${linkCls}">Positano</a> e <a href="/it-it/costiera-amalfitana/amalfi/" class="${linkCls}">Amalfi</a> partono <a href="/it-it/guida/traghetti/" class="${linkCls}">aliscafi diretti per Capri</a> (40 / 60 minuti) tra aprile e ottobre. Il giro dell'isola in <a href="/it-it/esperienze/tour-barca/" class="${linkCls}">barca</a> dura 2 ore, la Grotta Azzurra richiede 30 / 40 minuti di coda. Per <a href="/it-it/isole/anacapri/" class="${linkCls}">Anacapri</a> e Monte Solaro meglio dedicare l'intera giornata: vedi l'itinerario <a href="/it-it/itinerari/1-giorno/capri-da-sorrento/" class="${linkCls}">Capri da Sorrento</a>.`
+  },
+  {
+    q: "Qual è il borgo migliore tra Positano, Amalfi e Ravello?",
+    a: "Positano è il più fotogenico e mondano, con le spiagge migliori ma prezzi alti. Amalfi è centrale, comoda per traghetti e bus, con il Duomo e la Valle dei Mulini. Ravello è il borgo culturale per eccellenza (Villa Cimbrone, Villa Rufolo, Ravello Festival) e dorme molto meglio fuori stagione. Non c'è una scelta unica: il configuratore mescola tutti e tre in base al tempo a disposizione.",
+    html: `<a href="/it-it/costiera-amalfitana/positano/" class="${linkCls}">Positano</a> è il più fotogenico e mondano, con le spiagge migliori ma prezzi alti. <a href="/it-it/costiera-amalfitana/amalfi/" class="${linkCls}">Amalfi</a> è centrale, comoda per <a href="/it-it/guida/traghetti/" class="${linkCls}">traghetti</a> e <a href="/it-it/guida/bus-sita/" class="${linkCls}">bus</a>, con il Duomo e la Valle dei Mulini. <a href="/it-it/costiera-amalfitana/ravello/" class="${linkCls}">Ravello</a> è il borgo culturale per eccellenza (Villa Cimbrone, Villa Rufolo, Ravello Festival) e dorme molto meglio fuori stagione. Non c'è una scelta unica: il configuratore mescola tutti e tre in base al tempo a disposizione.`
+  },
+  {
+    q: "L'itinerario generato include trasporti e tempi di percorrenza?",
+    a: "Sì. Ogni tappa indica come spostarsi (bus SITA, traghetto, treno regionale, taxi privato), la durata reale del trasferimento in alta stagione e un suggerimento sui costi medi. Per le tratte critiche (Positano / Amalfi in agosto) segnaliamo le alternative via mare per evitare il traffico della SS163.",
+    html: `Sì. Ogni tappa indica come spostarsi (<a href="/it-it/guida/bus-sita/" class="${linkCls}">bus SITA</a>, <a href="/it-it/guida/traghetti/" class="${linkCls}">traghetto</a>, treno regionale, taxi privato), la durata reale del trasferimento in alta stagione e un suggerimento sui costi medi. Per le tratte critiche (<a href="/it-it/costiera-amalfitana/positano/" class="${linkCls}">Positano</a> / <a href="/it-it/costiera-amalfitana/amalfi/" class="${linkCls}">Amalfi</a> in agosto) segnaliamo le alternative via mare per evitare il traffico della SS163 e le <a href="/it-it/guida/targhe-alterne/" class="${linkCls}">targhe alterne</a>.`
+  },
+  {
+    q: "Posso rigenerare e personalizzare l'itinerario?",
+    a: "Sì. Puoi modificare punto di partenza, durata, budget, stagione e interessi quante volte vuoi e rigenerare l'itinerario. Ogni configurazione produce un nuovo piano ottimizzato. Salva il link del risultato per condividerlo o aggiungilo ai segnalibri per ritrovarlo facilmente.",
+    html: `Sì. Puoi modificare punto di partenza, durata, budget, stagione e interessi quante volte vuoi e rigenerare l'itinerario. Ogni configurazione produce un nuovo piano ottimizzato. Salva il link del risultato per condividerlo o aggiungilo ai segnalibri per ritrovarlo facilmente. Vedi anche gli <a href="/it-it/itinerari/" class="${linkCls}">itinerari pronti</a> come ispirazione.`
+  }
+];
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Come funziona il pianificatore di viaggio?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Seleziona il tuo punto di partenza (Napoli, Salerno, Sorrento o Amalfi), il numero di giorni, il budget, la stagione e gli interessi. L'algoritmo combina automaticamente le migliori attività in un itinerario personalizzato." }
-    },
-    {
-      "@type": "Question",
-      "name": "Posso personalizzare l'itinerario generato?",
-      "acceptedAnswer": { "@type": "Answer", "text": "L'itinerario generato è un suggerimento basato sui tuoi criteri. Puoi modificare le preferenze e rigenerarlo quante volte vuoi fino a trovare la combinazione perfetta." }
-    }
-  ]
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
 };
 ---
 
@@ -40,6 +88,63 @@ const faqSchema = {
 >
   <!-- Trip Planner Component -->
   <TripPlanner lang={lang} />
+
+  <!-- SEO Content + FAQ Accordion -->
+  <section class="bg-slate-50 py-14 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="mb-12 md:mb-16">
+        <span class="block text-[11px] uppercase tracking-[0.3em] text-med-gold font-bold mb-4">Guida al configuratore</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-slate-900 mb-5 leading-tight">Come pianificare un viaggio in Costiera Amalfitana</h2>
+        <p class="text-slate-700 leading-relaxed mb-4">
+          Organizzare un itinerario in <strong>Costiera Amalfitana</strong> significa scegliere bene il punto di partenza, il numero di giorni, i borghi da includere e i mezzi di trasporto. La SS163 Amalfitana è una strada panoramica ma stretta e trafficata: tra giugno e settembre i bus SITA Sud e i traghetti veloci da Salerno, Sorrento e Napoli sono spesso più rapidi dell'auto privata. Il nostro configuratore tiene conto di stagionalità, ZTL, targhe alterne e orari reali dei traghetti per costruire un piano fattibile, non solo bello sulla carta.
+        </p>
+        <p class="text-slate-700 leading-relaxed mb-4">
+          Ogni itinerario generato bilancia <strong>mare, cultura, borghi e gastronomia</strong> in base agli interessi che selezioni. Se hai 3 giorni il piano si concentra sui tre borghi simbolo (Positano, Amalfi, Ravello). Con 5 o 7 giorni si aprono varianti su Capri, Procida, Ischia, la Penisola Sorrentina (Sorrento, Massa Lubrense, Punta Campanella) e i trekking come il Sentiero degli Dei o la Valle delle Ferriere. Il budget orienta la scelta tra B&B, hotel boutique o resort 5 stelle e tra trasporti pubblici, NCC privato o boat tour esclusivi.
+        </p>
+        <p class="text-slate-700 leading-relaxed mb-6">
+          Il risultato è un piano <strong>giorno per giorno</strong> con orari indicativi, tempi di trasferimento, costi medi e suggerimenti di ristoranti, spiagge e attività tipiche di ogni borgo. Puoi rigenerarlo quante volte vuoi cambiando un parametro e confrontare versioni diverse prima di prenotare.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4 mt-8">
+          <div class="bg-white rounded-2xl p-5 border border-slate-200">
+            <h3 class="font-serif text-lg font-bold text-slate-900 mb-2">Cosa include l'itinerario</h3>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Tappe giorno per giorno con orari</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Trasporti reali (bus SITA, traghetti, treno)</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Costi medi per persona</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Suggerimenti su spiagge e ristoranti</li>
+            </ul>
+          </div>
+          <div class="bg-white rounded-2xl p-5 border border-slate-200">
+            <h3 class="font-serif text-lg font-bold text-slate-900 mb-2">Per chi è pensato</h3>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Primo viaggio in Costiera Amalfitana</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Coppie, famiglie, gruppi di amici</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Viaggiatori senza auto</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Tour multi-tappa con isole del Golfo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="faq">
+        <span class="block text-[11px] uppercase tracking-[0.3em] text-med-gold font-bold mb-4">FAQ</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-slate-900 mb-8 leading-tight">Domande frequenti sul configuratore</h2>
+        <div class="space-y-3">
+          {faqs.map((f) => (
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+              <summary class="flex items-center justify-between px-5 sm:px-6 py-4 cursor-pointer select-none text-slate-900 font-medium hover:bg-slate-50 transition-colors">
+                <span class="text-sm sm:text-base pr-4">{f.q}</span>
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-5 sm:px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4" set:html={f.html}>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- CTA -->
   <section class="bg-white py-12 md:py-16">

@@ -9,30 +9,78 @@ const pageKey = 'planner';
 const breadcrumbs = [
   { name: 'Accueil', url: '/fr-fr/' },
   { name: 'Planification', url: '/fr-fr/planification/' },
-  { name: 'Planificateur d\'itineraire', url: '/fr-fr/planificateur-itineraire/' },
+  { name: 'Planificateur d\'itinéraire', url: '/fr-fr/planificateur-itineraire/' },
+];
+
+const linkCls = "text-med-blue underline decoration-med-gold/40 underline-offset-2 hover:decoration-med-gold transition-colors";
+
+const faqs = [
+  {
+    q: "Comment fonctionne le planificateur d'itinéraire pour la Côte Amalfitaine ?",
+    a: "Choisis ton point de départ (Naples, Salerne, Sorrente ou Amalfi), le nombre de jours disponibles, le budget, la saison et tes centres d'intérêt (plage, culture, trekking, gastronomie). L'algorithme combine destinations, transports publics et activités en un itinéraire jour par jour avec des temps de trajet réalistes et des suggestions d'arrêts.",
+    html: `Choisis ton point de départ (Naples, <a href="/fr-fr/cote-amalfitaine/salerne/" class="${linkCls}">Salerne</a>, <a href="/fr-fr/peninsule-sorrentine/sorrente/" class="${linkCls}">Sorrente</a> ou <a href="/fr-fr/cote-amalfitaine/amalfi/" class="${linkCls}">Amalfi</a>), le nombre de jours disponibles, le budget, la saison et tes centres d'intérêt (plage, culture, <a href="/fr-fr/experiences/trekking/" class="${linkCls}">trekking</a>, <a href="/fr-fr/experiences/cours-de-cuisine/" class="${linkCls}">gastronomie</a>). L'algorithme combine destinations, transports publics et activités en un itinéraire jour par jour avec des temps de trajet réalistes et des suggestions d'arrêts.`
+  },
+  {
+    q: "Combien de jours faut-il pour visiter la Côte Amalfitaine ?",
+    a: "Le minimum conseillé est de 3 jours pour voir Positano, Amalfi et Ravello sans courir. Avec 4 jours tu inclus Capri ou la Péninsule Sorrentine. Avec 7 jours tu couvres aussi Procida, Ischia ou un trekking sur le Sentier des Dieux. Pour un grand tour complet de la Campanie côtière il faut 10 jours.",
+    html: `Le minimum conseillé est de <a href="/fr-fr/itineraires/3-jours/cote-amalfitaine-classique/" class="${linkCls}">3 jours</a> pour voir <a href="/fr-fr/cote-amalfitaine/positano/" class="${linkCls}">Positano</a>, <a href="/fr-fr/cote-amalfitaine/amalfi/" class="${linkCls}">Amalfi</a> et <a href="/fr-fr/cote-amalfitaine/ravello/" class="${linkCls}">Ravello</a> sans courir. Avec <a href="/fr-fr/itineraires/4-jours/cote-amalfitaine-complete/" class="${linkCls}">4 jours</a> tu inclus <a href="/fr-fr/iles/capri/" class="${linkCls}">Capri</a> ou la <a href="/fr-fr/peninsule-sorrentine/" class="${linkCls}">Péninsule Sorrentine</a>. Avec <a href="/fr-fr/itineraires/7-jours/grand-tour-cote-peninsule/" class="${linkCls}">7 jours</a> tu couvres aussi <a href="/fr-fr/iles/procida/" class="${linkCls}">Procida</a>, <a href="/fr-fr/iles/ischia/" class="${linkCls}">Ischia</a> ou un <a href="/fr-fr/itineraires/1-jour/sentier-des-dieux-trek/" class="${linkCls}">trekking sur le Sentier des Dieux</a>.`
+  },
+  {
+    q: "Quelle est la meilleure période pour visiter la Côte Amalfitaine ?",
+    a: "Mai, juin et septembre offrent le meilleur compromis : températures agréables, mer déjà chaude et moins de monde qu'en juillet et août. Avril et octobre sont idéaux pour le trekking et la culture. En basse saison (novembre à février) beaucoup d'activités touristiques, ferries et restaurants ferment.",
+    html: `Mai, juin et septembre offrent le meilleur compromis : températures agréables, mer déjà chaude et moins de monde qu'en juillet et août. Avril et octobre sont idéaux pour le <a href="/fr-fr/experiences/trekking/" class="${linkCls}">trekking</a> et la culture. En basse saison (novembre à février) beaucoup d'activités touristiques, ferries et restaurants ferment. Approfondis dans le guide <a href="/fr-fr/guide/quand-visiter/" class="${linkCls}">Quand visiter la Côte Amalfitaine</a>.`
+  },
+  {
+    q: "Comment se déplacer sur la Côte Amalfitaine sans voiture ?",
+    a: "Les bus SITA Sud relient tous les villages côtiers (Sorrente, Positano, Amalfi, Ravello, Salerne) avec un service fréquent. En haute saison, les ferries et hydroglisseurs NLG, Travelmar et Alicost sont souvent plus rapides et plus panoramiques. Pour Capri, Procida et Ischia le ferry est la seule option. La SS163 est soumise à ZTL et circulation alternée en été.",
+    html: `Les <a href="/fr-fr/guide/bus-sita/" class="${linkCls}">bus SITA Sud</a> relient tous les villages côtiers (Sorrente, Positano, Amalfi, Ravello, Salerne) avec un service fréquent. En haute saison, les <a href="/fr-fr/guide/ferries/" class="${linkCls}">ferries et hydroglisseurs</a> NLG, Travelmar et Alicost sont souvent plus rapides et plus panoramiques. Pour <a href="/fr-fr/iles/capri/" class="${linkCls}">Capri</a>, <a href="/fr-fr/iles/procida/" class="${linkCls}">Procida</a> et <a href="/fr-fr/iles/ischia/" class="${linkCls}">Ischia</a> le ferry est la seule option. La SS163 est soumise à <a href="/fr-fr/guide/parking-ztl/" class="${linkCls}">ZTL</a> et <a href="/fr-fr/guide/circulation-alternee/" class="${linkCls}">circulation alternée</a> en été.`
+  },
+  {
+    q: "Vaut-il mieux partir de Naples, Salerne ou Sorrente ?",
+    a: "Naples est le point de départ idéal si tu arrives en avion ou en train à grande vitesse. Salerne est plus proche d'Amalfi et Ravello, avec des ferries directs et un stationnement plus économique. Sorrente est la base parfaite si tu veux combiner Côte Amalfitaine, Péninsule Sorrentine et Capri en un seul voyage.",
+    html: `Naples est le point de départ idéal si tu arrives en avion ou en train à grande vitesse : lis le guide <a href="/fr-fr/guide/comment-venir/" class="${linkCls}">Comment venir sur la Côte Amalfitaine</a>. <a href="/fr-fr/cote-amalfitaine/salerne/" class="${linkCls}">Salerne</a> est plus proche d'<a href="/fr-fr/cote-amalfitaine/amalfi/" class="${linkCls}">Amalfi</a> et <a href="/fr-fr/cote-amalfitaine/ravello/" class="${linkCls}">Ravello</a>, avec des ferries directs et un stationnement plus économique. <a href="/fr-fr/peninsule-sorrentine/sorrente/" class="${linkCls}">Sorrente</a> est la base parfaite si tu veux combiner Côte Amalfitaine, <a href="/fr-fr/peninsule-sorrentine/" class="${linkCls}">Péninsule Sorrentine</a> et <a href="/fr-fr/iles/capri/" class="${linkCls}">Capri</a> en un seul voyage.`
+  },
+  {
+    q: "Combien coûte une semaine sur la Côte Amalfitaine ?",
+    a: "Un budget moyen par personne est de 900 / 1 400 € par semaine en haute saison : 80 / 150 € par nuit en hôtel 3 étoiles, 35 € par jour pour les repas, 60 / 100 € pour les transports (bus, ferries) et 100 / 150 € pour les activités (boat tour, entrées, excursions). En dessous de 700 € c'est possible en basse saison ou en B&B.",
+    html: `Un budget moyen par personne est de 900 / 1 400 € par semaine en haute saison : 80 / 150 € par nuit en hôtel 3 étoiles, 35 € par jour pour les repas, 60 / 100 € pour les transports (<a href="/fr-fr/guide/bus-sita/" class="${linkCls}">bus</a>, <a href="/fr-fr/guide/ferries/" class="${linkCls}">ferries</a>) et 100 / 150 € pour les activités (<a href="/fr-fr/experiences/tours-en-bateau/" class="${linkCls}">boat tour</a>, entrées, excursions). En dessous de 700 € c'est possible en basse saison ou en B&B.`
+  },
+  {
+    q: "Peut-on visiter Capri à la journée depuis la Côte ?",
+    a: "Oui. Depuis Positano et Amalfi, des hydroglisseurs partent directement vers Capri (40 / 60 minutes) entre avril et octobre. Le tour de l'île en bateau dure 2 heures, la Grotte Bleue nécessite 30 / 40 minutes de file. Pour Anacapri et le Monte Solaro mieux vaut consacrer la journée entière, en partant avant 8h30 et en rentrant avec le dernier hydroglisseur de l'après-midi.",
+    html: `Oui. Depuis <a href="/fr-fr/cote-amalfitaine/positano/" class="${linkCls}">Positano</a> et <a href="/fr-fr/cote-amalfitaine/amalfi/" class="${linkCls}">Amalfi</a>, des <a href="/fr-fr/guide/ferries/" class="${linkCls}">hydroglisseurs partent directement vers Capri</a> (40 / 60 minutes) entre avril et octobre. Le tour de l'île en <a href="/fr-fr/experiences/tours-en-bateau/" class="${linkCls}">bateau</a> dure 2 heures, la Grotte Bleue nécessite 30 / 40 minutes de file. Pour <a href="/fr-fr/iles/anacapri/" class="${linkCls}">Anacapri</a> et le Monte Solaro mieux vaut consacrer la journée entière : voir l'itinéraire <a href="/fr-fr/itineraires/1-jour/capri-depuis-sorrente/" class="${linkCls}">Capri depuis Sorrente</a>.`
+  },
+  {
+    q: "Quel est le meilleur village entre Positano, Amalfi et Ravello ?",
+    a: "Positano est le plus photogénique et mondain, avec les meilleures plages mais des prix élevés. Amalfi est central, pratique pour ferries et bus, avec le Duomo et la Valle dei Mulini. Ravello est le village culturel par excellence (Villa Cimbrone, Villa Rufolo, Ravello Festival) et on y dort bien mieux hors saison. Il n'y a pas de choix unique : le planificateur mélange les trois selon le temps disponible.",
+    html: `<a href="/fr-fr/cote-amalfitaine/positano/" class="${linkCls}">Positano</a> est le plus photogénique et mondain, avec les meilleures plages mais des prix élevés. <a href="/fr-fr/cote-amalfitaine/amalfi/" class="${linkCls}">Amalfi</a> est central, pratique pour <a href="/fr-fr/guide/ferries/" class="${linkCls}">ferries</a> et <a href="/fr-fr/guide/bus-sita/" class="${linkCls}">bus</a>, avec le Duomo et la Valle dei Mulini. <a href="/fr-fr/cote-amalfitaine/ravello/" class="${linkCls}">Ravello</a> est le village culturel par excellence (Villa Cimbrone, Villa Rufolo, Ravello Festival) et on y dort bien mieux hors saison. Il n'y a pas de choix unique : le planificateur mélange les trois selon le temps disponible.`
+  },
+  {
+    q: "L'itinéraire généré inclut-il les transports et les temps de trajet ?",
+    a: "Oui. Chaque étape indique comment se déplacer (bus SITA, ferry, train régional, taxi privé), la durée réelle du trajet en haute saison et une suggestion sur les coûts moyens. Pour les liaisons critiques (Positano / Amalfi en août) nous signalons les alternatives par mer pour éviter le trafic de la SS163.",
+    html: `Oui. Chaque étape indique comment se déplacer (<a href="/fr-fr/guide/bus-sita/" class="${linkCls}">bus SITA</a>, <a href="/fr-fr/guide/ferries/" class="${linkCls}">ferry</a>, train régional, taxi privé), la durée réelle du trajet en haute saison et une suggestion sur les coûts moyens. Pour les liaisons critiques (<a href="/fr-fr/cote-amalfitaine/positano/" class="${linkCls}">Positano</a> / <a href="/fr-fr/cote-amalfitaine/amalfi/" class="${linkCls}">Amalfi</a> en août) nous signalons les alternatives par mer pour éviter le trafic de la SS163 et la <a href="/fr-fr/guide/circulation-alternee/" class="${linkCls}">circulation alternée</a>.`
+  },
+  {
+    q: "Puis-je régénérer et personnaliser l'itinéraire ?",
+    a: "Oui. Tu peux modifier le point de départ, la durée, le budget, la saison et les centres d'intérêt autant de fois que tu veux et régénérer l'itinéraire. Chaque configuration produit un nouveau plan optimisé. Enregistre le lien du résultat pour le partager ou l'ajouter à tes favoris.",
+    html: `Oui. Tu peux modifier le point de départ, la durée, le budget, la saison et les centres d'intérêt autant de fois que tu veux et régénérer l'itinéraire. Chaque configuration produit un nouveau plan optimisé. Enregistre le lien du résultat pour le partager ou l'ajouter à tes favoris. Voir aussi nos <a href="/fr-fr/itineraires/" class="${linkCls}">itinéraires prêts</a> pour t'inspirer.`
+  }
 ];
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Comment fonctionne le planificateur de voyage ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Selectionne ton point de depart (Naples, Salerne, Sorrente ou Amalfi), le nombre de jours, le budget, la saison et tes centres d'interet. L'algorithme combine automatiquement les meilleures activites en un itineraire personnalise." }
-    },
-    {
-      "@type": "Question",
-      "name": "Puis-je personnaliser l'itineraire genere ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "L'itineraire genere est une suggestion basee sur tes criteres. Tu peux modifier tes preferences et le regenerer autant de fois que tu veux jusqu'a trouver la combinaison parfaite." }
-    }
-  ]
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
 };
 ---
 
 <BaseLayout
-  title="Planifie ton voyage sur la Cote Amalfitaine | Planificateur gratuit"
-  description="Cree ton itineraire personnalise pour la Cote Amalfitaine, la Peninsule de Sorrente et les iles du Golfe. Choisis jours, budget et interets."
+  title="Planifie ton voyage sur la Côte Amalfitaine | Planificateur gratuit"
+  description="Crée ton itinéraire personnalisé pour la Côte Amalfitaine, la Péninsule de Sorrente et les îles du Golfe. Choisis jours, budget et intérêts."
   lang={lang}
   pageKey={pageKey}
   breadcrumbs={breadcrumbs}
@@ -40,13 +88,71 @@ const faqSchema = {
 >
   <TripPlanner lang={lang} />
 
+  <!-- SEO Content + FAQ Accordion -->
+  <section class="bg-slate-50 py-14 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="mb-12 md:mb-16">
+        <span class="block text-[11px] uppercase tracking-[0.3em] text-med-gold font-bold mb-4">Guide du planificateur</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-slate-900 mb-5 leading-tight">Comment planifier un voyage sur la Côte Amalfitaine</h2>
+        <p class="text-slate-700 leading-relaxed mb-4">
+          Organiser un itinéraire sur la <strong>Côte Amalfitaine</strong> signifie bien choisir le point de départ, le nombre de jours, les villages à inclure et les moyens de transport. La SS163 Amalfitana est une route panoramique mais étroite et embouteillée : entre juin et septembre, les bus SITA Sud et les ferries rapides depuis Salerne, Sorrente et Naples sont souvent plus rapides que la voiture privée. Notre planificateur tient compte de la saisonnalité, des ZTL, de la circulation alternée et des horaires réels des ferries pour construire un plan réalisable, pas seulement beau sur le papier.
+        </p>
+        <p class="text-slate-700 leading-relaxed mb-4">
+          Chaque itinéraire généré équilibre <strong>plage, culture, villages et gastronomie</strong> selon les centres d'intérêt sélectionnés. Avec 3 jours, le plan se concentre sur les trois villages emblématiques (Positano, Amalfi, Ravello). Avec 5 ou 7 jours, des variantes s'ouvrent sur Capri, Procida, Ischia, la Péninsule Sorrentine (Sorrente, Massa Lubrense, Punta Campanella) et des trekkings comme le Sentier des Dieux ou la Vallée des Ferriere. Le budget oriente le choix entre B&B, hôtels boutique ou resorts 5 étoiles et entre transports publics, NCC privé ou boat tours exclusifs.
+        </p>
+        <p class="text-slate-700 leading-relaxed mb-6">
+          Le résultat est un <strong>plan jour par jour</strong> avec des horaires indicatifs, des temps de transfert, des coûts moyens et des suggestions de restaurants, plages et activités typiques de chaque village. Tu peux le régénérer autant de fois que tu veux en changeant un paramètre et comparer les versions avant de réserver.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4 mt-8">
+          <div class="bg-white rounded-2xl p-5 border border-slate-200">
+            <h3 class="font-serif text-lg font-bold text-slate-900 mb-2">Ce qu'inclut l'itinéraire</h3>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Étapes jour par jour avec horaires</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Transports réels (bus SITA, ferries, train)</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Coûts moyens par personne</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Suggestions plages et restaurants</li>
+            </ul>
+          </div>
+          <div class="bg-white rounded-2xl p-5 border border-slate-200">
+            <h3 class="font-serif text-lg font-bold text-slate-900 mb-2">À qui il s'adresse</h3>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Premier voyage sur la Côte Amalfitaine</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Couples, familles, groupes d'amis</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Voyageurs sans voiture</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Tours multi-étapes avec îles du Golfe</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="faq">
+        <span class="block text-[11px] uppercase tracking-[0.3em] text-med-gold font-bold mb-4">FAQ</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-slate-900 mb-8 leading-tight">Questions fréquentes sur le planificateur</h2>
+        <div class="space-y-3">
+          {faqs.map((f) => (
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+              <summary class="flex items-center justify-between px-5 sm:px-6 py-4 cursor-pointer select-none text-slate-900 font-medium hover:bg-slate-50 transition-colors">
+                <span class="text-sm sm:text-base pr-4">{f.q}</span>
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-5 sm:px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4" set:html={f.html}>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
   <section class="bg-white py-12 md:py-16">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
       <h2 class="font-display text-2xl md:text-3xl font-bold text-slate-900 mb-4">Envie d'en savoir plus ?</h2>
-      <p class="text-slate-600 mb-6">Decouvre nos guides detailles sur les transports, itineraires et destinations.</p>
+      <p class="text-slate-600 mb-6">Découvre nos guides détaillés sur les transports, itinéraires et destinations.</p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/fr-fr/guide/comment-venir/" class="px-5 py-3 bg-med-blue text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors">Comment venir</a>
-        <a href="/fr-fr/itineraires/" class="px-5 py-3 border-2 border-slate-300 text-slate-700 font-semibold rounded-xl hover:border-slate-500 transition-colors">Itineraires prets</a>
+        <a href="/fr-fr/itineraires/" class="px-5 py-3 border-2 border-slate-300 text-slate-700 font-semibold rounded-xl hover:border-slate-500 transition-colors">Itinéraires prêts</a>
       </div>
     </div>
   </section>

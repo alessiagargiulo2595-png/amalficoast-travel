@@ -12,21 +12,69 @@ const breadcrumbs = [
   { name: 'Reiserouten-Planer', url: '/de-de/reiserouten-planer/' },
 ];
 
+const linkCls = "text-med-blue underline decoration-med-gold/40 underline-offset-2 hover:decoration-med-gold transition-colors";
+
+const faqs = [
+  {
+    q: "Wie funktioniert der Reiserouten-Planer für die Amalfiküste?",
+    a: "Wähle deinen Ausgangspunkt (Neapel, Salerno, Sorrent oder Amalfi), die Anzahl der Tage, das Budget, die Jahreszeit und deine Interessen (Strand, Kultur, Trekking, Kulinarik). Der Algorithmus kombiniert Reiseziele, öffentliche Verkehrsmittel und Aktivitäten zu einer Tag-für-Tag-Reiseroute mit realistischen Fahrzeiten und Halten.",
+    html: `Wähle deinen Ausgangspunkt (Neapel, <a href="/de-de/amalfikueste/salerno/" class="${linkCls}">Salerno</a>, <a href="/de-de/sorrentinische-halbinsel/sorrent/" class="${linkCls}">Sorrent</a> oder <a href="/de-de/amalfikueste/amalfi/" class="${linkCls}">Amalfi</a>), die Anzahl der Tage, das Budget, die Jahreszeit und deine Interessen (Strand, Kultur, <a href="/de-de/erlebnisse/trekking/" class="${linkCls}">Trekking</a>, <a href="/de-de/erlebnisse/kochkurs/" class="${linkCls}">Kulinarik</a>). Der Algorithmus kombiniert Reiseziele, öffentliche Verkehrsmittel und Aktivitäten zu einer Tag-für-Tag-Reiseroute mit realistischen Fahrzeiten und Halten.`
+  },
+  {
+    q: "Wie viele Tage braucht man für die Amalfiküste?",
+    a: "Das empfohlene Minimum sind 3 Tage, um Positano, Amalfi und Ravello ohne Stress zu sehen. Mit 4 Tagen kannst du Capri oder die Sorrentinische Halbinsel ergänzen. Mit 7 Tagen schaffst du auch Procida, Ischia oder einen Weg-der-Götter-Trek. Für eine komplette Kampanien-Rundreise braucht es 10 Tage.",
+    html: `Das empfohlene Minimum sind <a href="/de-de/reiserouten/3-tage/klassische-amalfikueste/" class="${linkCls}">3 Tage</a>, um <a href="/de-de/amalfikueste/positano/" class="${linkCls}">Positano</a>, <a href="/de-de/amalfikueste/amalfi/" class="${linkCls}">Amalfi</a> und <a href="/de-de/amalfikueste/ravello/" class="${linkCls}">Ravello</a> ohne Stress zu sehen. Mit <a href="/de-de/reiserouten/4-tage/komplette-amalfikueste/" class="${linkCls}">4 Tagen</a> kannst du <a href="/de-de/inseln/capri/" class="${linkCls}">Capri</a> oder die <a href="/de-de/sorrentinische-halbinsel/" class="${linkCls}">Sorrentinische Halbinsel</a> ergänzen. Mit <a href="/de-de/reiserouten/7-tage/grand-tour-kueste-halbinsel/" class="${linkCls}">7 Tagen</a> schaffst du auch <a href="/de-de/inseln/procida/" class="${linkCls}">Procida</a>, <a href="/de-de/inseln/ischia/" class="${linkCls}">Ischia</a> oder einen <a href="/de-de/reiserouten/1-tag/weg-der-goetter-trekking/" class="${linkCls}">Weg-der-Götter-Trek</a>.`
+  },
+  {
+    q: "Wann ist die beste Reisezeit für die Amalfiküste?",
+    a: "Mai, Juni und September bieten den besten Kompromiss: angenehme Temperaturen, warmes Meer und weniger Andrang als im Juli oder August. April und Oktober eignen sich ideal für Trekking und Kultur. In der Nebensaison (November bis Februar) schließen viele touristische Angebote, Fähren und Restaurants.",
+    html: `Mai, Juni und September bieten den besten Kompromiss: angenehme Temperaturen, warmes Meer und weniger Andrang als im Juli oder August. April und Oktober eignen sich ideal für <a href="/de-de/erlebnisse/trekking/" class="${linkCls}">Trekking</a> und Kultur. In der Nebensaison (November bis Februar) schließen viele touristische Angebote, Fähren und Restaurants. Mehr im Ratgeber <a href="/de-de/ratgeber/reisezeit/" class="${linkCls}">Beste Reisezeit Amalfiküste</a>.`
+  },
+  {
+    q: "Wie kommt man ohne Auto an der Amalfiküste herum?",
+    a: "SITA Sud Busse verbinden alle Küstenorte (Sorrent, Positano, Amalfi, Ravello, Salerno) mit häufigen Fahrten. In der Hochsaison sind Fähren und Tragflügelboote von NLG, Travelmar und Alicost oft schneller und landschaftlich schöner. Für Capri, Procida und Ischia ist die Fähre die einzige Option. Die SS163 ist im Sommer ZTL- und wechselkennzeichenpflichtig.",
+    html: `<a href="/de-de/ratgeber/sita-bus/" class="${linkCls}">SITA Sud Busse</a> verbinden alle Küstenorte (Sorrent, Positano, Amalfi, Ravello, Salerno) mit häufigen Fahrten. In der Hochsaison sind <a href="/de-de/ratgeber/faehren/" class="${linkCls}">Fähren und Tragflügelboote</a> von NLG, Travelmar und Alicost oft schneller und landschaftlich schöner. Für <a href="/de-de/inseln/capri/" class="${linkCls}">Capri</a>, <a href="/de-de/inseln/procida/" class="${linkCls}">Procida</a> und <a href="/de-de/inseln/ischia/" class="${linkCls}">Ischia</a> ist die Fähre die einzige Option. Die SS163 ist im Sommer <a href="/de-de/ratgeber/parken-ztl/" class="${linkCls}">ZTL</a>- und <a href="/de-de/ratgeber/wechselkennzeichen/" class="${linkCls}">wechselkennzeichen</a>-pflichtig.`
+  },
+  {
+    q: "Besser von Neapel, Salerno oder Sorrent starten?",
+    a: "Neapel ist der ideale Ausgangspunkt, wenn du mit dem Flugzeug oder Hochgeschwindigkeitszug anreist. Salerno liegt näher an Amalfi und Ravello, mit Direktfähren und günstigerem Parken. Sorrent ist die perfekte Basis, wenn du Amalfiküste, Sorrentinische Halbinsel und Capri in einer Reise kombinieren willst.",
+    html: `Neapel ist der ideale Ausgangspunkt, wenn du mit Flugzeug oder Hochgeschwindigkeitszug anreist: lies den Ratgeber <a href="/de-de/ratgeber/anreise/" class="${linkCls}">Anreise zur Amalfiküste</a>. <a href="/de-de/amalfikueste/salerno/" class="${linkCls}">Salerno</a> liegt näher an <a href="/de-de/amalfikueste/amalfi/" class="${linkCls}">Amalfi</a> und <a href="/de-de/amalfikueste/ravello/" class="${linkCls}">Ravello</a>, mit Direktfähren und günstigerem Parken. <a href="/de-de/sorrentinische-halbinsel/sorrent/" class="${linkCls}">Sorrent</a> ist die perfekte Basis, wenn du Amalfiküste, <a href="/de-de/sorrentinische-halbinsel/" class="${linkCls}">Sorrentinische Halbinsel</a> und <a href="/de-de/inseln/capri/" class="${linkCls}">Capri</a> in einer Reise kombinieren willst.`
+  },
+  {
+    q: "Wie viel kostet eine Woche Amalfiküste?",
+    a: "Ein durchschnittliches Budget pro Person liegt bei 900 / 1.400 € pro Woche in der Hochsaison: 80 / 150 € pro Nacht im 3-Sterne-Hotel, 35 € pro Tag für Mahlzeiten, 60 / 100 € für Transport (Bus, Fähren) und 100 / 150 € für Aktivitäten (Bootstour, Eintritte, Ausflüge). Unter 700 € möglich in der Nebensaison oder mit B&B.",
+    html: `Ein durchschnittliches Budget pro Person liegt bei 900 / 1.400 € pro Woche in der Hochsaison: 80 / 150 € pro Nacht im 3-Sterne-Hotel, 35 € pro Tag für Mahlzeiten, 60 / 100 € für Transport (<a href="/de-de/ratgeber/sita-bus/" class="${linkCls}">Bus</a>, <a href="/de-de/ratgeber/faehren/" class="${linkCls}">Fähren</a>) und 100 / 150 € für Aktivitäten (<a href="/de-de/erlebnisse/bootstouren/" class="${linkCls}">Bootstour</a>, Eintritte, Ausflüge). Unter 700 € möglich in der Nebensaison oder mit B&B.`
+  },
+  {
+    q: "Kann ich Capri als Tagesausflug von der Küste aus besuchen?",
+    a: "Ja. Von Positano und Amalfi fahren Tragflügelboote direkt nach Capri (40 / 60 Minuten) zwischen April und Oktober. Die Bootstour um die Insel dauert 2 Stunden, die Blaue Grotte braucht 30 / 40 Minuten Wartezeit. Für Anacapri und den Monte Solaro besser den ganzen Tag einplanen, Abfahrt bis 8:30 Uhr und Rückfahrt mit dem letzten Tragflügelboot am Nachmittag.",
+    html: `Ja. Von <a href="/de-de/amalfikueste/positano/" class="${linkCls}">Positano</a> und <a href="/de-de/amalfikueste/amalfi/" class="${linkCls}">Amalfi</a> fahren <a href="/de-de/ratgeber/faehren/" class="${linkCls}">Tragflügelboote direkt nach Capri</a> (40 / 60 Minuten) zwischen April und Oktober. Die <a href="/de-de/erlebnisse/bootstouren/" class="${linkCls}">Bootstour</a> um die Insel dauert 2 Stunden, die Blaue Grotte braucht 30 / 40 Minuten Wartezeit. Für <a href="/de-de/inseln/anacapri/" class="${linkCls}">Anacapri</a> und den Monte Solaro besser den ganzen Tag einplanen: siehe Reiseroute <a href="/de-de/reiserouten/1-tag/capri-von-sorrent/" class="${linkCls}">Capri von Sorrent</a>.`
+  },
+  {
+    q: "Welcher Ort ist am besten: Positano, Amalfi oder Ravello?",
+    a: "Positano ist am fotogensten und mondänsten, mit den besten Stränden aber hohen Preisen. Amalfi ist zentral, praktisch für Fähren und Busse, mit Dom und Mühlental. Ravello ist der Kulturort schlechthin (Villa Cimbrone, Villa Rufolo, Ravello Festival) und außerhalb der Saison deutlich besser zum Übernachten. Es gibt keine eine Wahl: der Planer mischt alle drei je nach Reisedauer.",
+    html: `<a href="/de-de/amalfikueste/positano/" class="${linkCls}">Positano</a> ist am fotogensten und mondänsten, mit den besten Stränden aber hohen Preisen. <a href="/de-de/amalfikueste/amalfi/" class="${linkCls}">Amalfi</a> ist zentral, praktisch für <a href="/de-de/ratgeber/faehren/" class="${linkCls}">Fähren</a> und <a href="/de-de/ratgeber/sita-bus/" class="${linkCls}">Busse</a>, mit Dom und Mühlental. <a href="/de-de/amalfikueste/ravello/" class="${linkCls}">Ravello</a> ist der Kulturort schlechthin (Villa Cimbrone, Villa Rufolo, Ravello Festival) und außerhalb der Saison deutlich besser zum Übernachten. Es gibt keine eine Wahl: der Planer mischt alle drei je nach Reisedauer.`
+  },
+  {
+    q: "Enthält die Reiseroute Transporte und Fahrzeiten?",
+    a: "Ja. Jede Etappe nennt das Verkehrsmittel (SITA Bus, Fähre, Regionalzug, Privattaxi), die reale Fahrzeit in der Hochsaison und einen Hinweis auf durchschnittliche Kosten. Für kritische Strecken (Positano / Amalfi im August) zeigen wir Alternativen über das Meer, um den Verkehr der SS163 zu umgehen.",
+    html: `Ja. Jede Etappe nennt das Verkehrsmittel (<a href="/de-de/ratgeber/sita-bus/" class="${linkCls}">SITA Bus</a>, <a href="/de-de/ratgeber/faehren/" class="${linkCls}">Fähre</a>, Regionalzug, Privattaxi), die reale Fahrzeit in der Hochsaison und einen Hinweis auf durchschnittliche Kosten. Für kritische Strecken (<a href="/de-de/amalfikueste/positano/" class="${linkCls}">Positano</a> / <a href="/de-de/amalfikueste/amalfi/" class="${linkCls}">Amalfi</a> im August) zeigen wir Alternativen über das Meer, um den Verkehr der SS163 und die <a href="/de-de/ratgeber/wechselkennzeichen/" class="${linkCls}">Wechselkennzeichen</a> zu umgehen.`
+  },
+  {
+    q: "Kann ich die Reiseroute neu generieren und anpassen?",
+    a: "Ja. Du kannst Ausgangspunkt, Dauer, Budget, Jahreszeit und Interessen beliebig oft ändern und die Route neu generieren. Jede Konfiguration erzeugt einen neuen optimierten Plan. Speichere den Link zum Ergebnis zum Teilen oder als Lesezeichen.",
+    html: `Ja. Du kannst Ausgangspunkt, Dauer, Budget, Jahreszeit und Interessen beliebig oft ändern und die Route neu generieren. Jede Konfiguration erzeugt einen neuen optimierten Plan. Speichere den Link zum Ergebnis zum Teilen oder als Lesezeichen. Siehe auch unsere <a href="/de-de/reiserouten/" class="${linkCls}">fertigen Reiserouten</a> als Inspiration.`
+  }
+];
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Wie funktioniert der Reiseplaner?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Wähle deinen Ausgangspunkt (Neapel, Salerno, Sorrent oder Amalfi), die Anzahl der Tage, das Budget, die Jahreszeit und deine Interessen. Der Algorithmus kombiniert automatisch die besten Aktivitäten zu einer persönlichen Reiseroute." }
-    },
-    {
-      "@type": "Question",
-      "name": "Kann ich die generierte Reiseroute anpassen?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Die generierte Reiseroute ist ein Vorschlag basierend auf deinen Kriterien. Du kannst die Einstellungen ändern und so oft neu generieren, bis du die perfekte Kombination gefunden hast." }
-    }
-  ]
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
 };
 ---
 
@@ -40,6 +88,64 @@ const faqSchema = {
 >
   <TripPlanner lang={lang} />
 
+  <!-- SEO Content + FAQ Accordion -->
+  <section class="bg-slate-50 py-14 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="mb-12 md:mb-16">
+        <span class="block text-[11px] uppercase tracking-[0.3em] text-med-gold font-bold mb-4">Planer-Ratgeber</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-slate-900 mb-5 leading-tight">Wie plant man eine Reise an die Amalfiküste</h2>
+        <p class="text-slate-700 leading-relaxed mb-4">
+          Eine Reiseroute an der <strong>Amalfiküste</strong> zu organisieren heißt: den richtigen Ausgangspunkt wählen, die richtige Anzahl Tage, die zu besuchenden Orte und die passenden Verkehrsmittel. Die SS163 Amalfitana ist landschaftlich spektakulär, aber schmal und stark befahren: zwischen Juni und September sind SITA Sud Busse und Schnellfähren von Salerno, Sorrent und Neapel oft schneller als das eigene Auto. Unser Planer berücksichtigt Saison, ZTL, Wechselkennzeichen und reale Fährfahrpläne und erstellt einen umsetzbaren Plan, nicht nur einen schönen auf Papier.
+        </p>
+        <p class="text-slate-700 leading-relaxed mb-4">
+          Jede generierte Reiseroute balanciert <strong>Strand, Kultur, Dörfer und Kulinarik</strong> nach deinen Interessen. Mit 3 Tagen konzentriert sich der Plan auf die drei ikonischen Orte (Positano, Amalfi, Ravello). Mit 5 oder 7 Tagen öffnen sich Varianten für Capri, Procida, Ischia, die Sorrentinische Halbinsel (Sorrent, Massa Lubrense, Punta Campanella) und Treks wie den Weg der Götter oder das Ferriere-Tal. Das Budget steuert die Wahl zwischen B&B, Boutique-Hotel oder 5-Sterne-Resort und zwischen ÖPNV, privatem NCC oder exklusiven Bootstouren.
+        </p>
+        <p class="text-slate-700 leading-relaxed mb-6">
+          Das Ergebnis ist ein <strong>Tag-für-Tag-Plan</strong> mit Richtzeiten, Transferzeiten, Durchschnittskosten und Vorschlägen zu Restaurants, Stränden und Aktivitäten typisch für jeden Ort. Du kannst ihn beliebig oft neu generieren, indem du einen Parameter änderst, und Versionen vor der Buchung vergleichen.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4 mt-8">
+          <div class="bg-white rounded-2xl p-5 border border-slate-200">
+            <h3 class="font-serif text-lg font-bold text-slate-900 mb-2">Was die Route enthält</h3>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Tag-für-Tag-Etappen mit Uhrzeiten</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Reale Transporte (SITA Bus, Fähren, Zug)</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Durchschnittskosten pro Person</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Strand- und Restaurantvorschläge</li>
+            </ul>
+          </div>
+          <div class="bg-white rounded-2xl p-5 border border-slate-200">
+            <h3 class="font-serif text-lg font-bold text-slate-900 mb-2">Für wen er gedacht ist</h3>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Erste Reise an die Amalfiküste</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Paare, Familien, Freundesgruppen</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Reisende ohne Auto</li>
+              <li class="flex items-start gap-2"><span class="text-med-gold mt-1.5 w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0"></span>Multi-Stopp-Touren mit Golfinseln</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="faq">
+        <span class="block text-[11px] uppercase tracking-[0.3em] text-med-gold font-bold mb-4">FAQ</span>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-slate-900 mb-8 leading-tight">Häufige Fragen zum Planer</h2>
+        <div class="space-y-3">
+          {faqs.map((f) => (
+            <details class="group border border-slate-200 rounded-2xl overflow-hidden bg-white">
+              <summary class="flex items-center justify-between px-5 sm:px-6 py-4 cursor-pointer select-none text-slate-900 font-medium hover:bg-slate-50 transition-colors">
+                <span class="text-sm sm:text-base pr-4">{f.q}</span>
+                <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-5 sm:px-6 pb-5 text-slate-600 leading-relaxed text-sm border-t border-slate-100 pt-4" set:html={f.html}>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
   <section class="bg-white py-12 md:py-16">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
       <h2 class="font-display text-2xl md:text-3xl font-bold text-slate-900 mb-4">Mehr erfahren?</h2>
