@@ -10,8 +10,13 @@ const breadcrumbs = [
   { name: 'Blog', url: '/it-it/blog/' },
 ];
 
-// Ordina dal più recente (id numerico più alto) al meno recente
-const sortedPosts = [...blogPosts].sort((a, b) => Number(b.id) - Number(a.id));
+// Ordina per data (più recente prima); fallback su id se la data non è parsabile
+const sortedPosts = [...blogPosts].sort((a, b) => {
+  const da = parseLocalizedDate(a.date, lang);
+  const db = parseLocalizedDate(b.date, lang);
+  if (da && db) return db.localeCompare(da);
+  return Number(b.id) - Number(a.id);
+});
 
 // Ricava categorie uniche dall'elenco articoli (ordine di pubblicazione)
 const categories = ['Tutte', ...new Set(sortedPosts.map(p => p.category))];

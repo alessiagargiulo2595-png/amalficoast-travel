@@ -11,7 +11,12 @@ const breadcrumbs = [
 ];
 
 // Du plus récent au plus ancien
-const sortedPosts = [...blogPostsFr].sort((a, b) => Number(b.id) - Number(a.id));
+const sortedPosts = [...blogPostsFr].sort((a, b) => {
+  const da = parseLocalizedDate(a.date, lang);
+  const db = parseLocalizedDate(b.date, lang);
+  if (da && db) return db.localeCompare(da);
+  return Number(b.id) - Number(a.id);
+});
 
 // Catégories uniques
 const categories = ['Tous', ...new Set(sortedPosts.map(p => p.category))];

@@ -10,7 +10,12 @@ const breadcrumbs = [
   { name: 'Blog', url: '/en-us/blog/' },
 ];
 
-const sortedPosts = [...blogPostsEn].sort((a, b) => Number(b.id) - Number(a.id));
+const sortedPosts = [...blogPostsEn].sort((a, b) => {
+  const da = parseLocalizedDate(a.date, lang);
+  const db = parseLocalizedDate(b.date, lang);
+  if (da && db) return db.localeCompare(da);
+  return Number(b.id) - Number(a.id);
+});
 const categories = ['All', ...new Set(sortedPosts.map(p => p.category))];
 
 const schemaBlog = {
