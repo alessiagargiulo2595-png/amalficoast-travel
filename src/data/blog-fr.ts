@@ -12,6 +12,17 @@ export interface BlogPostFr {
 
 export const blogPostsFr: BlogPostFr[] = [
   {
+    id: '30',
+    title: 'Météo Côte Amalfitaine Juillet et Août 2026',
+    slug: 'meteo-juillet-aout-2026',
+    excerpt: "Juillet 31°C et mer à 25°C, août 32°C avec 66% d'humidité. Comment fonctionne le microclimat, quelles plages passent à l'ombre dès 15h30, quoi mettre dans la valise et 3 meteo hacks entre Positano et Amalfi.",
+    category: 'GUIDE',
+    date: '6 juillet 2026',
+    readTime: '8 min',
+    image: '/images/meteo-costiera-luglio-agosto-hero.webp',
+    path: '/fr-fr/blog/meteo-juillet-aout-2026/',
+  },
+  {
     id: '29',
     title: 'Torre dello Ziro : La forteresse suspendue entre Amalfi et Atrani',
     slug: 'torre-dello-ziro',

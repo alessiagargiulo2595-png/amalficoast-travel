@@ -850,6 +850,7 @@ export const slugMap: Record<string, SlugMap> = {
   'piazzetta-capri': { 'en-us': 'blog/piazzetta-capri', 'de-de': 'blog/piazzetta-capri', 'fr-fr': 'blog/piazzetta-capri', 'es-es': 'blog/piazzetta-capri', 'it-it': 'blog/piazzetta-capri' },
   'lemon-path': { 'en-us': 'blog/lemon-path', 'de-de': 'blog/zitronenweg', 'fr-fr': 'blog/sentier-des-citrons', 'es-es': 'blog/sendero-de-los-limones', 'it-it': 'blog/sentiero-dei-limoni' },
   'torre-dello-ziro': { 'en-us': 'blog/torre-dello-ziro', 'de-de': 'blog/torre-dello-ziro', 'fr-fr': 'blog/torre-dello-ziro', 'es-es': 'blog/torre-dello-ziro', 'it-it': 'blog/torre-dello-ziro' },
+  'weather-july-august-2026': { 'en-us': 'blog/weather-july-august-2026', 'de-de': 'blog/wetter-juli-august-2026', 'fr-fr': 'blog/meteo-juillet-aout-2026', 'es-es': 'blog/clima-julio-agosto-2026', 'it-it': 'blog/meteo-luglio-agosto-2026' },
   // NOTE: Sorrento peninsula events only exist in non-English locales (de-de, fr-fr, es-es, it-it)
   // They are handled by pattern-matching in the hreflang generation script
 
@@ -953,6 +954,7 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'limoncello-recipe',                 'de-de': 'limoncello-rezept',                   'fr-fr': 'recette-limoncello',                'es-es': 'receta-limoncello',                 'it-it': 'ricetta-limoncello'                },
   { 'en-us': 'scialatielli',                      'de-de': 'scialatielli',                        'fr-fr': 'scialatielli',                      'es-es': 'scialatielli',                      'it-it': 'scialatielli'                      },
   { 'en-us': 'cuoppo-fritto',                     'de-de': 'cuoppo-fritto',                       'fr-fr': 'cuoppo-frit',                       'es-es': 'cuoppo-fritto',                     'it-it': 'cuoppo-fritto'                     },
+  { 'en-us': 'weather-july-august-2026',          'de-de': 'wetter-juli-august-2026',             'fr-fr': 'meteo-juillet-aout-2026',           'es-es': 'clima-julio-agosto-2026',           'it-it': 'meteo-luglio-agosto-2026'          },
   // Destination town slugs (same in all languages)
   { 'en-us': 'positano',                          'de-de': 'positano',                           'fr-fr': 'positano',                          'es-es': 'positano',                          'it-it': 'positano'                          },
   { 'en-us': 'amalfi',                            'de-de': 'amalfi',                             'fr-fr': 'amalfi',                            'es-es': 'amalfi',                            'it-it': 'amalfi'                            },

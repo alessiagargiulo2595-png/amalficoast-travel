@@ -580,6 +580,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
     source: 'slugMap',
   },
+  '/de-de/blog/wetter-juli-august-2026/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/wetter-juli-august-2026/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/wetter-juli-august-2026/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/meteo-juillet-aout-2026/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/clima-julio-agosto-2026/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/meteo-luglio-agosto-2026/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+    source: 'slugMap',
+  },
   '/de-de/blog/wilde-abgelegene-strande/': {
     url: 'https://amalficoast-travel.com/de-de/blog/wilde-abgelegene-strande/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
@@ -2412,6 +2425,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
     source: 'slugMap',
   },
+  '/en-us/blog/weather-july-august-2026/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/wetter-juli-august-2026/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/meteo-juillet-aout-2026/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/clima-julio-agosto-2026/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/meteo-luglio-agosto-2026/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+    source: 'slugMap',
+  },
   '/en-us/blog/wild-remote-beaches/': {
     url: 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
@@ -3304,6 +3330,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/capri-vs-ischia/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/clima-julio-agosto-2026/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/clima-julio-agosto-2026/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/wetter-juli-august-2026/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/meteo-juillet-aout-2026/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/clima-julio-agosto-2026/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/meteo-luglio-agosto-2026/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
     source: 'slugMap',
   },
   '/es-es/blog/cuoppo-fritto/': {
@@ -4995,6 +5034,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
     source: 'slugMap',
   },
+  '/fr-fr/blog/meteo-juillet-aout-2026/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/meteo-juillet-aout-2026/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/wetter-juli-august-2026/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/meteo-juillet-aout-2026/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/clima-julio-agosto-2026/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/meteo-luglio-agosto-2026/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+    source: 'slugMap',
+  },
   '/fr-fr/blog/oasis-sauvages-plages/': {
     url: 'https://amalficoast-travel.com/fr-fr/blog/oasis-sauvages-plages/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
@@ -6578,6 +6630,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
     source: 'slugMap',
   },
+  '/it-it/blog/meteo-luglio-agosto-2026/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/meteo-luglio-agosto-2026/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/wetter-juli-august-2026/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/meteo-juillet-aout-2026/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/clima-julio-agosto-2026/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/meteo-luglio-agosto-2026/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+    source: 'slugMap',
+  },
   '/it-it/blog/oasi-selvagge-spiagge-mare/': {
     url: 'https://amalficoast-travel.com/it-it/blog/oasi-selvagge-spiagge-mare/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
@@ -8049,7 +8114,7 @@ export function getXDefault(url: string): string | null {
  * Map statistics
  */
 export const hrefLangStats = {
-  totalUrls: 616,
+  totalUrls: 621,
   locales: ["en-us","de-de","fr-fr","es-es","it-it"],
-  generatedAt: '2026-06-11T12:19:50.550Z',
+  generatedAt: '2026-07-06T08:13:12.893Z',
 };

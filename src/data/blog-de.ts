@@ -12,6 +12,17 @@ export interface BlogPostDe {
 
 export const blogPostsDe: BlogPostDe[] = [
   {
+    id: '30',
+    title: 'Wetter Amalfiküste Juli und August 2026',
+    slug: 'wetter-juli-august-2026',
+    excerpt: "Juli 31°C und Meer bei 25°C, August 32°C mit 66% Luftfeuchtigkeit. Wie das Mikroklima funktioniert, welche Strände ab 15:30 Uhr im Schatten liegen, was in den Koffer gehört und 3 Wetter-Hacks zwischen Positano und Amalfi.",
+    category: 'REISEFÜHRER',
+    date: '6. Juli 2026',
+    readTime: '8 Min.',
+    image: '/images/meteo-costiera-luglio-agosto-hero.webp',
+    path: '/de-de/blog/wetter-juli-august-2026/',
+  },
+  {
     id: '29',
     title: 'Torre dello Ziro: Die Festung zwischen Amalfi und Atrani',
     slug: 'torre-dello-ziro',

@@ -12,6 +12,17 @@ export interface BlogPostEn {
 
 export const blogPostsEn: BlogPostEn[] = [
   {
+    id: '30',
+    title: 'Amalfi Coast Weather in July and August 2026',
+    slug: 'weather-july-august-2026',
+    excerpt: "July averages 88°F (31°C), August 90°F (32°C) with 66% humidity. How the microclimate works, which beaches lose sun at 3:30 PM, what to pack and 3 weather hacks for Positano and Amalfi.",
+    category: 'GUIDES',
+    date: 'July 6, 2026',
+    readTime: '8 min',
+    image: '/images/meteo-costiera-luglio-agosto-hero.webp',
+    path: '/en-us/blog/weather-july-august-2026/',
+  },
+  {
     id: '29',
     title: 'Torre dello Ziro: The Fortress Suspended Between Amalfi and Atrani',
     slug: 'torre-dello-ziro',
