@@ -12,6 +12,28 @@ export interface BlogPostDe {
 
 export const blogPostsDe: BlogPostDe[] = [
   {
+    id: '32',
+    title: 'Die Amalfiküste mit dem Zug',
+    slug: 'amalfikueste-mit-dem-zug',
+    excerpt: 'Kein Zug erreicht Positano oder Amalfi. Salerno und Sorrent sind die beiden Tore: Zeiten und Anschlüsse ab Florenz (etwa 3 Std. 20), Rom (etwa 2 Std.) und Neapel (35 Min.), dazu die Rückreise.',
+    category: 'REISEFÜHRER',
+    date: '10. August 2026',
+    readTime: '10 Min.',
+    image: '/images/salerno-hero.webp',
+    path: '/de-de/blog/amalfikueste-mit-dem-zug/',
+  },
+  {
+    id: '31',
+    title: 'Welcher Flughafen für die Amalfiküste',
+    slug: 'flughafen-amalfikueste',
+    excerpt: "Die Küste hat keinen Flughafen. Neapel (NAP) liegt 70 km entfernt, Salerno Costa d'Amalfi (QSR) nur 40 km, Rom Fiumicino 270 km. Entfernungen, Transferzeiten, echte Kosten und welcher sich lohnt.",
+    category: 'REISEFÜHRER',
+    date: '10. August 2026',
+    readTime: '9 Min.',
+    image: '/images/costiera-hero.webp',
+    path: '/de-de/blog/flughafen-amalfikueste/',
+  },
+  {
     id: '30',
     title: 'Wetter Amalfiküste Juli und August 2026',
     slug: 'wetter-juli-august-2026',

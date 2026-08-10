@@ -12,6 +12,28 @@ export interface BlogPostEn {
 
 export const blogPostsEn: BlogPostEn[] = [
   {
+    id: '32',
+    title: 'The Amalfi Coast by Train',
+    slug: 'amalfi-coast-by-train',
+    excerpt: 'No train reaches Positano or Amalfi. Salerno and Sorrento are the two gateways: times and connections from Florence (about 3h20), Rome (about 2h) and Naples (35 min), plus the return leg.',
+    category: 'GUIDES',
+    date: 'August 10, 2026',
+    readTime: '10 min',
+    image: '/images/salerno-hero.webp',
+    path: '/en-us/blog/amalfi-coast-by-train/',
+  },
+  {
+    id: '31',
+    title: 'Where to Fly Into for the Amalfi Coast',
+    slug: 'where-to-fly-amalfi-coast',
+    excerpt: "The coast has no airport. Naples (NAP) is 70 km away, Salerno Costa d'Amalfi (QSR) just 40 km, Rome Fiumicino 270 km. Distances, transfer times, real costs and which one to book.",
+    category: 'GUIDES',
+    date: 'August 10, 2026',
+    readTime: '9 min',
+    image: '/images/costiera-hero.webp',
+    path: '/en-us/blog/where-to-fly-amalfi-coast/',
+  },
+  {
     id: '30',
     title: 'Amalfi Coast Weather in July and August 2026',
     slug: 'weather-july-august-2026',

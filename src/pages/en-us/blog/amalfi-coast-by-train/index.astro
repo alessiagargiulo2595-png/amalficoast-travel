@@ -1,0 +1,353 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'en-us';
+const post = {
+  title: 'The Amalfi Coast by Train',
+  subtitle: 'From Florence, Rome or Naples to Positano and Amalfi without a car: which station to aim for, how long each leg takes and where the rails actually stop',
+  category: 'GUIDES',
+  date: 'August 10, 2026',
+  readTime: '10 min',
+  image: '/images/salerno-hero.webp',
+  imageAlt: 'Salerno seafront, the rail gateway to the Amalfi Coast',
+  path: '/en-us/blog/amalfi-coast-by-train/',
+};
+
+const metaTitle = 'The Amalfi Coast by Train | From Florence, Rome and Naples';
+const metaDescription = 'No train reaches Positano or Amalfi. Salerno and Sorrento are the two gateways. Times and connections from Florence (about 4h), Rome (about 3h) and Naples (about 1h30), plus the return leg.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Blog', url: '/en-us/blog/' },
+  { name: 'The Amalfi Coast by Train', url: '/en-us/blog/amalfi-coast-by-train/' },
+];
+
+const quickInfo = [
+  { label: 'Stations on the coast', value: 'None. Rails stop at Vietri sul Mare' },
+  { label: 'Eastern gateway', value: 'Salerno, then ferry or SITA bus' },
+  { label: 'Western gateway', value: 'Sorrento, via Circumvesuviana' },
+  { label: 'Rome to Salerno', value: 'About 2h by high-speed train' },
+  { label: 'Florence to Salerno', value: 'About 3h20 direct' },
+  { label: 'Naples to Salerno', value: '35 to 45 minutes' },
+  { label: 'Naples to Sorrento', value: 'About 1h by Circumvesuviana' },
+  { label: 'Salerno to Amalfi', value: '35 min by ferry, 1h15 by bus' },
+];
+
+const faq = [
+  {
+    q: 'Is there a train station in Positano or Amalfi?',
+    a: 'No. There is no railway anywhere on the Amalfi Coast itself. The cliffs leave no room for a line, so the network stops at Vietri sul Mare at the eastern end and at Sorrento on the far side of the peninsula. Every rail journey to the coast finishes by bus, ferry or car.',
+  },
+  {
+    q: 'What is the nearest train station to the Amalfi Coast?',
+    a: "Salerno is the practical answer: it is a full national station served by high-speed trains, and from there both ferries and SITA buses run along the coast. There is a small halt at Vietri sul Mare-Amalfi, but despite the name it is not in Amalfi and only regional trains stop there, so Salerno is almost always the better target.",
+  },
+  {
+    q: 'How do I get from Florence to the Amalfi Coast by train?',
+    a: 'Take a direct high-speed train from Firenze Santa Maria Novella to Salerno, roughly 3h20, or change at Naples if the timing suits you better. From Salerno take the ferry to Amalfi or Positano in season, or the SITA bus year-round. Door to door it is around 4h30 to 5h, and it is comfortably better than driving.',
+  },
+  {
+    q: 'How long does the train from Rome to the Amalfi Coast take?',
+    a: 'Roma Termini to Salerno is about 2h on a Frecciarossa or Italo, or about 1h10 to Naples if you prefer to route via Sorrento. Adding the ferry or bus at the end, expect 3h to 3h30 in total from Rome to Amalfi.',
+  },
+  {
+    q: 'Should I go via Salerno or via Sorrento?',
+    a: 'It depends where you sleep. Salerno serves Amalfi, Ravello, Maiori, Minori and Cetara best. Sorrento is the better gateway for Positano and Praiano. Splitting the difference means a long ride along the entire coast road, which is scenic but slow.',
+  },
+  {
+    q: 'What is the Circumvesuviana and should I use it?',
+    a: 'It is the local commuter line linking Naples to Sorrento in about an hour, and it is the only rail connection to the Sorrentine peninsula. It is cheap and frequent, but it is a commuter service: no luggage racks, crowded in summer, and known for pickpocketing. Keep bags in front of you, and if a Campania Express service is running, pay the surcharge for the reserved-seat version.',
+  },
+  {
+    q: 'Can I take a train all the way to Sorrento from Rome?',
+    a: 'Not on a single ticket or a single operator. You take a high-speed train to Napoli Centrale, then walk down to the Circumvesuviana platforms in the same building and continue to Sorrento. Two trains, one change, about 2h30 in total.',
+  },
+  {
+    q: 'Is the train better than driving to the Amalfi Coast?',
+    a: 'For most visitors, yes. The coast road is narrow and slow, parking in Positano and Amalfi runs €3-5 per hour and fills up early, and several villages restrict traffic in season. Unless you are staying inland at Agerola or Tramonti, a car is a cost and a worry rather than a convenience.',
+  },
+  {
+    q: 'How do I get back to Rome airport from the coast at the end of the trip?',
+    a: 'Reverse the sequence and be generous with time: ferry or bus to Salerno, high-speed train to Roma Termini (about 2h), then the Leonardo Express to Fiumicino (about 32 minutes). Count on 4h30 to 5h in total and build in a buffer, because the first leg along the coast is the one that can slip.',
+  },
+  {
+    q: 'Do I need to book high-speed trains in advance?',
+    a: 'Yes, if you care about the price. Frecciarossa and Italo fares work like airline fares and rise as the train fills, so booking a few weeks out can halve the cost. Regional trains and the Circumvesuviana are fixed-price and cannot be reserved, so there is no reason to book those ahead.',
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Getting to the Amalfi Coast', href: '/en-us/guide/getting-here/' },
+  { label: 'Ferries and Timetables', href: '/en-us/guide/ferries/' },
+  { label: 'SITA Bus Guide', href: '/en-us/guide/sita-bus/' },
+  { label: 'Salerno', href: '/en-us/amalfi-coast/salerno/' },
+  { label: 'Amalfi Coast Map', href: '/en-us/guide/map/' },
+];
+
+const authorRole = 'Local editorial team · Amalfi Coast';
+
+const relatedArticles = [
+  {
+    title: 'Where to Fly Into for the Amalfi Coast',
+    category: 'GUIDES',
+    date: 'August 10, 2026',
+    image: '/images/costiera-hero.webp',
+    imageAlt: 'Panoramic view of the Amalfi Coast',
+    path: '/en-us/blog/where-to-fly-amalfi-coast/'
+  },
+  {
+    title: 'Amalfi Coast Weather in July and August 2026',
+    category: 'GUIDES',
+    date: 'July 6, 2026',
+    image: '/images/meteo-costiera-luglio-agosto-hero.webp',
+    imageAlt: 'Positano in summer',
+    path: '/en-us/blog/weather-july-august-2026/'
+  }
+];
+
+const keyTakeaways = [
+  'No railway reaches the Amalfi Coast. The network stops at Vietri sul Mare in the east and at Sorrento on the other side of the peninsula.',
+  'Salerno is the gateway for Amalfi, Ravello, Maiori and Minori. Sorrento is the gateway for Positano and Praiano.',
+  'Florence to Salerno runs direct in about 3h20, Rome to Salerno in about 2h, Naples to Salerno in 35 to 45 minutes.',
+  'The last leg is always a ferry or a SITA bus. Salerno to Amalfi is 35 minutes by sea against 1h15 by road, and the sea wins on every count in season.',
+  'Book Frecciarossa and Italo in advance because fares rise as trains fill. Regional trains and the Circumvesuviana are fixed-price and cannot be reserved.',
+];
+---
+
+<BlogPostLayout
+  lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  breadcrumbs={breadcrumbs}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  relatedArticles={relatedArticles}
+  pageKey="amalfi-coast-by-train"
+>
+
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em] mb-6">Key Takeaways</h2>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-xs sm:text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      Start with the fact that catches everyone out: no train reaches the <a href="/en-us/amalfi-coast/" class="text-med-blue hover:underline">Amalfi Coast</a>. Not to <a href="/en-us/amalfi-coast/positano/" class="text-med-blue hover:underline">Positano</a>, not to <a href="/en-us/amalfi-coast/amalfi/" class="text-med-blue hover:underline">Amalfi</a>, not to <a href="/en-us/amalfi-coast/ravello/" class="text-med-blue hover:underline">Ravello</a>. The mountains fall into the sea too steeply for a line, and the last rails give up at Vietri sul Mare, where the coast road properly begins.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      That does not make the train a bad idea. It makes it a two-part journey: fast rail to a gateway city, then a short hop by sea or road. Done well it is faster, cheaper and far less stressful than driving. Here is how the pieces fit together from Florence, Rome and Naples.
+    </p>
+  </div>
+
+  <!-- Le due porte -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">The Two Gateways: Salerno and Sorrento</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      The coast is a ribbon roughly 50 km long with a gateway at each end. Choosing the wrong one does not strand you, it just costs you an hour of winding road with your luggage on your knees.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.2em] mb-2">Eastern gateway</p>
+        <h4 class="font-bold text-slate-900 mb-2 text-lg">Salerno, the one you usually want</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">A proper national station on the high-speed line, with direct services from Rome, Florence, Bologna, Milan and Turin. The ferry terminal is a walk from the platforms and the SITA buses leave from outside. Best for <a href="/en-us/amalfi-coast/amalfi/" class="text-med-blue hover:underline">Amalfi</a>, Ravello, Maiori, Minori and Cetara.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.2em] mb-2">Western gateway</p>
+        <h4 class="font-bold text-slate-900 mb-2 text-lg">Sorrento, reached only by local line</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">No national trains come here. Sorrento sits at the end of the Circumvesuviana, the commuter line from Naples, about an hour from Napoli Centrale. It is the natural gateway for Positano and <a href="/en-us/amalfi-coast/praiano/" class="text-med-blue hover:underline">Praiano</a>, and the departure point for ferries to Capri.</p>
+      </div>
+    </div>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mt-6">
+      <p class="text-med-gold text-xs font-medium uppercase tracking-[0.25em] mb-3">A word of warning</p>
+      <h3 class="font-serif text-2xl font-bold text-slate-900 mb-4">The station called "Vietri sul Mare-Amalfi"</h3>
+      <p class="text-slate-600 text-lg leading-relaxed">
+        There is a small halt on the line just past Salerno whose name includes the word Amalfi. It is not in Amalfi, it is about 18 km away, only regional trains stop there and onward connections are sparse. The name has stranded more than one visitor with a suitcase and a phone with no signal. Aim for Salerno.
+      </p>
+    </div>
+  </div>
+
+  <!-- Da Firenze -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">From Florence: About 4h30 Door to Door</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      This is the journey most people assume is impossible without a car, and it is actually one of the cleanest rail routes in Italy.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <ul class="space-y-4 text-slate-600">
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>Leg one, Florence to Salerno.</strong> Direct high-speed trains run from Firenze Santa Maria Novella to Salerno in roughly 3h20, without changing. If nothing direct suits your morning, change at Napoli Centrale and lose only a few minutes.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>Leg two, Salerno to the coast.</strong> In season, walk to the ferry terminal and sail to Amalfi in about 35 minutes or Positano in about an hour. Out of season, the <a href="/en-us/guide/sita-bus/" class="text-med-blue hover:underline">SITA bus</a> covers Salerno to Amalfi in about 1h15.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>Aim to leave Florence early.</strong> A departure before 9:00 puts you in Salerno by lunchtime with the whole afternoon of ferries still ahead. Leave after midday and you risk arriving to find the last sailing gone.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Da Roma -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">From Rome: The Fastest Approach of All</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Rome to the coast by rail is genuinely quick, and it is the reason a Rome-plus-coast itinerary works so well even though the two are 270 km apart.
+    </p>
+
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Route</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Train time</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Then</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Total</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Rome to Salerno, direct</td>
+            <td class="p-5 text-slate-600">About 2h</td>
+            <td class="p-5 text-slate-600">Ferry to Amalfi, 35 min</td>
+            <td class="p-5 text-slate-600">3h to 3h30</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Rome to Naples, then Sorrento</td>
+            <td class="p-5 text-slate-600">1h10 plus 1h</td>
+            <td class="p-5 text-slate-600">SITA bus or ferry</td>
+            <td class="p-5 text-slate-600">3h30 to 4h</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Rome to Naples, then ferry</td>
+            <td class="p-5 text-slate-600">1h10</td>
+            <td class="p-5 text-slate-600">Ferry to Positano, seasonal</td>
+            <td class="p-5 text-slate-600">3h30 to 4h</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Two operators run the high-speed route, Trenitalia with the Frecciarossa and the private Italo, and they compete on the same corridor. Fares behave like airline fares and climb as the train fills, so booking two or three weeks ahead is the difference between a bargain and a bill.
+    </p>
+  </div>
+
+  <!-- Da Napoli -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">From Naples: Two Lines, Two Very Different Experiences</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Naples is where most journeys to the coast actually begin, and the station gives you a genuine choice depending on which end of the coast you want.
+    </p>
+
+    <div class="space-y-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-serif font-bold">1</div>
+          <div>
+            <h4 class="font-bold text-slate-900 mb-2 text-lg">Naples to Salerno, 35 to 45 minutes</h4>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Frequent departures from Napoli Centrale, both regional and high-speed, all comfortable and all with proper luggage space. The regional service costs a few euros and takes about 45 minutes. This is the civilised half of the choice.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-serif font-bold">2</div>
+          <div>
+            <h4 class="font-bold text-slate-900 mb-2 text-lg">Naples to Sorrento, about an hour on the Circumvesuviana</h4>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">The only rail link to the Sorrentine peninsula, and a commuter line rather than a tourist service. Expect no luggage racks, standing room in summer and a well-earned reputation for pickpocketing. Keep your bags in front of you and your phone away. If a Campania Express service is running on your schedule, pay the surcharge: reserved seats and fewer stops for a few euros more.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- L'ultimo tratto -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">The Last Leg: Ferry Beats Bus, Almost Always</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      However you arrive at the gateway, the final stretch is by sea or by road, and between roughly April and October the choice is not close.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.2em] mb-2">By sea</p>
+        <h4 class="font-bold text-slate-900 mb-2 text-lg">Salerno to Amalfi in 35 minutes</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Twice as fast as the bus, with a guaranteed seat, room for luggage and the coast unrolling beside you. <a href="/en-us/guide/ferries/" class="text-med-blue hover:underline">Ferries</a> run from around April to October and stop in the late afternoon, so check the last departure before you plan a late arrival.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.2em] mb-2">By road</p>
+        <h4 class="font-bold text-slate-900 mb-2 text-lg">SITA bus, 1h15 and year-round</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">The service that never stops, cheap and running through winter when the ferries do not. The cost is time and comfort: standing with suitcases on a winding road in August is a genuinely unpleasant hour. In low season, when the roads are empty, it is perfectly pleasant.</p>
+      </div>
+    </div>
+
+    <blockquote class="border-l-4 border-med-gold pl-6 my-10">
+      <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+        "The rails stop where the mountains start. That is not a gap in the network, it is the reason the coast still looks the way it does."
+      </p>
+    </blockquote>
+  </div>
+
+  <!-- Il ritorno -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Going Home: Build In the Buffer</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      The return trip is the one that goes wrong, because the leg that can slip comes first rather than last.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <div class="space-y-6">
+        <div>
+          <p class="font-bold text-slate-900 mb-2 text-lg">To Rome Fiumicino</p>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Ferry or bus to Salerno, high-speed train to Roma Termini in about 2h, then the Leonardo Express to the airport in about 32 minutes. Total 4h30 to 5h. Take the earlier train, not the tight one.</p>
+        </div>
+        <div class="border-t border-slate-100 pt-6">
+          <p class="font-bold text-slate-900 mb-2 text-lg">To Naples airport</p>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Train to Napoli Centrale, then the Alibus shuttle to the terminal in about 20 minutes. From Salerno the whole thing takes around 1h30, which makes Naples by far the easier departure after a week on the coast.</p>
+        </div>
+        <div class="border-t border-slate-100 pt-6">
+          <p class="font-bold text-slate-900 mb-2 text-lg">The rule for the first leg</p>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Whatever the timetable says for the ferry or the SITA bus out of the coast, add an hour. Sailings get cancelled in rough weather and the coast road jams without warning, and both failures happen at the start of the chain where they wreck everything downstream.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Consigli finali -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <h3 class="text-xl font-bold mb-6">Practical Notes</h3>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Pack for stairs, not for platforms</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Two modest bags beat one enormous one. Ferry gangways, Circumvesuviana carriages and the stepped lanes of Positano all punish oversized luggage, and there is no lift at the end of most of them.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Validate regional tickets, always</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Regional and Circumvesuviana tickets must be stamped before boarding at the machines on the platform. High-speed tickets carry a name and a seat and need nothing. Inspectors on the local lines fine unstamped tickets without discussion.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Check the ferry season before you commit</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Between November and March the coastal ferries largely stop and the whole plan falls back on the SITA bus. It still works, it is simply slower, so a winter trip should assume road times from the start.</p>
+      </div>
+    </div>
+  </div>
+
+</BlogPostLayout>

@@ -1,0 +1,353 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'it-it';
+const post = {
+  title: 'La Costiera Amalfitana in Treno',
+  subtitle: 'Da Firenze, Roma o Napoli fino a Positano e Amalfi senza auto: a quale stazione puntare, quanto dura ogni tratta e dove i binari si fermano davvero',
+  category: 'GUIDE',
+  date: '10 Agosto 2026',
+  readTime: '10 min',
+  image: '/images/salerno-hero.webp',
+  imageAlt: 'Il lungomare di Salerno, porta ferroviaria della Costiera Amalfitana',
+  path: '/it-it/blog/costiera-amalfitana-in-treno/',
+};
+
+const metaTitle = 'La Costiera Amalfitana in Treno | Da Firenze, Roma e Napoli';
+const metaDescription = 'Nessun treno arriva a Positano o Amalfi. Salerno e Sorrento sono le due porte. Tempi e coincidenze da Firenze (circa 4h), Roma (circa 3h) e Napoli (circa 1h30), più il viaggio di ritorno.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Blog', url: '/it-it/blog/' },
+  { name: 'La Costiera Amalfitana in treno', url: '/it-it/blog/costiera-amalfitana-in-treno/' },
+];
+
+const quickInfo = [
+  { label: 'Stazioni in Costiera', value: 'Nessuna. I binari si fermano a Vietri' },
+  { label: 'Porta orientale', value: 'Salerno, poi traghetto o bus SITA' },
+  { label: 'Porta occidentale', value: 'Sorrento, via Circumvesuviana' },
+  { label: 'Roma - Salerno', value: "Circa 2h in alta velocità" },
+  { label: 'Firenze - Salerno', value: 'Circa 3h20 diretto' },
+  { label: 'Napoli - Salerno', value: '35-45 minuti' },
+  { label: 'Napoli - Sorrento', value: 'Circa 1h in Circumvesuviana' },
+  { label: 'Salerno - Amalfi', value: '35 min in traghetto, 1h15 in bus' },
+];
+
+const faq = [
+  {
+    q: "C'è una stazione ferroviaria a Positano o ad Amalfi?",
+    a: 'No. Non esiste alcuna ferrovia lungo la Costiera Amalfitana. Le falesie non lasciano spazio a una linea, quindi la rete si ferma a Vietri sul Mare a est e a Sorrento sull\'altro versante della penisola. Ogni viaggio in treno verso la costa si conclude in bus, in traghetto o in auto.',
+  },
+  {
+    q: 'Qual è la stazione più vicina alla Costiera Amalfitana?',
+    a: "Salerno è la risposta pratica: è una stazione nazionale servita dall'alta velocità, e da lì partono sia i traghetti sia i bus SITA lungo la costa. Esiste una piccola fermata chiamata Vietri sul Mare-Amalfi, ma nonostante il nome non è ad Amalfi e vi fermano solo i regionali, quindi Salerno è quasi sempre l'obiettivo migliore.",
+  },
+  {
+    q: 'Come arrivo da Firenze alla Costiera Amalfitana in treno?',
+    a: "Prendi un alta velocità diretto da Firenze Santa Maria Novella a Salerno, circa 3h20, oppure cambia a Napoli se gli orari ti convengono di più. Da Salerno prendi il traghetto per Amalfi o Positano in stagione, o il bus SITA tutto l'anno. Porta a porta sono circa 4h30-5h, ed è nettamente meglio che guidare.",
+  },
+  {
+    q: 'Quanto dura il treno da Roma alla Costiera Amalfitana?',
+    a: 'Roma Termini - Salerno è circa 2h con Frecciarossa o Italo, oppure circa 1h10 fino a Napoli se preferisci passare da Sorrento. Aggiungendo traghetto o bus alla fine, metti in conto 3h-3h30 complessive da Roma ad Amalfi.',
+  },
+  {
+    q: 'Meglio passare da Salerno o da Sorrento?',
+    a: 'Dipende da dove dormi. Salerno serve meglio Amalfi, Ravello, Maiori, Minori e Cetara. Sorrento è la porta migliore per Positano e Praiano. Sbagliare porta significa percorrere tutta la strada costiera con i bagagli: panoramica, ma lenta.',
+  },
+  {
+    q: "Cos'è la Circumvesuviana e conviene prenderla?",
+    a: "È la linea locale che collega Napoli a Sorrento in circa un'ora, ed è l'unico collegamento ferroviario con la penisola sorrentina. È economica e frequente, ma resta un servizio pendolare: niente spazi per i bagagli, affollata d'estate e nota per i borseggi. Tieni le borse davanti a te e, se sul tuo orario c'è un Campania Express, paga il supplemento per la versione con posto riservato.",
+  },
+  {
+    q: 'Posso arrivare in treno fino a Sorrento da Roma?',
+    a: "Non con un solo biglietto né con un solo operatore. Prendi un alta velocità fino a Napoli Centrale, poi scendi ai binari della Circumvesuviana nello stesso edificio e prosegui per Sorrento. Due treni, un cambio, circa 2h30 in totale.",
+  },
+  {
+    q: "Meglio il treno o l'auto per la Costiera Amalfitana?",
+    a: "Per la maggior parte dei visitatori, il treno. La strada costiera è stretta e lenta, il parcheggio a Positano e Amalfi costa €3-5 l'ora e si riempie presto, e diversi borghi limitano il traffico in stagione. A meno che tu non dorma nell'entroterra, ad Agerola o Tramonti, l'auto è un costo e un pensiero, non una comodità.",
+  },
+  {
+    q: "Come torno all'aeroporto di Roma alla fine del viaggio?",
+    a: 'Ripercorri la sequenza al contrario e sii generoso con i tempi: traghetto o bus fino a Salerno, alta velocità per Roma Termini (circa 2h), poi Leonardo Express per Fiumicino (circa 32 minuti). Calcola 4h30-5h complessive e tieni un margine, perché è la prima tratta lungo la costa quella che può slittare.',
+  },
+  {
+    q: "Devo prenotare in anticipo l'alta velocità?",
+    a: "Sì, se ti interessa il prezzo. Le tariffe di Frecciarossa e Italo funzionano come quelle aeree e salgono man mano che il treno si riempie, quindi prenotare con qualche settimana di anticipo può dimezzare la spesa. I regionali e la Circumvesuviana hanno prezzo fisso e non si prenotano, quindi non c'è motivo di muoversi in anticipo.",
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Come arrivare in Costiera', href: '/it-it/guida/come-arrivare/' },
+  { label: 'Traghetti e orari', href: '/it-it/guida/traghetti/' },
+  { label: 'Guida al bus SITA', href: '/it-it/guida/bus-sita/' },
+  { label: 'Salerno', href: '/it-it/costiera-amalfitana/salerno/' },
+  { label: 'Mappa della Costiera', href: '/it-it/guida/mappa/' },
+];
+
+const authorRole = 'Redazione locale · Costiera Amalfitana';
+
+const relatedArticles = [
+  {
+    title: 'Dove atterrare per la Costiera Amalfitana',
+    category: 'GUIDE',
+    date: '10 Agosto 2026',
+    image: '/images/costiera-hero.webp',
+    imageAlt: 'Veduta panoramica della Costiera Amalfitana',
+    path: '/it-it/blog/dove-atterrare-costiera-amalfitana/'
+  },
+  {
+    title: 'Meteo in Costiera a luglio e agosto 2026',
+    category: 'GUIDE',
+    date: '6 Luglio 2026',
+    image: '/images/meteo-costiera-luglio-agosto-hero.webp',
+    imageAlt: 'Positano in estate',
+    path: '/it-it/blog/meteo-luglio-agosto-2026/'
+  }
+];
+
+const keyTakeaways = [
+  "Nessuna ferrovia raggiunge la Costiera Amalfitana. La rete si ferma a Vietri sul Mare a est e a Sorrento sull'altro versante della penisola.",
+  'Salerno è la porta per Amalfi, Ravello, Maiori e Minori. Sorrento è la porta per Positano e Praiano.',
+  'Firenze - Salerno è diretto in circa 3h20, Roma - Salerno circa 2h, Napoli - Salerno 35-45 minuti.',
+  "L'ultimo tratto è sempre traghetto o bus SITA. Salerno - Amalfi sono 35 minuti via mare contro 1h15 su strada, e in stagione il mare vince su tutta la linea.",
+  'Prenota Frecciarossa e Italo in anticipo perché le tariffe salgono col riempimento. Regionali e Circumvesuviana hanno prezzo fisso e non si prenotano.',
+];
+---
+
+<BlogPostLayout
+  lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  breadcrumbs={breadcrumbs}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  relatedArticles={relatedArticles}
+  pageKey="amalfi-coast-by-train"
+>
+
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em] mb-6">In sintesi</h2>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-xs sm:text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      Partiamo dal dato che spiazza tutti: nessun treno arriva in <a href="/it-it/costiera-amalfitana/" class="text-med-blue hover:underline">Costiera Amalfitana</a>. Né a <a href="/it-it/costiera-amalfitana/positano/" class="text-med-blue hover:underline">Positano</a>, né ad <a href="/it-it/costiera-amalfitana/amalfi/" class="text-med-blue hover:underline">Amalfi</a>, né a <a href="/it-it/costiera-amalfitana/ravello/" class="text-med-blue hover:underline">Ravello</a>. Le montagne cadono in mare troppo ripide per una linea ferroviaria, e gli ultimi binari si arrendono a Vietri sul Mare, dove la statale costiera comincia davvero.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Questo non rende il treno una cattiva idea. Lo rende un viaggio in due parti: ferro veloce fino a una città porta, poi un salto breve via mare o su strada. Fatto bene è più rapido, più economico e molto meno stressante che guidare. Ecco come si incastrano i pezzi partendo da Firenze, Roma e Napoli.
+    </p>
+  </div>
+
+  <!-- Le due porte -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Le due porte: Salerno e Sorrento</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      La costa è un nastro lungo circa 50 km con una porta a ciascuna estremità. Sbagliare porta non ti lascia a piedi, ti costa semplicemente un'ora di curve con le valigie sulle ginocchia.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.2em] mb-2">Porta orientale</p>
+        <h4 class="font-bold text-slate-900 mb-2 text-lg">Salerno, quella che di solito serve</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Una vera stazione nazionale sulla linea ad alta velocità, con collegamenti diretti da Roma, Firenze, Bologna, Milano e Torino. Il terminal dei traghetti è a pochi passi dai binari e i bus SITA partono all'esterno. Ideale per <a href="/it-it/costiera-amalfitana/amalfi/" class="text-med-blue hover:underline">Amalfi</a>, Ravello, Maiori, Minori e Cetara.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.2em] mb-2">Porta occidentale</p>
+        <h4 class="font-bold text-slate-900 mb-2 text-lg">Sorrento, raggiungibile solo con la linea locale</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Qui non arriva nessun treno nazionale. Sorrento è il capolinea della Circumvesuviana, la linea pendolare da Napoli, a circa un'ora da Napoli Centrale. È la porta naturale per Positano e <a href="/it-it/costiera-amalfitana/praiano/" class="text-med-blue hover:underline">Praiano</a>, oltre che il punto di partenza dei traghetti per Capri.</p>
+      </div>
+    </div>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mt-6">
+      <p class="text-med-gold text-xs font-medium uppercase tracking-[0.25em] mb-3">Un avvertimento</p>
+      <h3 class="font-serif text-2xl font-bold text-slate-900 mb-4">La stazione chiamata "Vietri sul Mare-Amalfi"</h3>
+      <p class="text-slate-600 text-lg leading-relaxed">
+        Sulla linea, poco dopo Salerno, c'è una piccola fermata il cui nome contiene la parola Amalfi. Non è ad Amalfi, dista circa 18 km, vi fermano solo i regionali e le coincidenze sono rade. Quel nome ha lasciato più di un visitatore fermo con una valigia e un telefono senza campo. Punta su Salerno.
+      </p>
+    </div>
+  </div>
+
+  <!-- Da Firenze -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Da Firenze: circa 4h30 porta a porta</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      È il viaggio che quasi tutti danno per impossibile senza auto, ed è invece uno dei percorsi ferroviari più puliti d'Italia.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <ul class="space-y-4 text-slate-600">
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>Prima tratta, Firenze - Salerno.</strong> Gli alta velocità diretti collegano Firenze Santa Maria Novella a Salerno in circa 3h20, senza cambi. Se nessun diretto si incastra con la tua mattinata, cambia a Napoli Centrale e perdi solo pochi minuti.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>Seconda tratta, Salerno - costa.</strong> In stagione raggiungi a piedi il terminal traghetti e navighi fino ad Amalfi in circa 35 minuti o a Positano in circa un'ora. Fuori stagione il <a href="/it-it/guida/bus-sita/" class="text-med-blue hover:underline">bus SITA</a> copre Salerno - Amalfi in circa 1h15.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>Parti presto da Firenze.</strong> Una partenza prima delle 9:00 ti mette a Salerno entro l'ora di pranzo con tutto il pomeriggio di traghetti ancora davanti. Parti dopo mezzogiorno e rischi di trovare l'ultima corsa già andata.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Da Roma -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Da Roma: l'avvicinamento più rapido di tutti</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Roma - costa in treno è davvero veloce, ed è il motivo per cui un itinerario che unisce la capitale alla Costiera funziona così bene nonostante i 270 km che le separano.
+    </p>
+
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Percorso</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Tempo in treno</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Poi</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Totale</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Roma - Salerno, diretto</td>
+            <td class="p-5 text-slate-600">Circa 2h</td>
+            <td class="p-5 text-slate-600">Traghetto per Amalfi, 35 min</td>
+            <td class="p-5 text-slate-600">3h - 3h30</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Roma - Napoli, poi Sorrento</td>
+            <td class="p-5 text-slate-600">1h10 più 1h</td>
+            <td class="p-5 text-slate-600">Bus SITA o traghetto</td>
+            <td class="p-5 text-slate-600">3h30 - 4h</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Roma - Napoli, poi traghetto</td>
+            <td class="p-5 text-slate-600">1h10</td>
+            <td class="p-5 text-slate-600">Aliscafo per Positano, stagionale</td>
+            <td class="p-5 text-slate-600">3h30 - 4h</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Sulla direttrice competono due operatori, Trenitalia con il Frecciarossa e la privata Italo. Le tariffe si comportano come quelle aeree e salgono man mano che il treno si riempie, quindi prenotare due o tre settimane prima è la differenza tra un affare e un conto salato.
+    </p>
+  </div>
+
+  <!-- Da Napoli -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Da Napoli: due linee, due esperienze molto diverse</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Napoli è il punto in cui la maggior parte dei viaggi verso la costa comincia davvero, e la stazione ti mette di fronte a una scelta vera a seconda dell'estremità che ti interessa.
+    </p>
+
+    <div class="space-y-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-serif font-bold">1</div>
+          <div>
+            <h4 class="font-bold text-slate-900 mb-2 text-lg">Napoli - Salerno, 35-45 minuti</h4>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Partenze frequenti da Napoli Centrale, sia regionali sia alta velocità, tutte comode e tutte con spazio vero per i bagagli. Il regionale costa pochi euro e impiega circa 45 minuti. È la metà civile della scelta.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-serif font-bold">2</div>
+          <div>
+            <h4 class="font-bold text-slate-900 mb-2 text-lg">Napoli - Sorrento, circa un'ora in Circumvesuviana</h4>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">L'unico collegamento ferroviario con la penisola sorrentina, e un servizio pendolare più che turistico. Aspettati nessuno spazio bagagli, posti in piedi d'estate e una fama meritata in fatto di borseggi. Tieni le borse davanti e il telefono in tasca. Se sul tuo orario passa un Campania Express, paga il supplemento: posto riservato e meno fermate per pochi euro in più.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- L'ultimo tratto -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">L'ultimo tratto: il traghetto batte il bus, quasi sempre</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Comunque tu arrivi alla città porta, il tratto finale è via mare o su strada, e tra aprile e ottobre la scelta non è nemmeno equilibrata.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.2em] mb-2">Via mare</p>
+        <h4 class="font-bold text-slate-900 mb-2 text-lg">Salerno - Amalfi in 35 minuti</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Il doppio più veloce del bus, con posto garantito, spazio per i bagagli e la costa che scorre di fianco. I <a href="/it-it/guida/traghetti/" class="text-med-blue hover:underline">traghetti</a> vanno grossomodo da aprile a ottobre e si fermano nel tardo pomeriggio, quindi controlla l'ultima partenza prima di programmare un arrivo tardi.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.2em] mb-2">Su strada</p>
+        <h4 class="font-bold text-slate-900 mb-2 text-lg">Bus SITA, 1h15 e tutto l'anno</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Il servizio che non si ferma mai, economico e attivo anche d'inverno quando i traghetti non ci sono. Il prezzo lo paghi in tempo e comodità: stare in piedi con le valigie su una strada di curve ad agosto è un'ora davvero sgradevole. In bassa stagione, con le strade libere, è invece un viaggio piacevole.</p>
+      </div>
+    </div>
+
+    <blockquote class="border-l-4 border-med-gold pl-6 my-10">
+      <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+        "I binari finiscono dove cominciano le montagne. Non è una lacuna della rete, è il motivo per cui questa costa è rimasta com'è."
+      </p>
+    </blockquote>
+  </div>
+
+  <!-- Il ritorno -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Il ritorno: costruisci il margine</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      È il viaggio di ritorno quello che va storto, perché la tratta che può slittare arriva per prima invece che per ultima.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <div class="space-y-6">
+        <div>
+          <p class="font-bold text-slate-900 mb-2 text-lg">Verso Roma Fiumicino</p>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Traghetto o bus fino a Salerno, alta velocità per Roma Termini in circa 2h, poi Leonardo Express per l'aeroporto in circa 32 minuti. Totale 4h30-5h. Prendi il treno prima, non quello al limite.</p>
+        </div>
+        <div class="border-t border-slate-100 pt-6">
+          <p class="font-bold text-slate-900 mb-2 text-lg">Verso l'aeroporto di Napoli</p>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Treno per Napoli Centrale, poi navetta Alibus fino al terminal in circa 20 minuti. Da Salerno l'intera operazione richiede circa 1h30, il che rende Napoli di gran lunga la partenza più semplice dopo una settimana in costa.</p>
+        </div>
+        <div class="border-t border-slate-100 pt-6">
+          <p class="font-bold text-slate-900 mb-2 text-lg">La regola per la prima tratta</p>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Qualsiasi cosa dica l'orario del traghetto o del bus SITA in uscita dalla costa, aggiungi un'ora. Le corse via mare saltano col mare mosso e la statale si blocca senza preavviso, e sono entrambi guasti che capitano all'inizio della catena, dove rovinano tutto quello che viene dopo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Consigli finali -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <h3 class="text-xl font-bold mb-6">Note pratiche</h3>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Fai i bagagli pensando alle scale, non ai binari</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Due borse medie battono un valigione. Passerelle dei traghetti, carrozze della Circumvesuviana e vicoli a gradini di Positano puniscono tutti i bagagli fuori misura, e alla fine di quasi nessuno di questi percorsi c'è un ascensore.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Convalida sempre i biglietti regionali</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">I biglietti regionali e della Circumvesuviana vanno obliterati prima di salire, alle macchinette sul binario. Quelli dell'alta velocità hanno nome e posto e non richiedono nulla. Sulle linee locali i controllori multano il biglietto non convalidato senza discutere.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Verifica la stagione dei traghetti prima di decidere</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Tra novembre e marzo i traghetti costieri si fermano quasi del tutto e tutto il piano ricade sul bus SITA. Funziona lo stesso, è solo più lento, quindi un viaggio invernale deve calcolare i tempi su strada fin dall'inizio.</p>
+      </div>
+    </div>
+  </div>
+
+</BlogPostLayout>

@@ -12,6 +12,28 @@ export interface BlogPostEs {
 
 export const blogPostsEs: BlogPostEs[] = [
   {
+    id: '32',
+    title: 'La Costa Amalfitana en tren',
+    slug: 'costa-amalfitana-en-tren',
+    excerpt: 'Ningún tren llega a Positano ni a Amalfi. Salerno y Sorrento son las dos puertas: tiempos y enlaces desde Florencia (unas 3h20), Roma (unas 2h) y Nápoles (35 min), más el viaje de vuelta.',
+    category: 'GUIDE',
+    date: '10 de agosto de 2026',
+    readTime: '10 min',
+    image: '/images/salerno-hero.webp',
+    path: '/es-es/blog/costa-amalfitana-en-tren/',
+  },
+  {
+    id: '31',
+    title: 'Dónde aterrizar para la Costa Amalfitana',
+    slug: 'donde-aterrizar-costa-amalfitana',
+    excerpt: "La costa no tiene aeropuerto. Nápoles (NAP) está a 70 km, Salerno Costa d'Amalfi (QSR) a solo 40 km, Roma Fiumicino a 270 km. Distancias, tiempos, costes reales y cuál conviene reservar.",
+    category: 'GUIDE',
+    date: '10 de agosto de 2026',
+    readTime: '9 min',
+    image: '/images/costiera-hero.webp',
+    path: '/es-es/blog/donde-aterrizar-costa-amalfitana/',
+  },
+  {
     id: '30',
     title: 'Clima Costa Amalfitana Julio y Agosto 2026',
     slug: 'clima-julio-agosto-2026',

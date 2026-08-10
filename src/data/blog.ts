@@ -12,6 +12,28 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: '32',
+    title: 'La Costiera Amalfitana in treno',
+    slug: 'costiera-amalfitana-in-treno',
+    excerpt: 'Nessun treno arriva a Positano o ad Amalfi. Salerno e Sorrento sono le due porte: tempi e coincidenze da Firenze (circa 3h20), Roma (circa 2h) e Napoli (35 minuti), più il viaggio di ritorno.',
+    category: 'GUIDE',
+    date: '10 Agosto 2026',
+    readTime: '10 min',
+    image: '/images/salerno-hero.webp',
+    path: '/it-it/blog/costiera-amalfitana-in-treno/',
+  },
+  {
+    id: '31',
+    title: 'Dove atterrare per la Costiera Amalfitana',
+    slug: 'dove-atterrare-costiera-amalfitana',
+    excerpt: "La Costiera non ha un aeroporto. Napoli (NAP) dista 70 km, Salerno Costa d'Amalfi (QSR) solo 40 km, Roma Fiumicino 270 km. Distanze, tempi, costi reali e quale conviene prenotare.",
+    category: 'GUIDE',
+    date: '10 Agosto 2026',
+    readTime: '9 min',
+    image: '/images/costiera-hero.webp',
+    path: '/it-it/blog/dove-atterrare-costiera-amalfitana/',
+  },
+  {
     id: '30',
     title: 'Meteo Costiera Amalfitana Luglio e Agosto 2026',
     slug: 'meteo-luglio-agosto-2026',

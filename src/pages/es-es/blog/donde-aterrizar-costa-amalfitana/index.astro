@@ -1,0 +1,382 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'es-es';
+const post = {
+  title: 'Dónde Aterrizar para la Costa Amalfitana',
+  subtitle: 'Nápoles, Salerno o Roma: los cuatro aeropuertos comparados en distancias, tiempos de traslado y costes reales, para reservar el vuelo correcto a la primera',
+  category: 'GUIDE',
+  date: '10 de agosto de 2026',
+  readTime: '9 min',
+  image: '/images/costiera-hero.webp',
+  imageAlt: 'Vista panorámica de la Costa Amalfitana desde el mar',
+  path: '/es-es/blog/donde-aterrizar-costa-amalfitana/',
+};
+
+const metaTitle = 'Dónde Aterrizar para la Costa Amalfitana | Nápoles, Salerno o Roma';
+const metaDescription = "La Costa Amalfitana no tiene aeropuerto. Nápoles (NAP) está a 70 km, Salerno Costa d'Amalfi (QSR) a solo 40 km, Roma Fiumicino a 270 km. Distancias, tiempos, costes reales y cuál conviene reservar.";
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Blog', url: '/es-es/blog/' },
+  { name: 'Dónde aterrizar para la Costa Amalfitana', url: '/es-es/blog/donde-aterrizar-costa-amalfitana/' },
+];
+
+const quickInfo = [
+  { label: 'Aeropuerto más cercano', value: "Salerno Costa d'Amalfi (QSR), 40 km" },
+  { label: 'Mejor conectado', value: 'Nápoles Capodichino (NAP), 70 km' },
+  { label: 'Hub de larga distancia', value: 'Roma Fiumicino (FCO), 270 km' },
+  { label: 'De Nápoles a Amalfi', value: '1h a 1h30 por carretera' },
+  { label: 'De Roma a Amalfi', value: '4h a 5h puerta a puerta' },
+  { label: 'Traslado privado', value: '90-120 € desde Nápoles' },
+  { label: 'Opción más barata', value: '6-10 € en autobús y tren' },
+  { label: 'Ferry estacional', value: 'Nápoles-Positano, de abril a octubre' },
+];
+
+const faq = [
+  {
+    q: '¿Hay algún aeropuerto en la Costa Amalfitana?',
+    a: "No, y nunca lo habrá: la costa es una pared vertical de roca caliza que cae al mar, sin un palmo de terreno llano para una pista. El más cercano es Salerno Costa d'Amalfi (QSR) en Pontecagnano, a unos 40 km de Amalfi, seguido de Nápoles Capodichino (NAP) a unos 70 km.",
+  },
+  {
+    q: '¿Es mejor aterrizar en Nápoles o en Roma para la Costa Amalfitana?',
+    a: 'Nápoles, en casi todos los casos. Está 200 km más cerca y te ahorra de tres a cuatro horas de viaje en cada sentido. Roma Fiumicino solo tiene sentido si llegas en un vuelo de larga distancia, si la tarifa es claramente más baja o si los horarios desde tu ciudad funcionan mucho mejor. En una semana de viaje, elegir Roma en lugar de Nápoles te cuesta casi un día entero.',
+  },
+  {
+    q: "¿Sirve de algo el aeropuerto de Salerno Costa d'Amalfi?",
+    a: "Es el aeropuerto más cercano a la costa y resulta realmente cómodo si existe una ruta desde tu ciudad, sobre todo para Amalfi, Maiori, Minori y Ravello. El inconveniente es la red: opera vuelos nacionales y un número limitado de conexiones europeas, así que la mayoría de viajeros internacionales no encontrará un vuelo directo. Compruébalo siempre, pero no construyas el viaje a su alrededor.",
+  },
+  {
+    q: '¿Cómo llego desde el aeropuerto de Nápoles a Positano?',
+    a: 'Tres opciones reales. El traslado privado cuesta 90-120 € y tarda de 1h a 1h30 sin tráfico, puerta a puerta. El autobús Curreri sale de la terminal y llega directo a Sorrento en unos 75 minutos por unos 12 €, y desde allí continúas en autobús SITA o en ferry. O bien el Alibus hasta el puerto y, de abril a octubre, un ferry directo a Positano.',
+  },
+  {
+    q: '¿Puedo aterrizar en Nápoles y tomar el ferry directamente?',
+    a: 'En temporada sí, y es la llegada más bonita que existe. Alibus desde la terminal hasta Molo Beverello (unos 20 minutos) y luego hidroala directo a Positano o Amalfi. Las salidas van más o menos de abril a octubre y en invierno se detienen por completo, así que es una opción exclusivamente veraniega. Deja un margen amplio: si pierdes la última salida, no hay otra.',
+  },
+  {
+    q: '¿Cuánto margen debo dejar entre el vuelo y el traslado?',
+    a: 'A la llegada, calcula 45 minutos desde que aterrizas hasta que estás en el vehículo, si facturas equipaje. Para la vuelta, sal de la costa al menos 3 horas antes de un vuelo internacional desde Nápoles: la carretera costera tiene un carril por sentido y un atasco veraniego entre Positano y Sorrento añade 40 minutos sin previo aviso.',
+  },
+  {
+    q: '¿Merece la pena alquilar coche en el aeropuerto?',
+    a: 'Normalmente no. La carretera costera es estrecha y exigente, aparcar en Positano y Amalfi cuesta 3-5 € por hora y se agota en temporada alta, y varios pueblos tienen zonas de tráfico restringido. Alquila solo si te alojas en el interior, en Agerola o Tramonti, o si después continúas hacia el Cilento o Apulia.',
+  },
+  {
+    q: '¿Qué aeropuerto sale más barato?',
+    a: 'Depende por completo de tu ciudad de origen, pero la cuenta honesta es esta: la tarifa a Roma debe ser unos 80-100 € más barata por persona para compensar, una vez sumados el tren de alta velocidad y las horas extra. Por debajo de esa diferencia, Nápoles gana tanto en dinero como en tiempo.',
+  },
+  {
+    q: '¿Hay vuelos directos a Nápoles desde Estados Unidos?',
+    a: 'Estacionales sí, concentrados en los meses de verano desde algunos hubs estadounidenses. Fuera de esa ventana, la mayoría de viajeros hace escala en un hub europeo como Londres, París, Fráncfort, Múnich o Ámsterdam, todos con conexiones frecuentes a Nápoles.',
+  },
+  {
+    q: '¿Cuál es el mejor aeropuerto si voy a Capri?',
+    a: 'Nápoles, sin dudarlo. Ferries e hidroalas a Capri salen de Molo Beverello y Mergellina, a 20 o 30 minutos de la terminal en Alibus o taxi. Desde Salerno o Roma el mismo trayecto se convierte en media jornada.',
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Cómo llegar a la costa', href: '/es-es/guia/como-llegar/' },
+  { label: 'Ferries y horarios', href: '/es-es/guia/ferries/' },
+  { label: 'Guía del autobús SITA', href: '/es-es/guia/bus-sita/' },
+  { label: 'Aparcamiento y ZTL', href: '/es-es/guia/aparcamiento-ztl/' },
+  { label: 'Mapa de la Costa Amalfitana', href: '/es-es/guia/mapa/' },
+];
+
+const authorRole = 'Redacción local · Costa Amalfitana';
+
+const relatedArticles = [
+  {
+    title: 'La Costa Amalfitana en tren',
+    category: 'GUIDE',
+    date: '10 de agosto de 2026',
+    image: '/images/salerno-hero.webp',
+    imageAlt: 'El paseo marítimo de Salerno, puerta ferroviaria de la Costa Amalfitana',
+    path: '/es-es/blog/costa-amalfitana-en-tren/'
+  },
+  {
+    title: 'Clima en la Costa Amalfitana en julio y agosto 2026',
+    category: 'GUIDE',
+    date: '6 de julio de 2026',
+    image: '/images/meteo-costiera-luglio-agosto-hero.webp',
+    imageAlt: 'Positano en verano',
+    path: '/es-es/blog/clima-julio-agosto-2026/'
+  }
+];
+
+const keyTakeaways = [
+  "La Costa Amalfitana no tiene aeropuerto. Las cuatro opciones reales son Nápoles (NAP), Salerno Costa d'Amalfi (QSR), Roma Fiumicino (FCO) y Roma Ciampino (CIA).",
+  'Nápoles es la respuesta por defecto: 70 km de Amalfi, la red de rutas más amplia del sur de Italia y un traslado de 1h a 1h30.',
+  "Salerno Costa d'Amalfi está más cerca (40 km) y es excelente para Amalfi, Maiori y Ravello, pero su red de rutas es limitada.",
+  'Roma Fiumicino está a 270 km y cuesta de 4 a 5 horas puerta a puerta. Solo gana en vuelos de larga distancia o con una diferencia de tarifa superior a 80-100 € por persona.',
+  'Descarta el coche de alquiler si duermes en la costa: carreteras estrechas, aparcamiento a 3-5 € la hora y zonas de tráfico restringido lo convierten en una carga más que en una comodidad.',
+];
+---
+
+<BlogPostLayout
+  lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  breadcrumbs={breadcrumbs}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  relatedArticles={relatedArticles}
+  pageKey="where-to-fly-amalfi-coast"
+>
+
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em] mb-6">En resumen</h2>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-xs sm:text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      Es la primera decisión de verdad del viaje, y también la que más se falla. En la <a href="/es-es/costa-amalfitana/" class="text-med-blue hover:underline">Costa Amalfitana</a> no hay aeropuerto, y no puede haberlo: la costa es un muro vertical de caliza que se precipita al mar, con apenas terreno llano para una plaza de pueblo, mucho menos para una pista.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Así que se aterriza en otro sitio y se recorre el último tramo por tierra o por mar. El "otro sitio" que elijas decide si tu primer día será un descenso tranquilo de dos horas hasta <a href="/es-es/costa-amalfitana/positano/" class="text-med-blue hover:underline">Positano</a> o una odisea de seis horas con las maletas a cuestas. Estas son las cuatro opciones, comparadas sin adornos.
+    </p>
+  </div>
+
+  <!-- Tabla comparativa -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Los cuatro aeropuertos de un vistazo</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Las distancias están medidas hasta Amalfi, el centro geográfico de la costa. Suma unos 20 minutos para Positano y 15 para Ravello.
+    </p>
+
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Aeropuerto</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Distancia a Amalfi</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Tiempo de traslado</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Ideal para</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Nápoles Capodichino (NAP)</td>
+            <td class="p-5 text-slate-600">70 km</td>
+            <td class="p-5 text-slate-600">1h a 1h30</td>
+            <td class="p-5 text-slate-600">Casi todo el mundo</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Salerno Costa d'Amalfi (QSR)</td>
+            <td class="p-5 text-slate-600">40 km</td>
+            <td class="p-5 text-slate-600">1h a 1h20</td>
+            <td class="p-5 text-slate-600">Amalfi, Maiori, Ravello</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Roma Fiumicino (FCO)</td>
+            <td class="p-5 text-slate-600">270 km</td>
+            <td class="p-5 text-slate-600">4h a 5h</td>
+            <td class="p-5 text-slate-600">Llegadas de larga distancia</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Roma Ciampino (CIA)</td>
+            <td class="p-5 text-slate-600">260 km</td>
+            <td class="p-5 text-slate-600">4h30 a 5h30</td>
+            <td class="p-5 text-slate-600">Rutas low cost europeas</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Nápoles -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Nápoles Capodichino: la respuesta por defecto</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Para unos nueve viajeros de cada diez es sencillamente el aeropuerto correcto. Está a unos 5 km del centro de Nápoles, lo que significa que sales de la terminal y en minutos ya vas hacia el sur, sin tener que atravesar antes una periferia metropolitana.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <p class="text-med-gold text-xs font-medium uppercase tracking-[0.25em] mb-3">Por qué gana</p>
+      <h3 class="font-serif text-2xl font-bold text-slate-900 mb-4">Red de rutas y cercanía a la vez</h3>
+      <ul class="space-y-4 text-slate-600">
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>Vuelos directos desde toda Europa.</strong> Londres, París, Berlín, Madrid, Ámsterdam, Múnich, Zúrich y decenas más, con aerolíneas tradicionales y low cost. En verano la red se amplía todavía más, incluidos vuelos de larga distancia estacionales desde algunos hubs estadounidenses.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>Todas las opciones de continuación en un mismo sitio.</strong> Traslado privado, autobús directo a Sorrento, lanzadera urbana a la estación y, en temporada, ferry desde el puerto. Ningún otro aeropuerto de la región te ofrece las cuatro.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>La puerta de las islas.</strong> Si <a href="/es-es/islas/capri/" class="text-med-blue hover:underline">Capri</a>, <a href="/es-es/islas/ischia/" class="text-med-blue hover:underline">Ischia</a> o <a href="/es-es/islas/procida/" class="text-med-blue hover:underline">Prócida</a> forman parte del viaje, Nápoles es la única elección sensata: los muelles de los hidroalas están a 20 o 30 minutos de la terminal.</span>
+        </li>
+      </ul>
+    </div>
+
+    <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">De la terminal a la costa</h3>
+
+    <div class="space-y-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-serif font-bold">1</div>
+          <div>
+            <h4 class="font-bold text-slate-900 mb-2 text-lg">Traslado privado, 90-120 €</h4>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Puerta a puerta en 1h a 1h30 sin tráfico. El conductor te espera en llegadas, se ocupa del equipaje y te deja delante del alojamiento, algo que en Positano importa más de lo que parece, porque los últimos 200 metros suelen ser escalones. La elección obvia para familias, para quien aterriza de noche y para el primer día, cuando aún no sabes dónde está nada.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-serif font-bold">2</div>
+          <div>
+            <h4 class="font-bold text-slate-900 mb-2 text-lg">Autobús Curreri a Sorrento, unos 12 €</h4>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Un autocar directo desde la explanada de la terminal hasta Sorrento en unos 75 minutos, sin transbordos y con el equipaje en bodega. Desde Sorrento continúas con el <a href="/es-es/guia/bus-sita/" class="text-med-blue hover:underline">autobús SITA</a> por la costa o, en temporada, en ferry. La mejor relación calidad precio con diferencia si vas a Positano o Praiano.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-serif font-bold">3</div>
+          <div>
+            <h4 class="font-bold text-slate-900 mb-2 text-lg">Alibus más ferry, estacional y espectacular</h4>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">La lanzadera Alibus te lleva a Molo Beverello en unos 20 minutos, y desde allí sale un <a href="/es-es/guia/ferries/" class="text-med-blue hover:underline">ferry</a> rápido directo a Positano o Amalfi, aproximadamente de abril a octubre. Llegas por mar, que es como esta costa fue concebida. Un aviso: las salidas terminan a media tarde y no hay plan B, así que solo funciona con un vuelo que aterrice antes del mediodía.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-serif font-bold">4</div>
+          <div>
+            <h4 class="font-bold text-slate-900 mb-2 text-lg">Alibus más tren, la vía de 6-10 €</h4>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Alibus hasta Napoli Centrale, luego Circumvesuviana a Sorrento (una hora aproximadamente) o regional a <a href="/es-es/costa-amalfitana/salerno/" class="text-med-blue hover:underline">Salerno</a> (unos 40 minutos), y después autobús o ferry. La forma más barata de llegar a la costa, y también la más lenta: calcula entre 2h30 y 3h en total. Viable con equipaje de mano, castigo con dos maletas grandes y un transbordo en una estación abarrotada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Salerno -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Salerno Costa d'Amalfi: el más cercano y el más ignorado</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Se llama aeropuerto Costa d'Amalfi por algo. Situado en Pontecagnano, justo al sur de Salerno, es la pista más cercana a la costa, a unos 40 km de Amalfi, y casi nadie fuera de Italia piensa en consultarlo.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.2em] mb-2">La ventaja</p>
+        <h4 class="font-bold text-slate-900 mb-2 text-lg">Aterrizas y casi has llegado</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Para Amalfi, Maiori, Minori, Cetara y <a href="/es-es/costa-amalfitana/ravello/" class="text-med-blue hover:underline">Ravello</a> es la llegada más corta posible. Alcanzas Salerno en unos 20 minutos, y desde Salerno tienes tanto el autobús SITA como, en temporada, el ferry a lo largo de la costa. Sin autopista y sin tráfico napolitano.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.2em] mb-2">El inconveniente</p>
+        <h4 class="font-bold text-slate-900 mb-2 text-lg">El mapa de rutas es escaso</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Opera conexiones nacionales y un grupo reducido de destinos europeos, con horarios que cambian según la temporada. La mayoría de viajeros internacionales no encontrará un directo, y hacer escala en Milán o Roma para ahorrar 30 km por tierra rara vez compensa. Consúltalo, tómalo si te encaja, no planifiques alrededor de él.</p>
+      </div>
+    </div>
+
+    <p class="text-slate-600 text-lg leading-relaxed mt-8">
+      La regla práctica: si existe un vuelo directo desde tu ciudad a un precio razonable, resérvalo y disfruta del traslado más corto de la costa. Si no, la respuesta sigue siendo Nápoles.
+    </p>
+  </div>
+
+  <!-- Roma -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Roma Fiumicino: cuándo el rodeo compensa de verdad</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Roma está a 270 km de Amalfi. Eso no es un traslado, es una jornada de viaje, y el error clásico consiste en comparar tarifas aéreas sin poner precio a las horas.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <p class="text-med-gold text-xs font-medium uppercase tracking-[0.25em] mb-3">El viaje real</p>
+      <h3 class="font-serif text-2xl font-bold text-slate-900 mb-4">Cuatro o cinco horas, tres transbordos</h3>
+      <p class="text-slate-600 text-lg leading-relaxed mb-5">
+        Aterrizando en Fiumicino, la secuencia más rápida es el Leonardo Express hasta Roma Termini (unos 32 minutos), un Frecciarossa o un Italo a Nápoles (alrededor de 1h10) o directamente a Salerno (unas 2h), y después autobús o ferry hasta la costa. Suma las esperas entre tramos y estarás entre 4h y 5h desde el aterrizaje hasta la habitación, con equipaje y en un país desconocido.
+      </p>
+      <ul class="space-y-4 text-slate-600">
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>Cuándo gana Roma.</strong> Llegas en un vuelo de larga distancia y es el único directo desde tu ciudad, o la diferencia de tarifa es realmente grande. Como norma, el billete a Roma debe costar 80-100 € menos por persona antes de compensar.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>Cuándo Roma tiene sentido igualmente.</strong> Ya tenías previsto pasar dos o tres días en la capital. En ese caso vuela a Roma, visita la ciudad y luego toma la alta velocidad hacia el sur como una etapa real del viaje, no como un traslado.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>Cuándo pierde Roma.</strong> En los viajes cortos. Con cuatro o cinco noches, la ida y vuelta por Roma se come casi un día entero: una quinta parte de tu tiempo en la costa gastada en tránsito.</span>
+        </li>
+      </ul>
+    </div>
+
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Ciampino es el hermano low cost y añade una complicación más: no tiene enlace ferroviario directo, así que primero necesitas una lanzadera hasta el centro antes siquiera de empezar la secuencia anterior. Considéralo solo ante una tarifa excepcional.
+    </p>
+  </div>
+
+  <!-- Decisión -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Entonces, ¿cuál reservas?</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Quitado el ruido, la decisión se reduce a cuatro reglas breves.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <div class="space-y-6">
+        <div>
+          <p class="font-bold text-slate-900 mb-2 text-lg">Duermes en Positano, Praiano o Sorrento</p>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Nápoles. El autobús Curreri a Sorrento y el traslado privado funcionan ambos a la perfección, y el ferry estacional desde Molo Beverello es la llegada más bonita disponible.</p>
+        </div>
+        <div class="border-t border-slate-100 pt-6">
+          <p class="font-bold text-slate-900 mb-2 text-lg">Duermes en Amalfi, Ravello, Maiori o Minori</p>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Consulta primero Salerno Costa d'Amalfi. Si desde tu ciudad no hay nada, Nápoles, después tren directo a Salerno y ferry o autobús SITA para el último tramo.</p>
+        </div>
+        <div class="border-t border-slate-100 pt-6">
+          <p class="font-bold text-slate-900 mb-2 text-lg">Añades Capri, Ischia o Prócida</p>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Nápoles, sin discusión. Los muelles de Molo Beverello y Mergellina están a un paso de la terminal, y desde cualquier otro aeropuerto la travesía se convierte en media jornada.</p>
+        </div>
+        <div class="border-t border-slate-100 pt-6">
+          <p class="font-bold text-slate-900 mb-2 text-lg">Combinas la costa con Roma o Florencia</p>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Vuela a Roma, baja al sur en alta velocidad y regresa desde Nápoles. Un billete multidestino suele costar poco más que un ida y vuelta y te ahorra rehacer 270 km al final del viaje.</p>
+        </div>
+      </div>
+    </div>
+
+    <blockquote class="border-l-4 border-med-gold pl-6 my-10">
+      <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+        "El vuelo más barato rara vez es el viaje más barato. En esta costa la distancia se paga en horas, y las horas son lo único que una semana no devuelve."
+      </p>
+    </blockquote>
+  </div>
+
+  <!-- Consejos finales -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <h3 class="text-xl font-bold mb-6">Antes de reservar</h3>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Aterriza por la mañana si puedes</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Una llegada antes del mediodía mantiene abiertas todas las opciones de continuación, ferry estacional incluido. Un aterrizaje nocturno cierra casi todas y a menudo deja el traslado privado como única forma realista de llegar al alojamiento.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Para la vuelta calcula tres horas</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">La carretera costera tiene un carril por sentido y ninguna alternativa. Un atasco veraniego entre Positano y Sorrento añade 40 minutos sin previo aviso, así que sal de la costa al menos tres horas antes de un vuelo internacional desde Nápoles.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Valora el multidestino antes que la vuelta</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Aterrizar en una ciudad y salir desde otra suele costar lo mismo y siempre ahorra tiempo. Es el truco más desaprovechado en un itinerario italiano que combina la costa con cualquier parada más al norte.</p>
+      </div>
+    </div>
+  </div>
+
+</BlogPostLayout>

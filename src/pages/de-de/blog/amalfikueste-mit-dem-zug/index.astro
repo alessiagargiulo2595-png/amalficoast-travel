@@ -1,0 +1,353 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'de-de';
+const post = {
+  title: 'Die Amalfiküste mit dem Zug',
+  subtitle: 'Von Florenz, Rom oder Neapel nach Positano und Amalfi ohne Auto: welcher Bahnhof das Ziel ist, wie lange jede Etappe dauert und wo die Schienen tatsächlich enden',
+  category: 'REISEFÜHRER',
+  date: '10. August 2026',
+  readTime: '10 Min.',
+  image: '/images/salerno-hero.webp',
+  imageAlt: 'Die Uferpromenade von Salerno, das Bahntor zur Amalfiküste',
+  path: '/de-de/blog/amalfikueste-mit-dem-zug/',
+};
+
+const metaTitle = 'Die Amalfiküste mit dem Zug | Von Florenz, Rom und Neapel';
+const metaDescription = 'Kein Zug erreicht Positano oder Amalfi. Salerno und Sorrent sind die beiden Tore. Zeiten und Anschlüsse ab Florenz (etwa 4 Std.), Rom (etwa 3 Std.) und Neapel (etwa 1,5 Std.), dazu die Rückreise.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/de-de/' },
+  { name: 'Blog', url: '/de-de/blog/' },
+  { name: 'Die Amalfiküste mit dem Zug', url: '/de-de/blog/amalfikueste-mit-dem-zug/' },
+];
+
+const quickInfo = [
+  { label: 'Bahnhöfe an der Küste', value: 'Keine. Die Schienen enden in Vietri' },
+  { label: 'Östliches Tor', value: 'Salerno, dann Fähre oder SITA-Bus' },
+  { label: 'Westliches Tor', value: 'Sorrent, über die Circumvesuviana' },
+  { label: 'Rom bis Salerno', value: 'Etwa 2 Std. mit dem Schnellzug' },
+  { label: 'Florenz bis Salerno', value: 'Etwa 3 Std. 20 direkt' },
+  { label: 'Neapel bis Salerno', value: '35 bis 45 Minuten' },
+  { label: 'Neapel bis Sorrent', value: 'Etwa 1 Std. mit der Circumvesuviana' },
+  { label: 'Salerno bis Amalfi', value: '35 Min. per Fähre, 1 Std. 15 per Bus' },
+];
+
+const faq = [
+  {
+    q: 'Gibt es einen Bahnhof in Positano oder Amalfi?',
+    a: 'Nein. An der Amalfiküste selbst existiert keinerlei Eisenbahn. Die Felswände lassen keinen Platz für eine Strecke, deshalb endet das Netz im Osten in Vietri sul Mare und auf der anderen Seite der Halbinsel in Sorrent. Jede Bahnreise an die Küste endet mit Bus, Fähre oder Auto.',
+  },
+  {
+    q: 'Welcher Bahnhof liegt der Amalfiküste am nächsten?',
+    a: 'Salerno ist die praktische Antwort: ein vollwertiger Fernbahnhof mit Hochgeschwindigkeitsanbindung, von dem aus sowohl Fähren als auch SITA-Busse entlang der Küste verkehren. Es gibt einen kleinen Haltepunkt namens Vietri sul Mare-Amalfi, doch trotz des Namens liegt er nicht in Amalfi und wird nur von Regionalzügen bedient. Salerno ist daher fast immer das bessere Ziel.',
+  },
+  {
+    q: 'Wie komme ich von Florenz mit dem Zug an die Amalfiküste?',
+    a: 'Nehmen Sie einen direkten Hochgeschwindigkeitszug von Firenze Santa Maria Novella nach Salerno, rund 3 Stunden 20, oder steigen Sie in Neapel um, wenn die Zeiten besser passen. Ab Salerno geht es in der Saison per Fähre nach Amalfi oder Positano, ganzjährig mit dem SITA-Bus. Von Tür zu Tür sind es etwa 4,5 bis 5 Stunden, und das ist deutlich angenehmer als die Fahrt mit dem Auto.',
+  },
+  {
+    q: 'Wie lange dauert der Zug von Rom an die Amalfiküste?',
+    a: 'Roma Termini bis Salerno sind etwa 2 Stunden mit Frecciarossa oder Italo, oder rund 1 Stunde 10 bis Neapel, wenn Sie lieber über Sorrent fahren. Mit Fähre oder Bus am Ende rechnen Sie insgesamt mit 3 bis 3,5 Stunden von Rom nach Amalfi.',
+  },
+  {
+    q: 'Besser über Salerno oder über Sorrent?',
+    a: 'Das hängt davon ab, wo Sie schlafen. Salerno bedient Amalfi, Ravello, Maiori, Minori und Cetara am besten. Sorrent ist das bessere Tor für Positano und Praiano. Wer sich für das falsche Tor entscheidet, fährt die gesamte Küstenstraße entlang: landschaftlich schön, aber langsam.',
+  },
+  {
+    q: 'Was ist die Circumvesuviana und sollte ich sie nehmen?',
+    a: 'Es ist die Nahverkehrslinie, die Neapel in etwa einer Stunde mit Sorrent verbindet, und die einzige Bahnverbindung auf die Sorrentinische Halbinsel. Sie ist günstig und fährt häufig, bleibt aber ein Pendlerzug: keine Gepäckablagen, im Sommer überfüllt und bekannt für Taschendiebstahl. Halten Sie Ihr Gepäck vor sich, und wenn zu Ihrer Zeit ein Campania Express fährt, zahlen Sie den Aufpreis für die Variante mit reserviertem Sitzplatz.',
+  },
+  {
+    q: 'Kann ich von Rom durchgehend bis Sorrent mit dem Zug fahren?',
+    a: 'Nicht mit einem Ticket und nicht mit einem Betreiber. Sie nehmen einen Hochgeschwindigkeitszug bis Napoli Centrale, gehen im selben Gebäude hinunter zu den Bahnsteigen der Circumvesuviana und fahren weiter nach Sorrent. Zwei Züge, ein Umstieg, insgesamt etwa 2,5 Stunden.',
+  },
+  {
+    q: 'Ist der Zug besser als das Auto für die Amalfiküste?',
+    a: 'Für die meisten Besucher ja. Die Küstenstraße ist eng und langsam, Parken in Positano und Amalfi kostet 3-5 € pro Stunde und ist früh belegt, und mehrere Orte beschränken in der Saison den Verkehr. Wenn Sie nicht im Hinterland in Agerola oder Tramonti wohnen, ist ein Auto eher Kosten und Sorge als Bequemlichkeit.',
+  },
+  {
+    q: 'Wie komme ich am Ende der Reise zurück zum Flughafen Rom?',
+    a: 'Kehren Sie die Abfolge um und planen Sie großzügig: Fähre oder Bus nach Salerno, Hochgeschwindigkeitszug nach Roma Termini (etwa 2 Std.), dann Leonardo Express nach Fiumicino (etwa 32 Minuten). Rechnen Sie insgesamt mit 4,5 bis 5 Stunden und bauen Sie Puffer ein, denn es ist die erste Etappe entlang der Küste, die sich verschieben kann.',
+  },
+  {
+    q: 'Muss ich Hochgeschwindigkeitszüge im Voraus buchen?',
+    a: 'Ja, wenn Ihnen der Preis wichtig ist. Die Tarife von Frecciarossa und Italo funktionieren wie Flugpreise und steigen, je voller der Zug wird. Ein paar Wochen Vorlauf können die Kosten halbieren. Regionalzüge und die Circumvesuviana haben Festpreise und lassen sich nicht reservieren, dort bringt frühes Buchen nichts.',
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Anreise zur Amalfiküste', href: '/de-de/ratgeber/anreise/' },
+  { label: 'Fähren und Fahrpläne', href: '/de-de/ratgeber/faehren/' },
+  { label: 'SITA-Bus Ratgeber', href: '/de-de/ratgeber/sita-bus/' },
+  { label: 'Salerno', href: '/de-de/amalfikueste/salerno/' },
+  { label: 'Karte der Amalfiküste', href: '/de-de/ratgeber/karte/' },
+];
+
+const authorRole = 'Lokale Redaktion · Amalfiküste';
+
+const relatedArticles = [
+  {
+    title: 'Welcher Flughafen für die Amalfiküste',
+    category: 'REISEFÜHRER',
+    date: '10. August 2026',
+    image: '/images/costiera-hero.webp',
+    imageAlt: 'Panoramablick auf die Amalfiküste',
+    path: '/de-de/blog/flughafen-amalfikueste/'
+  },
+  {
+    title: 'Wetter an der Amalfiküste im Juli und August 2026',
+    category: 'REISEFÜHRER',
+    date: '6. Juli 2026',
+    image: '/images/meteo-costiera-luglio-agosto-hero.webp',
+    imageAlt: 'Positano im Sommer',
+    path: '/de-de/blog/wetter-juli-august-2026/'
+  }
+];
+
+const keyTakeaways = [
+  'Keine Eisenbahn erreicht die Amalfiküste. Das Netz endet im Osten in Vietri sul Mare und auf der anderen Seite der Halbinsel in Sorrent.',
+  'Salerno ist das Tor für Amalfi, Ravello, Maiori und Minori. Sorrent ist das Tor für Positano und Praiano.',
+  'Florenz bis Salerno fährt direkt in etwa 3 Std. 20, Rom bis Salerno in etwa 2 Std., Neapel bis Salerno in 35 bis 45 Minuten.',
+  'Die letzte Etappe ist immer Fähre oder SITA-Bus. Salerno bis Amalfi sind 35 Minuten auf dem Wasser gegen 1 Std. 15 auf der Straße, und in der Saison gewinnt das Meer auf ganzer Linie.',
+  'Buchen Sie Frecciarossa und Italo im Voraus, weil die Tarife mit der Auslastung steigen. Regionalzüge und Circumvesuviana haben Festpreise und lassen sich nicht reservieren.',
+];
+---
+
+<BlogPostLayout
+  lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  breadcrumbs={breadcrumbs}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  relatedArticles={relatedArticles}
+  pageKey="amalfi-coast-by-train"
+>
+
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em] mb-6">Das Wichtigste</h2>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-xs sm:text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      Beginnen wir mit der Tatsache, die alle überrascht: Kein Zug erreicht die <a href="/de-de/amalfikueste/" class="text-med-blue hover:underline">Amalfiküste</a>. Weder <a href="/de-de/amalfikueste/positano/" class="text-med-blue hover:underline">Positano</a> noch <a href="/de-de/amalfikueste/amalfi/" class="text-med-blue hover:underline">Amalfi</a> noch <a href="/de-de/amalfikueste/ravello/" class="text-med-blue hover:underline">Ravello</a>. Die Berge fallen zu steil ins Meer für eine Strecke, und die letzten Schienen geben in Vietri sul Mare auf, wo die Küstenstraße richtig beginnt.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Das macht die Bahn nicht zur schlechten Idee. Es macht sie zu einer zweiteiligen Reise: schnelle Schiene bis zu einer Torstadt, dann ein kurzer Sprung über Wasser oder Straße. Gut gemacht ist das schneller, günstiger und weit entspannter als Autofahren. So fügen sich die Teile ab Florenz, Rom und Neapel zusammen.
+    </p>
+  </div>
+
+  <!-- Die zwei Tore -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Die zwei Tore: Salerno und Sorrent</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Die Küste ist ein rund 50 km langes Band mit je einem Tor an beiden Enden. Das falsche Tor lässt Sie nicht stranden, es kostet Sie nur eine Stunde Serpentinen mit dem Gepäck auf den Knien.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.2em] mb-2">Östliches Tor</p>
+        <h4 class="font-bold text-slate-900 mb-2 text-lg">Salerno, meist die richtige Wahl</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Ein echter Fernbahnhof an der Hochgeschwindigkeitsstrecke, mit Direktverbindungen aus Rom, Florenz, Bologna, Mailand und Turin. Der Fährterminal liegt in Gehweite der Bahnsteige, die SITA-Busse fahren draußen ab. Ideal für <a href="/de-de/amalfikueste/amalfi/" class="text-med-blue hover:underline">Amalfi</a>, Ravello, Maiori, Minori und Cetara.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.2em] mb-2">Westliches Tor</p>
+        <h4 class="font-bold text-slate-900 mb-2 text-lg">Sorrent, nur über die Lokalbahn</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Hierher fährt kein Fernzug. Sorrent ist die Endstation der Circumvesuviana, der Pendlerlinie aus Neapel, rund eine Stunde von Napoli Centrale. Es ist das natürliche Tor für Positano und <a href="/de-de/amalfikueste/praiano/" class="text-med-blue hover:underline">Praiano</a> und der Ausgangspunkt der Fähren nach Capri.</p>
+      </div>
+    </div>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mt-6">
+      <p class="text-med-gold text-xs font-medium uppercase tracking-[0.25em] mb-3">Eine Warnung</p>
+      <h3 class="font-serif text-2xl font-bold text-slate-900 mb-4">Der Haltepunkt namens "Vietri sul Mare-Amalfi"</h3>
+      <p class="text-slate-600 text-lg leading-relaxed">
+        Kurz hinter Salerno gibt es einen kleinen Haltepunkt, dessen Name das Wort Amalfi enthält. Er liegt nicht in Amalfi, sondern rund 18 km entfernt, nur Regionalzüge halten dort und die Anschlüsse sind dünn. Dieser Name hat schon mehr als einen Besucher mit Koffer und funklosem Handy stehen lassen. Fahren Sie nach Salerno.
+      </p>
+    </div>
+  </div>
+
+  <!-- Ab Florenz -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Ab Florenz: etwa 4,5 Stunden von Tür zu Tür</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Diese Reise halten die meisten ohne Auto für unmöglich, dabei ist sie eine der saubersten Bahnverbindungen Italiens.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <ul class="space-y-4 text-slate-600">
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>Erste Etappe, Florenz bis Salerno.</strong> Direkte Hochgeschwindigkeitszüge verbinden Firenze Santa Maria Novella in rund 3 Stunden 20 mit Salerno, ohne Umstieg. Passt kein Direktzug zu Ihrem Morgen, steigen Sie in Napoli Centrale um und verlieren nur wenige Minuten.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>Zweite Etappe, Salerno an die Küste.</strong> In der Saison gehen Sie zu Fuß zum Fährterminal und fahren in etwa 35 Minuten nach Amalfi oder in rund einer Stunde nach Positano. Außerhalb der Saison bringt Sie der <a href="/de-de/ratgeber/sita-bus/" class="text-med-blue hover:underline">SITA-Bus</a> in etwa 1 Stunde 15 von Salerno nach Amalfi.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span>
+          <span class="text-slate-700"><strong>Fahren Sie früh in Florenz los.</strong> Eine Abfahrt vor 9:00 Uhr bringt Sie bis zur Mittagszeit nach Salerno, mit dem ganzen Fährnachmittag vor sich. Nach Mittag loszufahren birgt das Risiko, die letzte Abfahrt verpasst zu haben.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Ab Rom -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Ab Rom: die schnellste Annäherung überhaupt</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Rom an die Küste ist mit der Bahn wirklich schnell, und genau deshalb funktioniert eine Rundreise aus Hauptstadt und Amalfiküste so gut, obwohl 270 km dazwischen liegen.
+    </p>
+
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Strecke</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Zugzeit</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Dann</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Gesamt</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Rom bis Salerno, direkt</td>
+            <td class="p-5 text-slate-600">Etwa 2 Std.</td>
+            <td class="p-5 text-slate-600">Fähre nach Amalfi, 35 Min.</td>
+            <td class="p-5 text-slate-600">3 bis 3,5 Std.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Rom bis Neapel, dann Sorrent</td>
+            <td class="p-5 text-slate-600">1 Std. 10 plus 1 Std.</td>
+            <td class="p-5 text-slate-600">SITA-Bus oder Fähre</td>
+            <td class="p-5 text-slate-600">3,5 bis 4 Std.</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Rom bis Neapel, dann Fähre</td>
+            <td class="p-5 text-slate-600">1 Std. 10</td>
+            <td class="p-5 text-slate-600">Fähre nach Positano, saisonal</td>
+            <td class="p-5 text-slate-600">3,5 bis 4 Std.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Auf der Strecke konkurrieren zwei Betreiber, Trenitalia mit dem Frecciarossa und das private Unternehmen Italo. Die Tarife verhalten sich wie Flugpreise und steigen mit der Auslastung, zwei oder drei Wochen Vorlauf sind daher der Unterschied zwischen Schnäppchen und Rechnung.
+    </p>
+  </div>
+
+  <!-- Ab Neapel -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Ab Neapel: zwei Linien, zwei sehr verschiedene Erfahrungen</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      In Neapel beginnen die meisten Reisen an die Küste tatsächlich, und der Bahnhof stellt Sie vor eine echte Wahl, je nachdem, welches Ende der Küste Sie ansteuern.
+    </p>
+
+    <div class="space-y-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-serif font-bold">1</div>
+          <div>
+            <h4 class="font-bold text-slate-900 mb-2 text-lg">Neapel bis Salerno, 35 bis 45 Minuten</h4>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Häufige Abfahrten ab Napoli Centrale, sowohl Regional- als auch Hochgeschwindigkeitszüge, alle bequem und alle mit richtigem Gepäckplatz. Der Regionalzug kostet wenige Euro und braucht etwa 45 Minuten. Das ist die zivilisierte Hälfte der Wahl.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <div class="flex items-start gap-4">
+          <div class="w-8 h-8 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-serif font-bold">2</div>
+          <div>
+            <h4 class="font-bold text-slate-900 mb-2 text-lg">Neapel bis Sorrent, etwa eine Stunde mit der Circumvesuviana</h4>
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Die einzige Bahnverbindung auf die Sorrentinische Halbinsel, und eher Pendlerzug als Touristenservice. Erwarten Sie keine Gepäckablagen, im Sommer Stehplätze und einen verdienten Ruf in Sachen Taschendiebstahl. Halten Sie Ihr Gepäck vor sich und das Handy weg. Fährt zu Ihrer Zeit ein Campania Express, zahlen Sie den Aufpreis: reservierte Sitze und weniger Halte für ein paar Euro mehr.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Letzte Etappe -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Die letzte Etappe: die Fähre schlägt den Bus, fast immer</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Wie auch immer Sie an der Torstadt ankommen, das letzte Stück führt über Wasser oder Straße, und zwischen etwa April und Oktober ist die Wahl nicht einmal knapp.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.2em] mb-2">Über das Meer</p>
+        <h4 class="font-bold text-slate-900 mb-2 text-lg">Salerno bis Amalfi in 35 Minuten</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Doppelt so schnell wie der Bus, mit garantiertem Sitzplatz, Platz fürs Gepäck und der Küste, die neben Ihnen vorbeizieht. <a href="/de-de/ratgeber/faehren/" class="text-med-blue hover:underline">Fähren</a> fahren grob von April bis Oktober und enden am späten Nachmittag, prüfen Sie also die letzte Abfahrt, bevor Sie eine späte Ankunft planen.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <p class="text-med-gold text-xs font-medium uppercase tracking-[0.2em] mb-2">Über die Straße</p>
+        <h4 class="font-bold text-slate-900 mb-2 text-lg">SITA-Bus, 1 Std. 15 und ganzjährig</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Der Dienst, der nie aussetzt, günstig und auch im Winter unterwegs, wenn die Fähren pausieren. Der Preis sind Zeit und Komfort: mit Koffern stehend auf einer kurvigen Straße im August ist eine wirklich unangenehme Stunde. In der Nebensaison, mit leeren Straßen, ist es dagegen eine angenehme Fahrt.</p>
+      </div>
+    </div>
+
+    <blockquote class="border-l-4 border-med-gold pl-6 my-10">
+      <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+        "Die Schienen enden dort, wo die Berge beginnen. Das ist keine Lücke im Netz, das ist der Grund, warum diese Küste noch so aussieht, wie sie aussieht."
+      </p>
+    </blockquote>
+  </div>
+
+  <!-- Rückreise -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Die Rückreise: bauen Sie Puffer ein</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Es ist die Rückreise, die schiefgeht, weil die Etappe, die sich verschieben kann, hier am Anfang steht statt am Ende.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <div class="space-y-6">
+        <div>
+          <p class="font-bold text-slate-900 mb-2 text-lg">Zum Flughafen Rom Fiumicino</p>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Fähre oder Bus nach Salerno, Hochgeschwindigkeitszug nach Roma Termini in etwa 2 Stunden, dann Leonardo Express zum Flughafen in rund 32 Minuten. Gesamt 4,5 bis 5 Stunden. Nehmen Sie den früheren Zug, nicht den knappen.</p>
+        </div>
+        <div class="border-t border-slate-100 pt-6">
+          <p class="font-bold text-slate-900 mb-2 text-lg">Zum Flughafen Neapel</p>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Zug nach Napoli Centrale, dann Alibus-Shuttle zum Terminal in etwa 20 Minuten. Ab Salerno dauert das Ganze rund 1,5 Stunden, was Neapel nach einer Woche an der Küste zur mit Abstand einfachsten Abreise macht.</p>
+        </div>
+        <div class="border-t border-slate-100 pt-6">
+          <p class="font-bold text-slate-900 mb-2 text-lg">Die Regel für die erste Etappe</p>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Was auch immer der Fahrplan für Fähre oder SITA-Bus aus der Küste heraus sagt, rechnen Sie eine Stunde dazu. Fährverbindungen fallen bei rauer See aus und die Küstenstraße steht ohne Vorwarnung, und beides passiert am Anfang der Kette, wo es alles Nachfolgende ruiniert.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Praktische Hinweise -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <h3 class="text-xl font-bold mb-6">Praktische Hinweise</h3>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Packen Sie für Treppen, nicht für Bahnsteige</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Zwei mittlere Taschen schlagen einen riesigen Koffer. Fährgangways, Circumvesuviana-Wagen und die Treppengassen von Positano bestrafen alle übergroßes Gepäck, und am Ende der meisten davon gibt es keinen Aufzug.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Entwerten Sie Regionaltickets immer</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Tickets für Regionalzüge und die Circumvesuviana müssen vor dem Einsteigen an den Automaten am Bahnsteig entwertet werden. Hochgeschwindigkeitstickets tragen Namen und Sitzplatz und brauchen nichts. Auf den Lokalstrecken kassieren Kontrolleure bei nicht entwerteten Tickets ohne Diskussion.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Prüfen Sie die Fährsaison, bevor Sie sich festlegen</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Zwischen November und März ruhen die Küstenfähren weitgehend und der ganze Plan fällt auf den SITA-Bus zurück. Es funktioniert trotzdem, nur langsamer, eine Winterreise sollte also von Anfang an mit Straßenzeiten rechnen.</p>
+      </div>
+    </div>
+  </div>
+
+</BlogPostLayout>

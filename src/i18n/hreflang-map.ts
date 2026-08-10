@@ -268,6 +268,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-wines/',
     source: 'slugMap',
   },
+  '/de-de/blog/amalfikueste-mit-dem-zug/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/amalfikueste-mit-dem-zug/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/amalfikueste-mit-dem-zug/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/cote-amalfitaine-en-train/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/costa-amalfitana-en-tren/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/costiera-amalfitana-in-treno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+    source: 'slugMap',
+  },
   '/de-de/blog/atrani/': {
     url: 'https://amalficoast-travel.com/de-de/blog/atrani/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/atrani/',
@@ -383,6 +396,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/fiordo-di-crapolla/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/fiordo-di-crapolla/',
+    source: 'slugMap',
+  },
+  '/de-de/blog/flughafen-amalfikueste/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/flughafen-amalfikueste/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/flughafen-amalfikueste/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ou-atterrir-cote-amalfitaine/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/donde-aterrizar-costa-amalfitana/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/dove-atterrare-costiera-amalfitana/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
     source: 'slugMap',
   },
   '/de-de/blog/komfortable-ausgestattete-strande/': {
@@ -2074,6 +2100,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/',
     source: 'pattern-match',
   },
+  '/en-us/blog/amalfi-coast-by-train/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/amalfikueste-mit-dem-zug/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/cote-amalfitaine-en-train/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/costa-amalfitana-en-tren/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/costiera-amalfitana-in-treno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+    source: 'slugMap',
+  },
   '/en-us/blog/amalfi-coast-wines/': {
     url: 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-wines/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-wines/',
@@ -2436,6 +2475,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/meteo-luglio-agosto-2026/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/where-to-fly-amalfi-coast/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/flughafen-amalfikueste/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ou-atterrir-cote-amalfitaine/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/donde-aterrizar-costa-amalfitana/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/dove-atterrare-costiera-amalfitana/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
     source: 'slugMap',
   },
   '/en-us/blog/wild-remote-beaches/': {
@@ -3345,6 +3397,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
     source: 'slugMap',
   },
+  '/es-es/blog/costa-amalfitana-en-tren/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/costa-amalfitana-en-tren/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/amalfikueste-mit-dem-zug/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/cote-amalfitaine-en-train/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/costa-amalfitana-en-tren/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/costiera-amalfitana-in-treno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+    source: 'slugMap',
+  },
   '/es-es/blog/cuoppo-fritto/': {
     url: 'https://amalficoast-travel.com/es-es/blog/cuoppo-fritto/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/cuoppo-fritto/',
@@ -3369,6 +3434,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/delizia-al-limone/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/donde-aterrizar-costa-amalfitana/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/donde-aterrizar-costa-amalfitana/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/flughafen-amalfikueste/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ou-atterrir-cote-amalfitaine/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/donde-aterrizar-costa-amalfitana/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/dove-atterrare-costiera-amalfitana/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
     source: 'slugMap',
   },
   '/es-es/blog/estudiar-en-sorrento/': {
@@ -4943,6 +5021,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
     source: 'slugMap',
   },
+  '/fr-fr/blog/cote-amalfitaine-en-train/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/cote-amalfitaine-en-train/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/amalfikueste-mit-dem-zug/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/cote-amalfitaine-en-train/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/costa-amalfitana-en-tren/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/costiera-amalfitana-in-treno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+    source: 'slugMap',
+  },
   '/fr-fr/blog/coucher-soleil-plages/': {
     url: 'https://amalficoast-travel.com/fr-fr/blog/coucher-soleil-plages/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/sunset-beaches/',
@@ -5058,6 +5149,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/oasi-selvagge-spiagge-mare/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/ou-atterrir-cote-amalfitaine/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/ou-atterrir-cote-amalfitaine/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/flughafen-amalfikueste/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ou-atterrir-cote-amalfitaine/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/donde-aterrizar-costa-amalfitana/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/dove-atterrare-costiera-amalfitana/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
     source: 'slugMap',
   },
   '/fr-fr/blog/piazzetta-capri/': {
@@ -6552,6 +6656,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
     source: 'slugMap',
   },
+  '/it-it/blog/costiera-amalfitana-in-treno/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/costiera-amalfitana-in-treno/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/amalfikueste-mit-dem-zug/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/cote-amalfitaine-en-train/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/costa-amalfitana-en-tren/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/costiera-amalfitana-in-treno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
+    source: 'slugMap',
+  },
   '/it-it/blog/cuoppo-fritto/': {
     url: 'https://amalficoast-travel.com/it-it/blog/cuoppo-fritto/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/cuoppo-fritto/',
@@ -6576,6 +6693,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/delizia-al-limone/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/dove-atterrare-costiera-amalfitana/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/dove-atterrare-costiera-amalfitana/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/flughafen-amalfikueste/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ou-atterrir-cote-amalfitaine/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/donde-aterrizar-costa-amalfitana/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/dove-atterrare-costiera-amalfitana/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
     source: 'slugMap',
   },
   '/it-it/blog/film-fatti-a-sorrento/': {
@@ -8114,7 +8244,7 @@ export function getXDefault(url: string): string | null {
  * Map statistics
  */
 export const hrefLangStats = {
-  totalUrls: 621,
+  totalUrls: 631,
   locales: ["en-us","de-de","fr-fr","es-es","it-it"],
-  generatedAt: '2026-07-06T08:13:12.893Z',
+  generatedAt: '2026-08-10T11:01:00.668Z',
 };

@@ -851,6 +851,8 @@ export const slugMap: Record<string, SlugMap> = {
   'lemon-path': { 'en-us': 'blog/lemon-path', 'de-de': 'blog/zitronenweg', 'fr-fr': 'blog/sentier-des-citrons', 'es-es': 'blog/sendero-de-los-limones', 'it-it': 'blog/sentiero-dei-limoni' },
   'torre-dello-ziro': { 'en-us': 'blog/torre-dello-ziro', 'de-de': 'blog/torre-dello-ziro', 'fr-fr': 'blog/torre-dello-ziro', 'es-es': 'blog/torre-dello-ziro', 'it-it': 'blog/torre-dello-ziro' },
   'weather-july-august-2026': { 'en-us': 'blog/weather-july-august-2026', 'de-de': 'blog/wetter-juli-august-2026', 'fr-fr': 'blog/meteo-juillet-aout-2026', 'es-es': 'blog/clima-julio-agosto-2026', 'it-it': 'blog/meteo-luglio-agosto-2026' },
+  'where-to-fly-amalfi-coast': { 'en-us': 'blog/where-to-fly-amalfi-coast', 'de-de': 'blog/flughafen-amalfikueste', 'fr-fr': 'blog/ou-atterrir-cote-amalfitaine', 'es-es': 'blog/donde-aterrizar-costa-amalfitana', 'it-it': 'blog/dove-atterrare-costiera-amalfitana' },
+  'amalfi-coast-by-train': { 'en-us': 'blog/amalfi-coast-by-train', 'de-de': 'blog/amalfikueste-mit-dem-zug', 'fr-fr': 'blog/cote-amalfitaine-en-train', 'es-es': 'blog/costa-amalfitana-en-tren', 'it-it': 'blog/costiera-amalfitana-in-treno' },
   // NOTE: Sorrento peninsula events only exist in non-English locales (de-de, fr-fr, es-es, it-it)
   // They are handled by pattern-matching in the hreflang generation script
 
@@ -955,6 +957,8 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'scialatielli',                      'de-de': 'scialatielli',                        'fr-fr': 'scialatielli',                      'es-es': 'scialatielli',                      'it-it': 'scialatielli'                      },
   { 'en-us': 'cuoppo-fritto',                     'de-de': 'cuoppo-fritto',                       'fr-fr': 'cuoppo-frit',                       'es-es': 'cuoppo-fritto',                     'it-it': 'cuoppo-fritto'                     },
   { 'en-us': 'weather-july-august-2026',          'de-de': 'wetter-juli-august-2026',             'fr-fr': 'meteo-juillet-aout-2026',           'es-es': 'clima-julio-agosto-2026',           'it-it': 'meteo-luglio-agosto-2026'          },
+  { 'en-us': 'where-to-fly-amalfi-coast',         'de-de': 'flughafen-amalfikueste',              'fr-fr': 'ou-atterrir-cote-amalfitaine',      'es-es': 'donde-aterrizar-costa-amalfitana',  'it-it': 'dove-atterrare-costiera-amalfitana' },
+  { 'en-us': 'amalfi-coast-by-train',             'de-de': 'amalfikueste-mit-dem-zug',            'fr-fr': 'cote-amalfitaine-en-train',         'es-es': 'costa-amalfitana-en-tren',          'it-it': 'costiera-amalfitana-in-treno'      },
   // Destination town slugs (same in all languages)
   { 'en-us': 'positano',                          'de-de': 'positano',                           'fr-fr': 'positano',                          'es-es': 'positano',                          'it-it': 'positano'                          },
   { 'en-us': 'amalfi',                            'de-de': 'amalfi',                             'fr-fr': 'amalfi',                            'es-es': 'amalfi',                            'it-it': 'amalfi'                            },

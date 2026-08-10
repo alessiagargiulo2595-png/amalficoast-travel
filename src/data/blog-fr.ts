@@ -12,6 +12,28 @@ export interface BlogPostFr {
 
 export const blogPostsFr: BlogPostFr[] = [
   {
+    id: '32',
+    title: 'La côte amalfitaine en train',
+    slug: 'cote-amalfitaine-en-train',
+    excerpt: "Aucun train ne dessert Positano ni Amalfi. Salerne et Sorrente sont les deux portes : durées et correspondances depuis Florence (environ 3h20), Rome (environ 2h) et Naples (35 min), plus le retour.",
+    category: 'GUIDE',
+    date: '10 août 2026',
+    readTime: '10 min',
+    image: '/images/salerno-hero.webp',
+    path: '/fr-fr/blog/cote-amalfitaine-en-train/',
+  },
+  {
+    id: '31',
+    title: 'Où atterrir pour la côte amalfitaine',
+    slug: 'ou-atterrir-cote-amalfitaine',
+    excerpt: "La côte n'a pas d'aéroport. Naples (NAP) est à 70 km, Salerno Costa d'Amalfi (QSR) à seulement 40 km, Rome Fiumicino à 270 km. Distances, temps de transfert, coûts réels et lequel réserver.",
+    category: 'GUIDE',
+    date: '10 août 2026',
+    readTime: '9 min',
+    image: '/images/costiera-hero.webp',
+    path: '/fr-fr/blog/ou-atterrir-cote-amalfitaine/',
+  },
+  {
     id: '30',
     title: 'Météo Côte Amalfitaine Juillet et Août 2026',
     slug: 'meteo-juillet-aout-2026',
