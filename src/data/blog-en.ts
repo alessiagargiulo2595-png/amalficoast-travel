@@ -19,7 +19,7 @@ export const blogPostsEn: BlogPostEn[] = [
     category: 'GUIDES',
     date: 'August 10, 2026',
     readTime: '10 min',
-    image: '/images/salerno-hero.webp',
+    image: '/images/treno-costiera-hero.webp',
     path: '/en-us/blog/amalfi-coast-by-train/',
   },
   {
@@ -30,7 +30,7 @@ export const blogPostsEn: BlogPostEn[] = [
     category: 'GUIDES',
     date: 'August 10, 2026',
     readTime: '9 min',
-    image: '/images/costiera-hero.webp',
+    image: '/images/aeroporti-costiera-hero.webp',
     path: '/en-us/blog/where-to-fly-amalfi-coast/',
   },
   {

@@ -19,7 +19,7 @@ export const blogPostsDe: BlogPostDe[] = [
     category: 'REISEFÜHRER',
     date: '10. August 2026',
     readTime: '10 Min.',
-    image: '/images/salerno-hero.webp',
+    image: '/images/treno-costiera-hero.webp',
     path: '/de-de/blog/amalfikueste-mit-dem-zug/',
   },
   {
@@ -30,7 +30,7 @@ export const blogPostsDe: BlogPostDe[] = [
     category: 'REISEFÜHRER',
     date: '10. August 2026',
     readTime: '9 Min.',
-    image: '/images/costiera-hero.webp',
+    image: '/images/aeroporti-costiera-hero.webp',
     path: '/de-de/blog/flughafen-amalfikueste/',
   },
   {

@@ -19,7 +19,7 @@ export const blogPostsFr: BlogPostFr[] = [
     category: 'GUIDE',
     date: '10 août 2026',
     readTime: '10 min',
-    image: '/images/salerno-hero.webp',
+    image: '/images/treno-costiera-hero.webp',
     path: '/fr-fr/blog/cote-amalfitaine-en-train/',
   },
   {
@@ -30,7 +30,7 @@ export const blogPostsFr: BlogPostFr[] = [
     category: 'GUIDE',
     date: '10 août 2026',
     readTime: '9 min',
-    image: '/images/costiera-hero.webp',
+    image: '/images/aeroporti-costiera-hero.webp',
     path: '/fr-fr/blog/ou-atterrir-cote-amalfitaine/',
   },
   {
