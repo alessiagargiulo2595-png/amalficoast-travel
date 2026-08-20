@@ -593,6 +593,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-praiano/',
     source: 'slugMap',
   },
+  '/de-de/blog/spaghetti-alla-nerano/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/spaghetti-alla-nerano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/spaghetti-alla-nerano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/spaghetti-alla-nerano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/spaghetti-alla-nerano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/spaghetti-alla-nerano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+    source: 'slugMap',
+  },
   '/de-de/blog/torre-dello-ziro/': {
     url: 'https://amalficoast-travel.com/de-de/blog/torre-dello-ziro/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
@@ -2425,6 +2438,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-praiano/',
     source: 'slugMap',
   },
+  '/en-us/blog/spaghetti-alla-nerano/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/spaghetti-alla-nerano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/spaghetti-alla-nerano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/spaghetti-alla-nerano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/spaghetti-alla-nerano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+    source: 'slugMap',
+  },
   '/en-us/blog/study-abroad-sorrento/': {
     url: 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
@@ -3694,6 +3720,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/sorrento-vs-praiano/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-praiano/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/spaghetti-alla-nerano/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/spaghetti-alla-nerano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/spaghetti-alla-nerano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/spaghetti-alla-nerano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/spaghetti-alla-nerano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/spaghetti-alla-nerano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
     source: 'slugMap',
   },
   '/es-es/blog/torre-dello-ziro/': {
@@ -5320,6 +5359,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-praiano/',
     source: 'slugMap',
   },
+  '/fr-fr/blog/spaghetti-alla-nerano/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/spaghetti-alla-nerano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/spaghetti-alla-nerano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/spaghetti-alla-nerano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/spaghetti-alla-nerano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/spaghetti-alla-nerano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+    source: 'slugMap',
+  },
   '/fr-fr/blog/study-abroad-sorrente/': {
     url: 'https://amalficoast-travel.com/fr-fr/blog/study-abroad-sorrente/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
@@ -6929,6 +6981,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-vs-praiano/',
     source: 'slugMap',
   },
+  '/it-it/blog/spaghetti-alla-nerano/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/spaghetti-alla-nerano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/spaghetti-alla-nerano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/spaghetti-alla-nerano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/spaghetti-alla-nerano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/spaghetti-alla-nerano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+    source: 'slugMap',
+  },
   '/it-it/blog/spiagge-comode-attrezzate/': {
     url: 'https://amalficoast-travel.com/it-it/blog/spiagge-comode-attrezzate/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
@@ -8244,7 +8309,7 @@ export function getXDefault(url: string): string | null {
  * Map statistics
  */
 export const hrefLangStats = {
-  totalUrls: 631,
+  totalUrls: 636,
   locales: ["en-us","de-de","fr-fr","es-es","it-it"],
-  generatedAt: '2026-08-10T11:01:00.668Z',
+  generatedAt: '2026-08-20T17:20:54.914Z',
 };

@@ -12,6 +12,17 @@ export interface BlogPostFr {
 
 export const blogPostsFr: BlogPostFr[] = [
   {
+    id: '33',
+    title: "Spaghetti alla Nerano : où manger l'original",
+    slug: 'spaghetti-alla-nerano',
+    excerpt: "Nés en 1952 au Ristorante Maria Grazia, dans la baie de Marina del Cantone. Où manger l'original, comment rejoindre Nerano depuis Sorrente et pourquoi il n'y a pas de crème.",
+    category: 'GASTRONOMIE',
+    date: '17 août 2026',
+    readTime: '8 min',
+    image: '/images/marina-del-cantone.webp',
+    path: '/fr-fr/blog/spaghetti-alla-nerano/',
+  },
+  {
     id: '32',
     title: 'La côte amalfitaine en train',
     slug: 'cote-amalfitaine-en-train',

@@ -853,6 +853,7 @@ export const slugMap: Record<string, SlugMap> = {
   'weather-july-august-2026': { 'en-us': 'blog/weather-july-august-2026', 'de-de': 'blog/wetter-juli-august-2026', 'fr-fr': 'blog/meteo-juillet-aout-2026', 'es-es': 'blog/clima-julio-agosto-2026', 'it-it': 'blog/meteo-luglio-agosto-2026' },
   'where-to-fly-amalfi-coast': { 'en-us': 'blog/where-to-fly-amalfi-coast', 'de-de': 'blog/flughafen-amalfikueste', 'fr-fr': 'blog/ou-atterrir-cote-amalfitaine', 'es-es': 'blog/donde-aterrizar-costa-amalfitana', 'it-it': 'blog/dove-atterrare-costiera-amalfitana' },
   'amalfi-coast-by-train': { 'en-us': 'blog/amalfi-coast-by-train', 'de-de': 'blog/amalfikueste-mit-dem-zug', 'fr-fr': 'blog/cote-amalfitaine-en-train', 'es-es': 'blog/costa-amalfitana-en-tren', 'it-it': 'blog/costiera-amalfitana-in-treno' },
+  'spaghetti-alla-nerano': { 'en-us': 'blog/spaghetti-alla-nerano', 'de-de': 'blog/spaghetti-alla-nerano', 'fr-fr': 'blog/spaghetti-alla-nerano', 'es-es': 'blog/spaghetti-alla-nerano', 'it-it': 'blog/spaghetti-alla-nerano' },
   // NOTE: Sorrento peninsula events only exist in non-English locales (de-de, fr-fr, es-es, it-it)
   // They are handled by pattern-matching in the hreflang generation script
 
@@ -959,6 +960,7 @@ export const pathSegments: Array<Record<Locale, string>> = [
   { 'en-us': 'weather-july-august-2026',          'de-de': 'wetter-juli-august-2026',             'fr-fr': 'meteo-juillet-aout-2026',           'es-es': 'clima-julio-agosto-2026',           'it-it': 'meteo-luglio-agosto-2026'          },
   { 'en-us': 'where-to-fly-amalfi-coast',         'de-de': 'flughafen-amalfikueste',              'fr-fr': 'ou-atterrir-cote-amalfitaine',      'es-es': 'donde-aterrizar-costa-amalfitana',  'it-it': 'dove-atterrare-costiera-amalfitana' },
   { 'en-us': 'amalfi-coast-by-train',             'de-de': 'amalfikueste-mit-dem-zug',            'fr-fr': 'cote-amalfitaine-en-train',         'es-es': 'costa-amalfitana-en-tren',          'it-it': 'costiera-amalfitana-in-treno'      },
+  { 'en-us': 'spaghetti-alla-nerano',             'de-de': 'spaghetti-alla-nerano',               'fr-fr': 'spaghetti-alla-nerano',             'es-es': 'spaghetti-alla-nerano',             'it-it': 'spaghetti-alla-nerano'             },
   // Destination town slugs (same in all languages)
   { 'en-us': 'positano',                          'de-de': 'positano',                           'fr-fr': 'positano',                          'es-es': 'positano',                          'it-it': 'positano'                          },
   { 'en-us': 'amalfi',                            'de-de': 'amalfi',                             'fr-fr': 'amalfi',                            'es-es': 'amalfi',                            'it-it': 'amalfi'                            },

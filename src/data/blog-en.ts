@@ -12,6 +12,17 @@ export interface BlogPostEn {
 
 export const blogPostsEn: BlogPostEn[] = [
   {
+    id: '33',
+    title: 'Spaghetti alla Nerano: Where to Eat the Original',
+    slug: 'spaghetti-alla-nerano',
+    excerpt: 'Invented in 1952 at Ristorante Maria Grazia, in the bay of Marina del Cantone. Where to eat the original, how to reach Nerano from Sorrento, and why there is no cream in it.',
+    category: 'FOOD',
+    date: 'August 17, 2026',
+    readTime: '8 min',
+    image: '/images/marina-del-cantone.webp',
+    path: '/en-us/blog/spaghetti-alla-nerano/',
+  },
+  {
     id: '32',
     title: 'The Amalfi Coast by Train',
     slug: 'amalfi-coast-by-train',
