@@ -19,7 +19,7 @@ export const blogPostsEs: BlogPostEs[] = [
     category: 'GASTRONOMÍA',
     date: '17 de agosto de 2026',
     readTime: '8 min',
-    image: '/images/marina-del-cantone.webp',
+    image: '/images/nerano-hero.webp',
     path: '/es-es/blog/spaghetti-alla-nerano/',
   },
   {
