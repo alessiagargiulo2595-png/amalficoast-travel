@@ -415,7 +415,7 @@ export const blogPostsDe: BlogPostDe[] = [
     category: 'ENTDECKUNGEN',
     date: '8. April 2026',
     readTime: '8 min',
-    image: '/images/valle-ferriere-hero.jpg',
+    image: '/images/valle-ferriere-hero.webp',
     path: '/de-de/blog/ferriere-tal/',
   },
   {
