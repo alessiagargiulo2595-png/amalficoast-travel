@@ -1,0 +1,331 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import LocalitySlider from '../components/LocalitySlider.astro';
+import type { Locale } from '../i18n/translations';
+
+interface Props {
+  lang: Locale;
+  pageKey: string;
+  metaTitle: string;
+  metaDescription: string;
+  breadcrumbs: { name: string; url: string }[];
+  hero: {
+    badge?: string;
+    title: string;
+    subtitle: string;
+    dateLabel: string;
+    placeLabel: string;
+    image: string;
+    imageAlt: string;
+  };
+  schema: {
+    name: string;
+    description: string;
+    url: string;
+    locationName: string;
+    addressLocality: string;
+    addressRegion?: string;
+    startDate: string;
+    endDate: string;
+    subEventName: string;
+  };
+  facts: { dt: string; dd: string }[];
+  sidebarNote?: string;
+  transport?: { mode: string; service: string; note: string }[];
+  slider?: { heading: string; items: { name: string; href: string; image: string; tag: string }[] };
+  relatedEvents?: { href: string; image: string; alt: string; when: string; title: string; text: string; place: string }[];
+  cta?: { title: string; text: string; href: string };
+  imageCredit?: { author: string; sourceUrl?: string; license?: string; licenseUrl?: string };
+  extraSchema?: object[];
+}
+
+const {
+  lang, pageKey, metaTitle, metaDescription, breadcrumbs,
+  hero, schema, facts, sidebarNote, transport = [],
+  slider, relatedEvents = [], cta, imageCredit, extraSchema = [],
+} = Astro.props;
+
+const site = 'https://amalficoast-travel.com';
+
+const ui: Record<Locale, {
+  infoTitle: string; gettingThere: string; detailsTitle: string; relatedTitle: string;
+  thMode: string; thService: string; thNote: string; ctaLabel: string; note: string; relatedMarker: string;
+}> = {
+  'it-it': {
+    infoTitle: "Informazioni sull'Evento", gettingThere: 'Come arrivare', detailsTitle: 'Dettagli Evento',
+    relatedTitle: 'Eventi Correlati', thMode: 'Mezzo', thService: 'Servizio', thNote: 'Note',
+    ctaLabel: 'Scopri la destinazione →',
+    note: 'Si consiglia di arrivare con largo anticipo. Verificare il programma aggiornato sui canali ufficiali.',
+    relatedMarker: 'Eventi Correlati',
+  },
+  'en-us': {
+    infoTitle: 'About the Event', gettingThere: 'Getting There', detailsTitle: 'Event Details',
+    relatedTitle: 'Related Events', thMode: 'Transport', thService: 'Service', thNote: 'Notes',
+    ctaLabel: 'View destination →',
+    note: 'We recommend arriving well in advance. Check the updated programme on official channels.',
+    relatedMarker: 'Related Events',
+  },
+  'de-de': {
+    infoTitle: 'Zur Veranstaltung', gettingThere: 'Anreise', detailsTitle: 'Veranstaltungsdetails',
+    relatedTitle: 'Zugehörige Veranstaltungen', thMode: 'Verkehrsmittel', thService: 'Verbindung', thNote: 'Hinweise',
+    ctaLabel: 'Zum Reiseziel →',
+    note: 'Wir empfehlen, frühzeitig anzureisen. Das aktualisierte Programm finden Sie auf den offiziellen Kanälen.',
+    relatedMarker: 'Zugehörige Veranstaltungen',
+  },
+  'fr-fr': {
+    infoTitle: "À propos de l'Événement", gettingThere: 'Comment y aller', detailsTitle: "Détails de l'Événement",
+    relatedTitle: 'Événements Connexes', thMode: 'Transport', thService: 'Service', thNote: 'Notes',
+    ctaLabel: 'Découvrir la destination →',
+    note: "Nous recommandons d'arriver à l'avance. Consultez le programme mis à jour sur les canaux officiels.",
+    relatedMarker: 'Événements Connexes',
+  },
+  'es-es': {
+    infoTitle: 'Sobre el Evento', gettingThere: 'Cómo llegar', detailsTitle: 'Detalles del Evento',
+    relatedTitle: 'Eventos Relacionados', thMode: 'Transporte', thService: 'Servicio', thNote: 'Notas',
+    ctaLabel: 'Descubre el destino →',
+    note: 'Recomendamos llegar con antelación. Consulta el programa actualizado en los canales oficiales.',
+    relatedMarker: 'Eventos Relacionados',
+  },
+};
+const t = ui[lang];
+
+const planner: Record<Locale, { badge: string; h2: string; italic: string; desc: string; ind1: string; ind2: string; cta: string; href: string }> = {
+  'it-it': { badge: 'Novità: Viaggio su Misura', h2: 'Disegna il tuo', italic: 'itinerario ideale', desc: 'Rispondi a poche semplici domande - punto di partenza, giorni e interessi - e ricevi un itinerario personalizzato con trasporti, costi e orari.', ind1: '30 secondi per configurare', ind2: 'Consigli anti-folla inclusi', cta: 'Configura Ora', href: '/it-it/configuratore-itinerario/' },
+  'en-us': { badge: 'New: Custom Trip', h2: 'Design your', italic: 'ideal itinerary', desc: 'Answer a few simple questions - starting point, days and interests - and get a personalized itinerary with transport, costs and times.', ind1: '30 seconds to set up', ind2: 'Anti-crowd tips included', cta: 'Configure Now', href: '/en-us/itinerary-planner/' },
+  'de-de': { badge: 'Neu: Maßgeschneiderte Reise', h2: 'Gestalte deinen', italic: 'idealen Reiseplan', desc: 'Beantworte ein paar einfache Fragen - Startpunkt, Tage und Interessen - und erhalte einen personalisierten Reiseplan mit Transport, Kosten und Zeiten.', ind1: '30 Sekunden zur Konfiguration', ind2: 'Anti-Crowd-Tipps inklusive', cta: 'Jetzt konfigurieren', href: '/de-de/reiserouten-planer/' },
+  'fr-fr': { badge: 'Nouveau : Voyage sur Mesure', h2: 'Concevez votre', italic: 'itinéraire idéal', desc: 'Répondez à quelques questions simples - point de départ, jours et intérêts - et recevez un itinéraire personnalisé avec transports, coûts et horaires.', ind1: '30 secondes pour configurer', ind2: 'Conseils anti-foule inclus', cta: 'Configurer maintenant', href: '/fr-fr/planificateur-itineraire/' },
+  'es-es': { badge: 'Novedad: Viaje a Medida', h2: 'Diseña tu', italic: 'itinerario ideal', desc: 'Responde a unas sencillas preguntas - punto de partida, días e intereses - y recibe un itinerario personalizado con transporte, costos y horarios.', ind1: '30 segundos para configurar', ind2: 'Consejos anti-multitud incluidos', cta: 'Configurar Ahora', href: '/es-es/planificador-itinerario/' },
+};
+const p = planner[lang];
+
+const place = {
+  "@type": "Place",
+  "name": schema.locationName,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": schema.addressLocality,
+    "addressRegion": schema.addressRegion ?? 'SA',
+    "addressCountry": "IT",
+  },
+};
+
+const eventSchema = {
+  "@context": "https://schema.org",
+  "@type": "EventSeries",
+  "name": schema.name,
+  "description": schema.description,
+  "image": `${site}${hero.image}`,
+  "url": schema.url,
+  "location": place,
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "startDate": schema.startDate,
+  "endDate": schema.endDate,
+  "subEvent": [
+    {
+      "@type": "Event",
+      "name": schema.subEventName,
+      "startDate": schema.startDate,
+      "endDate": schema.endDate,
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": place,
+      "url": schema.url,
+      "image": `${site}${hero.image}`,
+      "description": schema.description,
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={metaTitle}
+  description={metaDescription}
+  lang={lang}
+  breadcrumbs={breadcrumbs}
+  schema={[eventSchema, ...extraSchema]}
+  pageKey={pageKey}
+  heroImage={hero.image}
+>
+
+  <!-- Hero -->
+  <section class="relative h-[65vh] sm:h-[70vh] overflow-hidden flex items-center justify-center">
+    <img
+      src={hero.image}
+      alt={hero.imageAlt}
+      class="absolute inset-0 w-full h-full object-cover"
+      loading="eager" fetchpriority="high" decoding="sync" referrerpolicy="no-referrer"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/70"></div>
+    <div class="relative z-10 text-center px-6 max-w-5xl text-white">
+      <div class="flex flex-wrap justify-center items-center gap-4 mb-6">
+        {hero.badge && <span class="bg-med-gold text-white px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">{hero.badge}</span>}
+        <span class="text-white/70 text-xs sm:text-sm">{hero.dateLabel}</span>
+        <span class="text-white/70 text-xs sm:text-sm">{hero.placeLabel}</span>
+      </div>
+      <h1 class="font-serif text-5xl md:text-7xl font-bold text-white leading-tight mb-6">{hero.title}</h1>
+      <p class="text-white/85 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+        {hero.subtitle}
+      </p>
+    </div>
+    {imageCredit && (
+      <p class="absolute bottom-2 right-3 z-10 text-white/40 text-[10px] leading-none">
+        {imageCredit.sourceUrl
+          ? <a href={imageCredit.sourceUrl} rel="nofollow noopener" target="_blank" class="hover:text-white/70 transition-colors">{imageCredit.author}</a>
+          : <span>{imageCredit.author}</span>}
+        {imageCredit.license && (
+          <Fragment>
+            {' · '}
+            {imageCredit.licenseUrl
+              ? <a href={imageCredit.licenseUrl} rel="nofollow noopener license" target="_blank" class="hover:text-white/70 transition-colors">{imageCredit.license}</a>
+              : <span>{imageCredit.license}</span>}
+          </Fragment>
+        )}
+      </p>
+    )}
+    <Breadcrumbs breadcrumbs={breadcrumbs} isEvent={true} />
+  </section>
+
+  <!-- Content 70/30 -->
+  <section class="py-12 sm:py-24 px-6 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-10 gap-16">
+
+      <!-- Main Content (70%) -->
+      <div class="lg:col-span-7 space-y-12">
+        <div>
+          <h2 class="font-serif text-4xl font-bold text-slate-900 mb-8">{t.infoTitle}</h2>
+          <div class="space-y-4 text-slate-600 text-lg leading-relaxed">
+            <slot name="intro" />
+          </div>
+        </div>
+
+        <slot />
+
+        {transport.length > 0 && (
+          <div>
+            <h3 class="font-serif text-2xl font-bold text-slate-900 mb-6">{t.gettingThere}</h3>
+            <div class="bg-white rounded-[2rem] border border-slate-100 overflow-hidden shadow-sm">
+              <table class="w-full text-xs sm:text-sm">
+                <thead>
+                  <tr class="bg-slate-900 text-white">
+                    <th class="text-left px-6 py-4 font-semibold">{t.thMode}</th>
+                    <th class="text-left px-6 py-4 font-semibold">{t.thService}</th>
+                    <th class="text-left px-6 py-4 font-semibold">{t.thNote}</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  {transport.map((row) => (
+                    <tr class="hover:bg-slate-50 transition-colors">
+                      <td class="px-6 py-4 font-medium">{row.mode}</td>
+                      <td class="px-6 py-4 text-slate-600">{row.service}</td>
+                      <td class="px-6 py-4 text-slate-500 text-xs">{row.note}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <!-- Sidebar (30%) -->
+      <aside class="lg:col-span-3">
+        <div class="bg-slate-900 text-white p-10 rounded-[3rem] sticky top-32 shadow-2xl">
+          <p class="text-[10px] uppercase tracking-[0.3em] text-med-gold font-medium mb-6">{t.detailsTitle}</p>
+          <dl class="space-y-4">
+            {facts.map(({ dt, dd }, i) => (
+              <>
+                <div>
+                  <dt class="text-white/40 text-[10px] uppercase tracking-widest font-bold mb-1">{dt}</dt>
+                  <dd class="text-white font-medium">{dd}</dd>
+                </div>
+                {i < facts.length - 1 && <div class="border-t border-white/5"></div>}
+              </>
+            ))}
+          </dl>
+          <div class="mt-10 pt-8 border-t border-white/5">
+            <p class="text-white/50 text-xs leading-relaxed">{sidebarNote ?? t.note}</p>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  {slider && <LocalitySlider heading={slider.heading} lang={lang} items={slider.items} />}
+
+  <!-- BANNER: Itinerary Planner -->
+  <section class="py-10 md:py-14 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 px-6 sm:px-10 md:px-14 py-10 md:py-14 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+        <div class="absolute -top-20 -left-20 w-72 h-72 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 grid md:grid-cols-[3fr_2fr] md:items-center gap-8">
+          <div>
+            <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase bg-med-gold/15 text-med-gold border border-med-gold/25 mb-6">{p.badge}</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight mb-2">{p.h2}</h2>
+            <p class="font-serif text-3xl md:text-4xl italic text-med-blue mb-5">{p.italic}</p>
+            <p class="text-white/60 text-base md:text-lg leading-relaxed max-w-xl mb-8">{p.desc}</p>
+            <div class="flex flex-wrap gap-6">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <span class="text-white/50 text-sm">{p.ind1}</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-med-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"/></svg>
+                </div>
+                <span class="text-white/50 text-sm">{p.ind2}</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 md:mt-0 md:flex md:justify-center">
+            <a href={p.href} class="inline-flex items-center gap-2.5 px-7 py-3.5 bg-gradient-to-r from-med-gold to-yellow-600 text-slate-900 font-bold rounded-xl hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 12l4 0 0 6 4 0 0-4 4 0 0 4 4 0 0-6 4 0L12 2z"/></svg>
+              {p.cta}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {relatedEvents.length > 0 && (
+    <section class="py-4 sm:py-12 px-6 max-w-7xl mx-auto">
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mb-12">{t.relatedTitle}</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {relatedEvents.map((ev) => (
+          <a href={ev.href} class="block bg-white rounded-[2rem] border border-slate-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <img src={ev.image} alt={ev.alt} class="h-40 w-full object-cover" />
+            <div class="p-6">
+              <span class="text-med-gold text-[10px] font-bold uppercase tracking-widest mb-2 block">{ev.when}</span>
+              <h3 class="font-serif text-lg font-bold text-slate-900 mb-2">{ev.title}</h3>
+              <p class="text-slate-600 text-sm mb-4">{ev.text}</p>
+              <p class="text-slate-500 text-xs font-medium">📍 {ev.place}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {cta && (
+    <section class="bg-med-blue text-white py-12 sm:py-16 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-8">
+          <div>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold mb-3">{cta.title}</h3>
+            <p class="text-white/70 text-sm sm:text-base max-w-md">{cta.text}</p>
+          </div>
+          <a href={cta.href} class="bg-med-gold text-white px-8 py-3 rounded-full font-medium hover:bg-yellow-500 transition-colors whitespace-nowrap">
+            {t.ctaLabel}
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+</BaseLayout>

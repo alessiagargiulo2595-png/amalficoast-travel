@@ -1490,6 +1490,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/capodanno-bizantino/',
     source: 'slugMap',
   },
+  '/de-de/veranstaltungen/amalfikueste/festa-castagna-scala/': {
+    url: 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/festa-castagna-scala/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/festa-castagna-scala/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/festa-castagna-scala/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/festa-castagna-scala/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/festa-castagna-scala/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+    source: 'slugMap',
+  },
   '/de-de/veranstaltungen/amalfikueste/festa-san-gennaro-praiano/': {
     url: 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/festa-san-gennaro-praiano/',
     canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-san-gennaro-praiano/',
@@ -1542,6 +1555,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/fuochi-ferragosto-positano-maiori/',
     source: 'slugMap',
   },
+  '/de-de/veranstaltungen/amalfikueste/luci-artista-salerno/': {
+    url: 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/luci-artista-salerno/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/luci-artista-salerno/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/luci-artista-salerno/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/luci-artista-salerno/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/luci-artista-salerno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+    source: 'slugMap',
+  },
   '/de-de/veranstaltungen/amalfikueste/luminaria-san-domenico-praiano/': {
     url: 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/luminaria-san-domenico-praiano/',
     canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luminaria-san-domenico-praiano/',
@@ -1579,6 +1605,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/positano-mare-sole-cultura/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/positano-mare-sole-cultura/',
+    source: 'slugMap',
+  },
+  '/de-de/veranstaltungen/amalfikueste/presepi-viventi-costiera/': {
+    url: 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/presepi-viventi-costiera/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/presepi-viventi-costiera/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/presepi-viventi-costiera/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/presepi-viventi-costiera/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/presepi-viventi-costiera/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
     source: 'slugMap',
   },
   '/de-de/veranstaltungen/amalfikueste/ravello-festival/': {
@@ -1646,6 +1685,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/islands/ischia-global-film-festival/',
     source: 'slugMap',
   },
+  '/de-de/veranstaltungen/inseln/misteri-procida/': {
+    url: 'https://amalficoast-travel.com/de-de/veranstaltungen/inseln/misteri-procida/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/inseln/misteri-procida/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/iles/misteri-procida/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/islas/misteri-procida/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/isole/misteri-procida/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+    source: 'slugMap',
+  },
   '/de-de/veranstaltungen/inseln/sagra-del-mare-graziella-procida/': {
     url: 'https://amalficoast-travel.com/de-de/veranstaltungen/inseln/sagra-del-mare-graziella-procida/',
     canonical: 'https://amalficoast-travel.com/en-us/events/islands/sagra-del-mare-graziella-procida/',
@@ -1657,6 +1709,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/isole/sagra-del-mare-graziella-procida/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/islands/sagra-del-mare-graziella-procida/',
+    source: 'slugMap',
+  },
+  '/de-de/veranstaltungen/sorrentinische-halbinsel/capodanno-sorrento/': {
+    url: 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/capodanno-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/capodanno-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/capodanno-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/capodanno-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/capodanno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
     source: 'slugMap',
   },
   '/de-de/veranstaltungen/sorrentinische-halbinsel/festa-sant-antonino/': {
@@ -1696,6 +1761,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/madonna-della-libera/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/madonna-della-libera/',
+    source: 'slugMap',
+  },
+  '/de-de/veranstaltungen/sorrentinische-halbinsel/millumino-inverno-sorrento/': {
+    url: 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/millumino-inverno-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/millumino-inverno-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/millumino-inverno-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/millumino-inverno-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/millumino-inverno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+    source: 'slugMap',
+  },
+  '/de-de/veranstaltungen/sorrentinische-halbinsel/processioni-venerdi-santo-sorrento/': {
+    url: 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/processioni-venerdi-santo-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/processioni-venerdi-santo-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/processioni-venerdi-santo-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/processioni-venerdi-santo-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/processioni-venerdi-santo-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
     source: 'slugMap',
   },
   '/de-de/veranstaltungen/sorrentinische-halbinsel/sagra-limone-massa-lubrense/': {
@@ -2708,6 +2799,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/capodanno-bizantino/',
     source: 'slugMap',
   },
+  '/en-us/events/amalfi-coast/festa-castagna-scala/': {
+    url: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/festa-castagna-scala/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/festa-castagna-scala/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/festa-castagna-scala/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/festa-castagna-scala/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+    source: 'slugMap',
+  },
   '/en-us/events/amalfi-coast/festa-san-gennaro-praiano/': {
     url: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-san-gennaro-praiano/',
     canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-san-gennaro-praiano/',
@@ -2760,6 +2864,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/fuochi-ferragosto-positano-maiori/',
     source: 'slugMap',
   },
+  '/en-us/events/amalfi-coast/luci-artista-salerno/': {
+    url: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/luci-artista-salerno/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/luci-artista-salerno/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/luci-artista-salerno/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/luci-artista-salerno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+    source: 'slugMap',
+  },
   '/en-us/events/amalfi-coast/luminaria-san-domenico-praiano/': {
     url: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luminaria-san-domenico-praiano/',
     canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luminaria-san-domenico-praiano/',
@@ -2797,6 +2914,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/positano-mare-sole-cultura/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/positano-mare-sole-cultura/',
+    source: 'slugMap',
+  },
+  '/en-us/events/amalfi-coast/presepi-viventi-costiera/': {
+    url: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/presepi-viventi-costiera/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/presepi-viventi-costiera/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/presepi-viventi-costiera/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/presepi-viventi-costiera/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
     source: 'slugMap',
   },
   '/en-us/events/amalfi-coast/ravello-festival/': {
@@ -2864,6 +2994,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/islands/ischia-global-film-festival/',
     source: 'slugMap',
   },
+  '/en-us/events/islands/misteri-procida/': {
+    url: 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/inseln/misteri-procida/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/iles/misteri-procida/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/islas/misteri-procida/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/isole/misteri-procida/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+    source: 'slugMap',
+  },
   '/en-us/events/islands/sagra-del-mare-graziella-procida/': {
     url: 'https://amalficoast-travel.com/en-us/events/islands/sagra-del-mare-graziella-procida/',
     canonical: 'https://amalficoast-travel.com/en-us/events/islands/sagra-del-mare-graziella-procida/',
@@ -2875,6 +3018,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/isole/sagra-del-mare-graziella-procida/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/islands/sagra-del-mare-graziella-procida/',
+    source: 'slugMap',
+  },
+  '/en-us/events/sorrento-peninsula/capodanno-sorrento/': {
+    url: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/capodanno-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/capodanno-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/capodanno-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/capodanno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
     source: 'slugMap',
   },
   '/en-us/events/sorrento-peninsula/festa-sant-antonino/': {
@@ -2914,6 +3070,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/madonna-della-libera/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/madonna-della-libera/',
+    source: 'slugMap',
+  },
+  '/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/': {
+    url: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/millumino-inverno-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/millumino-inverno-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/millumino-inverno-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/millumino-inverno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+    source: 'slugMap',
+  },
+  '/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/': {
+    url: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/processioni-venerdi-santo-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/processioni-venerdi-santo-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/processioni-venerdi-santo-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/processioni-venerdi-santo-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
     source: 'slugMap',
   },
   '/en-us/events/sorrento-peninsula/sagra-limone-massa-lubrense/': {
@@ -4215,6 +4397,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/capodanno-bizantino/',
     source: 'slugMap',
   },
+  '/es-es/eventos/costa-amalfitana/festa-castagna-scala/': {
+    url: 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/festa-castagna-scala/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/festa-castagna-scala/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/festa-castagna-scala/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/festa-castagna-scala/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/festa-castagna-scala/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+    source: 'slugMap',
+  },
   '/es-es/eventos/costa-amalfitana/festa-san-gennaro-praiano/': {
     url: 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/festa-san-gennaro-praiano/',
     canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-san-gennaro-praiano/',
@@ -4267,6 +4462,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/fuochi-ferragosto-positano-maiori/',
     source: 'slugMap',
   },
+  '/es-es/eventos/costa-amalfitana/luci-artista-salerno/': {
+    url: 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/luci-artista-salerno/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/luci-artista-salerno/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/luci-artista-salerno/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/luci-artista-salerno/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/luci-artista-salerno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+    source: 'slugMap',
+  },
   '/es-es/eventos/costa-amalfitana/luminaria-san-domenico-praiano/': {
     url: 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/luminaria-san-domenico-praiano/',
     canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luminaria-san-domenico-praiano/',
@@ -4304,6 +4512,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/positano-mare-sole-cultura/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/positano-mare-sole-cultura/',
+    source: 'slugMap',
+  },
+  '/es-es/eventos/costa-amalfitana/presepi-viventi-costiera/': {
+    url: 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/presepi-viventi-costiera/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/presepi-viventi-costiera/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/presepi-viventi-costiera/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/presepi-viventi-costiera/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/presepi-viventi-costiera/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
     source: 'slugMap',
   },
   '/es-es/eventos/costa-amalfitana/ravello-festival/': {
@@ -4371,6 +4592,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/islands/ischia-global-film-festival/',
     source: 'slugMap',
   },
+  '/es-es/eventos/islas/misteri-procida/': {
+    url: 'https://amalficoast-travel.com/es-es/eventos/islas/misteri-procida/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/inseln/misteri-procida/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/iles/misteri-procida/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/islas/misteri-procida/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/isole/misteri-procida/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+    source: 'slugMap',
+  },
   '/es-es/eventos/islas/sagra-del-mare-graziella-procida/': {
     url: 'https://amalficoast-travel.com/es-es/eventos/islas/sagra-del-mare-graziella-procida/',
     canonical: 'https://amalficoast-travel.com/en-us/events/islands/sagra-del-mare-graziella-procida/',
@@ -4382,6 +4616,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/isole/sagra-del-mare-graziella-procida/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/islands/sagra-del-mare-graziella-procida/',
+    source: 'slugMap',
+  },
+  '/es-es/eventos/peninsula-sorrentina/capodanno-sorrento/': {
+    url: 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/capodanno-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/capodanno-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/capodanno-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/capodanno-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/capodanno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
     source: 'slugMap',
   },
   '/es-es/eventos/peninsula-sorrentina/festa-sant-antonino/': {
@@ -4421,6 +4668,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/madonna-della-libera/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/madonna-della-libera/',
+    source: 'slugMap',
+  },
+  '/es-es/eventos/peninsula-sorrentina/millumino-inverno-sorrento/': {
+    url: 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/millumino-inverno-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/millumino-inverno-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/millumino-inverno-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/millumino-inverno-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/millumino-inverno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+    source: 'slugMap',
+  },
+  '/es-es/eventos/peninsula-sorrentina/processioni-venerdi-santo-sorrento/': {
+    url: 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/processioni-venerdi-santo-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/processioni-venerdi-santo-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/processioni-venerdi-santo-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/processioni-venerdi-santo-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/processioni-venerdi-santo-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
     source: 'slugMap',
   },
   '/es-es/eventos/peninsula-sorrentina/sagra-limone-massa-lubrense/': {
@@ -5928,6 +6201,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/capodanno-bizantino/',
     source: 'slugMap',
   },
+  '/fr-fr/evenements/cote-amalfitaine/festa-castagna-scala/': {
+    url: 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/festa-castagna-scala/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/festa-castagna-scala/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/festa-castagna-scala/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/festa-castagna-scala/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/festa-castagna-scala/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+    source: 'slugMap',
+  },
   '/fr-fr/evenements/cote-amalfitaine/festa-san-gennaro-praiano/': {
     url: 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/festa-san-gennaro-praiano/',
     canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-san-gennaro-praiano/',
@@ -5980,6 +6266,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/fuochi-ferragosto-positano-maiori/',
     source: 'slugMap',
   },
+  '/fr-fr/evenements/cote-amalfitaine/luci-artista-salerno/': {
+    url: 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/luci-artista-salerno/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/luci-artista-salerno/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/luci-artista-salerno/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/luci-artista-salerno/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/luci-artista-salerno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+    source: 'slugMap',
+  },
   '/fr-fr/evenements/cote-amalfitaine/luminaria-san-domenico-praiano/': {
     url: 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/luminaria-san-domenico-praiano/',
     canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luminaria-san-domenico-praiano/',
@@ -6017,6 +6316,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/positano-mare-sole-cultura/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/positano-mare-sole-cultura/',
+    source: 'slugMap',
+  },
+  '/fr-fr/evenements/cote-amalfitaine/presepi-viventi-costiera/': {
+    url: 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/presepi-viventi-costiera/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/presepi-viventi-costiera/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/presepi-viventi-costiera/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/presepi-viventi-costiera/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/presepi-viventi-costiera/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
     source: 'slugMap',
   },
   '/fr-fr/evenements/cote-amalfitaine/ravello-festival/': {
@@ -6084,6 +6396,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/islands/ischia-global-film-festival/',
     source: 'slugMap',
   },
+  '/fr-fr/evenements/iles/misteri-procida/': {
+    url: 'https://amalficoast-travel.com/fr-fr/evenements/iles/misteri-procida/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/inseln/misteri-procida/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/iles/misteri-procida/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/islas/misteri-procida/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/isole/misteri-procida/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+    source: 'slugMap',
+  },
   '/fr-fr/evenements/iles/sagra-del-mare-graziella-procida/': {
     url: 'https://amalficoast-travel.com/fr-fr/evenements/iles/sagra-del-mare-graziella-procida/',
     canonical: 'https://amalficoast-travel.com/en-us/events/islands/sagra-del-mare-graziella-procida/',
@@ -6095,6 +6420,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/isole/sagra-del-mare-graziella-procida/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/islands/sagra-del-mare-graziella-procida/',
+    source: 'slugMap',
+  },
+  '/fr-fr/evenements/peninsule-sorrentine/capodanno-sorrento/': {
+    url: 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/capodanno-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/capodanno-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/capodanno-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/capodanno-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/capodanno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
     source: 'slugMap',
   },
   '/fr-fr/evenements/peninsule-sorrentine/festa-sant-antonino/': {
@@ -6134,6 +6472,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/madonna-della-libera/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/madonna-della-libera/',
+    source: 'slugMap',
+  },
+  '/fr-fr/evenements/peninsule-sorrentine/millumino-inverno-sorrento/': {
+    url: 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/millumino-inverno-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/millumino-inverno-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/millumino-inverno-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/millumino-inverno-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/millumino-inverno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+    source: 'slugMap',
+  },
+  '/fr-fr/evenements/peninsule-sorrentine/processioni-venerdi-santo-sorrento/': {
+    url: 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/processioni-venerdi-santo-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/processioni-venerdi-santo-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/processioni-venerdi-santo-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/processioni-venerdi-santo-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/processioni-venerdi-santo-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
     source: 'slugMap',
   },
   '/fr-fr/evenements/peninsule-sorrentine/sagra-limone-massa-lubrense/': {
@@ -7747,6 +8111,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/capodanno-bizantino/',
     source: 'slugMap',
   },
+  '/it-it/eventi/costiera-amalfitana/festa-castagna-scala/': {
+    url: 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/festa-castagna-scala/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/festa-castagna-scala/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/festa-castagna-scala/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/festa-castagna-scala/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/festa-castagna-scala/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-castagna-scala/',
+    source: 'slugMap',
+  },
   '/it-it/eventi/costiera-amalfitana/festa-san-gennaro-praiano/': {
     url: 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/festa-san-gennaro-praiano/',
     canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/festa-san-gennaro-praiano/',
@@ -7799,6 +8176,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/fuochi-ferragosto-positano-maiori/',
     source: 'slugMap',
   },
+  '/it-it/eventi/costiera-amalfitana/luci-artista-salerno/': {
+    url: 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/luci-artista-salerno/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/luci-artista-salerno/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/luci-artista-salerno/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/luci-artista-salerno/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/luci-artista-salerno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luci-artista-salerno/',
+    source: 'slugMap',
+  },
   '/it-it/eventi/costiera-amalfitana/luminaria-san-domenico-praiano/': {
     url: 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/luminaria-san-domenico-praiano/',
     canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/luminaria-san-domenico-praiano/',
@@ -7836,6 +8226,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/positano-mare-sole-cultura/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/positano-mare-sole-cultura/',
+    source: 'slugMap',
+  },
+  '/it-it/eventi/costiera-amalfitana/presepi-viventi-costiera/': {
+    url: 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/presepi-viventi-costiera/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/amalfikueste/presepi-viventi-costiera/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/cote-amalfitaine/presepi-viventi-costiera/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/costa-amalfitana/presepi-viventi-costiera/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/costiera-amalfitana/presepi-viventi-costiera/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/amalfi-coast/presepi-viventi-costiera/',
     source: 'slugMap',
   },
   '/it-it/eventi/costiera-amalfitana/ravello-festival/': {
@@ -7903,6 +8306,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/events/islands/ischia-global-film-festival/',
     source: 'slugMap',
   },
+  '/it-it/eventi/isole/misteri-procida/': {
+    url: 'https://amalficoast-travel.com/it-it/eventi/isole/misteri-procida/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/inseln/misteri-procida/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/iles/misteri-procida/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/islas/misteri-procida/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/isole/misteri-procida/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/islands/misteri-procida/',
+    source: 'slugMap',
+  },
   '/it-it/eventi/isole/sagra-del-mare-graziella-procida/': {
     url: 'https://amalficoast-travel.com/it-it/eventi/isole/sagra-del-mare-graziella-procida/',
     canonical: 'https://amalficoast-travel.com/en-us/events/islands/sagra-del-mare-graziella-procida/',
@@ -7914,6 +8330,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/isole/sagra-del-mare-graziella-procida/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/islands/sagra-del-mare-graziella-procida/',
+    source: 'slugMap',
+  },
+  '/it-it/eventi/penisola-sorrentina/capodanno-sorrento/': {
+    url: 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/capodanno-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/capodanno-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/capodanno-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/capodanno-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/capodanno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/capodanno-sorrento/',
     source: 'slugMap',
   },
   '/it-it/eventi/penisola-sorrentina/festa-sant-antonino/': {
@@ -7953,6 +8382,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/madonna-della-libera/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/madonna-della-libera/',
+    source: 'slugMap',
+  },
+  '/it-it/eventi/penisola-sorrentina/millumino-inverno-sorrento/': {
+    url: 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/millumino-inverno-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/millumino-inverno-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/millumino-inverno-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/millumino-inverno-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/millumino-inverno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/millumino-inverno-sorrento/',
+    source: 'slugMap',
+  },
+  '/it-it/eventi/penisola-sorrentina/processioni-venerdi-santo-sorrento/': {
+    url: 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/processioni-venerdi-santo-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/veranstaltungen/sorrentinische-halbinsel/processioni-venerdi-santo-sorrento/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/evenements/peninsule-sorrentine/processioni-venerdi-santo-sorrento/',
+      'es-es': 'https://amalficoast-travel.com/es-es/eventos/peninsula-sorrentina/processioni-venerdi-santo-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/eventi/penisola-sorrentina/processioni-venerdi-santo-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/events/sorrento-peninsula/processioni-venerdi-santo-sorrento/',
     source: 'slugMap',
   },
   '/it-it/eventi/penisola-sorrentina/sagra-limone-massa-lubrense/': {
@@ -8634,7 +9089,7 @@ export function getXDefault(url: string): string | null {
  * Map statistics
  */
 export const hrefLangStats = {
-  totalUrls: 661,
+  totalUrls: 696,
   locales: ["en-us","de-de","fr-fr","es-es","it-it"],
-  generatedAt: '2026-10-07T16:12:18.677Z',
+  generatedAt: '2026-10-08T11:03:53.264Z',
 };
