@@ -44,6 +44,9 @@ const cookieUrl = cookieUrls[lang] || '/en-us/cookie-policy/';
         ad_personalization: 'denied',
       });
     }
+    // Clarity has no consent mode: the tag itself is withheld until opt-in.
+    // Defined only in production builds, hence the optional call.
+    if (granted) (window as any).loadClarity?.();
   }
 
   CookieConsent.run({

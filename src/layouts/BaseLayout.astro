@@ -24,6 +24,10 @@ const { title, description, lang, pageKey, breadcrumbs, schema, ogImage = '/imag
 const t = getTranslations(lang);
 const site = 'https://amalficoast-travel.com';
 
+// Clarity is shipped in production builds only: the dev server would otherwise
+// record local sessions into the same project and skew every metric.
+const isProd = import.meta.env.PROD;
+
 const locales: Locale[] = ['en-us', 'de-de', 'fr-fr', 'es-es', 'it-it'];
 
 // Smart fallback: if no pageKey, try to extract it from current pathname
@@ -142,8 +146,10 @@ const allSchemas = [websiteSchema, organizationSchema, ...(schema || []), ...(br
     <!-- Third-party analytics: preconnect to start TLS handshake early.
          (GetYourGuide loads async-defer and isn't on every page → dns-prefetch only) -->
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
-    <link rel="preconnect" href="https://www.clarity.ms" crossorigin />
     <link rel="dns-prefetch" href="https://widget.getyourguide.com" />
+    <!-- clarity.ms gets no preconnect: it loads after the consent click, by which
+         point an idle preconnect would already have been dropped. -->
+    <link rel="dns-prefetch" href="https://www.clarity.ms" />
 
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
@@ -214,14 +220,22 @@ const allSchemas = [websiteSchema, organizationSchema, ...(schema || []), ...(br
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C9MBPN3GKX"></script>
 
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "wj6329gkzr");
-    </script>
+    <!-- Microsoft Clarity: defined here, loaded only once the analytics category
+         is granted (see CookieConsent.astro). The banner lists Clarity under
+         "analytics", so the tag must not fire before opt-in. -->
+    {isProd && (
+      <script is:inline>
+        window.loadClarity = function() {
+          if (window.__clarityLoaded) return;
+          window.__clarityLoaded = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "wj6329gkzr");
+        };
+      </script>
+    )}
 
     <!-- GetYourGuide Analytics -->
     <script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="V2PQIU1"></script>
