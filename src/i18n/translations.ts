@@ -106,7 +106,6 @@ export const translations: Record<Locale, Translations> = {
     lang_switcher: 'Language',
     languages: {
       'en-us': '🇺🇸 English (US)',
-      'en-gb': '🇬🇧 English (UK)',
       'de-de': '🇩🇪 Deutsch',
       'fr-fr': '🇫🇷 Français',
       'es-es': '🇪🇸 Español',
@@ -114,65 +113,6 @@ export const translations: Record<Locale, Translations> = {
     },
   },
 
-  'en-gb': {
-    nav: {
-      home: 'Home',
-      destinations: 'Destinations',
-      beaches: 'Beaches',
-      itineraries: 'Itineraries',
-      getting_here: 'Getting Here',
-      when_to_visit: 'When to Visit',
-    },
-    hero: {
-      title: 'Discover the Amalfi Coast',
-      subtitle: 'Where rugged cliffs plunge into the Mediterranean - explore Italy\'s most spectacular coastline, from the pastel villages of Positano to the magnificent cathedral city of Amalfi.',
-      cta: 'Explore Destinations',
-      cta_secondary: 'Plan Your Holiday',
-    },
-    sections: {
-      featured_towns: 'Iconic Towns & Villages',
-      why_visit: 'Why Visit the Amalfi Coast',
-      top_beaches: 'Top Beaches',
-      plan_your_trip: 'Plan Your Holiday',
-      explore_more: 'Explore More',
-      read_more: 'Read More',
-      back_to_home: 'Back to Home',
-    },
-    footer: {
-      about_title: 'About This Guide',
-      about_text: 'Amalfi Coast Travel helps travellers from around the world plan their trip to the Amalfi Coast through guides, travel tips, and much more. The entire project is lovingly curated by Alessia, directly from Massa Lubrense.',
-      quick_links: 'Quick Links',
-      contact_title: 'Get in Touch',
-      contact_email: 'hello@amalficoast-travel.com',
-      copyright: '© 2026 Amalfi & Sorrento Coast. All rights reserved.',
-      tagline: 'Amalfi & Sorrento Coast - Campania, Southern Italy',
-    },
-    meta: {
-      home_title: 'Amalfi Coast Travel Guide - Positano, Amalfi & Beyond',
-      home_description: 'Complete holiday guide to the Amalfi Coast, Italy. Discover Positano, Amalfi, Ravello and hidden gems. Best beaches, itineraries, how to get there, and when to visit.',
-      destinations_title: 'Amalfi Coast Destinations - Towns & Villages Guide',
-      destinations_description: 'Explore every town on the Amalfi Coast: Positano, Amalfi, Ravello, Praiano, Cetara, Vietri sul Mare. Find the perfect base for your holiday.',
-      beaches_title: 'Best Beaches on the Amalfi Coast - Complete Guide',
-      beaches_description: 'Discover the most beautiful beaches on the Amalfi Coast, from the shingle shores of Positano to hidden sea caves. Swimming, snorkelling, and beach clubs.',
-      getting_here_title: 'How to Get to the Amalfi Coast - Transport Guide',
-      getting_here_description: 'Everything you need to know about getting to the Amalfi Coast from the UK: from Naples, from Rome, by ferry, by car, and by bus. Practical travel tips.',
-      itineraries_title: 'Amalfi Coast Itineraries - 1 Day, 3 Days, 1 Week',
-      itineraries_description: 'The best Amalfi Coast itineraries for every trip length. One day, three days, or a full week - make the most of your holiday on Italy\'s Costiera Amalfitana.',
-      planning_title: 'Planning - Practical Travel Guides for the Amalfi Coast',
-      planning_description: 'Practical guides for your Amalfi Coast trip: how to get there, local transport, ferries, parking, best times to visit and insider tips.',
-      when_to_visit_title: 'Best Time to Visit the Amalfi Coast - Month by Month',
-      when_to_visit_description: 'When is the best time to visit the Amalfi Coast? Month-by-month weather guide, crowd levels, prices, and what\'s on each season.',
-    },
-    lang_switcher: 'Language',
-    languages: {
-      'en-us': '🇺🇸 English (US)',
-      'en-gb': '🇬🇧 English (UK)',
-      'de-de': '🇩🇪 Deutsch',
-      'fr-fr': '🇫🇷 Français',
-      'es-es': '🇪🇸 Español',
-      'it-it': '🇮🇹 Italiano',
-    },
-  },
 
   'de-de': {
     nav: {
@@ -226,7 +166,6 @@ export const translations: Record<Locale, Translations> = {
     lang_switcher: 'Sprache',
     languages: {
       'en-us': '🇺🇸 English (US)',
-      'en-gb': '🇬🇧 English (UK)',
       'de-de': '🇩🇪 Deutsch',
       'fr-fr': '🇫🇷 Français',
       'es-es': '🇪🇸 Español',
@@ -286,7 +225,6 @@ export const translations: Record<Locale, Translations> = {
     lang_switcher: 'Langue',
     languages: {
       'en-us': '🇺🇸 English (US)',
-      'en-gb': '🇬🇧 English (UK)',
       'de-de': '🇩🇪 Deutsch',
       'fr-fr': '🇫🇷 Français',
       'es-es': '🇪🇸 Español',
@@ -346,7 +284,6 @@ export const translations: Record<Locale, Translations> = {
     lang_switcher: 'Idioma',
     languages: {
       'en-us': '🇺🇸 English (US)',
-      'en-gb': '🇬🇧 English (UK)',
       'de-de': '🇩🇪 Deutsch',
       'fr-fr': '🇫🇷 Français',
       'es-es': '🇪🇸 Español',
@@ -406,7 +343,6 @@ export const translations: Record<Locale, Translations> = {
     lang_switcher: 'Lingua',
     languages: {
       'en-us': '🇺🇸 English (US)',
-      'en-gb': '🇬🇧 English (UK)',
       'de-de': '🇩🇪 Deutsch',
       'fr-fr': '🇫🇷 Français',
       'es-es': '🇪🇸 Español',
@@ -428,7 +364,6 @@ export type SlugMap = Record<Locale, string>;
 export const slugMap: Record<string, SlugMap> = {
   destinations: {
     'en-us': 'destinations',
-    'en-gb': 'destinations',
     'de-de': 'reiseziele',
     'fr-fr': 'destinations',
     'es-es': 'destinos',
@@ -436,7 +371,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   beaches: {
     'en-us': 'beaches',
-    'en-gb': 'beaches',
     'de-de': 'strande',
     'fr-fr': 'plages',
     'es-es': 'playas',
@@ -444,7 +378,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'getting-here': {
     'en-us': 'guide/getting-here',
-    'en-gb': 'guide/getting-here',
     'de-de': 'ratgeber/anreise',
     'fr-fr': 'guide/comment-venir',
     'es-es': 'guia/como-llegar',
@@ -452,7 +385,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   itineraries: {
     'en-us': 'itineraries',
-    'en-gb': 'itineraries',
     'de-de': 'reiserouten',
     'fr-fr': 'itineraires',
     'es-es': 'itinerarios',
@@ -460,7 +392,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'when-to-visit': {
     'en-us': 'guide/when-to-visit',
-    'en-gb': 'guide/when-to-visit',
     'de-de': 'ratgeber/reisezeit',
     'fr-fr': 'guide/quand-visiter',
     'es-es': 'guia/cuando-visitar',
@@ -468,7 +399,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   planning: {
     'en-us': 'planning',
-    'en-gb': 'planning',
     'de-de': 'planung',
     'fr-fr': 'planification',
     'es-es': 'planificacion',
@@ -484,7 +414,6 @@ export const slugMap: Record<string, SlugMap> = {
   // Destination town pages (Amalfi Coast)
   amalfi: {
     'en-us': 'amalfi-coast/amalfi',
-    'en-gb': 'amalfi-coast/amalfi',
     'de-de': 'amalfikueste/amalfi',
     'fr-fr': 'cote-amalfitaine/amalfi',
     'es-es': 'costa-amalfitana/amalfi',
@@ -492,7 +421,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   positano: {
     'en-us': 'amalfi-coast/positano',
-    'en-gb': 'amalfi-coast/positano',
     'de-de': 'amalfikueste/positano',
     'fr-fr': 'cote-amalfitaine/positano',
     'es-es': 'costa-amalfitana/positano',
@@ -500,7 +428,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   ravello: {
     'en-us': 'amalfi-coast/ravello',
-    'en-gb': 'amalfi-coast/ravello',
     'de-de': 'amalfikueste/ravello',
     'fr-fr': 'cote-amalfitaine/ravello',
     'es-es': 'costa-amalfitana/ravello',
@@ -508,7 +435,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   praiano: {
     'en-us': 'amalfi-coast/praiano',
-    'en-gb': 'amalfi-coast/praiano',
     'de-de': 'amalfikueste/praiano',
     'fr-fr': 'cote-amalfitaine/praiano',
     'es-es': 'costa-amalfitana/praiano',
@@ -516,7 +442,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   maiori: {
     'en-us': 'amalfi-coast/maiori',
-    'en-gb': 'amalfi-coast/maiori',
     'de-de': 'amalfikueste/maiori',
     'fr-fr': 'cote-amalfitaine/maiori',
     'es-es': 'costa-amalfitana/maiori',
@@ -524,7 +449,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   minori: {
     'en-us': 'amalfi-coast/minori',
-    'en-gb': 'amalfi-coast/minori',
     'de-de': 'amalfikueste/minori',
     'fr-fr': 'cote-amalfitaine/minori',
     'es-es': 'costa-amalfitana/minori',
@@ -532,7 +456,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'vietri-sul-mare': {
     'en-us': 'amalfi-coast/vietri-sul-mare',
-    'en-gb': 'amalfi-coast/vietri-sul-mare',
     'de-de': 'amalfikueste/vietri-sul-mare',
     'fr-fr': 'cote-amalfitaine/vietri-sul-mare',
     'es-es': 'costa-amalfitana/vietri-sul-mare',
@@ -541,7 +464,6 @@ export const slugMap: Record<string, SlugMap> = {
   // Island pages
   capri: {
     'en-us': 'islands/capri',
-    'en-gb': 'islands/capri',
     'de-de': 'inseln/capri',
     'fr-fr': 'iles/capri',
     'es-es': 'islas/capri',
@@ -549,7 +471,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   ischia: {
     'en-us': 'islands/ischia',
-    'en-gb': 'islands/ischia',
     'de-de': 'inseln/ischia',
     'fr-fr': 'iles/ischia',
     'es-es': 'islas/ischia',
@@ -564,7 +485,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   procida: {
     'en-us': 'islands/procida',
-    'en-gb': 'islands/procida',
     'de-de': 'inseln/procida',
     'fr-fr': 'iles/procida',
     'es-es': 'islas/procida',
@@ -580,7 +500,6 @@ export const slugMap: Record<string, SlugMap> = {
   // Peninsula town pages
   sorrento: {
     'en-us': 'sorrento-peninsula/sorrento',
-    'en-gb': 'sorrento-peninsula/sorrento',
     'de-de': 'sorrentinische-halbinsel/sorrent',
     'fr-fr': 'peninsule-sorrentine/sorrente',
     'es-es': 'peninsula-sorrentina/sorrento',
@@ -588,7 +507,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'vico-equense': {
     'en-us': 'sorrento-peninsula/vico-equense',
-    'en-gb': 'sorrento-peninsula/vico-equense',
     'de-de': 'sorrentinische-halbinsel/vico-equense',
     'fr-fr': 'peninsule-sorrentine/vico-equense',
     'es-es': 'peninsula-sorrentina/vico-equense',
@@ -596,7 +514,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'massa-lubrense': {
     'en-us': 'sorrento-peninsula/massa-lubrense',
-    'en-gb': 'sorrento-peninsula/massa-lubrense',
     'de-de': 'sorrentinische-halbinsel/massa-lubrense',
     'fr-fr': 'peninsule-sorrentine/massa-lubrense',
     'es-es': 'peninsula-sorrentina/massa-lubrense',
@@ -604,7 +521,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'sant-agnello': {
     'en-us': 'sorrento-peninsula/sant-agnello',
-    'en-gb': 'sorrento-peninsula/sant-agnello',
     'de-de': 'sorrentinische-halbinsel/sant-agnello',
     'fr-fr': 'peninsule-sorrentine/sant-agnello',
     'es-es': 'peninsula-sorrentina/sant-agnello',
@@ -669,7 +585,6 @@ export const slugMap: Record<string, SlugMap> = {
   // Region hub pages
   'amalfi-coast': {
     'en-us': 'amalfi-coast',
-    'en-gb': 'amalfi-coast',
     'de-de': 'amalfikueste',
     'fr-fr': 'cote-amalfitaine',
     'es-es': 'costa-amalfitana',
@@ -677,7 +592,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   islands: {
     'en-us': 'islands',
-    'en-gb': 'islands',
     'de-de': 'inseln',
     'fr-fr': 'iles',
     'es-es': 'islas',
@@ -685,7 +599,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'sorrento-peninsula': {
     'en-us': 'sorrento-peninsula',
-    'en-gb': 'sorrento-peninsula',
     'de-de': 'sorrentinische-halbinsel',
     'fr-fr': 'peninsule-sorrentine',
     'es-es': 'peninsula-sorrentina',
@@ -693,7 +606,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   experiences: {
     'en-us': 'experiences',
-    'en-gb': 'experiences',
     'de-de': 'erlebnisse',
     'fr-fr': 'experiences',
     'es-es': 'experiencias',
@@ -701,7 +613,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'boat-tours': {
     'en-us': 'experiences/boat-tours',
-    'en-gb': 'experiences/boat-tours',
     'de-de': 'erlebnisse/bootstouren',
     'fr-fr': 'experiences/tours-en-bateau',
     'es-es': 'experiencias/tours-en-barco',
@@ -709,7 +620,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'cooking-class': {
     'en-us': 'experiences/cooking-class',
-    'en-gb': 'experiences/cooking-class',
     'de-de': 'erlebnisse/kochkurs',
     'fr-fr': 'experiences/cours-de-cuisine',
     'es-es': 'experiencias/clase-cocina',
@@ -717,7 +627,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   weddings: {
     'en-us': 'experiences/weddings',
-    'en-gb': 'experiences/weddings',
     'de-de': 'erlebnisse/hochzeiten',
     'fr-fr': 'experiences/mariages',
     'es-es': 'experiencias/bodas',
@@ -725,7 +634,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'starred-restaurants': {
     'en-us': 'experiences/starred-restaurants',
-    'en-gb': 'experiences/starred-restaurants',
     'de-de': 'erlebnisse/sterne-restaurants',
     'fr-fr': 'experiences/restaurants-etoiles',
     'es-es': 'experiencias/restaurantes-estrella',
@@ -733,7 +641,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'limoncello-tour': {
     'en-us': 'experiences/limoncello-tour',
-    'en-gb': 'experiences/limoncello-tour',
     'de-de': 'erlebnisse/limoncello-tour',
     'fr-fr': 'experiences/tour-limoncello',
     'es-es': 'experiencias/tour-limoncello',
@@ -741,7 +648,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   'mozzarella-experience': {
     'en-us': 'experiences/mozzarella-experience',
-    'en-gb': 'experiences/mozzarella-experience',
     'de-de': 'erlebnisse/mozzarella-erlebnis',
     'fr-fr': 'experiences/experience-mozzarella',
     'es-es': 'experiencias/experiencia-mozzarella',
@@ -749,7 +655,6 @@ export const slugMap: Record<string, SlugMap> = {
   },
   trekking: {
     'en-us': 'experiences/trekking',
-    'en-gb': 'experiences/trekking',
     'de-de': 'erlebnisse/trekking',
     'fr-fr': 'experiences/trekking',
     'es-es': 'experiencias/trekking',
