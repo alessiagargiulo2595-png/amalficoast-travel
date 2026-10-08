@@ -1,0 +1,287 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'de-de';
+const post = {
+  title: 'Von Paris an die Amalfiküste mit dem Zug',
+  subtitle: 'Die Linienverbindung über Mailand und Neapel, wie lange sie wirklich dauert, und der Orient-Express, der dieselbe Strecke heute als dreitägige Reise fährt',
+  category: 'REISEFÜHRER',
+  date: '14. September 2026',
+  readTime: '11 Min.',
+  image: '/images/frecciarossa-napoli-hero.webp',
+  imageAlt: "Frecciarossa 1000 in Neapel Centrale, der letzte Umstieg auf dem Weg aus Paris",
+  path: '/de-de/blog/paris-amalfikueste-zug/',
+};
+
+const metaTitle = 'Paris zur Amalfiküste mit dem Zug: Strecken 2026';
+const metaDescription = 'Es gibt keinen Direktzug. Paris nach Mailand in rund 7 Stunden, Mailand nach Neapel in 4h30, dann Sorrent oder Salerno: insgesamt 13 bis 14 Stunden. Dazu der Venice Simplon-Orient-Express von Paris an die Amalfiküste.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/de-de/' },
+  { name: 'Blog', url: '/de-de/blog/' },
+  { name: 'Von Paris an die Amalfiküste mit dem Zug', url: '/de-de/blog/paris-amalfikueste-zug/' },
+];
+
+const quickInfo = [
+  { label: 'Direktzug', value: 'Keiner, die Reise hat drei Etappen' },
+  { label: 'Paris-Mailand', value: 'Rund 7h, 2 Umläufe pro Tag' },
+  { label: 'Mailand-Neapel', value: 'Rund 4h30 mit dem Frecciarossa' },
+  { label: 'Neapel-Sorrent', value: 'Rund 1h mit der Circumvesuviana' },
+  { label: 'Neapel-Salerno', value: '35 Min. mit dem Hochgeschwindigkeitszug' },
+  { label: 'Gesamtfahrzeit', value: 'Etwa 13 bis 14 Stunden' },
+  { label: 'Beste Lösung', value: 'Zwei Tage mit einer Übernachtung' },
+  { label: 'Luxusvariante', value: 'Orient-Express, 3 Nächte, ab etwa 9.900 Euro' },
+];
+
+const faq = [
+  {
+    q: 'Gibt es einen Direktzug von Paris an die Amalfiküste?',
+    a: 'Nein. Keine Bahnlinie erreicht Positano, Amalfi oder Ravello, und zwischen Paris und Süditalien verkehrt kein durchgehender Zug. Die Reise besteht aus drei Etappen: Paris nach Mailand, Mailand nach Neapel und dann Neapel nach Sorrent oder Salerno, den beiden Bahntoren zur Küste.',
+  },
+  {
+    q: 'Wie lange dauert Paris bis zur Amalfiküste mit Linienzügen?',
+    a: 'Etwa 13 bis 14 Stunden reine Fahrzeit, ohne Puffer für die Anschlüsse. Rund 7 Stunden Paris bis Mailand, rund 4 Stunden 30 Mailand bis Neapel, dann zwischen 35 Minuten und einer Stunde für die letzte Etappe. An einem Tag ist das technisch möglich und wirklich unangenehm.',
+  },
+  {
+    q: 'Verkehrt die Strecke Paris-Mailand normal?',
+    a: 'Ja. Die Verbindung durch das Maurienne-Tal war Ende August 2023 durch einen Erdrutsch unterbrochen und wurde am 31. März 2025 wieder geöffnet, mit TGV Inoui der SNCF und Frecciarossa von Trenitalia. Arbeiten im Mont-Cenis-Tunnel setzten die Direktzüge dann vom 11. September bis 9. Oktober 2026 aus; ab dem 10. Oktober 2026 fährt die Direktverbindung wieder.',
+  },
+  {
+    q: 'Sollte ich Sorrent oder Salerno ansteuern?',
+    a: 'Salerno, wenn das Ziel Amalfi, Positano, Ravello oder Minori ist: dort liegen der Fährhafen und die SITA-Busse entlang der Küstenstrasse. Sorrent, wenn Sie auf der Sorrentinischen Halbinsel wohnen oder die Fähre nach Capri wollen. Salerno ist zudem schneller erreichbar, weil dort die Hochgeschwindigkeitszüge halten.',
+  },
+  {
+    q: 'Was ist die Orient-Express-Reise von Paris an die Amalfiküste?',
+    a: 'Eine dreitägige Reise im Venice Simplon-Orient-Express von Belmond: eine Nacht an Bord quer durch Frankreich und entlang der italienischen Riviera, eine private Führung durch Pompeji und zwei Nächte im Hotel Caruso in Ravello. Die Jungfernfahrt verliess Paris am 4. Mai 2026 und war ausgebucht; weitere Abfahrten sind für 2027 geplant, die Preise beginnen bei rund 9.900 Euro pro Person.',
+  },
+  {
+    q: 'Kann man nachts durchfahren statt im Hotel zu schlafen?',
+    a: 'Nicht in einem durchgehenden Zug. Der alte Nachtzug zwischen Paris und Italien verkehrt nicht mehr, das praktische Äquivalent ist also eine Hotelnacht in Mailand, Turin, Rom oder Neapel. Viele wählen Rom, weil es die Reise fast genau halbiert und die Weiterfahrt nach Neapel kaum mehr als eine Stunde dauert.',
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Die Amalfiküste mit dem Zug', href: '/de-de/blog/amalfikueste-mit-dem-zug/' },
+  { label: 'Welcher Flughafen', href: '/de-de/blog/flughafen-amalfikueste/' },
+  { label: 'Fähren', href: '/de-de/ratgeber/faehren/' },
+  { label: 'SITA-Bus', href: '/de-de/ratgeber/sita-bus/' },
+  { label: 'Amalfiküste', href: '/de-de/amalfikueste/' },
+];
+
+const authorRole = 'Lokaler Experte · Amalfiküste';
+
+const relatedArticles = [
+  {
+    title: 'Die Amalfiküste mit dem Zug',
+    category: 'REISEFÜHRER',
+    date: '10. August 2026',
+    image: '/images/treno-costiera-hero.webp',
+    imageAlt: 'Die Amalfiküste mit dem Zug',
+    path: '/de-de/blog/amalfikueste-mit-dem-zug/'
+  },
+  {
+    title: 'Welcher Flughafen für die Amalfiküste',
+    category: 'REISEFÜHRER',
+    date: '5. August 2026',
+    image: '/images/aeroporti-costiera-hero.webp',
+    imageAlt: 'Flughäfen für die Amalfiküste',
+    path: '/de-de/blog/flughafen-amalfikueste/'
+  }
+];
+
+const imageCredit = {
+  author: 'philip.mallis / Wikimedia Commons',
+  sourceUrl: 'https://commons.wikimedia.org/wiki/File:Trenitalia_Frecciarossa_ETR400_(Frecciarossa_1000)_trains_at_Napoli_Centrale_Railway_Station_in_Naples,_Italy.jpg',
+  license: 'CC BY-SA 2.0',
+  licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+};
+
+const keyTakeaways = [
+  'Es gibt keinen Direktzug. Paris bis zur Amalfiküste sind drei Etappen, etwa 13 bis 14 Stunden Fahrzeit, und die Reise funktioniert deutlich besser auf zwei Tage verteilt.',
+  'Von Paris Gare de Lyon nach Mailand Centrale dauert es rund 7 Stunden, mit zwei Umläufen pro Tag von SNCF TGV Inoui und Trenitalia Frecciarossa.',
+  'Mailand bis Neapel ist der einfache Teil: rund 4 Stunden 30 im Frecciarossa, mit Abfahrten über den ganzen Tag.',
+  'Die Bahntore zur Küste sind Salerno und Sorrent. Weder Positano noch Amalfi haben einen Bahnhof, und sie werden auch nie einen bekommen.',
+  'Der Venice Simplon-Orient-Express verkauft heute eine Reise Paris bis Amalfiküste, aber das ist ein dreitägiger Urlaub, der in einem Hotel in Ravello endet, und kein Weg, dorthin zu kommen.',
+];
+---
+
+<BlogPostLayout
+  lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  breadcrumbs={breadcrumbs}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  relatedArticles={relatedArticles}
+  imageCredit={imageCredit}
+  pageKey="paris-to-amalfi-coast-train"
+>
+
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <div class="flex items-center gap-3 mb-6">
+      <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Key Takeaways</h2>
+    </div>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-xs sm:text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      Hinter der Formel "von Paris an die Amalfiküste mit dem Zug" stecken heute zwei sehr verschiedene Reisen. Die eine ist eine Folge ganz gewöhnlicher Hochgeschwindigkeitszüge, die Sie vom Gare de Lyon zu einem Hotel über dem Meer bringt, zum Preis eines Fluges und in der Zeit, die man für einen langen Roman braucht. Die andere ist ein Schlafwagen, der so viel kostet wie ein Kleinwagen und die Fahrt selbst zum Urlaub macht. Beide sind interessant, aber was die meisten wirklich brauchen, sind die praktischen Angaben zur ersten.
+    </p>
+  </div>
+
+  <!-- Die drei Etappen -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Die Linienverbindung: Drei Etappen</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Da keine Bahnlinie die Küstenorte erreicht, endet jede Zugreise aus Frankreich entweder in <strong>Salerno</strong> oder in <strong>Sorrent</strong>, und das letzte Stück legt man mit Fähre, Bus oder Auto zurück. Die folgende Kombination ist die schnellste zuverlässige.
+    </p>
+
+    <div class="overflow-x-auto rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Etappe</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Zug</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Dauer</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Paris Gare de Lyon - Mailand Centrale</td>
+            <td class="p-5 text-slate-600">TGV Inoui oder Frecciarossa, über Lyon, Chambéry, Modane und Turin. Zwei Umläufe pro Tag.</td>
+            <td class="p-5 text-slate-600">Rund 7h</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Mailand Centrale - Neapel Centrale</td>
+            <td class="p-5 text-slate-600">Frecciarossa oder Italo, über den Tag verteilt häufig, via Bologna, Florenz und Rom.</td>
+            <td class="p-5 text-slate-600">Rund 4h30</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Neapel - Salerno</td>
+            <td class="p-5 text-slate-600">Die Hochgeschwindigkeitszüge fahren weiter nach Süden; Regionalzüge sind langsamer, aber günstiger.</td>
+            <td class="p-5 text-slate-600">35 Min. bis 1h15</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Neapel - Sorrent</td>
+            <td class="p-5 text-slate-600">Circumvesuviana oder Campania Express ab Napoli Porta Nolana oder Garibaldi.</td>
+            <td class="p-5 text-slate-600">Rund 1h</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-slate-600 text-lg leading-relaxed mt-6">
+      Rechnen Sie die Wege zwischen den Bahnsteigen in Mailand und Neapel hinzu, und Sie landen bei 13 bis 15 Stunden von Tür zu Tür. Was nach Salerno oder Sorrent folgt, steht ausführlich in unserem Ratgeber zur <a href="/de-de/blog/amalfikueste-mit-dem-zug/" class="text-med-blue hover:underline">Amalfiküste mit dem Zug</a>.
+    </p>
+  </div>
+
+  <!-- Schweiz -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Die Schweizer Alternative und Wann Sie Sie Brauchen</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Die Alpenquerung zwischen Frankreich und Italien ist der anfällige Teil dieser Reise. Ein Erdrutsch im Maurienne-Tal durchtrennte die Strecke Ende August 2023 und hielt sie anderthalb Jahre geschlossen, bis zur Wiedereröffnung am <strong>31. März 2025</strong>. Arbeiten im Mont-Cenis-Tunnel setzten die Direktzüge Paris-Mailand dann erneut aus, vom <strong>11. September bis 9. Oktober 2026</strong>, mit Wiederaufnahme der Direktverbindung ab dem 10. Oktober 2026.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Wenn das passiert, führt der Umweg durch die Schweiz: Paris nach Basel mit dem TGV Lyria in etwa drei Stunden, dann ein EuroCity durch den Gotthard nach Mailand. Das dauert länger, meist etwa zwei Stunden, ist aber eine schöne Fahrt und hält die ganze Reise auf der Schiene. Es lohnt sich, das auch in einem normalen Jahr vor der Buchung zu prüfen, denn dieser Korridor fällt häufiger aus als andere.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-2">Die französische Etappe früh buchen</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Bei nur zwei Umläufen pro Tag auf der Direktverbindung Paris-Mailand sind die günstigen Tarife schnell weg. Die Tickets öffnen meist vier bis sechs Monate im Voraus, und die besten Preise gehen in den ersten Wochen.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-2">Die italienischen Etappen getrennt kaufen</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Es gibt kein durchgehendes Ticket, ein verpasster Anschluss ist also Ihr Problem und nicht das der Bahn. Planen Sie in Mailand einen grosszügigen Puffer ein und behandeln Sie Mailand-Neapel als eigenen Kauf.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wo unterbrechen -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Wo die Reise Unterbrechen</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      An einem Tag heisst: bei Tagesanbruch in Paris los und nach Einbruch der Dunkelheit an der Küste an, was eine schlechte Art ist, einen Ort kennenzulernen, dessen ganzer Reiz der Ausblick ist. Eine Übernachtung verändert die Reise vollständig.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Drei sinnvolle Zwischenstopps</h3>
+      <div class="space-y-3">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Mailand.</strong> Die naheliegende Wahl: Sie kommen am frühen Abend an, mit Hotels direkt neben Centrale, und fahren am nächsten Morgen mit noch viereinhalb Stunden vor sich weiter. Einfach, wenn auch nicht aufregend.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Rom.</strong> Der beste Kompromiss. Etwa neun Stunden von Paris entfernt, und am nächsten Tag bleibt kaum mehr als eine Stunde bis Neapel, Sie erreichen die Küste also bis mittags und haben den Anreisetag noch.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Neapel.</strong> Durchfahren und nahe Centrale schlafen, am Morgen das erste Boot oder den ersten Zug nehmen. Funktioniert, und schenkt Ihnen einen Abend in Neapel, was keine Strafe ist.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Orient-Express -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Die Orient-Express-Variante</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      2026 setzte Belmond den <strong>Venice Simplon-Orient-Express</strong> auf eine neue Route von Paris an die Amalfiküste, und genau deshalb begann der Suchbegriff plötzlich zu steigen. Es ist kein Transportmittel, sondern ein Paket über drei Nächte: eine Nacht in einer Kabine an Bord, während der Zug Frankreich durchquert und beiden Rivieras folgt, eine private Führung durch Pompeji und dann zwei Nächte im Caruso, Belmonds Hotel in einem Palazzo aus dem elften Jahrhundert über <a href="/de-de/amalfikueste/ravello/" class="text-med-blue hover:underline">Ravello</a>.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Die Jungfernfahrt verliess Paris am 4. Mai 2026 um 11:00 Uhr und erreichte Pompeji am 7. Mai. Sie war ausgebucht, und für 2027 wurden weitere Abfahrten angesetzt, darunter ein Termin Ende April und einer im Juni. Die Preise beginnen bei rund <strong>9.900 Euro pro Person</strong> bei Doppelbelegung einer historischen Kabine, inklusive Mahlzeiten, Getränken, Ausflügen und Transfer nach Neapel zum Abschluss.
+    </p>
+
+    <blockquote class="border-l-4 border-med-gold pl-6 my-8">
+      <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+        "Die eine Reise ist ein Weg, an die Amalfiküste zu kommen. Die andere ist ein Grund zu fahren."
+      </p>
+    </blockquote>
+
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Es lohnt sich, klar zu sein, was man kauft: der Orient-Express endet in Ravello und enthält zwei Hotelnächte, er ersetzt also den ersten Teil eines Urlaubs und kein Flugticket. Wenn das Ziel einfach ist, ohne Flugzeug anzukommen, leistet die oben beschriebene Linienverbindung dasselbe zu einem winzigen Bruchteil der Kosten.
+    </p>
+  </div>
+
+  <!-- Tipps -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold">Expertentipps</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Entscheiden Sie Salerno oder Sorrent, bevor Sie irgendetwas kaufen</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Es verändert den gesamten letzten Tag. Salerno gibt Ihnen <a href="/de-de/ratgeber/faehren/" class="text-med-blue hover:underline">Fähren</a> nach Amalfi und Positano und den <a href="/de-de/ratgeber/sita-bus/" class="text-med-blue hover:underline">SITA-Bus</a> entlang der Küstenstrasse. Sorrent gibt Ihnen die Halbinsel und Capri. Die falsche Wahl kostet zwei Stunden Rückweg.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Planen Sie die Ankunft nicht nach Sonnenuntergang</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Die Fähren stellen am späten Nachmittag den Betrieb ein, die Küstenstrasse ist im Dunkeln langsam und die meisten Adressen in Positano enden mit einer Treppe. Zielen Sie darauf, am frühen Nachmittag an der Küste zu sein, was von Paris aus realistisch eine Nacht in Italien voraussetzt.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Reisen Sie für die letzte Etappe leicht</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Die Circumvesuviana nach Sorrent ist eine Pendlerbahn ohne Gepäckablagen und oft ohne Sitzplatz. Der Campania Express ist die touristische Version derselben Strecke, mit garantiertem Sitzplatz und weniger Halten, und der Aufpreis lohnt sich am Ende eines langen Tages.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Vergleichen Sie ehrlich mit dem Flug</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Paris nach Neapel dauert im Flugzeug rund zwei Stunden. Der Zug gewinnt bei Komfort, Zentrum-zu-Zentrum-Logik und Emissionen und verliert deutlich bei der Zeit. Unser Ratgeber zu <a href="/de-de/blog/flughafen-amalfikueste/" class="text-med-blue hover:underline">Flughäfen für die Amalfiküste</a> zeigt die Alternative.</p>
+      </div>
+    </div>
+  </div>
+
+</BlogPostLayout>

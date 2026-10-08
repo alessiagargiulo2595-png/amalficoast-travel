@@ -255,6 +255,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/',
     source: 'pattern-match',
   },
+  '/de-de/blog/allerseelen-halloween/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/allerseelen-halloween/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/allerseelen-halloween/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/fete-des-morts-halloween/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/fiesta-de-los-muertos-halloween/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/festa-dei-morti-halloween/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
+    source: 'slugMap',
+  },
   '/de-de/blog/amalfi-weine/': {
     url: 'https://amalficoast-travel.com/de-de/blog/amalfi-weine/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-wines/',
@@ -411,6 +424,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
     source: 'slugMap',
   },
+  '/de-de/blog/grundschule-sorrent/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/grundschule-sorrent/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/grundschule-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ecole-primaire-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/escuela-primaria-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/scuola-primaria-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
+    source: 'slugMap',
+  },
   '/de-de/blog/komfortable-ausgestattete-strande/': {
     url: 'https://amalficoast-travel.com/de-de/blog/komfortable-ausgestattete-strande/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
@@ -450,6 +476,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
     source: 'slugMap',
   },
+  '/de-de/blog/paris-amalfikueste-zug/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/paris-amalfikueste-zug/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/paris-amalfikueste-zug/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/paris-cote-amalfitaine-train/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/paris-costa-amalfitana-tren/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/parigi-costiera-amalfitana-treno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
+    source: 'slugMap',
+  },
   '/de-de/blog/piazzetta-capri/': {
     url: 'https://amalficoast-travel.com/de-de/blog/piazzetta-capri/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
@@ -461,6 +500,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/piazzetta-capri/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
+    source: 'slugMap',
+  },
+  '/de-de/blog/positano-hotels-restaurants/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/positano-hotels-restaurants/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/positano-hotels-restaurants/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/hotels-restaurants-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/hoteles-restaurantes-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/hotel-ristoranti-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
     source: 'slugMap',
   },
   '/de-de/blog/positano-vs-amalfi/': {
@@ -617,6 +669,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/torre-dello-ziro/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
+    source: 'slugMap',
+  },
+  '/de-de/blog/weihnachtsbeleuchtung-sorrent-salerno/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/weihnachtsbeleuchtung-sorrent-salerno/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/weihnachtsbeleuchtung-sorrent-salerno/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/illuminations-noel-sorrente-salerne/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/luces-navidad-sorrento-salerno/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/luminarie-natalizie-sorrento-salerno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
     source: 'slugMap',
   },
   '/de-de/blog/wetter-juli-august-2026/': {
@@ -2191,6 +2256,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/cetara-anchovies/',
     source: 'slugMap',
   },
+  '/en-us/blog/christmas-lights-sorrento-salerno/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/weihnachtsbeleuchtung-sorrent-salerno/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/illuminations-noel-sorrente-salerne/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/luces-navidad-sorrento-salerno/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/luminarie-natalizie-sorrento-salerno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+    source: 'slugMap',
+  },
   '/en-us/blog/comfortable-beaches/': {
     url: 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
@@ -2228,6 +2306,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/grotta-dello-smeraldo/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/emerald-grotto/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/feast-of-the-dead-halloween/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/allerseelen-halloween/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/fete-des-morts-halloween/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/fiesta-de-los-muertos-halloween/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/festa-dei-morti-halloween/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
     source: 'slugMap',
   },
   '/en-us/blog/ferriere-valley/': {
@@ -2321,6 +2412,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
     source: 'slugMap',
   },
+  '/en-us/blog/paris-to-amalfi-coast-train/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/paris-amalfikueste-zug/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/paris-cote-amalfitaine-train/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/paris-costa-amalfitana-tren/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/parigi-costiera-amalfitana-treno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
+    source: 'slugMap',
+  },
   '/en-us/blog/piazzetta-capri/': {
     url: 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
@@ -2332,6 +2436,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/piazzetta-capri/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/positano-hotels-restaurants/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/positano-hotels-restaurants/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/hotels-restaurants-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/hoteles-restaurantes-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/hotel-ristoranti-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
     source: 'slugMap',
   },
   '/en-us/blog/positano-vs-amalfi/': {
@@ -2397,6 +2514,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/scialatielli/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/scialatielli/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/sorrento-primary-school/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/grundschule-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ecole-primaire-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/escuela-primaria-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/scuola-primaria-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
     source: 'slugMap',
   },
   '/en-us/blog/sorrento-vs-amalfi/': {
@@ -3475,6 +3605,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
     source: 'slugMap',
   },
+  '/es-es/blog/escuela-primaria-sorrento/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/escuela-primaria-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/grundschule-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ecole-primaire-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/escuela-primaria-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/scuola-primaria-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
+    source: 'slugMap',
+  },
   '/es-es/blog/estudiar-en-sorrento/': {
     url: 'https://amalficoast-travel.com/es-es/blog/estudiar-en-sorrento/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
@@ -3486,6 +3629,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/study-abroad-sorrento/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/fiesta-de-los-muertos-halloween/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/fiesta-de-los-muertos-halloween/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/allerseelen-halloween/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/fete-des-morts-halloween/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/fiesta-de-los-muertos-halloween/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/festa-dei-morti-halloween/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
     source: 'slugMap',
   },
   '/es-es/blog/fiordo-di-crapolla/': {
@@ -3514,6 +3670,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/emerald-grotto/',
     source: 'slugMap',
   },
+  '/es-es/blog/hoteles-restaurantes-positano/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/hoteles-restaurantes-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/positano-hotels-restaurants/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/hotels-restaurants-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/hoteles-restaurantes-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/hotel-ristoranti-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/luces-navidad-sorrento-salerno/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/luces-navidad-sorrento-salerno/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/weihnachtsbeleuchtung-sorrent-salerno/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/illuminations-noel-sorrente-salerne/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/luces-navidad-sorrento-salerno/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/luminarie-natalizie-sorrento-salerno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+    source: 'slugMap',
+  },
   '/es-es/blog/maiori-vs-minori/': {
     url: 'https://amalficoast-travel.com/es-es/blog/maiori-vs-minori/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
@@ -3538,6 +3720,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/oasi-selvagge-spiagge-mare/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/paris-costa-amalfitana-tren/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/paris-costa-amalfitana-tren/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/paris-amalfikueste-zug/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/paris-cote-amalfitaine-train/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/paris-costa-amalfitana-tren/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/parigi-costiera-amalfitana-treno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
     source: 'slugMap',
   },
   '/es-es/blog/peliculas-rodadas-en-sorrento/': {
@@ -5112,6 +5307,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
     source: 'slugMap',
   },
+  '/fr-fr/blog/ecole-primaire-sorrente/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/ecole-primaire-sorrente/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/grundschule-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ecole-primaire-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/escuela-primaria-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/scuola-primaria-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/fete-des-morts-halloween/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/fete-des-morts-halloween/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/allerseelen-halloween/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/fete-des-morts-halloween/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/fiesta-de-los-muertos-halloween/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/festa-dei-morti-halloween/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
+    source: 'slugMap',
+  },
   '/fr-fr/blog/films-tournes-a-sorrente/': {
     url: 'https://amalficoast-travel.com/fr-fr/blog/films-tournes-a-sorrente/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
@@ -5149,6 +5370,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/grotta-dello-smeraldo/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/emerald-grotto/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/hotels-restaurants-positano/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/hotels-restaurants-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/positano-hotels-restaurants/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/hotels-restaurants-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/hoteles-restaurantes-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/hotel-ristoranti-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/illuminations-noel-sorrente-salerne/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/illuminations-noel-sorrente-salerne/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/weihnachtsbeleuchtung-sorrent-salerno/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/illuminations-noel-sorrente-salerne/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/luces-navidad-sorrento-salerno/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/luminarie-natalizie-sorrento-salerno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
     source: 'slugMap',
   },
   '/fr-fr/blog/maiori-vs-minori/': {
@@ -5201,6 +5448,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/dove-atterrare-costiera-amalfitana/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/paris-cote-amalfitaine-train/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/paris-cote-amalfitaine-train/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/paris-amalfikueste-zug/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/paris-cote-amalfitaine-train/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/paris-costa-amalfitana-tren/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/parigi-costiera-amalfitana-treno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
     source: 'slugMap',
   },
   '/fr-fr/blog/piazzetta-capri/': {
@@ -6760,6 +7020,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
     source: 'slugMap',
   },
+  '/it-it/blog/festa-dei-morti-halloween/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/festa-dei-morti-halloween/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/allerseelen-halloween/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/fete-des-morts-halloween/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/fiesta-de-los-muertos-halloween/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/festa-dei-morti-halloween/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/feast-of-the-dead-halloween/',
+    source: 'slugMap',
+  },
   '/it-it/blog/film-fatti-a-sorrento/': {
     url: 'https://amalficoast-travel.com/it-it/blog/film-fatti-a-sorrento/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/films-made-in-sorrento/',
@@ -6799,6 +7072,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/emerald-grotto/',
     source: 'slugMap',
   },
+  '/it-it/blog/hotel-ristoranti-positano/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/hotel-ristoranti-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/positano-hotels-restaurants/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/hotels-restaurants-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/hoteles-restaurantes-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/hotel-ristoranti-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/luminarie-natalizie-sorrento-salerno/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/luminarie-natalizie-sorrento-salerno/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/weihnachtsbeleuchtung-sorrent-salerno/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/illuminations-noel-sorrente-salerne/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/luces-navidad-sorrento-salerno/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/luminarie-natalizie-sorrento-salerno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+    source: 'slugMap',
+  },
   '/it-it/blog/maiori-vs-minori/': {
     url: 'https://amalficoast-travel.com/it-it/blog/maiori-vs-minori/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
@@ -6836,6 +7135,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/oasi-selvagge-spiagge-mare/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/parigi-costiera-amalfitana-treno/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/parigi-costiera-amalfitana-treno/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/paris-amalfikueste-zug/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/paris-cote-amalfitaine-train/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/paris-costa-amalfitana-tren/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/parigi-costiera-amalfitana-treno/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
     source: 'slugMap',
   },
   '/it-it/blog/piazzetta-capri/': {
@@ -6927,6 +7239,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/scialatielli/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/scialatielli/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/scuola-primaria-sorrento/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/scuola-primaria-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/grundschule-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ecole-primaire-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/escuela-primaria-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/scuola-primaria-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/sorrento-primary-school/',
     source: 'slugMap',
   },
   '/it-it/blog/sentiero-dei-limoni/': {
@@ -8309,7 +8634,7 @@ export function getXDefault(url: string): string | null {
  * Map statistics
  */
 export const hrefLangStats = {
-  totalUrls: 636,
+  totalUrls: 661,
   locales: ["en-us","de-de","fr-fr","es-es","it-it"],
-  generatedAt: '2026-08-20T17:20:54.914Z',
+  generatedAt: '2026-10-07T16:12:18.677Z',
 };
