@@ -17,25 +17,158 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "Comment fonctionne le bus SITA sur la Côte Amalfitaine ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Le bus SITA (aujourd'hui SITA Sud, exploité par EAV) parcourt la SS163 entre Sorrente et Salerne, avec des arrêts à Positano, Praiano, Amalfi, Maiori et Minori. Les billets doivent être achetés avant de monter dans un bureau de tabac ou kiosque - ils ne sont pas vendus dans le bus. Prix : ~€2,50–4 par trajet." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Le bus SITA (aujourd'hui SITA Sud, exploité par EAV) parcourt la SS163 entre Sorrente et Salerne, avec des arrêts à Positano, Praiano, Amalfi, Maiori et Minori. Les billets doivent être achetés avant de monter dans un bureau de tabac ou kiosque - ils ne sont pas vendus dans le bus. Prix : environ €2,50-4 par trajet ; les tarifs ont été ajustés au 1er octobre 2026, vérifiez le prix en vigueur à l'achat." }
     },
     {
       "@type": "Question",
       "name": "Combien de temps dure le trajet de Sorrente à Amalfi ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Dans des conditions normales : 90–100 min. En été (juillet–août), cela peut durer 2–2,5 heures à cause du trafic sur la SS163." }
+      "acceptedAnswer": { "@type": "Answer", "text": "L'horaire officiel en vigueur depuis le 14 septembre 2026 prévoit de 75 à 100 minutes selon l'itinéraire. En été (juillet-août), le trafic sur la SS163 peut porter le trajet à 2-2,5 heures. D'Amalfi à Positano, comptez 40 minutes jusqu'à l'arrêt Sponda et 50 jusqu'à Chiesa Nuova." }
     },
     {
       "@type": "Question",
       "name": "Puis-je emporter de gros bagages dans le bus SITA ?",
       "acceptedAnswer": { "@type": "Answer", "text": "Les bus SITA sur la SS163 sont petits. En été ils sont bondés. Les grandes valises sont difficiles à gérer : utilisez un sac compact ou un sac à dos." }
+    },
+    {
+      "@type": "Question",
+      "name": "À quelle heure partent le premier et le dernier bus SITA entre Sorrente et Amalfi ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Selon l'horaire en vigueur depuis le 14 septembre 2026, le premier bus de Sorrente vers Amalfi part à 06:30 du lundi au samedi (08:30 le dimanche et les jours fériés) et le dernier à 19:50 (19:15 le dimanche et les jours fériés). D'Amalfi vers Sorrente, le premier part à 06:20 tous les jours et le dernier à 21:30 (21:00 le dimanche et les jours fériés). Vérifiez sur sitasudtrasporti.it avant de partir, surtout les jours fériés." }
     }
   ]
 };
+
+// Official SITA Sud timetable valid from 14/09/2026 (Sorrento - Positano - Amalfi and Sorrento Peninsula lines).
+// Day codes from the timetable: F = Mon-Sat, H = Sundays and holidays, G = daily, S = school days, LS = Mon-Fri school days.
+// Route codes: M = via Meta and Piano, N = via Nastro Verde and Priora, S = direct via Sant'Agnello, A<time> = starts in Sant'Agata.
+const dayLabels = {"F":"Lun-sam","H":"Dim. et fériés","G":"Tous les jours","S":"Jours scolaires","LS":"Lun-ven scolaires"};
+const routeLabels = {"M":"via Meta, Piano","N":"via Nastro Verde, Priora","S":"via Sant'Agnello (direct)"};
+const routeText = (r) => (r.startsWith('A') ? "depuis Sant'Agata {t}, via Nastro Verde".replace('{t}', r.slice(1)) : routeLabels[r]);
+// [day, Sorrento, Positano Chiesa Nuova, Positano Sponda, Praiano, Amalfi, route]
+const sorrentoToAmalfi = [
+  ['F', '-', '06:15', '06:25', '06:40', '07:05', 'A05:40'],
+  ['LS', '-', '06:25', '06:35', '06:50', '-', 'A05:50'],
+  ['S', '-', '06:55', '07:05', '07:20', '07:45', 'A06:20'],
+  ['F', '06:30', '07:10', '07:20', '07:35', '08:00', 'M'],
+  ['F', '07:45', '08:25', '08:35', '08:50', '09:15', 'M'],
+  ['H', '08:30', '09:10', '09:20', '09:35', '10:00', 'M'],
+  ['F', '08:30', '09:20', '09:30', '09:45', '10:10', 'N'],
+  ['H', '09:00', '09:50', '10:00', '10:15', '10:40', 'N'],
+  ['F', '09:00', '09:25', '09:35', '09:50', '10:15', 'S'],
+  ['G', '09:30', '10:20', '10:30', '10:45', '11:10', 'N'],
+  ['F', '10:00', '10:25', '10:35', '10:50', '11:15', 'S'],
+  ['H', '10:00', '10:50', '11:00', '11:15', '11:40', 'N'],
+  ['F', '10:15', '11:05', '11:15', '11:30', '11:55', 'N'],
+  ['G', '10:30', '11:10', '11:20', '11:35', '12:00', 'M'],
+  ['G', '11:00', '11:25', '11:35', '11:50', '12:15', 'S'],
+  ['G', '11:30', '12:20', '12:30', '12:45', '13:10', 'N'],
+  ['H', '11:45', '12:35', '12:45', '13:00', '13:25', 'N'],
+  ['F', '11:50', '12:25', '12:35', '12:50', '13:15', 'S'],
+  ['F', '12:30', '12:55', '13:05', '13:20', '13:45', 'S'],
+  ['H', '12:45', '13:25', '13:35', '13:50', '14:15', 'M'],
+  ['F', '12:45', '13:10', '13:20', '13:35', '-', 'S'],
+  ['F', '12:55', '13:35', '13:45', '14:00', '14:25', 'M'],
+  ['G', '13:30', '14:10', '14:20', '14:35', '15:00', 'M'],
+  ['G', '14:00', '14:50', '15:00', '15:15', '15:40', 'N'],
+  ['F', '14:55', '15:35', '15:45', '16:00', '16:25', 'M'],
+  ['F', '15:30', '15:55', '16:05', '16:20', '-', 'S'],
+  ['F', '15:35', '16:25', '16:35', '16:50', '17:15', 'N'],
+  ['H', '-', '16:30', '16:40', '16:55', '-', 'A15:55'],
+  ['H', '15:45', '16:35', '16:45', '17:00', '17:25', 'N'],
+  ['H', '16:00', '16:35', '16:45', '17:00', '17:25', 'S'],
+  ['F', '16:15', '16:50', '17:00', '17:15', '17:40', 'S'],
+  ['F', '-', '17:00', '17:10', '17:25', '-', 'A16:25'],
+  ['F', '16:45', '17:25', '17:35', '17:50', '18:15', 'M'],
+  ['F', '17:00', '17:50', '18:00', '18:15', '18:40', 'N'],
+  ['H', '17:10', '17:50', '18:00', '18:15', '18:40', 'M'],
+  ['F', '17:45', '18:10', '18:20', '18:35', '19:00', 'S'],
+  ['H', '18:10', '19:00', '19:10', '19:25', '19:50', 'N'],
+  ['F', '18:10', '18:50', '19:00', '19:15', '19:40', 'M'],
+  ['F', '18:30', '18:55', '19:05', '19:20', '19:45', 'S'],
+  ['G', '19:00', '19:50', '20:00', '20:15', '20:40', 'N'],
+  ['H', '19:15', '19:50', '20:00', '20:15', '20:40', 'S'],
+  ['F', '19:50', '20:25', '20:35', '20:50', '21:15', 'S'],
+];
+// [day, Amalfi, Praiano, Positano Sponda, Positano Chiesa Nuova, Sorrento, route]
+const amalfiToSorrento = [
+  ['G', '06:20', '06:45', '07:00', '07:10', '08:00', 'M'],
+  ['LS', '-', '06:50', '07:05', '07:15', '07:50', 'S'],
+  ['F', '07:15', '07:40', '07:55', '08:05', '08:40', 'S'],
+  ['G', '08:05', '08:30', '08:45', '08:55', '09:45', 'M'],
+  ['F', '08:45', '09:10', '09:25', '09:35', '10:25', 'N'],
+  ['H', '09:30', '09:55', '10:10', '10:20', '11:10', 'N'],
+  ['F', '09:45', '10:10', '10:25', '10:35', '11:10', 'S'],
+  ['S', '10:45', '11:10', '11:25', '11:35', '12:25', 'N'],
+  ['F', '11:00', '11:25', '11:40', '11:50', '12:25', 'S'],
+  ['H', '11:00', '11:25', '11:40', '11:50', '12:40', 'N'],
+  ['G', '11:30', '11:55', '12:10', '12:20', '12:55', 'S'],
+  ['F', '11:45', '12:10', '12:25', '12:35', '13:25', 'N'],
+  ['G', '12:15', '12:40', '12:55', '13:05', '13:40', 'S'],
+  ['G', '13:00', '13:25', '13:40', '13:50', '14:40', 'N'],
+  ['F', '13:30', '13:55', '14:10', '14:20', '14:55', 'S'],
+  ['F', '-', '13:45', '14:00', '14:10', '14:45', 'S'],
+  ['F', '13:45', '14:10', '14:25', '14:35', '15:25', 'M'],
+  ['F', '14:05', '14:30', '14:45', '14:55', '15:30', 'S'],
+  ['H', '14:05', '14:30', '14:45', '14:55', '15:45', 'M'],
+  ['F', '14:30', '14:55', '15:10', '15:20', '16:10', 'M'],
+  ['H', '14:45', '15:10', '15:25', '15:35', '16:25', 'N'],
+  ['F', '15:00', '15:25', '15:40', '15:50', '16:40', 'N'],
+  ['G', '15:30', '15:55', '16:10', '16:20', '17:10', 'N'],
+  ['G', '16:00', '16:25', '16:40', '16:50', '17:40', 'M'],
+  ['F', '-', '16:30', '16:45', '16:55', '17:30', 'S'],
+  ['F', '16:30', '16:55', '17:10', '17:20', '18:10', 'M'],
+  ['H', '-', '17:00', '17:15', '17:25', '18:00', 'S'],
+  ['F', '17:00', '17:25', '17:40', '17:50', '18:40', 'N'],
+  ['H', '17:00', '17:25', '17:40', '17:50', '18:40', 'M'],
+  ['F', '-', '17:30', '17:45', '17:55', '18:30', 'S'],
+  ['F', '17:30', '17:55', '18:10', '18:20', '18:55', 'S'],
+  ['H', '17:45', '18:10', '18:25', '18:35', '19:25', 'N'],
+  ['G', '18:00', '18:25', '18:40', '18:50', '19:25', 'S'],
+  ['F', '18:30', '18:55', '19:10', '19:20', '19:55', 'S'],
+  ['G', '19:00', '19:25', '19:40', '19:50', '20:40', 'N'],
+  ['F', '19:30', '19:55', '20:10', '20:20', '21:10', 'N'],
+  ['H', '20:00', '20:25', '20:40', '20:50', '21:40', 'N'],
+  ['F', '20:15', '20:40', '20:55', '21:05', '21:40', 'S'],
+  ['H', '21:00', '21:25', '21:40', '21:50', '22:25', 'S'],
+  ['F', '21:30', '21:55', '22:10', '22:20', '22:55', 'S'],
+];
+const lineNames = {"ML2":"Sorrente → Massa Lubrense → Sant'Agata","ML1":"Sant'Agata → Massa Lubrense → Sorrente","NV2":"Sorrente → Priora → Sant'Agata (via Nastro Verde)","NV1":"Sant'Agata → Priora → Sorrente (via Nastro Verde)"};
+const runSpan = (a, b, n) => `de ${a} à ${b} (${n} départs)`;
+// [line, Mon-Sat first, Mon-Sat last, Mon-Sat runs, Sun/hol first, Sun/hol last, Sun/hol runs]
+const peninsulaLines = [
+  ['ML2', '05:50', '23:00', 22, '10:10', '22:30', 12],
+  ['ML1', '05:15', '21:20', 18, '07:00', '20:20', 11],
+  ['NV2', '06:40', '22:00', 24, '07:50', '22:00', 15],
+  ['NV1', '06:00', '20:50', 21, '08:45', '21:20', 14],
+];
+const neranoRoutes = {"ML":"via Massa Lubrense","PS":"via Priora, Sant'Agata","MS":"via Massa Lubrense, Sant'Agata","SP":"via Sant'Agata, Priora","SPc":"via Sant'Agata, Priora *"};
+// [day, departure, arrival, route]
+const neranoOut = [
+  ['F', '07:50', '08:45', 'ML'],
+  ['H', '07:50', '08:50', 'PS'],
+  ['F', '09:00', '10:00', 'PS'],
+  ['F', '10:30', '11:30', 'PS'],
+  ['F', '13:35', '14:30', 'ML'],
+  ['F', '14:00', '15:00', 'PS'],
+  ['F', '14:00', '15:30', 'ML'],
+  ['F', '15:30', '16:25', 'ML'],
+  ['G', '16:20', '17:20', 'PS'],
+  ['G', '18:00', '18:55', 'ML'],
+  ['F', '20:15', '21:15', 'MS'],
+];
+const neranoBack = [
+  ['F', '06:45', '07:35', 'ML'],
+  ['G', '09:00', '09:55', 'ML'],
+  ['F', '10:20', '11:20', 'SP'],
+  ['F', '11:45', '12:40', 'ML'],
+  ['G', '15:00', '16:00', 'SP'],
+  ['F', '16:00', '17:05', 'ML'],
+  ['F', '16:30', '17:30', 'SPc'],
+];
 ---
 
 <BaseLayout
   title="Bus SITA Côte Amalfitaine 2026 | Horaires, Arrêts et Tarifs"
-  description="Sorrente-Positano-Amalfi-Salerne sur la SS163 : heures de départ, arrêts, tarifs et horaires PDF à télécharger. Et comment éviter les files du matin."
+  description="Horaires du bus SITA valables dès le 14 septembre 2026 : tous les trajets Sorrente-Positano-Amalfi dans les deux sens, lignes vers Massa Lubrense et Nerano, tarifs et conseils."
   lang={lang}
   breadcrumbs={breadcrumbs}
   schema={[faqSchema]}
@@ -72,61 +205,54 @@ const faqSchema = {
     <section class="bg-slate-900 border-l-4 border-med-gold p-6 rounded-lg mb-8">
       <h3 class="font-semibold text-white mb-4 flex items-center gap-2">
         <svg class="w-5 h-5 text-med-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/><path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"/></svg>
-        Horaires à jour au 1er avril 2026
+        Horaires valables à partir du 14 septembre 2026 (horaire officiel SITA Sud)
       </h3>
       <p class="text-xs sm:text-sm text-white/80 mb-4">
-        Consultez les horaires PDF à jour de SITA/EAV :
+        Les horaires de cette page proviennent de l'horaire officiel SITA Sud en vigueur depuis le 14 septembre 2026. Ils peuvent changer selon la saison et les jours fériés : consultez <a href="https://www.sitasudtrasporti.it/" target="_blank" rel="noopener" class="text-med-gold underline hover:opacity-80">sitasudtrasporti.it</a> avant de partir, surtout les jours fériés.
+      </p>
+      <p class="text-xs sm:text-sm text-white/80 mb-4">
+        Les lignes Amalfi - Salerne (avec Ravello) et Amalfi - Agerola - Naples ne figurent pas dans cet horaire. Les PDF ci-dessous sont l'édition d'avril 2026 : servez-vous-en seulement comme repère et vérifiez les horaires actuels sur le site officiel.
       </p>
       <div class="flex flex-col sm:grid sm:grid-cols-2 gap-3">
-        <a href="/pdf/orari-sita-5120-5110-5070.pdf" download class="inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-medium text-med-gold underline hover:opacity-80 bg-slate-800 px-3 py-1.5 sm:px-4 sm:py-2 rounded border border-slate-700 hover:border-med-gold transition-all">
-          <svg class="w-4 h-4 text-med-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/><path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"/></svg>
-          Ligne 5120-5110-5070 (Amalfi - Positano - Sorrente)
-        </a>
         <a href="/pdf/orari-sita-5080.pdf" download class="inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-medium text-med-gold underline hover:opacity-80 bg-slate-800 px-3 py-1.5 sm:px-4 sm:py-2 rounded border border-slate-700 hover:border-med-gold transition-all">
           <svg class="w-4 h-4 text-med-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/><path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"/></svg>
-          Ligne 5080 (Amalfi - Agerola - Castellammare - Naples)
-        </a>
-        <a href="/pdf/orari-sita-5070.pdf" download class="inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-medium text-med-gold underline hover:opacity-80 bg-slate-800 px-3 py-1.5 sm:px-4 sm:py-2 rounded border border-slate-700 hover:border-med-gold transition-all">
-          <svg class="w-4 h-4 text-med-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/><path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"/></svg>
-          Ligne 5070 (Amalfi - Positano - Sorrente - Massa Lubrense)
+          Ligne 5080 (Amalfi - Agerola - Castellammare - Naples), édition avril 2026
         </a>
         <a href="/pdf/orari-sita-5020.pdf" download class="inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-medium text-med-gold underline hover:opacity-80 bg-slate-800 px-3 py-1.5 sm:px-4 sm:py-2 rounded border border-slate-700 hover:border-med-gold transition-all">
           <svg class="w-4 h-4 text-med-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/><path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"/></svg>
-          Ligne 5020 (Salerno - Amalfi - Ravello)
+          Ligne 5020 (Salerne - Amalfi - Ravello), édition avril 2026
         </a>
       </div>
     </section>
 
     <section>
-      <h2 class="font-serif text-2xl font-semibold text-white bg-slate-900 px-6 py-4 rounded-t-2xl mb-6">Horaires principaux (indicatifs)</h2>
-      <div class="grid grid-cols-1 grid-cols-1 md:grid-cols-2 gap-6">
+      <h2 class="font-serif text-2xl font-semibold text-white bg-slate-900 px-6 py-4 rounded-t-2xl mb-6">Horaires SITA Sorrente - Positano - Amalfi</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">Tous les départs de l'horaire officiel, dans les deux sens. Positano compte deux arrêts : Chiesa Nuova, dans le haut du village, et Sponda, le plus proche de la plage. Entre Positano et Sorrente, certains bus passent par Meta et Piano di Sorrento, d'autres par la route du Nastro Verde et Priora, les autres vont directement par Sant'Agnello : les temps de trajet varient donc.</p>
+      <div class="space-y-8">
         <div class="overflow-x-auto rounded-2xl border border-slate-200">
           <table class="w-full text-xs sm:text-sm">
-            <caption class="text-left text-xs text-white px-2 py-2 sm:px-4 sm:py-2 bg-slate-900 rounded-t-2xl border-b border-med-gold font-medium">Sorrente → Amalfi (via Positano, Praiano)</caption>
+            <caption class="text-left text-xs text-white px-2 py-2 sm:px-4 sm:py-2 bg-slate-900 rounded-t-2xl border-b border-med-gold font-medium">Sorrente → Positano → Amalfi (42 départs)</caption>
             <thead>
               <tr class="bg-slate-900 text-white">
-                <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold">Sorrente</th>
-                <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold">Positano</th>
-                <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold">Amalfi</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Jours</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Sorrente</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Positano (Chiesa Nuova)</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Positano (Sponda)</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Praiano</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Amalfi</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Itinéraire</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100">
-              {[
-                ['07:50', '08:05', '09:15'],
-                ['08:00', '08:10', '09:25'],
-                ['08:40', '08:55', '10:15'],
-                ['09:45', '10:00', '11:10'],
-                ['10:25', '10:40', '11:55'],
-                ['11:10', '11:25', '12:40'],
-                ['12:25', '12:40', '13:55'],
-                ['14:40', '14:55', '16:10'],
-                ['15:25', '15:40', '16:55'],
-                ['17:45', '18:00', '19:15'],
-              ].map(([s,p,a]) => (
+              {sorrentoToAmalfi.map(([day, sorrento, chiesaNuova, sponda, praiano, amalfi, r]) => (
                 <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="px-2 py-1.5 sm:px-4 sm:py-2.5 font-mono">{s}</td>
-                  <td class="px-2 py-1.5 sm:px-4 sm:py-2.5 font-mono">{p}</td>
-                  <td class="px-2 py-1.5 sm:px-4 sm:py-2.5 font-mono">{a}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap text-slate-600">{dayLabels[day]}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 font-mono">{sorrento}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 font-mono">{chiesaNuova}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 font-mono">{sponda}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 font-mono">{praiano}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 font-mono">{amalfi}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap text-slate-500">{routeText(r)}</td>
                 </tr>
               ))}
             </tbody>
@@ -134,40 +260,110 @@ const faqSchema = {
         </div>
         <div class="overflow-x-auto rounded-2xl border border-slate-200">
           <table class="w-full text-xs sm:text-sm">
-            <caption class="text-left text-xs text-white px-2 py-2 sm:px-4 sm:py-2 bg-slate-900 rounded-t-2xl border-b border-med-gold font-medium">Amalfi → Sorrente (via Positano)</caption>
+            <caption class="text-left text-xs text-white px-2 py-2 sm:px-4 sm:py-2 bg-slate-900 rounded-t-2xl border-b border-med-gold font-medium">Amalfi → Positano → Sorrente (40 départs)</caption>
             <thead>
               <tr class="bg-slate-900 text-white">
-                <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold">Amalfi</th>
-                <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold">Positano</th>
-                <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold">Sorrente</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Jours</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Amalfi</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Praiano</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Positano (Sponda)</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Positano (Chiesa Nuova)</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Sorrente</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Itinéraire</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100">
-              {[
-                ['06:00', '06:40', '07:50'],
-                ['06:45', '07:20', '08:30'],
-                ['07:30', '08:05', '09:15'],
-                ['08:00', '08:45', '10:00'],
-                ['09:00', '09:35', '10:50'],
-                ['10:00', '10:35', '11:50'],
-                ['11:00', '11:35', '12:50'],
-                ['13:00', '13:35', '14:50'],
-                ['15:00', '15:35', '16:50'],
-                ['17:00', '17:35', '18:50'],
-                ['18:15', '18:50', '20:05'],
-                ['19:45', '20:20', '21:35'],
-              ].map(([a,p,s]) => (
+              {amalfiToSorrento.map(([day, amalfi, praiano, sponda, chiesaNuova, sorrento, r]) => (
                 <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="px-2 py-1.5 sm:px-4 sm:py-2.5 font-mono">{a}</td>
-                  <td class="px-2 py-1.5 sm:px-4 sm:py-2.5 font-mono">{p}</td>
-                  <td class="px-2 py-1.5 sm:px-4 sm:py-2.5 font-mono">{s}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap text-slate-600">{dayLabels[day]}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 font-mono">{amalfi}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 font-mono">{praiano}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 font-mono">{sponda}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 font-mono">{chiesaNuova}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 font-mono">{sorrento}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap text-slate-500">{routeText(r)}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
-      <p class="text-xs text-slate-400 mt-2">* Horaires officiels valides du 1er avril au 7 juin 2026 (Ligne 5120-5110-5070 SS163). Consultez sitasudtrasporti.it ou eavsrl.it pour les changements saisonniers et les horaires complets.</p>
+      <p class="text-xs text-slate-500 mt-3">« - » signifie que le bus ne dessert pas cet arrêt : certains départs commencent ou se terminent à Praiano, et quelques-uns partent de Sant'Agata sul Due Golfi au lieu de Sorrente. Les bus scolaires ne circulent que les jours d'école. Les horaires sont théoriques : le trafic sur la SS163 provoque souvent des retards, surtout en été. Source : horaire officiel SITA Sud valable à partir du 14 septembre 2026.</p>
+    </section>
+
+    <section>
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Lignes de la péninsule de Sorrente : Massa Lubrense, Sant'Agata, Nerano</h2>
+      <p class="text-slate-600 leading-relaxed mb-6">Le même horaire couvre les bus de Sorrente vers les hameaux de Massa Lubrense. Ci-dessous : premier et dernier départ et nombre de départs pour chaque ligne, puis tous les trajets directs entre Sorrente et Nerano (Marina del Cantone).</p>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold">Ligne</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold">Lun-sam</th>
+              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold">Dim. et fériés</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {peninsulaLines.map(([line, wf, wl, wn, sf, sl, sn]) => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="px-2 py-2 sm:px-4 sm:py-3">{lineNames[line]}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-600">{runSpan(wf, wl, wn)}</td>
+                <td class="px-2 py-2 sm:px-4 sm:py-3 text-slate-600">{runSpan(sf, sl, sn)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-2">Les chiffres lun-sam incluent les départs quotidiens ; les bus uniquement scolaires ne sont pas comptés. Les heures indiquées sont celles du premier arrêt. Sur la ligne Sant'Agata → Massa Lubrense → Sorrente, certains départs commencent à Torca. Sur la ligne du Nastro Verde, les départs sont comptés jusqu'à et depuis l'embranchement de Sant'Agata (Bivio S. Agata) : vers Sant'Agata, 16 bus du lundi au samedi et 7 le dimanche continuent jusqu'au village ; certains retours partent de Torca ou de l'embranchement.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+        <div class="overflow-x-auto rounded-2xl border border-slate-200">
+          <table class="w-full text-xs sm:text-sm">
+            <caption class="text-left text-xs text-white px-2 py-2 sm:px-4 sm:py-2 bg-slate-900 rounded-t-2xl border-b border-med-gold font-medium">Sorrente → Nerano (Marina del Cantone)</caption>
+            <thead>
+              <tr class="bg-slate-900 text-white">
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Jours</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Sorrente</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Nerano Cantone</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Itinéraire</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              {neranoOut.map(([day, dep, arr, r]) => (
+                <tr class="hover:bg-slate-50 transition-colors">
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap text-slate-600">{dayLabels[day]}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 font-mono">{dep}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 font-mono">{arr}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap text-slate-500">{neranoRoutes[r]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div class="overflow-x-auto rounded-2xl border border-slate-200">
+          <table class="w-full text-xs sm:text-sm">
+            <caption class="text-left text-xs text-white px-2 py-2 sm:px-4 sm:py-2 bg-slate-900 rounded-t-2xl border-b border-med-gold font-medium">Nerano (Marina del Cantone) → Sorrente</caption>
+            <thead>
+              <tr class="bg-slate-900 text-white">
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Jours</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Nerano Cantone</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Sorrente</th>
+                <th class="text-left px-2 py-2 sm:px-3 sm:py-3 font-semibold whitespace-nowrap">Itinéraire</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              {neranoBack.map(([day, dep, arr, r]) => (
+                <tr class="hover:bg-slate-50 transition-colors">
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap text-slate-600">{dayLabels[day]}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 font-mono">{dep}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 font-mono">{arr}</td>
+                  <td class="px-2 py-1.5 sm:px-3 sm:py-2 whitespace-nowrap text-slate-500">{neranoRoutes[r]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="text-xs text-slate-500 mt-2">* Correspondance à Sant'Agata avec le bus de 17:05 pour Sorrente. D'autres départs desservent Termini, Marciano et Marina della Lobra : voir l'horaire officiel.</p>
     </section>
 
     <section>
@@ -182,8 +378,8 @@ const faqSchema = {
           </thead>
           <tbody class="divide-y divide-slate-100">
             {[
-              ['Sorrente → Positano', '~€2,50', '~50 min'],
-              ['Sorrente → Amalfi', '~€3,50', '~90 min'],
+              ['Sorrente → Positano', '~€2,50', '25-50 min'],
+              ['Sorrente → Amalfi', '~€3,50', '75-100 min'],
               ['Amalfi → Ravello (bus local)', '~€1,50', '~25 min'],
               ['Amalfi → Salerno (via SS163)', '~€2,80', '~60 min'],
               ['Billet journalier (zone Côte Amalfitaine)', '~€7,50', 'Illimité'],
@@ -197,6 +393,7 @@ const faqSchema = {
           </tbody>
         </table>
       </div>
+      <p class="text-xs text-slate-500 mt-2">Prix indicatifs. SITA Sud a ajusté le prix des billets à l'unité à partir du 1er octobre 2026 (<a href="https://sitasudtrasporti.it/campania/adeguamento-tariffario-dal-01-10-2026/" target="_blank" rel="noopener" class="text-med-blue underline hover:opacity-80">avis officiel</a>) : vérifiez le tarif en vigueur à l'achat. Les abonnements ne changent pas, et les billets achetés avant le 1er octobre 2026 restent valables jusqu'au 31 décembre 2026.</p>
     </section>
 
     <section class="bg-med-cream border border-med-gold/20 rounded-[2rem] p-8">
@@ -204,14 +401,12 @@ const faqSchema = {
       <ul class="space-y-2">
         {[
           'Achetez votre billet AVANT de monter : dans un bureau de tabac, bar ou kiosque.',
-          'En été, le bus de 9h00 de Sorrente à Positano est déjà plein - prenez celui de 7h30 ou attendez 10h30.',
+          'En haute saison, les bus de la matinée de Sorrente vers Positano se remplissent en premier : arrivez tôt à l\'arrêt ou prenez un départ plus matinal (06:30 ou 07:45, lun-sam).',
+          'Le dimanche et les jours fériés, seuls les départs « Dim. et fériés » et « Tous les jours » circulent : le premier bus de Sorrente vers Amalfi part à 08:30, le dernier à 19:15.',
           'Le côté droit du bus (depuis Sorrente) offre les plus belles vues sur la mer.',
           'N\'espérez pas la ponctualité : le trafic sur la SS163 est imprévisible. Prévoyez toujours 30 min de marge.',
         ].map(tip => (
-          <li class="flex items-start gap-2 text-xs sm:text-sm text-charcoal">
-            <span class="w-1.5 h-1.5 rounded-full bg-charcoal mt-1.5 flex-shrink-0"></span>
-            <span set:html={tip}></span>
-          </li>
+          <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700" set:html={tip}></span></li>
         ))}
       </ul>
     </section>
@@ -305,7 +500,7 @@ const faqSchema = {
           <div class="max-w-2xl">
             <span class="text-med-gold font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Découvrez le Territoire</span>
             <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Expériences Authentiques</h2>
-            <p class="text-slate-600 text-lg">De la cuisine traditionnelle aux visites des citronneries, découvrez l'âme véritable de la Côte.</p>
+            <p class="text-slate-600 text-lg">De la cuisine traditionnelle aux visites des citronneries, découvrez la Côte au-delà des plages.</p>
           </div>
           <a href="/fr-fr/experiences/" class="group flex items-center gap-2 text-med-blue font-semibold hover:text-med-gold transition-colors">
             Toutes les Expériences

@@ -1,0 +1,442 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'en-us';
+const post = {
+  title: 'Torrone Recipe',
+  subtitle: 'Campanian Christmas Torrone and Torroncini, Made at Home',
+  category: 'FOOD',
+  date: 'November 5, 2026',
+  readTime: '10 min',
+  image: '/images/torrone-hero.webp',
+  imageAlt: "Slices of white torrone with almonds on a wooden board",
+  path: '/en-us/blog/torrone-recipe/',
+};
+
+const metaTitle = 'Torrone Recipe: Campanian Christmas Nougat and Torroncini';
+const metaDescription = 'Homemade white torrone the Campanian way: honey, egg white, almonds and hazelnuts, exact temperatures, how to make torroncini, storage and common mistakes.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Blog', url: '/en-us/blog/' },
+  { name: 'Torrone Recipe', url: '/en-us/blog/torrone-recipe/' },
+];
+
+const quickInfo = [
+  { label: 'Difficulty', value: 'Medium (a thermometer helps a lot)' },
+  { label: 'Preparation', value: '30 min + 20 min cooking' },
+  { label: 'Resting', value: 'Several hours, ideally overnight' },
+  { label: 'Key temperatures', value: 'Honey 120-124°C, sugar syrup 144-145°C' },
+  { label: 'Yield', value: 'One 20 x 20 cm slab, about 750 g' },
+  { label: 'Storage', value: 'Wrapped, in a tin, dry place, up to about 1 month' },
+  { label: 'Variation', value: 'Torroncini dipped in dark chocolate' },
+  { label: 'Origin', value: 'Benevento and the Sannio, Campania' },
+];
+
+const faq = [
+  {
+    q: 'What is the difference between torrone and torroncini?',
+    a: 'Torrone is the full bar or slab: honey, egg white and sugar whipped into a white mass, packed with almonds or hazelnuts and closed between two sheets of wafer paper. Torroncini are small pieces of the same family, cut into bite-sized strips or cubes and often coated in dark chocolate. In the Benevento area they are sold both soft and crumbly, and the San Marco dei Cavoti croccantino is a crunchy almond and hazelnut bar coated in dark chocolate.',
+  },
+  {
+    q: 'Can I make torrone without a thermometer?',
+    a: 'Yes, but it is less predictable. The traditional home method cooks the honey slowly in a bain-marie for about an hour, stirring all the time, before adding the whipped whites and the sugar syrup. For the syrup you can use the cold water test: a drop that turns hard and snaps cleanly in cold water is close to 145°C. A cheap probe thermometer removes most of the guesswork.',
+  },
+  {
+    q: 'Why is my homemade torrone sticky?',
+    a: 'Usually the sugar syrup did not reach 144-145°C, so there is too much water left in the mass. Humidity is the other cause: torrone absorbs moisture from the air, so make it on a dry day and store it wrapped in a tin, away from the kitchen steam.',
+  },
+  {
+    q: 'How long does homemade torrone keep?',
+    a: 'Wrapped bar by bar in baking paper and then foil, and kept in a tin or airtight box in a cool, dry place, it keeps for up to about one month. The fridge is not needed and tends to make the surface damp when you take it out.',
+  },
+  {
+    q: 'What is ostia and can I skip it?',
+    a: 'Ostia is edible wafer paper, a thin unleavened sheet that lines the top and bottom of the slab so the torrone does not stick to the tin or to your fingers. You can replace it with lightly oiled baking paper, but you will need to peel the paper off before cutting and the edges stay sticky.',
+  },
+  {
+    q: 'Is Italian torrone the same as French nougat or Spanish turrón?',
+    a: 'They are close relatives built on the same idea: honey, sugar and egg white with nuts. Proportions, nuts and textures differ from place to place. This article covers the Campanian white torrone and the torroncini of the Benevento area.',
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Limoncello Recipe', href: '/en-us/blog/limoncello-recipe/' },
+  { label: 'Feast of the Dead and Torrone dei Morti', href: '/en-us/blog/feast-of-the-dead-halloween/' },
+  { label: 'Lemon Delight', href: '/en-us/blog/lemon-delight/' },
+  { label: 'Christmas Lights in Sorrento and Salerno', href: '/en-us/blog/christmas-lights-sorrento-salerno/' },
+  { label: 'Cooking Class', href: '/en-us/experiences/cooking-class/' },
+];
+
+const authorRole = 'Food & Travel Specialist · Amalfi Coast';
+
+const relatedArticles = [
+  {
+    title: 'Limoncello Recipe',
+    category: 'FOOD',
+    date: 'May 31, 2026',
+    image: '/images/limoncello-ricetta-hero.webp',
+    imageAlt: 'Homemade limoncello from the Amalfi Coast - Amalfi and Sorrento lemons',
+    path: '/en-us/blog/limoncello-recipe/'
+  },
+  {
+    title: 'The Feast of the Dead, Halloween and the Hooded Brotherhoods',
+    category: 'DISCOVERIES',
+    date: 'October 7, 2026',
+    image: '/images/misteri-venerdi-santo-hero.webp',
+    imageAlt: 'A Mystery of the Passion carried by hooded brothers in a Good Friday procession',
+    path: '/en-us/blog/feast-of-the-dead-halloween/'
+  }
+];
+
+const keyTakeaways = [
+  "Campanian white torrone has four core ingredients: honey, egg white, sugar and nuts (almonds, hazelnuts or both), closed between two sheets of wafer paper (ostia).",
+  "The two numbers that matter: honey to 120-124°C, sugar syrup to 144-145°C. Hotter honey burns and turns bitter.",
+  "The nuts must go in hot. Cold nuts set the mass too fast and it turns grainy and hard to spread.",
+  "Torroncini are small pieces of the same family, soft or crumbly, often dipped in dark chocolate. San Marco dei Cavoti is known for its crunchy chocolate-coated croccantino.",
+  "Wrapped and kept in a tin in a dry place, homemade torrone lasts up to about a month.",
+];
+
+const schemaRecipe = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Campanian White Torrone (Honey and Almond Nougat)",
+  "description": "Homemade white torrone with honey, egg white, sugar, almonds and hazelnuts between two sheets of wafer paper, with thermometer temperatures and a torroncini variation.",
+  "image": "https://amalficoast-travel.com/images/torrone-hero.webp",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "datePublished": "2026-10-16",
+  "recipeCategory": "Dessert",
+  "recipeCuisine": "Italian",
+  "keywords": "torrone, torroncini, Italian nougat, Christmas, Campania, Benevento",
+  "prepTime": "PT30M",
+  "cookTime": "PT20M",
+  "totalTime": "PT6H50M",
+  "recipeYield": "One 20 x 20 cm slab (about 750 g)",
+  "recipeIngredient": [
+    "220 g blanched almonds",
+    "90 g skinned hazelnuts",
+    "40 g shelled unsalted pistachios (optional, or more almonds)",
+    "135 g honey (acacia or wildflower)",
+    "200 g granulated sugar for the syrup",
+    "65 g water",
+    "20 g glucose syrup (or the same weight of honey)",
+    "1 egg white (about 35 g), at room temperature",
+    "15 g granulated sugar for the egg white",
+    "2 sheets of edible wafer paper (ostia), 20 x 20 cm",
+    "A little neutral seed oil for the spatula and knife"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Warm the nuts", "text": "Toast the almonds, hazelnuts and pistachios at 150°C for about 10 minutes, then leave them in the switched-off oven so they stay hot." },
+    { "@type": "HowToStep", "name": "Prepare the tin", "text": "Line the bottom of a 20 x 20 cm square frame or tin with one sheet of wafer paper." },
+    { "@type": "HowToStep", "name": "Cook the sugar syrup", "text": "Stir the sugar, water and glucose together in a small pan and cook over medium-high heat with a thermometer in the pan." },
+    { "@type": "HowToStep", "name": "Heat the honey", "text": "When the syrup reaches about 116°C, put the honey on the heat in a second pan. Take it to 120-124°C and no higher." },
+    { "@type": "HowToStep", "name": "Whip the egg white", "text": "When the syrup is around 120°C, start whipping the egg white with 15 g of sugar until it holds firm peaks." },
+    { "@type": "HowToStep", "name": "Add honey and syrup", "text": "With the mixer running, pour the hot honey onto the egg white in a thin stream. When the syrup reaches 144-145°C, pour it in slowly as well." },
+    { "@type": "HowToStep", "name": "Beat the mass", "text": "Lower the speed and beat for a few minutes until the mixture is white, glossy and very thick." },
+    { "@type": "HowToStep", "name": "Fold in the nuts", "text": "Take off the whisk and fold in the hot nuts by hand with a lightly oiled spatula." },
+    { "@type": "HowToStep", "name": "Shape and press", "text": "Spread the mixture into the lined tin, cover with the second sheet of wafer paper and press it flat with a board cut to size." },
+    { "@type": "HowToStep", "name": "Rest and cut", "text": "Leave to set at room temperature for several hours, ideally overnight. Cut into bars or torroncini with a heavy knife wiped with oil between cuts." }
+  ]
+};
+---
+
+<BlogPostLayout
+  lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  breadcrumbs={breadcrumbs}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  relatedArticles={relatedArticles}
+  pageKey="torrone-recipe"
+  extraSchema={[schemaRecipe]}
+>
+
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <div class="flex items-center gap-3 mb-6">
+      <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Key Takeaways</h2>
+    </div>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-xs sm:text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      In Campania, Christmas has a sound: the crack of a knife going through a slab of <strong>torrone</strong>. From December, pastry shops and grocery stores across the region, the <a href="/en-us/amalfi-coast/" class="text-med-blue hover:underline">Amalfi Coast</a> included, stack bars and boxes of torrone and <strong>torroncini</strong>, many of them from the Benevento area. This is a <strong>torrone recipe</strong> you can make in your own kitchen: the classic white version with honey, egg white, sugar, almonds and hazelnuts, with the exact temperatures, the times, and the mistakes that ruin a batch.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      If you have already made our <a href="/en-us/blog/limoncello-recipe/" class="text-med-blue hover:underline">homemade limoncello</a>, torrone is the next step up: more technique, fewer days of waiting, and a result you can cut and share the next morning.
+    </p>
+  </div>
+
+  <!-- Origins -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Torrone in Campania: Benevento and the Sannio</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      The Campanian capital of torrone is <strong>Benevento</strong>, inland in the Sannio. According to the Discover Campania tourism portal, the local torrone was known in Latin as <em>cupedia</em>: the Roman poet Martial listed it among the city's typical products, and Livy gave it a Samnite origin. When Benevento belonged to the Papal State, torrone was sent to Rome in the 1600s as a gift for high prelates, and in the 1700s a "torrone del Papa" was created in homage to the Pope.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      The same source credits the Bourbons with turning the Benevento sweet into part of the Neapolitan Christmas, and adds the "torrone della Regina" to the list, the version favored by King Ferdinand I. Production spread to nearby towns such as Santa Croce del Sannio, Montefalcone di Val Fortore and <strong>San Marco dei Cavoti</strong>, where a crunchy chocolate-covered <strong>croccantino</strong> appeared in 1891.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Accounts of the croccantino differ on the details. Some credit Innocenzo Borrillo, whose family pastry workshop is still in San Marco dei Cavoti; others say Borrillo first made small almond and hazelnut "Baci" and that other local pastry makers created the croccantino in 1891. Every December the town holds a <strong>Festa del Torrone e del Croccantino</strong>.
+    </p>
+  </div>
+
+  <!-- Torrone vs torroncini -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">White Torrone, Soft Torroncini and Croccantino: The Differences</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      All three come from the same idea, honey and sugar holding a lot of nuts together, but they are not the same thing on the plate. The main lever is cooking: Italian food writers point out that soft torrone is cooked for a much shorter time than the crumbly kind, which in artisan production can stay on the heat for hours.
+    </p>
+
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Type</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">What it is</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">White torrone (torrone bianco)</td>
+            <td class="p-5 text-slate-600">Honey, egg white and sugar whipped white, packed with almonds and hazelnuts, closed between two sheets of ostia. Soft (morbido) or crumbly (friabile) depending on the cooking.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Torroncini</td>
+            <td class="p-5 text-slate-600">Small pieces of torrone, cut into strips or cubes and often coated in dark chocolate. In the Benevento area they come both soft and crumbly, in many flavors.</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Croccantino of San Marco dei Cavoti</td>
+            <td class="p-5 text-slate-600">A crunchy bar of almonds and hazelnuts with sugar, coated in dark chocolate. Closer to a brittle than to the white torrone.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      The recipe below makes a soft-style white torrone, which is the most reliable result at home. You can turn it into torroncini at the end.
+    </p>
+  </div>
+
+  <!-- Ingredients -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Torrone Ingredients: Quantities for a 20 x 20 cm Slab</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Weigh everything before you start: once the syrup is on the heat there is no time to look for anything. These quantities follow the proportions of tested Italian home recipes and give about <strong>750 g of torrone</strong>.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Ingredients (one 20 x 20 cm slab)</h3>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>220 g blanched almonds</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>90 g skinned hazelnuts</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>40 g unsalted pistachios</strong> (optional, or more almonds)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>135 g honey</strong> (acacia for a mild taste, wildflower for a stronger one)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>200 g granulated sugar</strong> for the syrup</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>65 g water</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>20 g glucose syrup</strong> (or the same weight of honey)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>1 egg white</strong> (about 35 g), at room temperature, plus <strong>15 g sugar</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>2 sheets of ostia</strong> (edible wafer paper), 20 x 20 cm</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Neutral seed oil</strong>, a few drops for the spatula and knife</span></li>
+      </ul>
+    </div>
+
+    <h3 class="font-serif text-xl font-bold text-slate-900 mt-8 mb-4">Equipment</h3>
+    <ul class="space-y-3">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">A digital probe thermometer (two make life easier: one for the syrup, one for the honey)</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">A stand mixer, or an electric hand whisk and a helper to pour</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Two small heavy-based pans</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">A 20 x 20 cm square frame or tin, and a piece of board or stiff cardboard cut to the same size</span></li>
+    </ul>
+  </div>
+
+  <!-- Preparation -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">How to Make Torrone: Step by Step</h2>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">The Method</h3>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Warm the nuts.</strong> Toast almonds, hazelnuts and pistachios at 150°C for about 10 minutes, then switch the oven off and leave them inside. They must be hot when they go into the mixture.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Prepare the tin.</strong> Lay one sheet of ostia on the bottom of the 20 x 20 cm frame. Keep the second sheet and the board within reach.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Start the syrup.</strong> Stir 200 g sugar, 65 g water and 20 g glucose together in a pan, then cook over medium-high heat with the thermometer in. Weigh the honey into the second pan and leave it off the heat for now.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">4</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Heat the honey.</strong> When the syrup reaches about 116°C, put the honey on the heat. It needs to reach 120-124°C. Do not let it go higher: overheated honey burns and the torrone tastes bitter.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">5</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Whip the egg white.</strong> When the syrup is around 120°C, start whipping the egg white with 15 g sugar until it holds firm peaks.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">6</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Pour the honey.</strong> As soon as the honey is at temperature, pour it onto the egg white in a thin stream with the mixer running.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">7</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Pour the syrup.</strong> When the sugar syrup reaches 144-145°C, take it off the heat and pour it in slowly, still with the mixer running. Do not go past 145°C.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">8</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Beat until glossy.</strong> Lower the speed and beat for a few minutes, until the mass is white, shiny and very thick.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">9</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Fold in the hot nuts.</strong> Take off the whisk and fold in the nuts by hand with a lightly oiled spatula or wooden spoon. Work fast: the mass stiffens as it cools.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">10</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Shape and press.</strong> Spread the mixture into the frame, cover with the second sheet of ostia and press hard with the board to level it.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">11</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Rest, then cut.</strong> Leave it at room temperature for several hours, ideally overnight. Cut with a heavy knife, oiling the blade before each cut: four 5 x 20 cm bars, or thin strips for torroncini.</p>
+        </div>
+      </div>
+    </div>
+
+    <blockquote class="border-l-4 border-med-gold pl-6 my-8">
+      <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+        "Torrone is decided in the last two degrees: the honey you do not burn and the syrup you take off the heat at 145."
+      </p>
+    </blockquote>
+  </div>
+
+  <!-- Temperatures -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Torrone Temperatures and Times at a Glance</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Italian home recipes and pastry chefs agree on these numbers. Keep this table next to the stove:
+    </p>
+
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Stage</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Temperature / time</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Toasting the nuts</td>
+            <td class="p-5 text-slate-600">150°C, about 10 minutes, then kept warm</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Honey goes on the heat</td>
+            <td class="p-5 text-slate-600">When the syrup reads about 116°C</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Start whipping the egg white</td>
+            <td class="p-5 text-slate-600">When the syrup reads about 120°C</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Honey</td>
+            <td class="p-5 text-slate-600">120-124°C, never higher</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Sugar syrup</td>
+            <td class="p-5 text-slate-600">144-145°C, never higher</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Setting</td>
+            <td class="p-5 text-slate-600">Room temperature, several hours or overnight</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      No thermometer? The older home method cooks the honey slowly in a bain-marie for about an hour, stirring constantly, before adding the whites and the syrup. For the syrup, drop a little into cold water: at the right point it sets hard and snaps cleanly.
+    </p>
+  </div>
+
+  <!-- Torroncini -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">How to Make Torroncini from the Same Batch</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      <strong>Torroncini</strong> are the small, gift-sized side of torrone. Once the slab has set overnight, cut it into strips about 2 cm wide and then into short pieces. Eat them as they are, or do what Benevento producers do with many of theirs and coat them in chocolate.
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Chocolate coating:</strong> melt about 200 g of dark chocolate, dip each piece with a fork, let the excess drip off and set them on baking paper.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Single-nut versions:</strong> replace the nut mix with 350 g of almonds only, hazelnuts only or pistachios only.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Wrapping:</strong> wrap each piece in a square of baking paper and twist the ends, the way they are sold in pastry shops.</span></li>
+    </ul>
+  </div>
+
+  <!-- Storage -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">How to Store Homemade Torrone</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Moisture is the enemy. Wrap each bar in baking paper and then in foil, and keep the bars in a tin or airtight box in a cool, dry place. Stored like this, homemade torrone keeps for <strong>up to about one month</strong>. The fridge is not needed. Chocolate-coated torroncini keep the same way, away from heat so the chocolate does not bloom.
+    </p>
+  </div>
+
+  <!-- Common mistakes -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Common Mistakes with Homemade Torrone</h2>
+    <ul class="space-y-3">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Burning the honey.</strong> Above about 124°C the honey scorches and the bitterness goes through the whole slab.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Syrup too cool.</strong> If the sugar stops short of 144°C, the torrone stays sticky and never sets cleanly.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Cold nuts.</strong> Nuts straight from the jar cool the mass so fast that it turns grainy and impossible to spread.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Pouring too fast.</strong> Hot syrup dumped in one go cooks the egg white into lumps. Pour in a thin stream against the side of the bowl.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Cutting too early.</strong> A slab cut after an hour tears and loses its shape. Wait until the next day.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Dry tools.</strong> An unoiled spatula or knife sticks at once. A few drops of seed oil solve it.</span></li>
+    </ul>
+  </div>
+
+  <!-- Torrone dei morti -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">A Different Torrone: the Torrone dei Morti</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Before the Christmas torrone arrives, Naples and Campania have another one. The <strong>torrone dei morti</strong> is sold around 1 and 2 November and has nothing to do with the white torrone above: it is a soft sweet built on chocolate, a dark chocolate shell around a filling of white or milk chocolate with hazelnuts. Neapolitans call it 'o muollo, the soft one. We tell the full story, with the processions and the place of Halloween, in our article on the <a href="/en-us/blog/feast-of-the-dead-halloween/" class="text-med-blue hover:underline">Feast of the Dead in Campania</a>.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Visiting in December instead? Pair a box of torroncini with an evening walk under the <a href="/en-us/blog/christmas-lights-sorrento-salerno/" class="text-med-blue hover:underline">Christmas lights of Sorrento and Salerno</a>, or learn more Campanian recipes hands-on in a <a href="/en-us/experiences/cooking-class/" class="text-med-blue hover:underline">cooking class on the Amalfi Coast</a>.
+    </p>
+  </div>
+
+  <!-- Expert Tips -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold">Expert Tips</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Pick a dry day</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Sugar and honey pull water from the air. On a rainy, humid day the same recipe comes out softer and stickier, so keep pots of boiling pasta water out of the kitchen while you work.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Choose the honey for its taste</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Acacia honey gives a clean, mild torrone that lets the almonds come through. Wildflower honey makes it darker and more aromatic. Avoid very strong honeys like chestnut for a first batch.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Get everything ready first</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Honey, syrup and egg white peak within a couple of minutes of each other. Have the tin lined, the nuts hot and the spatula oiled before the sugar goes on the heat.</p>
+      </div>
+    </div>
+  </div>
+
+</BlogPostLayout>

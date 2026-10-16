@@ -9,7 +9,7 @@ const lang = 'en-us';
 const breadcrumbs = [
   { name: 'Home', url: '/en-us/' },
   { name: 'Planning', url: '/en-us/planning/' },
-  { name: 'Home', url: '/en-us/guide/parking-ztl/' },
+  { name: 'Parking & ZTL', url: '/en-us/guide/parking-ztl/' },
 ];
 
 const faqSchema = {
@@ -18,36 +18,79 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Can I drive to Positano?",
-      "acceptedAnswer": { "@type": "Answer", "text": "In summer Positano is closed to traffic from 9:00 to 18:00 (ZTL). Only residents and hotel guests can enter by car. Best advice: park in Sorrento or Praiano and come by SITA bus or ferry." }
+      "name": "Is there free parking on the Amalfi Coast?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Very little. Free white-line spaces exist mainly away from the centres: Montepertuso and Nocelle above Positano, roadside stretches on the SS163 and on the Agerola road before Amalfi, Via Chiunzi in Maiori, Via Rota and Via Parsano in Sorrento. In July and August they are usually taken by 9:00. Always read the sign next to the line: many white spaces are for residents only or have a time limit with the parking disc." }
     },
     {
       "@type": "Question",
-      "name": "Where should I park to visit the Amalfi Coast?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Best options: 1) Leave the car in Salerno or Vietri sul Mare and take the bus/ferry. 2) Park in Sorrento (Garage Achille Lauro, ~€2/h) and take the SITA bus or hydrofoil. 3) Use Amalfi's paid car parks (Luna Rossa, Flavio Gioia, ~€4–5/h) as a base." }
+      "name": "How much does parking cost in Positano?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Central private garages such as Mandara and De Gennaro charge roughly €8-12 per hour and €50-90 per day in summer. Municipal blue-line spaces cost about €3 per hour but are almost always full. Free spaces exist only up in Montepertuso and Nocelle, connected to the centre by the local bus." }
     },
     {
       "@type": "Question",
       "name": "How much does parking in Amalfi cost?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Amalfi's main car parks (Luna Rossa and Flavio Gioia) cost ~€4–5/hour or ~€25–30/day. They are almost always full in July and August. It's recommended to arrive before 9:00 or use public transport." }
+      "acceptedAnswer": { "@type": "Answer", "text": "The Luna Rossa and Berma car parks charge about €5 per hour by day and €4 per hour at night; the port car parks (Darsena, Flavio Gioia) about €6 per hour by day. In 2026 a surcharge applied to the first two daytime hours. They fill up by mid-morning in July and August, so arrive before 9:00 or come by bus or ferry." }
+    },
+    {
+      "@type": "Question",
+      "name": "Where should I park to visit the Amalfi Coast?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The most practical options: 1) Vietri sul Mare or Salerno, which have the largest car parks on the coast, then SITA bus or Travelmar ferry. 2) Sorrento (Achille Lauro garage, about €2-3/h) or a Circumvesuviana station such as Vico Equense or Sant'Agnello, then bus or hydrofoil. 3) Praiano, with municipal blue lines on 6 and 14-hour tickets, halfway between Positano and Amalfi." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I drive to Positano?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, the SS163 runs through the top of Positano, but on many days from Easter to October the alternate license plates rule applies from 10:00 to 18:00. The one-way internal road (Via Pasitea, Piazza dei Mulini, Via Cristoforo Colombo) is a ZTL with camera gates, open only to authorised vehicles. If you book a central garage or a hotel with parking, ask them to register your plate before you arrive." }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I park in Sorrento?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The main options are the Achille Lauro garage in Via Correale (about €2-3/h, €24-30/day, free under 30 minutes), Fuorimura Parking and Sorrento Parking (from about €27/day), and the Marina Piccola garage at the port (about €26 for 6 hours, €32 for 24 hours), useful for a Capri day trip. Blue lines cost €1 for 30 minutes or €2 per hour. The centre is a ZTL in the evening and on Sundays." }
+    },
+    {
+      "@type": "Question",
+      "name": "What do blue, white and yellow lines mean in Italy?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Blue lines are paid parking: pay at the meter or with an app and display the ticket. White lines are free unless a sign adds a limit (parking disc, residents only, street cleaning). Yellow lines are reserved: residents with permits, disabled badge holders, loading, taxis or buses. Parking on yellow spaces or overstaying on blue lines leads to fines from about €42, and in signed tow-away zones the car can be removed." }
     }
   ]
 };
 
+const amalfiCoast = [
+  { town: "Positano", where: "Private garages on the internal road (Mandara, De Gennaro); municipal blue lines; free spaces up in Montepertuso and Nocelle", cost: "Garages about €8-12/h, €50-90/day in summer. Blue lines about €3/h", notes: "Central garages fill by mid-morning in July and August: book ahead. The internal road is a camera ZTL, so ask the garage or hotel to register your plate." },
+  { town: "Praiano", where: "Municipal blue lines along the SS163 and village roads; private car park at Marina di Praia", cost: "€3/h, €15 for 6 h, €30 for 14 h (2026)", notes: "Paid 08:00-22:00 April-October, 08:00-20:00 November-March, holidays included. A few white-line spaces, many for residents only." },
+  { town: "Amalfi", where: "Luna Rossa (in the rock between Amalfi and Atrani, about 170 spaces, tunnel to the centre); Berma; port car parks Darsena and Flavio Gioia", cost: "Luna Rossa and Berma about €5/h by day, €4/h at night. Port about €6/h by day. 2026: surcharge on the first two daytime hours", notes: "Luna Rossa: no LPG or methane cars, max height 2 m; carry cash for the exit machine. Usually full by 10:00 in summer. The historic centre is a ZTL." },
+  { town: "Atrani", where: "A few blue-line spaces near the beach; Luna Rossa, whose tunnel also leads into Atrani", cost: "Blue lines about €2.50-3/h", notes: "A 2026 guide reports a 4-hour limit for non-residents and no overnight parking (20:00-08:00) in summer. Use Luna Rossa instead." },
+  { town: "Ravello", where: "Garage under Piazza Duomo (about 140 spaces); Auditorium Oscar Niemeyer car park; blue lines on Via Boccaccio and Via della Repubblica", cost: "Piazza Duomo: about €5/h by day in 2026 guides (older lists: €2.50/h, €15/day). Auditorium: about €4/h by day, €2.50/h at night, €40 for 24 h", notes: "The centre is a ZTL. Street spaces near the centre can reach €5/h. The Piazza Duomo garage may close for events and weddings." },
+  { town: "Minori", where: "Blue lines on the seafront; small paid car park at the end of Via Roma (about 20 spaces)", cost: "About €3/h", notes: "New 2026 rates were approved in February 2026: follow the meter. Very few spaces in summer." },
+  { town: "Maiori", where: "Blue lines along the seafront; car park at the port", cost: "Blue lines about €3/h in summer, weekdays and holidays. Port about €5/h", notes: "Free white lines on Via Chiunzi (road to Tramonti), well away from the beach. The long seafront makes Maiori one of the easier towns." },
+  { town: "Cetara", where: "Car park at the harbour (blue lines); Pastena car park in the upper village (Via Cannillo)", cost: "Harbour about €3/h March-October, €1.50/h November-February (one source quotes €4/h). Pastena about €3/h", notes: "Harbour car park open about 07:00-02:00. When it is full the road down can be closed and you are sent up to Pastena." },
+  { town: "Vietri sul Mare", where: "Piazza Matteotti; railway station car park (about 150 spaces); Piazza Mercato; blue lines at Marina di Vietri", cost: "Piazza Matteotti €3 for the first hour, then €1.50 per 30 min. Station and Piazza Mercato about €2/h or €20/day. Marina June-August €2.50/h weekdays, €3/h weekends", notes: "The largest parking supply on the coast. A free public lift runs near the station. Piazza Matteotti is free in the small hours (check the meter for the exact window)." },
+  { town: "Furore", where: "Car park at Marina di Praia; blue lines in the upper village", cost: "About €2.50/h at Marina di Praia", notes: "No parking at the Fiordo: it is about 2 km on foot along the SS163. Do not stop on the bridge." },
+  { town: "Conca dei Marini", where: "A handful of municipal blue-line spaces", cost: "A 2026 guide lists €20/day; no reliable hourly rate found", notes: "Very few spaces. The SITA bus is the easier way in." },
+];
+
+const sorrentoPeninsula = [
+  { town: "Sorrento", where: "Achille Lauro (Via Correale, under Piazza Lauro); Fuorimura Parking; Sorrento Parking (Via San Renato); Parcheggio Stinga (Via degli Aranci); Marina Piccola garage at the port", cost: "Achille Lauro about €2-3/h, €24-30/day, free under 30 min. Fuorimura about €2.50/h, from €27/day. Sorrento Parking €3/h, from €27/day. Marina Piccola about €26 for 6 h, €32 for 24 h. Blue lines €1 per 30 min, €2/h", notes: "Free white lines on Via Rota and Via Parsano, rarely empty. Marina Piccola suits a Capri day trip. The centre is a ZTL in the evening and on Sundays." },
+  { town: "Sant'Agnello", where: "Blue lines on Via Cocumella and Viale dei Pini; Circumvesuviana station car park (Piazzale Don Minzoni)", cost: "Set by zone; we found no reliable current figures", notes: "One train stop or a 15-20 minute walk from central Sorrento: a calmer base than the town centre." },
+  { town: "Piano di Sorrento", where: "Blue lines run by SIS; Piazza della Repubblica; Circumvesuviana station car park (Via Stazione)", cost: "Corso Italia and Piazza Cota €1.50/h. Most streets €1/h, outer streets €0.50/h. Piazza della Repubblica: first 30 min free, then €1", notes: "Paid Monday-Saturday 08:30-13:30 and 15:30-21:30 (June-September), 08:30-13:30 and 15:00-20:00 (October-May). The midday break is free." },
+  { town: "Meta", where: "Marina di Meta beach car park with lift; blue lines in town (zones A, B, C)", cost: "Marina di Meta June-September €3/h or €15/day (08:00-24:00); March-May and October €1.50/h or €6/day; November-February €1/h. Town blue lines about €1/h", notes: "The lift to the beach costs €1. Meta applies its own inverted alternate plates rule in the centre: see our guide." },
+  { town: "Vico Equense", where: "Seasonal car parks at Marina d'Aequa and Marina di Vico; blue lines in the centre", cost: "Marinas: €8 for the first 6 h, then €2/h (€10 for cars with more than 5 seats); evening rate €5 from 19:00 (2025 rates)", notes: "High season runs 1 June to 10 September. Vico has a Circumvesuviana station, a good park-and-ride point before Sorrento." },
+  { town: "Massa Lubrense (Marina del Cantone, Nerano)", where: "Municipal blue lines; two small car parks at Marina del Cantone; private car parks, including Il Venione with a shuttle", cost: "Blue lines €2/h from mid-April to mid-October (2023 resolution), about €3/h reported more recently. Marina del Cantone car parks €3/h. Private lots about €10-25/day, reserved spaces in Nerano up to €50/day", notes: "In August and at weekends the lots fill by 9:00. In 2025 the town opened temporary extra parking (Ord. 79/2025) because of the shortage." },
+  { town: "Sant'Agata sui Due Golfi", where: "No named public car parks found", cost: "No reliable published rates", notes: "Ask your accommodation about parking. Local buses run from Sorrento." },
+];
+
 const ztlData = [
-  { location: 'Positano', ztl: 'Yes', period: 'Jun–Sep (9:00–18:00)', note: 'Access reserved for residents and hotel guests. SITA bus or ferry recommended.' },
-  { location: 'Amalfi', ztl: 'Yes', period: 'Year-round (centre)', note: 'Permanent ZTL in the historic core. Paid car parks on the seafront (~€4/h).' },
-  { location: 'Ravello', ztl: 'Yes', period: 'Summer (10:00–19:00)', note: 'SITA bus from Amalfi only (25 min, ~€1.50) or car with hotel permit.' },
-  { location: 'Sorrento', ztl: 'Yes', period: 'Summer (centre)', note: 'Covered garages available. Piazza Lauro ~€2/h.' },
-  { location: 'Praiano', ztl: 'No', period: '-', note: 'Free and paid parking along the SS163. A great stopping point.' },
-  { location: 'Maiori', ztl: 'No', period: '-', note: 'Parking available along the seafront. Easier than villages further west.' },
-  { location: 'Minori', ztl: 'No', period: '-', note: 'Seafront car parks, free or low-cost.' },
+  { location: 'Positano', period: 'Year-round, camera gates', note: 'One-way internal road (Via Pasitea, Piazza dei Mulini, Via Cristoforo Colombo) for authorised vehicles only. Hotel and garage clients need their plate registered.' },
+  { location: 'Amalfi', period: 'Year-round (historic centre)', note: 'Park at Luna Rossa, Berma or the port and walk in. Hotels can register guests for unloading.' },
+  { location: 'Ravello', period: 'Historic centre', note: 'Use the Piazza Duomo garage or the Auditorium car park, just outside the restricted streets.' },
+  { location: 'Sorrento', period: 'Evenings from 19:30 and Sundays (centre)', note: 'The garages listed above stay reachable. Check the signs at the entry points.' },
+  { location: 'SS163 Amalfitana', period: 'Easter to October, 10:00-18:00', note: 'Alternate license plates on set days (odd plates on odd dates). Motorbikes and scooters exempt.' },
+  { location: 'Meta and SS145', period: 'Spring to October, set days', note: 'Municipal alternate plates rules, inverted in Meta. Check the calendar before driving.' },
 ];
 ---
 
 <BaseLayout
-  title="Amalfi Coast Parking & ZTL 2026 | Where to Leave Your Car"
-  description="Complete guide to parking and ZTL restricted zones on the Amalfi Coast: Positano, Amalfi, Ravello, Sorrento. Where to park and how to reach the villages stress-free."
+  title="Amalfi Coast Parking 2026: Prices by Town, Free Spots, ZTL"
+  description="Parking on the Amalfi Coast and Sorrento Peninsula town by town: car parks, hourly and daily prices, blue lines, where free white-line spaces exist, ZTL and fines."
   lang={lang}
   breadcrumbs={breadcrumbs}
   schema={[faqSchema]}
@@ -61,9 +104,9 @@ const ztlData = [
     <div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
       <div class="max-w-3xl">
         <p class="text-med-gold text-xs sm:text-sm font-medium uppercase tracking-[0.3em] mb-3">Travel Guide</p>
-        <h1 class="font-serif text-display text-white mb-4">Parking & ZTL Zones</h1>
+        <h1 class="font-serif text-display text-white mb-4">Parking on the Amalfi Coast: Prices by Town and Free Spaces</h1>
         <p class="text-xl text-white/80 leading-relaxed">
-          The Amalfi Coast in summer is a nightmare for drivers: ZTL restrictions everywhere, narrow roads and expensive parking. Main advice: leave the car and use public transport. Here's how.
+          Parking is scarce and paid almost everywhere. Here are the car parks town by town, what they cost, where free white-line spaces still exist and how the ZTL rules work.
         </p>
       </div>
     </div>
@@ -75,51 +118,150 @@ const ztlData = [
     <section class="max-w-editorial">
       <div style="background-color: #E2725B; border-color: #E2725B; padding: 6px 12px 6px 12px;" class="border rounded-[2rem] mb-6 mt-8">
         <p class="font-semibold mb-0 mt-0 text-white text-sm leading-tight" style="margin-top: -2px;">⚠️ ZTL Warning</p>
-        <p class="text-xs text-white/95 leading-tight">ZTL (Limited Traffic Zones) on the Amalfi Coast are monitored by cameras. Entering without authorisation results in a fine of €80–160 sent directly to your rental company or home address. This is enforced seriously.</p>
+        <p class="text-xs text-white/95 leading-tight">ZTL (Limited Traffic Zones) on the Amalfi Coast are monitored by cameras. Entering without authorisation costs from €87 (2026 amounts), and the fine reaches your rental company or home address months later, often with an admin fee on top.</p>
       </div>
       <p class="text-xl leading-relaxed text-charcoal text-justify">
-        The best strategy for visiting the Coast by car is the "strategic parking" approach: leave the car at an accessible point (Salerno, Vietri, Sorrento or Praiano) and use buses, ferries or hydrofoils from there.
+        The best way to visit the Coast by car is "strategic parking": leave the car where spaces are easier to find (Vietri, Salerno, Sorrento, a Circumvesuviana station or Praiano) and continue by bus, ferry or hydrofoil. If you do drive into the towns, the tables below tell you where to go and what to expect to pay.
+      </p>
+      <p class="text-sm text-slate-500 leading-relaxed mt-4">
+        Prices are approximate, collected in October 2026 from operators, town halls and local press dated 2023-2026. Rates change every season: the sign at the car park or meter is what counts.
       </p>
     </section>
 
-    <section>
-      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">ZTL and parking for each village</h2>
+    <section id="lines">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Blue, white and yellow lines: what they mean</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <div class="bg-med-cream rounded-[2rem] p-5 sm:p-6 border border-slate-100">
+          <div class="w-12 h-1.5 rounded-full mb-3" style="background-color: #2563eb;"></div>
+          <h3 class="font-semibold text-charcoal text-sm mb-2">Blue lines: paid</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Pay at the meter (coins, often cards) or with an app such as EasyPark, and display the ticket. Hours and rates are on the sign; outside those hours parking is usually free.</p>
+        </div>
+        <div class="bg-med-cream rounded-[2rem] p-5 sm:p-6 border border-slate-100">
+          <div class="w-12 h-1.5 rounded-full mb-3 bg-white border border-slate-300"></div>
+          <h3 class="font-semibold text-charcoal text-sm mb-2">White lines: free</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Free unless a sign adds a limit: parking disc (disco orario), residents only, street cleaning or tow-away times. Read the sign before you walk away.</p>
+        </div>
+        <div class="bg-med-cream rounded-[2rem] p-5 sm:p-6 border border-slate-100">
+          <div class="w-12 h-1.5 rounded-full mb-3" style="background-color: #eab308;"></div>
+          <h3 class="font-semibold text-charcoal text-sm mb-2">Yellow lines: reserved</h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Residents with permits, disabled badge holders, loading bays, taxis and buses. Never park here without the right permit, even for five minutes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="free-parking">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Free parking (white lines): the honest picture</h2>
+      <p class="text-lg leading-relaxed text-charcoal mb-6">
+        Free parking on the Amalfi Coast is rare. In the centres almost every space is blue or yellow, and the few white lines are often reserved for residents by a small sign. The free spaces that do exist are on the edges, uphill or along the main road, and in July and August they are usually gone by 9:00. In May, early June and October, on a weekday morning, your chances are real.
+      </p>
+      <h3 class="font-semibold text-charcoal mb-3">Where white-line spaces exist</h3>
+      <ul class="space-y-3 mb-6">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Positano.</strong> Montepertuso and Nocelle, in the hills above town. From there take the local Flavio Gioia bus down or walk (about 35 minutes).</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Amalfi.</strong> Roadside stretches on the SS163 about 1.5 km before the centre coming from Positano, and on the Agerola road (SS366) about 1 km above town. The walk back follows the road, with little or no pavement.</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Maiori.</strong> Via Chiunzi, the road towards Tramonti, well away from the seafront.</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Praiano.</strong> Scattered spaces along the road. Many are for residents: the sign tells you where the resident section starts.</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Sorrento.</strong> Via Rota (far from the centre) and Via Parsano (near Corso Italia). Rarely empty in season.</span></li>
+      </ul>
+      <h3 class="font-semibold text-charcoal mb-3">Rules, fines and towing</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Parking disc.</strong> Where the sign shows a disc and a time limit, set the blue disc (disco orario) to your arrival time, rounded to the next half hour, and leave it on the dashboard. Rental cars do not always have one: they cost a few euros at a newsagent or petrol station.</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Fines.</strong> Parking on yellow spaces, overstaying on blue lines or ignoring the disc starts at about €42. Disabled bays and ZTL entries cost much more.</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Towing.</strong> Where the sign says "zona rimozione", the car can be towed, and you pay the fine plus towing and storage. Local police are active in summer, especially on the SS163 where a badly parked car blocks the buses.</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Never on the road edge.</strong> A car left half on the SS163 outside marked spaces is fined quickly and can be removed. If there is no line, there is no space.</span></li>
+      </ul>
+    </section>
+
+    <section id="amalfi-coast">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Amalfi Coast: parking and prices by town</h2>
       <div class="overflow-x-auto rounded-2xl border border-slate-200">
-        <table class="w-full text-xs sm:text-sm">
+        <table class="w-full min-w-[760px] text-xs sm:text-sm">
           <thead>
             <tr class="bg-slate-900 text-white">
-              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">Village</th>
-              <th class="text-left px-2 py-2 sm:px-4 sm:py-3 font-semibold text-xs sm:text-sm">ZTL</th>
-              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Period</th>
-              <th class="hidden sm:table-cell px-4 py-3 font-semibold text-sm">Advice</th>
+              <th class="text-left px-3 py-3 font-semibold">Town</th>
+              <th class="text-left px-3 py-3 font-semibold">Where to park</th>
+              <th class="text-left px-3 py-3 font-semibold">Cost (approx.)</th>
+              <th class="text-left px-3 py-3 font-semibold">Notes</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-100">
-            {ztlData.map(r => (
-              <tr class="hover:bg-slate-50 transition-colors">
-                <td class="px-2 py-2 sm:px-4 sm:py-3 font-semibold text-charcoal text-xs sm:text-sm">{r.location}</td>
-                <td class="px-2 py-2 sm:px-4 sm:py-3">
-                  {r.ztl === 'Yes'
-                    ? <span class="text-[10px] bg-red-50 text-red-600 px-2 py-0.5 rounded-full font-medium">Yes</span>
-                    : <span class="text-[10px] bg-med-blue/5 text-med-blue px-2 py-0.5 rounded-full font-medium">No</span>
-                  }
-                </td>
-                <td class="hidden sm:table-cell px-4 py-3 text-slate-500 text-sm">{r.period}</td>
-                <td class="hidden sm:table-cell px-4 py-3 text-slate-600 text-sm">{r.note}</td>
+            {amalfiCoast.map(r => (
+              <tr class="hover:bg-slate-50 transition-colors align-top">
+                <td class="px-3 py-3 font-semibold text-charcoal whitespace-nowrap">{r.town}</td>
+                <td class="px-3 py-3 text-slate-600">{r.where}</td>
+                <td class="px-3 py-3 text-slate-700">{r.cost}</td>
+                <td class="px-3 py-3 text-slate-600">{r.notes}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <p class="text-xs text-slate-500 mt-3 sm:hidden">Swipe the table sideways to see all columns.</p>
+    </section>
+
+    <section id="sorrento-peninsula">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">Sorrento Peninsula: parking and prices by town</h2>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full min-w-[760px] text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-3 py-3 font-semibold">Town</th>
+              <th class="text-left px-3 py-3 font-semibold">Where to park</th>
+              <th class="text-left px-3 py-3 font-semibold">Cost (approx.)</th>
+              <th class="text-left px-3 py-3 font-semibold">Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {sorrentoPeninsula.map(r => (
+              <tr class="hover:bg-slate-50 transition-colors align-top">
+                <td class="px-3 py-3 font-semibold text-charcoal">{r.town}</td>
+                <td class="px-3 py-3 text-slate-600">{r.where}</td>
+                <td class="px-3 py-3 text-slate-700">{r.cost}</td>
+                <td class="px-3 py-3 text-slate-600">{r.notes}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-slate-500 mt-3 sm:hidden">Swipe the table sideways to see all columns.</p>
+    </section>
+
+    <section id="ztl">
+      <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">ZTL zones and traffic restrictions</h2>
+      <p class="text-lg leading-relaxed text-charcoal mb-6">
+        On top of the town ZTLs, the SS163 and parts of the Sorrento Peninsula use alternate license plates on set days. Dates, hours and exemptions are in our <a href="/en-us/guide/alternate-license-plates/" class="text-med-blue font-semibold hover:text-med-gold underline">alternate license plates guide</a>.
+      </p>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full min-w-[620px] text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="text-left px-3 py-3 font-semibold">Where</th>
+              <th class="text-left px-3 py-3 font-semibold">When</th>
+              <th class="text-left px-3 py-3 font-semibold">What to do</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {ztlData.map(r => (
+              <tr class="hover:bg-slate-50 transition-colors align-top">
+                <td class="px-3 py-3 font-semibold text-charcoal">{r.location}</td>
+                <td class="px-3 py-3 text-slate-500">{r.period}</td>
+                <td class="px-3 py-3 text-slate-600">{r.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-slate-600 leading-relaxed mt-4">
+        For the other towns we found no general ZTL affecting visitors, but resident-only streets are common. Taking the bus instead? See the <a href="/en-us/guide/sita-bus/" class="text-med-blue font-semibold hover:text-med-gold underline">SITA bus guide</a> and the <a href="/en-us/guide/ferries/" class="text-med-blue font-semibold hover:text-med-gold underline">ferries guide</a>.
+      </p>
     </section>
 
     <section class="bg-white">
       <h2 class="font-serif text-2xl font-semibold text-slate-900 mb-6">The 3 best strategies</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
         {[
-          { title: 'Base in Salerno', desc: 'Free or low-cost parking in Salerno (Piazza della Concordia, ~€5/day). Then Travelmar ferry to Amalfi, Positano and Capri. Ideal from April to October.', badge: 'Budget-friendly' },
-          { title: 'Base in Sorrento', desc: 'Garage Achille Lauro or EAV car park (~€2–3/h, ~€15/day). From Sorrento: hydrofoil to Capri (25 min), SITA bus to Positano (50 min), Circumvesuviana to Naples (70 min).', badge: 'Versatile' },
-          { title: 'Base in Praiano', desc: 'Praiano has no ZTL and has available parking. Great central position on the SS163: 15 min from Positano and 25 min from Amalfi by bus. Fewer amenities but great value.', badge: 'Central' },
+          { title: 'Base in Vietri or Salerno', desc: 'Vietri has the largest parking supply on the coast (station car park about €2/h or €20/day), and Salerno has large car parks near the port. From there, SITA bus or Travelmar ferry to Amalfi and Positano.', badge: 'Budget-friendly' },
+          { title: 'Base in Sorrento', desc: 'Achille Lauro garage (about €2-3/h, €24-30/day) or a Circumvesuviana station car park in Sant\'Agnello or Vico Equense. From Sorrento: hydrofoil to Capri, SITA bus to Positano, train to Naples.', badge: 'Versatile' },
+          { title: 'Base in Praiano', desc: 'Municipal blue lines along the SS163 at €3/h, with 6-hour (€15) and 14-hour (€30) tickets. Halfway between Positano and Amalfi by bus. Fewer services, but parking is easier than in the big names.', badge: 'Central' },
         ].map(s => (
           <div class="bg-med-cream rounded-[2rem] p-5 sm:p-6 border border-slate-100">
             <span class="text-[10px] uppercase tracking-wide bg-med-blue/5 text-med-blue px-2 py-1 rounded-full font-medium">{s.badge}</span>
@@ -145,6 +287,13 @@ const ztlData = [
           </details>
         ))}
       </div>
+    </section>
+
+    <section id="sources">
+      <h2 class="font-serif text-xl font-semibold text-slate-900 mb-4">How we checked these prices</h2>
+      <p class="text-sm text-slate-600 leading-relaxed">
+        Rates come from operator and town hall information (Publiparking Meta, Sistema Amalfi notices, SIS Piano di Sorrento, Vico Equense and Massa Lubrense council resolutions as reported by Positanonews and SorrentoPress), from the Positano tourist board and from local guides updated in 2025-2026. Where sources disagreed we show a range. Nothing here replaces the sign at the car park: if the price you see differs, the sign is right.
+      </p>
     </section>
 
     <!-- EVERYTHING YOU NEED -->

@@ -166,7 +166,7 @@ export const events: EventItem[] = [
     image: '/images/praiano-hero.jpg',
     date: '19 Sep 2026',
     location: 'Vettica Maggiore, Praiano',
-    description: 'Patron saint procession in the hamlet of Vettica Maggiore — low crowds, panoramic views over Capri.',
+    description: 'Patron saint procession in the hamlet of Vettica Maggiore: low crowds, panoramic views over Capri.',
     path: '/en-us/events/amalfi-coast/festa-san-gennaro-praiano/',
   },
   {
@@ -215,7 +215,7 @@ export const events: EventItem[] = [
     image: '/images/procida-hero.jpg',
     date: 'July 2026',
     location: 'Procida',
-    description: 'A sea festival evoking the figure of the Graziella — literary symbol of Procida — with historical re-enactments and fresh seafood.',
+    description: 'A sea festival evoking the figure of the Graziella (the literary symbol of Procida), with historical re-enactments and fresh seafood.',
     path: '/en-us/events/islands/sagra-del-mare-graziella-procida/',
   },
   // Sorrentine Peninsula

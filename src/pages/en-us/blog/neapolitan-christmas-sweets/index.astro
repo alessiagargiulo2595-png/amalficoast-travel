@@ -1,0 +1,521 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'en-us';
+const post = {
+  title: 'Neapolitan Christmas Sweets',
+  subtitle: 'Struffoli, roccocò and mustaccioli: what they are, where they come from, and a home recipe for each one',
+  category: 'FOOD',
+  date: 'November 14, 2026',
+  readTime: '11 min',
+  image: '/images/struffoli-hero.webp',
+  imageAlt: "Freshly fried struffoli in a wire skimmer, before the honey",
+  path: '/en-us/blog/neapolitan-christmas-sweets/',
+};
+
+const metaTitle = 'Neapolitan Christmas Sweets: Struffoli, Roccocò, Mustaccioli';
+const metaDescription = 'Struffoli, roccocò and mustaccioli explained: ingredients, the pisto spice mix, history, home recipes with metric quantities and where to buy them in December.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/en-us/' },
+  { name: 'Blog', url: '/en-us/blog/' },
+  { name: 'Neapolitan Christmas Sweets', url: '/en-us/blog/neapolitan-christmas-sweets/' },
+];
+
+const quickInfo = [
+  { label: 'Season', value: 'December and the Christmas holidays' },
+  { label: 'Struffoli', value: 'Fried dough balls coated in honey' },
+  { label: 'Roccocò', value: 'Hard almond rings spiced with pisto' },
+  { label: 'Mustaccioli', value: 'Spiced diamonds glazed with dark chocolate' },
+  { label: 'Spice mix', value: 'Pisto (cinnamon, cloves, nutmeg, star anise and more)' },
+  { label: 'Difficulty', value: 'Easy to medium' },
+  { label: 'Keeps', value: 'Roccocò about 1 month in a tin' },
+  { label: 'Where to buy', value: 'Pastry shops on the coast and peninsula in December' },
+];
+
+const faq = [
+  {
+    q: 'What is pisto?',
+    a: 'Pisto is the Neapolitan spice mix used in roccocò and mustaccioli. Dissapore describes it as equal parts cinnamon sticks, cardamom seeds, star anise, white peppercorns, cloves and nutmeg, pounded together in a mortar. Other recipes add coriander. It is also sold ready-made.',
+  },
+  {
+    q: 'Can I make struffoli in advance?',
+    a: 'Yes. Fry the struffoli, let them dry completely and store them sealed in a bag (vacuum-sealed is best). Add the warm honey, candied fruit and sprinkles only when you are ready to serve. Without honey they keep well.',
+  },
+  {
+    q: 'My roccocò are rock hard. Did I do something wrong?',
+    a: 'Not necessarily: roccocò are meant to be firm, and they are traditionally dipped in a sweet wine such as Marsala or Moscato. For a softer result, bake them for 15 minutes instead of 20 and take them out while they still feel too soft. They firm up as they cool.',
+  },
+  {
+    q: 'What is baking ammonia and what can I use instead?',
+    a: 'Baking ammonia (ammoniaca per dolci) is ammonium bicarbonate, a raising agent for dry biscuits; it is also sold as hartshorn. Some mustaccioli recipes use bicarbonate of soda instead: Ricette dal Mondo uses 1 teaspoon for a batch made with 500 g of flour.',
+  },
+  {
+    q: 'How long do roccocò and mustaccioli keep?',
+    a: 'Roccocò keep for about a month in a tin, away from humidity, which is why they last through the whole holiday season. Mustaccioli keep for up to 10 days in a food bag or under a glass cover once the chocolate has set.',
+  },
+  {
+    q: 'Mustaccioli or mostaccioli: which is correct?',
+    a: 'Both. Mostaccioli is the Italian name and mustaccioli is the Neapolitan dialect form. The name is linked to mosto, the grape must that was once part of the dough.',
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Limoncello Recipe', href: '/en-us/blog/limoncello-recipe/' },
+  { label: 'Torrone Recipe', href: '/en-us/blog/torrone-recipe/' },
+  { label: 'Feast of the Dead and Halloween', href: '/en-us/blog/feast-of-the-dead-halloween/' },
+  { label: 'Christmas Lights in Sorrento and Salerno', href: '/en-us/blog/christmas-lights-sorrento-salerno/' },
+  { label: 'Lemon Delight', href: '/en-us/blog/lemon-delight/' },
+];
+
+const authorRole = 'Food & Travel Specialist · Amalfi Coast';
+
+const relatedArticles = [
+  {
+    title: 'Limoncello Recipe',
+    category: 'FOOD',
+    date: 'May 31, 2026',
+    image: '/images/limoncello-ricetta-hero.webp',
+    imageAlt: 'Homemade limoncello from the Amalfi Coast - Amalfi and Sorrento lemons',
+    path: '/en-us/blog/limoncello-recipe/'
+  },
+  {
+    title: 'The Feast of the Dead, Halloween and the Hooded Brotherhoods',
+    category: 'DISCOVERIES',
+    date: 'October 7, 2026',
+    image: '/images/misteri-venerdi-santo-hero.webp',
+    imageAlt: 'A Mystery of the Passion carried by hooded brothers in a Good Friday procession',
+    path: '/en-us/blog/feast-of-the-dead-halloween/'
+  }
+];
+
+const keyTakeaways = [
+  "Struffoli are small balls of egg dough, fried and coated in warm honey, then topped with candied fruit and coloured sprinkles called diavulilli.",
+  "Roccocò are hard rings of flour, almonds, sugar, citrus zest and pisto. They contain no butter, and are dipped in sweet wine.",
+  "Mustaccioli are diamond-shaped spiced biscuits with honey and cocoa, glazed in dark chocolate. The name comes from mosto, grape must.",
+  "Pisto is the spice mix behind roccocò and mustaccioli: cinnamon, cloves, nutmeg, star anise, cardamom and white pepper, in most versions.",
+  "In December pastry shops on the Sorrento Peninsula and the Amalfi Coast sell them. Roccocò and mustaccioli travel well, struffoli less so.",
+];
+
+const schemaStruffoli = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Neapolitan Struffoli",
+  "description": "Small fried balls of egg dough coated in honey and decorated with candied fruit and coloured sprinkles, the Neapolitan Christmas classic.",
+  "image": "https://amalficoast-travel.com/images/struffoli-hero.webp",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "datePublished": "2026-10-16",
+  "recipeCategory": "Dessert",
+  "recipeCuisine": "Italian",
+  "keywords": "struffoli, Neapolitan Christmas sweets",
+  "recipeIngredient": [
+    "500 g weak (low-protein) flour",
+    "300 g whole eggs (about 5)",
+    "40 g granulated sugar",
+    "30 g softened butter",
+    "3 g fine salt",
+    "5 g baking powder",
+    "Grated zest of orange and lemon",
+    "A splash of Strega liqueur or grappa",
+    "About 300 g acacia honey",
+    "Candied fruit and coloured sprinkles (diavulilli)",
+    "2 litres peanut oil for frying"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Make the dough", "text": "Sift the flour with the baking powder and make a well. Add the eggs and sugar and beat with a fork, then add the salt dissolved in a little water, the zest, the liqueur and the softened butter. Knead until smooth and compact." },
+    { "@type": "HowToStep", "name": "Rest", "text": "Rest the dough in an airtight container for about 2 hours." },
+    { "@type": "HowToStep", "name": "Shape", "text": "Roll ropes about 1 cm thick and cut them into 1 cm pieces. Shake off the excess flour and let the pieces rest on baking paper for 10 minutes." },
+    { "@type": "HowToStep", "name": "Fry", "text": "Heat the oil to 180°C, then lower it to about 170°C. Fry in batches until golden like bread crust and drain on paper towels." },
+    { "@type": "HowToStep", "name": "Coat in honey", "text": "Warm the honey in a wide pan, add the cooled struffoli and stir gently. Add candied fruit and sprinkles and shape into a ring or mound on a plate." }
+  ]
+};
+
+const schemaRoccoco = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Neapolitan Roccocò",
+  "description": "Hard Neapolitan Christmas rings made with flour, almonds, sugar, citrus zest and the pisto spice mix.",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "datePublished": "2026-10-16",
+  "recipeCategory": "Dessert",
+  "recipeCuisine": "Italian",
+  "keywords": "roccocò, pisto, Neapolitan Christmas sweets",
+  "prepTime": "PT15M",
+  "cookTime": "PT20M",
+  "totalTime": "PT35M",
+  "recipeYield": "10 roccocò",
+  "recipeIngredient": [
+    "250 g plain flour",
+    "150 g almond flour",
+    "50 g sliced almonds",
+    "200 g granulated sugar",
+    "1 pinch fine salt",
+    "2 g baking ammonia (ammonium bicarbonate)",
+    "Grated zest of 1 orange",
+    "Grated zest of 1 lemon",
+    "5 g pisto spice mix",
+    "80 g lukewarm water",
+    "1 egg yolk for brushing"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Mix", "text": "Mix the flour, sugar, baking ammonia, pisto, salt, citrus zest, almond flour and sliced almonds. Add the lukewarm water a little at a time until the dough is smooth and not sticky." },
+    { "@type": "HowToStep", "name": "Shape", "text": "Divide the dough into 10 pieces, roll each into a rope and join the ends into a ring. Place on a tray lined with baking paper." },
+    { "@type": "HowToStep", "name": "Bake", "text": "Brush with beaten egg yolk and bake in a fan oven at 180°C for 20 minutes (15 for a softer result). Let them cool completely." }
+  ]
+};
+
+const schemaMustaccioli = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Neapolitan Mustaccioli",
+  "description": "Soft Neapolitan spiced biscuits with honey, cocoa, almonds and pisto, cut into diamonds and glazed with dark chocolate.",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "datePublished": "2026-10-16",
+  "recipeCategory": "Dessert",
+  "recipeCuisine": "Italian",
+  "keywords": "mustaccioli, mostaccioli, pisto, Neapolitan Christmas sweets",
+  "prepTime": "PT10M",
+  "cookTime": "PT15M",
+  "totalTime": "PT1H25M",
+  "recipeYield": "16-18 mustaccioli",
+  "recipeIngredient": [
+    "250 g plain flour (type 00)",
+    "4 g baking ammonia (ammonium bicarbonate)",
+    "3 g pisto spice mix",
+    "125 g granulated sugar",
+    "100 g almond flour",
+    "25 g unsweetened cocoa powder",
+    "1 pinch salt",
+    "75 g honey",
+    "60 g lukewarm water",
+    "Juice and grated zest of half an orange",
+    "350 g dark chocolate (70%) for the glaze"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Mix", "text": "Sift the flour, cocoa and baking ammonia into a bowl. Add the pisto, salt, sugar, honey, almond flour and the orange juice and zest. Add the lukewarm water a little at a time and knead." },
+    { "@type": "HowToStep", "name": "Rest", "text": "Wrap the dough in cling film and rest it in the fridge for 1 hour." },
+    { "@type": "HowToStep", "name": "Cut", "text": "Roll the dough about 6 mm thick on a floured surface and cut it into equal diamonds. Space them out on a tray lined with baking paper." },
+    { "@type": "HowToStep", "name": "Bake", "text": "Bake in a preheated static oven at 170°C for 15 minutes (2 to 3 minutes more for a firmer biscuit). Let them cool completely on the tray." },
+    { "@type": "HowToStep", "name": "Glaze", "text": "Melt the chocolate, dip the mustaccioli one at a time with a fork, drain and set them on a rack. Chill for at least 10 minutes until the glaze sets." }
+  ]
+};
+---
+
+<BlogPostLayout
+  lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  breadcrumbs={breadcrumbs}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  relatedArticles={relatedArticles}
+  pageKey="neapolitan-christmas-sweets"
+  extraSchema={[schemaStruffoli, schemaRoccoco, schemaMustaccioli]}
+>
+
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <div class="flex items-center gap-3 mb-6">
+      <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Key Takeaways</h2>
+    </div>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-xs sm:text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      In Naples, on the Sorrento Peninsula and along the <a href="/en-us/amalfi-coast/" class="text-med-blue hover:underline">Amalfi Coast</a>, December has its own sweets. Three of them are on almost every table: <strong>struffoli</strong>, small fried balls of dough coated in honey; <strong>roccocò</strong>, hard almond rings; and <strong>mustaccioli</strong>, spiced diamonds glazed with chocolate. The season of sweets starts earlier, with the ones made for the dead in early November (we cover them in our article on the <a href="/en-us/blog/feast-of-the-dead-halloween/" class="text-med-blue hover:underline">Feast of the Dead and Halloween</a>), but Christmas belongs to these three.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Below you will find what each one is, what goes into it, what the sources say about its history, and a home recipe with metric quantities taken from Italian pastry sources. Serve them the local way, with a small glass of sweet wine or of homemade <a href="/en-us/blog/limoncello-recipe/" class="text-med-blue hover:underline">limoncello</a>.
+    </p>
+  </div>
+
+  <!-- Pisto -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Pisto: The Spice Mix of Neapolitan Christmas</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Roccocò and mustaccioli share one ingredient that gives them their Christmas smell: <strong>pisto</strong>. It is a ground spice mix, and every family and pastry shop has its own proportions. The version described by Dissapore uses equal parts of:
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">cinnamon sticks</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">cardamom seeds (taken out of the pods)</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">star anise</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">white peppercorns</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">cloves</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">nutmeg</span></li>
+    </ul>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Pound everything in a mortar (or a spice grinder) to a fine powder. Some recipes add coriander seeds. You only need a few grams per batch, so keep the rest in a closed jar for the next round.
+    </p>
+  </div>
+
+  <!-- Struffoli -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Struffoli: Fried Dough Balls in Honey</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      <strong>Struffoli</strong> are tiny pieces of egg dough, fried until golden, then tossed in warm honey and piled into a ring or a mound. The decoration is part of the dish: candied orange and citron, and the coloured sugar sprinkles that Neapolitans call <em>diavulilli</em>. The outside is crisp, the inside light, and the honey holds everything together. Many families add a liqueur to the dough; Strega is a common choice.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      On the origin, the sources are careful. The name is said to come from the Greek <em>strongoulos</em>, meaning rounded, and struffoli were possibly introduced by the Greeks or born under Spanish rule. Dissapore points out that similar fried honey sweets exist in Abruzzo, Spain and Greece (the <em>loukoumades</em>), and that struffoli have been on Neapolitan tables from the 1600s on, citing Giovan Battista Crisci's <em>Lucerna de corteggiani</em>. They belong to Christmas, though some families make them for Carnival too.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Struffoli Ingredients</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>500 g weak flour</strong> (low-protein, for biscuits)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>300 g whole eggs</strong> (about 5)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>40 g granulated sugar</strong> and <strong>30 g softened butter</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>3 g fine salt</strong> and <strong>5 g baking powder</strong>, sifted with the flour</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Grated zest of orange and lemon, and a splash of Strega or grappa</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>About 300 g acacia honey</strong>, candied fruit and coloured sprinkles</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>2 litres peanut oil</strong> for frying</span></li>
+      </ul>
+    </div>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">How to Make Struffoli</h3>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Make the dough.</strong> Make a well with the flour, add the eggs and sugar and beat with a fork. Add the salt dissolved in a little water, the zest, the liqueur and finally the softened butter. Knead until smooth and compact.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Rest it</strong> in an airtight container for about 2 hours.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Shape.</strong> Roll ropes about 1 cm thick, dust them lightly with flour and cut them into 1 cm pieces. Shake off all the excess flour and let the pieces rest on baking paper for 10 minutes.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">4</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Fry.</strong> Heat the oil to 180°C, then lower it to about 170°C. Fry in batches until golden, the colour of bread crust, and drain on paper towels.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">5</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Coat in honey.</strong> Warm the honey in a wide pan, add the cooled struffoli and stir gently until coated. Add the candied fruit and sprinkles and shape on a serving plate.</p>
+        </div>
+      </div>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      Recipe adapted from the version by pastry chef Armando Palmieri published by Dissapore. The same article gives a crunchier version by Sal De Riso without baking powder.
+    </p>
+  </div>
+
+  <!-- Roccocò -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Roccocò: Hard Almond Rings</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      <strong>Roccocò</strong> are rings of dense, hard dough made with flour, sugar, almonds, citrus and pisto. There is no butter and no milk in the dough, which is why they keep for weeks. Some versions add candied orange peel or mandarin juice. The texture depends on baking time: a longer bake gives a crunchy biscuit for dunking, a shorter one a softer bite. In Naples they are dipped in a sweet wine such as Marsala or Moscato, or in a liqueur.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      The sources date roccocò to around 1320 and credit Neapolitan nuns, usually those of the Real Convento della Maddalena. The name is linked to the French <em>rocaille</em>, a rounded, rock-like shape, the same root as the rococo style.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Roccocò Ingredients (10 pieces)</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>250 g plain flour</strong> and <strong>150 g almond flour</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>50 g sliced almonds</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>200 g granulated sugar</strong> and a pinch of fine salt</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>2 g baking ammonia</strong> (ammonium bicarbonate)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>5 g pisto</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Grated zest of <strong>1 orange</strong> and <strong>1 lemon</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>80 g lukewarm water</strong> and <strong>1 egg yolk</strong> for brushing</span></li>
+      </ul>
+    </div>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">How to Make Roccocò</h3>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Mix the dry ingredients</strong>: flour, sugar, baking ammonia, pisto, salt, zest, almond flour and sliced almonds.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Add the water</strong> a little at a time until the dough is smooth and no longer sticky.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Shape the rings.</strong> Divide the dough into 10 pieces, roll each into a rope with your palms and join the ends. Place them on a tray lined with baking paper.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">4</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Bake.</strong> Brush lightly with beaten egg yolk and bake in a fan oven at 180°C for 20 minutes, or 15 minutes for a softer result. Take them out while they still feel soft: they harden as they cool.</p>
+        </div>
+      </div>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      Recipe from Dissapore. For a darker colour, add 1 teaspoon of unsweetened cocoa to the dough; hazelnuts can replace the almonds.
+    </p>
+  </div>
+
+  <!-- Mustaccioli -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Mustaccioli: Spiced Diamonds in Chocolate</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      <strong>Mustaccioli</strong> (mostaccioli in Italian) are diamond-shaped biscuits made with flour, honey, sugar, almonds, cocoa and pisto, then dipped in dark chocolate. Depending on the recipe the inside is firm or soft; the version below bakes for only 15 minutes and stays soft. The chocolate shell, the honey and the spices are what you taste first.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      The name comes from <em>mosto</em>, grape must, which was once part of the dough; Ricette dal Mondo traces it to the Latin <em>mustaceum</em>. According to Dissapore, the most solid historical record of the recipe goes back to Bartolomeo Scappi, the 16th-century papal cook.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Mustaccioli Ingredients (16-18 pieces)</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>250 g plain flour</strong> (type 00) and <strong>100 g almond flour</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>125 g granulated sugar</strong> and <strong>75 g honey</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>25 g unsweetened cocoa</strong> and a pinch of salt</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>4 g baking ammonia</strong> and <strong>3 g pisto</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Juice and grated zest of <strong>half an orange</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>60 g lukewarm water</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>350 g dark chocolate (70%)</strong> for the glaze</span></li>
+      </ul>
+    </div>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">How to Make Mustaccioli</h3>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Mix.</strong> Sift the flour, cocoa and baking ammonia into a bowl. Add the pisto, salt, sugar, honey, almond flour and the orange juice and zest.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Knead</strong>, adding the lukewarm water a little at a time. If the dough is too sticky, add a little flour. Wrap it in cling film and rest it in the fridge for 1 hour.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Cut the diamonds.</strong> Roll the dough about 6 mm thick on a floured surface, cut equal diamonds and space them out on a tray lined with baking paper.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">4</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Bake</strong> in a preheated static oven at 170°C for 15 minutes (2 to 3 minutes more if you want them firmer). Let them cool completely on the tray: warm, they break easily.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">5</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Glaze.</strong> Melt the chocolate in a bain-marie or microwave. Dip the mustaccioli one at a time with a fork, let them drain and set them on a rack. Chill for at least 10 minutes until the chocolate sets.</p>
+        </div>
+      </div>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      Recipe adapted from the soft Neapolitan mostaccioli published on the GialloZafferano blog network (Cuochinprogress).
+    </p>
+  </div>
+
+  <!-- Comparison -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">The Three Sweets at a Glance</h2>
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold"></th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Struffoli</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Roccocò</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Mustaccioli</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Shape</td>
+            <td class="p-5 text-slate-600">Small balls in a ring or mound</td>
+            <td class="p-5 text-slate-600">Ring</td>
+            <td class="p-5 text-slate-600">Diamond</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Cooking</td>
+            <td class="p-5 text-slate-600">Fried</td>
+            <td class="p-5 text-slate-600">Baked</td>
+            <td class="p-5 text-slate-600">Baked, then glazed</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Key flavours</td>
+            <td class="p-5 text-slate-600">Honey, citrus, candied fruit</td>
+            <td class="p-5 text-slate-600">Almonds, citrus, pisto</td>
+            <td class="p-5 text-slate-600">Honey, cocoa, pisto, dark chocolate</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Texture</td>
+            <td class="p-5 text-slate-600">Crisp outside, light inside</td>
+            <td class="p-5 text-slate-600">Hard, made for dunking</td>
+            <td class="p-5 text-slate-600">Firm or soft, with a chocolate shell</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Keeps</td>
+            <td class="p-5 text-slate-600">Best fresh; unhoneyed they keep well</td>
+            <td class="p-5 text-slate-600">About 1 month in a tin</td>
+            <td class="p-5 text-slate-600">Up to 10 days</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Also on the table -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Also on the Christmas Table</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Struffoli, roccocò and mustaccioli rarely come alone. A Neapolitan Christmas tray usually holds some of these too:
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Susamielli</strong>: S-shaped biscuits of flour, honey, almonds and pisto, covered in sesame seeds.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Sapienze</strong>: a straight, elongated cousin of susamielli, found in Naples, Caserta and Sorrento.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Raffiuoli</strong>: discs of sponge cake with apricot jam under a white sugar glaze.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Divino amore</strong>: almond paste sweets with apricot jam and sugar glaze.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Pastiera</strong>: usually an Easter cake, but in Naples it shows up at Christmas too.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Torrone</strong>: nougat and chocolate torroncini, with their own <a href="/en-us/blog/torrone-recipe/" class="text-med-blue hover:underline">torrone recipe</a> on this blog.</span></li>
+    </ul>
+  </div>
+
+  <!-- Where to buy -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Where to Buy Them on the Coast and the Peninsula</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      In December the pastry shops of Sorrento, the peninsula towns and the Amalfi Coast fill their counters with trays of struffoli and bags of roccocò and mustaccioli. In Amalfi and Minori, pastry shops we already mention on this site, such as Pansa in Amalfi and Sal De Riso in Minori, are a good place to start: ask at the counter what they have that week.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      If you want to take some home, choose roccocò and mustaccioli: they are dry, they keep, and they survive a suitcase. Struffoli are sticky with honey and best eaten on the spot. A December trip also lines up with the <a href="/en-us/blog/christmas-lights-sorrento-salerno/" class="text-med-blue hover:underline">Christmas lights of Sorrento and Salerno</a>, so you can buy your sweets and see the lights on the same evening.
+    </p>
+  </div>
+
+  <!-- Expert Tips -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold">Expert Tips</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Sift off the flour before frying</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Shake the cut struffoli in a sieve to remove all the loose flour, then let them rest 10 minutes on baking paper before they go into the oil.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Fry ahead, honey later</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Plain fried struffoli keep well in a sealed bag. Coat them in warm honey on the day you serve them.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Underbake roccocò slightly</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Take them out while they still seem too soft. They firm up as they cool, and every extra minute in the oven makes them harder.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Glaze mustaccioli only when cold</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Warm biscuits break and melt the chocolate unevenly. Wait until they are completely cool on the tray before dipping.</p>
+      </div>
+    </div>
+  </div>
+
+</BlogPostLayout>

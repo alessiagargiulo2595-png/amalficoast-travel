@@ -8,9 +8,25 @@ const lang = 'es-es';
 
 const breadcrumbs = [
   { name: 'Home', url: '/es-es/' },
-  { name: 'Planificacion', url: '/es-es/planificacion/' },
+  { name: 'Planificación', url: '/es-es/planificacion/' },
   { name: 'Mapa', url: '/es-es/guia/mapa/' },
 ];
+
+const staticMapSchema = {
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "contentUrl": "https://amalficoast-travel.com/images/mapa-costa-amalfitana.webp",
+  "url": "https://amalficoast-travel.com/images/mapa-costa-amalfitana.webp",
+  "name": "Mapa de la Costa Amalfitana",
+  "description": "Mapa estático de la Costa Amalfitana y la península de Sorrento: Positano, Praiano, Amalfi, Ravello, Maiori, Cetara, Vietri sul Mare, Salerno, Sorrento, Vico Equense, Massa Lubrense y Capri. Línea de costa de OpenStreetMap.",
+  "width": 1400,
+  "height": 803,
+  "encodingFormat": "image/webp",
+  "creditText": "© OpenStreetMap contributors, amalficoast-travel.com",
+  "copyrightNotice": "Map data © OpenStreetMap contributors (ODbL)",
+  "license": "https://www.openstreetmap.org/copyright",
+  "acquireLicensePage": "https://www.openstreetmap.org/copyright"
+};
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -29,7 +45,7 @@ const faqSchema = {
     {
       "@type": "Question",
       "name": "¿Cuál es el mejor pueblo como base en la Costa?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Amalfi es la base más práctica: ubicación central, bien comunicada en bus y ferri, buena oferta de alojamientos. Positano es más pintoresco pero más caro. Praiano es ideal para quien busca tranquilidad. Maiori tiene la playa más larga y precios más asequibles." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Amalfi es la base más práctica: ubicación central, bien comunicada en bus y ferri, buena oferta de alojamientos. Positano es más vistoso pero más caro. Praiano es ideal para quien busca tranquilidad. Maiori tiene la playa más larga y precios más asequibles." }
     },
     {
       "@type": "Question",
@@ -65,7 +81,7 @@ const distances = [
   description="Positano-Amalfi: 17 km, 25-40 min en autobús, 25 min en ferri. Mapa interactivo y tabla de distancias y tiempos de viaje entre todos los pueblos."
   lang={lang}
   breadcrumbs={breadcrumbs}
-  schema={[faqSchema]}
+  schema={[faqSchema, staticMapSchema]}
   pageKey="mappa"
   heroImage="/images/costiera-hero.jpg"
 >
@@ -88,6 +104,12 @@ const distances = [
   <div class="max-w-editorial mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 space-y-16">
 
     <!-- Mapa interactivo -->
+    <!-- Mappa statica indicizzabile -->
+    <figure class="rounded-2xl overflow-hidden border border-slate-100 shadow-sm bg-white">
+      <img src="/images/mapa-costa-amalfitana.webp" alt="Mapa de la Costa Amalfitana con Positano, Amalfi, Ravello, Sorrento, la península de Sorrento y Capri" width="1400" height="803" class="w-full h-auto" loading="eager" decoding="async" />
+      <figcaption class="px-4 sm:px-6 py-3 text-xs sm:text-sm text-slate-500 leading-relaxed">Mapa estático de la Costa Amalfitana y la península de Sorrento: Positano, Praiano, Amalfi, Ravello, Maiori, Cetara, Vietri sul Mare, Salerno, Sorrento, Vico Equense, Massa Lubrense y Capri. Línea de costa de OpenStreetMap.</figcaption>
+    </figure>
+
     <InteractiveMap lang={lang} />
 
     <!-- BANNER: Planificador de itinerario -->

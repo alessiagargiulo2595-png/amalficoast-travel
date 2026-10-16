@@ -15,7 +15,7 @@ export const mapDestinations: MapDestination[] = [
   { slug: 'agerola',          name: 'Agerola',          cat: 'costiera', lat: 40.6383, lon: 14.5417 },
   { slug: 'amalfi',           name: 'Amalfi',           cat: 'costiera', lat: 40.6339, lon: 14.6027 },
   { slug: 'atrani',           name: 'Atrani',           cat: 'costiera', lat: 40.6364, lon: 14.6083 },
-  { slug: 'cetara',           name: 'Cetara',           cat: 'costiera', lat: 40.5961, lon: 14.6083 },
+  { slug: 'cetara',           name: 'Cetara',           cat: 'costiera', lat: 40.6461, lon: 14.7006 },
   { slug: 'conca-dei-marini', name: 'Conca dei Marini', cat: 'costiera', lat: 40.6192, lon: 14.5739 },
   { slug: 'erchie',           name: 'Erchie',           cat: 'costiera', lat: 40.6278, lon: 14.6792 },
   { slug: 'furore',           name: 'Furore',           cat: 'costiera', lat: 40.6264, lon: 14.5525 },
@@ -26,7 +26,7 @@ export const mapDestinations: MapDestination[] = [
   { slug: 'ravello',          name: 'Ravello',          cat: 'costiera', lat: 40.6492, lon: 14.6122 },
   { slug: 'salerno',          name: 'Salerno',          cat: 'costiera', lat: 40.6824, lon: 14.7681 },
   { slug: 'tramonti',         name: 'Tramonti',         cat: 'costiera', lat: 40.6933, lon: 14.6333 },
-  { slug: 'vietri-sul-mare',  name: 'Vietri sul Mare',  cat: 'costiera', lat: 40.6819, lon: 14.6945 },
+  { slug: 'vietri-sul-mare',  name: 'Vietri sul Mare',  cat: 'costiera', lat: 40.6725, lon: 14.7275 },
 
   // Penisola Sorrentina (5)
   { slug: 'sorrento',        name: 'Sorrento',        cat: 'penisola', lat: 40.6260, lon: 14.3752 },

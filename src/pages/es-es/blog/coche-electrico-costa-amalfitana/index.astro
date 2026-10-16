@@ -1,0 +1,431 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'es-es';
+const post = {
+  title: "Coche eléctrico en la Costa Amalfitana: recarga y road trip",
+  subtitle: "Dónde están los puntos de recarga públicos en la costa y la península sorrentina, cargadores rápidos en el camino, precios, apps, matrículas alternas y una valoración honesta del viaje en eléctrico",
+  category: 'GUIDE',
+  date: '30 de octubre de 2026',
+  readTime: '11 min',
+  image: '/images/auto-elettrica-ricarica-hero.webp',
+  imageAlt: "Un coche eléctrico blanco cargando en una calle arbolada",
+  path: '/es-es/blog/coche-electrico-costa-amalfitana/',
+};
+
+const metaTitle = "Coche eléctrico en la Costa Amalfitana: recarga 2026";
+const metaDescription = "Recargar un coche eléctrico en la Costa Amalfitana y Sorrento: puntos pueblo a pueblo, cargadores rápidos cerca de Nápoles y Salerno, precios por kWh 2026 y apps.";
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Blog', url: '/es-es/blog/' },
+  { name: "Coche eléctrico en la Costa Amalfitana", url: '/es-es/blog/coche-electrico-costa-amalfitana/' },
+];
+
+const quickInfo = [
+  { label: "¿Es viable?", value: "Sí, si duermes donde puedas cargar" },
+  { label: "De Sorrento a Vietri", value: "Unos 64 km por la SS163 y la SS145" },
+  { label: "Puntos públicos en la costa", value: "Pocos por pueblo, casi todos AC" },
+  { label: "Cargadores rápidos más cercanos", value: "Zona de Salerno, zona de Nápoles, A1" },
+  { label: "Precio medio AC", value: "0,63 €/kWh (julio de 2026)" },
+  { label: "Precio medio DC", value: "0,74 €/kWh (julio de 2026)" },
+  { label: "¿Eléctricos exentos de matrículas alternas en la SS163?", value: "No hemos encontrado exención" },
+  { label: "Datos comprobados", value: "16 de octubre de 2026" },
+];
+
+const faq = [
+  {
+    q: "¿Se puede recorrer la Costa Amalfitana en coche eléctrico?",
+    a: "Sí. Las distancias son cortas: de Sorrento a Vietri sul Mare hay unos 64 km, y una estancia típica rara vez supera los 200 a 300 km, incluido el trayecto desde Nápoles. La autonomía no es el problema; la recarga sí: los puntos públicos de la costa son pocos, casi todos AC lentos y en verano suelen estar ocupados. El viaje funciona mejor si tu hotel o un garaje cercano tiene cargador.",
+  },
+  {
+    q: "¿Hay cargadores rápidos en la propia Costa Amalfitana?",
+    a: "En nuestra comprobación del 16 de octubre de 2026 no encontramos ningún cargador DC rápido confirmado en la SS163 entre Positano y Vietri. Las opciones de alta potencia más cercanas están en torno a Salerno y Nápoles: los Supercargadores Tesla abiertos a otras marcas en Mercato San Severino, Nola, Nápoles Oeste y Afragola, y en la A1 la estación Free To X de Teano Ovest. Mira el mapa actualizado en tu app antes de salir, porque cada mes abren sitios nuevos.",
+  },
+  {
+    q: "¿Los coches eléctricos están exentos de las matrículas alternas en la SS163?",
+    a: "No según las listas de exenciones que hemos encontrado. La ordenanza de ANAS para la SS163 exime a residentes, taxis y VTC, titulares de tarjeta de discapacidad, huéspedes de hotel con reserva en los días de llegada y salida, y motos, pero ninguna lista menciona los coches eléctricos. Algunas ordenanzas municipales de la península sorrentina han tratado de otra forma a los eléctricos y a los híbridos enchufables, así que comprueba la norma de cada municipio que cruces.",
+  },
+  {
+    q: "¿Cuánto cuesta cargar un coche eléctrico en Italia?",
+    a: "El observatorio Adiconsum-TariffEV situaba en julio de 2026 el precio medio sin suscripción en 0,63 € por kWh en cargadores AC y 0,74 € por kWh en cargadores DC y ultrarrápidos, con grandes diferencias entre operadores. Cargar 40 kWh cuesta, por tanto, unos 25 a 30 €. Las suscripciones y las apps de terceros pueden salir más baratas; pagar con tarjeta en el poste suele ser la opción más cara.",
+  },
+  {
+    q: "¿Qué apps conviene instalar antes del viaje?",
+    a: "Al menos un mapa agregador (Electromaps, PlugShare o Chargemap) para ver todos los operadores en un mismo sitio, más la app de los operadores que más vayas a usar, como Enel X Way, Plenitude (antes Be Charge), Free To X o la app de Tesla para los Supercargadores. El mapa nacional oficial de Italia, la Piattaforma Unica Nazionale (PUN), muestra los puntos públicos con potencia, operador y estado.",
+  },
+  {
+    q: "¿Se puede alquilar un coche eléctrico en Nápoles o Salerno?",
+    a: "Sí, las principales compañías del aeropuerto de Nápoles ofrecen modelos eléctricos, pero normalmente como categoría \"o similar\", así que no sabrás el modelo exacto hasta la recogida. Pide un coche con una autonomía real de al menos 300 km, revisa el nivel de carga al recogerlo y las condiciones de devolución, y comprueba que incluya un cable Tipo 2 para la recarga AC.",
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Aparcamiento y ZTL', href: '/es-es/guia/aparcamiento-ztl/' },
+  { label: 'Matrículas alternas', href: '/es-es/guia/matriculas-alternas/' },
+  { label: 'Cómo llegar', href: '/es-es/guia/como-llegar/' },
+  { label: 'Bus SITA', href: '/es-es/guia/bus-sita/' },
+  { label: 'La Costa Amalfitana en tren', href: '/es-es/blog/costa-amalfitana-en-tren/' },
+];
+
+const authorRole = 'Experto Local · Costa Amalfitana';
+
+const relatedArticles = [
+  {
+    title: 'La Costa Amalfitana en tren',
+    category: 'GUIDE',
+    date: '10 de agosto de 2026',
+    image: '/images/treno-costiera-hero.webp',
+    imageAlt: 'La Costa Amalfitana en tren',
+    path: '/es-es/blog/costa-amalfitana-en-tren/'
+  },
+  {
+    title: 'Luces de Navidad en Sorrento y Salerno',
+    category: 'GUIDE',
+    date: '21 de octubre de 2026',
+    image: '/images/luci-artista-salerno-hero.webp',
+    imageAlt: "Instalación luminosa de flamencos rosas en la Villa Comunale de Salerno durante Luci d'Artista",
+    path: '/es-es/blog/luces-navidad-sorrento-salerno/'
+  }
+];
+
+const keyTakeaways = [
+  "En esta costa la autonomía no es el problema: de Sorrento a Vietri hay unos 64 km y una estancia entera rara vez supera los 300 km. El problema es el acceso a la recarga.",
+  "Los puntos públicos de la costa son pocos, casi todos AC y dispersos: uno o dos por pueblo en Positano, Praiano, Amalfi, Ravello, Maiori, Minori y Vietri en nuestra comprobación del 16 de octubre de 2026.",
+  "Los cargadores rápidos más cercanos están fuera de la costa, en torno a Salerno, Nápoles y en la A1. Llega con la batería bien cargada.",
+  "Lo más útil que puedes hacer es reservar un hotel o un garaje con cargador. Convierte un viaje complicado en uno sencillo.",
+  "En las listas publicadas para las matrículas alternas de la SS163 no aparece ninguna exención para coches eléctricos. Organiza los días de conducción en función de ello.",
+];
+---
+
+<BlogPostLayout
+  lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  breadcrumbs={breadcrumbs}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  relatedArticles={relatedArticles}
+  pageKey="electric-car-amalfi-coast"
+>
+
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <div class="flex items-center gap-3 mb-6">
+      <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Key Takeaways</h2>
+    </div>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-xs sm:text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      Coche eléctrico y Costa Amalfitana parecen mala combinación: una sola carretera, ninguna autopista, aparcamiento difícil incluso sin cable que enchufar. En la práctica las distancias son tan cortas que un eléctrico moderno puede cubrir aquí una semana entera con una o dos cargas completas. Lo que marca la diferencia no es la batería, sino dónde duermes, dónde aparcas y si has planificado la carga rápida antes de dejar la autopista. Esta guía reúne lo que encontramos sobre el terreno y en los mapas de recarga, pueblo a pueblo, y responde con honestidad si merece la pena.
+    </p>
+  </div>
+
+  <!-- Range -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Autonomía en la SS163: mejor de lo que crees</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      La Amalfitana es lenta. Entre Positano y Vietri rara vez se superan los 40 a 50 km/h, hay cientos de curvas y en verano largas colas detrás de los autobuses. Para un coche eléctrico es casi ideal: poca velocidad significa pocas pérdidas aerodinámicas, y cada bajada hacia un pueblo o hacia el mar es energía recuperada con la frenada regenerativa.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Tres factores disparan el consumo. Primero, las subidas: <a href="/es-es/costa-amalfitana/ravello/" class="text-med-blue hover:underline">Ravello</a> está a unos 350 m y <a href="/es-es/costa-amalfitana/agerola/" class="text-med-blue hover:underline">Agerola</a> a unos 600 m, ambas por carreteras empinadas desde el nivel del mar, aunque buena parte se recupera en la bajada. Después, el aire acondicionado, que en julio y agosto va encendido todo el día, también parado en el atasco. Y por último, la llegada: es la autopista desde Roma o desde el norte, a 130 km/h, la que se lleva la mayor parte de la batería.
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>De Sorrento a Positano.</strong> Unos 17 km por la SS163.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>De Positano a Amalfi.</strong> Unos 17 km, pasando por Praiano y Conca dei Marini.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>De Amalfi a Salerno.</strong> Unos 25 km, pasando por Minori, Maiori, Cetara y Vietri.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>De Nápoles a Sorrento.</strong> Unos 50 km, autopista hasta Castellammare y luego la SS145.</span></li>
+    </ul>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      En total, una estancia con base en Sorrento o Positano, excursiones por la costa e ida y vuelta desde Nápoles suma unos pocos cientos de kilómetros. Cualquier eléctrico con una autonomía real de 300 km lo consigue con una carga a mitad, siempre que esa carga se produzca.
+    </p>
+  </div>
+
+  <!-- Town by town -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Puntos de recarga públicos pueblo a pueblo</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      La tabla muestra lo que indicaban los mapas de recarga el <strong>16 de octubre de 2026</strong>, según las páginas municipales de Electromaps y OpenStreetMap. Ninguna de las dos fuentes está completa y rara vez indican la potencia de cada punto: tómala como una imagen de lo escasa que es la red, no como una lista en la que confiar. La mayoría de los puntos de la costa son postes AC con tomas Tipo 2, normalmente de hasta 22 kW, así que una carga útil lleva horas, no minutos.
+    </p>
+
+    <div class="overflow-x-auto rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Pueblo</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Ubicaciones registradas (16 oct. 2026)</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Notas</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Positano</td>
+            <td class="p-5 text-slate-600">Dos puntos en Via Guglielmo Marconi, el tramo de la SS163 por encima del pueblo, 2 conectores cada uno</td>
+            <td class="p-5 text-slate-600">En la carretera principal, lejos de la playa. La parte baja del pueblo es una ZTL con cámaras.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Praiano</td>
+            <td class="p-5 text-slate-600">Via Umberto I (6 conectores) y Via Costantinopoli (2)</td>
+            <td class="p-5 text-slate-600">Sobre el papel, el pueblo mejor servido, y una base práctica entre Positano y Amalfi.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Amalfi</td>
+            <td class="p-5 text-slate-600">Un punto en Via delle Cartiere, en un negocio privado de la parte alta</td>
+            <td class="p-5 text-slate-600">No encontramos puntos públicos registrados en los aparcamientos del puerto ni en Luna Rossa.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Ravello</td>
+            <td class="p-5 text-slate-600">Un punto en Via Orso Papice, 1 conector</td>
+            <td class="p-5 text-slate-600">El punto de Via della Repubblica en OpenStreetMap es para bicis eléctricas, no para coches.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Maiori</td>
+            <td class="p-5 text-slate-600">Un punto en Via Amendola</td>
+            <td class="p-5 text-slate-600">Paseo marítimo largo y más aparcamiento que la mayoría de los pueblos.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Minori</td>
+            <td class="p-5 text-slate-600">Via Pergola y Via Bizantina, 2 conectores cada uno</td>
+            <td class="p-5 text-slate-600">Pueblo pequeño, muy pocas plazas en verano.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Vietri sul Mare</td>
+            <td class="p-5 text-slate-600">Corso Umberto I; OpenStreetMap muestra además un punto municipal hacia Benincasa</td>
+            <td class="p-5 text-slate-600">Puerta de entrada con los aparcamientos más grandes de la costa.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Agerola</td>
+            <td class="p-5 text-slate-600">Un punto en Bomerano (Via Casalone) en OpenStreetMap</td>
+            <td class="p-5 text-slate-600">Arriba en la meseta, práctico para el inicio del Sendero de los Dioses.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Sorrento</td>
+            <td class="p-5 text-slate-600">Piazza Angelina Lauro, Via Capo y Via Nastro Verde, más un hotel</td>
+            <td class="p-5 text-slate-600">Piazza Lauro está sobre el garaje Achille Lauro, la opción más céntrica.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Sant'Agnello y Meta</td>
+            <td class="p-5 text-slate-600">Ningún punto encontrado en Sant'Agnello; OpenStreetMap muestra dos puntos Enel X en la vecina Meta (Via Flavio Gioia, Via del Lauro)</td>
+            <td class="p-5 text-slate-600">Mira el mapa actualizado: este tramo cambia deprisa.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Vico Equense</td>
+            <td class="p-5 text-slate-600">Piazza Stazione, junto a la estación de la Circumvesuviana, 2 conectores</td>
+            <td class="p-5 text-slate-600">Buen punto para aparcar y seguir en tren antes de Sorrento.</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Massa Lubrense</td>
+            <td class="p-5 text-slate-600">Un punto en un restaurante de Sant'Agata sui Due Golfi y otro cerca de Via Massa Turro en OpenStreetMap</td>
+            <td class="p-5 text-slate-600">Cobertura muy escasa hacia Nerano y Marina del Cantone.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-slate-600 text-lg leading-relaxed mt-6">
+      Dos consecuencias prácticas. La primera: en temporada alta, un punto público en un pueblo es también una de las poquísimas plazas de aparcamiento de ese pueblo, así que cuenta con encontrarlo ocupado, a veces por un coche que no está cargando. La segunda: un punto que aparece disponible en la app puede estar averiado; según la prensa especializada, en cada momento cerca de una de cada cinco estaciones de Italia y Europa está fuera de servicio. Ten siempre un plan B dentro de tu autonomía restante.
+    </p>
+  </div>
+
+  <!-- Fast chargers -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Cargadores rápidos en el camino</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      La regla es sencilla: llega a la costa con la batería llena. En la carretera costera no encontramos ningún cargador DC rápido confirmado, así que la última carga rápida tiene que hacerse antes de salir de la autopista. Estos son los sitios que pudimos confirmar en páginas de operadores y prensa especializada:
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Supercargador Tesla, Mercato San Severino.</strong> Seis plazas en un hotel justo al norte de Salerno, abiertas a otros coches CCS. La página de Tesla indicaba unos 0,47 a 0,49 € por kWh para quien no conduce un Tesla. La parada rápida más cómoda si entras a la costa por Salerno o Vietri.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Supercargadores Tesla en torno a Nápoles.</strong> Nola (Vulcano Buono), Nápoles Oeste (Centro Commerciale Azzurro) y Afragola (Le Porte di Napoli), ocho plazas cada uno, abiertos a otros eléctricos.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Free To X, Teano Ovest en la A1.</strong> Cuatro puntos de 300 kW en el área de servicio en dirección Nápoles, la parada lógica si bajas desde Roma.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Ionity.</strong> Battipaglia, al sur de Salerno, figuraba como activa con seis cargadores; se había anunciado un sitio en Afragola. Comprueba el estado actual en la app de Ionity.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Nápoles ciudad.</strong> Una estación ultrarrápida dedicada en la Mostra d'Oltremare (Viale Kennedy), anunciada con seis cargadores de alta potencia.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Ewiva.</strong> La empresa conjunta de Enel X y Volkswagen se está ampliando en autopistas; su plan de julio de 2026 incluye Angioina Ovest en la A30 Caserta-Salerno antes de 2027. Sus estaciones aceptan tarjetas sin contacto.</span></li>
+    </ul>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      No encontramos recarga confirmada en las áreas de servicio de la propia A3 Napoli-Pompei-Salerno. Castellammare di Stabia, donde termina la autopista hacia Sorrento, tenía seis sitios registrados y Salerno veintiséis, pero los mapas no decían cuáles son DC: comprueba la potencia en la app antes de contar con una recarga rápida allí.
+    </p>
+  </div>
+
+  <!-- Operators, apps and prices -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Operadores, apps y precios</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Según Motus-E, Italia tenía unos 84.500 puntos de recarga públicos a mediados de 2026, gestionados por decenas de operadores. Las mayores redes que encontrarás en Campania son Enel X Way y Plenitude (que absorbió Be Charge), con Free To X y Ewiva en autopista y Tesla cerca de las grandes ciudades. Muchos operadores son interoperables, así que una buena app suele iniciar la carga en varias redes, aunque no siempre al mismo precio.
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Un mapa agregador.</strong> Electromaps, PlugShare o Chargemap, para ver todos los operadores de un vistazo y leer los comentarios recientes de otros usuarios.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>El mapa oficial.</strong> La Piattaforma Unica Nazionale (PUN), creada para el Ministerio de Medio Ambiente, muestra los puntos públicos con ubicación, potencia, operador y estado.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Una o dos apps de operadores.</strong> Enel X Way y Plenitude cubren la mayoría de los postes AC; añade Free To X o la app de Tesla para autopista y Supercargadores.</span></li>
+    </ul>
+
+    <div class="overflow-x-auto rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Tipo de cargador</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Precio medio, julio de 2026</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Horquilla entre operadores</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">AC, hasta 22 kW</td>
+            <td class="p-5 text-slate-600">0,63 €/kWh</td>
+            <td class="p-5 text-slate-600">de 0,53 a 0,84 €</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">DC rápido, de 50 a 150 kW</td>
+            <td class="p-5 text-slate-600">0,74 €/kWh</td>
+            <td class="p-5 text-slate-600">de 0,61 a 0,81 €</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">HPC, más de 150 kW</td>
+            <td class="p-5 text-slate-600">0,74 €/kWh</td>
+            <td class="p-5 text-slate-600">de 0,54 a 0,90 €</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Las cifras son medias sin suscripción del observatorio Adiconsum-TariffEV. Para el viajero importan dos detalles: pagar con tarjeta en el poste puede costar bastante más que la app del operador, y la normativa italiana permite quedarse en la plaza de recarga como máximo una hora después de terminar la carga (el límite no se aplica entre las 23:00 y las 07:00, salvo en cargadores de más de 22 kW). Quien se pasa del tiempo, o aparca en la plaza sin cargar, se arriesga a una multa.
+    </p>
+  </div>
+
+  <!-- Hotels and parking -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Hoteles, garajes y carga nocturna</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      En esta costa la carga nocturna en tu alojamiento vale más que cualquier red pública. Cada vez más hoteles, villas y garajes privados tienen un wallbox o un enchufe dedicado, pero rara vez aparece con claridad en los filtros de reserva, y un hotel "con aparcamiento" puede significar un aparcacoches que lleva el coche a un garaje a varios kilómetros.
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Pregunta por escrito.</strong> ¿El cargador está en el hotel o en un garaje concertado? ¿Qué potencia tiene? ¿Se comparte con otros huéspedes, se puede reservar un turno? ¿Está incluido o se cobra por kWh o por noche?</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Lleva un cable Tipo 2.</strong> Muchos cargadores de alojamientos solo tienen la toma, sin cable.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Comprueba la ZTL.</strong> En Positano la carretera interior es una ZTL vigilada por cámaras; en Amalfi, Ravello y Sorrento los centros también son de acceso restringido. Si el aparcamiento o el cargador del hotel están dentro, pide que registren tu matrícula antes de llegar.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Garajes.</strong> No encontramos ninguna lista publicada de garajes públicos con cargador en la costa. Pregunta directamente al garaje: algunos aparcamientos privados tienen un enchufe para clientes habituales aunque ningún mapa lo muestre.</span></li>
+    </ul>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Tarifas, horarios y principales aparcamientos de cada pueblo están en nuestra <a href="/es-es/guia/aparcamiento-ztl/" class="text-med-blue hover:underline">guía de aparcamiento y ZTL</a>.
+    </p>
+  </div>
+
+  <!-- Alternate plates -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Matrículas alternas y ZTL: sin pase libre para los eléctricos</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      En la SS163, la ordenanza ANAS 340/2019 aplica las matrículas alternas de 10:00 a 18:00 en días fijados entre Semana Santa y octubre: todos los días en agosto y septiembre, los fines de semana y festivos de junio, julio y octubre, y además los puentes de Semana Santa y del 25 de abril. Los días impares solo circulan las matrículas que terminan en cifra impar, los días pares solo las pares.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Las listas de exenciones que encontramos para 2026 incluyen residentes, taxis y VTC, titulares de tarjeta de discapacidad, huéspedes de hotel con reserva en los días de llegada y salida, y motos y scooters. <strong>Ninguna menciona los coches eléctricos.</strong> Algunos municipios de la península sorrentina, que fijan sus propias normas en la SS145, han incluido a eléctricos e híbridos enchufables entre las categorías exentas, pero los detalles cambian según el municipio y el año. Nuestra <a href="/es-es/guia/matriculas-alternas/" class="text-med-blue hover:underline">guía de matrículas alternas</a> recoge el calendario de 2026 y las normas municipales.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Con un coche de alquiler, mira la última cifra de la matrícula nada más recogerlo y organiza los días en la costa en función de ella. Fuera de la franja de 10:00 a 18:00 la carretera está abierta a todos, y desde el 1 de noviembre no hay restricciones hasta la temporada siguiente.
+    </p>
+  </div>
+
+  <!-- Rental -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Alquilar un eléctrico en Nápoles o Salerno</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Las principales compañías de alquiler tienen mostrador en el aeropuerto de Nápoles, en el aparcamiento P5, al que se llega con un autobús lanzadera gratuito, y los comparadores muestran coches eléctricos disponibles en Nápoles. La pega es que los eléctricos suelen venderse como categoría "o similar", así que el modelo exacto y su autonomía son una sorpresa hasta el mostrador.
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Importa más el tamaño que la autonomía.</strong> En la SS163 un compacto se cruza con los autobuses y aparca mucho más fácilmente. Un SUV grande con una batería enorme es la herramienta equivocada.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Revisa la norma de devolución.</strong> Algunos contratos piden el mismo nivel de carga, otros cobran un cargo por debajo de cierto umbral.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Pide una tarjeta o app de recarga.</strong> Si el alquiler incluye una, pregunta en qué redes funciona y a qué precio.</span></li>
+    </ul>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Si llegas en tren, alquilar en Salerno y entrar a la costa por Vietri evita por completo el tráfico de Nápoles. Nuestra guía de <a href="/es-es/guia/como-llegar/" class="text-med-blue hover:underline">cómo llegar</a> compara las rutas.
+    </p>
+  </div>
+
+  <!-- Sample plan -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Un ejemplo de plan de cuatro días</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-2">Día 1: llegar cargado</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Carga rápida en Teano Ovest en la A1 o en un Supercargador en torno a Nápoles, luego autopista hasta Castellammare y la SS145 hasta <a href="/es-es/peninsula-sorrentina/sorrento/" class="text-med-blue hover:underline">Sorrento</a>. Carga nocturna en el hotel.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-2">Día 2: la península</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Vueltas cortas hacia <a href="/es-es/peninsula-sorrentina/massa-lubrense/" class="text-med-blue hover:underline">Massa Lubrense</a> y Nerano, o deja el coche y toma el barco a Capri. Consumo casi nulo.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-2">Día 3: la carretera de la costa</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Un día en que tu matrícula pueda circular, o antes de las 10:00, conduce hasta <a href="/es-es/costa-amalfitana/positano/" class="text-med-blue hover:underline">Positano</a> y <a href="/es-es/costa-amalfitana/praiano/" class="text-med-blue hover:underline">Praiano</a>, donde están los cargadores, y sigue hasta Amalfi. O deja el coche y usa el <a href="/es-es/guia/bus-sita/" class="text-med-blue hover:underline">bus SITA</a> o el ferry.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-2">Día 4: salida por Salerno</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Ravello por la mañana, luego Maiori, Vietri y <a href="/es-es/costa-amalfitana/salerno/" class="text-med-blue hover:underline">Salerno</a>. Carga rápida en Mercato San Severino antes de la autopista de vuelta.</p>
+      </div>
+    </div>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      La misma lógica funciona al revés, y con base en Praiano o Maiori en lugar de Sorrento. Lo que funciona mal es confiar en un poste público de pueblo para llenar la batería en mitad de un día de agosto.
+    </p>
+  </div>
+
+  <!-- Verdict -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">La valoración honesta</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Un road trip en coche eléctrico por la Costa Amalfitana es viable, y de octubre a mayo es sencillo: carreteras tranquilas, plazas de recarga libres, sin matrículas alternas después de octubre. En julio y agosto solo es viable con un cargador donde duermes, porque los puntos públicos son pocos, lentos y muy disputados, y en la carretera de la costa no hay ningún cargador rápido que te saque del apuro.
+    </p>
+    <blockquote class="border-l-4 border-med-gold pl-6 my-8">
+      <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+        "En esta costa la batería nunca es el problema. La plaza de aparcamiento junto al cargador, sí."
+      </p>
+    </blockquote>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Y recuerda que aquí un coche, del tipo que sea, es opcional. Muchos visitantes aparcan en Sorrento, Vietri o Salerno y se mueven por la costa en autobús, ferry y a pie, a menudo más rápido en verano. Nuestra guía de <a href="/es-es/blog/costa-amalfitana-en-tren/" class="text-med-blue hover:underline">la Costa Amalfitana en tren</a> explica esa alternativa.
+    </p>
+  </div>
+
+  <!-- Local Tips -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.61 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold">Consejos de Experto</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Nunca llegues por debajo de la mitad</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Llega a la costa con al menos un 50 a 60 por ciento y podrás olvidarte de la recarga pública durante dos o tres días de trayectos locales. Llega con un 15 por ciento y las vacaciones empiezan buscando un poste libre.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Carga a primera hora</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Los postes de los pueblos suelen estar libres antes de las 09:00, cuando aún no han llegado los excursionistas. Además te mantiene fuera de la SS163 durante la franja de 10:00 a 18:00 en los días de matrículas alternas.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Usa menos el coche, no más</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Una vez aparcado y cargando, deja el coche. En verano, de Positano a Amalfi se va mejor en ferry, y el Sendero de los Dioses es una caminata, no un trayecto en coche.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Revisa el mapa la noche antes</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Los datos de este artículo se comprobaron el 16 de octubre de 2026. Los mapas de recarga cambian cada mes: mira los comentarios recientes en tu app y el mapa PUN antes de cada trayecto.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sources -->
+  <div>
+    <h2 class="font-serif text-2xl font-bold text-slate-900 mb-4">Cómo lo comprobamos</h2>
+    <p class="text-slate-600 text-sm leading-relaxed">
+      Ubicación de los puntos: páginas municipales de Electromaps y OpenStreetMap, consultadas el 16 de octubre de 2026. Cargadores rápidos: páginas de Supercargadores de Tesla, anuncios de Free To X e Ionity recogidos por HDmotori, plan de autopistas de Ewiva hasta 2027 recogido por Smartworld, estación de la Mostra d'Oltremare recogida por Autoblog. Precios: observatorio Adiconsum-TariffEV de julio de 2026. Tamaño de la red: Motus-E, segundo trimestre de 2026. Matrículas alternas: ordenanza ANAS 340/2019 y listas de exenciones de 2026 publicadas por la prensa local y Positano.com. Nada de esto está patrocinado, y no citamos hoteles porque su oferta de recarga cambia demasiado a menudo para listarla de forma fiable.
+    </p>
+  </div>
+
+</BlogPostLayout>

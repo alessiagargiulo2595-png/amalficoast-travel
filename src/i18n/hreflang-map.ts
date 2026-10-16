@@ -359,6 +359,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/cetara-anchovies/',
     source: 'slugMap',
   },
+  '/de-de/blog/ciuccio-di-fuoco-sorrent-santagata/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/ciuccio-di-fuoco-sorrent-santagata/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/ciuccio-di-fuoco-sorrent-santagata/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ciuccio-di-fuoco-sorrente-santagata/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/ciuccio-di-fuoco-sorrento-santagata/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    source: 'slugMap',
+  },
   '/de-de/blog/cuoppo-fritto/': {
     url: 'https://amalficoast-travel.com/de-de/blog/cuoppo-fritto/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/cuoppo-fritto/',
@@ -370,6 +383,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/cuoppo-fritto/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/cuoppo-fritto/',
+    source: 'slugMap',
+  },
+  '/de-de/blog/elektroauto-amalfikueste/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/elektroauto-amalfikueste/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/elektroauto-amalfikueste/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/voiture-electrique-cote-amalfitaine/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/coche-electrico-costa-amalfitana/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/auto-elettrica-costiera-amalfitana/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
     source: 'slugMap',
   },
   '/de-de/blog/ferriere-tal/': {
@@ -450,6 +476,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
     source: 'slugMap',
   },
+  '/de-de/blog/krippen-neapel-sorrent/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/krippen-neapel-sorrent/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/krippen-neapel-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/creches-naples-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/belenes-napoles-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/presepi-san-gregorio-armeno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
+    source: 'slugMap',
+  },
   '/de-de/blog/limoncello-rezept/': {
     url: 'https://amalficoast-travel.com/de-de/blog/limoncello-rezept/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/limoncello-recipe/',
@@ -500,6 +539,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/piazzetta-capri/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
+    source: 'slugMap',
+  },
+  '/de-de/blog/pompeji-herculaneum-ab-sorrent-positano/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/pompeji-herculaneum-ab-sorrent-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/pompeji-herculaneum-ab-sorrent-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/pompei-herculanum-depuis-sorrente-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/pompeya-herculano-desde-sorrento-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/pompei-ercolano-da-sorrento-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
     source: 'slugMap',
   },
   '/de-de/blog/positano-hotels-restaurants/': {
@@ -580,6 +632,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/scialatielli/',
     source: 'slugMap',
   },
+  '/de-de/blog/silvester-positano-feuerwerk/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/silvester-positano-feuerwerk/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/silvester-positano-feuerwerk/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/nouvel-an-positano-feux-artifice/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/nochevieja-positano-fuegos-artificiales/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/capodanno-positano-fuochi-artificio/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+    source: 'slugMap',
+  },
   '/de-de/blog/smaragd-grotte/': {
     url: 'https://amalficoast-travel.com/de-de/blog/smaragd-grotte/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/emerald-grotto/',
@@ -658,6 +723,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
     source: 'slugMap',
   },
+  '/de-de/blog/thermen-spa-ischia-sorrent/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/thermen-spa-ischia-sorrent/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/thermen-spa-ischia-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/thermes-spa-ischia-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/termas-spa-ischia-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/terme-spa-ischia-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
+    source: 'slugMap',
+  },
   '/de-de/blog/torre-dello-ziro/': {
     url: 'https://amalficoast-travel.com/de-de/blog/torre-dello-ziro/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
@@ -671,6 +749,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
     source: 'slugMap',
   },
+  '/de-de/blog/torrone-rezept/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/torrone-rezept/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/torrone-rezept/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/recette-torrone-nougat/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/receta-turron-torrone/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/ricetta-torrone-torroncini/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
+    source: 'slugMap',
+  },
   '/de-de/blog/weihnachtsbeleuchtung-sorrent-salerno/': {
     url: 'https://amalficoast-travel.com/de-de/blog/weihnachtsbeleuchtung-sorrent-salerno/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
@@ -682,6 +773,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/luminarie-natalizie-sorrento-salerno/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
+    source: 'slugMap',
+  },
+  '/de-de/blog/weihnachtsgebaeck-neapel/': {
+    url: 'https://amalficoast-travel.com/de-de/blog/weihnachtsgebaeck-neapel/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/weihnachtsgebaeck-neapel/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/patisseries-noel-napolitaines/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/dulces-navidad-napolitanos/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/dolci-natale-struffoli-roccoco-mustaccioli/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
     source: 'slugMap',
   },
   '/de-de/blog/wetter-juli-august-2026/': {
@@ -2360,6 +2464,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/christmas-lights-sorrento-salerno/',
     source: 'slugMap',
   },
+  '/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/ciuccio-di-fuoco-sorrent-santagata/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ciuccio-di-fuoco-sorrente-santagata/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/ciuccio-di-fuoco-sorrento-santagata/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    source: 'slugMap',
+  },
   '/en-us/blog/comfortable-beaches/': {
     url: 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
@@ -2384,6 +2501,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/cuoppo-fritto/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/cuoppo-fritto/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/electric-car-amalfi-coast/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/elektroauto-amalfikueste/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/voiture-electrique-cote-amalfitaine/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/coche-electrico-costa-amalfitana/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/auto-elettrica-costiera-amalfitana/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
     source: 'slugMap',
   },
   '/en-us/blog/emerald-grotto/': {
@@ -2503,6 +2633,32 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
     source: 'slugMap',
   },
+  '/en-us/blog/nativity-scenes-naples-sorrento/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/krippen-neapel-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/creches-naples-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/belenes-napoles-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/presepi-san-gregorio-armeno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/neapolitan-christmas-sweets/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/weihnachtsgebaeck-neapel/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/patisseries-noel-napolitaines/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/dulces-navidad-napolitanos/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/dolci-natale-struffoli-roccoco-mustaccioli/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
+    source: 'slugMap',
+  },
   '/en-us/blog/paris-to-amalfi-coast-train/': {
     url: 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
@@ -2529,6 +2685,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
     source: 'slugMap',
   },
+  '/en-us/blog/pompeii-herculaneum-from-sorrento-positano/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/pompeji-herculaneum-ab-sorrent-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/pompei-herculanum-depuis-sorrente-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/pompeya-herculano-desde-sorrento-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/pompei-ercolano-da-sorrento-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
+    source: 'slugMap',
+  },
   '/en-us/blog/positano-hotels-restaurants/': {
     url: 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
@@ -2540,6 +2709,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/hotel-ristoranti-positano/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-hotels-restaurants/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/positano-new-years-eve-fireworks/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/silvester-positano-feuerwerk/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/nouvel-an-positano-feux-artifice/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/nochevieja-positano-fuegos-artificiales/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/capodanno-positano-fuochi-artificio/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
     source: 'slugMap',
   },
   '/en-us/blog/positano-vs-amalfi/': {
@@ -2698,6 +2880,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/sunset-beaches/',
     source: 'slugMap',
   },
+  '/en-us/blog/thermal-spas-ischia-sorrento/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/thermen-spa-ischia-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/thermes-spa-ischia-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/termas-spa-ischia-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/terme-spa-ischia-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
+    source: 'slugMap',
+  },
   '/en-us/blog/torre-dello-ziro/': {
     url: 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
@@ -2709,6 +2904,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/torre-dello-ziro/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
+    source: 'slugMap',
+  },
+  '/en-us/blog/torrone-recipe/': {
+    url: 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/torrone-rezept/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/recette-torrone-nougat/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/receta-turron-torrone/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/ricetta-torrone-torroncini/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
     source: 'slugMap',
   },
   '/en-us/blog/weather-july-august-2026/': {
@@ -3709,6 +3917,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
     source: 'slugMap',
   },
+  '/es-es/blog/belenes-napoles-sorrento/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/belenes-napoles-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/krippen-neapel-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/creches-naples-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/belenes-napoles-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/presepi-san-gregorio-armeno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
+    source: 'slugMap',
+  },
   '/es-es/blog/capri-vs-ischia/': {
     url: 'https://amalficoast-travel.com/es-es/blog/capri-vs-ischia/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
@@ -3722,6 +3943,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
     source: 'slugMap',
   },
+  '/es-es/blog/ciuccio-di-fuoco-sorrento-santagata/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/ciuccio-di-fuoco-sorrent-santagata/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ciuccio-di-fuoco-sorrente-santagata/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/ciuccio-di-fuoco-sorrento-santagata/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    source: 'slugMap',
+  },
   '/es-es/blog/clima-julio-agosto-2026/': {
     url: 'https://amalficoast-travel.com/es-es/blog/clima-julio-agosto-2026/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
@@ -3733,6 +3967,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/meteo-luglio-agosto-2026/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/coche-electrico-costa-amalfitana/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/coche-electrico-costa-amalfitana/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/elektroauto-amalfikueste/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/voiture-electrique-cote-amalfitaine/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/coche-electrico-costa-amalfitana/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/auto-elettrica-costiera-amalfitana/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
     source: 'slugMap',
   },
   '/es-es/blog/costa-amalfitana-en-tren/': {
@@ -3785,6 +4032,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/dove-atterrare-costiera-amalfitana/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/where-to-fly-amalfi-coast/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/dulces-navidad-napolitanos/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/dulces-navidad-napolitanos/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/weihnachtsgebaeck-neapel/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/patisseries-noel-napolitaines/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/dulces-navidad-napolitanos/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/dolci-natale-struffoli-roccoco-mustaccioli/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
     source: 'slugMap',
   },
   '/es-es/blog/escuela-primaria-sorrento/': {
@@ -3891,6 +4151,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/maiori-vs-minori/',
     source: 'slugMap',
   },
+  '/es-es/blog/nochevieja-positano-fuegos-artificiales/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/nochevieja-positano-fuegos-artificiales/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/silvester-positano-feuerwerk/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/nouvel-an-positano-feux-artifice/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/nochevieja-positano-fuegos-artificiales/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/capodanno-positano-fuochi-artificio/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+    source: 'slugMap',
+  },
   '/es-es/blog/oasis-salvajes-playas/': {
     url: 'https://amalficoast-travel.com/es-es/blog/oasis-salvajes-playas/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
@@ -3954,6 +4227,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/spiagge-comode-attrezzate/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/pompeya-herculano-desde-sorrento-positano/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/pompeya-herculano-desde-sorrento-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/pompeji-herculaneum-ab-sorrent-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/pompei-herculanum-depuis-sorrente-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/pompeya-herculano-desde-sorrento-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/pompei-ercolano-da-sorrento-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
     source: 'slugMap',
   },
   '/es-es/blog/positano-vs-amalfi/': {
@@ -4034,6 +4320,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/limoncello-recipe/',
     source: 'slugMap',
   },
+  '/es-es/blog/receta-turron-torrone/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/receta-turron-torrone/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/torrone-rezept/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/recette-torrone-nougat/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/receta-turron-torrone/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/ricetta-torrone-torroncini/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
+    source: 'slugMap',
+  },
   '/es-es/blog/scialatielli/': {
     url: 'https://amalficoast-travel.com/es-es/blog/scialatielli/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/scialatielli/',
@@ -4110,6 +4409,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/spaghetti-alla-nerano/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/spaghetti-alla-nerano/',
+    source: 'slugMap',
+  },
+  '/es-es/blog/termas-spa-ischia-sorrento/': {
+    url: 'https://amalficoast-travel.com/es-es/blog/termas-spa-ischia-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/thermen-spa-ischia-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/thermes-spa-ischia-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/termas-spa-ischia-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/terme-spa-ischia-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
     source: 'slugMap',
   },
   '/es-es/blog/torre-dello-ziro/': {
@@ -5528,6 +5840,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
     source: 'slugMap',
   },
+  '/fr-fr/blog/ciuccio-di-fuoco-sorrente-santagata/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/ciuccio-di-fuoco-sorrente-santagata/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/ciuccio-di-fuoco-sorrent-santagata/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ciuccio-di-fuoco-sorrente-santagata/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/ciuccio-di-fuoco-sorrento-santagata/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    source: 'slugMap',
+  },
   '/fr-fr/blog/cote-amalfitaine-en-train/': {
     url: 'https://amalficoast-travel.com/fr-fr/blog/cote-amalfitaine-en-train/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-by-train/',
@@ -5552,6 +5877,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/tramonto-spiaggia-costiera/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/sunset-beaches/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/creches-naples-sorrente/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/creches-naples-sorrente/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/krippen-neapel-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/creches-naples-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/belenes-napoles-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/presepi-san-gregorio-armeno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
     source: 'slugMap',
   },
   '/fr-fr/blog/cuoppo-frit/': {
@@ -5697,6 +6035,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/weather-july-august-2026/',
     source: 'slugMap',
   },
+  '/fr-fr/blog/nouvel-an-positano-feux-artifice/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/nouvel-an-positano-feux-artifice/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/silvester-positano-feuerwerk/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/nouvel-an-positano-feux-artifice/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/nochevieja-positano-fuegos-artificiales/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/capodanno-positano-fuochi-artificio/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+    source: 'slugMap',
+  },
   '/fr-fr/blog/oasis-sauvages-plages/': {
     url: 'https://amalficoast-travel.com/fr-fr/blog/oasis-sauvages-plages/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/wild-remote-beaches/',
@@ -5736,6 +6087,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/paris-to-amalfi-coast-train/',
     source: 'slugMap',
   },
+  '/fr-fr/blog/patisseries-noel-napolitaines/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/patisseries-noel-napolitaines/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/weihnachtsgebaeck-neapel/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/patisseries-noel-napolitaines/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/dulces-navidad-napolitanos/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/dolci-natale-struffoli-roccoco-mustaccioli/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
+    source: 'slugMap',
+  },
   '/fr-fr/blog/piazzetta-capri/': {
     url: 'https://amalficoast-travel.com/fr-fr/blog/piazzetta-capri/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
@@ -5760,6 +6124,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/spiagge-comode-attrezzate/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/comfortable-beaches/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/pompei-herculanum-depuis-sorrente-positano/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/pompei-herculanum-depuis-sorrente-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/pompeji-herculaneum-ab-sorrent-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/pompei-herculanum-depuis-sorrente-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/pompeya-herculano-desde-sorrento-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/pompei-ercolano-da-sorrento-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
     source: 'slugMap',
   },
   '/fr-fr/blog/positano-vs-amalfi/': {
@@ -5825,6 +6202,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/ricetta-limoncello/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/limoncello-recipe/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/recette-torrone-nougat/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/recette-torrone-nougat/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/torrone-rezept/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/recette-torrone-nougat/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/receta-turron-torrone/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/ricetta-torrone-torroncini/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
     source: 'slugMap',
   },
   '/fr-fr/blog/scialatielli/': {
@@ -5918,6 +6308,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
     source: 'slugMap',
   },
+  '/fr-fr/blog/thermes-spa-ischia-sorrente/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/thermes-spa-ischia-sorrente/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/thermen-spa-ischia-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/thermes-spa-ischia-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/termas-spa-ischia-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/terme-spa-ischia-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
+    source: 'slugMap',
+  },
   '/fr-fr/blog/torre-dello-ziro/': {
     url: 'https://amalficoast-travel.com/fr-fr/blog/torre-dello-ziro/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/torre-dello-ziro/',
@@ -5955,6 +6358,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/vini-costa-amalfi/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/amalfi-coast-wines/',
+    source: 'slugMap',
+  },
+  '/fr-fr/blog/voiture-electrique-cote-amalfitaine/': {
+    url: 'https://amalficoast-travel.com/fr-fr/blog/voiture-electrique-cote-amalfitaine/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/elektroauto-amalfikueste/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/voiture-electrique-cote-amalfitaine/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/coche-electrico-costa-amalfitana/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/auto-elettrica-costiera-amalfitana/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
     source: 'slugMap',
   },
   '/fr-fr/cookie-policy/': {
@@ -7306,6 +7722,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/atrani/',
     source: 'slugMap',
   },
+  '/it-it/blog/auto-elettrica-costiera-amalfitana/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/auto-elettrica-costiera-amalfitana/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/elektroauto-amalfikueste/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/voiture-electrique-cote-amalfitaine/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/coche-electrico-costa-amalfitana/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/auto-elettrica-costiera-amalfitana/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/electric-car-amalfi-coast/',
+    source: 'slugMap',
+  },
   '/it-it/blog/baia-recommone/': {
     url: 'https://amalficoast-travel.com/it-it/blog/baia-recommone/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
@@ -7319,6 +7748,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/baia-recommone/',
     source: 'slugMap',
   },
+  '/it-it/blog/capodanno-positano-fuochi-artificio/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/capodanno-positano-fuochi-artificio/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/silvester-positano-feuerwerk/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/nouvel-an-positano-feux-artifice/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/nochevieja-positano-fuegos-artificiales/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/capodanno-positano-fuochi-artificio/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/positano-new-years-eve-fireworks/',
+    source: 'slugMap',
+  },
   '/it-it/blog/capri-vs-ischia/': {
     url: 'https://amalficoast-travel.com/it-it/blog/capri-vs-ischia/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
@@ -7330,6 +7772,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/capri-vs-ischia/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/capri-vs-ischia/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/ciuccio-di-fuoco-sorrento-santagata/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/ciuccio-di-fuoco-sorrent-santagata/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/ciuccio-di-fuoco-sorrente-santagata/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/ciuccio-di-fuoco-sorrento-santagata/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/ciuccio-di-fuoco-sorrento-santagata/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/ciuccio-di-fuoco-sorrento-santagata/',
     source: 'slugMap',
   },
   '/it-it/blog/costiera-amalfitana-in-treno/': {
@@ -7369,6 +7824,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/delizia-al-limone/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/lemon-delight/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/dolci-natale-struffoli-roccoco-mustaccioli/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/dolci-natale-struffoli-roccoco-mustaccioli/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/weihnachtsgebaeck-neapel/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/patisseries-noel-napolitaines/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/dulces-navidad-napolitanos/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/dolci-natale-struffoli-roccoco-mustaccioli/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/neapolitan-christmas-sweets/',
     source: 'slugMap',
   },
   '/it-it/blog/dove-atterrare-costiera-amalfitana/': {
@@ -7527,6 +7995,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
     'x-default': 'https://amalficoast-travel.com/en-us/blog/piazzetta-capri/',
     source: 'slugMap',
   },
+  '/it-it/blog/pompei-ercolano-da-sorrento-positano/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/pompei-ercolano-da-sorrento-positano/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/pompeji-herculaneum-ab-sorrent-positano/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/pompei-herculanum-depuis-sorrente-positano/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/pompeya-herculano-desde-sorrento-positano/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/pompei-ercolano-da-sorrento-positano/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/pompeii-herculaneum-from-sorrento-positano/',
+    source: 'slugMap',
+  },
   '/it-it/blog/positano-vs-amalfi/': {
     url: 'https://amalficoast-travel.com/it-it/blog/positano-vs-amalfi/',
     canonical: 'https://amalficoast-travel.com/en-us/blog/positano-vs-amalfi/',
@@ -7551,6 +8032,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/praiano-vs-positano/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/praiano-vs-positano/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/presepi-san-gregorio-armeno-sorrento/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/presepi-san-gregorio-armeno-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/krippen-neapel-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/creches-naples-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/belenes-napoles-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/presepi-san-gregorio-armeno-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/nativity-scenes-naples-sorrento/',
     source: 'slugMap',
   },
   '/it-it/blog/procida-vs-ischia/': {
@@ -7590,6 +8084,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/ricetta-limoncello/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/limoncello-recipe/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/ricetta-torrone-torroncini/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/ricetta-torrone-torroncini/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/torrone-rezept/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/recette-torrone-nougat/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/receta-turron-torrone/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/ricetta-torrone-torroncini/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/torrone-recipe/',
     source: 'slugMap',
   },
   '/it-it/blog/scialatielli/': {
@@ -7707,6 +8214,19 @@ export const hrefLangMap: Record<string, HrefLangEntry> = {
       'it-it': 'https://amalficoast-travel.com/it-it/blog/study-abroad-sorrento/',
     },
     'x-default': 'https://amalficoast-travel.com/en-us/blog/study-abroad-sorrento/',
+    source: 'slugMap',
+  },
+  '/it-it/blog/terme-spa-ischia-sorrento/': {
+    url: 'https://amalficoast-travel.com/it-it/blog/terme-spa-ischia-sorrento/',
+    canonical: 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
+    alternates: {
+      'en-us': 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
+      'de-de': 'https://amalficoast-travel.com/de-de/blog/thermen-spa-ischia-sorrent/',
+      'fr-fr': 'https://amalficoast-travel.com/fr-fr/blog/thermes-spa-ischia-sorrente/',
+      'es-es': 'https://amalficoast-travel.com/es-es/blog/termas-spa-ischia-sorrento/',
+      'it-it': 'https://amalficoast-travel.com/it-it/blog/terme-spa-ischia-sorrento/',
+    },
+    'x-default': 'https://amalficoast-travel.com/en-us/blog/thermal-spas-ischia-sorrento/',
     source: 'slugMap',
   },
   '/it-it/blog/torre-dello-ziro/': {
@@ -9089,7 +9609,7 @@ export function getXDefault(url: string): string | null {
  * Map statistics
  */
 export const hrefLangStats = {
-  totalUrls: 696,
+  totalUrls: 736,
   locales: ["en-us","de-de","fr-fr","es-es","it-it"],
-  generatedAt: '2026-10-08T11:03:53.264Z',
+  generatedAt: '2026-10-16T17:43:21.259Z',
 };

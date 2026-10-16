@@ -1,0 +1,442 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'fr-fr';
+const post = {
+  title: 'Recette du torrone',
+  subtitle: 'Le nougat de Noël campanien et les torroncini, faits maison',
+  category: 'GASTRONOMIE',
+  date: '5 novembre 2026',
+  readTime: '10 min',
+  image: '/images/torrone-hero.webp',
+  imageAlt: "Tranches de torrone blanc aux amandes sur une planche en bois",
+  path: '/fr-fr/blog/recette-torrone-nougat/',
+};
+
+const metaTitle = 'Recette du torrone : nougat italien et torroncini maison';
+const metaDescription = "Le torrone blanc à la campanienne, cousin italien du nougat : miel, blanc d'œuf, amandes et noisettes, températures exactes, torroncini, conservation et erreurs.";
+
+const breadcrumbs = [
+  { name: 'Accueil', url: '/fr-fr/' },
+  { name: 'Blog', url: '/fr-fr/blog/' },
+  { name: 'Recette du torrone', url: '/fr-fr/blog/recette-torrone-nougat/' },
+];
+
+const quickInfo = [
+  { label: 'Difficulté', value: 'Moyenne (un thermomètre aide beaucoup)' },
+  { label: 'Préparation', value: '30 min + 20 min de cuisson' },
+  { label: 'Repos', value: 'Plusieurs heures, idéalement une nuit' },
+  { label: 'Températures clés', value: 'Miel 120-124 °C, sirop de sucre 144-145 °C' },
+  { label: 'Quantité', value: 'Une plaque de 20 x 20 cm, environ 750 g' },
+  { label: 'Conservation', value: 'Emballé, en boîte métallique, au sec, jusqu\'à 1 mois environ' },
+  { label: 'Variante', value: 'Torroncini enrobés de chocolat noir' },
+  { label: 'Origine', value: 'Bénévent et le Sannio, Campanie' },
+];
+
+const faq = [
+  {
+    q: "Quelle différence entre torrone et torroncini ?",
+    a: "Le torrone est la barre ou la plaque entière : miel, blanc d'œuf et sucre montés jusqu'à blanchir, garnis d'amandes ou de noisettes et enfermés entre deux feuilles de pain azyme. Les torroncini sont de petits morceaux de la même famille, coupés en bâtonnets ou en cubes et souvent enrobés de chocolat noir. Autour de Bénévent, on les trouve tendres ou friables, et le croccantino de San Marco dei Cavoti est une barre croquante d'amandes et de noisettes enrobée de chocolat noir.",
+  },
+  {
+    q: "Peut-on faire du torrone sans thermomètre ?",
+    a: "Oui, mais le résultat est moins prévisible. La méthode familiale traditionnelle fait cuire le miel lentement au bain-marie pendant environ une heure, en remuant sans cesse, avant d'ajouter les blancs montés et le sirop de sucre. Pour le sirop, on utilise le test de l'eau froide : une goutte qui durcit et casse net dans l'eau froide est proche de 145 °C. Un thermomètre à sonde bon marché enlève presque toutes les incertitudes.",
+  },
+  {
+    q: "Pourquoi mon torrone maison est-il collant ?",
+    a: "En général, le sirop de sucre n'a pas atteint 144-145 °C et il reste trop d'eau dans la masse. L'autre cause est l'humidité : le torrone absorbe l'humidité de l'air. Préparez-le par temps sec et conservez-le emballé dans une boîte métallique, loin de la vapeur de la cuisine.",
+  },
+  {
+    q: "Combien de temps se conserve le torrone maison ?",
+    a: "Emballé barre par barre dans du papier cuisson puis dans de l'aluminium, et rangé dans une boîte métallique ou hermétique dans un endroit frais et sec, il se garde jusqu'à un mois environ. Le réfrigérateur n'est pas nécessaire et rend la surface humide quand on l'en sort.",
+  },
+  {
+    q: "Qu'est-ce que l'ostia et peut-on s'en passer ?",
+    a: "L'ostia est le pain azyme comestible (feuille d'hostie), une feuille fine sans levain qui couvre le dessus et le dessous de la plaque pour que le torrone ne colle ni au moule ni aux doigts. On peut la remplacer par du papier cuisson légèrement huilé, mais il faut le retirer avant de couper et les bords restent collants.",
+  },
+  {
+    q: "Le torrone italien est-il la même chose que le nougat ou le turrón ?",
+    a: "Ce sont de proches cousins construits sur la même idée : miel, sucre et blanc d'œuf avec des fruits secs. Le nougat de Montélimar en est le parent français le plus connu. Les proportions, les fruits secs et les textures changent d'un endroit à l'autre. Cet article parle du torrone blanc campanien et des torroncini de la région de Bénévent.",
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Recette Limoncello', href: '/fr-fr/blog/recette-limoncello/' },
+  { label: 'Fête des morts et torrone dei morti', href: '/fr-fr/blog/fete-des-morts-halloween/' },
+  { label: 'Délice au Citron', href: '/fr-fr/blog/delice-citron/' },
+  { label: 'Illuminations de Noël à Sorrente et Salerne', href: '/fr-fr/blog/illuminations-noel-sorrente-salerne/' },
+  { label: 'Cours de cuisine', href: '/fr-fr/experiences/cours-de-cuisine/' },
+];
+
+const authorRole = 'Spécialiste Gastronomie · Côte Amalfitaine';
+
+const relatedArticles = [
+  {
+    title: 'Recette Limoncello',
+    category: 'GASTRONOMIE',
+    date: '31 mai 2026',
+    image: '/images/limoncello-ricetta-hero.webp',
+    imageAlt: 'Limoncello artisanal de la Côte Amalfitaine - citrons d\'Amalfi et de Sorrente',
+    path: '/fr-fr/blog/recette-limoncello/'
+  },
+  {
+    title: 'Fête des morts, Halloween et les confréries encapuchonnées',
+    category: 'DÉCOUVERTES',
+    date: '7 octobre 2026',
+    image: '/images/misteri-venerdi-santo-hero.webp',
+    imageAlt: "Un Mystère de la Passion porté par des confrères encapuchonnés lors d'une procession du vendredi saint",
+    path: '/fr-fr/blog/fete-des-morts-halloween/'
+  }
+];
+
+const keyTakeaways = [
+  "Le torrone blanc campanien repose sur quatre ingrédients : miel, blanc d'œuf, sucre et fruits secs (amandes, noisettes ou les deux), enfermés entre deux feuilles de pain azyme (ostia).",
+  "Les deux chiffres qui comptent : miel à 120-124 °C, sirop de sucre à 144-145 °C. Plus chaud, le miel brûle et devient amer.",
+  "Les fruits secs doivent être ajoutés chauds. Froids, ils figent la masse trop vite : elle devient granuleuse et difficile à étaler.",
+  "Les torroncini sont de petits morceaux de la même famille, tendres ou friables, souvent enrobés de chocolat noir. San Marco dei Cavoti est connue pour son croccantino croquant enrobé de chocolat.",
+  "Emballé et rangé dans une boîte métallique au sec, le torrone maison se garde jusqu'à un mois environ.",
+];
+
+const schemaRecipe = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Torrone blanc campanien (nougat au miel et aux amandes)",
+  "description": "Torrone blanc maison au miel, blanc d'œuf, sucre, amandes et noisettes entre deux feuilles de pain azyme, avec les températures au thermomètre et une variante en torroncini.",
+  "image": "https://amalficoast-travel.com/images/torrone-hero.webp",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "datePublished": "2026-10-16",
+  "recipeCategory": "Dessert",
+  "recipeCuisine": "Italienne",
+  "keywords": "torrone, torroncini, nougat italien, Noël, Campanie, Bénévent",
+  "prepTime": "PT30M",
+  "cookTime": "PT20M",
+  "totalTime": "PT6H50M",
+  "recipeYield": "Une plaque de 20 x 20 cm (environ 750 g)",
+  "recipeIngredient": [
+    "220 g d'amandes mondées",
+    "90 g de noisettes mondées",
+    "40 g de pistaches décortiquées non salées (facultatif, ou plus d'amandes)",
+    "135 g de miel (acacia ou toutes fleurs)",
+    "200 g de sucre en poudre pour le sirop",
+    "65 g d'eau",
+    "20 g de sirop de glucose (ou le même poids de miel)",
+    "1 blanc d'œuf (environ 35 g), à température ambiante",
+    "15 g de sucre en poudre pour le blanc",
+    "2 feuilles de pain azyme (ostia), 20 x 20 cm",
+    "Un peu d'huile neutre pour la spatule et le couteau"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Chauffer les fruits secs", "text": "Torréfier amandes, noisettes et pistaches à 150 °C pendant environ 10 minutes, puis les laisser dans le four éteint pour qu'ils restent chauds." },
+    { "@type": "HowToStep", "name": "Préparer le moule", "text": "Tapisser le fond d'un cadre ou d'un moule carré de 20 x 20 cm avec une feuille de pain azyme." },
+    { "@type": "HowToStep", "name": "Cuire le sirop", "text": "Mélanger sucre, eau et glucose dans une petite casserole et cuire à feu moyen-vif avec le thermomètre dans la casserole." },
+    { "@type": "HowToStep", "name": "Chauffer le miel", "text": "Quand le sirop atteint environ 116 °C, mettre le miel sur le feu dans une seconde casserole. Le porter à 120-124 °C, pas plus." },
+    { "@type": "HowToStep", "name": "Monter le blanc", "text": "Quand le sirop est vers 120 °C, commencer à monter le blanc d'œuf avec 15 g de sucre jusqu'à obtenir des pics fermes." },
+    { "@type": "HowToStep", "name": "Ajouter miel et sirop", "text": "Robot en marche, verser le miel chaud en filet sur le blanc. Quand le sirop atteint 144-145 °C, le verser lentement lui aussi." },
+    { "@type": "HowToStep", "name": "Battre la masse", "text": "Réduire la vitesse et battre quelques minutes jusqu'à ce que la masse soit blanche, brillante et très épaisse." },
+    { "@type": "HowToStep", "name": "Incorporer les fruits secs", "text": "Retirer le fouet et incorporer à la main les fruits secs chauds avec une spatule légèrement huilée." },
+    { "@type": "HowToStep", "name": "Étaler et presser", "text": "Étaler la masse dans le moule, couvrir avec la seconde feuille de pain azyme et presser avec une planchette coupée à la bonne taille." },
+    { "@type": "HowToStep", "name": "Laisser reposer et couper", "text": "Laisser prendre à température ambiante plusieurs heures, idéalement une nuit. Couper en barres ou en torroncini avec un couteau lourd huilé entre chaque coupe." }
+  ]
+};
+---
+
+<BlogPostLayout
+  lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  breadcrumbs={breadcrumbs}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  relatedArticles={relatedArticles}
+  pageKey="torrone-recipe"
+  extraSchema={[schemaRecipe]}
+>
+
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <div class="flex items-center gap-3 mb-6">
+      <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Points Clés</h2>
+    </div>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-xs sm:text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      En Campanie, Noël a un son : le craquement d'un couteau qui traverse une plaque de <strong>torrone</strong>. Le torrone est le cousin italien du nougat, et c'est le nom que nous garderons ici. Dès décembre, les pâtisseries et les épiceries de toute la région, <a href="/fr-fr/cote-amalfitaine/" class="text-med-blue hover:underline">Côte Amalfitaine</a> comprise, empilent barres et boîtes de torrone et de <strong>torroncini</strong>, dont beaucoup viennent de la région de Bénévent. Voici une <strong>recette du torrone</strong> à faire chez soi : la version blanche classique au miel, blanc d'œuf, sucre, amandes et noisettes, avec les températures exactes, les temps et les erreurs qui gâchent une préparation.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Si vous avez déjà préparé notre <a href="/fr-fr/blog/recette-limoncello/" class="text-med-blue hover:underline">limoncello maison</a>, le torrone est l'étape suivante : plus de technique, moins de jours d'attente, et un résultat à couper et à partager dès le lendemain matin.
+    </p>
+  </div>
+
+  <!-- Origins -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Le torrone en Campanie : Bénévent et le Sannio</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      La capitale campanienne du torrone est <strong>Bénévent</strong>, dans l'arrière-pays du Sannio. Selon le portail touristique Discover Campania, le torrone local était connu en latin sous le nom de <em>cupedia</em> : le poète romain Martial le citait parmi les produits typiques de la ville, et Tite-Live lui attribuait une origine samnite. Quand Bénévent appartenait aux États pontificaux, le torrone était envoyé à Rome au XVIIe siècle en cadeau aux hauts prélats, et au XVIIIe siècle naquit un « torrone del Papa » en hommage au pape.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      La même source attribue aux Bourbons le mérite d'avoir fait de la douceur de Bénévent une partie du Noël napolitain, et ajoute à la liste le « torrone della Regina », la version préférée du roi Ferdinand Ier. La production s'est étendue aux villages voisins comme Santa Croce del Sannio, Montefalcone di Val Fortore et <strong>San Marco dei Cavoti</strong>, où un <strong>croccantino</strong> croquant enrobé de chocolat est apparu en 1891.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Les récits sur le croccantino divergent dans les détails. Certains l'attribuent à Innocenzo Borrillo, dont l'atelier familial se trouve toujours à San Marco dei Cavoti ; d'autres disent que Borrillo fit d'abord de petits « Baci » aux amandes et noisettes et que d'autres pâtissiers du village créèrent le croccantino en 1891. Chaque mois de décembre, le village organise la <strong>Festa del Torrone e del Croccantino</strong>.
+    </p>
+  </div>
+
+  <!-- Torrone vs torroncini -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Torrone blanc, torroncini tendres et croccantino : les différences</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Tous trois partent de la même idée, du miel et du sucre qui tiennent ensemble beaucoup de fruits secs, mais dans l'assiette ce n'est pas la même chose. Le levier principal est la cuisson : les auteurs culinaires italiens rappellent que le torrone tendre cuit beaucoup moins longtemps que le friable, qui en production artisanale peut rester des heures sur le feu.
+    </p>
+
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Type</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Ce que c'est</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Torrone blanc (torrone bianco)</td>
+            <td class="p-5 text-slate-600">Miel, blanc d'œuf et sucre montés jusqu'à blanchir, garnis d'amandes et de noisettes, entre deux feuilles de pain azyme. Tendre (morbido) ou friable (friabile) selon la cuisson.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Torroncini</td>
+            <td class="p-5 text-slate-600">Petits morceaux de torrone, coupés en bâtonnets ou en cubes et souvent enrobés de chocolat noir. Autour de Bénévent, on les trouve tendres et friables, en de nombreux parfums.</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Croccantino de San Marco dei Cavoti</td>
+            <td class="p-5 text-slate-600">Une barre croquante d'amandes et de noisettes au sucre, enrobée de chocolat noir. Plus proche du croquant que du torrone blanc.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      La recette ci-dessous donne un torrone blanc de type tendre, le résultat le plus fiable à la maison. À la fin, on peut le transformer en torroncini.
+    </p>
+  </div>
+
+  <!-- Ingredients -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Ingrédients du torrone : doses pour une plaque de 20 x 20 cm</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Pesez tout avant de commencer : une fois le sirop sur le feu, il n'y a plus le temps de chercher quoi que ce soit. Ces doses suivent les proportions de recettes familiales italiennes éprouvées et donnent environ <strong>750 g de torrone</strong>.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Ingrédients (une plaque de 20 x 20 cm)</h3>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>220 g d'amandes mondées</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>90 g de noisettes mondées</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>40 g de pistaches non salées</strong> (facultatif, ou plus d'amandes)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>135 g de miel</strong> (acacia pour un goût doux, toutes fleurs pour un goût plus marqué)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>200 g de sucre en poudre</strong> pour le sirop</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>65 g d'eau</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>20 g de sirop de glucose</strong> (ou le même poids de miel)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>1 blanc d'œuf</strong> (environ 35 g), à température ambiante, plus <strong>15 g de sucre</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>2 feuilles de pain azyme (ostia)</strong>, 20 x 20 cm</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Huile neutre</strong>, quelques gouttes pour la spatule et le couteau</span></li>
+      </ul>
+    </div>
+
+    <h3 class="font-serif text-xl font-bold text-slate-900 mt-8 mb-4">Matériel</h3>
+    <ul class="space-y-3">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Un thermomètre numérique à sonde (deux simplifient la vie : un pour le sirop, un pour le miel)</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Un robot pâtissier, ou un batteur électrique et quelqu'un pour verser</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Deux petites casseroles à fond épais</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Un cadre ou un moule carré de 20 x 20 cm, et une planchette ou un carton rigide de la même taille</span></li>
+    </ul>
+  </div>
+
+  <!-- Preparation -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Comment faire le torrone : étape par étape</h2>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">La préparation</h3>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Chauffez les fruits secs.</strong> Torréfiez amandes, noisettes et pistaches à 150 °C pendant environ 10 minutes, puis éteignez le four et laissez-les dedans. Ils doivent être chauds quand ils entrent dans la masse.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Préparez le moule.</strong> Posez une feuille de pain azyme au fond du cadre de 20 x 20 cm. Gardez la seconde feuille et la planchette à portée de main.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Lancez le sirop.</strong> Mélangez 200 g de sucre, 65 g d'eau et 20 g de glucose dans une casserole et faites cuire à feu moyen-vif avec le thermomètre dedans. Pesez le miel dans la seconde casserole et laissez-le pour l'instant hors du feu.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">4</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Chauffez le miel.</strong> Quand le sirop atteint environ 116 °C, mettez le miel sur le feu. Il doit atteindre 120-124 °C. N'allez pas plus haut : le miel surchauffé brûle et le torrone devient amer.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">5</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Montez le blanc.</strong> Quand le sirop est vers 120 °C, commencez à monter le blanc d'œuf avec 15 g de sucre jusqu'à obtenir des pics fermes.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">6</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Versez le miel.</strong> Dès que le miel est à température, versez-le en filet sur le blanc, robot en marche.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">7</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Versez le sirop.</strong> Quand le sirop de sucre atteint 144-145 °C, retirez-le du feu et versez-le lentement, toujours robot en marche. Ne dépassez pas 145 °C.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">8</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Battez jusqu'à ce que ce soit brillant.</strong> Réduisez la vitesse et battez quelques minutes, jusqu'à ce que la masse soit blanche, brillante et très épaisse.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">9</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Incorporez les fruits secs chauds.</strong> Retirez le fouet et incorporez les fruits secs à la main avec une spatule ou une cuillère en bois légèrement huilée. Travaillez vite : la masse durcit en refroidissant.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">10</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Étalez et pressez.</strong> Étalez la masse dans le cadre, couvrez avec la seconde feuille de pain azyme et pressez fort avec la planchette pour l'égaliser.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">11</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Laissez reposer, puis coupez.</strong> Laissez à température ambiante plusieurs heures, idéalement une nuit. Coupez avec un couteau lourd en huilant la lame avant chaque coupe : quatre barres de 5 x 20 cm, ou de fins bâtonnets pour les torroncini.</p>
+        </div>
+      </div>
+    </div>
+
+    <blockquote class="border-l-4 border-med-gold pl-6 my-8">
+      <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+        « Le torrone se joue dans les deux derniers degrés : le miel qu'on ne brûle pas et le sirop qu'on retire du feu à 145. »
+      </p>
+    </blockquote>
+  </div>
+
+  <!-- Temperatures -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Températures et temps du torrone en un coup d'œil</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Recettes familiales italiennes et pâtissiers s'accordent sur ces chiffres. Gardez ce tableau près des fourneaux :
+    </p>
+
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Étape</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Température / temps</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Torréfaction des fruits secs</td>
+            <td class="p-5 text-slate-600">150 °C, environ 10 minutes, puis maintenus au chaud</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Le miel va sur le feu</td>
+            <td class="p-5 text-slate-600">Quand le sirop indique environ 116 °C</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">On commence à monter le blanc</td>
+            <td class="p-5 text-slate-600">Quand le sirop indique environ 120 °C</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Miel</td>
+            <td class="p-5 text-slate-600">120-124 °C, jamais plus</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Sirop de sucre</td>
+            <td class="p-5 text-slate-600">144-145 °C, jamais plus</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Prise</td>
+            <td class="p-5 text-slate-600">Température ambiante, plusieurs heures ou une nuit</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      Pas de thermomètre ? L'ancienne méthode familiale fait cuire le miel lentement au bain-marie pendant environ une heure, en remuant sans cesse, avant d'ajouter blancs et sirop. Pour le sirop, laissez-en tomber un peu dans de l'eau froide : au bon point, il durcit et casse net.
+    </p>
+  </div>
+
+  <!-- Torroncini -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Faire des torroncini avec la même plaque</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Les <strong>torroncini</strong> sont le petit format du torrone, celui qu'on offre. Une fois la plaque prise pendant la nuit, coupez-la en bâtonnets d'environ 2 cm de large, puis en petits morceaux. On les mange tels quels, ou on fait comme de nombreux producteurs de Bénévent en les enrobant de chocolat.
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Enrobage au chocolat :</strong> faites fondre environ 200 g de chocolat noir, plongez chaque morceau à l'aide d'une fourchette, laissez égoutter et posez-les sur du papier cuisson.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Versions à un seul fruit sec :</strong> remplacez le mélange par 350 g d'amandes seules, de noisettes seules ou de pistaches seules.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Emballage :</strong> enveloppez chaque morceau dans un carré de papier cuisson et torsadez les extrémités, comme on les vend en pâtisserie.</span></li>
+    </ul>
+  </div>
+
+  <!-- Storage -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Comment conserver le torrone maison</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      L'ennemi, c'est l'humidité. Enveloppez chaque barre dans du papier cuisson puis dans de l'aluminium, et rangez les barres dans une boîte métallique ou hermétique dans un endroit frais et sec. Ainsi, le torrone maison se garde <strong>jusqu'à un mois environ</strong>. Le réfrigérateur n'est pas nécessaire. Les torroncini enrobés de chocolat se conservent de la même façon, loin de la chaleur pour que le chocolat ne blanchisse pas.
+    </p>
+  </div>
+
+  <!-- Common mistakes -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Les erreurs les plus courantes avec le torrone maison</h2>
+    <ul class="space-y-3">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Brûler le miel.</strong> Au-delà d'environ 124 °C, le miel brûle et l'amertume traverse toute la plaque.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Sirop pas assez cuit.</strong> Si le sucre s'arrête avant 144 °C, le torrone reste collant et ne prend jamais bien.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Fruits secs froids.</strong> Sortis directement du bocal, ils refroidissent la masse si vite qu'elle devient granuleuse et impossible à étaler.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Verser trop vite.</strong> Le sirop brûlant versé d'un coup cuit le blanc en grumeaux. Versez en filet le long de la paroi du bol.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Couper trop tôt.</strong> Une plaque coupée au bout d'une heure se déchire et perd sa forme. Attendez le lendemain.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Ustensiles secs.</strong> Une spatule ou un couteau non huilés collent tout de suite. Quelques gouttes d'huile neutre règlent le problème.</span></li>
+    </ul>
+  </div>
+
+  <!-- Torrone dei morti -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Un autre torrone : le torrone dei morti</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Avant l'arrivée du torrone de Noël, Naples et la Campanie en ont un autre. Le <strong>torrone dei morti</strong> se vend autour du 1er et du 2 novembre et n'a rien à voir avec le torrone blanc de cette recette : c'est une douceur moelleuse bâtie sur le chocolat, une coque de chocolat noir autour d'une garniture de chocolat blanc ou au lait et de noisettes. À Naples, on l'appelle 'o muollo, le moelleux. Nous racontons toute l'histoire, avec les processions et la place d'Halloween, dans notre article sur la <a href="/fr-fr/blog/fete-des-morts-halloween/" class="text-med-blue hover:underline">Fête des morts en Campanie</a>.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Vous venez plutôt en décembre ? Associez une boîte de torroncini à une promenade du soir sous les <a href="/fr-fr/blog/illuminations-noel-sorrente-salerne/" class="text-med-blue hover:underline">illuminations de Noël de Sorrente et Salerne</a>, ou apprenez d'autres recettes campaniennes les mains dans la pâte lors d'un <a href="/fr-fr/experiences/cours-de-cuisine/" class="text-med-blue hover:underline">cours de cuisine sur la Côte Amalfitaine</a>.
+    </p>
+  </div>
+
+  <!-- Expert Tips -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold">Les Conseils de l'Expert</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Choisissez un jour sec</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Le sucre et le miel absorbent l'eau de l'air. Par temps de pluie et d'humidité, la même recette sort plus molle et plus collante : pendant que vous travaillez, évitez les casseroles d'eau bouillante dans la cuisine.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Choisissez le miel pour son goût</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Le miel d'acacia donne un torrone net et doux qui laisse ressortir les amandes. Le miel toutes fleurs le rend plus foncé et plus aromatique. Pour un premier essai, évitez les miels très puissants comme celui de châtaignier.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Préparez tout à l'avance</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Miel, sirop et blanc arrivent à point à quelques minutes d'intervalle. Le moule doit être tapissé, les fruits secs chauds et la spatule huilée avant que le sucre ne passe sur le feu.</p>
+      </div>
+    </div>
+  </div>
+
+</BlogPostLayout>

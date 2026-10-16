@@ -1,0 +1,442 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'de-de';
+const post = {
+  title: 'Torrone Rezept',
+  subtitle: 'Kampanischer Weihnachtstorrone und Torroncini, selbst gemacht',
+  category: 'ESSEN',
+  date: '5. November 2026',
+  readTime: '10 Min.',
+  image: '/images/torrone-hero.webp',
+  imageAlt: "Scheiben von weißem Torrone mit Mandeln auf einem Holzbrett",
+  path: '/de-de/blog/torrone-rezept/',
+};
+
+const metaTitle = 'Torrone Rezept: Italienischer Nougat und Torroncini';
+const metaDescription = 'Weißer Torrone nach kampanischer Art: Honig, Eiweiß, Mandeln und Haselnüsse, genaue Temperaturen, Torroncini, Aufbewahrung und typische Fehler beim Selbermachen.';
+
+const breadcrumbs = [
+  { name: 'Startseite', url: '/de-de/' },
+  { name: 'Blog', url: '/de-de/blog/' },
+  { name: 'Torrone Rezept', url: '/de-de/blog/torrone-rezept/' },
+];
+
+const quickInfo = [
+  { label: 'Schwierigkeitsgrad', value: 'Mittel (ein Thermometer hilft sehr)' },
+  { label: 'Zubereitung', value: '30 Min. + 20 Min. Kochzeit' },
+  { label: 'Ruhezeit', value: 'Mehrere Stunden, am besten über Nacht' },
+  { label: 'Wichtige Temperaturen', value: 'Honig 120-124 °C, Zuckersirup 144-145 °C' },
+  { label: 'Menge', value: 'Eine Platte 20 x 20 cm, etwa 750 g' },
+  { label: 'Aufbewahrung', value: 'Eingewickelt, in der Dose, trocken, bis etwa 1 Monat' },
+  { label: 'Variante', value: 'Torroncini mit Zartbitterschokolade überzogen' },
+  { label: 'Herkunft', value: 'Benevento und das Sannio, Kampanien' },
+];
+
+const faq = [
+  {
+    q: 'Was ist der Unterschied zwischen Torrone und Torroncini?',
+    a: 'Torrone ist der ganze Riegel oder die ganze Platte: Honig, Eiweiß und Zucker, weiß aufgeschlagen, voller Mandeln oder Haselnüsse und zwischen zwei Oblaten eingeschlossen. Torroncini sind kleine Stücke aus derselben Familie, in Streifen oder Würfel geschnitten und oft mit Zartbitterschokolade überzogen. Rund um Benevento gibt es sie weich und mürbe, und der Croccantino aus San Marco dei Cavoti ist ein knuspriger Riegel aus Mandeln und Haselnüssen mit Zartbitterüberzug.',
+  },
+  {
+    q: 'Kann man Torrone ohne Thermometer machen?',
+    a: 'Ja, aber das Ergebnis ist weniger berechenbar. Die traditionelle Hausmethode erhitzt den Honig etwa eine Stunde lang langsam im Wasserbad und rührt dabei ständig, bevor das geschlagene Eiweiß und der Zuckersirup dazukommen. Für den Sirup hilft die Kaltwasserprobe: Ein Tropfen, der im kalten Wasser hart wird und sauber bricht, liegt nahe bei 145 °C. Ein günstiges Einstichthermometer nimmt fast alle Unsicherheit.',
+  },
+  {
+    q: 'Warum ist mein selbst gemachter Torrone klebrig?',
+    a: 'Meist hat der Zuckersirup die 144-145 °C nicht erreicht, und in der Masse ist zu viel Wasser geblieben. Die andere Ursache ist Feuchtigkeit: Torrone zieht Feuchtigkeit aus der Luft. Machen Sie ihn an einem trockenen Tag und bewahren Sie ihn eingewickelt in einer Dose auf, fern vom Küchendampf.',
+  },
+  {
+    q: 'Wie lange hält selbst gemachter Torrone?',
+    a: 'Riegel für Riegel in Backpapier und dann in Alufolie gewickelt und in einer Dose oder luftdichten Box an einem kühlen, trockenen Ort gelagert, hält er bis etwa einen Monat. Der Kühlschrank ist nicht nötig und macht die Oberfläche beim Herausnehmen eher feucht.',
+  },
+  {
+    q: 'Was ist Ostia und kann man sie weglassen?',
+    a: 'Ostia ist essbares Oblatenpapier, ein dünnes, ungesäuertes Blatt, das die Platte oben und unten abdeckt, damit der Torrone weder an der Form noch an den Fingern klebt. Man kann es durch leicht geöltes Backpapier ersetzen, muss das Papier aber vor dem Schneiden abziehen, und die Ränder bleiben klebrig.',
+  },
+  {
+    q: 'Ist italienischer Torrone dasselbe wie Nougat oder Turrón?',
+    a: 'Es sind enge Verwandte nach demselben Prinzip: Honig, Zucker und Eiweiß mit Nüssen. Mit dem deutschen Nuss-Nougat aus Schokolade hat er dagegen wenig zu tun. Proportionen, Nüsse und Konsistenz ändern sich von Ort zu Ort. Dieser Artikel behandelt den weißen kampanischen Torrone und die Torroncini aus der Gegend von Benevento.',
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Limoncello Rezept', href: '/de-de/blog/limoncello-rezept/' },
+  { label: 'Allerseelen und Torrone dei morti', href: '/de-de/blog/allerseelen-halloween/' },
+  { label: 'Zitronen-Köstlichkeit', href: '/de-de/blog/zitronen-koestlichkeit/' },
+  { label: 'Weihnachtsbeleuchtung in Sorrent und Salerno', href: '/de-de/blog/weihnachtsbeleuchtung-sorrent-salerno/' },
+  { label: 'Kochkurs', href: '/de-de/erlebnisse/kochkurs/' },
+];
+
+const authorRole = 'Kulinarik & Reise-Spezialist · Amalfiküste';
+
+const relatedArticles = [
+  {
+    title: 'Limoncello Rezept',
+    category: 'ESSEN',
+    date: '31. Mai 2026',
+    image: '/images/limoncello-ricetta-hero.webp',
+    imageAlt: 'Handgemachter Limoncello der Amalfiküste - Zitronen aus Amalfi und Sorrent',
+    path: '/de-de/blog/limoncello-rezept/'
+  },
+  {
+    title: 'Allerseelen, Halloween und die Kapuzenbruderschaften',
+    category: 'ENTDECKUNGEN',
+    date: '7. Oktober 2026',
+    image: '/images/misteri-venerdi-santo-hero.webp',
+    imageAlt: 'Ein Mysterium der Passion, von Kapuzenbrüdern in einer Karfreitagsprozession getragen',
+    path: '/de-de/blog/allerseelen-halloween/'
+  }
+];
+
+const keyTakeaways = [
+  "Weißer kampanischer Torrone hat vier Grundzutaten: Honig, Eiweiß, Zucker und Nüsse (Mandeln, Haselnüsse oder beides), eingeschlossen zwischen zwei Oblaten (Ostia).",
+  "Die zwei Zahlen, auf die es ankommt: Honig auf 120-124 °C, Zuckersirup auf 144-145 °C. Heißerer Honig verbrennt und wird bitter.",
+  "Die Nüsse müssen heiß dazukommen. Kalte Nüsse lassen die Masse zu schnell anziehen, sie wird körnig und lässt sich kaum verstreichen.",
+  "Torroncini sind kleine Stücke aus derselben Familie, weich oder mürbe, oft mit Zartbitterschokolade überzogen. San Marco dei Cavoti ist für seinen knusprigen, schokoladenüberzogenen Croccantino bekannt.",
+  "Eingewickelt und in einer Dose an einem trockenen Ort hält selbst gemachter Torrone bis etwa einen Monat.",
+];
+
+const schemaRecipe = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Weißer kampanischer Torrone (Honig-Mandel-Nougat)",
+  "description": "Selbst gemachter weißer Torrone mit Honig, Eiweiß, Zucker, Mandeln und Haselnüssen zwischen zwei Oblaten, mit Thermometer-Temperaturen und einer Variante für Torroncini.",
+  "image": "https://amalficoast-travel.com/images/torrone-hero.webp",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "datePublished": "2026-10-16",
+  "recipeCategory": "Dessert",
+  "recipeCuisine": "Italienisch",
+  "keywords": "Torrone, Torroncini, italienischer Nougat, Weihnachten, Kampanien, Benevento",
+  "prepTime": "PT30M",
+  "cookTime": "PT20M",
+  "totalTime": "PT6H50M",
+  "recipeYield": "Eine Platte 20 x 20 cm (etwa 750 g)",
+  "recipeIngredient": [
+    "220 g blanchierte Mandeln",
+    "90 g geschälte Haselnüsse",
+    "40 g ungesalzene, geschälte Pistazien (optional, oder mehr Mandeln)",
+    "135 g Honig (Akazie oder Blüte)",
+    "200 g Kristallzucker für den Sirup",
+    "65 g Wasser",
+    "20 g Glukosesirup (oder dieselbe Menge Honig)",
+    "1 Eiweiß (etwa 35 g), zimmerwarm",
+    "15 g Kristallzucker für das Eiweiß",
+    "2 Oblaten (Ostia), 20 x 20 cm",
+    "Etwas neutrales Pflanzenöl für Spatel und Messer"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Nüsse erwärmen", "text": "Mandeln, Haselnüsse und Pistazien bei 150 °C etwa 10 Minuten rösten und dann im ausgeschalteten Ofen lassen, damit sie heiß bleiben." },
+    { "@type": "HowToStep", "name": "Form vorbereiten", "text": "Den Boden eines quadratischen Rahmens oder einer Form von 20 x 20 cm mit einer Oblate auslegen." },
+    { "@type": "HowToStep", "name": "Zuckersirup kochen", "text": "Zucker, Wasser und Glukose in einem kleinen Topf verrühren und bei mittlerer bis hoher Hitze mit dem Thermometer im Topf kochen." },
+    { "@type": "HowToStep", "name": "Honig erhitzen", "text": "Wenn der Sirup etwa 116 °C erreicht, den Honig in einem zweiten Topf aufsetzen. Auf 120-124 °C bringen und nicht höher." },
+    { "@type": "HowToStep", "name": "Eiweiß aufschlagen", "text": "Wenn der Sirup bei etwa 120 °C ist, das Eiweiß mit 15 g Zucker steif schlagen." },
+    { "@type": "HowToStep", "name": "Honig und Sirup zugeben", "text": "Bei laufender Maschine den heißen Honig in dünnem Strahl zum Eiweiß gießen. Wenn der Sirup 144-145 °C erreicht, ihn ebenfalls langsam einlaufen lassen." },
+    { "@type": "HowToStep", "name": "Masse schlagen", "text": "Die Geschwindigkeit reduzieren und einige Minuten schlagen, bis die Masse weiß, glänzend und sehr dick ist." },
+    { "@type": "HowToStep", "name": "Nüsse unterheben", "text": "Den Schneebesen abnehmen und die heißen Nüsse mit einem leicht geölten Spatel von Hand unterheben." },
+    { "@type": "HowToStep", "name": "Formen und pressen", "text": "Die Masse in die ausgelegte Form streichen, mit der zweiten Oblate abdecken und mit einem passend zugeschnittenen Brett flach pressen." },
+    { "@type": "HowToStep", "name": "Ruhen lassen und schneiden", "text": "Bei Zimmertemperatur mehrere Stunden, am besten über Nacht, fest werden lassen. Mit einem schweren Messer, das zwischen den Schnitten geölt wird, in Riegel oder Torroncini schneiden." }
+  ]
+};
+---
+
+<BlogPostLayout
+  lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  breadcrumbs={breadcrumbs}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  relatedArticles={relatedArticles}
+  pageKey="torrone-recipe"
+  extraSchema={[schemaRecipe]}
+>
+
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <div class="flex items-center gap-3 mb-6">
+      <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Key Takeaways</h2>
+    </div>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-xs sm:text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      In Kampanien hat Weihnachten einen Klang: das Knacken, wenn ein Messer durch eine Platte <strong>Torrone</strong> geht. Ab Dezember stapeln Konditoreien und Lebensmittelläden in der ganzen Region, die <a href="/de-de/amalfikueste/" class="text-med-blue hover:underline">Amalfiküste</a> eingeschlossen, Riegel und Schachteln mit Torrone und <strong>Torroncini</strong>, viele davon aus der Gegend um Benevento. Dies ist ein <strong>Torrone Rezept</strong> für die eigene Küche: die klassische weiße Variante mit Honig, Eiweiß, Zucker, Mandeln und Haselnüssen, mit genauen Temperaturen, Zeiten und den Fehlern, die eine ganze Platte ruinieren.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Wer schon unseren <a href="/de-de/blog/limoncello-rezept/" class="text-med-blue hover:underline">selbst gemachten Limoncello</a> angesetzt hat, findet im Torrone den nächsten Schritt: mehr Technik, weniger Tage Wartezeit und ein Ergebnis, das man schon am nächsten Morgen schneiden und verschenken kann.
+    </p>
+  </div>
+
+  <!-- Origins -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Torrone in Kampanien: Benevento und das Sannio</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Die kampanische Hauptstadt des Torrone ist <strong>Benevento</strong> im Hinterland, im Sannio. Laut dem Tourismusportal Discover Campania war der örtliche Torrone auf Latein als <em>cupedia</em> bekannt: Der römische Dichter Martial zählte ihn zu den typischen Produkten der Stadt, und Livius schrieb ihm eine samnitische Herkunft zu. Als Benevento zum Kirchenstaat gehörte, wurde Torrone im 17. Jahrhundert als Geschenk für hohe Prälaten nach Rom geschickt, und im 18. Jahrhundert entstand zu Ehren des Papstes ein "torrone del Papa".
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Dieselbe Quelle schreibt den Bourbonen zu, die Süßigkeit aus Benevento zu einem Teil der neapolitanischen Weihnacht gemacht zu haben, und nennt außerdem den "torrone della Regina", die Version, die König Ferdinand I. bevorzugte. Die Herstellung verbreitete sich in Nachbarorte wie Santa Croce del Sannio, Montefalcone di Val Fortore und <strong>San Marco dei Cavoti</strong>, wo 1891 ein knuspriger, schokoladenüberzogener <strong>Croccantino</strong> auftauchte.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+      Bei den Einzelheiten zum Croccantino gehen die Berichte auseinander. Manche schreiben ihn Innocenzo Borrillo zu, dessen Familienwerkstatt noch heute in San Marco dei Cavoti steht; andere sagen, Borrillo habe zuerst kleine "Baci" aus Mandeln und Haselnüssen gemacht, und andere Konditoren des Ortes hätten den Croccantino 1891 erfunden. Jeden Dezember feiert der Ort die <strong>Festa del Torrone e del Croccantino</strong>.
+    </p>
+  </div>
+
+  <!-- Torrone vs torroncini -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Weißer Torrone, weiche Torroncini und Croccantino: die Unterschiede</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Alle drei folgen derselben Idee, Honig und Zucker halten viele Nüsse zusammen, doch auf dem Teller sind sie nicht dasselbe. Der wichtigste Hebel ist das Kochen: Italienische Food-Autoren weisen darauf hin, dass weicher Torrone viel kürzer gekocht wird als der mürbe, der in der handwerklichen Herstellung stundenlang auf dem Feuer bleiben kann.
+    </p>
+
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Sorte</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Was es ist</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Weißer Torrone (torrone bianco)</td>
+            <td class="p-5 text-slate-600">Honig, Eiweiß und Zucker weiß aufgeschlagen, voller Mandeln und Haselnüsse, zwischen zwei Oblaten. Weich (morbido) oder mürbe (friabile), je nach Kochzeit.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Torroncini</td>
+            <td class="p-5 text-slate-600">Kleine Stücke Torrone, in Streifen oder Würfel geschnitten und oft mit Zartbitterschokolade überzogen. Rund um Benevento gibt es sie weich und mürbe, in vielen Geschmacksrichtungen.</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Croccantino aus San Marco dei Cavoti</td>
+            <td class="p-5 text-slate-600">Ein knuspriger Riegel aus Mandeln und Haselnüssen mit Zucker, mit Zartbitterschokolade überzogen. Näher am Krokant als am weißen Torrone.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      Das folgende Rezept ergibt einen weißen Torrone in der weichen Art, das verlässlichste Ergebnis zu Hause. Am Ende lässt er sich zu Torroncini verarbeiten.
+    </p>
+  </div>
+
+  <!-- Ingredients -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Zutaten für Torrone: Mengen für eine Platte 20 x 20 cm</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Wiegen Sie alles ab, bevor Sie anfangen: Sobald der Sirup auf dem Herd steht, bleibt keine Zeit zum Suchen. Die Mengen folgen den Proportionen erprobter italienischer Hausrezepte und ergeben etwa <strong>750 g Torrone</strong>.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Zutaten (eine Platte 20 x 20 cm)</h3>
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>220 g blanchierte Mandeln</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>90 g geschälte Haselnüsse</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>40 g ungesalzene Pistazien</strong> (optional, oder mehr Mandeln)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>135 g Honig</strong> (Akazie für einen milden, Blütenhonig für einen kräftigeren Geschmack)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>200 g Kristallzucker</strong> für den Sirup</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>65 g Wasser</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>20 g Glukosesirup</strong> (oder dieselbe Menge Honig)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>1 Eiweiß</strong> (etwa 35 g), zimmerwarm, dazu <strong>15 g Zucker</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>2 Oblaten (Ostia)</strong>, 20 x 20 cm</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Neutrales Pflanzenöl</strong>, ein paar Tropfen für Spatel und Messer</span></li>
+      </ul>
+    </div>
+
+    <h3 class="font-serif text-xl font-bold text-slate-900 mt-8 mb-4">Ausrüstung</h3>
+    <ul class="space-y-3">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Ein digitales Einstichthermometer (zwei machen es leichter: eines für den Sirup, eines für den Honig)</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Eine Küchenmaschine, oder ein elektrischer Handmixer und eine zweite Person zum Eingießen</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Zwei kleine Töpfe mit dickem Boden</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Ein quadratischer Rahmen oder eine Form von 20 x 20 cm und ein Brett oder fester Karton in derselben Größe</span></li>
+    </ul>
+  </div>
+
+  <!-- Preparation -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Torrone selber machen: Schritt für Schritt</h2>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Die Zubereitung</h3>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Nüsse erwärmen.</strong> Mandeln, Haselnüsse und Pistazien bei 150 °C etwa 10 Minuten rösten, dann den Ofen ausschalten und sie darin lassen. Sie müssen heiß sein, wenn sie in die Masse kommen.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Form vorbereiten.</strong> Eine Oblate auf den Boden des 20 x 20 cm Rahmens legen. Die zweite Oblate und das Brett griffbereit halten.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Sirup aufsetzen.</strong> 200 g Zucker, 65 g Wasser und 20 g Glukose in einem Topf verrühren und bei mittlerer bis hoher Hitze mit dem Thermometer im Topf kochen. Den Honig in den zweiten Topf wiegen und vorerst vom Herd fernhalten.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">4</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Honig erhitzen.</strong> Wenn der Sirup etwa 116 °C erreicht, den Honig auf den Herd stellen. Er soll 120-124 °C erreichen. Nicht höher: Überhitzter Honig verbrennt, und der Torrone schmeckt bitter.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">5</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Eiweiß schlagen.</strong> Wenn der Sirup bei etwa 120 °C ist, das Eiweiß mit 15 g Zucker steif schlagen.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">6</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Honig eingießen.</strong> Sobald der Honig die Temperatur hat, ihn bei laufender Maschine in dünnem Strahl zum Eiweiß gießen.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">7</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Sirup eingießen.</strong> Wenn der Zuckersirup 144-145 °C erreicht, vom Herd nehmen und langsam einlaufen lassen, die Maschine läuft weiter. Nicht über 145 °C gehen.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">8</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Glänzend schlagen.</strong> Die Geschwindigkeit reduzieren und einige Minuten weiterschlagen, bis die Masse weiß, glänzend und sehr dick ist.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">9</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Heiße Nüsse unterheben.</strong> Den Schneebesen abnehmen und die Nüsse mit einem leicht geölten Spatel oder Holzlöffel von Hand unterheben. Zügig arbeiten: Die Masse wird beim Abkühlen fest.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">10</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Formen und pressen.</strong> Die Masse in den Rahmen streichen, mit der zweiten Oblate abdecken und mit dem Brett kräftig glatt pressen.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">11</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Ruhen lassen, dann schneiden.</strong> Mehrere Stunden bei Zimmertemperatur stehen lassen, am besten über Nacht. Mit einem schweren Messer schneiden und die Klinge vor jedem Schnitt ölen: vier Riegel von 5 x 20 cm oder schmale Streifen für Torroncini.</p>
+        </div>
+      </div>
+    </div>
+
+    <blockquote class="border-l-4 border-med-gold pl-6 my-8">
+      <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+        "Torrone entscheidet sich in den letzten zwei Grad: der Honig, den man nicht verbrennt, und der Sirup, den man bei 145 vom Herd nimmt."
+      </p>
+    </blockquote>
+  </div>
+
+  <!-- Temperatures -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Temperaturen und Zeiten für Torrone im Überblick</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Italienische Hausrezepte und Konditoren sind sich bei diesen Zahlen einig. Legen Sie die Tabelle neben den Herd:
+    </p>
+
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Schritt</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Temperatur / Zeit</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Nüsse rösten</td>
+            <td class="p-5 text-slate-600">150 °C, etwa 10 Minuten, dann warm halten</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Honig kommt auf den Herd</td>
+            <td class="p-5 text-slate-600">Wenn der Sirup etwa 116 °C anzeigt</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Eiweiß aufschlagen beginnen</td>
+            <td class="p-5 text-slate-600">Wenn der Sirup etwa 120 °C anzeigt</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Honig</td>
+            <td class="p-5 text-slate-600">120-124 °C, nie höher</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Zuckersirup</td>
+            <td class="p-5 text-slate-600">144-145 °C, nie höher</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Festwerden</td>
+            <td class="p-5 text-slate-600">Zimmertemperatur, mehrere Stunden oder über Nacht</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      Kein Thermometer? Die ältere Hausmethode erhitzt den Honig etwa eine Stunde lang langsam im Wasserbad und rührt ständig, bevor Eiweiß und Sirup dazukommen. Für den Sirup etwas davon in kaltes Wasser tropfen lassen: Am richtigen Punkt wird er hart und bricht sauber.
+    </p>
+  </div>
+
+  <!-- Torroncini -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Torroncini aus derselben Platte machen</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      <strong>Torroncini</strong> sind die kleine Seite des Torrone, ideal zum Verschenken. Wenn die Platte über Nacht fest geworden ist, in etwa 2 cm breite Streifen und dann in kurze Stücke schneiden. Man isst sie pur, oder macht es wie viele Hersteller aus Benevento und überzieht sie mit Schokolade.
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Schokoladenüberzug:</strong> etwa 200 g Zartbitterschokolade schmelzen, jedes Stück mit einer Gabel eintauchen, abtropfen lassen und auf Backpapier setzen.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Sorten mit nur einer Nuss:</strong> die Nussmischung durch 350 g nur Mandeln, nur Haselnüsse oder nur Pistazien ersetzen.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Verpacken:</strong> jedes Stück in ein Quadrat Backpapier wickeln und die Enden eindrehen, so wie sie in der Konditorei verkauft werden.</span></li>
+    </ul>
+  </div>
+
+  <!-- Storage -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Selbst gemachten Torrone richtig aufbewahren</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Der Feind ist Feuchtigkeit. Jeden Riegel in Backpapier und dann in Alufolie wickeln und in einer Dose oder luftdichten Box an einem kühlen, trockenen Ort lagern. So hält selbst gemachter Torrone <strong>bis etwa einen Monat</strong>. Der Kühlschrank ist nicht nötig. Schokoladenüberzogene Torroncini lagert man genauso, fern von Wärme, damit die Schokolade keinen grauen Belag bekommt.
+    </p>
+  </div>
+
+  <!-- Common mistakes -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Typische Fehler beim Torrone selber machen</h2>
+    <ul class="space-y-3">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Verbrannter Honig.</strong> Über etwa 124 °C verbrennt der Honig, und die Bitterkeit zieht durch die ganze Platte.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Sirup zu kühl.</strong> Bleibt der Zucker unter 144 °C, bleibt der Torrone klebrig und wird nie sauber fest.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Kalte Nüsse.</strong> Nüsse direkt aus dem Glas kühlen die Masse so schnell ab, dass sie körnig wird und sich nicht mehr verstreichen lässt.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Zu schnell eingießen.</strong> Heißer Sirup auf einmal gart das Eiweiß zu Klümpchen. In dünnem Strahl am Schüsselrand entlang eingießen.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Zu früh schneiden.</strong> Eine Platte, die nach einer Stunde angeschnitten wird, reißt und verliert die Form. Bis zum nächsten Tag warten.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Trockenes Werkzeug.</strong> Ein ungeölter Spatel oder ein ungeöltes Messer klebt sofort fest. Ein paar Tropfen Pflanzenöl lösen das Problem.</span></li>
+    </ul>
+  </div>
+
+  <!-- Torrone dei morti -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Ein anderer Torrone: der Torrone dei morti</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Bevor der Weihnachtstorrone kommt, haben Neapel und Kampanien noch einen anderen. Der <strong>torrone dei morti</strong> wird rund um den 1. und 2. November verkauft und hat mit dem weißen Torrone dieses Rezepts nichts zu tun: Er ist eine weiche Süßigkeit auf Schokoladenbasis, eine Hülle aus Zartbitterschokolade um eine Füllung aus weißer oder Milchschokolade mit Haselnüssen. In Neapel heißt er 'o muollo, der Weiche. Die ganze Geschichte, mit den Prozessionen und dem Platz von Halloween, erzählen wir in unserem Artikel über <a href="/de-de/blog/allerseelen-halloween/" class="text-med-blue hover:underline">Allerseelen in Kampanien</a>.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Sie reisen lieber im Dezember? Verbinden Sie eine Schachtel Torroncini mit einem Abendspaziergang unter der <a href="/de-de/blog/weihnachtsbeleuchtung-sorrent-salerno/" class="text-med-blue hover:underline">Weihnachtsbeleuchtung von Sorrent und Salerno</a>, oder lernen Sie weitere kampanische Rezepte selbst in einem <a href="/de-de/erlebnisse/kochkurs/" class="text-med-blue hover:underline">Kochkurs an der Amalfiküste</a>.
+    </p>
+  </div>
+
+  <!-- Expert Tips -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold">Expertentipps</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Einen trockenen Tag wählen</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Zucker und Honig ziehen Wasser aus der Luft. An einem regnerischen, feuchten Tag wird dasselbe Rezept weicher und klebriger, also während der Arbeit keine Töpfe mit kochendem Wasser auf dem Herd lassen.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Den Honig nach Geschmack wählen</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Akazienhonig gibt einen klaren, milden Torrone, in dem die Mandeln durchkommen. Blütenhonig macht ihn dunkler und aromatischer. Für den ersten Versuch sehr kräftige Sorten wie Kastanienhonig meiden.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Alles vorher bereitstellen</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Honig, Sirup und Eiweiß sind innerhalb weniger Minuten nacheinander so weit. Die Form muss ausgelegt, die Nüsse heiß und der Spatel geölt sein, bevor der Zucker auf den Herd kommt.</p>
+      </div>
+    </div>
+  </div>
+
+</BlogPostLayout>

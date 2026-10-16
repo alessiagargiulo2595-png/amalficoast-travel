@@ -1,0 +1,431 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'it-it';
+const post = {
+  title: "Auto elettrica in Costiera Amalfitana: ricarica e viaggio",
+  subtitle: "Dove sono le colonnine in Costiera e in Penisola Sorrentina, le ricariche veloci lungo il percorso, prezzi, app, targhe alterne e un giudizio onesto sul viaggio in auto elettrica",
+  category: 'GUIDE',
+  date: '30 Ottobre 2026',
+  readTime: '11 min',
+  image: '/images/auto-elettrica-ricarica-hero.webp',
+  imageAlt: "Un'auto elettrica bianca in ricarica lungo una strada alberata",
+  path: '/it-it/blog/auto-elettrica-costiera-amalfitana/',
+};
+
+const metaTitle = "Auto elettrica in Costiera Amalfitana: colonnine 2026";
+const metaDescription = "Ricarica auto elettrica in Costiera Amalfitana e Penisola Sorrentina: colonnine paese per paese, ricarica veloce a Napoli e Salerno, prezzi al kWh 2026, app.";
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Blog', url: '/it-it/blog/' },
+  { name: "Auto elettrica in Costiera", url: '/it-it/blog/auto-elettrica-costiera-amalfitana/' },
+];
+
+const quickInfo = [
+  { label: "Fattibile?", value: "Sì, se dormi dove puoi ricaricare" },
+  { label: "Da Sorrento a Vietri", value: "Circa 64 km tra SS163 e SS145" },
+  { label: "Colonnine pubbliche in Costiera", value: "Poche per paese, quasi tutte AC" },
+  { label: "Ricariche veloci più vicine", value: "Area di Salerno, area di Napoli, A1" },
+  { label: "Prezzo medio AC", value: "0,63 €/kWh (luglio 2026)" },
+  { label: "Prezzo medio DC", value: "0,74 €/kWh (luglio 2026)" },
+  { label: "Esenzione targhe alterne SS163 per le elettriche?", value: "Nessuna esenzione trovata" },
+  { label: "Dati verificati", value: "16 ottobre 2026" },
+];
+
+const faq = [
+  {
+    q: "Si può girare la Costiera Amalfitana in auto elettrica?",
+    a: "Sì. Le distanze sono brevi: l'intero tratto da Sorrento a Vietri sul Mare è di circa 64 km, e un soggiorno tipo raramente supera i 200-300 km compreso il viaggio da Napoli. Il problema non è l'autonomia ma la ricarica: le colonnine pubbliche in Costiera sono poche, quasi tutte AC lente e d'estate spesso occupate. Il viaggio funziona meglio se l'hotel o un garage vicino ha una colonnina.",
+  },
+  {
+    q: "Ci sono colonnine veloci in Costiera Amalfitana?",
+    a: "Alla verifica del 16 ottobre 2026 non abbiamo trovato colonnine DC veloci confermate sulla SS163 tra Positano e Vietri. Le opzioni ad alta potenza più vicine sono nell'area di Salerno e di Napoli: i Supercharger Tesla aperti alle altre marche a Mercato San Severino, Nola, Napoli Ovest e Afragola, e sull'A1 la stazione Free To X di Teano Ovest. Controlla la mappa aggiornata nell'app prima di partire, perché ogni mese aprono nuovi siti.",
+  },
+  {
+    q: "Le auto elettriche sono esenti dalle targhe alterne sulla SS163?",
+    a: "Non secondo gli elenchi di esenzioni che abbiamo trovato. L'ordinanza Anas sulla SS163 esclude residenti, taxi e NCC, titolari di contrassegno disabili, ospiti di strutture ricettive con prenotazione nei giorni di arrivo e partenza, e moto e scooter, ma nessun elenco cita le auto elettriche. Alcune ordinanze comunali della Penisola Sorrentina hanno trattato diversamente elettriche e ibride plug-in, quindi verifica la regola di ogni comune che attraversi.",
+  },
+  {
+    q: "Quanto costa ricaricare un'auto elettrica in Italia?",
+    a: "L'Osservatorio Adiconsum-TariffEV indicava a luglio 2026 un prezzo medio a consumo di 0,63 € al kWh sulle colonnine AC e di 0,74 € al kWh sulle DC e ultraveloci, con forti differenze tra operatori. Una ricarica di 40 kWh costa quindi circa 25-30 €. Abbonamenti e app di terzi possono costare meno; pagare con carta alla colonnina è spesso l'opzione più cara.",
+  },
+  {
+    q: "Quali app installare prima del viaggio?",
+    a: "Almeno una mappa aggregatrice (Electromaps, PlugShare o Chargemap) per vedere tutti gli operatori insieme, più l'app degli operatori che userai di più, come Enel X Way, Plenitude (ex Be Charge), Free To X o l'app Tesla per i Supercharger. La mappa nazionale ufficiale, la Piattaforma Unica Nazionale (PUN), mostra i punti pubblici con potenza, gestore e stato.",
+  },
+  {
+    q: "Si può noleggiare un'auto elettrica a Napoli o a Salerno?",
+    a: "Sì, le principali compagnie all'aeroporto di Napoli propongono modelli elettrici, ma di solito come categoria \"o similare\", quindi il modello esatto lo scopri solo al ritiro. Chiedi un'auto con un'autonomia reale di almeno 300 km, controlla il livello di carica al ritiro e le regole per la riconsegna, e verifica che ci sia un cavo Type 2 per la ricarica AC.",
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Parcheggi e ZTL', href: '/it-it/guida/parcheggi-ztl/' },
+  { label: 'Targhe alterne', href: '/it-it/guida/targhe-alterne/' },
+  { label: 'Come arrivare', href: '/it-it/guida/come-arrivare/' },
+  { label: 'Bus SITA', href: '/it-it/guida/bus-sita/' },
+  { label: 'La Costiera in treno', href: '/it-it/blog/costiera-amalfitana-in-treno/' },
+];
+
+const authorRole = 'Guide locali · Costiera Amalfitana';
+
+const relatedArticles = [
+  {
+    title: 'La Costiera Amalfitana in treno',
+    category: 'GUIDE',
+    date: '10 Agosto 2026',
+    image: '/images/treno-costiera-hero.webp',
+    imageAlt: 'La Costiera Amalfitana in treno',
+    path: '/it-it/blog/costiera-amalfitana-in-treno/'
+  },
+  {
+    title: 'Luminarie di Natale a Sorrento e Salerno',
+    category: 'GUIDE',
+    date: '21 Ottobre 2026',
+    image: '/images/luci-artista-salerno-hero.webp',
+    imageAlt: "Installazione luminosa con i fenicotteri rosa alla Villa Comunale di Salerno durante Luci d'Artista",
+    path: '/it-it/blog/luminarie-natalizie-sorrento-salerno/'
+  }
+];
+
+const keyTakeaways = [
+  "In Costiera l'autonomia non è il problema: da Sorrento a Vietri sono circa 64 km e un intero soggiorno raramente supera i 300 km. Il problema è l'accesso alla ricarica.",
+  "Le colonnine pubbliche in Costiera sono poche, quasi tutte AC e sparse: una o due per paese a Positano, Praiano, Amalfi, Ravello, Maiori, Minori e Vietri alla verifica del 16 ottobre 2026.",
+  "Le ricariche veloci più vicine sono fuori dalla Costiera, nell'area di Salerno, di Napoli e sull'A1. Arriva con la batteria carica.",
+  "La cosa più utile che puoi fare è prenotare un hotel o un garage con colonnina. Trasforma un viaggio complicato in un viaggio semplice.",
+  "Negli elenchi pubblicati per le targhe alterne sulla SS163 non compare alcuna esenzione per le auto elettriche. Organizza i giorni di guida di conseguenza.",
+];
+---
+
+<BlogPostLayout
+  lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  breadcrumbs={breadcrumbs}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  relatedArticles={relatedArticles}
+  pageKey="electric-car-amalfi-coast"
+>
+
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <div class="flex items-center gap-3 mb-6">
+      <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Punti Chiave</h2>
+    </div>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-xs sm:text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      Auto elettrica e Costiera Amalfitana sembrano una coppia mal assortita: una sola strada, niente autostrada, parcheggi difficili anche senza un cavo da attaccare. In pratica le distanze sono così brevi che un'elettrica moderna può coprire una settimana intera con una o due ricariche complete. A fare la differenza non è la batteria, ma dove dormi, dove parcheggi e se hai programmato la ricarica veloce prima di lasciare l'autostrada. Questa guida raccoglie quello che abbiamo trovato sul territorio e sulle mappe di ricarica, paese per paese, e dà una risposta onesta sul fatto che ne valga la pena.
+    </p>
+  </div>
+
+  <!-- Range -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Autonomia sulla SS163: meglio di quanto pensi</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      L'Amalfitana è lenta. Tra Positano e Vietri raramente si superano i 40-50 km/h, le curve sono centinaia e d'estate si fanno lunghe code dietro ai bus. Per un'auto elettrica è quasi l'ideale: bassa velocità significa poche perdite aerodinamiche, e ogni discesa verso un paese o verso il mare è energia recuperata con la frenata rigenerativa.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Tre fattori fanno salire i consumi. Prima di tutto le salite: <a href="/it-it/costiera-amalfitana/ravello/" class="text-med-blue hover:underline">Ravello</a> è a circa 350 m e <a href="/it-it/costiera-amalfitana/agerola/" class="text-med-blue hover:underline">Agerola</a> a circa 600 m, entrambe raggiunte con strade ripide dal livello del mare, anche se una buona parte si recupera in discesa. Poi l'aria condizionata, che a luglio e agosto resta accesa tutto il giorno, anche da fermi in coda. Infine l'avvicinamento: è l'autostrada da Roma o dal Nord, a 130 km/h, a consumare la maggior parte della batteria.
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Da Sorrento a Positano.</strong> Circa 17 km sulla SS163.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Da Positano ad Amalfi.</strong> Circa 17 km, passando per Praiano e Conca dei Marini.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Da Amalfi a Salerno.</strong> Circa 25 km, passando per Minori, Maiori, Cetara e Vietri.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Da Napoli a Sorrento.</strong> Circa 50 km, autostrada fino a Castellammare e poi la SS145.</span></li>
+    </ul>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Tutto insieme, un soggiorno con base a Sorrento o a Positano, gite lungo la Costiera e andata e ritorno da Napoli fa qualche centinaio di chilometri. Qualsiasi elettrica con un'autonomia reale di 300 km ce la fa con una ricarica a metà, a patto che quella ricarica ci sia.
+    </p>
+  </div>
+
+  <!-- Town by town -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Colonnine pubbliche paese per paese</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      La tabella mostra cosa riportavano le mappe di ricarica il <strong>16 ottobre 2026</strong>, usando le pagine comunali di Electromaps e OpenStreetMap. Nessuna delle due è completa e raramente indicano la potenza dei singoli punti: prendila come un quadro di quanto sia rada la rete, non come un elenco su cui contare. La maggior parte dei punti in Costiera sono colonnine AC con prese Type 2, in genere fino a 22 kW: per una ricarica sostanziosa servono ore, non minuti.
+    </p>
+
+    <div class="overflow-x-auto rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Paese</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Punti segnalati (16 ott 2026)</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Note</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Positano</td>
+            <td class="p-5 text-slate-600">Due punti in Via Guglielmo Marconi, il tratto di SS163 sopra il paese, 2 connettori ciascuno</td>
+            <td class="p-5 text-slate-600">Sulla statale, lontano dalla spiaggia. La parte bassa del paese è ZTL con telecamere.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Praiano</td>
+            <td class="p-5 text-slate-600">Via Umberto I (6 connettori) e Via Costantinopoli (2)</td>
+            <td class="p-5 text-slate-600">Sulla carta il paese meglio servito, e una base comoda tra Positano e Amalfi.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Amalfi</td>
+            <td class="p-5 text-slate-600">Un punto in Via delle Cartiere, presso un'attività privata nella parte alta</td>
+            <td class="p-5 text-slate-600">Non abbiamo trovato punti pubblici segnalati nei parcheggi del porto o al Luna Rossa.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Ravello</td>
+            <td class="p-5 text-slate-600">Un punto in Via Orso Papice, 1 connettore</td>
+            <td class="p-5 text-slate-600">Il punto in Via della Repubblica su OpenStreetMap è per e-bike, non per auto.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Maiori</td>
+            <td class="p-5 text-slate-600">Un punto in Via Amendola</td>
+            <td class="p-5 text-slate-600">Lungomare ampio e più parcheggi della media.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Minori</td>
+            <td class="p-5 text-slate-600">Via Pergola e Via Bizantina, 2 connettori ciascuno</td>
+            <td class="p-5 text-slate-600">Paese piccolo, pochissimi posti d'estate.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Vietri sul Mare</td>
+            <td class="p-5 text-slate-600">Corso Umberto I; OpenStreetMap segnala anche un punto comunale verso Benincasa</td>
+            <td class="p-5 text-slate-600">Porta d'ingresso con i parcheggi più grandi della Costiera.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Agerola</td>
+            <td class="p-5 text-slate-600">Un punto a Bomerano (Via Casalone) su OpenStreetMap</td>
+            <td class="p-5 text-slate-600">Sull'altopiano, comodo per la partenza del Sentiero degli Dei.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Sorrento</td>
+            <td class="p-5 text-slate-600">Piazza Angelina Lauro, Via Capo e Via Nastro Verde, più un hotel</td>
+            <td class="p-5 text-slate-600">Piazza Lauro è sopra il garage Achille Lauro, l'opzione più centrale.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Sant'Agnello e Meta</td>
+            <td class="p-5 text-slate-600">Nessun punto trovato a Sant'Agnello; OpenStreetMap segnala due punti Enel X nella vicina Meta (Via Flavio Gioia, Via del Lauro)</td>
+            <td class="p-5 text-slate-600">Controlla la mappa aggiornata: questo tratto cambia in fretta.</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Vico Equense</td>
+            <td class="p-5 text-slate-600">Piazza Stazione, accanto alla stazione della Circumvesuviana, 2 connettori</td>
+            <td class="p-5 text-slate-600">Buon punto di interscambio prima di Sorrento.</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Massa Lubrense</td>
+            <td class="p-5 text-slate-600">Un punto presso un ristorante a Sant'Agata sui Due Golfi e uno vicino a Via Massa Turro su OpenStreetMap</td>
+            <td class="p-5 text-slate-600">Copertura molto scarsa verso Nerano e Marina del Cantone.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-slate-600 text-lg leading-relaxed mt-6">
+      Due conseguenze pratiche. La prima: in alta stagione una colonnina pubblica in un paese è anche uno dei pochissimi posti auto di quel paese, quindi aspettati di trovarla occupata, a volte da un'auto che non sta ricaricando. La seconda: un punto che nell'app risulta disponibile può essere fuori servizio, e secondo la stampa di settore circa una stazione su cinque in Italia e in Europa è guasta in un dato momento. Tieni sempre un piano B entro l'autonomia residua.
+    </p>
+  </div>
+
+  <!-- Fast chargers -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Ricariche veloci lungo il percorso</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      La regola è semplice: arriva in Costiera con la batteria piena. Sulla statale non abbiamo trovato colonnine DC veloci confermate, quindi l'ultima ricarica rapida va fatta prima di lasciare l'autostrada. Questi sono i siti che abbiamo potuto confermare da pagine degli operatori e stampa specializzata:
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Supercharger Tesla, Mercato San Severino.</strong> Sei stalli presso un hotel appena a nord di Salerno, aperti alle altre auto CCS. La pagina Tesla indicava circa 0,47-0,49 € al kWh per chi non guida una Tesla. La sosta veloce più comoda se entri in Costiera da Salerno o da Vietri.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Supercharger Tesla nell'area di Napoli.</strong> Nola (Vulcano Buono), Napoli Ovest (Centro Commerciale Azzurro) e Afragola (Le Porte di Napoli), otto stalli ciascuno, aperti alle altre elettriche.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Free To X, Teano Ovest sull'A1.</strong> Quattro punti da 300 kW nell'area di servizio in direzione Napoli, la sosta naturale se scendi da Roma.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Ionity.</strong> Battipaglia, a sud di Salerno, risultava attiva con sei colonnine; un sito ad Afragola era stato annunciato. Verifica lo stato attuale nell'app Ionity.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Napoli città.</strong> Un hub ultraveloce dedicato alla Mostra d'Oltremare (Viale Kennedy), annunciato con sei colonnine ad alta potenza.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Ewiva.</strong> La joint venture tra Enel X e Volkswagen si sta espandendo in autostrada; il piano di luglio 2026 include Angioina Ovest sull'A30 Caserta-Salerno entro il 2027. Le sue stazioni accettano carte contactless.</span></li>
+    </ul>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Non abbiamo trovato ricarica confermata nelle aree di servizio dell'A3 Napoli-Pompei-Salerno. Castellammare di Stabia, dove finisce l'autostrada per Sorrento, aveva sei punti segnalati e Salerno ventisei, ma le mappe non dicevano quali siano DC: verifica la potenza nell'app prima di contare su un rabbocco rapido.
+    </p>
+  </div>
+
+  <!-- Operators, apps and prices -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Operatori, app e prezzi</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Secondo Motus-E a metà 2026 l'Italia contava circa 84.500 punti di ricarica pubblici, gestiti da decine di operatori. Le reti più grandi che incontrerai in Campania sono Enel X Way e Plenitude (che ha assorbito Be Charge), con Free To X ed Ewiva in autostrada e Tesla vicino alle grandi città. Molti operatori sono interoperabili, quindi una buona app avvia spesso la ricarica su più reti, ma non sempre allo stesso prezzo.
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Una mappa aggregatrice.</strong> Electromaps, PlugShare o Chargemap, per vedere tutti gli operatori insieme e leggere le segnalazioni recenti degli utenti.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>La mappa ufficiale.</strong> La Piattaforma Unica Nazionale (PUN), realizzata per il Ministero dell'Ambiente, mostra i punti pubblici con posizione, potenza, gestore e stato.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Una o due app di operatori.</strong> Enel X Way e Plenitude coprono la maggior parte delle colonnine AC; aggiungi Free To X o l'app Tesla per autostrada e Supercharger.</span></li>
+    </ul>
+
+    <div class="overflow-x-auto rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Tipo di colonnina</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Prezzo medio, luglio 2026</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Forbice tra operatori</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">AC, fino a 22 kW</td>
+            <td class="p-5 text-slate-600">0,63 €/kWh</td>
+            <td class="p-5 text-slate-600">da 0,53 a 0,84 €</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">DC fast, da 50 a 150 kW</td>
+            <td class="p-5 text-slate-600">0,74 €/kWh</td>
+            <td class="p-5 text-slate-600">da 0,61 a 0,81 €</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">HPC, oltre 150 kW</td>
+            <td class="p-5 text-slate-600">0,74 €/kWh</td>
+            <td class="p-5 text-slate-600">da 0,54 a 0,90 €</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      I valori sono medie a consumo dell'Osservatorio Adiconsum-TariffEV. Per chi viaggia contano due dettagli: pagare con carta alla colonnina può costare sensibilmente di più rispetto all'app dell'operatore, e le regole italiane consentono di restare nello stallo di ricarica al massimo un'ora dopo la fine della ricarica (il limite non vale dalle 23:00 alle 07:00, tranne che sulle colonnine sopra i 22 kW). Chi sfora, o sosta nello stallo senza ricaricare, rischia la multa.
+    </p>
+  </div>
+
+  <!-- Hotels and parking -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Hotel, garage e ricarica notturna</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      In Costiera la ricarica notturna nella struttura vale più di qualsiasi rete pubblica. Sempre più hotel, ville e garage privati hanno una wallbox o una presa dedicata, ma raramente compare in modo chiaro nei filtri di prenotazione, e un hotel "con parcheggio" può voler dire un parcheggiatore che porta l'auto in un garage a qualche chilometro di distanza.
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Chiedi per iscritto.</strong> La colonnina è in struttura o in un garage convenzionato? Che potenza ha? È condivisa con altri ospiti, si può prenotare? È inclusa o si paga a kWh o a notte?</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Porta un cavo Type 2.</strong> Molte colonnine nelle strutture hanno solo la presa, senza cavo.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Verifica la ZTL.</strong> A Positano la strada interna è una ZTL con telecamere; ad Amalfi, Ravello e Sorrento anche i centri sono a traffico limitato. Se il parcheggio o la colonnina dell'hotel sono all'interno, chiedi di registrare la tua targa prima dell'arrivo.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Garage.</strong> Non abbiamo trovato un elenco pubblicato di garage pubblici con colonnina in Costiera. Chiedi direttamente al garage: alcuni parcheggi privati hanno una presa per i clienti abituali anche quando nessuna mappa la segnala.</span></li>
+    </ul>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Tariffe, orari e principali parcheggi di ogni paese sono nella nostra <a href="/it-it/guida/parcheggi-ztl/" class="text-med-blue hover:underline">guida a parcheggi e ZTL</a>.
+    </p>
+  </div>
+
+  <!-- Alternate plates -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Targhe alterne e ZTL: nessun lasciapassare per le elettriche</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Sulla SS163 l'ordinanza Anas 340/2019 applica le targhe alterne dalle 10:00 alle 18:00 in giorni stabiliti tra Pasqua e ottobre: tutti i giorni ad agosto e settembre, nei weekend e festivi di giugno, luglio e ottobre, più i ponti di Pasqua e del 25 aprile. Nei giorni dispari circolano solo le targhe che finiscono con una cifra dispari, nei giorni pari solo quelle pari.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Gli elenchi di esenzioni che abbiamo trovato per il 2026 comprendono residenti, taxi e NCC, titolari di contrassegno disabili, ospiti di strutture ricettive con prenotazione nei giorni di arrivo e partenza, e moto e scooter. <strong>Nessuno cita le auto elettriche.</strong> Alcuni comuni della Penisola Sorrentina, che fissano regole proprie sulla SS145, hanno inserito elettriche e ibride plug-in tra le categorie esenti, ma i dettagli cambiano da comune a comune e da un anno all'altro. La nostra <a href="/it-it/guida/targhe-alterne/" class="text-med-blue hover:underline">guida alle targhe alterne</a> riporta il calendario 2026 e le regole comunali.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Con un'auto a noleggio, controlla l'ultima cifra della targa appena la ritiri e organizza i giorni in Costiera di conseguenza. Fuori dalla fascia 10:00-18:00 la strada è aperta a tutti, e dal 1° novembre non ci sono limitazioni fino alla stagione successiva.
+    </p>
+  </div>
+
+  <!-- Rental -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Noleggiare un'elettrica a Napoli o a Salerno</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Le principali compagnie di noleggio hanno i banchi all'aeroporto di Napoli, nel parcheggio P5 raggiungibile con una navetta gratuita, e i siti di comparazione mostrano auto elettriche disponibili a Napoli. Il punto debole è che le elettriche si prenotano di solito come categoria "o similare", quindi modello esatto e autonomia sono una sorpresa fino al banco.
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Conta più la taglia dell'autonomia.</strong> Sulla SS163 un'auto compatta incrocia i bus e parcheggia molto più facilmente. Un SUV grande con una batteria enorme è lo strumento sbagliato.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Controlla la regola di riconsegna.</strong> Alcuni contratti chiedono lo stesso livello di carica, altri applicano una penale sotto una certa soglia.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Chiedi una tessera o un'app di ricarica.</strong> Se il noleggio la include, chiedi su quali reti funziona e a che prezzo.</span></li>
+    </ul>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Se arrivi in treno, noleggiare a Salerno ed entrare in Costiera da Vietri evita del tutto il traffico di Napoli. La nostra guida su <a href="/it-it/guida/come-arrivare/" class="text-med-blue hover:underline">come arrivare</a> mette a confronto i percorsi.
+    </p>
+  </div>
+
+  <!-- Sample plan -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Un esempio di itinerario in quattro giorni</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-2">Giorno 1: arriva carico</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Ricarica veloce a Teano Ovest sull'A1 o a un Supercharger nell'area di Napoli, poi autostrada fino a Castellammare e SS145 fino a <a href="/it-it/penisola-sorrentina/sorrento/" class="text-med-blue hover:underline">Sorrento</a>. Ricarica notturna in hotel.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-2">Giorno 2: la penisola</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Brevi giri verso <a href="/it-it/penisola-sorrentina/massa-lubrense/" class="text-med-blue hover:underline">Massa Lubrense</a> e Nerano, oppure lascia l'auto e prendi il traghetto per Capri. Consumi quasi nulli.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-2">Giorno 3: l'Amalfitana</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">In un giorno in cui la tua targa può circolare, o prima delle 10:00, guida fino a <a href="/it-it/costiera-amalfitana/positano/" class="text-med-blue hover:underline">Positano</a> e <a href="/it-it/costiera-amalfitana/praiano/" class="text-med-blue hover:underline">Praiano</a>, dove ci sono le colonnine, poi prosegui per Amalfi. Oppure lascia l'auto e usa il <a href="/it-it/guida/bus-sita/" class="text-med-blue hover:underline">bus SITA</a> o il traghetto.</p>
+      </div>
+      <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+        <h4 class="font-bold text-slate-900 mb-2">Giorno 4: uscita da Salerno</h4>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Ravello al mattino, poi Maiori, Vietri e <a href="/it-it/costiera-amalfitana/salerno/" class="text-med-blue hover:underline">Salerno</a>. Ricarica veloce a Mercato San Severino prima dell'autostrada di ritorno.</p>
+      </div>
+    </div>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      La stessa logica funziona al contrario, e con base a Praiano o a Maiori invece che a Sorrento. Quello che funziona male è contare su una colonnina pubblica di paese per riempire la batteria nel mezzo di una giornata di agosto.
+    </p>
+  </div>
+
+  <!-- Verdict -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Il giudizio onesto</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Un viaggio in auto elettrica in Costiera Amalfitana è fattibile, e da ottobre a maggio è semplice: strade tranquille, stalli di ricarica liberi, niente targhe alterne dopo ottobre. A luglio e agosto è fattibile solo con una colonnina dove dormi, perché i punti pubblici sono pochi, lenti e contesi, e sulla statale non c'è una ricarica veloce a salvarti.
+    </p>
+    <blockquote class="border-l-4 border-med-gold pl-6 my-8">
+      <p class="text-slate-700 text-xl font-serif italic leading-relaxed">
+        "In Costiera la batteria non è mai il problema. Il posto auto accanto alla colonnina sì."
+      </p>
+    </blockquote>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      E ricorda che qui l'auto, di qualsiasi tipo, è facoltativa. Molti visitatori parcheggiano a Sorrento, Vietri o Salerno e si muovono lungo la Costiera in bus, traghetto e a piedi, spesso più velocemente d'estate. La nostra guida alla <a href="/it-it/blog/costiera-amalfitana-in-treno/" class="text-med-blue hover:underline">Costiera Amalfitana in treno</a> spiega questa alternativa.
+    </p>
+  </div>
+
+  <!-- Local Tips -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.61 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold">Consigli dell'esperto</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Mai arrivare sotto la metà</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Arriva in Costiera con almeno il 50-60 percento e potrai ignorare la ricarica pubblica per due o tre giorni di spostamenti locali. Arriva al 15 percento e la vacanza comincia con la caccia a una colonnina libera.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Ricarica di prima mattina</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Le colonnine dei paesi sono più spesso libere prima delle 09:00, quando i turisti giornalieri non sono ancora arrivati. In più ti tiene lontano dalla SS163 durante la fascia 10:00-18:00 nei giorni di targhe alterne.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Usa l'auto meno, non di più</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Una volta parcheggiato e in carica, lascia l'auto. D'estate da Positano ad Amalfi si va meglio in traghetto, e il Sentiero degli Dei si fa a piedi, non in macchina.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Controlla la mappa la sera prima</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">I dati di questo articolo sono stati verificati il 16 ottobre 2026. Le mappe di ricarica cambiano ogni mese: guarda le segnalazioni recenti nell'app e la mappa PUN prima di ogni spostamento.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sources -->
+  <div>
+    <h2 class="font-serif text-2xl font-bold text-slate-900 mb-4">Come abbiamo verificato</h2>
+    <p class="text-slate-600 text-sm leading-relaxed">
+      Posizione delle colonnine: pagine comunali di Electromaps e OpenStreetMap, consultate il 16 ottobre 2026. Ricariche veloci: pagine Supercharger di Tesla, annunci Free To X e Ionity riportati da HDmotori, piano autostradale Ewiva al 2027 riportato da Smartworld, hub della Mostra d'Oltremare riportato da Autoblog. Prezzi: Osservatorio Adiconsum-TariffEV di luglio 2026. Dimensione della rete: Motus-E, secondo trimestre 2026. Targhe alterne: ordinanza Anas 340/2019 ed elenchi di esenzioni 2026 pubblicati dalla stampa locale e da Positano.com. Niente di quanto scritto è sponsorizzato, e non citiamo hotel perché la loro offerta di ricarica cambia troppo spesso per elencarla in modo affidabile.
+    </p>
+  </div>
+
+</BlogPostLayout>

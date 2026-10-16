@@ -1,0 +1,521 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'it-it';
+const post = {
+  title: 'Dolci di Natale napoletani',
+  subtitle: 'Struffoli, roccocò e mustaccioli: cosa sono, da dove vengono e una ricetta casalinga per ciascuno',
+  category: 'FOOD',
+  date: '14 Novembre 2026',
+  readTime: '11 min',
+  image: '/images/struffoli-hero.webp',
+  imageAlt: "Struffoli appena fritti nella schiumarola, prima del miele",
+  path: '/it-it/blog/dolci-natale-struffoli-roccoco-mustaccioli/',
+};
+
+const metaTitle = 'Dolci di Natale napoletani: struffoli, roccocò, mustaccioli';
+const metaDescription = 'Struffoli, roccocò e mustaccioli: ingredienti, il pisto, la storia secondo le fonti, ricette con dosi in grammi e dove comprarli a dicembre in Costiera.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/it-it/' },
+  { name: 'Blog', url: '/it-it/blog/' },
+  { name: 'Dolci di Natale napoletani', url: '/it-it/blog/dolci-natale-struffoli-roccoco-mustaccioli/' },
+];
+
+const quickInfo = [
+  { label: 'Stagione', value: 'Dicembre e feste di Natale' },
+  { label: 'Struffoli', value: 'Palline di pasta fritte e passate nel miele' },
+  { label: 'Roccocò', value: 'Ciambelline dure di mandorle con il pisto' },
+  { label: 'Mustaccioli', value: 'Rombi speziati glassati al cioccolato fondente' },
+  { label: 'Mix di spezie', value: 'Pisto (cannella, chiodi di garofano, noce moscata, anice stellato e altro)' },
+  { label: 'Difficoltà', value: 'Facile-media' },
+  { label: 'Conservazione', value: 'Roccocò circa 1 mese in una latta' },
+  { label: 'Dove comprarli', value: 'Pasticcerie di Costiera e Penisola a dicembre' },
+];
+
+const faq = [
+  {
+    q: 'Che cos\'è il pisto?',
+    a: 'Il pisto è il mix di spezie napoletano usato per roccocò e mustaccioli. Dissapore lo descrive come parti uguali di cannella in stecca, semi di cardamomo, anice stellato, pepe bianco in grani, chiodi di garofano e noce moscata, pestati insieme nel mortaio. Altre ricette aggiungono il coriandolo. Si trova anche già pronto.',
+  },
+  {
+    q: 'Posso preparare gli struffoli in anticipo?',
+    a: 'Sì. Friggete gli struffoli, fateli asciugare bene e conservateli chiusi in un sacchetto (meglio se sottovuoto). Aggiungete il miele caldo, i canditi e i diavulilli solo al momento di servirli. Senza miele si conservano bene.',
+  },
+  {
+    q: 'I miei roccocò sono duri come pietre. Ho sbagliato qualcosa?',
+    a: 'Non per forza: i roccocò devono essere sodi e per tradizione si inzuppano in un vino dolce come Marsala o Moscato. Per un risultato più morbido cuoceteli 15 minuti invece di 20 e sfornateli quando sembrano ancora troppo morbidi. Si induriscono raffreddandosi.',
+  },
+  {
+    q: 'Che cos\'è l\'ammoniaca per dolci e con cosa si può sostituire?',
+    a: 'L\'ammoniaca per dolci è bicarbonato d\'ammonio, un agente lievitante per biscotti secchi. Alcune ricette di mustaccioli usano invece il bicarbonato di sodio: Ricette dal Mondo ne mette 1 cucchiaino per un impasto con 500 g di farina.',
+  },
+  {
+    q: 'Quanto si conservano roccocò e mustaccioli?',
+    a: 'I roccocò durano circa un mese in una latta, al riparo dall\'umidità, e per questo accompagnano tutte le feste. I mustaccioli, una volta solidificato il cioccolato, si conservano fino a 10 giorni in un sacchetto per alimenti o sotto una campana di vetro.',
+  },
+  {
+    q: 'Mustaccioli o mostaccioli: qual è giusto?',
+    a: 'Tutti e due. Mostaccioli è il nome italiano, mustaccioli la forma dialettale napoletana. Il nome è legato al mosto d\'uva, che un tempo entrava nell\'impasto.',
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Ricetta del Limoncello', href: '/it-it/blog/ricetta-limoncello/' },
+  { label: 'Ricetta del Torrone', href: '/it-it/blog/ricetta-torrone-torroncini/' },
+  { label: 'Festa dei Morti e Halloween', href: '/it-it/blog/festa-dei-morti-halloween/' },
+  { label: 'Luminarie di Natale a Sorrento e Salerno', href: '/it-it/blog/luminarie-natalizie-sorrento-salerno/' },
+  { label: 'Delizia al Limone', href: '/it-it/blog/delizia-al-limone/' },
+];
+
+const authorRole = 'Food & Travel Specialist · Costiera Amalfitana';
+
+const relatedArticles = [
+  {
+    title: 'Ricetta del Limoncello',
+    category: 'FOOD',
+    date: '31 Maggio 2026',
+    image: '/images/limoncello-ricetta-hero.webp',
+    imageAlt: 'Limoncello artigianale della Costiera Amalfitana - limoni di Amalfi e Sorrento',
+    path: '/it-it/blog/ricetta-limoncello/'
+  },
+  {
+    title: 'Festa dei Morti, Halloween e le Confraternite degli Incappucciati',
+    category: 'SCOPERTE',
+    date: '7 Ottobre 2026',
+    image: '/images/misteri-venerdi-santo-hero.webp',
+    imageAlt: 'Un Mistero della Passione portato dagli incappucciati in una processione del Venerdì Santo',
+    path: '/it-it/blog/festa-dei-morti-halloween/'
+  }
+];
+
+const keyTakeaways = [
+  "Gli struffoli sono palline di pasta all'uovo fritte, passate nel miele caldo e completate con canditi e confettini colorati, i diavulilli.",
+  "I roccocò sono ciambelline dure di farina, mandorle, zucchero, scorze di agrumi e pisto. Nell'impasto non c'è burro, e si inzuppano nel vino dolce.",
+  "I mustaccioli sono biscotti speziati a forma di rombo con miele e cacao, glassati al cioccolato fondente. Il nome viene dal mosto d'uva.",
+  "Il pisto è il mix di spezie di roccocò e mustaccioli: cannella, chiodi di garofano, noce moscata, anice stellato, cardamomo e pepe bianco, nella maggior parte delle versioni.",
+  "A dicembre le pasticcerie della Penisola Sorrentina e della Costiera Amalfitana li vendono tutti e tre. Roccocò e mustaccioli viaggiano bene, gli struffoli meno.",
+];
+
+const schemaStruffoli = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Struffoli napoletani",
+  "description": "Palline di pasta all'uovo fritte, passate nel miele e decorate con canditi e diavulilli: il classico del Natale napoletano.",
+  "image": "https://amalficoast-travel.com/images/struffoli-hero.webp",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "datePublished": "2026-10-16",
+  "recipeCategory": "Dolce",
+  "recipeCuisine": "Italiana",
+  "keywords": "struffoli, dolci di Natale napoletani",
+  "recipeIngredient": [
+    "500 g di farina debole (per biscotti)",
+    "300 g di uova intere (circa 5)",
+    "40 g di zucchero semolato",
+    "30 g di burro morbido",
+    "3 g di sale fino",
+    "5 g di lievito chimico",
+    "Scorza grattugiata di arancia e limone",
+    "Un goccio di liquore Strega o grappa",
+    "Circa 300 g di miele di acacia",
+    "Canditi e diavulilli (confettini colorati)",
+    "2 litri di olio di semi di arachide per friggere"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Impasto", "text": "Setacciate la farina con il lievito e fate la fontana. Mettete al centro le uova e lo zucchero e sbattete con una forchetta, poi unite il sale sciolto in poca acqua, le scorze, il liquore e il burro morbido. Impastate fino a ottenere un panetto liscio e compatto." },
+    { "@type": "HowToStep", "name": "Riposo", "text": "Lasciate riposare l'impasto in un contenitore ermetico per circa 2 ore." },
+    { "@type": "HowToStep", "name": "Forma", "text": "Formate dei bastoncini di circa 1 cm di diametro e tagliateli a pezzetti di 1 cm. Eliminate la farina in eccesso e lasciate riposare i pezzetti su carta forno per 10 minuti." },
+    { "@type": "HowToStep", "name": "Frittura", "text": "Scaldate l'olio a 180°C, poi abbassate a circa 170°C. Friggete pochi pezzi alla volta finché sono dorati come la crosta del pane e scolateli su carta assorbente." },
+    { "@type": "HowToStep", "name": "Miele", "text": "Scaldate il miele in una padella larga, unite gli struffoli freddi e mescolate delicatamente. Aggiungete canditi e diavulilli e date forma di corona o di cupola sul piatto." }
+  ]
+};
+
+const schemaRoccoco = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Roccocò napoletani",
+  "description": "Ciambelline dure del Natale napoletano con farina, mandorle, zucchero, scorze di agrumi e pisto.",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "datePublished": "2026-10-16",
+  "recipeCategory": "Dolce",
+  "recipeCuisine": "Italiana",
+  "keywords": "roccocò, pisto, dolci di Natale napoletani",
+  "prepTime": "PT15M",
+  "cookTime": "PT20M",
+  "totalTime": "PT35M",
+  "recipeYield": "10 roccocò",
+  "recipeIngredient": [
+    "250 g di farina",
+    "150 g di farina di mandorle",
+    "50 g di mandorle a lamelle",
+    "200 g di zucchero semolato",
+    "1 pizzico di sale fino",
+    "2 g di ammoniaca per dolci",
+    "Scorza grattugiata di 1 arancia",
+    "Scorza grattugiata di 1 limone",
+    "5 g di pisto",
+    "80 g di acqua tiepida",
+    "1 tuorlo per spennellare"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Impasto", "text": "Mescolate farina, zucchero, ammoniaca, pisto, sale, scorze, farina di mandorle e mandorle a lamelle. Unite l'acqua tiepida poco alla volta fino a ottenere un impasto liscio e non appiccicoso." },
+    { "@type": "HowToStep", "name": "Forma", "text": "Dividete l'impasto in 10 pezzi, formate dei cilindri e chiudeteli ad anello. Sistemateli su una teglia con carta forno." },
+    { "@type": "HowToStep", "name": "Cottura", "text": "Spennellate con il tuorlo sbattuto e cuocete in forno ventilato a 180°C per 20 minuti (15 per un risultato più morbido). Lasciate raffreddare completamente." }
+  ]
+};
+
+const schemaMustaccioli = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Mustaccioli napoletani",
+  "description": "Biscotti napoletani morbidi con miele, cacao, mandorle e pisto, tagliati a rombo e glassati al cioccolato fondente.",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "datePublished": "2026-10-16",
+  "recipeCategory": "Dolce",
+  "recipeCuisine": "Italiana",
+  "keywords": "mustaccioli, mostaccioli, pisto, dolci di Natale napoletani",
+  "prepTime": "PT10M",
+  "cookTime": "PT15M",
+  "totalTime": "PT1H25M",
+  "recipeYield": "16-18 mustaccioli",
+  "recipeIngredient": [
+    "250 g di farina 00",
+    "4 g di ammoniaca per dolci",
+    "3 g di pisto",
+    "125 g di zucchero semolato",
+    "100 g di farina di mandorle",
+    "25 g di cacao amaro in polvere",
+    "1 pizzico di sale",
+    "75 g di miele",
+    "60 g di acqua tiepida",
+    "Succo e scorza grattugiata di mezza arancia",
+    "350 g di cioccolato fondente al 70% per la glassa"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Impasto", "text": "Setacciate farina, cacao e ammoniaca in una ciotola. Unite pisto, sale, zucchero, miele, farina di mandorle, succo e scorza d'arancia. Aggiungete l'acqua tiepida poco alla volta e impastate." },
+    { "@type": "HowToStep", "name": "Riposo", "text": "Avvolgete l'impasto nella pellicola e lasciatelo riposare in frigorifero per 1 ora." },
+    { "@type": "HowToStep", "name": "Taglio", "text": "Stendete l'impasto a circa 6 mm su un piano infarinato e ricavate dei rombi uguali. Disponeteli distanziati su una teglia con carta forno." },
+    { "@type": "HowToStep", "name": "Cottura", "text": "Cuocete in forno statico già caldo a 170°C per 15 minuti (2-3 minuti in più per un biscotto più duro). Lasciateli raffreddare completamente sulla teglia." },
+    { "@type": "HowToStep", "name": "Glassa", "text": "Sciogliete il cioccolato, immergete i mustaccioli uno alla volta aiutandovi con una forchetta, fateli sgocciolare e appoggiateli su una griglia. Lasciateli in frigorifero almeno 10 minuti finché la glassa si solidifica." }
+  ]
+};
+---
+
+<BlogPostLayout
+  lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  breadcrumbs={breadcrumbs}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  relatedArticles={relatedArticles}
+  pageKey="neapolitan-christmas-sweets"
+  extraSchema={[schemaStruffoli, schemaRoccoco, schemaMustaccioli]}
+>
+
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <div class="flex items-center gap-3 mb-6">
+      <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Punti chiave</h2>
+    </div>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-xs sm:text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      A Napoli, in Penisola Sorrentina e lungo la <a href="/it-it/costiera-amalfitana/" class="text-med-blue hover:underline">Costiera Amalfitana</a>, dicembre ha i suoi dolci. Tre sono su quasi tutte le tavole: gli <strong>struffoli</strong>, palline di pasta fritte e passate nel miele; i <strong>roccocò</strong>, ciambelline dure di mandorle; e i <strong>mustaccioli</strong>, rombi speziati glassati al cioccolato. La stagione dei dolci comincia prima, con quelli dei morti di inizio novembre (ne parliamo nell'articolo sulla <a href="/it-it/blog/festa-dei-morti-halloween/" class="text-med-blue hover:underline">Festa dei Morti e Halloween</a>), ma il Natale appartiene a questi tre.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Qui sotto trovate cosa sono, cosa contengono, cosa dicono le fonti sulla loro storia e una ricetta casalinga con le dosi in grammi, presa da fonti di pasticceria italiane. Serviteli come si fa qui, con un bicchierino di vino dolce o di <a href="/it-it/blog/ricetta-limoncello/" class="text-med-blue hover:underline">limoncello fatto in casa</a>.
+    </p>
+  </div>
+
+  <!-- Pisto -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Il pisto: le spezie del Natale napoletano</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Roccocò e mustaccioli hanno in comune l'ingrediente che dà loro il profumo del Natale: il <strong>pisto</strong>. È un mix di spezie macinate, e ogni famiglia e ogni pasticceria ha le sue proporzioni. La versione descritta da Dissapore usa parti uguali di:
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">cannella in stecca</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">semi di cardamomo (estratti dal baccello)</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">anice stellato</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">pepe bianco in grani</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">chiodi di garofano</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">noce moscata</span></li>
+    </ul>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Pestate tutto nel mortaio (o in un macinaspezie) fino a ottenere una polvere fine. Alcune ricette aggiungono semi di coriandolo. Per ogni infornata servono pochi grammi: il resto si conserva in un vasetto chiuso per la volta successiva.
+    </p>
+  </div>
+
+  <!-- Struffoli -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Struffoli: palline fritte nel miele</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Gli <strong>struffoli</strong> sono pezzetti di pasta all'uovo fritti fino a doratura, poi passati nel miele caldo e disposti a corona o a cupola. La decorazione fa parte del piatto: arancia e cedro canditi e i confettini colorati che a Napoli si chiamano <em>diavulilli</em>. Fuori sono croccanti, dentro leggeri, e il miele tiene insieme il tutto. Molte famiglie aggiungono un liquore all'impasto; lo Strega è una scelta comune.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Sull'origine le fonti sono prudenti. Il nome deriverebbe dal greco <em>strongoulos</em>, cioè di forma tondeggiante, e gli struffoli sarebbero stati forse introdotti dai greci oppure nati sotto la dominazione spagnola. Dissapore ricorda che dolci fritti al miele simili esistono in Abruzzo, in Spagna e in Grecia (i <em>loukoumades</em>), e che gli struffoli sono sulle tavole napoletane dal Seicento in poi, citando la <em>Lucerna de corteggiani</em> di Giovan Battista Crisci. Sono un dolce di Natale, anche se in alcune famiglie si preparano pure a Carnevale.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Ingredienti degli struffoli</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>500 g di farina debole</strong> (per biscotti)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>300 g di uova intere</strong> (circa 5)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>40 g di zucchero semolato</strong> e <strong>30 g di burro morbido</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>3 g di sale fino</strong> e <strong>5 g di lievito chimico</strong>, setacciato con la farina</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Scorza grattugiata di arancia e limone, e un goccio di Strega o grappa</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Circa 300 g di miele di acacia</strong>, canditi e diavulilli</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>2 litri di olio di semi di arachide</strong> per friggere</span></li>
+      </ul>
+    </div>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Come si fanno gli struffoli</h3>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Impasto.</strong> Fate la fontana con la farina, mettete al centro le uova e lo zucchero e sbattete con una forchetta. Unite il sale sciolto in poca acqua, le scorze, il liquore e per ultimo il burro morbido. Impastate fino a ottenere un panetto liscio e compatto.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Riposo</strong> in un contenitore ermetico per circa 2 ore.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Forma.</strong> Formate dei bastoncini di circa 1 cm di diametro, infarinateli appena e tagliateli a pezzetti di 1 cm. Eliminate tutta la farina in eccesso e lasciate riposare i pezzetti su carta forno per 10 minuti.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">4</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Frittura.</strong> Scaldate l'olio a 180°C, poi abbassate a circa 170°C. Friggete pochi pezzi alla volta finché sono dorati, del colore della crosta del pane, e scolateli su carta assorbente.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">5</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Miele.</strong> Scaldate il miele in una padella larga, unite gli struffoli freddi e mescolate delicatamente finché sono ben ricoperti. Aggiungete canditi e diavulilli e date forma sul piatto da portata.</p>
+        </div>
+      </div>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      Ricetta adattata dalla versione del pasticciere Armando Palmieri pubblicata da Dissapore. Lo stesso articolo riporta una versione più croccante di Sal De Riso, senza lievito.
+    </p>
+  </div>
+
+  <!-- Roccocò -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Roccocò: ciambelline dure di mandorle</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      I <strong>roccocò</strong> sono ciambelle di impasto denso e duro fatte con farina, zucchero, mandorle, agrumi e pisto. Nell'impasto non ci sono burro né latte, ed è per questo che durano settimane. Alcune versioni aggiungono arancia candita o succo di mandarino. La consistenza dipende dalla cottura: più a lungo restano in forno, più diventano croccanti, da inzuppo; con una cottura breve restano più morbidi. A Napoli si inzuppano in un vino dolce come Marsala o Moscato, oppure in un liquore.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Le fonti fanno risalire i roccocò al 1320 circa e li attribuiscono alle monache napoletane, di solito a quelle del Real Convento della Maddalena. Il nome è legato al francese <em>rocaille</em>, una forma tondeggiante simile alla roccia, la stessa radice dello stile rococò.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Ingredienti dei roccocò (10 pezzi)</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>250 g di farina</strong> e <strong>150 g di farina di mandorle</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>50 g di mandorle a lamelle</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>200 g di zucchero semolato</strong> e un pizzico di sale fino</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>2 g di ammoniaca per dolci</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>5 g di pisto</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Scorza grattugiata di <strong>1 arancia</strong> e <strong>1 limone</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>80 g di acqua tiepida</strong> e <strong>1 tuorlo</strong> per spennellare</span></li>
+      </ul>
+    </div>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Come si fanno i roccocò</h3>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Mescolate gli ingredienti secchi</strong>: farina, zucchero, ammoniaca, pisto, sale, scorze, farina di mandorle e mandorle a lamelle.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Aggiungete l'acqua</strong> poco alla volta fino a ottenere un impasto liscio e non più appiccicoso.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Formate le ciambelle.</strong> Dividete l'impasto in 10 pezzi, rotolate ciascuno con i palmi fino a ottenere un cilindro e chiudetelo ad anello. Sistemateli su una teglia con carta forno.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">4</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Cottura.</strong> Spennellate appena con il tuorlo sbattuto e cuocete in forno ventilato a 180°C per 20 minuti, o 15 minuti per un risultato più morbido. Sfornateli quando sono ancora morbidi: si induriscono raffreddandosi.</p>
+        </div>
+      </div>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      Ricetta di Dissapore. Per un colore più scuro aggiungete 1 cucchiaino di cacao amaro all'impasto; le nocciole possono sostituire le mandorle.
+    </p>
+  </div>
+
+  <!-- Mustaccioli -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Mustaccioli: rombi speziati al cioccolato</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      I <strong>mustaccioli</strong> (mostaccioli in italiano) sono biscotti a forma di rombo fatti con farina, miele, zucchero, mandorle, cacao e pisto, poi immersi nel cioccolato fondente. A seconda della ricetta l'interno è sodo o morbido; la versione qui sotto cuoce solo 15 minuti e resta morbida. Il guscio di cioccolato, il miele e le spezie sono le prime cose che si sentono.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Il nome viene dal <em>mosto</em> d'uva, che un tempo entrava nell'impasto; Ricette dal Mondo lo fa risalire al latino <em>mustaceum</em>. Secondo Dissapore, l'attestazione storica più solida della ricetta risale a Bartolomeo Scappi, cuoco papale del Cinquecento.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Ingredienti dei mustaccioli (16-18 pezzi)</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>250 g di farina 00</strong> e <strong>100 g di farina di mandorle</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>125 g di zucchero semolato</strong> e <strong>75 g di miele</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>25 g di cacao amaro</strong> e un pizzico di sale</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>4 g di ammoniaca per dolci</strong> e <strong>3 g di pisto</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Succo e scorza grattugiata di <strong>mezza arancia</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>60 g di acqua tiepida</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>350 g di cioccolato fondente al 70%</strong> per la glassa</span></li>
+      </ul>
+    </div>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Come si fanno i mustaccioli</h3>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Impasto.</strong> Setacciate farina, cacao e ammoniaca in una ciotola. Unite pisto, sale, zucchero, miele, farina di mandorle, succo e scorza d'arancia.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Impastate</strong> aggiungendo l'acqua tiepida poco alla volta. Se l'impasto è troppo appiccicoso, unite un po' di farina. Avvolgetelo nella pellicola e lasciatelo riposare in frigorifero per 1 ora.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Tagliate i rombi.</strong> Stendete l'impasto a circa 6 mm su un piano infarinato, ricavate dei rombi uguali e disponeteli distanziati su una teglia con carta forno.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">4</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Cottura</strong> in forno statico già caldo a 170°C per 15 minuti (2-3 minuti in più se li volete più duri). Lasciateli raffreddare completamente sulla teglia: da caldi si rompono facilmente.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">5</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Glassa.</strong> Sciogliete il cioccolato a bagnomaria o al microonde. Immergete i mustaccioli uno alla volta con una forchetta, fateli sgocciolare e appoggiateli su una griglia. Lasciateli in frigorifero almeno 10 minuti finché il cioccolato si solidifica.</p>
+        </div>
+      </div>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      Ricetta adattata dai mostaccioli napoletani morbidi pubblicati sul circuito blog di GialloZafferano (Cuochinprogress).
+    </p>
+  </div>
+
+  <!-- Comparison -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">I tre dolci a confronto</h2>
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold"></th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Struffoli</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Roccocò</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Mustaccioli</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Forma</td>
+            <td class="p-5 text-slate-600">Palline a corona o a cupola</td>
+            <td class="p-5 text-slate-600">Ciambella</td>
+            <td class="p-5 text-slate-600">Rombo</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Cottura</td>
+            <td class="p-5 text-slate-600">Fritti</td>
+            <td class="p-5 text-slate-600">Al forno</td>
+            <td class="p-5 text-slate-600">Al forno, poi glassati</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Sapori</td>
+            <td class="p-5 text-slate-600">Miele, agrumi, canditi</td>
+            <td class="p-5 text-slate-600">Mandorle, agrumi, pisto</td>
+            <td class="p-5 text-slate-600">Miele, cacao, pisto, cioccolato fondente</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Consistenza</td>
+            <td class="p-5 text-slate-600">Croccanti fuori, leggeri dentro</td>
+            <td class="p-5 text-slate-600">Duri, da inzuppo</td>
+            <td class="p-5 text-slate-600">Sodi o morbidi, con guscio di cioccolato</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Conservazione</td>
+            <td class="p-5 text-slate-600">Meglio freschi; senza miele si conservano bene</td>
+            <td class="p-5 text-slate-600">Circa 1 mese in una latta</td>
+            <td class="p-5 text-slate-600">Fino a 10 giorni</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Also on the table -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Cos'altro c'è sulla tavola di Natale</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Struffoli, roccocò e mustaccioli arrivano raramente da soli. Il vassoio natalizio napoletano di solito ha anche alcuni di questi:
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Susamielli</strong>: biscotti a forma di S con farina, miele, mandorle e pisto, ricoperti di semi di sesamo.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Sapienze</strong>: parenti dritte e allungate dei susamielli, diffuse a Napoli, Caserta e Sorrento.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Raffiuoli</strong>: dischi di pan di Spagna con confettura di albicocche sotto una glassa di zucchero bianca.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Divino amore</strong>: dolcetti di pasta di mandorle con confettura di albicocche e glassa di zucchero.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Pastiera</strong>: di solito è il dolce di Pasqua, ma a Napoli compare anche a Natale.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Torrone</strong>: torrone e torroncini al cioccolato, con la loro <a href="/it-it/blog/ricetta-torrone-torroncini/" class="text-med-blue hover:underline">ricetta del torrone</a> su questo blog.</span></li>
+    </ul>
+  </div>
+
+  <!-- Where to buy -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Dove comprarli in Costiera e in Penisola</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      A dicembre le pasticcerie di Sorrento, dei paesi della Penisola e della Costiera Amalfitana riempiono i banconi di vassoi di struffoli e sacchetti di roccocò e mustaccioli. Ad Amalfi e a Minori, le pasticcerie che già citiamo su questo sito, come Pansa ad Amalfi e Sal De Riso a Minori, sono un buon punto di partenza: chiedete al banco cosa hanno quella settimana.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Se volete portarne a casa, scegliete roccocò e mustaccioli: sono secchi, si conservano e reggono la valigia. Gli struffoli sono appiccicosi di miele e vanno mangiati sul posto. Un viaggio a dicembre coincide anche con le <a href="/it-it/blog/luminarie-natalizie-sorrento-salerno/" class="text-med-blue hover:underline">luminarie di Natale di Sorrento e Salerno</a>, così nella stessa sera potete comprare i dolci e vedere le luci.
+    </p>
+  </div>
+
+  <!-- Consigli dell'esperto -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold">I Consigli dell'Esperto</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Togliete la farina prima di friggere</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Scuotete gli struffoli tagliati in un setaccio per eliminare tutta la farina libera, poi lasciateli riposare 10 minuti su carta forno prima di metterli nell'olio.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Friggete prima, il miele dopo</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Gli struffoli fritti senza miele si conservano bene in un sacchetto chiuso. Passateli nel miele caldo il giorno in cui li servite.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Sfornate i roccocò un po' prima</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Toglieteli dal forno quando sembrano ancora troppo morbidi. Si rassodano raffreddandosi, e ogni minuto in più in forno li rende più duri.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Glassate i mustaccioli solo da freddi</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Da caldi si rompono e sciolgono il cioccolato in modo irregolare. Aspettate che siano del tutto freddi sulla teglia prima di immergerli.</p>
+      </div>
+    </div>
+  </div>
+
+</BlogPostLayout>

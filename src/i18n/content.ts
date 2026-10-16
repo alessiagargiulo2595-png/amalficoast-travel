@@ -212,7 +212,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       {
         name: 'Furore', slug: 'furore',
         tagline: 'The village that doesn\'t exist',
-        description: 'Furore is the "village that doesn\'t exist" — a settlement with no visible centre, scattered across hills above the famous Furore Fjord. Artist murals, panoramic trails, and the most photographed fjord on the coast.',
+        description: 'Furore is the "village that doesn\'t exist": a settlement with no visible centre, scattered across hills above the famous Furore Fjord. Artist murals, panoramic trails, and the most photographed fjord on the coast.',
         highlights: ['Furore Fjord', 'Artist murals', 'Panoramic trails', 'Scattered village', 'Terraced vineyards'],
         area: 'costiera-amalfitana',
       },
@@ -398,7 +398,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       {
         name: 'Furore', slug: 'furore',
         tagline: 'Das Dorf, das nicht existiert',
-        description: 'Furore ist das "Dorf, das nicht existiert" — eine Siedlung ohne sichtbares Zentrum, verstreut über den Hügeln oberhalb des berühmten Fjords von Furore. Künstler-Wandmalereien, Panoramawege und der meistfotografierte Fjord der Küste.',
+        description: 'Furore ist das "Dorf, das nicht existiert": eine Siedlung ohne sichtbares Zentrum, verstreut über den Hügeln oberhalb des berühmten Fjords von Furore. Künstler-Wandmalereien, Panoramawege und der meistfotografierte Fjord der Küste.',
         highlights: ['Fjord von Furore', 'Künstler-Wandmalereien', 'Panoramawege', 'Verstreutes Dorf', 'Terrassierte Weinberge'],
         area: 'costiera-amalfitana',
       },
@@ -584,7 +584,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       {
         name: 'Furore', slug: 'furore',
         tagline: 'Le village qui n\'existe pas',
-        description: 'Furore est le "village qui n\'existe pas" — un bourg sans centre visible, dispersé sur les collines au-dessus du célèbre Fjord de Furore. Fresques murales d\'artistes, sentiers panoramiques et le fjord le plus photographié de la côte.',
+        description: 'Furore est le "village qui n\'existe pas": un bourg sans centre visible, dispersé sur les collines au-dessus du célèbre Fjord de Furore. Fresques murales d\'artistes, sentiers panoramiques et le fjord le plus photographié de la côte.',
         highlights: ['Fjord de Furore', 'Fresques murales d\'artistes', 'Sentiers panoramiques', 'Village dispersé', 'Vignobles en terrasses'],
         area: 'costiera-amalfitana',
       },
@@ -770,7 +770,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       {
         name: 'Furore', slug: 'furore',
         tagline: 'El pueblo que no existe',
-        description: 'Furore es el "pueblo que no existe" — un asentamiento sin centro visible, disperso por las colinas sobre el famoso Fiordo de Furore. Murales de artistas, senderos panoramicos y el fiordo mas fotografiado de la costa.',
+        description: 'Furore es el "pueblo que no existe": un asentamiento sin centro visible, disperso por las colinas sobre el famoso Fiordo de Furore. Murales de artistas, senderos panoramicos y el fiordo mas fotografiado de la costa.',
         highlights: ['Fiordo de Furore', 'Murales de artistas', 'Senderos panoramicos', 'Pueblo disperso', 'Vinedos en terrazas'],
         area: 'costiera-amalfitana',
       },
@@ -956,7 +956,7 @@ export const homeContent: Record<Locale, HomeContent> = {
       {
         name: 'Furore', slug: 'furore',
         tagline: 'Il paese che non c\'è',
-        description: 'Furore è il "paese che non c\'è" — un borgo senza centro abitato visibile, sparso tra le colline sopra il celebre Fiordo di Furore. Murales d\'artista, sentieri panoramici e il fiordo più fotografato della costiera.',
+        description: 'Furore è il "paese che non c\'è": un borgo senza centro abitato visibile, sparso tra le colline sopra il celebre Fiordo di Furore. Murales d\'artista, sentieri panoramici e il fiordo più fotografato della costiera.',
         highlights: ['Fiordo di Furore', 'Murales d\'artista', 'Sentieri panoramici', 'Borgo diffuso', 'Vigneti terrazzati'],
         area: 'costiera-amalfitana',
       },

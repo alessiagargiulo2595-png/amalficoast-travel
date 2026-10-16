@@ -1,0 +1,521 @@
+---
+import BlogPostLayout from '../../../../layouts/BlogPostLayout.astro';
+
+const lang = 'es-es';
+const post = {
+  title: 'Dulces navideños napolitanos',
+  subtitle: 'Struffoli, roccocò y mustaccioli: qué son, de dónde vienen y una receta casera para cada uno',
+  category: 'GASTRONOMÍA',
+  date: '14 de noviembre de 2026',
+  readTime: '11 min',
+  image: '/images/struffoli-hero.webp',
+  imageAlt: "Struffoli recién fritos en una espumadera, antes de la miel",
+  path: '/es-es/blog/dulces-navidad-napolitanos/',
+};
+
+const metaTitle = 'Navidad en Nápoles: struffoli, roccocò y mustaccioli';
+const metaDescription = 'Struffoli, roccocò y mustaccioli: ingredientes, el pisto, su historia, recetas caseras en gramos y dónde comprarlos en diciembre en la Costa Amalfitana.';
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/es-es/' },
+  { name: 'Blog', url: '/es-es/blog/' },
+  { name: 'Dulces navideños napolitanos', url: '/es-es/blog/dulces-navidad-napolitanos/' },
+];
+
+const quickInfo = [
+  { label: 'Temporada', value: 'Diciembre y fiestas de Navidad' },
+  { label: 'Struffoli', value: 'Bolitas de masa fritas bañadas en miel' },
+  { label: 'Roccocò', value: 'Rosquillas duras de almendra con pisto' },
+  { label: 'Mustaccioli', value: 'Rombos especiados glaseados con chocolate negro' },
+  { label: 'Mezcla de especias', value: 'Pisto (canela, clavo, nuez moscada, anís estrellado y más)' },
+  { label: 'Dificultad', value: 'Fácil a media' },
+  { label: 'Conservación', value: 'Roccocò cerca de 1 mes en lata' },
+  { label: 'Dónde comprarlos', value: 'Pastelerías de la costa y la península en diciembre' },
+];
+
+const faq = [
+  {
+    q: '¿Qué es el pisto?',
+    a: 'El pisto es la mezcla de especias napolitana de los roccocò y los mustaccioli. Dissapore la describe como partes iguales de canela en rama, semillas de cardamomo, anís estrellado, pimienta blanca en grano, clavo y nuez moscada, machacados juntos en el mortero. Otras recetas añaden cilantro. También se vende ya preparado.',
+  },
+  {
+    q: '¿Puedo preparar los struffoli con antelación?',
+    a: 'Sí. Fríe los struffoli, déjalos secar por completo y guárdalos cerrados en una bolsa (mejor al vacío). Añade la miel caliente, la fruta confitada y los confites de colores solo al servirlos. Sin miel se conservan bien.',
+  },
+  {
+    q: 'Mis roccocò han quedado duros como piedras. ¿He hecho algo mal?',
+    a: 'No necesariamente: los roccocò tienen que ser firmes y por tradición se mojan en un vino dulce como el Marsala o el Moscato. Para un resultado más tierno, hornéalos 15 minutos en lugar de 20 y sácalos cuando aún parezcan demasiado blandos. Se endurecen al enfriarse.',
+  },
+  {
+    q: '¿Qué es el amoníaco para repostería y cómo se sustituye?',
+    a: 'El amoníaco para repostería (ammoniaca per dolci) es bicarbonato de amonio, un gasificante para galletas secas. Algunas recetas de mustaccioli usan bicarbonato de sodio en su lugar: Ricette dal Mondo pone 1 cucharadita en una masa con 500 g de harina.',
+  },
+  {
+    q: '¿Cuánto duran los roccocò y los mustaccioli?',
+    a: 'Los roccocò aguantan cerca de un mes en una lata, protegidos de la humedad, por eso duran todas las fiestas. Los mustaccioli, una vez solidificado el chocolate, se conservan hasta 10 días en una bolsa para alimentos o bajo una campana de cristal.',
+  },
+  {
+    q: '¿Mustaccioli o mostaccioli? ¿Cuál es el correcto?',
+    a: 'Los dos. Mostaccioli es el nombre italiano y mustaccioli la forma en dialecto napolitano. El nombre está ligado al mosto de uva, que antes formaba parte de la masa.',
+  },
+];
+
+const sidebarLinks = [
+  { label: 'Receta del Limoncello', href: '/es-es/blog/receta-limoncello/' },
+  { label: 'Receta del Turrón (Torrone)', href: '/es-es/blog/receta-turron-torrone/' },
+  { label: 'Fiesta de los Muertos y Halloween', href: '/es-es/blog/fiesta-de-los-muertos-halloween/' },
+  { label: 'Luces de Navidad en Sorrento y Salerno', href: '/es-es/blog/luces-navidad-sorrento-salerno/' },
+  { label: 'Delizia al Limón', href: '/es-es/blog/delizia-limon/' },
+];
+
+const authorRole = 'Especialista en Gastronomía · Costa Amalfitana';
+
+const relatedArticles = [
+  {
+    title: 'Receta del Limoncello',
+    category: 'GASTRONOMÍA',
+    date: '31 de mayo de 2026',
+    image: '/images/limoncello-ricetta-hero.webp',
+    imageAlt: 'Limoncello artesanal de la Costa Amalfitana - limones de Amalfi y Sorrento',
+    path: '/es-es/blog/receta-limoncello/'
+  },
+  {
+    title: 'Fiesta de los Muertos, Halloween y las cofradías encapuchadas',
+    category: 'DESCUBRIMIENTOS',
+    date: '7 de octubre de 2026',
+    image: '/images/misteri-venerdi-santo-hero.webp',
+    imageAlt: 'Un Misterio de la Pasión llevado por cofrades encapuchados en una procesión del Viernes Santo',
+    path: '/es-es/blog/fiesta-de-los-muertos-halloween/'
+  }
+];
+
+const keyTakeaways = [
+  "Los struffoli son bolitas de masa de huevo, fritas, bañadas en miel caliente y cubiertas de fruta confitada y confites de colores llamados diavulilli.",
+  "Los roccocò son rosquillas duras de harina, almendras, azúcar, ralladura de cítricos y pisto. La masa no lleva mantequilla, y se mojan en vino dulce.",
+  "Los mustaccioli son galletas especiadas en forma de rombo con miel y cacao, glaseadas con chocolate negro. El nombre viene de mosto, el mosto de uva.",
+  "El pisto es la mezcla de especias de roccocò y mustaccioli: canela, clavo, nuez moscada, anís estrellado, cardamomo y pimienta blanca, en la mayoría de versiones.",
+  "En diciembre las pastelerías de la península de Sorrento y de la Costa Amalfitana venden los tres. Roccocò y mustaccioli viajan bien, los struffoli no tanto.",
+];
+
+const schemaStruffoli = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Struffoli napolitanos",
+  "description": "Bolitas fritas de masa de huevo bañadas en miel y decoradas con fruta confitada y confites de colores: el clásico de la Navidad napolitana.",
+  "image": "https://amalficoast-travel.com/images/struffoli-hero.webp",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "datePublished": "2026-10-16",
+  "recipeCategory": "Postre",
+  "recipeCuisine": "Italiana",
+  "keywords": "struffoli, dulces navideños napolitanos",
+  "recipeIngredient": [
+    "500 g de harina floja (de baja proteína, para galletas)",
+    "300 g de huevos enteros (unos 5)",
+    "40 g de azúcar blanco",
+    "30 g de mantequilla blanda",
+    "3 g de sal fina",
+    "5 g de levadura química",
+    "Ralladura de naranja y limón",
+    "Un chorrito de licor Strega o grappa",
+    "Unos 300 g de miel de acacia",
+    "Fruta confitada y confites de colores (diavulilli)",
+    "2 litros de aceite de cacahuete para freír"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Masa", "text": "Tamiza la harina con la levadura y forma un volcán. Pon en el centro los huevos y el azúcar y bate con un tenedor; añade la sal disuelta en un poco de agua, la ralladura, el licor y la mantequilla blanda. Amasa hasta obtener una masa lisa y compacta." },
+    { "@type": "HowToStep", "name": "Reposo", "text": "Deja reposar la masa en un recipiente hermético unas 2 horas." },
+    { "@type": "HowToStep", "name": "Formado", "text": "Forma cordones de 1 cm de diámetro y córtalos en trocitos de 1 cm. Elimina el exceso de harina y deja reposar los trocitos 10 minutos sobre papel de horno." },
+    { "@type": "HowToStep", "name": "Fritura", "text": "Calienta el aceite a 180°C y baja después a unos 170°C. Fríe por tandas hasta que estén dorados como la corteza del pan y escúrrelos sobre papel absorbente." },
+    { "@type": "HowToStep", "name": "Miel", "text": "Templa la miel en una sartén amplia, añade los struffoli fríos y mezcla con cuidado. Incorpora la fruta confitada y los confites y dales forma de corona o de cúpula en el plato." }
+  ]
+};
+
+const schemaRoccoco = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Roccocò napolitanos",
+  "description": "Rosquillas duras de la Navidad napolitana con harina, almendras, azúcar, ralladura de cítricos y pisto.",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "datePublished": "2026-10-16",
+  "recipeCategory": "Postre",
+  "recipeCuisine": "Italiana",
+  "keywords": "roccocò, pisto, dulces navideños napolitanos",
+  "prepTime": "PT15M",
+  "cookTime": "PT20M",
+  "totalTime": "PT35M",
+  "recipeYield": "10 roccocò",
+  "recipeIngredient": [
+    "250 g de harina",
+    "150 g de harina de almendra",
+    "50 g de almendra laminada",
+    "200 g de azúcar blanco",
+    "1 pizca de sal fina",
+    "2 g de amoníaco para repostería (bicarbonato de amonio)",
+    "Ralladura de 1 naranja",
+    "Ralladura de 1 limón",
+    "5 g de pisto",
+    "80 g de agua tibia",
+    "1 yema de huevo para pintar"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Mezcla", "text": "Mezcla la harina, el azúcar, el amoníaco, el pisto, la sal, las ralladuras, la harina de almendra y la almendra laminada. Añade el agua tibia poco a poco hasta obtener una masa lisa que no se pegue." },
+    { "@type": "HowToStep", "name": "Formado", "text": "Divide la masa en 10 porciones, forma un cilindro con cada una y une los extremos en un aro. Colócalos en una bandeja con papel de horno." },
+    { "@type": "HowToStep", "name": "Horneado", "text": "Pinta con la yema batida y hornea con ventilador a 180°C durante 20 minutos (15 para un resultado más tierno). Deja enfriar por completo." }
+  ]
+};
+
+const schemaMustaccioli = {
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Mustaccioli napolitanos",
+  "description": "Galletas napolitanas tiernas con miel, cacao, almendra y pisto, cortadas en rombos y glaseadas con chocolate negro.",
+  "author": { "@type": "Organization", "name": "Amalfi Coast Travel" },
+  "datePublished": "2026-10-16",
+  "recipeCategory": "Postre",
+  "recipeCuisine": "Italiana",
+  "keywords": "mustaccioli, mostaccioli, pisto, dulces navideños napolitanos",
+  "prepTime": "PT10M",
+  "cookTime": "PT15M",
+  "totalTime": "PT1H25M",
+  "recipeYield": "16-18 mustaccioli",
+  "recipeIngredient": [
+    "250 g de harina de trigo (tipo 00)",
+    "4 g de amoníaco para repostería (bicarbonato de amonio)",
+    "3 g de pisto",
+    "125 g de azúcar blanco",
+    "100 g de harina de almendra",
+    "25 g de cacao puro en polvo",
+    "1 pizca de sal",
+    "75 g de miel",
+    "60 g de agua tibia",
+    "Zumo y ralladura de media naranja",
+    "350 g de chocolate negro al 70 % para el glaseado"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Mezcla", "text": "Tamiza la harina, el cacao y el amoníaco en un bol. Añade el pisto, la sal, el azúcar, la miel, la harina de almendra y el zumo y la ralladura de naranja. Incorpora el agua tibia poco a poco y amasa." },
+    { "@type": "HowToStep", "name": "Reposo", "text": "Envuelve la masa en film y déjala reposar 1 hora en la nevera." },
+    { "@type": "HowToStep", "name": "Corte", "text": "Estira la masa a unos 6 mm sobre una superficie enharinada y corta rombos iguales. Colócalos separados en una bandeja con papel de horno." },
+    { "@type": "HowToStep", "name": "Horneado", "text": "Hornea con el horno precalentado a 170°C, calor arriba y abajo, durante 15 minutos (2 o 3 minutos más para una galleta más firme). Déjalos enfriar por completo en la bandeja." },
+    { "@type": "HowToStep", "name": "Glaseado", "text": "Funde el chocolate, sumerge los mustaccioli de uno en uno con ayuda de un tenedor, escúrrelos y ponlos sobre una rejilla. Déjalos al menos 10 minutos en la nevera hasta que el glaseado se solidifique." }
+  ]
+};
+---
+
+<BlogPostLayout
+  lang={lang}
+  post={post}
+  metaTitle={metaTitle}
+  metaDescription={metaDescription}
+  breadcrumbs={breadcrumbs}
+  quickInfo={quickInfo}
+  faq={faq}
+  sidebarLinks={sidebarLinks}
+  authorRole={authorRole}
+  relatedArticles={relatedArticles}
+  pageKey="neapolitan-christmas-sweets"
+  extraSchema={[schemaStruffoli, schemaRoccoco, schemaMustaccioli]}
+>
+
+  <!-- Key Takeaways -->
+  <div class="bg-slate-900 text-white p-8 rounded-[2rem]">
+    <div class="flex items-center gap-3 mb-6">
+      <svg class="w-5 h-5 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <h2 class="font-serif text-lg font-bold text-med-gold uppercase tracking-[0.15em]">Puntos clave</h2>
+    </div>
+    <ul class="space-y-4">
+      {keyTakeaways.map((point) => (
+        <li class="flex items-start gap-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-med-gold flex-shrink-0 mt-2"></span>
+          <span class="text-white/80 text-xs sm:text-sm leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Intro -->
+  <div>
+    <p class="text-slate-600 text-xl leading-relaxed mb-6 font-light">
+      En Nápoles, en la península de Sorrento y a lo largo de la <a href="/es-es/costa-amalfitana/" class="text-med-blue hover:underline">Costa Amalfitana</a>, diciembre tiene sus propios dulces. Tres están en casi todas las mesas: los <strong>struffoli</strong>, bolitas de masa fritas bañadas en miel; los <strong>roccocò</strong>, rosquillas duras de almendra; y los <strong>mustaccioli</strong>, rombos especiados glaseados con chocolate. La temporada de dulces empieza antes, con los que se hacen para los difuntos a principios de noviembre (hablamos de ellos en el artículo sobre la <a href="/es-es/blog/fiesta-de-los-muertos-halloween/" class="text-med-blue hover:underline">Fiesta de los Muertos y Halloween</a>), pero la Navidad es de estos tres.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      A continuación verás qué es cada uno, qué lleva, qué dicen las fuentes sobre su historia y una receta casera con cantidades en gramos tomada de fuentes de repostería italianas. Sírvelos como se hace aquí, con una copita de vino dulce o de <a href="/es-es/blog/receta-limoncello/" class="text-med-blue hover:underline">limoncello casero</a>.
+    </p>
+  </div>
+
+  <!-- Pisto -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">El pisto: las especias de la Navidad napolitana</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Roccocò y mustaccioli comparten el ingrediente que les da su aroma navideño: el <strong>pisto</strong>. Es una mezcla de especias molidas, y cada familia y cada pastelería tiene sus proporciones. La versión que describe Dissapore usa partes iguales de:
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">canela en rama</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">semillas de cardamomo (sacadas de las vainas)</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">anís estrellado</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">pimienta blanca en grano</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">clavo</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">nuez moscada</span></li>
+    </ul>
+    <p class="text-slate-600 text-lg leading-relaxed">
+      Machácalo todo en el mortero (o en un molinillo de especias) hasta obtener un polvo fino. Algunas recetas añaden semillas de cilantro. Por hornada solo hacen falta unos gramos: guarda el resto en un tarro cerrado para la próxima vez.
+    </p>
+  </div>
+
+  <!-- Struffoli -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Struffoli: bolitas fritas con miel</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Los <strong>struffoli</strong> son trocitos diminutos de masa de huevo, fritos hasta dorarse, bañados después en miel caliente y colocados en forma de corona o de cúpula. La decoración forma parte del plato: naranja y cidra confitadas, y los confites de azúcar de colores que en Nápoles llaman <em>diavulilli</em>. Por fuera son crujientes, por dentro ligeros, y la miel lo mantiene todo unido. Muchas familias añaden un licor a la masa; el Strega es una opción habitual.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Sobre su origen, las fuentes son prudentes. El nombre vendría del griego <em>strongoulos</em>, de forma redondeada, y los struffoli quizá llegaron con los griegos o nacieron bajo el dominio español. Dissapore recuerda que existen dulces fritos con miel parecidos en los Abruzos, en España y en Grecia (los <em>loukoumades</em>), y que los struffoli están en las mesas napolitanas desde el siglo XVII, citando la <em>Lucerna de corteggiani</em> de Giovan Battista Crisci. Son de Navidad, aunque algunas familias también los preparan en Carnaval.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Ingredientes de los struffoli</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>500 g de harina floja</strong> (de baja proteína, para galletas)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>300 g de huevos enteros</strong> (unos 5)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>40 g de azúcar blanco</strong> y <strong>30 g de mantequilla blanda</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>3 g de sal fina</strong> y <strong>5 g de levadura química</strong>, tamizada con la harina</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Ralladura de naranja y limón, y un chorrito de Strega o grappa</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Unos 300 g de miel de acacia</strong>, fruta confitada y confites de colores</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>2 litros de aceite de cacahuete</strong> para freír</span></li>
+      </ul>
+    </div>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Cómo hacer struffoli</h3>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>La masa.</strong> Forma un volcán con la harina, pon en el centro los huevos y el azúcar y bate con un tenedor. Añade la sal disuelta en un poco de agua, la ralladura, el licor y por último la mantequilla blanda. Amasa hasta obtener una masa lisa y compacta.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Reposo</strong> en un recipiente hermético durante unas 2 horas.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Formado.</strong> Forma cordones de unos 1 cm de diámetro, enharínalos ligeramente y córtalos en trocitos de 1 cm. Elimina toda la harina sobrante y deja reposar los trocitos 10 minutos sobre papel de horno.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">4</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Fritura.</strong> Calienta el aceite a 180°C y baja después a unos 170°C. Fríe por tandas hasta que tengan el color dorado de la corteza del pan y escúrrelos sobre papel absorbente.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">5</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>La miel.</strong> Templa la miel en una sartén amplia, añade los struffoli fríos y mezcla con cuidado hasta cubrirlos bien. Incorpora la fruta confitada y los confites y dales forma en la fuente de servir.</p>
+        </div>
+      </div>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      Receta adaptada de la versión del pastelero Armando Palmieri publicada por Dissapore. El mismo artículo recoge una versión más crujiente de Sal De Riso, sin levadura.
+    </p>
+  </div>
+
+  <!-- Roccocò -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Roccocò: rosquillas duras de almendra</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Los <strong>roccocò</strong> son aros de masa densa y dura hechos con harina, azúcar, almendras, cítricos y pisto. La masa no lleva mantequilla ni leche, y por eso duran semanas. Algunas versiones añaden piel de naranja confitada o zumo de mandarina. La textura depende del horneado: más tiempo da una galleta crujiente para mojar, menos tiempo un bocado más tierno. En Nápoles se mojan en un vino dulce como el Marsala o el Moscato, o en un licor.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Las fuentes sitúan los roccocò hacia 1320 y los atribuyen a monjas napolitanas, normalmente a las del Real Convento della Maddalena. El nombre se relaciona con el francés <em>rocaille</em>, una forma redondeada parecida a la roca, la misma raíz del estilo rococó.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Ingredientes de los roccocò (10 piezas)</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>250 g de harina</strong> y <strong>150 g de harina de almendra</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>50 g de almendra laminada</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>200 g de azúcar blanco</strong> y una pizca de sal fina</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>2 g de amoníaco para repostería</strong> (bicarbonato de amonio)</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>5 g de pisto</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Ralladura de <strong>1 naranja</strong> y <strong>1 limón</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>80 g de agua tibia</strong> y <strong>1 yema</strong> para pintar</span></li>
+      </ul>
+    </div>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Cómo hacer roccocò</h3>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Mezcla los ingredientes secos</strong>: harina, azúcar, amoníaco, pisto, sal, ralladuras, harina de almendra y almendra laminada.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Añade el agua</strong> poco a poco hasta obtener una masa lisa que ya no se pegue.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Forma los aros.</strong> Divide la masa en 10 porciones, haz rodar cada una entre las palmas hasta formar un cilindro y une los extremos. Colócalos en una bandeja con papel de horno.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">4</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Horneado.</strong> Pinta ligeramente con la yema batida y hornea con ventilador a 180°C durante 20 minutos, o 15 minutos para un resultado más tierno. Sácalos cuando aún estén blandos: se endurecen al enfriarse.</p>
+        </div>
+      </div>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      Receta de Dissapore. Para un color más oscuro, añade 1 cucharadita de cacao puro a la masa; las avellanas pueden sustituir a las almendras.
+    </p>
+  </div>
+
+  <!-- Mustaccioli -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Mustaccioli: rombos especiados con chocolate</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Los <strong>mustaccioli</strong> (mostaccioli en italiano) son galletas en forma de rombo hechas con harina, miel, azúcar, almendras, cacao y pisto, y bañadas en chocolate negro. Según la receta, el interior es firme o tierno; la versión de abajo se hornea solo 15 minutos y queda tierna. La capa de chocolate, la miel y las especias son lo primero que se nota.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      El nombre viene del <em>mosto</em> de uva, que antes formaba parte de la masa; Ricette dal Mondo lo remonta al latín <em>mustaceum</em>. Según Dissapore, el testimonio histórico más sólido de la receta se remonta a Bartolomeo Scappi, cocinero papal del siglo XVI.
+    </p>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm mb-6">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Ingredientes de los mustaccioli (16-18 piezas)</h3>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>250 g de harina de trigo</strong> (tipo 00) y <strong>100 g de harina de almendra</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>125 g de azúcar blanco</strong> y <strong>75 g de miel</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>25 g de cacao puro</strong> y una pizca de sal</span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>4 g de amoníaco para repostería</strong> y <strong>3 g de pisto</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700">Zumo y ralladura de <strong>media naranja</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>60 g de agua tibia</strong></span></li>
+        <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>350 g de chocolate negro al 70 %</strong> para el glaseado</span></li>
+      </ul>
+    </div>
+
+    <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
+      <h3 class="font-serif text-xl font-bold text-slate-900 mb-5">Cómo hacer mustaccioli</h3>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">1</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Mezcla.</strong> Tamiza la harina, el cacao y el amoníaco en un bol. Añade el pisto, la sal, el azúcar, la miel, la harina de almendra y el zumo y la ralladura de naranja.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">2</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Amasa</strong> añadiendo el agua tibia poco a poco. Si la masa está demasiado pegajosa, añade un poco de harina. Envuélvela en film y déjala reposar 1 hora en la nevera.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">3</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Corta los rombos.</strong> Estira la masa a unos 6 mm sobre una superficie enharinada, corta rombos iguales y colócalos separados en una bandeja con papel de horno.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">4</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Horneado</strong> con el horno precalentado a 170°C, calor arriba y abajo, durante 15 minutos (2 o 3 minutos más si los quieres más firmes). Déjalos enfriar por completo en la bandeja: calientes se rompen con facilidad.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-med-gold/15 flex-shrink-0 flex items-center justify-center text-med-gold font-bold text-xs">5</div>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed"><strong>Glaseado.</strong> Funde el chocolate al baño maría o en el microondas. Sumerge los mustaccioli de uno en uno con un tenedor, escúrrelos y ponlos sobre una rejilla. Déjalos al menos 10 minutos en la nevera hasta que el chocolate se solidifique.</p>
+        </div>
+      </div>
+    </div>
+    <p class="text-slate-500 text-sm mt-4">
+      Receta adaptada de los mostaccioli napolitanos tiernos publicados en la red de blogs de GialloZafferano (Cuochinprogress).
+    </p>
+  </div>
+
+  <!-- Comparison -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Los tres dulces de un vistazo</h2>
+    <div class="overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm">
+      <table class="w-full text-xs sm:text-sm">
+        <thead class="bg-slate-900 text-white">
+          <tr>
+            <th class="text-left p-5 font-serif font-bold text-med-gold"></th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Struffoli</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Roccocò</th>
+            <th class="text-left p-5 font-serif font-bold text-med-gold">Mustaccioli</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Forma</td>
+            <td class="p-5 text-slate-600">Bolitas en corona o cúpula</td>
+            <td class="p-5 text-slate-600">Aro</td>
+            <td class="p-5 text-slate-600">Rombo</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Cocción</td>
+            <td class="p-5 text-slate-600">Fritos</td>
+            <td class="p-5 text-slate-600">Al horno</td>
+            <td class="p-5 text-slate-600">Al horno y glaseados</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Sabores</td>
+            <td class="p-5 text-slate-600">Miel, cítricos, fruta confitada</td>
+            <td class="p-5 text-slate-600">Almendra, cítricos, pisto</td>
+            <td class="p-5 text-slate-600">Miel, cacao, pisto, chocolate negro</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-5 font-bold">Textura</td>
+            <td class="p-5 text-slate-600">Crujientes por fuera, ligeros por dentro</td>
+            <td class="p-5 text-slate-600">Duros, para mojar</td>
+            <td class="p-5 text-slate-600">Firmes o tiernos, con capa de chocolate</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-bold">Conservación</td>
+            <td class="p-5 text-slate-600">Mejor frescos; sin miel se conservan bien</td>
+            <td class="p-5 text-slate-600">Cerca de 1 mes en lata</td>
+            <td class="p-5 text-slate-600">Hasta 10 días</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Also on the table -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Qué más hay en la mesa de Navidad</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Struffoli, roccocò y mustaccioli rara vez llegan solos. La bandeja navideña napolitana suele llevar también algunos de estos:
+    </p>
+    <ul class="space-y-3 mb-6">
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Susamielli</strong>: galletas en forma de S con harina, miel, almendras y pisto, cubiertas de sésamo.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Sapienze</strong>: parientes rectas y alargadas de los susamielli, típicas de Nápoles, Caserta y Sorrento.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Raffiuoli</strong>: discos de bizcocho con mermelada de albaricoque bajo un glaseado blanco de azúcar.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Divino amore</strong>: dulces de pasta de almendra con mermelada de albaricoque y glaseado de azúcar.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Pastiera</strong>: normalmente es la tarta de Pascua, pero en Nápoles también aparece en Navidad.</span></li>
+      <li class="flex items-start gap-3"><span class="w-2 h-2 bg-med-gold rounded-full mt-2.5 flex-shrink-0"></span><span class="text-slate-700"><strong>Torrone</strong>: turrón y torroncini de chocolate, con su propia <a href="/es-es/blog/receta-turron-torrone/" class="text-med-blue hover:underline">receta del torrone</a> en este blog.</span></li>
+    </ul>
+  </div>
+
+  <!-- Where to buy -->
+  <div>
+    <h2 class="font-serif text-3xl font-bold text-slate-900 mb-6">Dónde comprarlos en la costa y la península</h2>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      En diciembre las pastelerías de Sorrento, de los pueblos de la península y de la Costa Amalfitana llenan sus mostradores de bandejas de struffoli y bolsas de roccocò y mustaccioli. En Amalfi y Minori, las pastelerías que ya mencionamos en esta web, como Pansa en Amalfi y Sal De Riso en Minori, son un buen punto de partida: pregunta en el mostrador qué tienen esa semana.
+    </p>
+    <p class="text-slate-600 text-lg leading-relaxed mb-6">
+      Si quieres llevarte algunos a casa, elige roccocò y mustaccioli: son secos, se conservan y aguantan la maleta. Los struffoli se pegan por la miel y es mejor comerlos allí. Un viaje en diciembre coincide además con las <a href="/es-es/blog/luces-navidad-sorrento-salerno/" class="text-med-blue hover:underline">luces de Navidad de Sorrento y Salerno</a>, así que puedes comprar los dulces y ver las luces la misma tarde.
+    </p>
+  </div>
+
+  <!-- Consejos -->
+  <div class="bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100">
+    <div class="flex items-center gap-4 mb-6">
+      <svg class="w-6 h-6 text-med-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+      <h3 class="text-xl font-bold">Consejos de Experto</h3>
+    </div>
+    <div class="space-y-6">
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Quita la harina antes de freír</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Sacude los struffoli cortados en un colador para eliminar toda la harina suelta y déjalos reposar 10 minutos sobre papel de horno antes de echarlos al aceite.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Primero fríe, la miel después</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Los struffoli fritos sin miel se conservan bien en una bolsa cerrada. Báñalos en miel caliente el día que los vayas a servir.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Saca los roccocò un poco antes</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Sácalos del horno cuando aún parezcan demasiado blandos. Se endurecen al enfriarse, y cada minuto de más en el horno los deja más duros.</p>
+      </div>
+      <div>
+        <p class="font-bold text-slate-900 mb-1">Glasea los mustaccioli solo en frío</p>
+        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Calientes, las galletas se rompen y funden el chocolate de forma irregular. Espera a que estén completamente frías en la bandeja antes de bañarlas.</p>
+      </div>
+    </div>
+  </div>
+
+</BlogPostLayout>
